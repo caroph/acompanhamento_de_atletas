@@ -11,7 +11,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="/view/SecretariaListaAtleta.jsp">
+						<form role="form" action="SecretariaListaAtleta.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
