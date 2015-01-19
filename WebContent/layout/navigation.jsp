@@ -9,10 +9,10 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Atleta<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="SecretariaNovoAtleta.html">Novo</a>
+						<a href="SecretariaNovoAtleta.jsp">Novo</a>
 					</li>
 					<li>
-						<a href="SecretariaAtleta.html">Buscar</a>
+						<a href="SecretariaAtleta.jsp">Buscar</a>
 					</li>
 				</ul>
 			</li>
@@ -20,10 +20,10 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsáveis<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="SecretariaNovoResponsavel.html">Novo</a>
+						<a href="SecretariaNovoResponsavel.jsp">Novo</a>
 					</li>
 					<li>
-						<a href="SecretariaResponsavel.html">Buscar</a>
+						<a href="SecretariaResponsavel.jsp">Buscar</a>
 					</li>
 				</ul>
 			</li>
@@ -31,15 +31,15 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="SecretariaNovoUsuario.html">Novo</a>
+						<a href="SecretariaNovoUsuario.jsp">Novo</a>
 					</li>
 					<li>
-						<a href="SecretariaUsuario.html">Buscar</a>
+						<a href="SecretariaUsuario.jsp">Buscar</a>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a href="SecretariaUniforme.html">Uniformes</a>
+				<a href="SecretariaUniforme.jsp">Uniformes</a>
 			</li>
 			<li class="dropdown">
 				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<strong class="caret"></strong></a>
