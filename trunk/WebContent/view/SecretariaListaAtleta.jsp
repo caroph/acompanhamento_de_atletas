@@ -1,9 +1,9 @@
-<%@include file='../../layout/head.jsp'%>
+<%@include file='../layout/head.jsp'%>
 	<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<%@include file='../../layout/navigation.jsp'%>
+				<%@include file='../layout/navigation.jsp'%>
 				
 				<div class="row clearfix">
 					<div class="col-md-3 column">
@@ -12,7 +12,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="view/SecretariaListaAtleta.html">
+						<form role="form" action="SecretariaListaAtleta.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
@@ -145,7 +145,7 @@
 		</div>
 	</div>	
 	
-	<%@include file="../../layout/footer.jsp"%>
+	<%@include file="../layout/footer.jsp"%>
 	
   </body>
 </html>

@@ -1,9 +1,9 @@
-<%@include file='../../layout/head.jsp'%>
+<%@include file='../layout/head.jsp'%>
 	<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<%@include file='../../layout/navigation.jsp'%>
+				<%@include file='../layout/navigation.jsp'%>
 				
 				<!-- Content -->
 				<div class="row clearfix">
@@ -193,6 +193,6 @@
   </div>
 </div>
 	
-	<%@include file="../../layout/footer.jsp"%>
+	<%@include file="../layout/footer.jsp"%>
   </body>
 </html>
