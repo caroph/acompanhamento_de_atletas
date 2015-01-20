@@ -1,8 +1,9 @@
-<%@include file='../layout/head.jsp'%>
+	<%@include file='../layout/head.jsp'%>
 	<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
+				<!-- menu -->
 				<%@include file='../layout/navigation.jsp'%>
 				
 				<!-- Content -->
@@ -67,10 +68,10 @@
 									<input type="text" class="form-control" id="inputEmail3" />
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" >
 								<label for="nr" class="col-sm-4 control-label">Data de Nascimento:</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="inputEmail3" />
+								<div class="col-sm-8 input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+									<input type="text" size="16" class="form-control span2" id="dp2" data-date-format="mm/dd/yy" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -142,14 +143,14 @@
 								<div class="col-sm-2">
 									<select class="form-control" name="sn"> 
 										<option value="sim">Sim</option> 
-										<option value="nao">N„o</option> 
+										<option value="nao">"N„o</option> 
 									</select>
 								</div>
 								<div class="col-sm-4"></div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10 text-right">
-									<!-- <button type="button" class="btn btn-primary" id="vincular">Vincular Respons√°vel</button> -->
+									<a class="btn btn-primary" href="SecretariaAnexosAtleta.jsp" id="anexos">Anexar Documentos</a>
 									<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Respons·vel</a>
 									<button type="submit" class="btn btn-primary">Salvar</button>
 								</div>
@@ -164,35 +165,86 @@
 		</div>
 	</div>	
 	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Vincular Respons·vel</h4>
-            </div>
-            <div class="modal-body">
-				<!-- <div class="form-group">
-					<input type="text" class="form-control" id="search" />
-					</div> <button type="submit" class="btn btn-default">Buscar</button>
-				</div> -->
-                <div class="radio">
-					<label><input type="radio" name="optradio"/> Respons·vel 1</label>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Vincular Respons√°vel</h4>
 				</div>
-				<div class="radio">
-					<label><input type="radio" name="optradio"/> Respons·vel 2</label>
+				<div class="modal-body">
+					<!-- <div class="form-group">
+						<input type="text" class="form-control" id="search" />
+						</div> <button type="submit" class="btn btn-default">Buscar</button>
+					</div> -->
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Respons·vel 1</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Respons·vel 2</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Respons·vel 3</label>
+					</div>
 				</div>
-				<div class="radio">
-					<label><input type="radio" name="optradio"/> Respons·vel 3</label>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="SecretariaNovoResponsavel.jsp">Novo Respons·vel</a>
+					<button type="button" class="btn btn-primary">Vincular</button>
 				</div>
-            </div>
-            <div class="modal-footer">
-				<a class="btn btn-primary" href="view/SecretariaNovoResponsavel.html">Novo Respons·vel</a>
-                <button type="button" class="btn btn-primary">Vincular</button>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="date-form">
+    
+<div class="form-horizontal">
+    <div class="control-group">
+        <label for="date-picker-1" class="control-label">A <span class="glyphicon glyphicon-calendar"> </span>
+
+        </label>
+        <div class="controls">
+            <input id="date-picker-1" type="text" class="date-picker form-control" />
         </div>
     </div>
-  </div>
+    <div class="control-group">
+        <label for="date-picker" class="control-label">B</label>
+        <div class="controls">
+            <div class="input-group">
+                <input id="date-picker" type="text" class="date-picker form-control" />
+                <label for="date-picker" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="date-picker-3" class="control-label">C</label>
+        <div class="controls">
+            <div class="input-group">
+                <label for="date-picker-3" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+
+                </label>
+                <input id="date-picker-3" type="text" class="date-picker form-control" />
+            </div>
+        </div>
+    </div>
 </div>
+    
+    <hr />
+<div>
+    <span id="msg" class="controls form-control uneditable-input"></span>
+</div>
+</div>
+
+
+
 	
 	<%@include file="../layout/footer.jsp"%>
+	
   </body>
 </html>
