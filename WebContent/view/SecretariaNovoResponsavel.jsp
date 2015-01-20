@@ -1,8 +1,9 @@
-<%@include file='../layout/head.jsp'%>
+	<%@include file='../layout/head.jsp'%>
 	<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
+				<!-- menu -->
 				<%@include file='../layout/navigation.jsp'%>
 				
 				<div class="row clearfix">					
@@ -235,7 +236,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Medicação autorizada a tomar em caso de dor</label>
+										<label for="emailPai" class="col-sm-4 control-label">MedicaÃ§Ã£o autorizada a tomar em casa de dor</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
@@ -254,7 +255,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Uso contínuo de medicação</label>
+										<label for="emailPai" class="col-sm-4 control-label">Uso contínuo de medição</label>
 										<div class="col-sm-3">											
 											<div class="checkbox">
 												 <label><input type="checkbox" /> Sim</label>

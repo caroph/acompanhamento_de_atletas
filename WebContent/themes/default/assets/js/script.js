@@ -24,4 +24,20 @@ window.onload = function() {
 				document.getElementById('cidadeMaeCom'),
 				true
 			);
+			
 		}
+
+	$('#anexar').click(function() {
+		$('#progress').css("display", "block");
+	});
+	$('#fechar').click(function() {
+		$('#progress').css("display", "none");
+	});
+	
+	$(".date-picker").datepicker();
+
+	$(".date-picker").on("change", function () {
+	    var id = $(this).attr("id");
+	    var val = $("label[for='" + id + "']").text();
+	    $("#msg").text(val + " changed");
+	});

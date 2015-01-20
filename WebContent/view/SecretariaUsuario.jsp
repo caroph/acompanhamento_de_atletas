@@ -10,9 +10,9 @@
 					</div>
 					<div class="col-md-6 column">
 						<h3 class="text-center">
-							Buscar Atleta
+							Buscar Usuários
 						</h3>
-						<form role="form" action="SecretariaListaAtleta.jsp">
+						<form role="form" action="SecretariaListaUsuario.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>

@@ -1,8 +1,9 @@
-<%@include file='../layout/head.jsp'%>
+	<%@include file='../layout/head.jsp'%>
 	<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
+				<!-- menu -->
 				<%@include file='../layout/navigation.jsp'%>
 				
 				<div class="row clearfix">
@@ -10,9 +11,9 @@
 					</div>
 					<div class="col-md-6 column">
 						<h3 class="text-center">
-							Buscar Respons√°veis
+							Buscar Respons·veis
 						</h3>
-						<form role="form" action="vSecretariaListaResposavel.jsp">
+						<form role="form" action="SecretariaListaResposavel.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
@@ -22,11 +23,11 @@
 					</div>
 				</div>
 				
-				<div class="col-md-3 column">
+				<div class="col-md-2 column">
 				</div>
-				<div class="col-md-6 column">
+				<div class="col-md-8 column">
 					<h3 class="text-center">
-							Respons√°veis Encontrados
+							Respons·veis Encontrados
 					</h3>
 					<table class="table">
 					<thead>
@@ -35,7 +36,7 @@
 								Nome Pai
 							</th>
 							<th>
-								Nome M√£e
+								Nome M„e
 							</th>
 							<th>
 							</th>
@@ -51,7 +52,7 @@
 								Pai 1
 							</td>
 							<td>
-								M√£e 1
+								M„e 1
 							</td>
 							<td>
 								<a>Editar</a>
@@ -68,7 +69,7 @@
 								Pai 2
 							</td>
 							<td>
-								M~e 2
+								M„e 2
 							</td>
 							<td>
 								<a>Editar</a>
@@ -85,7 +86,7 @@
 								Pai 3
 							</td>
 							<td>
-								M√£e 3
+								M„e 3
 							</td>
 							<td>
 								<a>Editar</a>
@@ -102,7 +103,7 @@
 								Pai 4
 							</td>
 							<td>
-								M√£e 4
+								M„e 4
 							</td>
 							<td>
 								<a>Editar</a>
@@ -119,7 +120,7 @@
 								Pai 5<br>
 							</td>
 							<td>
-								M√£e 5
+								M„e 5
 							</td>
 							<td>
 								<a>Editar</a>
@@ -153,11 +154,11 @@
 							<a href="#">5</a>
 						</li>
 						<li>
-							<a href="#">Pr√≥ximo</a>
+							<a href="#">PrÛximo</a>
 						</li>
 					</ul>
 				</div>
-				<div class="col-md-3 column">
+				<div class="col-md-2 column">
 				</div>
 			</div>
 		</div>

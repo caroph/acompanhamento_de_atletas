@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-			<!-- menu -->
+				<!-- menu -->
 				<%@include file='../layout/navigation.jsp'%>
 				
 				<div class="row clearfix">
@@ -13,7 +13,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="SecretariaListaAtleta.jsp">
+						<form role="form" action="SecretariaListaUniforme.html">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
@@ -37,10 +37,6 @@
 							</th>
 							<th>
 							</th>
-							<th>
-							</th>
-							<th>
-							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,13 +45,7 @@
 								Atleta 1
 							</td>
 							<td>
-								<a>Editar</a>
-							</td>
-							<td>
-								<a>Detalhes</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
 						<tr>
@@ -63,13 +53,7 @@
 								Atleta 2
 							</td>
 							<td>
-								<a>Editar</a>
-							</td>
-							<td>
-								<a>Detalhes</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
 						<tr>
@@ -77,13 +61,7 @@
 								Atleta 3
 							</td>
 							<td>
-								<a>Editar</a>
-							</td>
-							<td>
-								<a>Detalhes</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
 						<tr>
@@ -91,13 +69,7 @@
 								Atleta 4
 							</td>
 							<td>
-								<a>Editar</a>
-							</td>
-							<td>
-								<a>Detalhes</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
 						<tr>
@@ -105,13 +77,7 @@
 								Atleta 5<br>
 							</td>
 							<td>
-								<a>Editar</a>
-							</td>
-							<td>
-								<a>Detalhes</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
 					</tbody>
