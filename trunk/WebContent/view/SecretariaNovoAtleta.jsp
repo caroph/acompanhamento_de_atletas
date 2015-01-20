@@ -20,7 +20,7 @@
 										 <label><input type="checkbox" /> Segunda</label>
 									</div>
 									<div class="checkbox">
-										 <label><input type="checkbox" /> Ter√ßa</label>
+										 <label><input type="checkbox" /> TerÁa</label>
 									</div>
 									<div class="checkbox">
 										 <label><input type="checkbox" /> Quarta</label>
@@ -43,19 +43,19 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-4 control-label">N.¬∫ Matr√≠cula Clube Curitibano:</label>
+								<label for="nr" class="col-sm-4 control-label">N∫ MatrÌcula Clube Curitibano:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-4 control-label">N.¬∫ Cadastro FPT:</label>
+								<label for="nr" class="col-sm-4 control-label">N∫ Cadastro FPT:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-4 control-label">N.¬∫ Cadastro CBT:</label>
+								<label for="nr" class="col-sm-4 control-label">N∫ Cadastro CBT:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3" />
 								</div>
@@ -80,7 +80,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-4 control-label">Endere√ßo residencial do atleta:</label>
+								<label for="nr" class="col-sm-4 control-label">EndereÁo residencial do atleta:</label>
 								<div class="col-sm-8">
 									<input type="email" class="form-control" id="inputEmail3" />
 								</div>
@@ -126,7 +126,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-4 control-label">S√©rie:</label>
+								<label for="nr" class="col-sm-4 control-label">SÈrie:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="inputEmail3" />
 								</div>
@@ -138,11 +138,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="nr" class="col-sm-6 control-label text-left">Faz acompanhamento psicol√≥gico fora do Clube?</label>
+								<label for="nr" class="col-sm-6 control-label text-left">Faz acompanhamento psicolÛgico fora do Clube?</label>
 								<div class="col-sm-2">
 									<select class="form-control" name="sn"> 
 										<option value="sim">Sim</option> 
-										<option value="nao">N√£o</option> 
+										<option value="nao">N„o</option> 
 									</select>
 								</div>
 								<div class="col-sm-4"></div>
@@ -150,7 +150,7 @@
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10 text-right">
 									<!-- <button type="button" class="btn btn-primary" id="vincular">Vincular Respons√°vel</button> -->
-									<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Respons√°vel</a>
+									<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Respons·vel</a>
 									<button type="submit" class="btn btn-primary">Salvar</button>
 								</div>
 							</div>
@@ -168,7 +168,7 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h4 class="modal-title" id="myModalLabel">Vincular Respons√°vel</h4>
+            <h4 class="modal-title" id="myModalLabel">Vincular Respons·vel</h4>
             </div>
             <div class="modal-body">
 				<!-- <div class="form-group">
@@ -176,17 +176,17 @@
 					</div> <button type="submit" class="btn btn-default">Buscar</button>
 				</div> -->
                 <div class="radio">
-					<label><input type="radio" name="optradio"/> Respons√°vel 1</label>
+					<label><input type="radio" name="optradio"/> Respons·vel 1</label>
 				</div>
 				<div class="radio">
-					<label><input type="radio" name="optradio"/> Respons√°vel 2</label>
+					<label><input type="radio" name="optradio"/> Respons·vel 2</label>
 				</div>
 				<div class="radio">
-					<label><input type="radio" name="optradio"/> Respons√°vel 3</label>
+					<label><input type="radio" name="optradio"/> Respons·vel 3</label>
 				</div>
             </div>
             <div class="modal-footer">
-				<a class="btn btn-primary" href="view/SecretariaNovoResponsavel.html">Novo Respons√°vel</a>
+				<a class="btn btn-primary" href="view/SecretariaNovoResponsavel.html">Novo Respons·vel</a>
                 <button type="button" class="btn btn-primary">Vincular</button>
         </div>
     </div>
