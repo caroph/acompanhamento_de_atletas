@@ -66,11 +66,11 @@
 									<div class="form-group">
 										<label for="nr" class="col-sm-4 control-label">Estado:</label>
 										<div class="col-sm-3">
-											<select class="form-control" name="estado" id="estadoPai"> </select>
+											<select class="form-control" name="estado" id="estado"> </select>
 										</div>
 										<label for="nr" class="col-sm-1 control-label">Cidade:</label>
 										<div class="col-sm-4">
-											<select class="form-control" name="cidade" id="cidadePai"> </select>
+											<select class="form-control" name="cidade" id="cidade"> </select>
 										</div>
 									</div>
 									<div class="form-group">
@@ -94,11 +94,11 @@
 									<div class="form-group">
 										<label for="nr" class="col-sm-4 control-label">Estado:</label>
 										<div class="col-sm-3">
-											<select class="form-control" name="estado" id="estadoPaiCom"> </select>
+											<select class="form-control" name="estado" id="estadocom"> </select>
 										</div>
 										<label for="nr" class="col-sm-1 control-label">Cidade:</label>
 										<div class="col-sm-4">
-											<select class="form-control" name="cidade" id="cidadePaiCom"> </select>
+											<select class="form-control" name="cidade" id="cidadecom"> </select>
 										</div>
 									</div>
 									<div class="form-group">
@@ -137,7 +137,6 @@
 			</div>
 		</div>
 	</div>	
-	
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>
