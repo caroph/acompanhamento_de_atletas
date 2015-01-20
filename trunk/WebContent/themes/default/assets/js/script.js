@@ -4,7 +4,7 @@ window.onload = function() {
 				document.getElementById('cidade'),
 				true
 			);
-			new dgCidadesEstados(
+			new dgCidadesEstadosPai(
 				document.getElementById('estadoPai'),
 				document.getElementById('cidadePai'),
 				true
@@ -32,12 +32,4 @@ window.onload = function() {
 	});
 	$('#fechar').click(function() {
 		$('#progress').css("display", "none");
-	});
-	
-	$(".date-picker").datepicker();
-
-	$(".date-picker").on("change", function () {
-	    var id = $(this).attr("id");
-	    var val = $("label[for='" + id + "']").text();
-	    $("#msg").text(val + " changed");
 	});

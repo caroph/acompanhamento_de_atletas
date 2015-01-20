@@ -70,8 +70,8 @@
 							</div>
 							<div class="form-group" >
 								<label for="nr" class="col-sm-4 control-label">Data de Nascimento:</label>
-								<div class="col-sm-8 input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-									<input type="text" size="16" class="form-control span2" id="dp2" data-date-format="mm/dd/yy" />
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="inputEmail3" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -193,57 +193,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="date-form">
-    
-<div class="form-horizontal">
-    <div class="control-group">
-        <label for="date-picker-1" class="control-label">A <span class="glyphicon glyphicon-calendar"> </span>
-
-        </label>
-        <div class="controls">
-            <input id="date-picker-1" type="text" class="date-picker form-control" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label for="date-picker" class="control-label">B</label>
-        <div class="controls">
-            <div class="input-group">
-                <input id="date-picker" type="text" class="date-picker form-control" />
-                <label for="date-picker" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
-
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="control-group">
-        <label for="date-picker-3" class="control-label">C</label>
-        <div class="controls">
-            <div class="input-group">
-                <label for="date-picker-3" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
-
-                </label>
-                <input id="date-picker-3" type="text" class="date-picker form-control" />
-            </div>
-        </div>
-    </div>
-</div>
-    
-    <hr />
-<div>
-    <span id="msg" class="controls form-control uneditable-input"></span>
-</div>
-</div>
-
-
-
-	
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>
