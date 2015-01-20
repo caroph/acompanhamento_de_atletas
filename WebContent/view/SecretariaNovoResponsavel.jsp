@@ -236,7 +236,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">MedicaÃ§Ã£o autorizada a tomar em casa de dor</label>
+										<label for="emailPai" class="col-sm-4 control-label">Medicação autorizada a tomar em caso de dor</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>

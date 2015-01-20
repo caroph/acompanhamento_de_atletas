@@ -10,7 +10,7 @@
 					</div>
 					<div class="col-md-6 column">
 						<h3 class="text-center">
-							Buscar Responsvel
+							Buscar Responsável
 						</h3>
 						<form role="form" action="SecretariaListaResponsavel.jsp">
 							<div class="form-group">
