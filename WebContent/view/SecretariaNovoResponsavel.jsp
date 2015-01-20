@@ -11,7 +11,7 @@
 							<div class="col-md-1 column"></div>
 							<div class="col-md-10 column">
 								<h3 class="text-center">
-								Cadastro de ResponsÃ¡vel do Atleta
+								Cadastro de Responsável do Atleta
 								</h3>
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
@@ -33,13 +33,13 @@
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="emailPai" class="col-sm-4 control-label">EndereÃ§o</label>
+										 <label for="emailPai" class="col-sm-4 control-label">Endereço</label>
 										<div class="col-sm-8">
 											<input type="enderecoPai" class="form-control" id="enderecoPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="numeroPai" class="col-sm-4 control-label">NÃºmero</label>
+										 <label for="numeroPai" class="col-sm-4 control-label">Número</label>
 										<div class="col-sm-8">
 											<input type="number" class="form-control" id="numeroPai" />
 										</div>
@@ -67,7 +67,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="emailPai" class="col-sm-4 control-label">EndereÃ§o (Comercial)</label>
+										 <label for="emailPai" class="col-sm-4 control-label">Endereço (Comercial)</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
@@ -115,7 +115,7 @@
 									
 									<!-- MÃƒE -->
 									<div class="form-group">
-										<label class="col-sm-12 control-label" style="text-align:center">Dados da MÃ£e</label> 
+										<label class="col-sm-12 control-label" style="text-align:center">Dados da Mãe</label> 
 									</div>
 									<hr/>
 									<div class="form-group">
@@ -131,13 +131,13 @@
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="emailPai" class="col-sm-4 control-label">EndereÃ§o</label>
+										 <label for="emailPai" class="col-sm-4 control-label">Endereço</label>
 										<div class="col-sm-8">
 											<input type="enderecoPai" class="form-control" id="enderecoPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="numeroPai" class="col-sm-4 control-label">NÃºmero</label>
+										 <label for="numeroPai" class="col-sm-4 control-label">Número</label>
 										<div class="col-sm-8">
 											<input type="number" class="form-control" id="numeroPai" />
 										</div>
@@ -165,7 +165,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										 <label for="emailPai" class="col-sm-4 control-label">EndereÃ§o (Comercial)</label>
+										 <label for="emailPai" class="col-sm-4 control-label">Endereço (Comercial)</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
@@ -213,61 +213,61 @@
 									
 									<!-- EMERGÃŠNCIA -->
 									<div class="form-group">
-										<label class="col-sm-12 control-label" style="text-align:center">Cadastro de EmergÃªncia</label> 
+										<label class="col-sm-12 control-label" style="text-align:center">Cadastro de Emergência</label> 
 									</div>
 									</hr>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Nome MÃ©dico ResponsÃ¡vel</label>
+										<label for="emailPai" class="col-sm-4 control-label">Nome Médico Responsável</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Telefone do MÃ©dico</label>
+										<label for="emailPai" class="col-sm-4 control-label">Telefone do Médico</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">ConvÃªnio MÃ©dico Hospitalar</label>
+										<label for="emailPai" class="col-sm-4 control-label">Convênio Médico Hospitalar</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">MedicaÃ§Ã£o autorizada a tomar em casa de dor</label>
+										<label for="emailPai" class="col-sm-4 control-label">Medicação autorizada a tomar em caso de dor</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">AlÃ©rgico</label>
+										<label for="emailPai" class="col-sm-4 control-label">Alérgico</label>
 										<div class="col-sm-3">											
 											<div class="checkbox">
 												 <label><input type="checkbox" /> Sim</label>
-												 <label><input type="checkbox" /> NÃ£o</label>
+												 <label><input type="checkbox" /> Não</label>
 											</div>
 										</div>
-										<label for="emailPai" class="col-sm-1 control-label">DescriÃ§Ã£o</label>
+										<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
 										<div class="col-sm-4">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Uso contÃ­nuo de medicaÃ§Ã£o</label>
+										<label for="emailPai" class="col-sm-4 control-label">Uso contínuo de medicação</label>
 										<div class="col-sm-3">											
 											<div class="checkbox">
 												 <label><input type="checkbox" /> Sim</label>
-												 <label><input type="checkbox" /> NÃ£o</label>
+												 <label><input type="checkbox" /> Não</label>
 											</div>
 										</div>
-										<label for="emailPai" class="col-sm-1 control-label">DescriÃ§Ã£o</label>
+										<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
 										<div class="col-sm-4">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="emailPai" class="col-sm-4 control-label">Nome para emergÃªncia</label>
+										<label for="emailPai" class="col-sm-4 control-label">Nome para emergência</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />
 										</div>
