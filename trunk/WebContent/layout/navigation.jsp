@@ -20,7 +20,7 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Responsáveis<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="SecretariaNovoResponsavel.jsp">Novo</a>
+						<a href="SecretariaNovoResponsavel2.jsp">Novo</a>
 					</li>
 					<li>
 						<a href="SecretariaResponsavel.jsp">Buscar</a>
