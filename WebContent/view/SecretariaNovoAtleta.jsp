@@ -13,6 +13,7 @@
 						<h3 class="text-center">
 							Cadastro Pessoal do Atleta
 						</h3>
+						<hr/>
 						<form class="form-horizontal" role="form">
 							<div class="form-group">
 								<label for="diasTreinamento" class="col-sm-4 control-label">Dias da semana que treina:</label>
@@ -143,10 +144,91 @@
 								<div class="col-sm-2">
 									<select class="form-control" name="sn"> 
 										<option value="sim">Sim</option> 
-										<option value="nao">"Não</option> 
+										<option value="nao" selected>Não</option> 
 									</select>
 								</div>
 								<div class="col-sm-4"></div>
+							</div>
+							<hr/>
+							<!-- EMERGÊNCIA -->
+							<div class="form-group">
+								<h3 class="text-center">Cadastro de Emergência</h3>
+							</div>
+							<hr />
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Nome
+									Médico Responsável</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Telefone
+									do Médico</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Convênio
+									Médico Hospitalar</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Medicação
+									autorizada a tomar em caso de dor</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Alérgico</label>
+								<div class="col-sm-3">
+									<div class="checkbox">
+										<label><input type="checkbox" /> Sim</label> <label><input
+											type="checkbox" /> Não</label>
+									</div>
+								</div>
+								<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
+								<div class="col-sm-4">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Uso
+									contínuo de medição</label>
+								<div class="col-sm-3">
+									<div class="checkbox">
+										<label><input type="checkbox" /> Sim</label> <label><input
+											type="checkbox" /> Não</label>
+									</div>
+								</div>
+								<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
+								<div class="col-sm-4">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Nome
+									para emergência</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Telefone</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="emailPai" class="col-sm-4 control-label">Grau
+									de parentesco</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10 text-right">
@@ -156,7 +238,7 @@
 								</div>
 							</div>
 						</div>
-						</form>
+					</form>
 					</div>
 					<div class="col-md-1 column"></div>
 				</div>
