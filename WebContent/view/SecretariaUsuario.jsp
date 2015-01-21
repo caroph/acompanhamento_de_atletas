@@ -12,7 +12,7 @@
 						<h3 class="text-center">
 							Buscar Usuários
 						</h3>
-						<form role="form" action="SecretariaListaUniforme.jsp">
+						<form role="form" action="SecretariaListaUsuario.jsp">
 						    <div class="input-group">
 						      <input type="text" class="form-control form-search" id="search">
 						      <span class="input-group-btn">

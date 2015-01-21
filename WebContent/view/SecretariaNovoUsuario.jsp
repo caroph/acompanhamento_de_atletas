@@ -9,7 +9,7 @@
 					<div class="col-md-1 column"></div>
 					<div class="col-md-10 column">
 						<h3 class="text-center">
-						Cadastro de Usu√°rio
+						Cadastro de Usu·rio
 						</h3>
 						<form class="form-horizontal" role="form">
 							<div class="form-group">
