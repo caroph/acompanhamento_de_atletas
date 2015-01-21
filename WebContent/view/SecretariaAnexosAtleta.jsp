@@ -84,12 +84,12 @@
 	</div>
 	<%@include file="../layout/footer.jsp"%>
 	<script>
-		$('#anexar').click(function() {
-			$('#progress').css("display", "block");
-		});
-		$('#fechar').click(function() {
-			$('#progress').css("display", "none");
-		});
+// 		$('#anexar').click(function() {
+// 			$('#progress').css("display", "block");
+// 		});
+// 		$('#fechar').click(function() {
+// 			$('#progress').css("display", "none");
+// 		});
 	</script>
 	
   </body>
