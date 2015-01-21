@@ -56,7 +56,7 @@
 								<a>Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" data-target="#basicModal">Detalhes</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -70,7 +70,7 @@
 								<a>Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" data-target="#basicModal">Detalhes</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -84,7 +84,7 @@
 								<a>Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" data-target="#basicModal">Detalhes</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -98,7 +98,7 @@
 								<a>Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" data-target="#basicModal">Detalhes</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -112,7 +112,7 @@
 								<a>Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" data-target="#basicModal">Detalhes</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -149,6 +149,61 @@
 			</div>
 		</div>
 	</div>	
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Detalhes Atleta</h4>
+					</div>
+					<div class="modal-body">
+						Nome: Atleta X<br/>
+						Equipe: Desenvolvimento<br/>
+						Dias que treina: Seg, Ter, Qua<br/>
+						Nº. Matrícula Clube Curitibano: XXXX<br/>
+						Nº. Cadastro FPT: XXXX<br/>
+						Nº. Cadastro CBT: XXXX<br/>
+						Responsável: Responsável 1<br/>
+						<div class="text-right">
+							<a class="btn btn-primary" href="SecretariaAnexosAtleta.jsp" id="anexos">Anexar Documentos</a>
+							<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal2">Vincular Responsável</a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="modal fade" id="basicModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Vincular Responsável</h4>
+				</div>
+				<div class="modal-body">
+					<!-- <div class="form-group">
+						<input type="text" class="form-control" id="search" />
+						</div> <button type="submit" class="btn btn-default">Buscar</button>
+					</div> -->
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 1</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 2</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 3</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="SecretariaNovoResponsavel.jsp">Novo Responsável</a>
+					<button type="button" class="btn btn-primary">Vincular</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<%@include file="../layout/footer.jsp"%>
 	
