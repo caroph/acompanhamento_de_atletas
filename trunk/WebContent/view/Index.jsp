@@ -56,7 +56,7 @@
 					<option selected value="#">Selecione</option>
 					<option value="view/SecretariaAtleta.jsp">Secretaria</option>
 					<option value="view/FisioterapiaAtleta.jsp">Fisioterapia</option>
-					<option value="#">Psicóloga</option>
+					<option value="view/PsicologiaAtleta.jsp">Psicóloga</option>
 					<option value="#">Nutricionista</option>
 					<option value="#">Técnico</option>
 					<option value="#">Técnico Avaliador</option>
