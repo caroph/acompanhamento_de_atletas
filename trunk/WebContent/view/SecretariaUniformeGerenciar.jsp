@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<!-- menu -->
-				<%@include file='../layout/navigation.jsp'%>
+				<%@include file='../layout/navigationSecretaria.jsp'%>
 				<div class="row clearfix">
 					<div class="col-md-2 column"></div>
 					<div class="col-md-8 column">
@@ -41,7 +41,7 @@
 							<div class="form-group">
 								 <label for="endereco" class="col-sm-4 control-label">Data Empréstimo</label>
 								<div class="col-sm-8">
-									<input type="enderecoPai" class="form-control" id="endereco" />
+									<input type="text" class="form-control" id="endereco" />
 								</div>
 							</div>
 							<div class="form-group">

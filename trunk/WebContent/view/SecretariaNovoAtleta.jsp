@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<!-- menu -->
-				<%@include file='../layout/navigation.jsp'%>
+				<%@include file='../layout/navigationSecretaria.jsp'%>
 				
 				<!-- Content -->
 				<div class="row clearfix">
@@ -237,15 +237,15 @@
 									<button type="submit" class="btn btn-primary">Salvar</button>
 								</div>
 							</div>
-						</div>
-					</form>
+						</form>
 					</div>
 					<div class="col-md-1 column"></div>
 				</div>
-				<!-- End Content -->
+					
 			</div>
+				<!-- End Content -->
 		</div>
-	</div>	
+	</div>
 	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

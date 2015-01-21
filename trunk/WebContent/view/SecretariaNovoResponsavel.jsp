@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<!-- menu -->
-				<%@include file='../layout/navigation.jsp'%>
+				<%@include file='../layout/navigationSecretaria.jsp'%>
 				
 				<div class="row clearfix">					
 					<div class="col-md-12 column">
@@ -36,7 +36,7 @@
 									<div class="form-group">
 										 <label for="emailPai" class="col-sm-4 control-label">Endereço</label>
 										<div class="col-sm-8">
-											<input type="enderecoPai" class="form-control" id="enderecoPai" />
+											<input type="text" class="form-control" id="enderecoPai" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -134,7 +134,7 @@
 									<div class="form-group">
 										 <label for="emailPai" class="col-sm-4 control-label">Endereço</label>
 										<div class="col-sm-8">
-											<input type="enderecoPai" class="form-control" id="enderecoPai" />
+											<input type="text" class="form-control" id="enderecoPai" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -216,7 +216,7 @@
 									<div class="form-group">
 										<label class="col-sm-12 control-label" style="text-align:center">Cadastro de Emergência</label> 
 									</div>
-									</hr>
+									<hr/>
 									<div class="form-group">
 										<label for="emailPai" class="col-sm-4 control-label">Nome Médico Responsável</label>
 										<div class="col-sm-8">
@@ -292,13 +292,10 @@
 									</div>
 								</form>
 							</div>
-							<div class="col-md-1 column">
-							</div>
+							<div class="col-md-1 column"></div>
 						</div>
 					</div>
 				</div>
-
-				
 			</div>
 		</div>
 	</div>	

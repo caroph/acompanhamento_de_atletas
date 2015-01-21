@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<!-- menu -->
-				<%@include file='../layout/navigationSecretaria.jsp'%>
+				<%@include file='../layout/navigationFisioterapia.jsp'%>
 				<div class="row clearfix">
 					<div class="col-md-3 column">
 					</div>
@@ -12,7 +12,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="SecretariaListaAtleta.jsp">
+						<form role="form" action="FisioterapiaListaAtleta.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
