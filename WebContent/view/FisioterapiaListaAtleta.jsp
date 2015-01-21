@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 			<!-- menu -->
-				<%@include file='../layout/navigationSecretaria.jsp'%>
+				<%@include file='../layout/navigationFisioterapia.jsp'%>
 				
 				<div class="row clearfix">
 					<div class="col-md-3 column">
@@ -13,7 +13,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="SecretariaListaAtleta.jsp">
+						<form role="form" action="SecretariaListaFisioterapia.jsp">
 							<div class="form-group">
 								<input type="text" class="form-control" id="search" />
 							</div> <button type="submit" class="btn btn-default">Buscar</button>
@@ -41,6 +41,8 @@
 							</th>
 							<th>
 							</th>
+							<th>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,10 +51,13 @@
 								Atleta 1
 							</td>
 							<td>
-								<a>Editar</a>
+								<a>Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a>Incluir Parecer</a>
+							</td>
+							<td>
+								<a>Ver Histórico</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -63,10 +68,13 @@
 								Atleta 2
 							</td>
 							<td>
-								<a>Editar</a>
+								<a>Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a>Incluir Parecer</a>
+							</td>
+							<td>
+								<a>Ver Histórico</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -77,10 +85,13 @@
 								Atleta 3
 							</td>
 							<td>
-								<a>Editar</a>
+								<a>Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a>Incluir Parecer</a>
+							</td>
+							<td>
+								<a>Ver Histórico</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -91,10 +102,13 @@
 								Atleta 4
 							</td>
 							<td>
-								<a>Editar</a>
+								<a>Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a>Incluir Parecer</a>
+							</td>
+							<td>
+								<a>Ver Histórico</a>
 							</td>
 							<td>
 								<a>Excluir</a>
@@ -105,10 +119,13 @@
 								Atleta 5<br>
 							</td>
 							<td>
-								<a>Editar</a>
+								<a>Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a>Incluir Parecer</a>
+							</td>
+							<td>
+								<a>Ver Histórico</a>
 							</td>
 							<td>
 								<a>Excluir</a>

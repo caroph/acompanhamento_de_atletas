@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<!-- menu -->
-				<%@include file='../layout/navigation.jsp'%>
+				<%@include file='../layout/navigationSecretaria.jsp'%>
 				<div class="row clearfix">
 					<div class="col-md-3 column">
 					</div>
