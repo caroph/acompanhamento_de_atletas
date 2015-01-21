@@ -11,6 +11,7 @@
 					<li>
 						<a href="SecretariaNovoAtleta.jsp">Novo</a>
 					</li>
+					<li class="divider"></li>
 					<li>
 						<a href="SecretariaAtleta.jsp">Buscar</a>
 					</li>
@@ -22,6 +23,7 @@
 					<li>
 						<a href="SecretariaNovoResponsavel2.jsp">Novo</a>
 					</li>
+					<li class="divider"></li>
 					<li>
 						<a href="SecretariaResponsavel.jsp">Buscar</a>
 					</li>
@@ -33,6 +35,7 @@
 					<li>
 						<a href="SecretariaNovoUsuario.jsp">Novo</a>
 					</li>
+					<li class="divider"></li>
 					<li>
 						<a href="SecretariaUsuario.jsp">Buscar</a>
 					</li>

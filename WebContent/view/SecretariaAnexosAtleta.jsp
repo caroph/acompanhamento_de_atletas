@@ -77,11 +77,11 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
-	
+		</div>	
+	</div>
 	<%@include file="../layout/footer.jsp"%>
 	<script>
 // 		$('#anexar').click(function() {

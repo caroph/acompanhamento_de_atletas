@@ -19,8 +19,6 @@
 										<label class="col-sm-12 control-label" style="text-align:center">Dados do Pai</label>
 									</div>
 									<hr/>
-									
-
 									<div class="form-group">
 										 <label for="nomePai" class="col-sm-4 control-label">Nome</label>
 										<div class="col-sm-8">

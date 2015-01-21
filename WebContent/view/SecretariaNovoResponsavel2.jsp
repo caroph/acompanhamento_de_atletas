@@ -26,7 +26,7 @@
 										 <label for="grParentesco" class="col-sm-4 control-label">Grau de parentesco</label>
 										<div class="col-sm-2">
 											<select class="form-control" name="cbGrParentesco" id="cbGrParentesco">
-												<option value=""></option>
+												<option value="">Selecione</option>
 												<option value="pai">Pai</option>
 												<option value="mae">Mãe</option>
 												<option value="outro">Outro</option>
@@ -94,11 +94,11 @@
 									<div class="form-group">
 										<label for="nr" class="col-sm-4 control-label">Estado:</label>
 										<div class="col-sm-3">
-											<select class="form-control" name="estado" id="estadocom"> </select>
+											<select class="form-control" name="estadoCom" id="estadoCom"> </select>
 										</div>
 										<label for="nr" class="col-sm-1 control-label">Cidade:</label>
 										<div class="col-sm-4">
-											<select class="form-control" name="cidade" id="cidadecom"> </select>
+											<select class="form-control" name="cidadeCom" id="cidadeCom"> </select>
 										</div>
 									</div>
 									<div class="form-group">

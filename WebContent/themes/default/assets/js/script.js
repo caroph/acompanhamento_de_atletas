@@ -5,15 +5,17 @@ window.onload = function() {
 				true
 			);
 			new dgCidadesEstadosCom(
-					document.getElementById('estadocom'),
-					document.getElementById('cidadecom'),
+					document.getElementById('estadoCom'),
+					document.getElementById('cidadeCom'),
 					true
-				);			
-		}
-
+				);		
+}
+			
 //	$('#anexar').click(function() {
 //		$('#progress').css("display", "block");
 //	});
 //	$('#fechar').click(function() {
 //		$('#progress').css("display", "none");
 //	});
+	
+
