@@ -43,8 +43,11 @@
 					</div>
 					<div class="form-group">
 						 <label for="exampleInputPassword1">Senha</label><input type="password" class="form-control" id="exampleInputPassword1">
-					</div> <button type="submit" class="btn btn-default">Entrar</button>
+					</div> 
+<!-- 					<button type="submit" class="btn btn-default">Entrar</button> -->	
 				</form>
+				<a class="btn btn-primary" href="view/SecretariaAtleta.jsp">Secretaria</a>
+				<a class="btn btn-primary" href="view/FisioterapiaAtleta.jsp">Fisioterapia</a>
 			</div>
 			<div class="col-md-4 column">
 			</div>
