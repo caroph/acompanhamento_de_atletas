@@ -59,13 +59,13 @@
 								Mãe 1
 							</td>
 							<td>
-								<a>Editar</a>
+								<a href="SecretariaNovoResponsavel.jsp">Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a>Excluir</a>
+								<a data-toggle="modal" href="#deletar">Deletar</a>
 							</td>
 						</tr>
 						<tr>
@@ -76,13 +76,13 @@
 								Mãe 2
 							</td>
 							<td>
-								<a>Editar</a>
+								<a href="SecretariaNovoResponsavel.jsp">Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a>Excluir</a>
+								<a data-toggle="modal" href="#deletar">Deletar</a>
 							</td>
 						</tr>
 						<tr>
@@ -93,13 +93,13 @@
 								Mãe 3
 							</td>
 							<td>
-								<a>Editar</a>
+								<a href="SecretariaNovoResponsavel.jsp">Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a>Excluir</a>
+								<a data-toggle="modal" href="#deletar">Deletar</a>
 							</td>
 						</tr>
 						<tr>
@@ -110,13 +110,13 @@
 								Mãe 4
 							</td>
 							<td>
-								<a>Editar</a>
+								<a href="SecretariaNovoResponsavel.jsp">Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a>Excluir</a>
+								<a data-toggle="modal" href="#deletar">Deletar</a>
 							</td>
 						</tr>
 						<tr>
@@ -127,13 +127,13 @@
 								Mãe 5
 							</td>
 							<td>
-								<a>Editar</a>
+								<a href="SecretariaNovoResponsavel.jsp">Editar</a>
 							</td>
 							<td>
-								<a>Detalhes</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a>Excluir</a>
+								<a data-toggle="modal" href="#deletar">Deletar</a>
 							</td>
 						</tr>
 					</tbody>
@@ -167,6 +167,27 @@
 			</div>
 		</div>
 	</div>	
+	
+	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Detalhes Atleta</h4>
+				</div>
+				<div class="modal-body">
+					Nome: Responsável X<br/>
+					Grau de Parentesco: Pai<br/>
+					Telefone: 9999-9999<br/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<%@include file="Modals.jsp"%>
 	
 	<%@include file="../layout/footer.jsp"%>
 	
