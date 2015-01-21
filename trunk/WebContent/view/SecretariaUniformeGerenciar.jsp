@@ -11,7 +11,7 @@
 						<h3 class="text-center">
 						Gerenciamento de Empréstimos de Uniforme ao Aluno(a) .......
 						</h3>
-						<p>Incluir emprÃ©stimo/devoluÃ§Ã£o</p>
+						<p>Incluir empréstimo/devolução</p>
 						<form class="form-horizontal" role="form">
 							<div class="form-group">
 								<label for="equipe" class="col-sm-4 control-label">Tipo:</label>
@@ -22,7 +22,7 @@
 										<option>Saia</option>
 										<option>Bermuda</option>
 										<option>Jaqueta</option>
-										<option>CalÃ§a</option>
+										<option>Calça</option>
 									</select>
 								</div>
 							</div>
@@ -149,8 +149,8 @@
 				</div>
 			</div>	
 		</div>
-	</div>	
-	
+		</div>	
+	</div>
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>

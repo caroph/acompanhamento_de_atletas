@@ -13,9 +13,13 @@
 							Busque o atleta desejado:
 						</h3>
 						<form role="form" action="SecretariaListaUniforme.jsp">
-							<div class="form-group">
-								<input type="text" class="form-control" id="search" />
-							</div> <button type="submit" class="btn btn-default">Buscar</button>
+						    <div class="input-group">
+						      <input type="text" class="form-control form-search" id="search">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="submit">
+						        	<i class="icon-large icon-search"></i></button>
+						      </span>
+						    </div>
 						</form>
 					</div>
 					<div class="col-md-3 column">

@@ -13,10 +13,14 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="SecretariaListaFisioterapia.jsp">
-							<div class="form-group">
-								<input type="text" class="form-control" id="search" />
-							</div> <button type="submit" class="btn btn-default">Buscar</button>
+						<form role="form" action="FisioterapiaListaAtleta.jsp">
+						    <div class="input-group">
+						      <input type="text" class="form-control form-search" id="search">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="submit">
+						        	<i class="icon-large icon-search"></i></button>
+						      </span>
+						    </div>
 						</form>
 					</div>
 					<div class="col-md-3 column">
@@ -54,7 +58,7 @@
 								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Incluir Parecer</a>
+								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
 								<a>Ver Histórico</a>
@@ -88,7 +92,7 @@
 								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Incluir Parecer</a>
+								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
 								<a>Ver Histórico</a>
@@ -105,7 +109,7 @@
 								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Incluir Parecer</a>
+								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
 								<a>Ver Histórico</a>
@@ -122,7 +126,7 @@
 								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
-								<a>Incluir Parecer</a>
+								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
 								<a>Ver Histórico</a>
@@ -172,11 +176,11 @@
 				<h4 class="modal-title" id="myModalLabel">Anunciar Presença</h4>
 			</div>
 			<div class="modal-body">
-				<label for="message-text" class="control-label" >Deseja confirmar que o(a) atleta xxxxxx está em fisioterapia nesse momento?</label>
+				<label for="message-text" class="control-label" >Confirma que o(a) atleta xxxxxx está em fisioterapia nesse momento?</label>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary">Sim</button>
-				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Não</button>
+				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 			</div>
 	    </div>
 	  </div>
@@ -191,27 +195,28 @@
 				<h4 class="modal-title" id="myModalLabel">Incluir Parecer</h4>
 			</div>
 	    	<div class="modal-body">
-		        <form>
+		        <form action="">
 			        <div class="form-group">
-				        <label for="message-text" class="control-label">Parecer:</label>
-				        <textarea class="form-control" id="message-text"></textarea>
-				        <div class="col-sm-8 form-inline">
-							<div class="checkbox">
-								 <label><input type="checkbox" />Oculto</label>
-							</div>
-							<div class="checkbox">
-								 <label><input type="checkbox" />À todos os profissionais</label>
-							</div>
-							<div class="checkbox">
-								 <label><input type="checkbox" />Apenas ao técnico</label>
-							</div>
-						</div>
-			        </div>
+					        <label for="message-text" class="control-label">Parecer:</label>
+					        <textarea class="form-control" id="message-text"></textarea>
+					</div>   
+					<div class="form-group">    
+				        	<label for="message-text" class="control-label" style="padding-right:15px;">Compartilhar com:</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Parecer Oculto
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Técnico
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Todos 
+							</label>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Incluir</button>
+						<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+					</div>
 		        </form>
-		        <div class="modal-footer">
-					<button type="button" class="btn btn-primary">Sim</button>
-					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Não</button>
-				</div>
 		    </div>
 		  </div>
 		</div>
