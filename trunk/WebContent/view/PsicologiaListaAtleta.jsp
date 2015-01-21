@@ -59,7 +59,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
+								<a href="PsicologiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -73,7 +73,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
+								<a href="PsicologiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -87,7 +87,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
+								<a href="PsicologiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -101,7 +101,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
+								<a href="PsicologiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -115,7 +115,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
+								<a href="PsicologiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 					</tbody>
