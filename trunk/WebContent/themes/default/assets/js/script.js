@@ -10,12 +10,17 @@ window.onload = function() {
 					true
 				);		
 }
+
+$('#selectInicio').on('change', function () {
+	var url = this.value.toString();
+	$(window.document.location).attr('href',url);
+});
 			
-//	$('#anexar').click(function() {
-//		$('#progress').css("display", "block");
-//	});
-//	$('#fechar').click(function() {
-//		$('#progress').css("display", "none");
-//	});
+$('#anexar').click(function() {
+	$('#progress').css("display", "block");
+});
+$('#fechar').click(function() {
+	$('#progress').css("display", "none");
+});
 	
 
