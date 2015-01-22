@@ -34,7 +34,19 @@
 							<div class="form-group">
 								 <label for="email" class="col-sm-4 control-label">Email</label>
 								<div class="col-sm-8">
-									<input type="email" class="form-control" id="email" />
+									<input type="text" class="form-control" id="email" />
+								</div>
+							</div>
+							<div class="form-group">
+								 <label for="email" class="col-sm-4 control-label">Senha</label>
+								<div class="col-sm-3">
+									<input type="password" class="form-control" id="senha" />
+								</div>
+							</div>
+							<div class="form-group">
+								 <label for="email" class="col-sm-4 control-label">Confirmação de Senha</label>
+								<div class="col-sm-3">
+									<input type="password" class="form-control" id="confSenha" />
 								</div>
 							</div>
 							<div class="form-group">

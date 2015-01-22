@@ -48,7 +48,7 @@
 							<td>
 								Atleta 1
 							</td>
-							<td>
+							<td class="text-right">
 								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
@@ -56,7 +56,7 @@
 							<td>
 								Atleta 2
 							</td>
-							<td>
+							<td class="text-right">
 								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
@@ -64,7 +64,7 @@
 							<td>
 								Atleta 3
 							</td>
-							<td>
+							<td class="text-right">
 								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
@@ -72,7 +72,7 @@
 							<td>
 								Atleta 4
 							</td>
-							<td>
+							<td class="text-right">
 								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
@@ -80,7 +80,7 @@
 							<td>
 								Atleta 5<br>
 							</td>
-							<td>
+							<td class="text-right">
 								<a href="SecretariaUniformeGerenciar.jsp">Gerenciar Empréstimo</a>
 							</td>
 						</tr>
