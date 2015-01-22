@@ -21,6 +21,9 @@
 					</li>
 				</ul>
 			</li>
+			<li>
+				<a href="../">Logout</a>
+			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 		</ul>
