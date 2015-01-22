@@ -27,26 +27,35 @@
 					</div>
 					<div class="col-md-8 column">
 						<br/>
-					    <h4>Data: 03/01/2015</h4>
-					    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
-					    <hr/>
-					    <h4>Data: 02/01/2015</h4>
-					    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
-					    <hr/>
-					    <h4>Data: 01/01/2015</h4>
-					    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
-					    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
+						<div id="listaHistorico">
+							<div><h4>Data: 03/01/2015</h4><hr/></div>
+						    <div>
+							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
+							    <hr/>
+						    </div>
+						    <div><h4>Data: 02/01/2015</h4><hr/></div>
+						    <div>
+							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
+							    <hr/>
+						    </div>
+						    <div><h4>Data: 01/01/2015</h4><hr/></div>
+						    <div>
+							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
+							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário.</p>
+							    <hr/>
+						    </div>
+					    </div>
 						<ul class="pagination">
 							<li>
 								<a href="#">Anterior</a>

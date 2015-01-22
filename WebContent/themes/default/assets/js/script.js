@@ -22,5 +22,7 @@ $('#anexar').click(function() {
 $('#fechar').click(function() {
 	$('#progress').css("display", "none");
 });
+
+$("#listaHistorico").accordion();
 	
 
