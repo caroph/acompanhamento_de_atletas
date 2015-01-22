@@ -10,7 +10,7 @@
 					</div>
 					<div class="col-md-6 column">
 						<h3 class="text-center">
-							Busque o atleta desejado:
+							Buscar Atleta
 						</h3>
 						<form role="form" action="SecretariaListaUniforme.jsp">
 						    <div class="input-group">

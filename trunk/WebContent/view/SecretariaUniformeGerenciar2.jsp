@@ -9,26 +9,28 @@
 					<div class="col-md-2 column"></div>
 					<div class="col-md-8 column">
 						<h3 class="text-center">
-						Gerenciamento de Empréstimos de Uniforme ao Aluno(a)
+						Gerenciamento de Empréstimos de Uniforme ao Atleta
 						</h3>
 						<p class="text-center">Incluir empréstimo/devolução</p>
 						<hr/>
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="tipoOperacao" class="col-sm-3 control-label text-left">Tipo de Operação</label>
-								<div class="col-sm-8">
-									<div class="col-sm-1">
-										<input type="radio" name="tpOperacao" class="form-control" id="opEmprestimo"/>
-									</div>
-									<label for="emprestimo" class="col-sm-2 control-label">Empréstimo</label>
-									<div class="col-sm-2"></div>								
-									<div class="col-sm-1">
-										<input type="radio" name="tpOperacao" class="form-control" id="opDevolucao"/>
-									</div>
-									<label for="emprestimo" class="col-sm-2 control-label">Devolução</label>
-									
+						<form class="form-horizontal">
+						
+							<div class="form-group ">
+								<label for="numero" class="col-sm-2 control-label text-left" style="padding-right:0px;">Data</label>
+								<div class="col-sm-3">
+									<input type="date" class="form-control" id="data" />
 								</div>
 							</div>
+							
+							<div class="form-group col-md-8">    
+					        	<label for="message-text" class="control-label" style="padding-right:15px;">Tipo de Operação</label>
+								<label class="radio-inline">
+									<input type="radio" name="optradio">Empréstimo
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="optradio">Devolução
+								</label>
+							</div>						
 						
 							<table class="table">
 								<tr>
@@ -69,12 +71,6 @@
 							</table>
 
 							<div class="form-group">
-								 <label for="numero" class="col-sm-2 control-label text-left">Data</label>
-								<div class="col-sm-3">
-									<input type="date" class="form-control" id="data" />
-								</div>
-							</div>
-							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10 text-right">
 									 <button type="submit" class="btn btn-primary">Salvar</button>
 								</div>
@@ -88,7 +84,7 @@
 					<div class="col-md-2 column">
 					</div>
 					<div class="col-md-8 column">
-						<p>Histórico</p>
+						<p class="text-center">Histórico</p>
 						<table class="table">
 						<thead>
 							<tr>
