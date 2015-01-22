@@ -61,10 +61,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -78,10 +75,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -95,10 +89,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -112,10 +103,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 						<tr>
@@ -129,10 +117,7 @@
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
-								<a>Ver Histórico</a>
-							</td>
-							<td>
-								<a>Excluir</a>
+								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
 							</td>
 						</tr>
 					</tbody>
