@@ -63,7 +63,7 @@
 				</ul>
 			</li>
 			<li>
-				<a href="../">Logout</a>
+				<a href="../">Sair</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
