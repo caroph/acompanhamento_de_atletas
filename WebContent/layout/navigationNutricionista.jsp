@@ -13,7 +13,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="active dropdown">
+			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cardápios<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
