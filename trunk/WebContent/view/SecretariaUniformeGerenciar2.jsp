@@ -38,40 +38,40 @@
 								</tr>
 								<tr>
 									<td>Blusinha</td>
-									<td><input type="text" class="form-control" id="tamanhoBlusinha"/></td>
-									<td><input type="text" class="form-control" id="qtdeBlusinha"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBlusinha"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeBlusinha"/></td>
 								</tr>
 								<tr>
 									<td>Camiseta</td>
-									<td><input type="text" class="form-control" id="tamanhoCamiseta"/></td>
-									<td><input type="text" class="form-control" id="qtdeCamiseta"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCamiseta"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeCamiseta"/></td>
 								</tr>
 								<tr>
 									<td>Saia</td>
-									<td><input type="text" class="form-control" id="tamanhoSaia"/></td>
-									<td><input type="text" class="form-control" id="qtdeSaia"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoSaia"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeSaia"/></td>
 								</tr>
 								<tr>
 									<td>Bermuda</td>
-									<td><input type="text" class="form-control" id="tamanhoBermuda"/></td>
-									<td><input type="text" class="form-control" id="qtdeBermuda"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBermuda"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeBermuda"/></td>
 								</tr>
 								<tr>
 									<td>Jaqueta</td>
-									<td><input type="text" class="form-control" id="tamanhoJaqueta"/></td>
-									<td><input type="text" class="form-control" id="qtdeJaqueta"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoJaqueta"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeJaqueta"/></td>
 								</tr>
 								<tr>
 									<td>Calça</td>
-									<td><input type="text" class="form-control" id="tamanhoCalca"/></td>
-									<td><input type="text" class="form-control" id="qtdeCalca"/></td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCalca"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeCalca"/></td>
 								</tr>																
 							</table>
 
 							<div class="form-group">
 								 <label for="numero" class="col-sm-2 control-label text-left">Data</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control" id="data" />
+								<div class="col-sm-3">
+									<input type="date" class="form-control" id="data" />
 								</div>
 							</div>
 							<div class="form-group">
