@@ -52,72 +52,72 @@
 					<tbody>
 						<tr>
 							<td>
-								Atleta 1
+								Cardápio 1
 							</td>
 							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
+								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
 							</td>
 							<td>
-								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Atleta 2
-							</td>
-							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
-							</td>
-							<td>
-								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
-							</td>
-							<td>
-								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
+								<a data-toggle="modal"href="#deletar">Excluir</a>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								Atleta 3
+								Cardápio 2
 							</td>
 							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
+								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
 							</td>
 							<td>
-								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Atleta 4
-							</td>
-							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
-							</td>
-							<td>
-								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
-							</td>
-							<td>
-								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
+								<a data-toggle="modal"href="#deletar">Excluir</a>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								Atleta 5<br>
+								Cardápio 3
 							</td>
 							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
+								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
 							</td>
 							<td>
-								<a href="FisioterapiaHistoricoAtleta.jsp">Ver Histórico</a>
+								<a data-toggle="modal"href="#deletar">Excluir</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Cardápio 4
+							</td>
+							<td>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+							</td>
+							<td>
+								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+							</td>
+							<td>
+								<a data-toggle="modal"href="#deletar">Excluir</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Cardápio 5
+							</td>
+							<td>
+								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+							</td>
+							<td>
+								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+							</td>
+							<td>
+								<a data-toggle="modal"href="#deletar">Excluir</a>
 							</td>
 						</tr>
 					</tbody>
@@ -152,61 +152,31 @@
 		</div>
 	</div>	
 	
-	<!-- Anunciar Presença -->
-	<div class="modal fade bs-example-modal-sm" id="anunciarPresenca" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    	<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Anunciar Presença</h4>
-			</div>
-			<div class="modal-body">
-				<label for="message-text" class="control-label" >Confirma que o(a) atleta xxxxxx está em fisioterapia nesse momento?</label>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Sim</button>
-				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-			</div>
-	    </div>
-	  </div>
-	</div>
-	
-	<!-- Incluir Parecer -->
-	<div class="modal fade bs-example-modal-sm" id="incluirParecer" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-		    <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Incluir Parecer</h4>
-			</div>
-	    	<div class="modal-body">
-		        <form action="">
-			        <div class="form-group">
-					        <label for="message-text" class="control-label">Parecer:</label>
-					        <textarea class="form-control" id="message-text"></textarea>
-					</div>   
-					<div class="form-group">    
-				        	<label for="message-text" class="control-label" style="padding-right:15px;">Compartilhar com:</label>
-							<label class="radio-inline">
-								<input type="radio" name="optradio">Parecer Oculto
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="optradio">Técnico
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="optradio">Todos 
-							</label>
+	<!-- Detalhes -->
+	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Detalhes Atleta</h4>
+					</div>
+					<div class="modal-body">
+						Nome: Cardápio X<br/>
+						Café da Manhã: xxx<br/>
+						Lanche I: xxx<br/>
+						Almoço: xxx<br/>
+						Lanche II: XXXX<br/>
+						Janta: XXXX<br/>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">Incluir</button>
-						<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
 					</div>
-		        </form>
-		    </div>
-		  </div>
-		</div>
-	</div>
-	
+				</div>
+			</div>
+		</div>	
+		
+	<%@include file="Modals.jsp"%>
+		
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>

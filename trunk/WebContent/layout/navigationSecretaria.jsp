@@ -6,7 +6,7 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li class="active dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Atleta<strong class="caret"></strong></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Atletas<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
 						<a href="SecretariaNovoAtleta.jsp">Novo</a>
