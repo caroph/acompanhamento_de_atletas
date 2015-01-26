@@ -17,7 +17,7 @@
 								</div>
 							</div>
 							<hr/>
-							<h4>IDENTIFICA«√O</h4>
+							<h4>IDENTIFICA√á√ÉO</h4>
 							<div class="form-group">
 								<label for="nome" class="col-sm-4 control-label">Nome:</label>
 								<div class="col-sm-8">
@@ -87,7 +87,7 @@
 										 <label><input type="checkbox" /> Has</label>
 									</div>
 									<div class="checkbox">
-										 <label><input type="checkbox" /> DoenÁa CardÌaca</label>
+										 <label><input type="checkbox" /> Doen√ßa Card√≠aca</label>
 									</div>
 									<div class="checkbox">
 										 <label><input type="checkbox" /> Colesterol</label>
@@ -104,7 +104,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="habitoIntestinal" class="col-sm-4 control-label">H·bito Intestinal:</label>
+								<label for="habitoIntestinal" class="col-sm-4 control-label">H√°bito Intestinal:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="habitoIntestinal"/>
 								</div>
@@ -122,7 +122,7 @@
 								</div>
 							</div>
 							<hr/>
-							<h4>PR¡TICA DE ATIVIDADE FÕSICA/ ESPORTE/ TREINO:</h4>
+							<h4>PR√ÅTICA DE ATIVIDADE F√çSICA/ ESPORTE/ TREINO:</h4>
 							<div class="form-group">
 								<label for="tipo" class="col-sm-4 control-label">Tipo:</label>
 								<div class="col-sm-8">
@@ -142,9 +142,9 @@
 								</div>
 							</div>
 							<hr/>
-							<h4>AVALIA«√O DIET…TICA:</h4>
+							<h4>AVALIA√á√ÉO DIET√âTICA:</h4>
 							<div class="form-group">
-								<label for="intolerancia" class="col-sm-4 control-label">Intoler‚ncia ou alergia alimentar?</label>
+								<label for="intolerancia" class="col-sm-4 control-label">Intoler√¢ncia ou alergia alimentar?</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="intolerancia"/>
 								</div>
@@ -156,39 +156,220 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="AlimentosNaoGosta" class="col-sm-4 control-label">Alimentos que n„o gosta?</label>
+								<label for="AlimentosNaoGosta" class="col-sm-4 control-label">Alimentos que n√£o gosta?</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="AlimentosNaoGosta"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="apetite" class="col-sm-4 control-label">Como È o seu apetite?</label>
+								<label for="apetite" class="col-sm-4 control-label">Como √© o seu apetite?</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="apetite"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="horariosFome" class="col-sm-4 control-label">Hor·rios em que sente mais fome e quais alimentos vocÍ procura nestes momentos?</label>
+								<label for="horariosFome" class="col-sm-4 control-label">Hor√°rios em que sente mais fome e quais alimentos voc√™ procura nestes momentos?</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="horariosFome"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="localRefeicao" class="col-sm-4 control-label">Locais que s„o feitas as refeiÁıes? Quem cozinha em casa?</label>
+								<label for="localRefeicao" class="col-sm-4 control-label">Locais que s√£o feitas as refei√ß√µes? Quem cozinha em casa?</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="localRefeicao"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="oleo" class="col-sm-4 control-label">”leo por mÍs:</label>
+								<label for="oleo" class="col-sm-4 control-label">√ìleo por m√™s:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="oleo"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="acucar" class="col-sm-4 control-label">AÁucar por mÍs:</label>
+								<label for="acucar" class="col-sm-4 control-label">A√ßucar por m√™s:</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="acucar"/>
+								</div>
+							</div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Alimento</th>
+										<th>Frequencia/Semana</th>
+										<th>Alimento</th>
+										<th>Frequencia/Semana</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Amil√°cios</td>
+										<td><input class="form-control" type="text"></td>
+										<td>Refrigerante</td>
+										<td><input class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>Fritura</td>
+										<td><input class="form-control" type="text"></td>
+										<td>Bolac,choc, bolo</td>
+										<td><input class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>Frutas</td>
+										<td><input class="form-control" type="text"></td>
+										<td>Leite/Iogurte</td>
+										<td><input class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>Verd/salada/leg</td>
+										<td><input class="form-control" type="text"></td>
+										<td>Leguminosas</td>
+										<td><input class="form-control" type="text"></td>
+									</tr>
+									<tr>
+										<td>Carnes</td>
+										<td><input class="form-control" type="text"></td>
+										<td>Bebida alcoolica</td>
+										<td><input class="form-control" type="text"></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="form-group">
+								<label for="agua" class="col-sm-4 control-label">Consumo de l√≠quidos: quantidade de √°gua por dia:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="agua"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="liquidos" class="col-sm-4 control-label">Outros l√≠quidos:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="liquidos"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="suplemento" class="col-sm-4 control-label">Uso de suplemento vitam√≠nico/alimentar:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="suplemento"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="suplementoTempo" class="col-sm-4 control-label">Qual? Qual hor√°rio? E quantas vezes no dia/semana?</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="suplementoTempo"/>
+								</div>
+							</div>
+							<hr/>
+							<h4>RECORDAT√ìRIO ALIMENTAR 24H</h4>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Refei√ß√£o</th>
+										<th>Hor√°rio</th>
+										<th>Alimento</th>
+										<th>Quantidade</th>
+									</tr>
+								</thead>
+							</table>
+							<div class="form-group">
+								<label for="cafe" class="col-sm-4 control-label">CAF√â DA MANH√É</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="cafe"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lancheManha" class="col-sm-4 control-label">LANCHE DA MANH√É</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="lancheManha"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="almoco" class="col-sm-4 control-label">ALMO√áO</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="almoco"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lancheTarde" class="col-sm-4 control-label">LANCHE DA TARDE</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="lancheTarde"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jantar" class="col-sm-4 control-label">JANTAR</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="jantar"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ceia" class="col-sm-4 control-label">CEIA</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="ceia"/>
+								</div>
+							</div>
+							<hr/>
+							<h4>DADOS ANTROPOM√âTRICOS</h4>
+							<div class="form-group">
+								<label for="pesoUsual" class="col-sm-4 control-label">Peso usual e % de gordura usual/passado:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="pesoUsual"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="pesoIdeal" class="col-sm-4 control-label">Peso e % de gordura "ideal" (objetivo):</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="pesoIdeal"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="pesoAtual" class="col-sm-4 control-label">Peso atual:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="pesoAtual"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="altura" class="col-sm-4 control-label">Altura:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="altura"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cb" class="col-sm-4 control-label">CB:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="cb"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cc" class="col-sm-4 control-label">CC:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="cc"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="ca" class="col-sm-4 control-label">CA:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="ca"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="pregas" class="col-sm-4 control-label">Pregas:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="pregas"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="gordura" class="col-sm-4 control-label">% de gordura corporal:</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="gordura"/>
+								</div>
+							</div>
+							<hr/>
+							<h4>CONDUTA NUTRICIONAL:</h4>
+							<textarea rows="5" class="form-control"></textarea>
+							<br/>
+							<br/>
+							<br/>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10 text-right">
+									<button type="submit" class="btn btn-primary">Salvar</button>
 								</div>
 							</div>
 						</form>
