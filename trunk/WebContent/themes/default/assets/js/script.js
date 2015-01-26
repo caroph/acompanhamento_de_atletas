@@ -24,5 +24,23 @@ $('#fechar').click(function() {
 });
 
 $("#listaHistorico").accordion();
-	
 
+$("#objetivoConsulta").click(function(){
+	$("#exibeObjetivoConsulta").toggle();
+});
+
+$("#praticaAtividade").click(function(){
+	$("#exibePraticaAtividade").toggle();
+});
+
+$("#avaliacaoDietetica").click(function(){
+	$("#exibeAvaliacaoDietetica").toggle();
+});
+
+$("#recordatorioAlimentar").click(function(){
+	$("#exibeRecordatorio").toggle();
+});
+	
+$("#dadosAntropometricos").click(function(){
+	$("#exideDadosAntropometricos").toggle();
+});
