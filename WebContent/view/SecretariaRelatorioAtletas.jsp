@@ -86,7 +86,7 @@
 
 						</table>
 						<div class="col-sm-12 text-right" style="margin-bottom: 25px;">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
+							<button type="button" class="btn btn-primary mostrarProgresso" data-toggle="modal"
 								data-target="#basicModal" id="btnImprimirRelBonificados">Imprimir
 								Relatório de Atletas Bonificados</button>
 							<hr/>
@@ -166,14 +166,14 @@
 
 						</table>
 						<div class="col-sm-12 text-right" style="margin-bottom: 50px;">
-							<button type="button" class="btn btn-primary"
+							<button type="button" class="btn btn-primary mostrarProgresso"
 								id="btnImprimirRelNaoBonificados" data-toggle="modal"
 								data-target="#basicModal">Imprimir Relatório de
 								Atletas Não Bonificados</button>
 							<hr/>
 						</div>
 						<div class="col-sm-offset-2 col-sm-10 text-right">
-							<button type="button" class="btn btn-primary"
+							<button type="button" class="btn btn-primary mostrarProgresso"
 								id="btnImprimirRelGeral" data-toggle="modal"
 								data-target="#basicModal">Imprimir Relatório Geral</button>
 						</div>
@@ -187,7 +187,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<button type="button" class="close" data-dismiss="modal" id="fechar" aria-hidden="true">x</button>
 					<h4 class="modal-title" id="myModalLabel">Imprimindo Relatório</h4>
 					</div>
 					<div class="modal-body">
