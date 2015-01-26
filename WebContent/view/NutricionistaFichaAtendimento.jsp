@@ -6,12 +6,12 @@
 				<!-- menu -->
 				<%@include file='../layout/navigationNutricionista.jsp'%>
 				<div class="row clearfix">
-					<div class="col-md-2 column">
+					<div class="col-md-1 column">
 					</div>
-					<div class="col-md-8 column">
+					<div class="col-md-10 column">
 						Inserir Código
 					</div>
-					<div class="col-md-2 column">
+					<div class="col-md-1 column">
 					</div>
 				</div>
 			</div>
