@@ -178,7 +178,10 @@
 				<div class="modal-body">
 					Nome: Responsável X<br/>
 					Grau de Parentesco: Pai<br/>
-					Telefone: 9999-9999<br/>
+					Email: xxxxx@xxxx.com<br/>
+					Telefone Residencial: 9999-9999<br/>
+					Telefone Celular: 9999-9999<br/>
+					Telefone Comercial: 9999-9999<br/>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>

@@ -6,7 +6,7 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<li class="active">
-				<a href="PsicologiaAtleta.jsp">Atleta</a>
+				<a href="PsicologiaAtleta.jsp">Atletas</a>
 			</li>
 			<li class="dropdown">
 				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<strong class="caret"></strong></a>
