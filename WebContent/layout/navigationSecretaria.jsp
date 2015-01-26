@@ -48,7 +48,7 @@
 				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="#">Atletas</a>
+						<a href="SecretariaRelatorioAtletas.jsp">Atletas</a>
 					</li>
 					<li class="divider">
 					</li>
