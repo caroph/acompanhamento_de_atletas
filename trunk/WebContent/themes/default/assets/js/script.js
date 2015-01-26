@@ -16,7 +16,7 @@ $('#selectInicio').on('change', function () {
 	$(window.document.location).attr('href',url);
 });
 			
-$('#anexar').click(function() {
+$('.mostrarProgresso').click(function() {
 	$('#progress').css("display", "block");
 });
 $('#fechar').click(function() {
