@@ -54,7 +54,7 @@
 				</form>
 				<select id="selectInicio" class="form-control">
 					<option selected value="#">Selecione</option>
-					<option value="view/SecretariaAtleta.jsp">Secretaria</option>
+					<option value="view/SecretariaPrincipal.jsp">Secretaria</option>
 					<option value="view/FisioterapiaAtleta.jsp">Fisioterapia</option>
 					<option value="view/PsicologiaAtleta.jsp">Psicologia</option>
 					<option value="view/NutricionistaAtleta.jsp">Nutricionista</option>
