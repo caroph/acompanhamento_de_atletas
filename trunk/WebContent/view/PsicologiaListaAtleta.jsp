@@ -43,17 +43,12 @@
 							</th>
 							<th>
 							</th>
-							<th>
-							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>
 								Atleta 1
-							</td>
-							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
@@ -67,9 +62,6 @@
 								Atleta 2
 							</td>
 							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
-							</td>
-							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
@@ -79,9 +71,6 @@
 						<tr>
 							<td>
 								Atleta 3
-							</td>
-							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
@@ -95,9 +84,6 @@
 								Atleta 4
 							</td>
 							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
-							</td>
-							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
@@ -107,9 +93,6 @@
 						<tr>
 							<td>
 								Atleta 5<br>
-							</td>
-							<td>
-								<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>

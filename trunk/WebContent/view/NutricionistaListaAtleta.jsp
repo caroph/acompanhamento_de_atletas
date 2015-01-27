@@ -186,7 +186,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-primary" href="#">Cardápio Personalizado</a>
+					<a class="btn btn-primary" href="NutricionistaNovoCardapio.jsp">Cardápio Personalizado</a>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">Selecionar</button>
 				</div>
 			</div>

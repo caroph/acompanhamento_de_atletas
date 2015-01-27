@@ -88,7 +88,7 @@
 											 <label><input type="checkbox" /> Has</label>
 										</div>
 										<div class="checkbox">
-											 <label><input type="checkbox" /> Doen√ßa Card√≠aca</label>
+											 <label><input type="checkbox" /> DoenÁa CardÌaca</label>
 										</div>
 										<div class="checkbox">
 											 <label><input type="checkbox" /> Colesterol</label>
@@ -105,7 +105,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="habitoIntestinal" class="col-sm-4 control-label">H√°bito Intestinal:</label>
+									<label for="habitoIntestinal" class="col-sm-4 control-label">H·bito Intestinal:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="habitoIntestinal"/>
 									</div>
@@ -124,7 +124,7 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="praticaAtividade">PR√ÅTICA DE ATIVIDADE F√çSICA/ ESPORTE/ TREINO:</h4>
+							<h4 id="praticaAtividade">PR¡TICA DE ATIVIDADE FÕSICA/ ESPORTE/ TREINO:</h4>
 							<div id="exibePraticaAtividade" style="display: none;">
 								<div class="form-group">
 									<label for="tipo" class="col-sm-4 control-label">Tipo:</label>
@@ -133,7 +133,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="frequencia" class="col-sm-4 control-label">Frequ√™ncia:</label>
+									<label for="frequencia" class="col-sm-4 control-label">FrequÍncia:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="frequencia"/>
 									</div>
@@ -146,10 +146,10 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="avaliacaoDietetica">AVALIA√á√ÉO DIET√âTICA:</h4>
+							<h4 id="avaliacaoDietetica">AVALIA«√O DIET…âTICA:</h4>
 							<div id="exibeAvaliacaoDietetica" style="display: none;">
 								<div class="form-group">
-									<label for="intolerancia" class="col-sm-4 control-label">Intoler√¢ncia ou alergia alimentar?</label>
+									<label for="intolerancia" class="col-sm-4 control-label">Intoler‚ncia ou alergia alimentar?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="intolerancia"/>
 									</div>
@@ -161,37 +161,37 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="AlimentosNaoGosta" class="col-sm-4 control-label">Alimentos que n√£o gosta?</label>
+									<label for="AlimentosNaoGosta" class="col-sm-4 control-label">Alimentos que n„o gosta?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="AlimentosNaoGosta"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="apetite" class="col-sm-4 control-label">Como √© o seu apetite?</label>
+									<label for="apetite" class="col-sm-4 control-label">Como È o seu apetite?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="apetite"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="horariosFome" class="col-sm-4 control-label">Hor√°rios em que sente mais fome e quais alimentos voc√™ procura nestes momentos?</label>
+									<label for="horariosFome" class="col-sm-4 control-label">Hor·rios em que sente mais fome e quais alimentos vocÍ procura nestes momentos?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="horariosFome"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="localRefeicao" class="col-sm-4 control-label">Locais que s√£o feitas as refei√ß√µes? Quem cozinha em casa?</label>
+									<label for="localRefeicao" class="col-sm-4 control-label">Locais que s„o feitas as refeiÁıes? Quem cozinha em casa?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="localRefeicao"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="oleo" class="col-sm-4 control-label">√ìleo por m√™s:</label>
+									<label for="oleo" class="col-sm-4 control-label">”leo por mÍs:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="oleo"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="acucar" class="col-sm-4 control-label">A√ßucar por m√™s:</label>
+									<label for="acucar" class="col-sm-4 control-label">AÁucar por mÍs:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="acucar"/>
 									</div>
@@ -200,14 +200,14 @@
 									<thead>
 										<tr>
 											<th>Alimento</th>
-											<th>Frequ√™ncia/Semana</th>
+											<th>FrequÍncia/Semana</th>
 											<th>Alimento</th>
-											<th>Frequ√™ncia/Semana</th>
+											<th>FrequÍncia/Semana</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>Amil√°cios</td>
+											<td>Amil·cidos</td>
 											<td><input class="form-control" type="text"></td>
 											<td>Refrigerante</td>
 											<td><input class="form-control" type="text"></td>
@@ -239,45 +239,45 @@
 									</tbody>
 								</table>
 								<div class="form-group">
-									<label for="agua" class="col-sm-4 control-label">Consumo de liquidos: quantidade de √°gua por dia:</label>
+									<label for="agua" class="col-sm-4 control-label">Consumo de liquidos: quantidade de ¡gua por dia:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="agua"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="liquidos" class="col-sm-4 control-label">Outros l√≠quidos:</label>
+									<label for="liquidos" class="col-sm-4 control-label">Outros lÌquidos:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="liquidos"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="suplemento" class="col-sm-4 control-label">Uso de suplemento vitam√≠nico/alimentar:</label>
+									<label for="suplemento" class="col-sm-4 control-label">Uso de suplemento vitamÌnico/alimentar:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="suplemento"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="suplementoTempo" class="col-sm-4 control-label">Qual? Qual hor√°rio? E quantas vezes no dia/semana?</label>
+									<label for="suplementoTempo" class="col-sm-4 control-label">Qual? Qual ho·rio? E quantas vezes no dia/semana?</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="suplementoTempo"/>
 									</div>
 								</div>
 							</div>
 							<hr/>
-							<h4 id="recordatorioAlimentar">RECORDAT√ìRIO ALIMENTAR 24H</h4>
+							<h4 id="recordatorioAlimentar">RECORDAT¡ìRIO ALIMENTAR 24H</h4>
 							<div id="exibeRecordatorio" style="display: none;">
 								<table class="table">
 									<thead>
 										<tr>
-											<th>Refei√ß√£o</th>
-											<th>Hor√°rio</th>
+											<th>RefeiÁ„o</th>
+											<th>Hor·rio</th>
 											<th>Alimento</th>
 											<th>Quantidade</th>
 										</tr>
 									</thead>
 								</table>
 								<div class="form-group">
-									<label for="cafe" class="col-sm-4 control-label">CAF√â DA MANH√É</label>
+									<label for="cafe" class="col-sm-4 control-label">CAF…â DA MANH√É</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="cafe"/>
 									</div>
@@ -289,7 +289,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="almoco" class="col-sm-4 control-label">ALMO√áO</label>
+									<label for="almoco" class="col-sm-4 control-label">ALMO√«O</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="almoco"/>
 									</div>
@@ -314,7 +314,7 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="dadosAntropometricos">DADOS ANTROPOM√âTRICOS</h4>
+							<h4 id="dadosAntropometricos">DADOS ANTROPOM…TRICOS</h4>
 							<div style="display: none;" id="exideDadosAntropometricos">
 								<div class="form-group">
 									<label for="pesoUsual" class="col-sm-4 control-label">Peso usual e % de gordura usual/passado:</label>

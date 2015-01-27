@@ -82,10 +82,10 @@
 								<a href="#">5</a>
 							</li>
 							<li>
-								<a href="#">Próximo</a>
+								<a href="#">PrÃ³ximo</a>
 							</li>
 						</ul>
-						<a class="btn btn-primary" data-toggle="modal" href="#novaAvaliação">Incluir Avaliação</a>
+						<a class="btn btn-primary" data-toggle="modal" href="#novaAvaliacao">Incluir AvaliaÃ§Ã£o</a>
 					</div>
 					<div class="col-md-2 column">
 					</div>
@@ -93,17 +93,17 @@
 			</div>
 		</div>
 	</div>	
-	<div class="modal fade bs-example-modal-sm" id="novaAvaliação" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal fade bs-example-modal-sm" id="novaAvaliacao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 		    <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Incluir Avaliação Antropométrica</h4>
+				<h4 class="modal-title" id="myModalLabel">Incluir AvaliaÃ§Ã£o AntropomÃ©rica</h4>
 			</div>
 	    	<div class="modal-body">
 		        <form action="">
 			        <div class="form-group">
-					        <label for="message-text" class="control-label">Avaliação:</label>
+					        <label for="message-text" class="control-label">AvaliaÃ§Ã£o:</label>
 					        <textarea class="form-control" id="message-text"></textarea>
 					</div>   
 					<div class="form-group">    
@@ -112,7 +112,7 @@
 								<input type="radio" name="optradio">Parecer Oculto
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="optradio">Técnico
+								<input type="radio" name="optradio">TÃ©cnico
 							</label>
 							<label class="radio-inline">
 								<input type="radio" name="optradio">Todos 
