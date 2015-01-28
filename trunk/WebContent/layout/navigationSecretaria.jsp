@@ -58,7 +58,7 @@
 					<li class="divider">
 					</li>
 					<li>
-						<a href="#">Torneios</a>
+						<a href="SecretariaRelatorioTorneios.jsp">Torneios</a>
 					</li>
 				</ul>
 			</li>
