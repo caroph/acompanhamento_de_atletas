@@ -30,6 +30,7 @@
 						<div id="listaHistorico">
 							<div><h4>Data: 03/01/2015</h4><hr/></div>
 						    <div>
+						    	<p><strong>Tipo: </strong>Parecer Oculto</p>
 							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
@@ -39,6 +40,7 @@
 						    </div>
 						    <div><h4>Data: 02/01/2015</h4><hr/></div>
 						    <div>
+						    	<p><strong>Tipo: </strong>Compartilhado com Todos os Profissionais</p>
 							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
@@ -48,6 +50,7 @@
 						    </div>
 						    <div><h4>Data: 01/01/2015</h4><hr/></div>
 						    <div>
+						    	<p><strong>Tipo: </strong>Compartilhado apenas com o Técnico</p>
 							    <p>Aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
 							    , aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário, aqui segue um prontuário
@@ -79,6 +82,11 @@
 								<a href="#">Próximo</a>
 							</li>
 						</ul>
+						<div>
+						<button type="button" class="btn btn-primary"
+								id="btnImprimirRelGeral" data-toggle="modal"
+								data-target="#imprimir">Imprimir Histórico</button>
+						</div>
 					</div>
 					<div class="col-md-2 column">
 					</div>
@@ -87,6 +95,7 @@
 		</div>
 	</div>	
 	
+	<%@include file="Modals.jsp"%>
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>

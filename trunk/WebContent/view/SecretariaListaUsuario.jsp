@@ -55,13 +55,13 @@
 									Técnico
 								</td>
 								<td>
-									<a>Editar</a>
+									<a data-toggle="modal" href="#detalhes">Detalhes</a>
 								</td>
 								<td>
-									<a>Detalhes</a>
+									<a href="SecretariaNovoUsuario.jsp">Editar</a>
 								</td>
 								<td>
-									<a>Excluir</a>
+									<a data-toggle="modal" href="#deletar">Deletar</a>
 								</td>
 							</tr>
 							<tr>
@@ -72,13 +72,13 @@
 									Fisioterapeuta
 								</td>
 								<td>
-									<a>Editar</a>
+									<a data-toggle="modal" href="#detalhes">Detalhes</a>
 								</td>
 								<td>
-									<a>Detalhes</a>
+									<a href="SecretariaNovoUsuario.jsp">Editar</a>
 								</td>
 								<td>
-									<a>Excluir</a>
+									<a data-toggle="modal" href="#deletar">Deletar</a>
 								</td>
 							</tr>
 							<tr>
@@ -89,13 +89,13 @@
 									Nutricionista
 								</td>
 								<td>
-									<a>Editar</a>
+									<a data-toggle="modal" href="#detalhes">Detalhes</a>
 								</td>
 								<td>
-									<a>Detalhes</a>
+									<a href="SecretariaNovoUsuario.jsp">Editar</a>
 								</td>
 								<td>
-									<a>Excluir</a>
+									<a data-toggle="modal" href="#deletar">Deletar</a>
 								</td>
 							</tr>
 							<tr>
@@ -106,13 +106,13 @@
 									Psicóloga
 								</td>
 								<td>
-									<a>Editar</a>
+									<a data-toggle="modal" href="#detalhes">Detalhes</a>
 								</td>
 								<td>
-									<a>Detalhes</a>
+									<a href="SecretariaNovoUsuario.jsp">Editar</a>
 								</td>
 								<td>
-									<a>Excluir</a>
+									<a data-toggle="modal" href="#deletar">Deletar</a>
 								</td>
 							</tr>
 							<tr>
@@ -123,13 +123,13 @@
 									Secretário
 								</td>
 								<td>
-									<a>Editar</a>
+									<a data-toggle="modal" href="#detalhes">Detalhes</a>
 								</td>
 								<td>
-									<a>Detalhes</a>
+									<a href="SecretariaNovoUsuario.jsp">Editar</a>
 								</td>
 								<td>
-									<a>Excluir</a>
+									<a data-toggle="modal" href="#deletar">Deletar</a>
 								</td>
 							</tr>
 						</tbody>
@@ -163,6 +163,29 @@
 			</div>
 		</div>
 	</div>	
+	
+		<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
+					</div>
+					<div class="modal-body">
+						Nome: Usuário X<br/>
+						Perfil: X<br/>
+						Emial: xxxx@gmail.com<br/>
+						Telefone Residencial: 333333333<br/>
+						Telefone Celular: 99999999<br/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+	
+	<%@include file="Modals.jsp"%>
 	
 	<%@include file="../layout/footer.jsp"%>
 	
