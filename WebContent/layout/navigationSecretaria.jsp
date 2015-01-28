@@ -53,7 +53,7 @@
 					<li class="divider">
 					</li>
 					<li>
-						<a href="#">Uniformes</a>
+						<a href="SecretariaRelatorioUniformes.jsp">Uniformes</a>
 					</li>
 					<li class="divider">
 					</li>
