@@ -60,22 +60,27 @@
 							<tr>
 								<th class="text-center">Nome do aluno</th>
 								<th class="text-center">Matrícula</th>
+								<th></th>
 							</tr>
 							<tr>
 								<td>Atleta 01</td>
 								<td class="text-center">00000001</td>
+								<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
 							</tr>
 							<tr>
 								<td>Atleta 02</td>
 								<td class="text-center">00000002</td>
+								<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
 							</tr>
 							<tr>
 								<td >Atleta 03</td>
 								<td class="text-center">00000003</td>
+								<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
 							</tr>
 							<tr>
 								<td>Atleta 04</td>
 								<td class="text-center">00000004</td>
+								<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
 							</tr>
 						</table>
 					</div>
