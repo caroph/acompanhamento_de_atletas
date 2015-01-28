@@ -40,6 +40,9 @@
 								Nome
 							</th>
 							<th>
+								Último Atendimento
+							</th>
+							<th>
 							</th>
 							<th>
 							</th>
@@ -49,6 +52,9 @@
 						<tr>
 							<td>
 								Atleta 1
+							</td>
+							<td>
+								01/01/2015
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
@@ -62,6 +68,9 @@
 								Atleta 2
 							</td>
 							<td>
+								01/10/2014
+							</td>
+							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
@@ -71,6 +80,9 @@
 						<tr>
 							<td>
 								Atleta 3
+							</td>
+							<td>
+								19/02/2014
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
@@ -84,6 +96,9 @@
 								Atleta 4
 							</td>
 							<td>
+								12/11/2014
+							</td>
+							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
 							</td>
 							<td>
@@ -93,6 +108,9 @@
 						<tr>
 							<td>
 								Atleta 5<br>
+							</td>
+							<td>
+								12/09/2014
 							</td>
 							<td>
 								<a data-toggle="modal" href="#incluirParecer">Incluir Parecer</a>
