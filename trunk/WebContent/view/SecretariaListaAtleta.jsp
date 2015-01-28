@@ -45,6 +45,8 @@
 							</th>
 							<th>
 							</th>
+							<th>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,10 +55,13 @@
 								Atleta 1
 							</td>
 							<td>
+								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							</td>
+							<td>
 								<a href="SecretariaNovoAtleta.jsp">Editar</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#deletar">Deletar</a>
@@ -67,10 +72,13 @@
 								Atleta 2
 							</td>
 							<td>
+								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							</td>
+							<td>
 								<a href="SecretariaNovoAtleta.jsp">Editar</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#deletar">Deletar</a>
@@ -81,10 +89,13 @@
 								Atleta 3
 							</td>
 							<td>
+								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							</td>
+							<td>
 								<a href="SecretariaNovoAtleta.jsp">Editar</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#deletar">Deletar</a>
@@ -95,10 +106,13 @@
 								Atleta 4
 							</td>
 							<td>
+								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							</td>
+							<td>
 								<a href="SecretariaNovoAtleta.jsp">Editar</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#deletar">Deletar</a>
@@ -109,10 +123,13 @@
 								Atleta 5<br>
 							</td>
 							<td>
+								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							</td>
+							<td>
 								<a href="SecretariaNovoAtleta.jsp">Editar</a>
 							</td>
 							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
 							</td>
 							<td>
 								<a data-toggle="modal" href="#deletar">Deletar</a>
