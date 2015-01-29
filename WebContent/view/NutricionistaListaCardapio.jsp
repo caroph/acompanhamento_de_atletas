@@ -4,7 +4,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 			<!-- menu -->
-				<%@include file='../layout/navigationFisioterapia.jsp'%>
+				<%@include file='../layout/navigationNutricionista.jsp'%>
 				
 				<div class="row clearfix">
 					<div class="col-md-3 column">
