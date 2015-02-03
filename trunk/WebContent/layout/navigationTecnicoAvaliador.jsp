@@ -9,13 +9,13 @@
 				<a href="TecnicoAtleta.jsp">Atletas</a>
 			</li>
 			<li class="active">
-				<a href="TecnicoAtleta.jsp">Chamada</a>
+				<a href="TecnicoChamada.jsp">Chamada</a>
 			</li>
 			<li class="active">
-				<a href="TecnicoAtleta.jsp">Tipo de Atividades</a>
+				<a href="TecnicoAvaAtividades.jsp">Tipo de Atividades</a>
 			</li>
 			<li class="active">
-				<a href="TecnicoAtleta.jsp">Avaliação Física</a>
+				<a href="TecnicoAvaAvaliacao.jsp">Avaliação Física</a>
 			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Torneios<strong class="caret"></strong></a>
@@ -36,10 +36,13 @@
 						<a href="#">Atletas</a>
 					</li>
 					<li>
-						<a href="#">Chamada</a>
+						<a href="#">Chamadas</a>
 					</li>
 					<li>
-						<a href="#">Avaliação Física</a>
+						<a href="#">Torneios</a>
+					</li>
+					<li>
+						<a href="#">Avaliações Físicas</a>
 					</li>
 				</ul>
 			</li>
