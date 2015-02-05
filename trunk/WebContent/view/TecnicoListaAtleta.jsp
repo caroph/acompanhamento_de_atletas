@@ -38,8 +38,9 @@
 							<tr>
 								<th width="20%" class="text-center">Nome</th>
 								<th width="20%" class="text-center">Equipe</th>
-								<th width="30%" class="text-center"></th>
-								<th width="30%" class="text-center"></th>
+								<th width="20%" class="text-center"></th>
+								<th width="20%" class="text-center"></th>
+								<th width="20%" class="text-center"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -52,6 +53,26 @@
 								</td>
 								<td align="center">
 									<a href="TecnicoObservacao.jsp" class="btn btn-info btn-xs" role="button">Observações</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoAvaListaAvaliacao.jsp" class="btn btn-info btn-xs" role="button">Avaliação Física</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoDesempenhoTorneio.jsp" class="btn btn-info btn-xs" role="button">Desempenho em Torneios</a>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									Atleta 2
+								</td>
+								<td align="center">
+									Desenvolvimento
+								</td>
+								<td align="center">
+									<a href="TecnicoObservacao.jsp" class="btn btn-info btn-xs" role="button">Observações</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoAvaListaAvaliacao.jsp" class="btn btn-info btn-xs" role="button">Avaliação Física</a>
 								</td>
 								<td align="center">
 									<a href="TecnicoDesempenhoTorneio.jsp" class="btn btn-info btn-xs" role="button">Desempenho em Torneios</a>
