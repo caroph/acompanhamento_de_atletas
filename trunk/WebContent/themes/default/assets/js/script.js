@@ -50,3 +50,4 @@ $("#demoform").submit(function() {
   alert($('[name="duallistbox_demo1[]"]').val());
   return false;
 });
+

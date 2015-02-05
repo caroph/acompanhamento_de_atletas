@@ -9,50 +9,71 @@
 					<div class="col-md-2 column"></div>
 					<div class="col-md-8 column">
 						<h3 class="text-center">
-						Gerenciamento de Empréstimos de Uniforme ao Aluno(a) .......
+						Gerenciamento de Empréstimos de Uniforme do Atleta XXXXX
 						</h3>
-						<p>Incluir empréstimo/devolução</p>
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label for="equipe" class="col-sm-4 control-label">Tipo:</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="sel1">
-										<option>Blusinha</option>
-										<option>Camiseta</option>
-										<option>Saia</option>
-										<option>Bermuda</option>
-										<option>Jaqueta</option>
-										<option>Calça</option>
-									</select>
+						<p class="text-center">Incluir empréstimo/devolução</p>
+						<hr/>
+						<form class="form-horizontal">
+						
+							<div class="form-group ">
+								<label for="numero" class="col-sm-2 control-label text-left" style="padding-right:0px;">Data</label>
+								<div class="col-sm-3">
+									<input type="date" class="form-control" id="data" />
 								</div>
 							</div>
+							
+							<div class="form-group col-md-8">    
+					        	<label for="message-text" class="control-label" style="padding-right:15px;">Tipo de Operação</label>
+								<label class="radio-inline">
+									<input type="radio" name="optradio">Empréstimo
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="optradio">Devolução
+								</label>
+							</div>						
+						
+							<table class="table">
+								<tr>
+									<th width="80%">Tipo</th>
+									<th width="10%">Tamanho</th>
+									<th width="10%">Quantidade</th>
+								</tr>
+								<tr>
+									<td>Blusinha</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBlusinha"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeBlusinha"/></td>
+								</tr>
+								<tr>
+									<td>Camiseta</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCamiseta"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeCamiseta"/></td>
+								</tr>
+								<tr>
+									<td>Saia</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoSaia"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeSaia"/></td>
+								</tr>
+								<tr>
+									<td>Bermuda</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBermuda"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeBermuda"/></td>
+								</tr>
+								<tr>
+									<td>Jaqueta</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoJaqueta"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeJaqueta"/></td>
+								</tr>
+								<tr>
+									<td>Calça</td>
+									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCalca"/></td>
+									<td><input type="text" class="form-control text-center" value="0" id="qtdeCalca"/></td>
+								</tr>																
+							</table>
+
 							<div class="form-group">
-								 <label for="nome" class="col-sm-4 control-label">Tamanho</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="nome" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="email" class="col-sm-4 control-label">Quantidade</label>
-								<div class="col-sm-8">
-									<input type="email" class="form-control" id="email" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="endereco" class="col-sm-4 control-label">Data Empréstimo</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="endereco" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="numero" class="col-sm-4 control-label">Data Devolução</label>
-								<div class="col-sm-8">
-									<input type="number" class="form-control" id="numero" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10 text-right">
+								<div class="col-sm-12 text-right">
 									 <button type="submit" class="btn btn-primary">Salvar</button>
+									 <hr/>
 								</div>
 							</div>
 						</form>
@@ -64,7 +85,7 @@
 					<div class="col-md-2 column">
 					</div>
 					<div class="col-md-8 column">
-						<p>Histórico</p>
+						<h4 class="text-center">Histórico</h4>
 						<table class="table">
 						<thead>
 							<tr>
