@@ -22,8 +22,21 @@
 								<th width="5%" class="text-center"></th>
 							</tr>
 							<tr>
-								<td>11 Anos - Feminino</td>
-								<td align="center">2</td>
+								<td>7 - 11 Anos - Feminino</td>
+								<td align="center">9</td>
+								<td align="center">
+									<a href="TecnicoAvaNovoAtividade.jsp" class="btn btn-info btn-xs" role="button">Incluir Atividade</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoAvaDetalheAtividade.jsp" class="btn btn-info btn-xs" role="button">Detalhes</a>
+								</td>
+								<td align="center">
+									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
+								</td>
+							</tr>
+							<tr>
+								<td>7 - 11 Anos - Masculino</td>
+								<td align="center">0</td>
 								<td align="center">
 									<a href="TecnicoAvaNovoAtividade.jsp" class="btn btn-info btn-xs" role="button">Incluir Atividade</a>
 								</td>
