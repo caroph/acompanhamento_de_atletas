@@ -41,6 +41,7 @@
 								<th width="20%" class="text-center">Cidade</th>
 								<th width="5%" class="text-center"></th>
 								<th width="5%" class="text-center"></th>
+								<th width="5%" class="text-center"></th>
 							</tr>
 							<tr>
 								<td>Torneio 1</td>
@@ -49,6 +50,9 @@
 								<td align="center">Curitiba</td>
 								<td align="center">
 									<a href="TecnicoNovoTorneio.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoResultadoTorneio.jsp" class="btn btn-info btn-xs" role="button">Finalizar</a>
 								</td>
 								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
@@ -63,6 +67,9 @@
 									<a href="TecnicoNovoTorneio.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
 								</td>
 								<td align="center">
+									<a href="TecnicoResultadoTorneio.jsp" class="btn btn-info btn-xs" role="button">Finalizar</a>
+								</td>
+								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
 								</td>
 							</tr>
@@ -75,6 +82,9 @@
 									<a href="TecnicoNovoTorneio.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
 								</td>
 								<td align="center">
+									<a href="TecnicoResultadoTorneio.jsp" class="btn btn-info btn-xs" role="button">Finalizar</a>
+								</td>
+								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
 								</td>
 							</tr>
@@ -85,6 +95,9 @@
 								<td align="center">Curitiba</td>
 								<td align="center">
 									<a href="TecnicoNovoTorneio.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
+								</td>
+								<td align="center">
+									<button href="#resultadoRegistrar" class="btn btn-info btn-xs" data-toggle="modal">Resultados</button>
 								</td>
 								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>

@@ -45,3 +45,25 @@
 				</div>
 			</div>
 		</div>
+		
+<!-- Modal Resultado Torneio-->
+<div class="modal fade" id="resultadoRegistrar" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							id="fechar" aria-hidden="true">x</button>
+						<h4 class="modal-title" id="myModalLabel">Resultados</h4>
+					</div>
+					<div class="modal-body">
+						Atleta 1 - Posição 2º<br/>
+						Atleta 2 - Posição 6º<br/>
+						Atleta 3 - Posição 1º<br/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>

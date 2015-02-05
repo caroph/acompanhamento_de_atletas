@@ -18,7 +18,7 @@
       showFilterInputs: true,                                                             // whether to show filter inputs
       nonSelectedFilter: '',                                                              // string, filter the non selected options
       selectedFilter: '',                                                                 // string, filter the selected options
-      infoText: 'Mostrando todos ({0})',                                                        // text when all options are visible / false for no info text
+      infoText: 'Exibindo ({0})',                                                        // text when all options are visible / false for no info text
       infoTextFiltered: '<span class="label label-warning">Filtrando</span> {0} de {1}', // when not all of the options are visible due to the filter
       infoTextEmpty: 'Lista vazia',                                                        // when there are no options present in the list
       filterOnValues: false                                                               // filter by selector's values, boolean
