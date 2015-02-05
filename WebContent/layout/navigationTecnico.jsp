@@ -41,9 +41,11 @@
 					<li>
 						<a href="#">Atletas</a>
 					</li>
+					<li class="divider"></li>
 					<li>
 						<a href="#">Chamadas</a>
 					</li>
+					<li class="divider"></li>
 					<li>
 						<a href="TecnicoRelatorioTorneios.jsp">Torneios</a>
 					</li>
