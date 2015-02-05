@@ -47,8 +47,13 @@
 					</li>
 					<li class="divider"></li>
 					<li>
+						<a href="#">Avaliação Física</a>
+					</li>
+					<li class="divider"></li>
+					<li>
 						<a href="TecnicoRelatorioTorneios.jsp">Torneios</a>
 					</li>
+					
 				</ul>
 			</li>
 			<li>
