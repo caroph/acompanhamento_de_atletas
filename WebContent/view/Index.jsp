@@ -59,7 +59,7 @@
 					<option value="view/PsicologiaPrincipal.jsp">Psicologia</option>
 					<option value="view/NutricionistaAtleta.jsp">Nutricionista</option>
 					<option value="view/TecnicoAtleta.jsp">Técnico</option>
-					<option value="#">Técnico Avaliador</option>
+					<option value="view/TecnicoAtleta.jsp">Técnico Avaliador</option>
 				</select>
 				
 			</div>

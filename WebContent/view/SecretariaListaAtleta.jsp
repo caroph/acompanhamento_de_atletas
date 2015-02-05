@@ -36,103 +36,115 @@
 					<table class="table">
 					<thead>
 						<tr>
-							<th>
+							<th width="65%" align="center"> 
 								Nome
 							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
+							<th width="5%"></th>
+							<th width="10%"></th>
+							<th width="10%"></th>
+							<th width="5%"></th>
+							<th width="5%"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
+							<td align="center">
 								Atleta 1
 							</td>
-							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							<td align="center">
+								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
-								<a href="SecretariaNovoAtleta.jsp">Editar</a>
+								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
 							</td>
-							<td>
-								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
+							<td align="center">
+								<a href="SecretariaUniformeGerenciar.jsp" class="btn btn-info btn-sm" role="button">Gerenciar Uniformes</a>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#deletar">Deletar</a>
+							<td align="center">
+								<a href="SecretariaNovoAtleta.jsp" class="btn btn-info btn-sm" role="button">Editar</a>
+							</td>
+							<td align="center">
+								<a data-toggle="modal" href="#deletar" class="btn btn-danger btn-sm" role="button">Deletar</a>
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 								Atleta 2
 							</td>
-							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							<td align="center">
+								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
-								<a href="SecretariaNovoAtleta.jsp">Editar</a>
+								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
 							</td>
-							<td>
-								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
+							<td align="center">
+								<a href="SecretariaUniformeGerenciar.jsp" class="btn btn-info btn-sm" role="button">Gerenciar Uniformes</a>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#deletar">Deletar</a>
+							<td align="center">
+								<a href="SecretariaNovoAtleta.jsp" class="btn btn-info btn-sm" role="button">Editar</a>
+							</td>
+							<td align="center">
+								<a data-toggle="modal" href="#deletar" class="btn btn-danger btn-sm" role="button">Deletar</a>
 							</td>
 						</tr>
-						<tr>
-							<td>
+						<tr> 
+							<td align="center">
 								Atleta 3
 							</td>
-							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							<td align="center">
+								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
-								<a href="SecretariaNovoAtleta.jsp">Editar</a>
+								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
 							</td>
-							<td>
-								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
+							<td align="center">
+								<a href="SecretariaUniformeGerenciar.jsp" class="btn btn-info btn-sm" role="button">Gerenciar Uniformes</a>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#deletar">Deletar</a>
+							<td align="center">
+								<a href="SecretariaNovoAtleta.jsp" class="btn btn-info btn-sm" role="button">Editar</a>
+							</td>
+							<td align="center">
+								<a data-toggle="modal" href="#deletar" class="btn btn-danger btn-sm" role="button">Deletar</a>
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 								Atleta 4
 							</td>
-							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							<td align="center">
+								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
-								<a href="SecretariaNovoAtleta.jsp">Editar</a>
+								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
 							</td>
-							<td>
-								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
+							<td align="center">
+								<a href="SecretariaUniformeGerenciar.jsp" class="btn btn-info btn-sm" role="button">Gerenciar Uniformes</a>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#deletar">Deletar</a>
+							<td align="center">
+								<a href="SecretariaNovoAtleta.jsp" class="btn btn-info btn-sm" role="button">Editar</a>
+							</td>
+							<td align="center">
+								<a data-toggle="modal" href="#deletar" class="btn btn-danger btn-sm" role="button">Deletar</a>
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 								Atleta 5<br>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#basicModal">Detalhes</a>
+							<td align="center">
+								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
-								<a href="SecretariaNovoAtleta.jsp">Editar</a>
+								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
 							</td>
-							<td>
-								<a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a>
+							<td align="center">
+								<a href="SecretariaUniformeGerenciar.jsp" class="btn btn-info btn-sm" role="button">Gerenciar Uniformes</a>
 							</td>
-							<td>
-								<a data-toggle="modal" href="#deletar">Deletar</a>
+							<td align="center">
+								<a href="SecretariaNovoAtleta.jsp" class="btn btn-info btn-sm" role="button">Editar</a>
+							</td>
+							<td align="center">
+								<a data-toggle="modal" href="#deletar" class="btn btn-danger btn-sm" role="button">Deletar</a>
 							</td>
 						</tr>
 					</tbody>

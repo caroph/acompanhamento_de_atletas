@@ -90,7 +90,6 @@
 		</div>
 	</div>	
 	
-	<%@include file="Modals.jsp"%>
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>

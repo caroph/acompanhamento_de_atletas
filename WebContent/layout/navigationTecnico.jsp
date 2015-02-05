@@ -12,6 +12,18 @@
 				<a href="TecnicoChamada.jsp">Chamada</a>
 			</li>
 			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Avaliação Física<strong class="caret"></strong></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="TecnicoAvaListaCategoria.jsp">Categorias</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="TecnicoAvaListaAtividade.jsp">Atividades</a>
+					</li>
+				</ul>
+			</li>
+			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Torneios<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
@@ -19,7 +31,7 @@
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="TecnicoListaTorneio.jsp">Buscar</a>
+						<a href="TecnicoTorneio.jsp">Buscar</a>
 					</li>
 				</ul>
 			</li>
@@ -33,7 +45,7 @@
 						<a href="#">Chamadas</a>
 					</li>
 					<li>
-						<a href="#">Torneios</a>
+						<a href="TecnicoRelatorioTorneios.jsp">Torneios</a>
 					</li>
 				</ul>
 			</li>
