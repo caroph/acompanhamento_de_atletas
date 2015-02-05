@@ -6,13 +6,6 @@
 				<!-- menu -->
 				<%@include file='../layout/navigationTecnico.jsp'%>
 				<div class="row clearfix">
-					<div class="col-md-2 column"></div>
-					<div class="col-md-8 column">
-						<a href="TecnicoAvaNovoAtividade.jsp" class="btn btn-primary btn-sm" role="button">Incluir Nova Atividade</a>
-					</div>
-					<div class="col-md-2 column"></div>
-				</div>
-				<div class="row clearfix">
 					<div class="col-md-2 column">
 					</div>
 					<div class="col-md-8 column">
@@ -22,18 +15,20 @@
 						<br/>
 						<table class="table">
 							<tr>
-								<th width="30%" >Capacidade</th>
-								<th width="30%" >Teste</th>
-								<th width="30%" >Categoria</th>
+								<th width="50%" >Categoria da Atividade</th>
+								<th width="35%" class="text-center">Quantidade</th>
+								<th width="5%" class="text-center"></th>
 								<th width="5%" class="text-center"></th>
 								<th width="5%" class="text-center"></th>
 							</tr>
 							<tr>
-								<td>Força Abdominal</td>
-								<td >Abdominal</td>
-								<td >11 Anos - Feminino</td>
+								<td>11 Anos - Feminino</td>
+								<td align="center">2</td>
 								<td align="center">
-									<a href="#" class="btn btn-info btn-xs" role="button">Detalhes</a>
+									<a href="TecnicoAvaNovoAtividade.jsp" class="btn btn-info btn-xs" role="button">Incluir Atividade</a>
+								</td>
+								<td align="center">
+									<a href="TecnicoAvaDetalheAtividade.jsp" class="btn btn-info btn-xs" role="button">Detalhes</a>
 								</td>
 								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
