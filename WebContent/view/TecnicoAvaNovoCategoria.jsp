@@ -15,11 +15,15 @@
 						<hr>	
 						<form role="form" id="demoform">
 							<div class="form-group col-md-12">
-								<div class="form-group col-md-6">
-									 <label for="exampleInputEmail1">Nome</label>
-									 <input type="email" class="form-control" id="exampleInputEmail1" />
+								<div class="form-group col-md-4">
+									 <label for="exampleInputEmail1">Idade Mínima</label>
+									 <input type="number" class="form-control" id="exampleInputEmail1" />
 								</div>
-							 	<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
+									 <label for="exampleInputEmail1">Idade Máxima</label>
+									 <input type="number" class="form-control" id="exampleInputEmail1" />
+								</div>
+							 	<div class="form-group col-md-4">
 									 <label for="exampleInputEmail1">Sexo</label>
 									 <div>
 										 <select class="form-control" name="" id="">

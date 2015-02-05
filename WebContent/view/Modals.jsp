@@ -67,3 +67,18 @@
 				</div>
 			</div>
 		</div>
+
+<!-- 	Modal Editar -->
+	<div class="modal fade bs-example-modal-xs" id="editar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<br/>
+			</div>
+			<div class="modal-body">
+				<label for="message-text" class="control-label" >Atividade alterada com sucesso!</label>
+			</div>
+	    </div>
+	  </div>
+	</div>

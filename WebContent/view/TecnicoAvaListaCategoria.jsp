@@ -22,13 +22,13 @@
 						<br/>
 						<table class="table">
 							<tr>
-								<th width="40%" >Nome</th>
+								<th width="40%" >Idade</th>
 								<th width="20%" >Sexo</th>
 								<th width="10%" class="text-center"></th>
 								<th width="10%" class="text-center"></th>
 							</tr>
 							<tr>
-								<td>Categoria 1</td>
+								<td>7 - 11 Anos</td>
 								<td >Masculino</td>
 								<td align="center">
 									<a href="TecnicoAvaNovoCategoria.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
@@ -38,7 +38,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Categoria 2</td>
+								<td>11 - 12 Anos</td>
 								<td >Feminino</td>
 								<td align="center">
 									<a href="TecnicoAvaNovoCategoria.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
@@ -48,7 +48,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Categoria 3</td>
+								<td>13 - 14 Anos</td>
 								<td >Feminino</td>
 								<td align="center">
 									<a href="TecnicoAvaNovoCategoria.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
@@ -58,7 +58,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Categoria 4</td>
+								<td>13 - 14 Anos</td>
 								<td >Masculino</td>
 								<td align="center">
 									<a href="TecnicoAvaNovoCategoria.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
