@@ -6,50 +6,169 @@
 				<!-- menu -->
 				<%@include file='../layout/navigationNutricionista.jsp'%>
 				<div class="row clearfix">
-					<div class="col-md-2 column">
-					</div>
-					<div class="col-md-8 column">
-						<form class="form-horizontal" role="form">			
-							<div class="form-group ">
-								<label for="data" class="col-sm-4 control-label text-left" style="padding-right:0px;">Data do Atendimento:</label>
-								<div class="col-sm-4">
-									<input type="date" class="form-control" id="data" />
+					<div class="col-md-12 column">
+						<div class="col-md-12">
+							<h3>Última Ficha de Atendimento</h3>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6 text-left">
+								<h6><b>Última Alteração - 02/02/2015 - 16:23</b></h6>
+							</div>
+							<div class="col-md-6 text-right">
+								<a href="#" style="margin-right: 5px;">Histórico de Atendimentos</a>|<a href="#" style="margin-left: 5px;">Novo Atendimento</a>
+							</div>
+						</div>
+						<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
+						<h4 class="text-center" style="margin: 0px 0px 0px 0px;">IDENTIFICAÇÃO</h4>
+						<div class="col-md-12">	<hr /></div>
+						<form class="form-horizontal" role="form">
+							<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+								<div class="col-md-6">
+									<div class="col-md-2 text-left">
+										<label for="nome" class="control-label text-left">Nome:</label>
+									</div>
+									<div class="col-md-10">
+										<input type="text" readonly class="form-control" id="nome" value="Atleta XXX" />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="col-md-2 text-left">
+										<label for="email" class="control-label text-right">Email:</label>
+									</div>
+									<div class="col-md-10">
+										<input type="text" readonly class="form-control" id="email" value="atleta@atleta.com.br"/>
+									</div>
 								</div>
 							</div>
-							<hr/>
-							<h4>IDENTIFICACÃƒO</h4>
-							<div class="form-group">
-								<label for="nome" class="col-sm-4 control-label">Nome:</label>
-								<div class="col-sm-8">
-									<input type="text" readonly class="form-control" id="nome" value="Atleta XXX"/>
+							<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+								<div class="col-md-6">
+									<div class="col-md-4 text-left">
+										<label for="dataNasc" class="control-label">Data de Nascimento:</label>
+									</div>
+									<div class="col-md-3 text-left">
+										<input type="text" readonly class="form-control" id="dataNasc" value="00/00/0000"/>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="col-md-2 text-left">
+										<label for="telefone" class="control-label">Telefone:</label>
+									</div>
+									<div class="col-md-4 text-left">
+										<input type="text" readonly class="form-control" id="telefone" value="(000) 0000-0000"/>
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="dataNasc" class="col-sm-4 control-label">Data de Nascimento:</label>
-								<div class="col-sm-8">
-									<input type="text" readonly class="form-control" id="dataNasc" value="00/00/0000"/>
+							<div class="col-md-12" style="margin:10px 0px 20px 0px;">
+								<div class="col-md-6">
+									<div class="col-md-4 text-left">
+										<label for="idade" class="control-label">Idade(Anos e Meses)</label>
+									</div>
+									<div class="col-md-5">
+										<input type="text" readonly class="form-control" id="idade" value="XX Anos e XX Meses"/>
+									</div>
+								</div>
+								<div class="col-md-5">
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="idade" class="col-sm-4 control-label">Idade:</label>
-								<div class="col-sm-8">
-									<input type="text" readonly class="form-control" id="idade" value="XX Anos"/>
+							<div class="col-md-12"><hr/></div>		
+							<h4 id="dadosAntropometricos" class="text-center" style="margin: 0px 0px 0px 0px;">DADOS ANTROPOMÉTRICOS</h4>
+							<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
+							
+							<div class="col-md-12"><!--id="exideDadosAntropometricos"-->					
+								<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+									<div class="col-md-6">
+										<div class="col-md-8 text-left">
+											<label for="pesoUsual" class="control-label">Peso usual e % de gordura usual/passado:</label>
+										</div>
+										<div class="col-md-4 text-left">
+											<input type="text" readonly class="form-control" id="pesoUsual"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="col-md-1 text-left">
+											<label for="cb" class="control-label">CB:</label>
+										</div>
+										<div class="col-md-2 text-left">
+											<input type="text" readonly class="form-control" id="cb"/>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="col-sm-4 control-label">Email:</label>
-								<div class="col-sm-8">
-									<input type="text" readonly class="form-control" id="email" value="atleta@atleta.com.br"/>
+								
+								<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+									<div class="col-md-6">
+										<div class="col-md-8 text-left">
+											<label for="pesoIdeal" class="control-label">Peso e % de gordura "ideal" (objetivo):</label>
+										</div>
+										<div class="col-md-4 text-left">
+											<input type="text" readonly class="form-control" id="pesoIdeal"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="col-md-1 text-left">
+											<label for="cc" class="control-label">CC:</label>
+										</div>
+										<div class="col-md-2 text-left">
+											<input type="text" readonly class="form-control" id="cc"/>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="telefone" class="col-sm-4 control-label">Telefone:</label>
-								<div class="col-sm-8">
-									<input type="text" readonly class="form-control" id="telefone" value="(000) 0000-0000"/>
+								
+								<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+									<div class="col-md-6">
+										<div class="col-md-3 text-left">
+											<label for="pesoAtual" class="control-label">Peso atual:</label>
+										</div>
+										<div class="col-md-3 text-left">
+											<input type="text" readonly class="form-control" id="pesoAtual"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="col-md-1 text-left">
+											<label for="ca" class="control-label">CA:</label>
+										</div>
+										<div class="col-md-2 text-left">
+											<input type="text" readonly class="form-control" id="ca"/>
+										</div>
+									</div>
 								</div>
+								
+								<div class="col-md-12" style="margin:10px 0px 10px 0px;">
+									<div class="col-md-6">
+										<div class="col-md-3 text-left">
+											<label for="altura" class="control-label">Altura:</label>
+										</div>
+										<div class="col-md-3">
+											<input type="text" readonly class="form-control" id="altura"/>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="col-md-2 text-left">
+											<label for="pregas" class="control-label">Pregas:</label>
+										</div>
+										<div class="col-md-3 text-left">
+											<input type="text" readonly class="form-control" id="pregas"/>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="col-md-12" style="margin:10px 0px 20px 0px;">
+									<div class="col-md-6">
+										<div class="col-md-5 text-left">
+											<label for="gordura" class="control-label">% de gordura corporal:</label>
+										</div>
+										<div class="col-md-2">
+											<input type="text" readonly class="form-control" id="gordura"/>
+										</div>
+									</div>
+								</div>								
 							</div>
-							<hr/>
-							<h4 id="objetivoConsulta">OBJETIVO PRINCIPAL DA CONSULTA</h4>
+							<div class="col-md-12 text-right">
+								<a href="#" style="margin-right: 5px;">Histórico de Avaliações</a>|<a href="#" style="margin-left: 5px;">Nova Avaliação Antropométrica</a>
+							</div>	
+							<div class="col-md-12"><hr/></div>	
+							<h4 id="objetivoConsulta" style="margin: 0px 0px 0px 0px;" class="text-center">OBJETIVO PRINCIPAL DA CONSULTA</h4>
+							<div class="col-md-12"><hr/></div>	
 							<div id="exibeObjetivoConsulta" style="display: none;">
 								<div class="form-group">
 									<label for="hma" class="col-sm-4 control-label">HMA:</label>
@@ -58,7 +177,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="acompanhamento" class="col-sm-4 control-label">Ja procurou acompanhamento nutricional antes:</label>
+									<label for="acompanhamento" class="col-sm-4 control-label">Já procurou acompanhamento nutricional antes:</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="acompanhamento"/>
 									</div>
@@ -124,7 +243,8 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="praticaAtividade">PRÁTICA DE ATIVIDADE FÍSICA/ ESPORTE/ TREINO:</h4>
+							<h4 id="praticaAtividade" style="margin: 0px 0px 0px 0px;" class="text-center">PRÁTICA DE ATIVIDADE FÍSICA/ ESPORTE/ TREINO</h4>
+							<div class="col-md-12"><hr/></div>
 							<div id="exibePraticaAtividade" style="display: none;">
 								<div class="form-group">
 									<label for="tipo" class="col-sm-4 control-label">Tipo:</label>
@@ -146,7 +266,8 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="avaliacaoDietetica">AVALIAÇÃO DIETÉ‰TICA:</h4>
+							<h4 id="avaliacaoDietetica" style="margin: 0px 0px 0px 0px;" class="text-center">AVALIAÇÃO DIETÉ‰TICA</h4>
+							<div class="col-md-12"><hr/></div>
 							<div id="exibeAvaliacaoDietetica" style="display: none;">
 								<div class="form-group">
 									<label for="intolerancia" class="col-sm-4 control-label">Intolerância ou alergia alimentar?</label>
@@ -199,10 +320,10 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th>Alimento</th>
-											<th>Frequência/Semana</th>
-											<th>Alimento</th>
-											<th>Frequência/Semana</th>
+											<th class="text-center" width="30%">Alimento</th>
+											<th class="text-center" width="20%">Frequência/Semana</th>
+											<th class="text-center" width="30%">Alimento</th>
+											<th class="text-center" width="20%">Frequência/Semana</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -264,7 +385,8 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="recordatorioAlimentar">RECORDATÁ“RIO ALIMENTAR 24H</h4>
+							<h4 id="recordatorioAlimentar" style="margin: 0px 0px 0px 0px;" class="text-center">RECORDATÁ“RIO ALIMENTAR 24H</h4>
+							<div class="col-md-12"><hr/></div>
 							<div id="exibeRecordatorio" style="display: none;">
 								<table class="table">
 									<thead>
@@ -314,65 +436,8 @@
 								</div>
 							</div>
 							<hr/>
-							<h4 id="dadosAntropometricos">DADOS ANTROPOMÉTRICOS</h4>
-							<div style="display: none;" id="exideDadosAntropometricos">
-								<div class="form-group">
-									<label for="pesoUsual" class="col-sm-4 control-label">Peso usual e % de gordura usual/passado:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="pesoUsual"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="pesoIdeal" class="col-sm-4 control-label">Peso e % de gordura "ideal" (objetivo):</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="pesoIdeal"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="pesoAtual" class="col-sm-4 control-label">Peso atual:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="pesoAtual"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="altura" class="col-sm-4 control-label">Altura:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="altura"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="cb" class="col-sm-4 control-label">CB:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="cb"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="cc" class="col-sm-4 control-label">CC:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="cc"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="ca" class="col-sm-4 control-label">CA:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="ca"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="pregas" class="col-sm-4 control-label">Pregas:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="pregas"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="gordura" class="col-sm-4 control-label">% de gordura corporal:</label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="gordura"/>
-									</div>
-								</div>
-							</div>
-							<hr/>
-							<h4>CONDUTA NUTRICIONAL:</h4>
+							<h4 style="margin: 0px 0px 0px 0px;" class="text-center">CONDUTA NUTRICIONAL</h4>
+							<div class="col-md-12"><hr/></div>
 							<textarea rows="5" class="form-control"></textarea>
 							<br/>
 							<br/>
@@ -383,8 +448,6 @@
 								</div>
 							</div>
 						</form>
-					</div>
-					<div class="col-md-2 column">
 					</div>
 				</div>
 			</div>
