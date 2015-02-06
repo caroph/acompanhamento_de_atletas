@@ -17,11 +17,11 @@
 							<div class="form-group col-md-12">
 								 <div class="form-group col-md-6">
 									 <label for="exampleInputEmail1">Nome</label>
-									 <input type="email" class="form-control" id="exampleInputEmail1" />
+									 <input type="text" class="form-control" id="exampleInputEmail1" />
 								 </div>
 							 	<div class="form-group col-md-6">
 									<label for="exampleInputEmail1">Local</label>
-									<input type="email" class="form-control" id="exampleInputEmail1" />
+									<input type="text" class="form-control" id="exampleInputEmail1" />
 							 	</div>
 							</div>
 							<div class="form-group col-md-12">
@@ -37,7 +37,7 @@
 							<div class="form-group col-md-12">
 								<div class="form-group col-md-6">
 								 	<label for="exampleInputEmail1">Categoria</label>
-								 	<input type="email" class="form-control" id="exampleInputEmail1" />
+								 	<input type="text" class="form-control" id="exampleInputEmail1" />
 								</div>
 								<div class="form-group col-md-6">
 									 <label for="exampleInputEmail1">Naipe</label>
@@ -48,6 +48,16 @@
 											<option>Feminino</option>
 									 	</select>
 									 </div>
+								 </div>
+							</div>
+							<div class="form-group col-md-12">
+								<div class="form-group col-md-6">
+								 	<label for="exampleInputEmail1">Tipo</label>
+								 	<input type="text" class="form-control" id="exampleInputEmail1" />
+								</div>
+								<div class="form-group col-md-6">
+									 <label for="exampleInputEmail1">Grupo</label>
+								 	<input type="text" class="form-control" id="exampleInputEmail1" />
 								 </div>
 							</div>
 							<div class="form-group col-md-12">

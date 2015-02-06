@@ -9,7 +9,7 @@
 				<a href="TecnicoAtleta.jsp">Atletas</a>
 			</li>
 			<li class="active">
-				<a href="TecnicoChamada.jsp">Chamada</a>
+				<a href="TecnicoQuadra.jsp">Chamada</a>
 			</li>
 			<li class="active">
 				<a href="TecnicoAvaAtividades.jsp">Tipo de Atividades</a>

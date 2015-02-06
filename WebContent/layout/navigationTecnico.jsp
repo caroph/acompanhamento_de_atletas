@@ -9,7 +9,7 @@
 				<a href="TecnicoAtleta.jsp">Atletas</a>
 			</li>
 			<li>
-				<a href="TecnicoChamada.jsp">Chamada</a>
+				<a href="TecnicoQuadra.jsp">Chamada</a>
 			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Avaliação Física<strong class="caret"></strong></a>
