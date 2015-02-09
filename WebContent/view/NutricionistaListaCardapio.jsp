@@ -31,7 +31,7 @@
 				</div>
 				<div class="col-md-8 column">
 					<h3 class="text-center">
-							Atletas Encontrados
+							Cardápios Encontrados
 					</h3>
 					<table class="table">
 					<thead>
@@ -55,7 +55,7 @@
 								Cardápio 1
 							</td>
 							<td>
-								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
 								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
@@ -69,7 +69,7 @@
 								Cardápio 2
 							</td>
 							<td>
-								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
 								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
@@ -83,7 +83,7 @@
 								Cardápio 3
 							</td>
 							<td>
-								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
 								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
@@ -97,7 +97,7 @@
 								Cardápio 4
 							</td>
 							<td>
-								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
 								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
@@ -111,7 +111,7 @@
 								Cardápio 5
 							</td>
 							<td>
-								<a data-toggle="modal" href="#detalhes">Detalhes</a>
+								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
 								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
