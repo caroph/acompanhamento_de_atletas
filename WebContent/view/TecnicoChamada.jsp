@@ -15,9 +15,9 @@
 						<table class="table">
 						<thead>
 							<tr>
-								<th width="70%" class="text-center">Atletas</th>
-								<th width="20%" class="text-center">Presença</th>
-								<th width="10%" class="text-center"></th>
+								<th width="60%" class="text-center">Atletas</th>
+								<th width="20%" class="text-center">Treino Físico</th>
+								<th width="20%" class="text-center">Treino Técnico</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -26,45 +26,75 @@
 									Atleta 1
 								</td>
 								<td align="center">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: red"></span>
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: red"></span>
+									</a>
 								</td>
-								<td><button href="#modalPresenca" class="btn btn-info btn-sm" data-toggle="modal">Editar</button></td>
+								<td align="center">
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: red"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									Atleta 2
 								</td>
 								<td align="center">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									</a>
 								</td>
-								<td><button href="#modalPresenca" class="btn btn-info btn-sm" data-toggle="modal">Editar</button></td>
+								<td align="center">
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									Atleta 3
 								</td>
 								<td align="center">
-									<span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: red"></span>
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: red"></span>
+									</a>
 								</td>
-								<td><button href="#modalPresenca" class="btn btn-info btn-sm" data-toggle="modal">Editar</button></td>
+								<td align="center">
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									Atleta 4
 								</td>
 								<td align="center">
-									<span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: rgb(97, 97, 7)"></span>
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: rgb(97, 97, 7)"></span>
+									</a>
 								</td>
-								<td><button href="#" class="btn btn-info btn-sm" data-toggle="modal">Editar</button></td>
+								<td align="center">
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: rgb(97, 97, 7)"></span>
+									</a>
+								</td>
 							</tr>
 							<tr>
 								<td>
 									Atleta 5
 								</td>
 								<td align="center">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									</a>
 								</td>
-								<td><button href="#modalPresenca" class="btn btn-info btn-sm" data-toggle="modal">Editar</button></td>
+								<td align="center">
+									<a href="#modalPresenca" class="btn" data-toggle="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: green"></span>
+									</a>
+								</td>
 							</tr>
 						</tbody>
 						</table>
