@@ -411,7 +411,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="almoco" class="col-sm-4 control-label">ALMOÃÇO</label>
+									<label for="almoco" class="col-sm-4 control-label">ALMOÇO</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control" id="almoco"/>
 									</div>
