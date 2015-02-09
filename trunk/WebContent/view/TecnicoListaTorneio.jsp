@@ -97,7 +97,7 @@
 									<a href="TecnicoNovoTorneio.jsp" class="btn btn-info btn-xs" role="button">Editar</a>
 								</td>
 								<td align="center">
-									<button href="#resultadoRegistrar" class="btn btn-info btn-xs" data-toggle="modal">Resultados</button>
+									<a href="TecnicoResultadoTorneio.jsp" class="btn btn-info btn-xs" role="button">Finalizar</a>
 								</td>
 								<td align="center">
 									<button class="btn btn-danger btn-xs" data-toggle="modal" href="#deletar">Deletar</button>
