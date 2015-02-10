@@ -58,7 +58,7 @@
 								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
-								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+								<a href="NutricionistaNovoModelo.jsp">Editar</a>
 							</td>
 							<td>
 								<a data-toggle="modal"href="#deletar">Excluir</a>
@@ -72,7 +72,7 @@
 								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
-								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+								<a href="NutricionistaNovoModelo.jsp">Editar</a>
 							</td>
 							<td>
 								<a data-toggle="modal"href="#deletar">Excluir</a>
@@ -86,7 +86,7 @@
 								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
-								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+								<a href="NutricionistaNovoModelo.jsp">Editar</a>
 							</td>
 							<td>
 								<a data-toggle="modal"href="#deletar">Excluir</a>
@@ -100,7 +100,7 @@
 								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
-								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+								<a href="NutricionistaNovoModelo.jsp">Editar</a>
 							</td>
 							<td>
 								<a data-toggle="modal"href="#deletar">Excluir</a>
@@ -114,7 +114,7 @@
 								<a data-toggle="modal" href="#detalhesCardapio">Detalhes</a>
 							</td>
 							<td>
-								<a href="NutricionistaNovoCardapio.jsp">Editar</a>
+								<a href="NutricionistaNovoModelo.jsp">Editar</a>
 							</td>
 							<td>
 								<a data-toggle="modal"href="#deletar">Excluir</a>
