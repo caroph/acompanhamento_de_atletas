@@ -27,116 +27,121 @@
 					</div>
 				</div>
 				
-				<div class="col-md-12 column" style="margin-top: 30px;">
-					<h3 class="text-center">
-							Atletas Encontrados
-					</h3>
-					<div class="col-md-12"><hr/></div>
-					<table class="table">
-					<thead>
-						<tr>
-							<th class="text-center" width="50%">
-								Nome
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-							<th>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="row clearfix">
+					<div class="col-md-2 column">
+					</div>
+					<div class="col-md-8 column" style="margin-top: 30px;">
+						<h3 class="text-center">
+								Atletas Encontrados
+						</h3>
+						<table class="table">
+						<thead>
 							<tr>
-								<td style="max-width: 200px;">Atleta 1</td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-										de Atendimento</a></td>
-								<td><a data-toggle="modal" href="#incluirParecer">Incluir
-										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-										Atendimento</a></td>
-								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-								</td>
+								<th class="text-center">
+									Nome
+								</th>
+								<th>
+								</th>
+								<th>
+								</th>
+								<th>
+								</th>
+								<th>
+								</th>
+								<th>
+								</th>
 							</tr>
-							<tr>
-								<td style="max-width: 200px;">Atleta 2</td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-										de Atendimento</a></td>
-								<td><a data-toggle="modal" href="#incluirParecer">Incluir
-										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-										Atendimento</a></td>
-								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-								</td>
-							</tr>
-							<tr>
-								<td style="max-width: 200px;">Atleta 3</td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-										de Atendimento</a></td>
-								<td><a data-toggle="modal" href="#incluirParecer">Incluir
-										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-										Atendimento</a></td>
-								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-								</td>
-							</tr>
-							<tr>
-								<td style="max-width: 200px;">Atleta 4</td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-										de Atendimento</a></td>
-								<td><a data-toggle="modal" href="#incluirParecer">Incluir
-										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-										Atendimento</a></td>
-								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-								</td>
-							</tr>
-
-							<tr>
-								<td style="max-width: 200px;">Atleta 5</td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-										de Atendimento</a></td>
-								<td><a data-toggle="modal" href="#incluirParecer">Incluir
-										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-										Atendimento</a></td>
-								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<ul class="pagination">
-						<li>
-							<a href="#">Anterior</a>
-						</li>
-						<li>
-							<a href="#">1</a>
-						</li>
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">4</a>
-						</li>
-						<li>
-							<a href="#">5</a>
-						</li>
-						<li>
-							<a href="#">Próximo</a>
-						</li>
-					</ul>
+						</thead>
+						<tbody>
+								<tr>
+									<td style="max-width: 200px;">Atleta 1</td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
+											de Atendimento</a></td>
+									<td><a data-toggle="modal" href="#incluirParecer">Incluir
+											Observação</a></td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+											Atendimento</a></td>
+									<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+									<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
+									</td>
+								</tr>
+								<tr>
+									<td style="max-width: 200px;">Atleta 2</td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
+											de Atendimento</a></td>
+									<td><a data-toggle="modal" href="#incluirParecer">Incluir
+											Observação</a></td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+											Atendimento</a></td>
+									<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+									<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
+									</td>
+								</tr>
+								<tr>
+									<td style="max-width: 200px;">Atleta 3</td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
+											de Atendimento</a></td>
+									<td><a data-toggle="modal" href="#incluirParecer">Incluir
+											Observação</a></td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+											Atendimento</a></td>
+									<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+									<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
+									</td>
+								</tr>
+								<tr>
+									<td style="max-width: 200px;">Atleta 4</td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
+											de Atendimento</a></td>
+									<td><a data-toggle="modal" href="#incluirParecer">Incluir
+											Observação</a></td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+											Atendimento</a></td>
+									<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+									<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
+									</td>
+								</tr>
+	
+								<tr>
+									<td style="max-width: 200px;">Atleta 5</td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
+											de Atendimento</a></td>
+									<td><a data-toggle="modal" href="#incluirParecer">Incluir
+											Observação</a></td>
+									<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+											Atendimento</a></td>
+									<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+									<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="pagination">
+							<li>
+								<a href="#">Anterior</a>
+							</li>
+							<li>
+								<a href="#">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">4</a>
+							</li>
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li>
+								<a href="#">Próximo</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-2 column">
+					</div>
 				</div>
 			</div>
 		</div>

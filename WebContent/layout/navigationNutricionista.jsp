@@ -9,19 +9,19 @@
 				<a href="NutricionistaAtleta.jsp">Atletas</a>
 			</li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cardápios<strong class="caret"></strong></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cardï¿½pios<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="NutricionistaNovoCardapio.jsp">Novo</a>
+						<a href="NutricionistaNovoCardapioDieta.jsp">Novo</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="NutricionistaCardapio.jsp">Buscar</a>
+						<a href="#">Buscar</a>
 					</li>
 				</ul>
 			</li>
 			<li class="dropdown">
-				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<strong class="caret"></strong></a>
+				 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatï¿½rios<strong class="caret"></strong></a>
 				<ul class="dropdown-menu">
 					<li>
 						<a href="#">Atletas</a>
