@@ -11,7 +11,7 @@
 						<!-- CONTEUDO -->
 						<h3 class="text-center">Bem Vindo Secretário(a) XXXXX</h3>
 						<hr/>
-						<h5><b>Existem 12 pendências nos cadastros de alunos!</b></h5>
+						<h5><b>Existem 16 pendências nos cadastros de alunos!</b></h5>
 						<div style="margin-top: 30px;">
 							<table class="table">
 								<tr>

@@ -15,7 +15,7 @@
 								<h6><b>Última Alteração - 02/02/2015 - 16:23</b></h6>
 							</div>
 							<div class="col-md-6 text-right">
-								<a href="#" style="margin-right: 5px;">Histórico de Atendimentos</a>|<a href="#" style="margin-left: 5px;">Novo Atendimento</a>
+								<a href="NutricionistaHistoricoAtleta.jsp" style="margin-right: 5px;">Histórico de Atendimentos</a>|<a href="NutricionistaFichaAtendimento.jsp" style="margin-left: 5px;">Novo Atendimento</a>
 							</div>
 						</div>
 						<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
