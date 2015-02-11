@@ -12,7 +12,7 @@
 						<h3 class="text-center">
 							Buscar Atleta
 						</h3>
-						<form role="form" action="PsicologiaListaAtleta.jsp">
+						<form role="form" action="PsicologiaListaAtleta2.jsp">
 						    <div class="input-group">
 						      <input type="text" class="form-control form-search" id="search">
 						      <span class="input-group-btn">

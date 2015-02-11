@@ -14,37 +14,22 @@
 					<div class="col-md-12">
 						<hr />
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-4" style="margin: 10px 0px 10px 0px;">
-							<div class="col-md-3 text-left">
-								<label for="refeicao" class="control-label text-left">Refeição:</label>
-							</div>
-							<div class="col-md-9">
-								<select class="form-control">
-									<option value=""></option>
-									<option value="">Café da Manhã</option>
-									<option value="">Lanche da Manhã</option>
-									<option value="">Almoço</option>
-									<option value="">Lanche da Tarde</option>
-									<option value="">Jantar</option>
-									<option value="">Ceia</option>
-								</select>
-							</div>
+
+					<div class="col-md-12 text-left" style="margin: 10px 0px 10px 0px;">
+						<div class="col-md-2 text-left">
+							<label for="nome" class="control-label text-left">Nome do
+								Modelo:</label>
 						</div>
-						<div class="col-md-8" style="margin: 10px 0px 10px 0px;">
-							<div class="col-md-4 text-right">
-								<label for="nome" class="control-label text-left">Nome Modelo:</label>
-							</div>
-							<div class="col-md-8">
-								<input type="text" class="form-control" />
-							</div>
+						<div class="col-md-4 text-left">
+							<input type="text" class="form-control" />
 						</div>
 					</div>
-					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
-						<div class="col-md-1 text-left">
+
+					<div class="col-md-12 text-left" style="margin: 10px 0px 10px 0px;">
+						<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 							<label for="descricao" class="control-label text-left">Descrição:</label>
 						</div>
-						<div class="col-md-11">
+						<div class="col-md-12">
 							<textarea class="form-control"></textarea>
 						</div>
 					</div>
@@ -55,32 +40,33 @@
 					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 						<div class="col-md-6 text-left">
 							<label for="periodoValidade" class="control-label text-left">Alimentos
-								Disponíveis</label>
+								Atualmente no Modelo</label>
 						</div>
 						<div class="col-md-6">
 							<div class="col-md-6 text-left">
 								<label for="periodoValidade" class="control-label text-left">Alimentos
-									Atualmente no Cardápio</label>
+									Disponíveis</label>
 							</div>
 							<div class="col-md-6 text-right">
 								<a data-toggle="modal" href="#adicionarNovoAlimento">Adicionar Alimentos à Lista</a>
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
 						<div class="form-group col-md-12">
 							<div>
 								<select multiple="multiple" size="10" name="duallistbox_demo1[]">
-									<option value="option1">Alimento 1</option>
-									<option value="option2">Alimento 2</option>
-									<option value="option3">Alimento 3</option>
-									<option value="option4">Alimento 4</option>
-									<option value="option5">Alimento 5</option>
-									<option value="option6">Alimento 6</option>
-									<option value="option7">Alimento 7</option>
-									<option value="option8">Alimento 8</option>
-									<option value="option9">Alimento 9</option>
-									<option value="option10">Alimento 10</option>
+									<option value="option1" selected>Alimento 1</option>
+									<option value="option2" selected>Alimento 2</option>
+									<option value="option3" selected>Alimento 3</option>
+									<option value="option4" selected>Alimento 4</option>
+									<option value="option5" selected>Alimento 5</option>
+									<option value="option6" selected>Alimento 6</option>
+									<option value="option7" selected>Alimento 7</option>
+									<option value="option8" selected>Alimento 8</option>
+									<option value="option9" selected>Alimento 9</option>
+									<option value="option10" selected>Alimento 10</option>
 								</select>
 							</div>
 						</div>
@@ -88,7 +74,7 @@
 					<div class="col-md-12 text-right"
 						style="margin: 10px 0px 10px 0px;">
 						<a class="btn btn-primary"
-							href="NutricionistaNovoModeloQuantidades.jsp">Próximo</a>
+							href="NutricionistaNovoModeloQuantidades.jsp">Incluir Quantidades</a>
 					</div>
 				</div>
 			</div>
