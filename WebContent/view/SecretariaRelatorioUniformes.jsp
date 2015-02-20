@@ -18,7 +18,7 @@
 						<div class="col-sm-12">
 							<h5 class="text-center">
 								Relatório para controle de estoque, para gerar um relatório de
-								empréstimos <a href="SecretariaRelatorioUniformesDetalhado.jsp">clique
+								retiradas <a href="SecretariaRelatorioUniformesDetalhado.jsp">clique
 									aqui</a>
 							</h5>
 
@@ -90,7 +90,7 @@
 								<td align="center">75</td>
 							</tr>
 						</table>
-						<h4 class="text-left">Peças Emprestadas</h4>
+						<h4 class="text-left">Peças Retiradas</h4>
 						<table class="table">
 							<tr>
 								<th width="40%">Tipo de Peça</th>

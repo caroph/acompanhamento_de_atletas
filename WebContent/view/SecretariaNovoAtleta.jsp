@@ -39,8 +39,8 @@
 								<label for="equipe" class="col-sm-4 control-label">Equipe:</label>
 								<div class="col-sm-8">
 									<select class="form-control" id="sel1">
-										<option>Desenvolvimento</option>
-										<option>Auto Rendimento</option>
+										<option>Equipe</option>
+										<option>Pré-Equipe</option>
 									</select>
 								</div>
 							</div>
