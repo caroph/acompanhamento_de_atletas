@@ -13,14 +13,14 @@
 						<div class="col-sm-12">
 							<div class="col-sm-12">
 								<h3 class="text-center">
-									<b>Relatório de Controle de Empréstimos</b>
+									<b>Relatório de Controle de Retiradas</b>
 								</h3>
 							</div>
 							<div class="col-sm-12">
 								<h5 class="text-center">
-									Relatório para controle de empréstimos por peça de roupa.
+									Relatório para controle de retiradas por peça de roupa.
 									Também é possível acessar o <a href="SecretariaUniforme.jsp">controle
-										de empréstimos por atleta clicando aqui</a>
+										de retiradas por atleta clicando aqui</a>
 								</h5>
 								<hr />
 							</div>

@@ -37,6 +37,40 @@
 							<div class="col-sm-3 text-left">Masculino e Feminino</div>
 						</div>
 						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<hr/>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-5 text-left">
+								<b>Quantidade de Inscritos:</b>
+							</div>
+							<div class="col-sm-1 text-left">
+								XXX
+							</div>
+							<div class="col-sm-5 text-left">
+								<b>Quantidade de Incscritos do Clube Curitibano:</b>
+							</div>
+							<div class="col-sm-1 text-left">
+								XXX
+							</div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-3 text-left">
+								<b>Fotógrafo:</b>
+							</div>
+							<div class="col-sm-3 text-left">
+								Fotografo 01
+							</div>
+							<div class="col-sm-4 text-left">
+								<b>Técnico que Acompanhou</b>
+							</div>
+							<div class="col-sm-2 text-left">
+								Técnico 01
+							</div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+						
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
 							<hr />
 							<h3 class="text-center">Resultados</h3>
 						</div>

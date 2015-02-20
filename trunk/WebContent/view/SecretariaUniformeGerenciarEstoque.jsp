@@ -26,42 +26,84 @@
 						
 							<table class="table">
 								<tr>
-									<th width="80%">Tipo</th>
-									<th width="10%">Tamanho</th>
+									<th width="77%">Tipo</th>
+									<th width="13%">Tamanho</th>
 									<th width="10%">Quantidade</th>
 								</tr>
 								<tr>
 									<td>Blusinha</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBlusinha"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeBlusinha"/></td>
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeBlusinha" /></td>
 								</tr>
 								<tr>
 									<td>Camiseta</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCamiseta"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeCamiseta"/></td>
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeCamiseta" /></td>
 								</tr>
 								<tr>
 									<td>Saia</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoSaia"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeSaia"/></td>
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeSaia" /></td>
 								</tr>
 								<tr>
 									<td>Bermuda</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoBermuda"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeBermuda"/></td>
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeBermuda" /></td>
 								</tr>
 								<tr>
 									<td>Jaqueta</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoJaqueta"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeJaqueta"/></td>
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeJaqueta" /></td>
 								</tr>
 								<tr>
 									<td>Calça</td>
-									<td><input type="text" class="form-control text-center" value="M" id="tamanhoCalca"/></td>
-									<td><input type="text" class="form-control text-center" value="0" id="qtdeCalca"/></td>
-								</tr>																
+									<td><select class="form-control">
+											<option>PP</option>
+											<option>P</option>
+											<option selected>M</option>
+											<option>G</option>
+											<option>GG</option>
+									</select></td>
+									<td><input type="number" class="form-control text-center"
+										value="0" id="qtdeCalca" /></td>
+								</tr>
 							</table>
-
+							
 							<div class="form-group">
 								<div class="col-sm-12 text-right">
 									 <button type="submit" class="btn btn-primary">Salvar</button>
