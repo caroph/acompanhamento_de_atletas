@@ -18,7 +18,7 @@
 									<select class="form-control" id="sel1">
 										<option>Secretário(a)</option>
 										<option>Técnico</option>
-										<option>Técnico Avaliador</option>
+										<option>Preparador Físico</option>
 										<option>Psicóogo(a)</option>
 										<option>Nutricionista</option>
 										<option>Fisioterapeuta</option>
@@ -27,6 +27,12 @@
 							</div>
 							<div class="form-group">
 								 <label for="nome" class="col-sm-4 control-label">Nome</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="nome" />
+								</div>
+							</div>
+							<div class="form-group">
+								 <label for="nome" class="col-sm-4 control-label">CREF</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="nome" />
 								</div>
@@ -47,40 +53,6 @@
 								 <label for="email" class="col-sm-4 control-label">Confirmação de Senha</label>
 								<div class="col-sm-3">
 									<input type="password" class="form-control" id="confSenha" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="endereco" class="col-sm-4 control-label">Endereço</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="endereco" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="numero" class="col-sm-4 control-label">Número</label>
-								<div class="col-sm-8">
-									<input type="number" class="form-control" id="numero" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="complemento" class="col-sm-4 control-label">Complemento</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="complemento" />
-								</div>
-							</div>
-							<div class="form-group">
-								 <label for="bairro" class="col-sm-4 control-label">Bairro</label>
-								<div class="col-sm-8">
-									<input type="email" class="form-control" id="bairro" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="estado" class="col-sm-4 control-label">Estado:</label>
-								<div class="col-sm-3">
-									<select class="form-control" name="estado" id="estado"> </select>
-								</div>
-								<label for="cidade" class="col-sm-1 control-label">Cidade:</label>
-								<div class="col-sm-4">
-									<select class="form-control" name="cidade" id="cidade"> </select>
 								</div>
 							</div>
 							<div class="form-group">

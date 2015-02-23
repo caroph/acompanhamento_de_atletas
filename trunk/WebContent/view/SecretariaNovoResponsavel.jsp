@@ -34,6 +34,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										 <label for="emailPai" class="col-sm-4 control-label">Outros Grau de Parentesco:</label>
+										<div class="col-sm-8">
+											<input type="email" class="form-control" id="emailPai" />
+										</div>
+									</div>
+									<div class="form-group">
 										 <label for="emailPai" class="col-sm-4 control-label">Email</label>
 										<div class="col-sm-8">
 											<input type="email" class="form-control" id="emailPai" />

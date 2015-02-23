@@ -88,6 +88,24 @@
 								</div>
 							</div>
 							<div class="form-group">
+								 <label for="numeroPai" class="col-sm-4 control-label">Número</label>
+								<div class="col-sm-8">
+									<input type="number" class="form-control" id="numeroPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								 <label for="complementoPai" class="col-sm-4 control-label">Complemento</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="complementoPai" />
+								</div>
+							</div>
+							<div class="form-group">
+								 <label for="emailPai" class="col-sm-4 control-label">Bairro</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="emailPai" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="nr" class="col-sm-4 control-label">Estado:</label>
 								<div class="col-sm-3">
 									<select class="form-control" name="estado" id="estado"> </select>
