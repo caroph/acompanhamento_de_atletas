@@ -67,9 +67,34 @@
 								Técnico 01
 							</div>
 						</div>
-						<div class="col-sm-12" style="margin-bottom: 15px;">
-						
+						<div class="col-sm-12" style="margin-bottom: 15px;"><hr/></div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">	
+							<div class="col-sm-12"><b>Detalhes do torneio</b></div>
 						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-12">Ipsum lorem dolor sit amet dolor
+								ipsum sit Ipsum lorem dolor sit amet dolor ipsum sitIpsum lorem
+								dolor sit amet dolor ipsum sitIpsum lorem dolor sit amet dolor
+								ipsum sitIpsum lorem dolor sit amet dolor ipsum sitIpsum lorem
+								dolor sit amet dolor ipsum sitIpsum lorem dolor sit amet dolor
+								ipsum sit</div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;"><hr/></div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-3 text-left"><b>Destaque no Torneio</b></div>
+							<div class="col-sm-3 text-left">Atleta 01</div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-3"><b>Observações</b></div>
+						</div>
+						<div class="col-sm-12" style="margin-bottom: 15px;">
+							<div class="col-sm-12">Ipsum lorem dolor sit amet dolor ipsum sit
+								Ipsum lorem dolor sit amet dolor ipsum sitIpsum lorem dolor sit
+								amet dolor ipsum sitIpsum lorem dolor sit amet dolor ipsum
+								sitIpsum lorem dolor sit amet dolor ipsum sitIpsum lorem dolor
+								sit amet dolor ipsum sitIpsum lorem dolor sit amet dolor ipsum
+								sit</div>
+						</div>	
 						<div class="col-sm-12" style="margin-bottom: 15px;">
 							<hr />
 							<h3 class="text-center">Resultados</h3>

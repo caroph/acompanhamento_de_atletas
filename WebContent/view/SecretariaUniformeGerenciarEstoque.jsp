@@ -33,6 +33,10 @@
 								<tr>
 									<td>Blusinha</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -45,6 +49,10 @@
 								<tr>
 									<td>Camiseta</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -57,6 +65,10 @@
 								<tr>
 									<td>Saia</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -69,6 +81,10 @@
 								<tr>
 									<td>Bermuda</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -81,6 +97,10 @@
 								<tr>
 									<td>Jaqueta</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -93,6 +113,10 @@
 								<tr>
 									<td>Calça</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -102,8 +126,7 @@
 									<td><input type="number" class="form-control text-center"
 										value="0" id="qtdeCalca" /></td>
 								</tr>
-							</table>
-							
+							</table>							
 							<div class="form-group">
 								<div class="col-sm-12 text-right">
 									 <button type="submit" class="btn btn-primary">Salvar</button>

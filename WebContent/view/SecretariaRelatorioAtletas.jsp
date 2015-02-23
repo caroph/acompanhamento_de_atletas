@@ -1,5 +1,6 @@
-	<%@include file='../layout/head.jsp'%>
-	<body>
+
+<%@include file='../layout/head.jsp'%>
+<body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
@@ -17,12 +18,13 @@
 						<table class="table">
 							<tr>
 								<th width="10%">Matrícula</th>
-								<th width="40%">Nome</th>
+								<th width="30%">Nome</th>
 								<th width="10%">Torneios</th>
 								<th width="10%">Treinos</th>
 								<th width="10%">Avaliações</th>
 								<th width="10%">Rank FPT</th>
 								<th width="10%">Rank CBT</th>
+								<th width="10%">Rank ITF</th>
 							</tr>
 							<tr>
 								<td>00000001</td>
@@ -38,6 +40,8 @@
 								<td align="center">20° <span
 									class="glyphicon glyphicon-circle-arrow-down"
 									aria-hidden="true"></span></td>
+								<td align="center">150° <span
+									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 							</tr>
 							<tr>
 								<td>00000002</td>
@@ -53,6 +57,8 @@
 									aria-hidden="true"></span></td>
 								<td align="center">50° <span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
+								<td align="center">151° <span
+									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 							</tr>
 							<tr>
 								<td>00000003</td>
@@ -66,6 +72,8 @@
 								<td align="center">75°<span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 								<td align="center">15° <span
+									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
+								<td align="center">152° <span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 							</tr>
 							<tr>
@@ -82,14 +90,17 @@
 									aria-hidden="true"></span></td>
 								<td align="center">40° <span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
+								<td align="center">153° <span
+									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 							</tr>
 
 						</table>
 						<div class="col-sm-12 text-right" style="margin-bottom: 25px;">
-							<button type="button" class="btn btn-primary mostrarProgresso" data-toggle="modal"
-								data-target="#basicModal" id="btnImprimirRelBonificados">Imprimir
-								Relatório de Atletas Bonificados</button>
-							<hr/>
+							<button type="button" class="btn btn-primary mostrarProgresso"
+								data-toggle="modal" data-target="#basicModal"
+								id="btnImprimirRelBonificados">Imprimir Relatório de
+								Atletas Bonificados</button>
+							<hr />
 						</div>
 
 						<h4>Atletas não bonificados</h4>
@@ -97,12 +108,13 @@
 						<table class="table">
 							<tr>
 								<th width="10%">Matrícula</th>
-								<th width="40%">Nome</th>
+								<th width="30%">Nome</th>
 								<th width="10%">Torneios</th>
 								<th width="10%">Treinos</th>
 								<th width="10%">Avaliações</th>
 								<th width="10%">Rank FPT</th>
 								<th width="10%">Rank CBT</th>
+								<th width="10%">Rank ITF</th>
 							</tr>
 							<tr>
 								<td>00000005</td>
@@ -114,8 +126,12 @@
 								<td align="center"><span class="glyphicon glyphicon-remove"
 									aria-hidden="true"></span></td>
 								<td align="center">300°<span
-									class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></td>
+									class="glyphicon glyphicon-circle-arrow-down"
+									aria-hidden="true"></span></td>
 								<td align="center">100°<span
+									class="glyphicon glyphicon-circle-arrow-down"
+									aria-hidden="true"></span></td>
+																	<td align="center">287° <span
 									class="glyphicon glyphicon-circle-arrow-down"
 									aria-hidden="true"></span></td>
 							</tr>
@@ -133,6 +149,9 @@
 									aria-hidden="true"></span></td>
 								<td align="center">147° <span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
+																	<td align="center">240° <span
+									class="glyphicon glyphicon-circle-arrow-up"
+									aria-hidden="true"></span></td>
 							</tr>
 							<tr>
 								<td>00000007</td>
@@ -144,9 +163,14 @@
 								<td align="center"><span class="glyphicon glyphicon-remove"
 									aria-hidden="true"></span></td>
 								<td align="center">235°<span
-									class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></td>
+									class="glyphicon glyphicon-circle-arrow-down"
+									aria-hidden="true"></span></td>
 								<td align="center">178° <span
-									class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></td>
+									class="glyphicon glyphicon-circle-arrow-down"
+									aria-hidden="true"></span></td>
+																	<td align="center">254° <span
+									class="glyphicon glyphicon-circle-arrow-down"
+									aria-hidden="true"></span></td>
 							</tr>
 							<tr>
 								<td>00000008</td>
@@ -158,19 +182,21 @@
 								<td align="center"><span class="glyphicon glyphicon-remove"
 									aria-hidden="true"></span></td>
 								<td align="center">280°<span
-									class="glyphicon glyphicon-circle-arrow-up"
-									aria-hidden="true"></span></td>
+									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
 								<td align="center">340° <span
 									class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></td>
+																	<td align="center">255° <span
+									class="glyphicon glyphicon-circle-arrow-up"
+									aria-hidden="true"></span></td>
 							</tr>
 
 						</table>
 						<div class="col-sm-12 text-right" style="margin-bottom: 50px;">
 							<button type="button" class="btn btn-primary mostrarProgresso"
 								id="btnImprimirRelNaoBonificados" data-toggle="modal"
-								data-target="#basicModal">Imprimir Relatório de
-								Atletas Não Bonificados</button>
-							<hr/>
+								data-target="#basicModal">Imprimir Relatório de Atletas
+								Não Bonificados</button>
+							<hr />
 						</div>
 						<div class="col-sm-offset-2 col-sm-10 text-right">
 							<button type="button" class="btn btn-primary mostrarProgresso"
@@ -182,31 +208,34 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" id="fechar" aria-hidden="true">x</button>
-					<h4 class="modal-title" id="myModalLabel">Imprimindo Relatório</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							id="fechar" aria-hidden="true">x</button>
+						<h4 class="modal-title" id="myModalLabel">Imprimindo
+							Relatório</h4>
 					</div>
 					<div class="modal-body">
 						<div class="text-center">Imprimindo</div>
-						<div class="progress" style="margin-top:10px;" id="progress">
-							<div class="progress-bar progress-bar-striped active" role="progressbar"
-							  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:99%">
-								99%
-							</div>
-						</div>						
+						<div class="progress" style="margin-top: 10px;" id="progress">
+							<div class="progress-bar progress-bar-striped active"
+								role="progressbar" aria-valuenow="100" aria-valuemin="0"
+								aria-valuemax="100" style="width: 99%">99%</div>
+						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"
+							id="fechar">Fechar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%@include file="../layout/footer.jsp"%>
-	
-  </body>
+
+</body>
 </html>
