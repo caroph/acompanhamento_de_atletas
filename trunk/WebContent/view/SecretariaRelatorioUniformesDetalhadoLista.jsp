@@ -43,15 +43,23 @@
 									SELECIONADO****</th>
 							</tr>
 							<tr>
-								<th width="50%">Nome do Atleta</th>
-								<th width="10%" class="text-center">PP</th>
-								<th width="10%" class="text-center">P</th>
-								<th width="10%" class="text-center">M</th>
-								<th width="10%" class="text-center">G</th>
-								<th width="10%" class="text-center">GG</th>
+								<th width="37%">Nome do Atleta</th>
+								<th width="7%" class="text-center">10</th>
+								<th width="7%" class="text-center">12</th>
+								<th width="7%" class="text-center">14</th>
+								<th width="7%" class="text-center">16</th>
+								<th width="7%" class="text-center">PP</th>
+								<th width="7%" class="text-center">P</th>
+								<th width="7%" class="text-center">M</th>
+								<th width="7%" class="text-center">G</th>
+								<th width="7%" class="text-center">GG</th>
 							</tr>
 							<tr>
 								<td>Atleta 01</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">0</td>
 								<td align="center">4</td>
 								<td align="center">0</td>
@@ -63,6 +71,10 @@
 								<td align="center">0</td>
 								<td align="center">0</td>
 								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">5</td>
 								<td align="center">0</td>
 							</tr>
@@ -71,11 +83,19 @@
 								<td align="center">0</td>
 								<td align="center">0</td>
 								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">0</td>
 							</tr>
 							<tr>
 								<td>Atleta 04</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">2</td>
 								<td align="center">0</td>
 								<td align="center">0</td>
@@ -84,6 +104,10 @@
 							</tr>
 							<tr>
 								<td>Atleta 05</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">0</td>
 								<td align="center">0</td>
 								<td align="center">0</td>

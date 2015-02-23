@@ -63,6 +63,9 @@
 				</ul>
 			</li>
 			<li>
+				<a href="SecretariaEnviarEmail.jsp">Enviar email</a>
+			</li>
+			<li>
 				<a href="../">Sair</a>
 			</li>
 		</ul>

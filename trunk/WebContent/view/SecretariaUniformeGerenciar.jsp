@@ -10,28 +10,19 @@
 					<div class="col-md-2 column"></div>
 					<div class="col-md-8 column">
 						<h3 class="text-center">Gerenciamento de Uniforme do Atleta XXXXX</h3>
-						<p class="text-center">Incluir retirada/baixa de uniformes</p>
+						<p class="text-center">Incluir retirada de uniformes</p>
 						<hr />
 						<form class="form-horizontal">
-
-							<div class="form-group ">
-								<label for="numero" class="col-sm-2 control-label text-left"
-									style="padding-right: 0px;">Data</label>
-								<div class="col-sm-3">
-									<input type="date" class="form-control" id="data" />
+							<div class="row clearfix">
+								<div class="col-md-12" style="margin:10px 0px 20px 0px;">
+									<div class="col-md-1">
+										<label for="numero" class="text-left">Data</label>
+									</div>
+									<div class="col-sm-3 text-left">
+										<input type="date" class="form-control" id="data" />
+									</div>
 								</div>
 							</div>
-
-							<div class="form-group col-md-8">
-								<label for="message-text" class="control-label"
-									style="padding-right: 15px;">Tipo de Operação</label> <label
-									class="radio-inline"> <input type="radio"
-									name="optradio">Retirada
-								</label> <label class="radio-inline"> <input type="radio"
-									name="optradio">Baixa
-								</label>
-							</div>
-
 							<table class="table">
 								<tr>
 									<th width="77%">Tipo</th>
@@ -41,6 +32,10 @@
 								<tr>
 									<td>Blusinha</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -53,6 +48,10 @@
 								<tr>
 									<td>Camiseta</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -65,6 +64,10 @@
 								<tr>
 									<td>Saia</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -77,6 +80,10 @@
 								<tr>
 									<td>Bermuda</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -89,6 +96,10 @@
 								<tr>
 									<td>Jaqueta</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -101,6 +112,10 @@
 								<tr>
 									<td>Calça</td>
 									<td><select class="form-control">
+											<option>10</option>
+											<option>12</option>
+											<option>14</option>
+											<option>16</option>
 											<option>PP</option>
 											<option>P</option>
 											<option selected>M</option>
@@ -132,8 +147,7 @@
 									<th>Tipo</th>
 									<th>Tamanho</th>
 									<th>Quantidade</th>
-									<th>Data de Retirada</th>
-									<th>Data de Baixa</th>
+									<th class="text-center">Data de Retirada</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -141,16 +155,14 @@
 									<td>Blusinha</td>
 									<td>M</td>
 									<td>02</td>
-									<td>12/05/2014</td>
-									<td></td>
+									<td class="text-right">12/05/2014</td>
 								</tr>
 							<tbody>
 								<tr>
 									<td>Saia</td>
 									<td>G</td>
 									<td>01</td>
-									<td>12/05/2014</td>
-									<td></td>
+									<td class="text-right">12/05/2014</td>
 								</tr>
 							</tbody>
 						</table>

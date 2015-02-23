@@ -22,32 +22,37 @@
 								<th></th>
 							</tr>
 							<tr>
-								<td>Termo de Compromisso do Manual do Atleta</td>
+								<td><a data-toggle="modal" href="#visualizarFoto">Foto do Atleta</td>
+								<td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+								<td><a class="btn btn-primary" data-toggle="modal" data-target="#tirarFoto" id="btnAnexo">Tirar Foto</a></td>
+							</tr>
+							<tr>
+								<td><a data-toggle="modal" href="#visualizarDoc">Termo de Compromisso do Manual do Atleta</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
 							<tr>
-								<td>Declaração Médica</td>
+								<td><a data-toggle="modal" href="#visualizarDoc">Declaração Médica</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
 							<tr>
-								<td>Autorização de Viagem e Hospedagem</td>
+								<td><a data-toggle="modal" href="#visualizarDoc">Autorização de Viagem e Hospedagem</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
 							<tr>
-								<td>Autorização de Imagem</td>
+								<td><a data-toggle="modal" href="#visualizarDoc">Autorização de Imagem</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
 							<tr>
-								<td>Cópia do RG</td>
+								<td><a data-toggle="modal" href="#visualizarDoc">Cópia do RG</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
 							<tr>
-								<td>Cópia do CPF</td>
+								<td><a data-toggle="modal" href="#visualizarDoc">Cópia do CPF</a></td>
 								<td class="text-center"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 								<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
 							</tr>
@@ -77,6 +82,55 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="modal fade" id="tirarFoto" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Tirar Foto</h4>
+					</div>
+					<div class="modal-body text-center">
+						<img src="../themes/default/assets/img/avatar.jpg" align="middle" width="500px" height="450px"/>	
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" id="fechar">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btnTirarFoto">Tirar foto</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="modal fade" id="visualizarDoc" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Visualizar Documento</h4>
+					</div>
+					<div class="modal-body text-center">
+						<img src="../themes/default/assets/img/iconeImg.png" align="middle" width="500px" height="450px"/>	
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="modal fade" id="visualizarFoto" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Visualizar Foto</h4>
+					</div>
+					<div class="modal-body text-center">
+						<img src="../themes/default/assets/img/avatar.jpg" align="middle" width="500px" height="450px"/>	
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal" id="fechar">Fechar</button>
 					</div>
 				</div>
 			</div>

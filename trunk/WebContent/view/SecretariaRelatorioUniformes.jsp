@@ -27,16 +27,24 @@
 						<h4 class="text-left">Total de peças</h4>
 						<table class="table">
 							<tr>
-								<th width="40%">Tipo de Peça</th>
-								<th width="10%" class="text-center">PP</th>
-								<th width="10%" class="text-center">P</th>
-								<th width="10%" class="text-center">M</th>
-								<th width="10%" class="text-center">G</th>
-								<th width="10%" class="text-center">GG</th>
-								<th width="10%" class="text-center">Total</th>
+								<th width="30%">Tipo de Peça</th>
+								<th width="7%" class="text-center">10</th>
+								<th width="7%" class="text-center">12</th>
+								<th width="7%" class="text-center">14</th>
+								<th width="7%" class="text-center">16</th>
+								<th width="7%" class="text-center">PP</th>
+								<th width="7%" class="text-center">P</th>
+								<th width="7%" class="text-center">M</th>
+								<th width="7%" class="text-center">G</th>
+								<th width="7%" class="text-center">GG</th>
+								<th width="7%" class="text-center">Total</th>
 							</tr>
 							<tr>
 								<td>Blusinha</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
@@ -46,6 +54,10 @@
 							</tr>
 							<tr>
 								<td>Camiseta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">30</td>
 								<td align="center">30</td>
 								<td align="center">30</td>
@@ -55,6 +67,10 @@
 							</tr>
 							<tr>
 								<td>Saia</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
@@ -64,6 +80,10 @@
 							</tr>
 							<tr>
 								<td>Bermuda</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">25</td>
 								<td align="center">25</td>
 								<td align="center">25</td>
@@ -73,6 +93,10 @@
 							</tr>
 							<tr>
 								<td>Jaqueta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
@@ -82,6 +106,10 @@
 							</tr>
 							<tr>
 								<td>Calça</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
@@ -93,16 +121,24 @@
 						<h4 class="text-left">Peças Retiradas</h4>
 						<table class="table">
 							<tr>
-								<th width="40%">Tipo de Peça</th>
-								<th width="10%" class="text-center">PP</th>
-								<th width="10%" class="text-center">P</th>
-								<th width="10%" class="text-center">M</th>
-								<th width="10%" class="text-center">G</th>
-								<th width="10%" class="text-center">GG</th>
-								<th width="10%" class="text-center">Total</th>
+								<th width="30%">Tipo de Peça</th>
+								<th width="7%" class="text-center">10</th>
+								<th width="7%" class="text-center">12</th>
+								<th width="7%" class="text-center">14</th>
+								<th width="7%" class="text-center">16</th>
+								<th width="7%" class="text-center">PP</th>
+								<th width="7%" class="text-center">P</th>
+								<th width="7%" class="text-center">M</th>
+								<th width="7%" class="text-center">G</th>
+								<th width="7%" class="text-center">GG</th>
+								<th width="7%" class="text-center">Total</th>
 							</tr>
 							<tr>
 								<td>Blusinha</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
@@ -112,6 +148,10 @@
 							</tr>
 							<tr>
 								<td>Camiseta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
@@ -121,6 +161,10 @@
 							</tr>
 							<tr>
 								<td>Saia</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
@@ -130,6 +174,10 @@
 							</tr>
 							<tr>
 								<td>Bermuda</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
@@ -139,6 +187,10 @@
 							</tr>
 							<tr>
 								<td>Jaqueta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">3</td>
 								<td align="center">3</td>
 								<td align="center">3</td>
@@ -148,6 +200,10 @@
 							</tr>
 							<tr>
 								<td>Calça</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
@@ -159,16 +215,24 @@
 						<h4 class="text-left">Peças Disponíveis</h4>
 						<table class="table">
 							<tr>
-								<th width="40%">Tipo de Peça</th>
-								<th width="10%" class="text-center">PP</th>
-								<th width="10%" class="text-center">P</th>
-								<th width="10%" class="text-center">M</th>
-								<th width="10%" class="text-center">G</th>
-								<th width="10%" class="text-center">GG</th>
-								<th width="10%" class="text-center">Total</th>
+								<th width="30%">Tipo de Peça</th>
+								<th width="7%" class="text-center">10</th>
+								<th width="7%" class="text-center">12</th>
+								<th width="7%" class="text-center">14</th>
+								<th width="7%" class="text-center">16</th>
+								<th width="7%" class="text-center">PP</th>
+								<th width="7%" class="text-center">P</th>
+								<th width="7%" class="text-center">M</th>
+								<th width="7%" class="text-center">G</th>
+								<th width="7%" class="text-center">GG</th>
+								<th width="7%" class="text-center">Total</th>
 							</tr>
 							<tr>
 								<td>Blusinha</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
@@ -178,6 +242,10 @@
 							</tr>
 							<tr>
 								<td>Camiseta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
 								<td align="center">15</td>
@@ -187,6 +255,10 @@
 							</tr>
 							<tr>
 								<td>Saia</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
 								<td align="center">5</td>
@@ -196,6 +268,10 @@
 							</tr>
 							<tr>
 								<td>Bermuda</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
 								<td align="center">20</td>
@@ -205,6 +281,10 @@
 							</tr>
 							<tr>
 								<td>Jaqueta</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">3</td>
 								<td align="center">3</td>
 								<td align="center">3</td>
@@ -214,6 +294,10 @@
 							</tr>
 							<tr>
 								<td>Calça</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
+								<td align="center">0</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
 								<td align="center">10</td>
@@ -226,7 +310,8 @@
 						<div class="col-sm-12 text-right">
 							<hr />
 							<div class="col-sm-5 text-left">
-								<a href="SecretariaUniformeGerenciarEstoque.jsp">Adicionar/Retirar Peças do Estoque</a>
+								<a href="SecretariaUniformeGerenciarEstoque.jsp">Adicionar/Retirar
+									Peças do Estoque</a>
 							</div>
 							<div class="col-sm-7 text-right" style="margin-bottom: 25px;">
 
@@ -243,7 +328,7 @@
 		</div>
 	</div>
 	<%@include file="Modals.jsp"%>
-	
+
 	<%@include file="../layout/footer.jsp"%>
 
 </body>
