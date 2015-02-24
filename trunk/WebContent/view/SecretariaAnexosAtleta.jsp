@@ -73,6 +73,12 @@
 					<div class="modal-body">
 						<button type="button" class="btn">Selecionar Arquivo...</button>
 						<button type="button" class="btn btn-primary mostrarProgresso" id="anexar">Anexar</button>
+						<div class="form-group" >
+								<label for="nr" class="col-sm-4 control-label">Data Validade Documento:</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="inputEmail3" />
+								</div>
+							</div>
 						<div class="progress" style="display: none; margin-top:10px;" id="progress">
 							<div class="progress-bar progress-bar-striped active" role="progressbar"
 							  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">

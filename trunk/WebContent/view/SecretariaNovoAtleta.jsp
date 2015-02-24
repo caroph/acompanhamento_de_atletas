@@ -248,6 +248,13 @@
 									<input type="email" class="form-control" id="emailPai" />
 								</div>
 							</div>
+							<hr>
+							<div class="form-group" >
+								<label for="nr" class="col-sm-4 control-label">Data Validade Cadastro:</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="inputEmail3" />
+								</div>
+							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10 text-right">
 									<a class="btn btn-primary" href="SecretariaAnexosAtleta.jsp" id="anexos">Anexar Documentos</a>
