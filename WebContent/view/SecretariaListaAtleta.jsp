@@ -52,7 +52,7 @@
 								Atleta 1
 							</td>
 							<td align="center">
-								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
+								<a data-toggle="modal" href="#verDetalhes" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
 								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
@@ -72,7 +72,7 @@
 								Atleta 2
 							</td>
 							<td align="center">
-								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
+								<a data-toggle="modal" href="#verDetalhes" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
 								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
@@ -92,7 +92,7 @@
 								Atleta 3
 							</td>
 							<td align="center">
-								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
+								<a data-toggle="modal" href="#verDetalhes" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
 								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
@@ -112,7 +112,7 @@
 								Atleta 4
 							</td>
 							<td align="center">
-								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
+								<a data-toggle="modal" href="#verDetalhes" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
 								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
@@ -132,7 +132,7 @@
 								Atleta 5<br>
 							</td>
 							<td align="center">
-								<a data-toggle="modal" href="#basicModal" class="btn btn-info btn-sm" role="button">Detalhes</a>
+								<a data-toggle="modal" href="#verDetalhes" class="btn btn-info btn-sm" role="button">Detalhes</a>
 							</td>
 							<td>
 								<a href="SecretariaAnexosAtleta.jsp" class="btn btn-info btn-sm" role="button">Anexar Documentos</a>
@@ -178,38 +178,6 @@
 			</div>
 		</div>
 	</div>	
-	
-	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h4 class="modal-title" id="myModalLabel">Detalhes Atleta</h4>
-					</div>
-					<div class="modal-body">
-						<div class="row clearfix">
-							<div class="col-md-12 text-left">
-								<div class="col-md-4">
-									<img src="../themes/default/assets/img/avatar.jpg" width="150px" height="150px"/>								
-								</div>
-								<div class="col-md-8 text-left">
-									Nome: Atleta X<br/>
-									Equipe: Equipe<br/>
-									Dias que treina: Seg, Ter, Qua<br/>
-									Nº. Matrícula Clube Curitibano: XXXX<br/>
-									Nº. Cadastro FPT: XXXX<br/>
-									Nº. Cadastro CBT: XXXX<br/>
-									Responsável: Responsável 1<br/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
-					</div>
-				</div>
-			</div>
-		</div>	
 		
 		<div class="modal fade" id="basicModal2" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 			<div class="modal-dialog">
