@@ -50,11 +50,15 @@
 								</th>
 								<th>
 								</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 								<tr>
 									<td style="max-width: 200px;">Atleta 1</td>
+									<td>
+										<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+									</td>
 									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
 											de Atendimento</a></td>
 									<td><a data-toggle="modal" href="#incluirParecer">Incluir
@@ -67,6 +71,9 @@
 								</tr>
 								<tr>
 									<td style="max-width: 200px;">Atleta 2</td>
+									<td>
+										<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+									</td>
 									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
 											de Atendimento</a></td>
 									<td><a data-toggle="modal" href="#incluirParecer">Incluir
@@ -79,6 +86,9 @@
 								</tr>
 								<tr>
 									<td style="max-width: 200px;">Atleta 3</td>
+									<td>
+										<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+									</td>
 									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
 											de Atendimento</a></td>
 									<td><a data-toggle="modal" href="#incluirParecer">Incluir
@@ -91,6 +101,9 @@
 								</tr>
 								<tr>
 									<td style="max-width: 200px;">Atleta 4</td>
+									<td>
+										<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+									</td>
 									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
 											de Atendimento</a></td>
 									<td><a data-toggle="modal" href="#incluirParecer">Incluir
@@ -104,6 +117,9 @@
 	
 								<tr>
 									<td style="max-width: 200px;">Atleta 5</td>
+									<td>
+										<a data-toggle="modal" href="#anunciarPresenca">Anunciar Presença</a>
+									</td>
 									<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
 											de Atendimento</a></td>
 									<td><a data-toggle="modal" href="#incluirParecer">Incluir
@@ -222,6 +238,8 @@
 		  </div>
 		</div>
 	</div>
+	
+	<%@include file="Modals.jsp"%>
 	<%@include file="../layout/footer.jsp"%>
 	
   </body>
