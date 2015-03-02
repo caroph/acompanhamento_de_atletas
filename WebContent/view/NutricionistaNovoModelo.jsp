@@ -33,49 +33,49 @@
 							<textarea class="form-control"></textarea>
 						</div>
 					</div>
-					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
-						<h3>1/2 - Escolher Alimentos</h3>
-						<hr />
-					</div>
-					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
-						<div class="col-md-6 text-left">
-							<label for="periodoValidade" class="control-label text-left">Alimentos
-								Atualmente no Modelo</label>
-						</div>
-						<div class="col-md-6">
-							<div class="col-md-6 text-left">
-								<label for="periodoValidade" class="control-label text-left">Alimentos
-									Disponíveis</label>
-							</div>
-							<div class="col-md-6 text-right">
-								<a data-toggle="modal" href="#adicionarNovoAlimento">Adicionar Alimentos à Lista</a>
-							</div>
-						</div>
-					</div>
+<!-- 					<div class="col-md-12" style="margin: 10px 0px 10px 0px;"> -->
+<!-- 						<h3>1/2 - Escolher Alimentos</h3> -->
+<!-- 						<hr /> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-12" style="margin: 10px 0px 10px 0px;"> -->
+<!-- 						<div class="col-md-6 text-left"> -->
+<!-- 							<label for="periodoValidade" class="control-label text-left">Alimentos -->
+<!-- 								Atualmente no Modelo</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-6"> -->
+<!-- 							<div class="col-md-6 text-left"> -->
+<!-- 								<label for="periodoValidade" class="control-label text-left">Alimentos -->
+<!-- 									Disponíveis</label> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-md-6 text-right"> -->
+<!-- 								<a data-toggle="modal" href="#adicionarNovoAlimento">Adicionar Alimentos à Lista</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
-					<div class="col-md-12" style="margin: 10px 0px 10px 0px;">
-						<div class="form-group col-md-12">
-							<div>
-								<select multiple="multiple" size="10" name="duallistbox_demo1[]">
-									<option value="option1" selected>Alimento 1</option>
-									<option value="option2" selected>Alimento 2</option>
-									<option value="option3" selected>Alimento 3</option>
-									<option value="option4" selected>Alimento 4</option>
-									<option value="option5" selected>Alimento 5</option>
-									<option value="option6" selected>Alimento 6</option>
-									<option value="option7" selected>Alimento 7</option>
-									<option value="option8" selected>Alimento 8</option>
-									<option value="option9" selected>Alimento 9</option>
-									<option value="option10" selected>Alimento 10</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 text-right"
-						style="margin: 10px 0px 10px 0px;">
-						<a class="btn btn-primary"
-							href="NutricionistaNovoModeloQuantidades.jsp">Incluir Quantidades</a>
-					</div>
+<!-- 					<div class="col-md-12" style="margin: 10px 0px 10px 0px;"> -->
+<!-- 						<div class="form-group col-md-12"> -->
+<!-- 							<div> -->
+<!-- 								<select multiple="multiple" size="10" name="duallistbox_demo1[]"> -->
+<!-- 									<option value="option1" selected>Alimento 1</option> -->
+<!-- 									<option value="option2" selected>Alimento 2</option> -->
+<!-- 									<option value="option3" selected>Alimento 3</option> -->
+<!-- 									<option value="option4" selected>Alimento 4</option> -->
+<!-- 									<option value="option5" selected>Alimento 5</option> -->
+<!-- 									<option value="option6" selected>Alimento 6</option> -->
+<!-- 									<option value="option7" selected>Alimento 7</option> -->
+<!-- 									<option value="option8" selected>Alimento 8</option> -->
+<!-- 									<option value="option9" selected>Alimento 9</option> -->
+<!-- 									<option value="option10" selected>Alimento 10</option> -->
+<!-- 								</select> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-12 text-right" -->
+<!-- 						style="margin: 10px 0px 10px 0px;"> -->
+<!-- 						<a class="btn btn-primary" -->
+<!-- 							href="NutricionistaNovoModeloQuantidades.jsp">Incluir Quantidades</a> -->
+<!-- 					</div> -->
 				</div>
 			</div>
 		</div>
