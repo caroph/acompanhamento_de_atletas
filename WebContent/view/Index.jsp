@@ -37,7 +37,7 @@
 						<span>Sistema de Acompanhamento de Atletas de Tênis</span>
 					</div>
 				</h3>
-				<form role="form" action="view/SecretariaAtleta.jsp">
+				<form role="form" method="post" action="/Autenticador?action=login">
 					<div class="form-group">
 						 <label for="exampleInputEmail1">Usuário</label><input type="email" class="form-control" id="exampleInputEmail1">
 					</div>
@@ -51,16 +51,17 @@
 						    </label>
 							<a href="#" style="float:right;">Esqueci minha senha</a>
 					</div>
+					<input type="submit" class="btn pull-right btn-info" value="Entrar">
 				</form>
-				<select id="selectInicio" class="form-control">
-					<option selected value="#">Selecione</option>
-					<option value="view/SecretariaPrincipal.jsp">Secretaria</option>
-					<option value="view/FisioterapiaPrincipal.jsp">Fisioterapia</option>
-					<option value="view/PsicologiaPrincipal.jsp">Psicologia</option>
-					<option value="view/NutricionistaPrincipal.jsp">Nutricionista</option>
-					<option value="view/TecnicoAtleta.jsp">Técnico</option>
-					<option value="view/TecnicoAtleta.jsp">Preparador Físico</option>
-				</select>
+<!-- 				<select id="selectInicio" class="form-control"> -->
+<!-- 					<option selected value="#">Selecione</option> -->
+<!-- 					<option value="view/SecretariaPrincipal.jsp">Secretaria</option> -->
+<!-- 					<option value="view/FisioterapiaPrincipal.jsp">Fisioterapia</option> -->
+<!-- 					<option value="view/PsicologiaPrincipal.jsp">Psicologia</option> -->
+<!-- 					<option value="view/NutricionistaPrincipal.jsp">Nutricionista</option> -->
+<!-- 					<option value="view/TecnicoAtleta.jsp">Técnico</option> -->
+<!-- 					<option value="view/TecnicoAtleta.jsp">Preparador Físico</option> -->
+<!-- 				</select> -->
 				
 			</div>
 			<div class="col-md-4 column">
