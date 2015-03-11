@@ -31,7 +31,7 @@ public class AutenticadorController extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action.equals("login")){
-			String email = request.getParameter("login");
+			String email = request.getParameter("email");
             String senha = request.getParameter("senha");
             
             Usuario usuario = new Usuario();
@@ -39,7 +39,7 @@ public class AutenticadorController extends HttpServlet {
             usuario = usuarioNegocio.autenticar(email, senha);
             
 			RequestDispatcher rd = request.getRequestDispatcher("view/SecretariaAtleta.jsp");
-			rd.forward(request, response);
+			rd.forward(request, response); 
 		}
 	}
 
