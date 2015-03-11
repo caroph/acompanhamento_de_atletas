@@ -37,12 +37,14 @@
 						<span>Sistema de Acompanhamento de Atletas de Tênis</span>
 					</div>
 				</h3>
-				<form role="form" method="post" action="/Autenticador?action=login">
+				<form role="form" method="post" action="Autenticador?action=login">
 					<div class="form-group">
-						 <label for="exampleInputEmail1">Usuário</label><input type="email" class="form-control" id="exampleInputEmail1">
+						 <label for="exampleInputEmail1">Email</label>
+						 <input type="email" class="form-control" id="exampleInputEmail1" name="email" id="email">
 					</div>
 					<div class="form-group">
-						 <label for="exampleInputPassword1">Senha</label><input type="password" class="form-control" id="exampleInputPassword1">
+						 <label for="exampleInputPassword1">Senha</label>
+						 <input type="password" class="form-control" id="exampleInputPassword1" name="senha" id="senha">
 					</div> 
 					
 					<div class="form-group">

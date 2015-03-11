@@ -40,7 +40,7 @@ public class Index extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher rd = request
+		RequestDispatcher rd = request 
 				.getRequestDispatcher("view/Index.jsp");
 		rd.forward(request, response);
 	}
