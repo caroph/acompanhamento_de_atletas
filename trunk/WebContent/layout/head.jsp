@@ -10,10 +10,10 @@
     <title>Sistema de Acompanhamento de Atleta de Tênis</title>
 
     <!-- Bootstrap -->
-    <link href="../<%=Constants.CSS%>/bootstrap.min.css" rel="stylesheet">
-    <link href="../<%=Constants.CSS%>/datepicker.css" rel="stylesheet">
-    <link href="../<%=Constants.CSS%>/bootstrap.icon-large.min.css" rel="stylesheet">
-    <link href="../<%=Constants.CSS%>/main.css" rel="stylesheet">
+    <link href="<%=Constants.CSS%>/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=Constants.CSS%>/datepicker.css" rel="stylesheet">
+    <link href="<%=Constants.CSS%>/bootstrap.icon-large.min.css" rel="stylesheet">
+    <link href="<%=Constants.CSS%>/main.css" rel="stylesheet">
     
     
     <link rel="stylesheet" type="text/css" href="../<%=Constants.CSS%>/bootstrap-duallistbox.css">

@@ -6,4 +6,5 @@ public class Constants {
 	public static final String CSS = String.format("%s/css", PATH);
 	public static final String FONT = String.format("%s/font", PATH);
 	public static final String JS = String.format("%s/js", PATH);
+	public static final String VIEW = String.format("WEB-INF/view");
 }
