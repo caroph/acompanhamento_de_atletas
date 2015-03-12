@@ -40,7 +40,7 @@
 				<form role="form" method="post" action="Autenticador?action=login">
 					<div class="form-group">
 						 <label for="exampleInputEmail1">Email</label>
-						 <input type="email" class="form-control" id="exampleInputEmail1" name="email" id="email">
+						 <input type="text" class="form-control" id="exampleInputEmail1" name="email" id="email">
 					</div>
 					<div class="form-group">
 						 <label for="exampleInputPassword1">Senha</label>

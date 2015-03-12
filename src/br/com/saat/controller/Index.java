@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.saat.core.Constants;
+
 /**
  * O Servlet implementation class Index
  */
-@WebServlet(urlPatterns = {"/", "/home"}
-)
+@WebServlet(urlPatterns = { "/", "/home" })
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,8 +41,7 @@ public class Index extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher rd = request 
-				.getRequestDispatcher("view/Index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
 		rd.forward(request, response);
 	}
 

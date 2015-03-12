@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.saat.core.Constants;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -44,11 +45,11 @@ public class AutenticadorController extends HttpServlet {
             	session.setAttribute("usuarioLogado", usuario);
             	requestDispatcher = request.getRequestDispatcher(usuarioNegocio.retornoLogin(usuario.getPerfil()));
             }else{
-            	requestDispatcher = request.getRequestDispatcher("view/SecretariaAtleta.jsp");
+            	requestDispatcher = request.getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
 			}
 		}else{
             session.invalidate();
-            requestDispatcher = getServletContext().getRequestDispatcher("/Index");
+            requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
 		}
 		requestDispatcher.forward(request, response);
 	}
