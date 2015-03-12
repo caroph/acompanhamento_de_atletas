@@ -26,8 +26,8 @@ public class AutenticadorController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/Index.jsp");
-		requestDispatcher.forward(request, response);
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/Index.jsp");
+//		requestDispatcher.forward(request, response);
 		String action = request.getParameter("action");
 		
 		if(action.equals("login")){
@@ -38,8 +38,13 @@ public class AutenticadorController extends HttpServlet {
             usuarioNegocio = new UsuarioNegocio();
             usuario = usuarioNegocio.autenticar(email, senha);
             
-			RequestDispatcher rd = request.getRequestDispatcher("view/SecretariaAtleta.jsp");
-			rd.forward(request, response); 
+            if(usuario != null){
+            	RequestDispatcher rd = request.getRequestDispatcher(usuarioNegocio.retornoUsuario(usuario.getPerfil()));
+    			rd.forward(request, response); 
+            }else{
+				RequestDispatcher rd = request.getRequestDispatcher("view/SecretariaAtleta.jsp");
+				rd.forward(request, response); 
+			}
 		}
 	}
 
