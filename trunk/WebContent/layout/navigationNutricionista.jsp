@@ -33,7 +33,7 @@
 			</li>
 			 -->
 			<li>
-				<a href="../">Sair</a>
+				<a href="Autenticador?action=logout">Sair</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
