@@ -22,20 +22,20 @@ public class UsuarioNegocio {
 		}
 	}
 	
-	public String retornoUsuario(int perfil){
+	public String retornoLogin(int perfil){
 		if(perfil == Perfis.Secretaria.getValor())
 			return "view/SecretariaPrincipal.jsp";
 		else if(perfil == Perfis.Fisioterapeuta.getValor())
 			return "view/FisioterapiaPrincipal.jsp";
-		else if(perfil == Perfis.Nutricionista.getValor())
-			return "view/PsicologiaPrincipal.jsp";
 		else if(perfil == Perfis.Psicologa.getValor())
+			return "view/PsicologiaPrincipal.jsp";
+		else if(perfil == Perfis.Nutricionista.getValor())
 			return "view/NutricionistaPrincipal.jsp";
 		else if(perfil == Perfis.Tecnico.getValor())
 			return "view/TecnicoAtleta.jsp";
 		else if(perfil == Perfis.PreparadorFisico.getValor())
 			return "view/TecnicoAtleta.jsp";
 		else
-			return "";
+			return "Autenticador?action=logout";
 	}
 }

@@ -10,44 +10,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
-@WebServlet("/Autenticador")
-public class AutenticadorController extends HttpServlet {
+@WebServlet("/SecretariaController")
+public class SecretariaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UsuarioNegocio usuarioNegocio;
 	HttpSession session;
 	RequestDispatcher requestDispatcher;
-      
-    public AutenticadorController() {
+	UsuarioNegocio usuarioNegocio;
+       
+    public SecretariaController() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		doPost(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
 		session = request.getSession();
-		
-		if(action.equals("login")){
-			String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
-            
-            Usuario usuario = new Usuario();
-            usuarioNegocio = new UsuarioNegocio();
-            usuario = usuarioNegocio.autenticar(email, senha);
-            
-            if(usuario != null){
-            	session.setAttribute("usuarioLogado", usuario);
-            	requestDispatcher = request.getRequestDispatcher(usuarioNegocio.retornoLogin(usuario.getPerfil()));
-            }else{
-            	requestDispatcher = request.getRequestDispatcher("view/SecretariaAtleta.jsp");
-			}
-		}else{
-            session.invalidate();
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
+			session.invalidate();
             requestDispatcher = getServletContext().getRequestDispatcher("/Index");
 		}
 		requestDispatcher.forward(request, response);
