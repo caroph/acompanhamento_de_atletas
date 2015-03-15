@@ -15,27 +15,33 @@ import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
-@WebServlet("/SecretariaController")
-public class SecretariaController extends Controller {
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession session;
 	RequestDispatcher requestDispatcher;
 	UsuarioNegocio usuarioNegocio;
-       
-    public SecretariaController() {
+
+    public Controller() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		session = request.getSession();
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
-			super.doPost(request, response, usuario);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response, Usuario usuario) throws ServletException, IOException {
+		usuarioNegocio = new UsuarioNegocio();
+		String retorno;
+		if(usuario == null){
+			session = request.getSession();
+			session.invalidate();
+			retorno = String.format("%s/Index.jsp", Constants.VIEW);
+		}else{
+			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
 		}
+		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
+		requestDispatcher.forward(request, response);
 	}
 
 }

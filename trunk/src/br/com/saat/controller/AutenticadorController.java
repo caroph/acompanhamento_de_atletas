@@ -15,7 +15,7 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 @WebServlet("/Autenticador")
-public class AutenticadorController extends HttpServlet {
+public class AutenticadorController extends Controller {
 	private static final long serialVersionUID = 1L;
 	UsuarioNegocio usuarioNegocio;
 	HttpSession session;
@@ -41,12 +41,7 @@ public class AutenticadorController extends HttpServlet {
             usuarioNegocio = new UsuarioNegocio();
             usuario = usuarioNegocio.autenticar(email, senha);
             
-            if(usuario != null){
-            	session.setAttribute("usuarioLogado", usuario);
-            	requestDispatcher = request.getRequestDispatcher(usuarioNegocio.retornoLogin(usuario.getPerfil()));
-            }else{
-            	requestDispatcher = request.getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
-			}
+            super.doPost(request, response, usuario);
 		}else{
             session.invalidate();
             requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
