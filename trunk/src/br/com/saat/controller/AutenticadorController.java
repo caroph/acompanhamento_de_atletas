@@ -45,8 +45,8 @@ public class AutenticadorController extends Controller {
 		}else{
             session.invalidate();
             requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
+            requestDispatcher.forward(request, response);
 		}
-		requestDispatcher.forward(request, response);
 	}
 
 }
