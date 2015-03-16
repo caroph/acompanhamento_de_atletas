@@ -155,3 +155,127 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!-- Atletas com Pendencias -->	
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"	aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Alunos com pendências</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<tr>
+							<th class="text-center">Nome do aluno</th>
+							<th class="text-center">Matrícula</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td>Atleta 01</td>
+							<td class="text-center">00000001</td>
+							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
+						</tr>
+						<tr>
+							<td>Atleta 02</td>
+							<td class="text-center">00000002</td>
+							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
+						</tr>
+						<tr>
+							<td >Atleta 03</td>
+							<td class="text-center">00000003</td>
+							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
+						</tr>
+						<tr>
+							<td>Atleta 04</td>
+							<td class="text-center">00000004</td>
+							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						id="fechar">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- Incluir Observação -->
+	<div class="modal fade bs-example-modal-sm" id="incluirParecer" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+		    <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Incluir Observação</h4>
+			</div>
+	    	<div class="modal-body">
+		        <form action="">
+		        	<div class="form-group">
+		        		<label for="message-text" class="control-label">Duração:</label>
+		        		<label class="radio-inline">
+		        			<input type="number" class="form-control"/>
+	        			</label>	        		
+		        	</div>
+		        	<div class="form-group">    
+				        	<label for="message-text" class="control-label" style="padding-right:15px;">Gravidade da situação:</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Baixa
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Moderada
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Alta
+							</label>
+					</div>
+		        	<div class="form-group">    
+				        	<label for="message-text" class="control-label" style="padding-right:15px;">Compartilhar com:</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Técnico
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="optradio">Todos 
+							</label>
+					</div>
+			        <div class="form-group">
+					        <label for="message-text" class="control-label">Observação:</label>
+					        <textarea class="form-control" style="max-width: 568px; height: 325px;" id="message-text"></textarea>
+					</div>   
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Incluir</button>
+						<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+					</div>
+		        </form>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	
+		<!-- Selecionar Cardápio -->
+	<div class="modal fade" id="selecionarCardápio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Selecionar Cardápio</h4>
+				</div>
+				<div class="modal-body">
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Cardápio 1</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Cardápio 2</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Cardápio 3</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="NutricionistaNovoCardapio.jsp">Cardápio Personalizado</a>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Selecionar</button>
+				</div>
+			</div>
+		</div>
+	</div>	

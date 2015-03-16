@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,6 +34,10 @@ public class SecretariaController extends Controller {
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
 			super.doPost(request, response, usuario);
+		}
+		else if (usuario.getPerfil() == Perfis.Secretaria.getValor()){
+			requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW));
+            requestDispatcher.forward(request, response);
 		}
 	}
 

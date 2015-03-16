@@ -5,8 +5,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +32,7 @@ public class AutenticadorController extends Controller {
 		String action = request.getParameter("action");
 		session = request.getSession();
 		
-		Cookie cookie [] = request.getCookies();  
+		//Cookie cookie [] = request.getCookies();  
 		
 		if(action.equals("login")){
 			String email = request.getParameter("email");
@@ -48,12 +46,12 @@ public class AutenticadorController extends Controller {
             super.doPost(request, response, usuario);
 		
             if(usuario != null){
-	            String lembrar = request.getParameter("lembrar");
-	            if(lembrar.equals("lembrar")){
-					Cookie cookieLogin = new Cookie("login", request.getParameter("email"));  
-					cookieLogin.setMaxAge(60*60*24*365);
-					response.addCookie(cookieLogin);   
-				}
+//	            String lembrar = request.getParameter("lembrar");
+//	            if(lembrar.equals("lembrar")){
+//					Cookie cookieLogin = new Cookie("login", request.getParameter("email"));  
+//					cookieLogin.setMaxAge(60*60*24*365);
+//					response.addCookie(cookieLogin);   
+//				}
             }
 		}else{
             session.invalidate();

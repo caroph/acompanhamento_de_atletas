@@ -1,6 +1,4 @@
 <!-- Navigation -->
-
-
 <div id="sidebar-left" class="col-xs-2 col-sm-2">
 	<ul class="nav main-menu">
 		<li class="dropdown">
