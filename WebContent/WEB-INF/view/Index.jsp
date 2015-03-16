@@ -44,19 +44,19 @@
 						<form role="form" method="post" action="Autenticador?action=login">
 							<div class="form-group">
 								<label class="control-label">Email</label>
-								<input type="text" class="form-control" name="email" name="email" id="email"/>
+								<input type="text" class="form-control" name="email" value="${cookie.login.value}" id="email"/>
 								<!-- Alterar para type="email" -->
 							</div>
 							<div class="form-group">
 								<label class="control-label">Senha</label>
-								<input type="password" class="form-control" name="senha" name="senha" id="senha"/>
+								<input type="password" class="form-control" name="senha" id="senha"/>
 							</div>
 							<div class="text-center">
 								<input type="submit" class="btn btn-primary" value="Entrar">
 							</div>
 							<div class="form-group">
 									<label>
-										<input type="checkbox"> Lembre-me
+										<input type="checkbox" name="lembrar" value="lembrar"> Lembre-me
 									</label>
 								<a href="#" style="float: right;">Esqueci minha senha</a>
 							</div>							
