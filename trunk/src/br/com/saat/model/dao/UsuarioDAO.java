@@ -22,8 +22,10 @@ public class UsuarioDAO {
     }
 	
 	public Usuario autenticar(String email, String senha) throws SQLException{
-		stmtAutenticar = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, senha, "
-				+ "perfil, CREF FROM usuario WHERE email LIKE ? AND senha LIKE ?");
+//		stmtAutenticar = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, senha, "
+//				+ "perfil, CREF FROM usuario WHERE email LIKE ? AND senha LIKE ?");
+		stmtAutenticar = con.prepareStatement("SELECT idUsuario, nome, perfil "
+				+ "FROM usuario WHERE email LIKE ? AND senha LIKE ?");
         Usuario usuario = new Usuario();
         
         stmtAutenticar.setString(1, email);
@@ -33,13 +35,7 @@ public class UsuarioDAO {
         if(rs.next()){
             usuario.setIdPessoa(rs.getInt("idUsuario"));
             usuario.setNome(rs.getString("nome"));
-            usuario.setEmail(rs.getString("email"));
-            usuario.setSenha(rs.getString("senha"));
-            usuario.setTelefone(rs.getString("telefone"));
-            usuario.setCelular(rs.getString("celular"));
-            usuario.setSenha(rs.getString("senha"));
             usuario.setPerfil(rs.getInt("perfil"));
-            usuario.setCREF(rs.getString("CREF"));
         }else{
             return null;
         }

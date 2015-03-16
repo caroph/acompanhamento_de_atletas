@@ -4,16 +4,19 @@ public class Pessoa {
 	public int idPessoa;
 	public String nome;
 	public String email;
-	public String telefone;
 	public String celular;
 	
 	public Pessoa(){}
 	
-	public Pessoa(int idPessoa, String nome, String email, String telefone, String celular) {
+	public Pessoa(int idPessoa, String nome) {
+		this.idPessoa = idPessoa;
+		this.nome = nome;
+	}
+	
+	public Pessoa(int idPessoa, String nome, String email, String celular) {
 		this.idPessoa = idPessoa;
 		this.nome = nome;
 		this.email = email;
-		this.telefone = telefone;
 		this.celular = celular;
 	}
 
@@ -39,14 +42,6 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public String getCelular() {
