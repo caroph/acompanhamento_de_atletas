@@ -6,6 +6,11 @@ public class Usuario extends Pessoa{
 	public String CREF;
 	
 	public Usuario(){}
+	
+	public Usuario(int idPessoa, String nome, int perfil) {
+		super(idPessoa, nome);
+		this.perfil = perfil;
+	}
 
 	public Usuario(int idPessoa, String nome, String email, String telefone, String celular, 
 			String senha, int perfil, String cref) {
