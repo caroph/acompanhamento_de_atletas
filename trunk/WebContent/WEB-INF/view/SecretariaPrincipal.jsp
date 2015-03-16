@@ -13,7 +13,7 @@
 					<div class="row">
 						<div id="breadcrumb" class="col-xs-12">
 							<ol class="breadcrumb">
-								<li><a href="SecretariaPrincipal.jsp">Home</a></li>
+								<li><a href="SecretariaController">Home</a></li>
 							</ol>
 						</div>
 					</div>
@@ -81,55 +81,8 @@
 		</div>
 	</div>
 	
-<%@include file="/layout/footer.jsp"%>
+	<%@include file="/layout/footer.jsp"%>
+	<%@include file="Modals.jsp"%>
 
-	<!-- Modal -->	
-	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"	aria-labelledby="basicModal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
-					<h4 class="modal-title" id="myModalLabel">Alunos com pendências</h4>
-				</div>
-				<div class="modal-body">
-					<table class="table">
-						<tr>
-							<th class="text-center">Nome do aluno</th>
-							<th class="text-center">Matrícula</th>
-							<th></th>
-						</tr>
-						<tr>
-							<td>Atleta 01</td>
-							<td class="text-center">00000001</td>
-							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
-						</tr>
-						<tr>
-							<td>Atleta 02</td>
-							<td class="text-center">00000002</td>
-							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
-						</tr>
-						<tr>
-							<td >Atleta 03</td>
-							<td class="text-center">00000003</td>
-							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
-						</tr>
-						<tr>
-							<td>Atleta 04</td>
-							<td class="text-center">00000004</td>
-							<td><a href="SecretariaAnexosAtleta.jsp">Anexar Documentos</a></td>
-						</tr>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal"
-						id="fechar">Fechar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
   </body>
 </html>

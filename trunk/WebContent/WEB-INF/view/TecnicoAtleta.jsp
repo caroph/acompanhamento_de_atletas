@@ -1,35 +1,87 @@
 	<%@include file='/layout/head.jsp'%>
+	
 	<body>
-	<div class="container">
-		<div class="row clearfix">
-			<div class="col-md-12 column">
-				<!-- menu -->
-				<%@include file='/layout/navigationTecnico.jsp'%>
-				<div class="row clearfix">
-					<div class="col-md-3 column">
+	
+	<%@include file='/layout/header.jsp'%>
+	
+	<div id="main" class="container-fluid">
+		<div class="row">
+			<%@include file='/layout/navigationTecnico.jsp'%>
+			<!--Start Content-->
+			<div id="content" class="col-xs-12 col-sm-10">
+				<div id="ajax-content">
+					<div class="row">
+						<div id="breadcrumb" class="col-xs-12">
+							<ol class="breadcrumb">
+								<li><a href="#">Home</a></li>
+							</ol>
+						</div>
 					</div>
-					<div class="col-md-6 column">
-						<h3 class="text-center">
-							Buscar Atleta
-						</h3>
-						<form role="form" action="TecnicoListaAtleta.jsp">
-						    <div class="input-group">
-						      <input type="text" class="form-control form-search" id="search">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="submit">
-						        	<i class="icon-large icon-search"></i></button>
-						      </span>
-						    </div>
-						</form>
-					</div>
-					<div class="col-md-3 column">
-					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa  fa-info-circle"></i>
+										<span>Atletas</span>
+									</div>
+									<div class="box-icons">
+										<a class="collapse-link">
+											<i class="fa fa-chevron-up"></i>
+										</a>
+										<a class="expand-link">
+											<i class="fa fa-expand"></i>
+										</a>
+										<a class="close-link">
+											<i class="fa fa-times"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content no-padding">
+									<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+										<thead>
+											<tr>
+												<th>Pendência</th>
+												<th style="text-align: center;">Ocorrências</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Declarações médicas não cadastradas</td>
+												<td align="center">4</td>
+												<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnListarAlunos">Listar Atletas</a></td>
+											</tr>
+											<tr>
+												<td>Autorizações de Viagem e Hospedagem não cadastradas </td>
+												<td align="center">4</td>
+												<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnListarAlunos">Listar Atletas</a></td>
+											</tr>
+											<tr>
+												<td>Cópias do RG não cadastradas</td>
+												<td align="center">4</td>
+												<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnListarAlunos">Listar Atletas</a></td>
+											</tr>			
+											<tr>
+												<td>Fotos não cadastradas</td>
+												<td align="center">4</td>
+												<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnListarAlunos">Listar Atletas</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>		
 				</div>
 			</div>
+			<!--End Content-->
 		</div>
-	</div>	
+	</div>
 	
 	<%@include file="/layout/footer.jsp"%>
-	
+	<%@include file="Modals.jsp"%>
+
   </body>
 </html>

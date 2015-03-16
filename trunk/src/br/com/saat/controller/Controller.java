@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
-import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -32,12 +31,13 @@ public class Controller extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response, Usuario usuario) throws ServletException, IOException {
 		usuarioNegocio = new UsuarioNegocio();
+		session = request.getSession();
 		String retorno;
-		if(usuario == null){
-			session = request.getSession();
+		if(usuario == null){			
 			session.invalidate();
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
 		}else{
+			session.setAttribute("usuarioLogado", usuario);
 			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
 		}
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
