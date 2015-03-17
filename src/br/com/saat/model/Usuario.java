@@ -12,9 +12,9 @@ public class Usuario extends Pessoa{
 		this.perfil = perfil;
 	}
 
-	public Usuario(int idPessoa, String nome, String email, String telefone, String celular, 
+	public Usuario(int idPessoa, String nome, String email, String celular, 
 			String senha, int perfil, String cref) {
-		super(idPessoa, nome, email, telefone, celular);
+		super(idPessoa, nome, email, celular);
 		this.senha = senha;
 		this.perfil = perfil;
 		CREF = cref;
