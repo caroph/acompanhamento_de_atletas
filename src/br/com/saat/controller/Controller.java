@@ -36,12 +36,16 @@ public class Controller extends HttpServlet {
 		if(usuario == null){			
 			session.invalidate();
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
+			//requestDispatcher = getServletContext().getRequestDispatcher(retorno);
+			//requestDispatcher.forward(request, response);
 		}else{
 			session.setAttribute("usuarioLogado", usuario);
 			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
 		}
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 		requestDispatcher.forward(request, response);
+		
+	
 	}
 
 }

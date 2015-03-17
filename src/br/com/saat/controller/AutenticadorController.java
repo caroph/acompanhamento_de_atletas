@@ -1,24 +1,31 @@
 	package br.com.saat.controller;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
+import br.com.saat.core.Cookies;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
+
 
 @WebServlet("/Autenticador")
 public class AutenticadorController extends Controller {
 	private static final long serialVersionUID = 1L;
 	UsuarioNegocio usuarioNegocio;
+	Usuario usuario;
+	Cookies cookies;
 	HttpSession session;
 	RequestDispatcher requestDispatcher;
+	
       
     public AutenticadorController() {
         super();
@@ -29,6 +36,8 @@ public class AutenticadorController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		String action = request.getParameter("action");
 		session = request.getSession();
 		
@@ -37,8 +46,9 @@ public class AutenticadorController extends Controller {
 		if(action.equals("login")){
 			String email = request.getParameter("email");
             String senha = request.getParameter("senha");
+            boolean lembrar = "true".equals(request.getParameter("lembrar"));
             
-            Usuario usuario = new Usuario();
+            usuario = new Usuario();
             usuarioNegocio = new UsuarioNegocio();
             usuario = usuarioNegocio.autenticar(email, senha);
             
@@ -46,12 +56,22 @@ public class AutenticadorController extends Controller {
             super.doPost(request, response, usuario);
 		
             if(usuario != null){
+            	cookies = new Cookies();
+            	
+            	if(lembrar){
+            		String uuid = UUID.randomUUID().toString();
+            		cookies.addCookie(response, Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE);
+            		//String teste = cookies.getCookieValue(request, Constants.COOKIE_NAME);
+            	}else{
+            		cookies.removeCookie(response, Constants.COOKIE_NAME);
+            	}
+            	
 //	            String lembrar = request.getParameter("lembrar");
 //	            if(lembrar.equals("lembrar")){
 //					Cookie cookieLogin = new Cookie("login", request.getParameter("email"));  
 //					cookieLogin.setMaxAge(60*60*24*365);
 //					response.addCookie(cookieLogin);   
-//				}
+
             }
 		}else{
             session.invalidate();
@@ -59,5 +79,5 @@ public class AutenticadorController extends Controller {
             requestDispatcher.forward(request, response);
 		}
 	}
-
+	
 }

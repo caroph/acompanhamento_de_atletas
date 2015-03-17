@@ -9,4 +9,7 @@ public class Constants {
 	public static final String JS = String.format("%s/js", PATH);
 	public static final String VIEW = String.format("/WEB-INF/view");
 	public static final String IMG = String.format("%s/img", PATH);
+	public static final String COOKIE_NAME = "usuarioLogado";
+	public static final int COOKIE_AGE = (60*60*24*365);
+	
 }
