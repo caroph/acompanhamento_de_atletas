@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
-import br.com.saat.core.Cookies;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -60,8 +59,8 @@ public class AutenticadorController extends Controller {
             	
             	if(lembrar){
             		String uuid = UUID.randomUUID().toString();
-            		cookies.addCookie(response, Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE);
-            		//String teste = cookies.getCookieValue(request, Constants.COOKIE_NAME);
+            		Cookie ck = cookies.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
+        	    	response.addCookie(ck);
             	}else{
             		cookies.removeCookie(response, Constants.COOKIE_NAME);
             	}

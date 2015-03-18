@@ -1,4 +1,4 @@
-package br.com.saat.core;
+package br.com.saat.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -6,19 +6,19 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Cookies {
 
-	public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+	public static Cookie addCookie(String name, String value, int maxAge) {
 	    Cookie cookie = new Cookie(name, value);
-	    cookie.setPath("/Index");
+	    cookie.setPath("/");
 	    cookie.setMaxAge(maxAge);
-	    response.addCookie(cookie);
+	    return cookie;
 	}
 	
 	public static void removeCookie(HttpServletResponse response, String name) {
-	    addCookie(response, name, null, 0);
+		Cookie ck = addCookie(name, null, 0);
+		response.addCookie(ck);
 	}
 	
-	public static String getCookieValue(HttpServletRequest request, String name) {
-	    Cookie[] cookies = request.getCookies();
+	public static String getCookieValue(Cookie[] cookies, String name) {
 	    if (cookies != null) {
 	        for (Cookie cookie : cookies) {
 	            if (name.equals(cookie.getName())) {
