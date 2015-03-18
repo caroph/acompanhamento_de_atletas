@@ -1,21 +1,19 @@
-package br.com.saat.controller;
+package br.com.saat.model.negocio;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-public class Cookies {
+public class CookieNegocio {
 
 	public static Cookie addCookie(String name, String value, int maxAge) {
 	    Cookie cookie = new Cookie(name, value);
-	    cookie.setPath("/");
+	    cookie.setPath("/tcc-saat/");
 	    cookie.setMaxAge(maxAge);
 	    return cookie;
 	}
 	
-	public static void removeCookie(HttpServletResponse response, String name) {
-		Cookie ck = addCookie(name, null, 0);
-		response.addCookie(ck);
+	public static Cookie removeCookie(String name) {
+		Cookie novoCookie = addCookie(name, null, 0);
+		return novoCookie;
 	}
 	
 	public static String getCookieValue(Cookie[] cookies, String name) {

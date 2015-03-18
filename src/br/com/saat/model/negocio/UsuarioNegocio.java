@@ -37,7 +37,9 @@ public class UsuarioNegocio {
 			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
 		else if(perfil == Perfis.PreparadorFisico.getValor())
 			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
-		else
+//      Isso não funciona, pois não vai acessar a Servlet via requestDispatcher;
+//		Pensar em outro Else -> JU
+//		else
 			return "Autenticador?action=logout";
 	}
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.negocio.CookieNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 
@@ -21,7 +22,7 @@ public class AutenticadorController extends Controller {
 	private static final long serialVersionUID = 1L;
 	UsuarioNegocio usuarioNegocio;
 	Usuario usuario;
-	Cookies cookies;
+	Cookie novoCookie;
 	HttpSession session;
 	RequestDispatcher requestDispatcher;
 	
@@ -50,28 +51,19 @@ public class AutenticadorController extends Controller {
             usuario = new Usuario();
             usuarioNegocio = new UsuarioNegocio();
             usuario = usuarioNegocio.autenticar(email, senha);
-            
-            //Chama a classe pai para verificar o usuário autenticado
-            super.doPost(request, response, usuario);
 		
             if(usuario != null){
-            	cookies = new Cookies();
-            	
             	if(lembrar){
             		String uuid = UUID.randomUUID().toString();
-            		Cookie ck = cookies.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
-        	    	response.addCookie(ck);
+            		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
             	}else{
-            		cookies.removeCookie(response, Constants.COOKIE_NAME);
+            		novoCookie = CookieNegocio.removeCookie(Constants.COOKIE_NAME);
             	}
-            	
-//	            String lembrar = request.getParameter("lembrar");
-//	            if(lembrar.equals("lembrar")){
-//					Cookie cookieLogin = new Cookie("login", request.getParameter("email"));  
-//					cookieLogin.setMaxAge(60*60*24*365);
-//					response.addCookie(cookieLogin);   
-
+            	response.addCookie(novoCookie);
             }
+            
+            //Chama a classe pai para verificar o usuário autenticado
+            super.doPost(request, response, usuario, lembrar);
 		}else{
             session.invalidate();
             requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));

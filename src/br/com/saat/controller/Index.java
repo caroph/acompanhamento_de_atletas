@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.saat.core.Constants;
+import br.com.saat.model.negocio.CookieNegocio;
 
 /**
  * O Servlet implementation class Index
@@ -18,8 +19,9 @@ import br.com.saat.core.Constants;
 @WebServlet(urlPatterns = { "/", "/home" })
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Cookies cookies;
-
+	Cookie novoCookie;
+	RequestDispatcher rd;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -42,23 +44,24 @@ public class Index extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//Setar página de retorno
+		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
+		
+		//Pegando cookies disponíveis e verificando se existe algum "usuarioLogado"
+		Cookie[] cookies = request.getCookies();
+		String uuid = CookieNegocio.getCookieValue(cookies, Constants.COOKIE_NAME);
 
-		cookies = new Cookies();
-		Cookie[] cook = request.getCookies();
-		String uuid = cookies.getCookieValue(cook, Constants.COOKIE_NAME);
-
-	    if (uuid == null) {
-	    	Cookie ck = cookies.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
-	    	response.addCookie(ck);
-	    	
-	    	RequestDispatcher rd = request.getRequestDispatcher(String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW));
-    		rd.forward(request, response);
+	    if (uuid != null) {
+	    	novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
+	    	retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
         } else {
-		    cookies.removeCookie(response, Constants.COOKIE_NAME);
-		    
-    		RequestDispatcher rd = request.getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
-    		rd.forward(request, response);
+        	//Cria cookie vazio
+        	novoCookie = CookieNegocio.removeCookie(Constants.COOKIE_NAME);
         }
+	    response.addCookie(novoCookie);
+	    
+	    rd = request.getRequestDispatcher(retorno);	    
+	    rd.forward(request, response);
 	}
 
 }
