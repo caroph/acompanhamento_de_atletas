@@ -33,7 +33,7 @@ public class SecretariaController extends Controller {
 		session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
-			super.doPost(request, response, usuario);
+			super.doPost(request, response, usuario, false);
 		}
 		else if (usuario.getPerfil() == Perfis.Secretaria.getValor()){
 			requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW));

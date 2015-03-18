@@ -27,7 +27,7 @@
 							</div>
 							<div class="form-group">
 									<label>
-										<input type="checkbox" name="lembrar" value="true"> Lembre-me
+										<input type="checkbox" name="lembrar" value="false"> Lembre-me
 									</label>
 								<a href="#" style="float: right;">Esqueci minha senha</a>
 							</div>							

@@ -19,7 +19,6 @@ public class UsuarioNegocio {
 			return usuario;
 			
 		}catch(Exception ex){
-			ex.printStackTrace();
 			return null;
 		}
 	}
@@ -41,5 +40,18 @@ public class UsuarioNegocio {
 //		Pensar em outro Else -> JU
 //		else
 			return "Autenticador?action=logout";
+	}
+	
+	public Usuario buscarUsuCookie(int idUsuario){
+		try{
+			dao = new UsuarioDAO();
+			usuario = new Usuario();
+			
+			usuario = dao.buscarUsuCookie(idUsuario);
+			return usuario;
+			
+		}catch(Exception ex){
+			return null;
+		}
 	}
 }

@@ -11,15 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.saat.core.Constants;
+import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.CookieNegocio;
+import br.com.saat.model.negocio.UsuarioNegocio;
 
 /**
  * O Servlet implementation class Index
  */
 @WebServlet(urlPatterns = { "/", "/home" })
-public class Index extends HttpServlet {
+public class Index extends Controller {
 	private static final long serialVersionUID = 1L;
 	Cookie novoCookie;
+	Usuario usuario;
+	UsuarioNegocio negocio;
 	RequestDispatcher rd;
 	
 	/**
@@ -49,16 +53,14 @@ public class Index extends HttpServlet {
 		
 		//Pegando cookies disponíveis e verificando se existe algum "usuarioLogado"
 		Cookie[] cookies = request.getCookies();
-		String uuid = CookieNegocio.getCookieValue(cookies, Constants.COOKIE_NAME);
+		int idUsuario  = CookieNegocio.getCookieValue(cookies, Constants.COOKIE_NAME);
 
-	    if (uuid != null) {
-	    	novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
-	    	retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
-        } else {
-        	//Cria cookie vazio
-        	novoCookie = CookieNegocio.removeCookie(Constants.COOKIE_NAME);
-        }
-	    response.addCookie(novoCookie);
+	    if (idUsuario > 0) {
+	    	negocio = new UsuarioNegocio();
+	    	usuario = negocio.buscarUsuCookie(idUsuario);
+	    	super.doPost(request, response, usuario, false);
+	    	//Pensar em reativar cookie, por causa da validade ou desativar no banco
+	    } 
 	    
 	    rd = request.getRequestDispatcher(retorno);	    
 	    rd.forward(request, response);

@@ -37,20 +37,28 @@ public class Controller extends HttpServlet {
 		usuarioNegocio = new UsuarioNegocio();
 		session = request.getSession();
 		String retorno;
+		
 		if(usuario == null){			
 			session.invalidate();
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
+			//Preparar mensagem de login incorreto
 		}else{
+			//Cria sessão de usuário logado
 			session.setAttribute("usuarioLogado", usuario);
 			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
 			
+			//Cria cookie se a opção "Lembrar" estiver habilitada
 			if(lembrar){
         		String uuid = UUID.randomUUID().toString();
-        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE); // Extends age.
+        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario.getIdPessoa()); // Extends age.
         	}else{
-        		novoCookie = CookieNegocio.removeCookie(Constants.COOKIE_NAME);
+        		//Adiciona cookie vazio = Limpar
+        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario.getIdPessoa());
         	}
-        	response.addCookie(novoCookie);
+			
+			if(novoCookie != null){
+				response.addCookie(novoCookie);
+			}
 		}
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 		requestDispatcher.forward(request, response);
