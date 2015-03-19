@@ -22,8 +22,8 @@ public class CookieDAO {
     }
 	
 	public boolean inserir(String uuii, int idUsuario) throws SQLException{
-		stmtScript = con.prepareStatement("INSERT INTO cookie (idUsuario, valueCookie, situacao, dtaGeracao) "
-										+ "VALUES (?, ?, 1, getdate())");
+		stmtScript = con.prepareStatement("INSERT INTO cookie (idUsuario, valueCookie, situacao) "
+										+ "VALUES (?, ?, 1)");
 		stmtScript.setInt(1, idUsuario);
 		stmtScript.setString(2, uuii);
 		
@@ -37,7 +37,7 @@ public class CookieDAO {
 	
 	public int buscar(String uuii) throws SQLException{
 		int idUsuario = 0;
-		stmtScript = con.prepareStatement("SELECT idUsuario FROM cookie WHERE valueCookie = ? AND situacao = 1");
+		stmtScript = con.prepareStatement("SELECT idUsuario FROM cookie WHERE valueCookie LIKE ? AND situacao = 1");
 		
 		stmtScript.setString(1, uuii);
 		

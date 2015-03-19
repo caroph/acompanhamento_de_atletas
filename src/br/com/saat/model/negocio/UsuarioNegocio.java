@@ -10,17 +10,12 @@ public class UsuarioNegocio {
 	Usuario usuario;
 	public UsuarioNegocio(){}
 	
-	public Usuario autenticar(String email, String senha){
-		try{
+	public Usuario autenticar(String email, String senha) throws Exception{
 			dao = new UsuarioDAO();
 			usuario = new Usuario();
 			
 			usuario = dao.autenticar(email, senha);
 			return usuario;
-			
-		}catch(Exception ex){
-			return null;
-		}
 	}
 	
 	public String retornoLogin(int perfil){
@@ -36,10 +31,10 @@ public class UsuarioNegocio {
 			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
 		else if(perfil == Perfis.PreparadorFisico.getValor())
 			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
+		else
 //      Isso não funciona, pois não vai acessar a Servlet via requestDispatcher;
-//		Pensar em outro Else -> JU
-//		else
-			return "Autenticador?action=logout";
+//			return "Autenticador?action=logout";
+			return String.format("%s/Index.jsp", Constants.VIEW);
 	}
 	
 	public Usuario buscarUsuCookie(int idUsuario){

@@ -45,7 +45,7 @@ public class UsuarioDAO {
 	public Usuario buscarUsuCookie(int idUsuario) throws SQLException {
 		// TODO Auto-generated method stub
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, perfil "
-				+ "FROM usuario WHERE idUsuario LIKE = ? ");
+				+ "FROM usuario WHERE idUsuario = ? ");
         Usuario usuario = new Usuario();
         
         stmtScript.setInt(1, idUsuario);

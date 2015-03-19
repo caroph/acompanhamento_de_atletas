@@ -38,25 +38,36 @@ public class Controller extends HttpServlet {
 		session = request.getSession();
 		String retorno;
 		
-		if(usuario == null){			
+		//Usuário inválido
+		if(usuario == null){
+			//Destroir sessão
 			session.invalidate();
+			//Redirecionar para página de login
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
-			//Preparar mensagem de login incorreto
+			//Setar mensagem de erro
+			request.setAttribute("msg", "Email ou senha inválidos!"); 
+		//Usuário válido
 		}else{
-			//Cria sessão de usuário logado
+			//Criar sessão de usuário logado
 			session.setAttribute("usuarioLogado", usuario);
+			//Pegar página para redirecionamento
 			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
 			
-			//Cria cookie se a opção "Lembrar" estiver habilitada
+			//Criar cookie se a opção "Lembrar" estiver habilitada
 			if(lembrar){
+				//Criar código de cookie
         		String uuid = UUID.randomUUID().toString();
+        		//Adicionar cookie
         		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario.getIdPessoa()); // Extends age.
-        	}else{
-        		//Adiciona cookie vazio = Limpar
+        		///PENSAR se gravo novo registro ou atualizo value
+			}else{
+        		//Adiciona cookie vazio
         		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario.getIdPessoa());
         	}
 			
+			//Cookie válido
 			if(novoCookie != null){
+				//Adicionar cookie à navegação
 				response.addCookie(novoCookie);
 			}
 		}

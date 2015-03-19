@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="br.com.saat.core.Constants"%>
 
 <%@include file='/layout/head.jsp'%>
@@ -13,9 +14,15 @@
 							<h3 class="page-header">Sistema de Acompanhamento de Atletas de Tênis</h3>
 						</div>
 						<form role="form" method="post" action="Autenticador?action=login">
+							<c:if test="${ msg != null }">
+								<div class="alert alert-danger">
+							        <a href="#" class="close" data-dismiss="alert">&times;</a>
+							            <c:out value="${msg}"></c:out>       
+						    	</div>
+					        </c:if>
 							<div class="form-group">
 								<label class="control-label">Email</label>
-								<input type="text" class="form-control" name="email" value="${cookie.login.value}" id="email"/>
+								<input type="text" class="form-control" name="email" id="email"/>
 								<!-- Alterar para type="email" -->
 							</div>
 							<div class="form-group">
@@ -27,7 +34,7 @@
 							</div>
 							<div class="form-group">
 									<label>
-										<input type="checkbox" name="lembrar" value="false"> Lembre-me
+										<input type="checkbox" name="lembrar" value="true"> Lembre-me
 									</label>
 								<a href="#" style="float: right;">Esqueci minha senha</a>
 							</div>							

@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
+import br.com.saat.core.Criptografia;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 
-@WebServlet("/Autenticador")
+@WebServlet(urlPatterns = {"/Autenticador"})
 public class AutenticadorController extends Controller {
 	private static final long serialVersionUID = 1L;
 	UsuarioNegocio usuarioNegocio;
@@ -23,6 +24,7 @@ public class AutenticadorController extends Controller {
 	Cookie novoCookie;
 	HttpSession session;
 	RequestDispatcher requestDispatcher;
+	Criptografia criptografia;
 	
       
     public AutenticadorController() {
@@ -34,24 +36,35 @@ public class AutenticadorController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		//Descobrindo ação desejada
 		String action = request.getParameter("action");
+		//Criando sessão
 		session = request.getSession();
 		
-		//Cookie cookie [] = request.getCookies();  
-		
-		if(action.equals("login")){
+		///Login
+		if("login".equals(action)){
+			criptografia = new Criptografia();
+			
+			//Pegar parâmetros
 			String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
+            String senha = criptografia.criptografa(request.getParameter("senha"));
             boolean lembrar = "true".equals(request.getParameter("lembrar"));
             
             usuario = new Usuario();
             usuarioNegocio = new UsuarioNegocio();
-            usuario = usuarioNegocio.autenticar(email, senha);
+            
+            try {
+            	//Autenticar usuário
+				usuario = usuarioNegocio.autenticar(email, senha);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				request.setAttribute("msg", "Ocorreu algum erro no sistema.  Favor tente novamente!");  
+			}
 		            
-            //Chama a classe pai para verificar o usuário autenticado
+            //Chamar a classe pai para verificar o usuário autenticado
             super.doPost(request, response, usuario, lembrar);
+            
+        //Logout
 		}else{
             session.invalidate();
             requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
