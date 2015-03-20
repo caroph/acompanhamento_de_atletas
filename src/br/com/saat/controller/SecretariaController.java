@@ -17,9 +17,6 @@ import br.com.saat.model.negocio.UsuarioNegocio;
 @WebServlet("/SecretariaController")
 public class SecretariaController extends Controller {
 	private static final long serialVersionUID = 1L;
-	HttpSession session;
-	RequestDispatcher requestDispatcher;
-	UsuarioNegocio usuarioNegocio;
        
     public SecretariaController() {
         super();
@@ -30,6 +27,9 @@ public class SecretariaController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session;
+		RequestDispatcher requestDispatcher;
+
 		session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){

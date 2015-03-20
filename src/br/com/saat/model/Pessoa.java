@@ -8,9 +8,10 @@ public class Pessoa {
 	
 	public Pessoa(){}
 	
-	public Pessoa(int idPessoa, String nome) {
+	public Pessoa(int idPessoa, String nome, String email) {
 		this.idPessoa = idPessoa;
 		this.nome = nome;
+		this.email = email;
 	}
 	
 	public Pessoa(int idPessoa, String nome, String email, String celular) {

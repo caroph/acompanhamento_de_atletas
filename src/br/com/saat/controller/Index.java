@@ -18,13 +18,9 @@ import br.com.saat.model.negocio.UsuarioNegocio;
 /**
  * O Servlet implementation class Index
  */
-@WebServlet(urlPatterns = { "" })
+@WebServlet(urlPatterns = {""})
 public class Index extends Controller {
 	private static final long serialVersionUID = 1L;
-	Cookie novoCookie;
-	Usuario usuario;
-	UsuarioNegocio negocio;
-	RequestDispatcher rd;
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,6 +46,9 @@ public class Index extends Controller {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		Usuario usuario;
+		UsuarioNegocio negocio;
+		RequestDispatcher rd;	
 		
 		//Pegando cookies disponíveis e verificando se existe algum "usuarioLogado"
 		Cookie[] cookies = request.getCookies();
@@ -60,7 +59,7 @@ public class Index extends Controller {
 	    	usuario = negocio.buscarUsuCookie(idUsuario);
 	    	super.doPost(request, response, usuario, true);
 	    }else{
-	    	rd = request.getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));	    
+	    	rd = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));	    
 	    	rd.forward(request, response);
 	    }
 	}

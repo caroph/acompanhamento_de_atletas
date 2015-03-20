@@ -1,11 +1,10 @@
-	package br.com.saat.controller;
+package br.com.saat.controller;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,13 +18,6 @@ import br.com.saat.model.negocio.UsuarioNegocio;
 @WebServlet(urlPatterns = {"/Autenticador"})
 public class AutenticadorController extends Controller {
 	private static final long serialVersionUID = 1L;
-	UsuarioNegocio usuarioNegocio;
-	Usuario usuario;
-	Cookie novoCookie;
-	HttpSession session;
-	RequestDispatcher requestDispatcher;
-	Criptografia criptografia;
-	
       
     public AutenticadorController() {
         super();
@@ -36,6 +28,8 @@ public class AutenticadorController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session;
+		
 		//Descobrindo ação desejada
 		String action = request.getParameter("action");
 		//Criando sessão
@@ -43,19 +37,19 @@ public class AutenticadorController extends Controller {
 		
 		///Login
 		if("login".equals(action)){
-			criptografia = new Criptografia();
+			Criptografia crip = new Criptografia();
 			
 			//Pegar parâmetros
 			String email = request.getParameter("email");
-            String senha = criptografia.criptografa(request.getParameter("senha"));
+            String senha = crip.criptografa(request.getParameter("senha"));
             boolean lembrar = "true".equals(request.getParameter("lembrar"));
             
-            usuario = new Usuario();
-            usuarioNegocio = new UsuarioNegocio();
+            Usuario usuario = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
             
             try {
             	//Autenticar usuário
-				usuario = usuarioNegocio.autenticar(email, senha);
+				usuario = negocio.autenticar(email, senha);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				request.setAttribute("msg", "Ocorreu algum erro no sistema.  Favor tente novamente!");  
@@ -65,10 +59,27 @@ public class AutenticadorController extends Controller {
             super.doPost(request, response, usuario, lembrar);
             
         //Logout
-		}else{
+		}else if("logout".equals(action)){
             session.invalidate();
-            requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
-            requestDispatcher.forward(request, response);
+            
+            RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
+            rs.forward(request, response);
+		//Esqueci minha senha
+		}else{
+			String msg;
+			String emailSenha = request.getParameter("emailSenha");
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			
+			try {
+				msg = negocio.esqueciSenha(emailSenha);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			}
+			request.setAttribute("msg", msg);
+			RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
+            rs.forward(request, response);
 		}
 	}
 	

@@ -1,3 +1,50 @@
+<!-- NOVAS -->
+
+<script>
+ 	function passar(){ 
+ 		var valorA = document.getElementById("email"); 
+
+ 		var email = document.getElementById("emailSenha"); 
+
+ 		email.value = valorA.value; 
+
+ 		}; 
+</script>
+
+<!-- Esqueci Senha -->
+<div class="modal fade" id="esqueciSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Recuperação de senha</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post" action="Autenticador?action=esqueci">
+          <div class="form-group">
+            <label for="emailSenha" class="control-label">Favor informe seu email cadastrado no sistema:</label>
+            <input type="email" class="form-control" id="emailSenha" value="" required> 
+          </div>
+	      <div class="modal-footer">
+	        <input type="submit" class="btn btn-primary" value="Enviar">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	      </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fim Esqueci Senha -->
+
+
+
+
+
+
+
+
+
+<!-- ---------------------ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ------------------ -->
 <!-- Modal ver detalhes do atleta -->
 <div class="modal fade" id="verDetalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog">

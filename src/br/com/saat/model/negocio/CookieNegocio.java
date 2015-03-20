@@ -2,12 +2,12 @@ package br.com.saat.model.negocio;
 
 import javax.servlet.http.Cookie;
 
+import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.CookieDAO;
 
 public class CookieNegocio {
-	static CookieDAO dao;
 
-	public static Cookie addCookie(String name, String value, int maxAge, int idUsuario) {
+	public static Cookie addCookie(String name, String value, int maxAge, Usuario usuario) {
 		//Setar parâmetros do cookie
 	    Cookie cookie = new Cookie(name, value);
 	    cookie.setPath("/tcc-saat/");
@@ -16,8 +16,8 @@ public class CookieNegocio {
 	    //Se não for um cookie nulo, adicioná-lo ao banco de dados
 	    if(maxAge > 0){
 	    	try {
-	    		dao = new CookieDAO();
-	    		if(!dao.inserir(value, idUsuario)){
+	    		CookieDAO dao = new CookieDAO();
+	    		if(!dao.inserir(value, usuario)){
 	    			cookie = null;
 	    		}			
 	    	} catch (Exception e) {
@@ -34,7 +34,7 @@ public class CookieNegocio {
 	        for (Cookie cookie : cookies) {
 	            if (name.equals(cookie.getName())) {
 	            	try {
-						dao = new CookieDAO();
+	            		CookieDAO dao = new CookieDAO();
 						return dao.buscar(cookie.getValue());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

@@ -7,8 +7,8 @@ public class Usuario extends Pessoa{
 	
 	public Usuario(){}
 	
-	public Usuario(int idPessoa, String nome, int perfil) {
-		super(idPessoa, nome);
+	public Usuario(int idPessoa, String nome, String email, int perfil) {
+		super(idPessoa, nome, email);
 		this.perfil = perfil;
 	}
 

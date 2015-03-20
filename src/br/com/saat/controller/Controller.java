@@ -20,10 +20,6 @@ import br.com.saat.model.negocio.UsuarioNegocio;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	HttpSession session;
-	Cookie novoCookie;
-	RequestDispatcher requestDispatcher;
-	UsuarioNegocio usuarioNegocio;
 
     public Controller() {
         super();
@@ -34,35 +30,36 @@ public class Controller extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response, Usuario usuario, boolean lembrar) throws ServletException, IOException {
-		usuarioNegocio = new UsuarioNegocio();
-		session = request.getSession();
-		String retorno;
+		RequestDispatcher requestDispatcher;
+		UsuarioNegocio usuarioNegocio;
+		HttpSession session = request.getSession();
+		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
 		
 		//Usuário inválido
 		if(usuario == null){
 			//Destroir sessão
 			session.invalidate();
-			//Redirecionar para página de login
-			retorno = String.format("%s/Index.jsp", Constants.VIEW);
 			//Setar mensagem de erro
 			request.setAttribute("msg", "Email ou senha inválidos!"); 
 		//Usuário válido
 		}else{
+			Cookie novoCookie;
+			
 			//Criar sessão de usuário logado
 			session.setAttribute("usuarioLogado", usuario);
 			//Pegar página para redirecionamento
-			retorno = usuarioNegocio.retornoLogin(usuario.getPerfil());
+			usuarioNegocio = new UsuarioNegocio();
+			retorno = usuarioNegocio.retornoLogin(usuario);
 			
 			//Criar cookie se a opção "Lembrar" estiver habilitada
 			if(lembrar){
 				//Criar código de cookie
         		String uuid = UUID.randomUUID().toString();
         		//Adicionar cookie
-        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario.getIdPessoa()); // Extends age.
-        		///PENSAR se gravo novo registro ou atualizo value
+        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario); 
 			}else{
-        		//Adiciona cookie vazio
-        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario.getIdPessoa());
+        		//Adiciona cookie vazio = Limpar
+        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario);
         	}
 			
 			//Cookie válido

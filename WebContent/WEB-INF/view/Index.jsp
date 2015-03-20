@@ -22,29 +22,30 @@
 					        </c:if>
 							<div class="form-group">
 								<label class="control-label">Email</label>
-								<input type="text" class="form-control" name="email" id="email"/>
-								<!-- Alterar para type="email" -->
+								<input type="text" class="form-control" name="email" id="email" required/>
+								<!-- ALTERAR PARA type="email" -->
 							</div>
 							<div class="form-group">
 								<label class="control-label">Senha</label>
-								<input type="password" class="form-control" name="senha" id="senha"/>
+								<input type="password" class="form-control" name="senha" id="senha" required/>
 							</div>
 							<div class="text-center">
 								<input type="submit" class="btn btn-primary" value="Entrar">
 							</div>
-							<div class="form-group">
-									<label>
-										<input type="checkbox" name="lembrar" value="true"> Lembre-me
-									</label>
-								<a href="#" style="float: right;">Esqueci minha senha</a>
-							</div>							
 						</form>
+						<div class="form-group">
+							<label>
+								<input type="checkbox" name="lembrar" value="true"> Lembrar-me
+							</label>
+							<a data-toggle="modal" href="#esqueciSenha" role="button" style="float: right;" onclick="passar()">Esqueci minha senha</a>
+						</div>		
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<%@include file="/layout/footer.jsp"%>
+	<%@include file="Modals.jsp"%>
 </body>
 </html>
