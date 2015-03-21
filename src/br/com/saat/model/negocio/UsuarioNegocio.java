@@ -68,16 +68,19 @@ public class UsuarioNegocio {
 					email.enviaEmail(emailSenha, novaSenha, 1);
 					retorno = "Em instantes você receberá em seu email sua nova senha!";
 				} catch(Exception e){
-					e.printStackTrace();
-					retorno = "Ocorreu algum erro ao enviar o email! Favor tentar novamente.";	
+					throw new Exception("Ocorreu algum erro ao enviar o email! Favor tentar novamente.");
+					//e.printStackTrace();
+					//retorno = "Ocorreu algum erro ao enviar o email! Favor tentar novamente.";	
 				}
 			}else{
-				retorno = "Email inválido! Favor informe novamente.";
+				throw new Exception("Email inválido! Favor informe novamente.");
+				//retorno = "Email inválido! Favor informe novamente.";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			retorno = "Ocorreu algum erro no banco de dados! Favor tentar novamente.";
+			throw new Exception("Ocorreu algum erro no banco de dados! Favor tentar novamente.");
+			//e.printStackTrace();
+			//retorno = "Ocorreu algum erro no banco de dados! Favor tentar novamente.";
 		}
 		return retorno;
 	}
