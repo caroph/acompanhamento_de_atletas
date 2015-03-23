@@ -7,12 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
-import br.com.saat.model.Perfis;
-import br.com.saat.model.Usuario;
-import br.com.saat.model.negocio.UsuarioNegocio;
 
 @WebServlet("/SecretariaController")
 public class SecretariaController extends Controller {
@@ -27,17 +23,23 @@ public class SecretariaController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session;
-		RequestDispatcher requestDispatcher;
+		//HttpSession session;
+		RequestDispatcher rd;
+		String action = request.getParameter("action");
 
-		session = request.getSession();
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
-			super.doPost(request, response, usuario, false);
-		}
-		else if (usuario.getPerfil() == Perfis.Secretaria.getValor()){
-			requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW));
-            requestDispatcher.forward(request, response);
+//		session = request.getSession();
+//		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+//		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
+//			super.doPost(request, response, usuario, false);
+//		}
+//		else if (usuario.getPerfil() == Perfis.Secretaria.getValor()){
+//			requestDispatcher = getServletContext().getRequestDispatcher(String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW));
+//            requestDispatcher.forward(request, response);
+//		}
+		
+		if("jspNovoAtleta".equals(action)){
+			rd = getServletContext().getRequestDispatcher(String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW));
+			rd.forward(request, response);
 		}
 	}
 

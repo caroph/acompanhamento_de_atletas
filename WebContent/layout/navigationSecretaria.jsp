@@ -7,7 +7,7 @@
 				<span class="hidden-xs">Atletas</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="SecretariaNovoAtleta.jsp">Novo</a></li>
+				<li><a class="" href="SecretariaController?action=jspNovoAtleta">Novo</a></li>
 				<li><a class="ajax-link" href="SecretariaAtleta.jsp">Buscar</a></li>
 			</ul>
 		</li>

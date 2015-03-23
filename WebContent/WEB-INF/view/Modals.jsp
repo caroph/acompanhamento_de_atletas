@@ -39,7 +39,35 @@
 
 
 
-
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Vincular Responsável</h4>
+				</div>
+				<div class="modal-body">
+					<!-- <div class="form-group">
+						<input type="text" class="form-control" id="search" />
+						</div> <button type="submit" class="btn btn-default">Buscar</button>
+					</div> -->
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 1</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 2</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio"/> Responsável 3</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" href="SecretariaNovoResponsavel.jsp">Novo Responsável</a>
+					<button type="button" class="btn btn-primary">Vincular</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
