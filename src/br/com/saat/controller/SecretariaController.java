@@ -56,7 +56,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaSemana", listaSemana);
 			retorno = String.format("%s/SecretariaNovoDiaTreino.jsp", Constants.VIEW);
 			
-		}else if("novoDiaTreino".equals(action)){
+		}else if("inserirDiaTreino".equals(action)){
 		//Inserir novo dia de treino
 			DiaTreino dia = new DiaTreino();
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
@@ -86,7 +86,7 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msg", listaValidacao.get(1));
 			}else{
 				try{
-                    if(negocio.salvar(dia)){
+                    if(negocio.inserir(dia)){
                     	request.setAttribute("msg", "Dia de Treino salvo com sucesso!");
                     }else{
                     	request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");
@@ -107,11 +107,16 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoDiaTreino.jsp", Constants.VIEW);
 		
 		}else if("jspBuscaDiaTreino".equals(action)){
+		//Carregar página Buscar Dias de Treinos
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = negocio.buscaDiasTreino();
 			
 			request.setAttribute("listaDiasTreinos", lista);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
+		
+		}else if("desativarDiaTreino".equals(action)){
+			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
+			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 		}
 		rd = getServletContext().getRequestDispatcher(retorno);
 		rd.forward(request, response);

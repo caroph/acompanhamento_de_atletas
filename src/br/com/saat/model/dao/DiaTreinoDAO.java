@@ -30,7 +30,7 @@ public class DiaTreinoDAO {
 				+ "VALUES (?, ?, ?, ?)");
 		
 		stmtScript.setInt(1, dia.getTpEquipe());
-		stmtScript.setInt(2, dia.getDiaDaSemana());
+		stmtScript.setInt(2, dia.getDiaSemana());
 		stmtScript.setTime(3, new java.sql.Time(dia.hrInicio.getTime()));
 		stmtScript.setTime(4, new java.sql.Time(dia.hrFim.getTime()));
 		
@@ -58,7 +58,7 @@ public class DiaTreinoDAO {
 		
 		while(rs.next()){
 			DiaTreino dia = new DiaTreino();
-			dia.setIdDiaDeTreino(rs.getInt("idDiaTreino"));
+			dia.setIdDiaTreino(rs.getInt("idDiaTreino"));
 			dia.setDsTpEquipe(rs.getString("dsTpEquipe"));
 			dia.setDsDiaSemana(rs.getString("dsDiaSemana"));
 			dia.setHrInicio(rs.getTime("hrInicio"));
@@ -66,5 +66,22 @@ public class DiaTreinoDAO {
 			lista.add(dia);
 		}
 		return lista;
+	}
+	
+	public boolean desativar(DiaTreino dia) throws SQLException {
+		boolean retorno = false;
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE diaTreino SET situacao = 0 WHERE idDiaTreino = ?");
+		
+		stmtScript.setInt(1, dia.getIdDiaTreino());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			retorno = true;
+		}	
+		
+		return retorno;
 	}
 }

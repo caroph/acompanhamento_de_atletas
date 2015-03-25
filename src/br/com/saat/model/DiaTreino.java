@@ -3,31 +3,35 @@ package br.com.saat.model;
 import java.util.Date;
 
 public class DiaTreino {
-	public int idDiaDeTreino;
+	public int idDiaTreino;
 	public int tpEquipe;
 	public String dsTpEquipe;
-	public int diaDaSemana;
+	public int diaSemana;
 	public String dsDiaSemana;
 	public Date hrInicio;
 	public Date hrFim;
 	
 	public DiaTreino(){}
 	
-	public DiaTreino(int idDiaDeTreino, int tpEquipe, int diaDaSemana,
+	public DiaTreino(int idDiaTreino){
+		this.idDiaTreino = idDiaTreino;
+	}
+	
+	public DiaTreino(int idDiaTreino, int tpEquipe, int diaSemana,
 			Date hrInicio, Date hrFim) {
 		super();
-		this.idDiaDeTreino = idDiaDeTreino;
+		this.idDiaTreino = idDiaTreino;
 		this.tpEquipe = tpEquipe;
-		this.diaDaSemana = diaDaSemana;
+		this.diaSemana = diaSemana;
 		this.hrInicio = hrInicio;
 		this.hrFim = hrFim;
 	}
 	
-	public int getIdDiaDeTreino() {
-		return idDiaDeTreino;
+	public int getIdDiaTreino() {
+		return idDiaTreino;
 	}
-	public void setIdDiaDeTreino(int idDiaDeTreino) {
-		this.idDiaDeTreino = idDiaDeTreino;
+	public void setIdDiaTreino(int idDiaTreino) {
+		this.idDiaTreino = idDiaTreino;
 	}
 	public int getTpEquipe() {
 		return tpEquipe;
@@ -35,11 +39,11 @@ public class DiaTreino {
 	public void setTpEquipe(int tpEquipe) {
 		this.tpEquipe = tpEquipe;
 	}
-	public int getDiaDaSemana() {
-		return diaDaSemana;
+	public int getDiaSemana() {
+		return diaSemana;
 	}
-	public void setDiaDaSemana(int diaDaSemana) {
-		this.diaDaSemana = diaDaSemana;
+	public void setDiaDaSemana(int diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 	public Date getHrInicio() {
 		return hrInicio;

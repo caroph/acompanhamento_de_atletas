@@ -14,7 +14,7 @@ public class DiaTreinoNegocio {
 		if(dia.getTpEquipe() == 0){
             lista.add(false);
             lista.add("Selecione corretamente o campo 'Equipe' !");
-        }else if(dia.getDiaDaSemana() == 0){
+        }else if(dia.getDiaSemana() == 0){
             lista.add(false);
             lista.add("Selecione corretamente o campo 'Dia da Semana' !");
         }else if("".equals(dia.getHrInicio())){
@@ -30,7 +30,7 @@ public class DiaTreinoNegocio {
 		return lista;
 	}
 
-	public boolean salvar(DiaTreino dia) {
+	public boolean inserir(DiaTreino dia) {
 		boolean retorno = false;
 		
 		try {
@@ -56,6 +56,21 @@ public class DiaTreinoNegocio {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public boolean desativar(DiaTreino dia) {
+		boolean retorno = false;
+		
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			if(dao.desativar(dia)){
+				retorno = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return retorno;
 	}
 
 }

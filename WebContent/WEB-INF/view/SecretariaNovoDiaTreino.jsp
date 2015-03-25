@@ -40,7 +40,7 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content">
-									<form class="form-horizontal" role="form" action="SecretariaController?action=novoDiaTreino" method="post">
+									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirDiaTreino" method="post">
 										<c:if test="${ msg != null }">
 											<div class="alert alert-success">
 										        <a href="#" class="close" data-dismiss="alert">&times;</a>

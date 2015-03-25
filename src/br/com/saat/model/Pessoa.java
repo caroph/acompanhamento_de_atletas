@@ -1,6 +1,6 @@
 package br.com.saat.model;
 
-public class Pessoa {
+abstract class Pessoa {
 	public int idPessoa;
 	public String nome;
 	public String email;

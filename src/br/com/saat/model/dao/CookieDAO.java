@@ -11,7 +11,6 @@ import br.com.saat.model.Usuario;
 public class CookieDAO {
 	private Connection con;
 	private PreparedStatement stmtScript;
-	private boolean retorno = false;
 	
 	public CookieDAO() throws Exception{
         con = ConnectionFactory.getConnection();
@@ -22,6 +21,8 @@ public class CookieDAO {
     }
 	
 	public boolean inserir(String uuii, Usuario usuario) throws SQLException{
+		boolean retorno = false;
+		
 		//Verificar se o usuário já possui registro de cookie
 		stmtScript = con.prepareStatement("SELECT idCookie FROM cookie WHERE idUsuario = ?");
 		stmtScript.setInt(1, usuario.getIdPessoa());
