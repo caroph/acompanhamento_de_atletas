@@ -24,11 +24,21 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-user"></i>
-				<span class="hidden-xs">Usúarios</span>
+				<span class="hidden-xs">Usuários</span>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="ajax-link" href="SecretariaNovoUsuario.jsp">Novo</a></li>
 				<li><a class="ajax-link" href="SecretariaUsuario.jsp">Buscar</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle">
+				<i class="fa fa-calendar"></i>
+				<span class="hidden-xs">Dias de Treino</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="SecretariaController?action=jspNovoDiaTreino">Novo</a></li>
+				<li><a class="" href="SecretariaController?action=jspBuscaDiaTreino">Buscar</a></li>
 			</ul>
 		</li>
 		<li class="dropdown">

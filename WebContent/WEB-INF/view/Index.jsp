@@ -32,13 +32,13 @@
 							<div class="text-center">
 								<input type="submit" class="btn btn-primary" value="Entrar">
 							</div>
+							<div class="form-group">
+								<label>
+									<input type="checkbox" name="lembrar" value="true"> Lembrar-me
+								</label>
+								<a data-toggle="modal" href="#esqueciSenha" role="button" style="float: right;" onclick="passar()">Esqueci minha senha</a>
+							</div>		
 						</form>
-						<div class="form-group">
-							<label>
-								<input type="checkbox" name="lembrar" value="true"> Lembrar-me
-							</label>
-							<a data-toggle="modal" href="#esqueciSenha" role="button" style="float: right;" onclick="passar()">Esqueci minha senha</a>
-						</div>		
 					</div>
 				</div>
 			</div>

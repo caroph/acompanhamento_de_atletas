@@ -13,7 +13,7 @@
 function LoadCalendarScript(callback){
 	function LoadFullCalendarScript(){
 		if(!$.fn.fullCalendar){
-			$.getScript('plugins/fullcalendar/fullcalendar.js', callback);
+			$.getScript('themes/default/assets/plugins/fullcalendar/fullcalendar.js', callback);
 		}
 		else {
 			if (callback && typeof(callback) === "function") {
@@ -22,7 +22,7 @@ function LoadCalendarScript(callback){
 		}
 	}
 	if (!$.fn.moment){
-		$.getScript('plugins/moment/moment.min.js', LoadFullCalendarScript);
+		$.getScript('themes/default/assets/plugins/moment/moment.min.js', LoadFullCalendarScript);
 	}
 	else {
 		LoadFullCalendarScript();
@@ -48,7 +48,7 @@ function LoadOpenLayersScript(callback){
 //
 function LoadTimePickerScript(callback){
 	if (!$.fn.timepicker){
-		$.getScript('plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js', callback);
+		$.getScript('themes/default/assets/plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -62,7 +62,7 @@ function LoadTimePickerScript(callback){
 //
 function LoadBootstrapValidatorScript(callback){
 	if (!$.fn.bootstrapValidator){
-		$.getScript('plugins/bootstrapvalidator/bootstrapValidator.min.js', callback);
+		$.getScript('themes/default/assets/plugins/bootstrapvalidator/bootstrapValidator.min.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -76,7 +76,7 @@ function LoadBootstrapValidatorScript(callback){
 //
 function LoadSelect2Script(callback){
 	if (!$.fn.select2){
-		$.getScript('plugins/select2/select2.min.js', callback);
+		$.getScript('themes/default/assets/plugins/select2/select2.min.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -90,10 +90,10 @@ function LoadSelect2Script(callback){
 //
 function LoadDataTablesScripts(callback){
 	function LoadDatatables(){
-		$.getScript('plugins/datatables/jquery.dataTables.js', function(){
-			$.getScript('plugins/datatables/ZeroClipboard.js', function(){
-				$.getScript('plugins/datatables/TableTools.js', function(){
-					$.getScript('plugins/datatables/dataTables.bootstrap.js', callback);
+		$.getScript('themes/default/assets/plugins/datatables/jquery.dataTables.js', function(){
+			$.getScript('themes/default/assets/plugins/datatables/ZeroClipboard.js', function(){
+				$.getScript('themes/default/assets/plugins/datatables/TableTools.js', function(){
+					$.getScript('themes/default/assets/plugins/datatables/dataTables.bootstrap.js', callback);
 				});
 			});
 		});
@@ -113,7 +113,7 @@ function LoadDataTablesScripts(callback){
 //
 function LoadFineUploader(callback){
 	if (!$.fn.fineuploader){
-		$.getScript('plugins/fineuploader/jquery.fineuploader-4.3.1.min.js', callback);
+		$.getScript('themes/default/assets/plugins/fineuploader/jquery.fineuploader-4.3.1.min.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -128,11 +128,11 @@ function LoadFineUploader(callback){
 //
 function LoadXChartScript(callback){
 	function LoadXChart(){
-		$.getScript('plugins/xcharts/xcharts.min.js', callback);
+		$.getScript('themes/default/assets/plugins/xcharts/xcharts.min.js', callback);
 	}
 	function LoadD3Script(){
 		if (!$.fn.d3){
-			$.getScript('plugins/d3/d3.v3.min.js', LoadXChart)
+			$.getScript('themes/default/assets/plugins/d3/d3.v3.min.js', LoadXChart)
 		}
 		else {
 			LoadXChart();
@@ -153,13 +153,13 @@ function LoadXChartScript(callback){
 //
 function LoadFlotScripts(callback){
 	function LoadFlotScript(){
-		$.getScript('plugins/flot/jquery.flot.js', LoadFlotResizeScript);
+		$.getScript('themes/default/assets/plugins/flot/jquery.flot.js', LoadFlotResizeScript);
 	}
 	function LoadFlotResizeScript(){
-		$.getScript('plugins/flot/jquery.flot.resize.js', LoadFlotTimeScript);
+		$.getScript('themes/default/assets/plugins/flot/jquery.flot.resize.js', LoadFlotTimeScript);
 	}
 	function LoadFlotTimeScript(){
-		$.getScript('plugins/flot/jquery.flot.time.js', callback);
+		$.getScript('themes/default/assets/plugins/flot/jquery.flot.time.js', callback);
 	}
 	if (!$.fn.flot){
 		LoadFlotScript();
@@ -178,7 +178,7 @@ function LoadFlotScripts(callback){
 function LoadMorrisScripts(callback){
 	function LoadMorrisScript(){
 		if(!$.fn.Morris){
-			$.getScript('plugins/morris/morris.min.js', callback);
+			$.getScript('themes/default/assets/plugins/morris/morris.min.js', callback);
 		}
 		else {
 			if (callback && typeof(callback) === "function") {
@@ -187,7 +187,7 @@ function LoadMorrisScripts(callback){
 		}
 	}
 	if (!$.fn.raphael){
-		$.getScript('plugins/raphael/raphael-min.js', LoadMorrisScript);
+		$.getScript('themes/default/assets/plugins/raphael/raphael-min.js', LoadMorrisScript);
 	}
 	else {
 		LoadMorrisScript();
@@ -199,7 +199,7 @@ function LoadMorrisScripts(callback){
 //
 function LoadFancyboxScript(callback){
 	if (!$.fn.fancybox){
-		$.getScript('plugins/fancybox/jquery.fancybox.js', callback);
+		$.getScript('themes/default/assets/plugins/fancybox/jquery.fancybox.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -213,7 +213,7 @@ function LoadFancyboxScript(callback){
 //
 function LoadKnobScripts(callback){
 	if(!$.fn.knob){
-		$.getScript('plugins/jQuery-Knob/jquery.knob.js', callback);
+		$.getScript('themes/default/assets/plugins/jQuery-Knob/jquery.knob.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -227,7 +227,7 @@ function LoadKnobScripts(callback){
 //
 function LoadSparkLineScript(callback){
 	if(!$.fn.sparkline){
-		$.getScript('plugins/sparkline/jquery.sparkline.min.js', callback);
+		$.getScript('themes/default/assets/plugins/sparkline/jquery.sparkline.min.js', callback);
 	}
 	else {
 		if (callback && typeof(callback) === "function") {
@@ -1563,7 +1563,7 @@ function DrawCoinDeskGoogleCharts(){
 // Function for table, located in element with id = datatable-1
 //
 function TestTable1(){
-	$('#datatable-1').dataTable( {
+	$('#datatable').dataTable( {
 		"aaSorting": [[ 0, "asc" ]],
 		"sDom": "<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>",
 		"sPaginationType": "bootstrap",
@@ -1576,65 +1576,65 @@ function TestTable1(){
 //
 // Function for table, located in element with id = datatable-2
 //
-function TestTable2(){
-	var asInitVals = [];
-	var oTable = $('#datatable-2').dataTable( {
-		"aaSorting": [[ 0, "asc" ]],
-		"sDom": "<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sSearch": "",
-			"sLengthMenu": '_MENU_'
-		},
-		bAutoWidth: false
-	});
-	var header_inputs = $("#datatable-2 thead input");
-	header_inputs.on('keyup', function(){
-		/* Filter on the column (the index) of this element */
-		oTable.fnFilter( this.value, header_inputs.index(this) );
-	})
-	.on('focus', function(){
-		if ( this.className == "search_init" ){
-			this.className = "";
-			this.value = "";
-		}
-	})
-	.on('blur', function (i) {
-		if ( this.value == "" ){
-			this.className = "search_init";
-			this.value = asInitVals[header_inputs.index(this)];
-		}
-	});
-	header_inputs.each( function (i) {
-		asInitVals[i] = this.value;
-	});
-}
+//function TestTable2(){
+//	var asInitVals = [];
+//	var oTable = $('#datatable-2').dataTable( {
+//		"aaSorting": [[ 0, "asc" ]],
+//		"sDom": "<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>",
+//		"sPaginationType": "bootstrap",
+//		"oLanguage": {
+//			"sSearch": "",
+//			"sLengthMenu": '_MENU_'
+//		},
+//		bAutoWidth: false
+//	});
+//	var header_inputs = $("#datatable-2 thead input");
+//	header_inputs.on('keyup', function(){
+//		/* Filter on the column (the index) of this element */
+//		oTable.fnFilter( this.value, header_inputs.index(this) );
+//	})
+//	.on('focus', function(){
+//		if ( this.className == "search_init" ){
+//			this.className = "";
+//			this.value = "";
+//		}
+//	})
+//	.on('blur', function (i) {
+//		if ( this.value == "" ){
+//			this.className = "search_init";
+//			this.value = asInitVals[header_inputs.index(this)];
+//		}
+//	});
+//	header_inputs.each( function (i) {
+//		asInitVals[i] = this.value;
+//	});
+//}
 //
 // Function for table, located in element with id = datatable-3
 //
-function TestTable3(){
-	$('#datatable-3').dataTable( {
-		"aaSorting": [[ 0, "asc" ]],
-		"sDom": "T<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sSearch": "",
-			"sLengthMenu": '_MENU_'
-		},
-		"oTableTools": {
-			"sSwfPath": "plugins/datatables/copy_csv_xls_pdf.swf",
-			"aButtons": [
-				"copy",
-				"print",
-				{
-					"sExtends":    "collection",
-					"sButtonText": 'Save <span class="caret" />',
-					"aButtons":    [ "csv", "xls", "pdf" ]
-				}
-			]
-		}
-	});
-}
+//function TestTable3(){
+//	$('#datatable-3').dataTable( {
+//		"aaSorting": [[ 0, "asc" ]],
+//		"sDom": "T<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>",
+//		"sPaginationType": "bootstrap",
+//		"oLanguage": {
+//			"sSearch": "",
+//			"sLengthMenu": '_MENU_'
+//		},
+//		"oTableTools": {
+//			"sSwfPath": "themes/default/assets/plugins/datatables/copy_csv_xls_pdf.swf",
+//			"aButtons": [
+//				"copy",
+//				"print",
+//				{
+//					"sExtends":    "collection",
+//					"sButtonText": 'Save <span class="caret" />',
+//					"aButtons":    [ "csv", "xls", "pdf" ]
+//				}
+//			]
+//		}
+//	});
+//}
 /*-------------------------------------------
 	Functions for Dashboard page (dashboard.html)
 ---------------------------------------------*/

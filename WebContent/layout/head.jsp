@@ -17,7 +17,7 @@
 <%-- 	<link href="<%=Constants.PLUGINS%>/fancybox/jquery.fancybox.css" rel="stylesheet"> --%>
 <%-- 	<link href="<%=Constants.PLUGINS%>/fullcalendar/fullcalendar.css" rel="stylesheet"> --%>
 <%-- 	<link href="<%=Constants.PLUGINS%>/xcharts/xcharts.min.css" rel="stylesheet"> --%>
-<%-- 	<link href="<%=Constants.PLUGINS%>/select2/select2.css" rel="stylesheet"> --%>
+	<link href="<%=Constants.PLUGINS%>/select2/select2.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/style.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/main.css" rel="stylesheet">
 	

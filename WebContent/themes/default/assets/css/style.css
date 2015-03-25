@@ -645,8 +645,10 @@ ul.DTTT_dropdown.dropdown-menu > li:hover > a {
   display: inline-block;
 }
 .box-content .form-group, .devoops-modal-inner .form-group {
-  margin-top:15px;
-  margin-bottom:15px;
+/*   margin-top:15px; */
+/*   margin-bottom:15px; */
+  margin-top:5px;
+  margin-bottom:10px;
 }
 .show-grid [class^="col-"] {
   padding-top: 10px;
