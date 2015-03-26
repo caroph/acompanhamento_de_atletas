@@ -1,4 +1,5 @@
 <header class="navbar">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
@@ -26,8 +27,8 @@
 							</li>
 							<li class="dropdown">
 									<div class="user-mini pull-right account">
-										<span class="welcome">Welcome,</span>
-										<span>Jane Devoops</span>
+										<span class="welcome">Bem vindo(a),</span>
+										<span>${ sessionScope.usuarioLogado.nome }</span>
 									</div>
 							</li>
 						</ul>
