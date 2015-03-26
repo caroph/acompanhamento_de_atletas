@@ -69,216 +69,171 @@
 												</select>
 											</div>
 										</div>
+										
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Nº Matrícula Clube Curitibano:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Nº Matrícula Clube Curitibano:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Nº Cadastro FPT:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Nº Cadastro FPT:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Nº Cadastro CBT:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Nº Cadastro CBT:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
 										</div>
 										<hr/>
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Nome:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Nome:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group" >
-											<label for="nr" class="col-sm-4 control-label">Data de Nascimento:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4" >
+												<label for="nr" class=" control-label">Data de Nascimento:</label>
+												<input type="email" class="form-control" id="inputEmail3" />
+											</div>
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Email atleta:</label>
 												<input type="email" class="form-control" id="inputEmail3" />
 											</div>
 										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Email atleta:</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="inputEmail3" />
-											</div>
+										<div class="form-group col-sm-12">
+											<label for="nr" class=" control-label">Endereço Residencial:</label>
+											<input type="email" class="form-control" id="inputEmail3" />
 										</div>
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Endereço residencial do atleta:</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="inputEmail3" />
-											</div>
-										</div>
-										<div class="form-group">
-											 <label for="numeroPai" class="col-sm-4 control-label">Número</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+	  											<label for="numeroPai" class=" control-label">Número:</label>
 												<input type="number" class="form-control" id="numeroPai" />
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="complementoPai" class="col-sm-4 control-label">Complemento</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="complementoPai" class=" control-label">Complemento:</label>
 												<input type="text" class="form-control" id="complementoPai" />
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="emailPai" class="col-sm-4 control-label">Bairro</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="emailPai" class="control-label">Bairro:</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Estado:</label>
-											<div class="col-sm-3">
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Estado:</label>
 												<select class="form-control" name="estado" id="estado"> </select>
 											</div>
-											<label for="nr" class="col-sm-1 control-label">Cidade:</label>
-											<div class="col-sm-4">
+											<div class="col-sm-8">
+												<label for="nr" class=" control-label">Cidade:</label>
 												<select class="form-control" name="cidade" id="cidade"> </select>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Telefone Celular do atleta:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">Telefone Residencial:</label>
+												<input type="text" class="form-control" id="inputEmail3" />
+											</div>
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">Telefone Celular:</label>
+												<input type="text" class="form-control" id="inputEmail3" />
+											</div>
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">RG:</label>
+												<input type="text" class="form-control" id="inputEmail3" />
+											</div>
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">CPF:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Telefone Residencial do atleta:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-6">
+												<label for="nr" class=" control-label">Escola:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">RG:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">Série:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">CPF:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-3">
+												<label for="nr" class=" control-label">Turno:</label>
 												<input type="text" class="form-control" id="inputEmail3" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Escola:</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" id="inputEmail3" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Série:</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" id="inputEmail3" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-4 control-label">Turno:</label>
-											<div class="col-sm-8">
-												<input type="text" class="form-control" id="inputEmail3" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="nr" class="col-sm-6 control-label text-left">Faz acompanhamento psicológico fora do Clube?</label>
-											<div class="col-sm-2">
-												<select class="form-control" name="sn"> 
-													<option value="sim">Sim</option> 
-													<option value="nao" selected>Não</option> 
-												</select>
-											</div>
-											<div class="col-sm-4"></div>
 										</div>
 										<hr/>
 										<!-- EMERGÊNCIA -->
 										<div class="form-group">
 											<h3 class="text-center">Cadastro de Emergência</h3>
 										</div>
-										<hr />
+										<br/>
 										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Nome
-												Médico Responsável</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="emailPai" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Telefone
-												do Médico</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="emailPai" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Convênio
-												Médico Hospitalar</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="emailPai" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Medicação
-												autorizada a tomar em caso de dor</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="emailPai" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Alérgico</label>
-											<div class="col-sm-3">
-												<div class="checkbox">
-													<label><input type="checkbox" /> Sim</label> <label><input
-														type="checkbox" /> Não</label>
-												</div>
-											</div>
-											<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
 											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Nome Médico Responsável:</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Uso
-												contínuo de medição</label>
-											<div class="col-sm-3">
-												<div class="checkbox">
-													<label><input type="checkbox" /> Sim</label> <label><input
-														type="checkbox" /> Não</label>
-												</div>
-											</div>
-											<label for="emailPai" class="col-sm-1 control-label">Descrição</label>
 											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Telefone do Médico:</label>
+												<input type="email" class="form-control" id="emailPai" />
+											</div>
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Convênio Médico Hospitalar:</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Nome
-												para emergência</label>
+											<div class="col-sm-4">
+												<label for="nr" class=" control-label">Acompanhamento psicológico externo:</label>
+												<select class="form-control" name="sn"> 
+													<option value="sim">Sim</option> 
+													<option value="nao" selected>Não</option> 
+												</select>
+											</div>
 											<div class="col-sm-8">
+												<label for="emailPai" class=" control-label">Medicação autorizada a tomar em caso de dor:</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Telefone</label>
-											<div class="col-sm-8">
+											<div class="col-sm-2">
+												<label for="emailPai" class=" control-label">Alérgico:</label>
+												<select class="form-control" name="sn"> 
+													<option value="sim">Sim</option> 
+													<option value="nao" selected>Não</option> 
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Descrição</label>
+												<input type="email" class="form-control" id="emailPai" />
+											</div>
+											<div class="col-sm-2">
+												<label for="emailPai" class=" control-label">Medicação contínua:</label>
+												<select class="form-control" name="sn"> 
+													<option value="sim">Sim</option> 
+													<option value="nao" selected>Não</option> 
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Descrição</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="emailPai" class="col-sm-4 control-label">Grau
-												de parentesco</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Nome para emergência:</label>
+												<input type="email" class="form-control" id="emailPai" />
+											</div>
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Telefone:</label>
+												<input type="email" class="form-control" id="emailPai" />
+											</div>
+											<div class="col-sm-4">
+												<label for="emailPai" class=" control-label">Grau de Parentesco:</label>
 												<input type="email" class="form-control" id="emailPai" />
 											</div>
 										</div>
 										<hr>
-										<div class="form-group" >
-											<label for="nr" class="col-sm-4 control-label">Data Validade Cadastro:</label>
-											<div class="col-sm-8">
-												<input type="email" class="form-control" id="inputEmail3" />
-											</div>
+										<div class="form-group col-sm-4" >
+											<label for="nr" class=" control-label">Data Validade Cadastro:</label>
+											<input type="email" class="form-control" id="inputEmail3" />
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">

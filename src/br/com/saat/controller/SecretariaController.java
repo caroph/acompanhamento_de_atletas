@@ -56,7 +56,7 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspNovoDiaTreino".equals(action)){
-		//Carregar página Novo dia de treino
+		//Carregar página Novo Dia de Treino
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 			
@@ -129,7 +129,22 @@ public class SecretariaController extends Controller {
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			
+			try{
+                if(negocio.desativar(dia)){
+                	request.setAttribute("msg", "Dia de Treino desativado com sucesso!");
+                }else{
+                	request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+                }
+            }catch(Exception ex){
+                request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");                    
+            }
+			
 		}else if("jspNovoUsuario".equals(action)){
+		//Carregar página Novo Usuario
+			EquipesNegocio negocioEquipe = new EquipesNegocio();
+			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			
+			request.setAttribute("listaEquipes", listaEquipes);
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 		}
 		rd = getServletContext().getRequestDispatcher(retorno);

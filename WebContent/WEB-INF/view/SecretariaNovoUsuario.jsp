@@ -42,57 +42,37 @@
 									    	</div>
 								        </c:if>
 										<div class="form-group">
-											<label for="equipe" class="col-sm-4 control-label">Perfil:</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="equipe" class=" control-label">Perfil:</label>
 												<select class="form-control" id="sel1">
-													<option>Secretário(a)</option>
-													<option>Técnico</option>
-													<option>Preparador Físico</option>
-													<option>Psicóogo(a)</option>
-													<option>Nutricionista</option>
-													<option>Fisioterapeuta</option>
+													<option value="0">Selecione</option>
+													<c:forEach var="equipe" items="${listaEquipes}">
+							                            <c:if test="${listaEquipes != null}">
+						                                     <option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+						                                 </c:if>
+						                            </c:forEach>
 												</select>
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="nome" class="col-sm-4 control-label">Nome</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												 <label for="nome" class=" control-label">Nome:</label>
 												<input type="text" class="form-control" id="nome" />
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="nome" class="col-sm-4 control-label">CREF</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												 <label for="nome" class=" control-label">CREF:</label>
 												<input type="text" class="form-control" id="nome" />
-											</div>
+											</div>											
 										</div>
 										<div class="form-group">
-											 <label for="email" class="col-sm-4 control-label">Email</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="email" class=" control-label">Email:</label>
 												<input type="text" class="form-control" id="email" />
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="email" class="col-sm-4 control-label">Senha</label>
-											<div class="col-sm-3">
-												<input type="password" class="form-control" id="senha" />
-											</div>
-										</div>
-										<div class="form-group">
-											 <label for="email" class="col-sm-4 control-label">Confirmação de Senha</label>
-											<div class="col-sm-3">
-												<input type="password" class="form-control" id="confSenha" />
-											</div>
-										</div>
-										<div class="form-group">
-											 <label for="telresidencial" class="col-sm-4 control-label">Telefone Residencial</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="telresidencial" class=" control-label">Telefone Residencial:</label>
 												<input type="email" class="form-control" id="telresidencial" />
 											</div>
-										</div>
-										<div class="form-group">
-											 <label for="telcelular" class="col-sm-4 control-label">Telefone Celular</label>
-											<div class="col-sm-8">
+											<div class="col-sm-4">
+												<label for="telcelular" class=" control-label">Telefone Celular:</label>
 												<input type="email" class="form-control" id="telcelular" />
 											</div>
 										</div>

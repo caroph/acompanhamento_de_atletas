@@ -58,14 +58,15 @@ public class AutenticadorController extends Controller {
             //Chamar a classe pai para verificar o usuário autenticado
         	super.doPost(request, response, usuario, lembrar, true);
             
-        //Logout
 		}else if("logout".equals(action)){
+			//Logout
             session.invalidate();
             
             RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
             rs.forward(request, response);
-		//Esqueci minha senha
+            
 		}else{
+			//Esqueci minha senha
 			String msg;
 			String emailSenha = request.getParameter("emailSenha");
 			UsuarioNegocio negocio = new UsuarioNegocio();

@@ -8,7 +8,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="SecretariaController?action=jspNovoAtleta">Novo</a></li>
-				<li><a class="ajax-link" href="SecretariaAtleta.jsp">Buscar</a></li>
+				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaAtleta">Buscar</a></li>
 			</ul>
 		</li>
 		<li class="dropdown">
@@ -17,8 +17,8 @@
 				<span class="hidden-xs">Responsáveis</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="SecretariaNovoResponsavel.jsp">Novo</a></li>
-				<li><a class="ajax-link" href="SecretariaResponsavel.jsp">Buscar</a></li>
+				<li><a class="ajax-link" href="SecretariaController?action=jspNovoResponsavel">Novo</a></li>
+				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaResponsavel">Buscar</a></li>
 			</ul>
 		</li>				
 		<li class="dropdown">
@@ -28,7 +28,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="SecretariaController?action=jspNovoUsuario">Novo</a></li>
-				<li><a class="ajax-link" href="SecretariaUsuario.jsp">Buscar</a></li>
+				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaUsuario">Buscar</a></li>
 			</ul>
 		</li>
 		<li class="dropdown">
@@ -47,13 +47,13 @@
 				<span class="hidden-xs">Relatórios</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="SecretariaRelatorioAtletas.jsp">Atletas</a></li>
-				<li><a class="ajax-link" href="SecretariaRelatorioUniformes.jsp">Uniformes</a></li>
-				<li><a class="ajax-link" href="SecretariaRelatorioTorneios.jsp">Torneios</a></li>
+				<li><a class="ajax-link" href="">Atletas</a></li>
+				<li><a class="ajax-link" href="">Uniformes</a></li>
+				<li><a class="ajax-link" href="">Torneios</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="SecretariaEnviarEmail.jsp">
+			<a href="">
 				<i class="fa fa-envelope"></i>
 				<span class="hidden-xs">Enviar email</span>
 			</a>

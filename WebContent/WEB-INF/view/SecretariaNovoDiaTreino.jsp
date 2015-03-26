@@ -50,46 +50,40 @@
 										<div class="form-group">
 											<div class=" col-sm-3">
 												<label for="tpEquipe" class=" control-label">Equipe:</label>
-												<div class="">
-													<select class="form-control" id="tpEquipe" name="tpEquipe" required>
-														<option value="0">Selecione</option>
-														<c:forEach var="equipe" items="${listaEquipes}">
-								                            <c:if test="${listaEquipes != null}">
-							                                     <option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
-							                                 </c:if>
-							                            </c:forEach>
-													</select>
-												</div>
+												<select class="form-control" id="tpEquipe" name="tpEquipe" required>
+													<option value="0">Selecione</option>
+													<c:forEach var="equipe" items="${listaEquipes}">
+							                            <c:if test="${listaEquipes != null}">
+						                                     <option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+						                                 </c:if>
+						                            </c:forEach>
+												</select>
 											</div>
 											<div class=" col-sm-3">
 												<label for="diaSemana" class=" control-label">Dia da Semana:</label>
-												<div class="">
-													<select class="form-control" id="diaSemana" name="diaSemana" required>
-														<option value="0">Selecione</option>
-														<c:forEach var="semana" items="${listaSemana}">
-								                            <c:if test="${listaSemana != null}">
-							                                     <option value="<c:out value='${semana.valor}'/>"><c:out value="${semana.nome}" /></option>
-							                                 </c:if>
-							                            </c:forEach>
-													</select>
-												</div>
+												<select class="form-control" id="diaSemana" name="diaSemana" required>
+													<option value="0">Selecione</option>
+													<c:forEach var="semana" items="${listaSemana}">
+							                            <c:if test="${listaSemana != null}">
+						                                     <option value="<c:out value='${semana.valor}'/>"><c:out value="${semana.nome}" /></option>
+						                                 </c:if>
+						                            </c:forEach>
+												</select>
 											</div>
 											<div class=" col-sm-3">
 												<label for="hrInicio" class=" control-label">Hora Início:</label>
-												<div class="">
-													<input type="text" class="form-control" id="hrInicio" name="hrInicio" required />
-												</div>
+												<input type="text" class="form-control" id="hrInicio" name="hrInicio" required />
 											</div>
 											<div class=" col-sm-3">
 												<label for="hrFim" class=" control-label">Hora Fim:</label>
-												<div class="">
-													<input type="text" class="form-control" id="hrFim" name="hrFim" required />
-												</div>
+												<input type="text" class="form-control" id="hrFim" name="hrFim" required />
 											</div>
-											<div class="col-sm-12 text-right">
-												<button type="button" class="btn btn-danger">Cancelar</button>
-												<button type="button" class="btn btn-info">Limpar</button>
-												<button type="submit" class="btn btn-primary">Salvar</button>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10 text-right">
+													<button type="button" class="btn btn-danger">Cancelar</button>
+													<button type="button" class="btn btn-info">Limpar</button>
+													<button type="submit" class="btn btn-primary">Salvar</button>
+												</div>
 											</div>
 										</div>
 									</form>

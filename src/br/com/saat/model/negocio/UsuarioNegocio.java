@@ -1,11 +1,12 @@
 package br.com.saat.model.negocio;
 
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.UUID;
 
 import br.com.saat.core.Constants;
-import br.com.saat.core.JavaMailApp;
 import br.com.saat.core.Criptografia;
+import br.com.saat.core.JavaMailApp;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.UsuarioDAO;
@@ -58,15 +59,17 @@ public class UsuarioNegocio {
 		// TODO Auto-generated method stub
 		UsuarioDAO dao = new UsuarioDAO();
 		Criptografia crip = new Criptografia();
-		String novaSenha = crip.criptografa(UUID.randomUUID().toString());
+		Random gerador = new Random();
+		String novaSenha = Integer.toString(gerador.nextInt());
+		String novaSenhaCrip = crip.criptografa(novaSenha);
 		String retorno = "";
 		
 		try {
-			if(dao.esqueciSenha(emailSenha, novaSenha)){
+			if(dao.esqueciSenha(emailSenha, novaSenhaCrip)){
 				try{
 					JavaMailApp email = new JavaMailApp();
 					email.enviaEmail(emailSenha, novaSenha, 1);
-					retorno = "Em instantes você receberá em seu email sua nova senha!";
+					retorno = "Em instantes você receberá um email com sua nova senha!";
 				} catch(Exception e){
 					throw new Exception("Ocorreu algum erro ao enviar o email! Favor tentar novamente.");
 					//e.printStackTrace();

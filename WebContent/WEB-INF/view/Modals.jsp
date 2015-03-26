@@ -23,7 +23,7 @@
         <form role="form" method="post" action="Autenticador?action=esqueci">
           <div class="form-group">
             <label for="emailSenha" class="control-label">Favor informe seu email cadastrado no sistema:</label>
-            <input type="email" class="form-control" id="emailSenha" value="" required> 
+            <input type="email" class="form-control" id="emailSenha" name="emailSenha" value="" required> 
           </div>
 	      <div class="modal-footer">
 	        <input type="submit" class="btn btn-primary" value="Enviar">
