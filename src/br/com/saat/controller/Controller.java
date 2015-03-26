@@ -29,7 +29,8 @@ public class Controller extends HttpServlet {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response, Usuario usuario, boolean lembrar) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response, Usuario usuario, boolean lembrar,
+			boolean login) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
 		UsuarioNegocio usuarioNegocio;
 		HttpSession session = request.getSession();
@@ -40,32 +41,38 @@ public class Controller extends HttpServlet {
 			//Destroir sessão
 			session.invalidate();
 			//Setar mensagem de erro
-			request.setAttribute("msg", "Email ou senha inválidos!"); 
+			if(login)
+				request.setAttribute("msg", "Email ou senha inválidos!"); 
+			else
+				request.setAttribute("msg", "Você não possui permissão de acesso ao sistema!"); 
 		//Usuário válido
 		}else{
-			Cookie novoCookie;
-			
-			//Criar sessão de usuário logado
-			session.setAttribute("usuarioLogado", usuario);
 			//Pegar página para redirecionamento
 			usuarioNegocio = new UsuarioNegocio();
 			retorno = usuarioNegocio.retornoLogin(usuario);
 			
-			//Criar cookie se a opção "Lembrar" estiver habilitada
-			if(lembrar){
-				//Criar código de cookie
-        		String uuid = UUID.randomUUID().toString();
-        		//Adicionar cookie
-        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario); 
-			}else{
-        		//Adiciona cookie vazio = Limpar
-        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario);
-        	}
-			
-			//Cookie válido
-			if(novoCookie != null){
-				//Adicionar cookie à navegação
-				response.addCookie(novoCookie);
+			if(login){
+				//Criar sessão de usuário logado
+    			session.setAttribute("usuarioLogado", usuario);
+    			
+				Cookie novoCookie;
+				
+				//Criar cookie se a opção "Lembrar" estiver habilitada
+				if(lembrar){
+					//Criar código de cookie
+	        		String uuid = UUID.randomUUID().toString();
+	        		//Adicionar cookie
+	        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario); 
+				}else{
+	        		//Adiciona cookie vazio = Limpar
+	        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario);
+	        	}
+				
+				//Cookie válido
+				if(novoCookie != null){
+					//Adicionar cookie à navegação
+					response.addCookie(novoCookie);
+				}
 			}
 		}
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);

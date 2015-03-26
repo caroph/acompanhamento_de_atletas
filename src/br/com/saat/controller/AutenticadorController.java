@@ -56,7 +56,7 @@ public class AutenticadorController extends Controller {
 			}
 		            
             //Chamar a classe pai para verificar o usuário autenticado
-            super.doPost(request, response, usuario, lembrar);
+        	super.doPost(request, response, usuario, lembrar, true);
             
         //Logout
 		}else if("logout".equals(action)){

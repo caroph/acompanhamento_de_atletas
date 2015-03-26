@@ -11,11 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.DiasSemana;
 import br.com.saat.model.Equipes;
+import br.com.saat.model.Perfis;
+import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
@@ -35,8 +38,16 @@ public class SecretariaController extends Controller {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		//HttpSession session;
+		HttpSession session = request.getSession();
 		RequestDispatcher rd;
+		
+		//Verifica autenticação usuário
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
+			super.doPost(request, response, usuario, false, false);
+			return;
+		}
+		
 		String retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 		String action = request.getParameter("action");
 		
@@ -117,6 +128,9 @@ public class SecretariaController extends Controller {
 		}else if("desativarDiaTreino".equals(action)){
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+			
+		}else if("jspNovoUsuario".equals(action)){
+			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 		}
 		rd = getServletContext().getRequestDispatcher(retorno);
 		rd.forward(request, response);

@@ -57,7 +57,7 @@ public class Index extends Controller {
 	    if (idUsuario > 0) {
 	    	negocio = new UsuarioNegocio();
 	    	usuario = negocio.buscarUsuCookie(idUsuario);
-	    	super.doPost(request, response, usuario, true);
+	    	super.doPost(request, response, usuario, true, false);
 	    }else{
 	    	rd = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));	    
 	    	rd.forward(request, response);
