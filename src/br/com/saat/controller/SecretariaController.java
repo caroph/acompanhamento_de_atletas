@@ -69,6 +69,7 @@ public class SecretariaController extends Controller {
 			
 		}else if("inserirDiaTreino".equals(action)){
 		//Inserir novo dia de treino
+			String msg = "";
 			DiaTreino dia = new DiaTreino();
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			
@@ -76,45 +77,49 @@ public class SecretariaController extends Controller {
 			String fim = request.getParameter("hrFim");			
             Date hrInicio = null;
             Date hrFim = null; 
+            
             try {
             	DateFormat formatter = new SimpleDateFormat("HH:mm");  
             	hrInicio = (Date)formatter.parse(inicio);
             	hrFim = (Date)formatter.parse(fim);
-
+            	
+            	dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
+            	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
+            	dia.setHrInicio(hrInicio);
+            	dia.setHrFim(hrFim);
+            	
+            	List<Object> listaValidacao = negocio.validaDados(dia);
+            	boolean valida = (boolean) listaValidacao.get(0);
+            	if(!valida){
+            		msg = (String) listaValidacao.get(1);
+            	}else{
+            		try{
+            			if(negocio.inserir(dia)){
+            				msg = "Dia de Treino salvo com sucesso!";
+            			}else{
+            				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+            			}
+            		}catch(Exception ex){
+            			msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";                    
+            		}
+            	}
             } catch (java.text.ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+            	msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			} 
 			
-			dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
-			dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
-			dia.setHrInicio(hrInicio);
-			dia.setHrFim(hrFim);
-			
-			List<Object> listaValidacao = negocio.validaDados(dia);
-			boolean valida = (boolean) listaValidacao.get(0);
-			if(!valida){
-				request.setAttribute("msg", listaValidacao.get(1));
-			}else{
-				try{
-                    if(negocio.inserir(dia)){
-                    	request.setAttribute("msg", "Dia de Treino salvo com sucesso!");
-                    }else{
-                    	request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");
-                    }
-                }catch(Exception ex){
-                    request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");                    
-                }
-			}
-			
-			EquipesNegocio negocioEquipe = new EquipesNegocio();
-			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
-			
-			DiasSemanaNegocio negocioSemana = new DiasSemanaNegocio();
-			List<DiasSemana> listaSemana = negocioSemana.listaSemana();
+            EquipesNegocio negocioEquipe = new EquipesNegocio();
+            List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+            
+            DiasSemanaNegocio negocioSemana = new DiasSemanaNegocio();
+            List<DiasSemana> listaSemana = negocioSemana.listaSemana();
 			
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaSemana", listaSemana);
+			
+			request.setAttribute("msg", msg);
+			
 			retorno = String.format("%s/SecretariaNovoDiaTreino.jsp", Constants.VIEW);
 		
 		}else if("jspBuscaDiaTreino".equals(action)){
@@ -126,18 +131,24 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 		
 		}else if("desativarDiaTreino".equals(action)){
+			String msg = "";
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = negocio.buscaDiasTreino();
 			
 			try{
                 if(negocio.desativar(dia)){
-                	request.setAttribute("msg", "Dia de Treino desativado com sucesso!");
+                	msg = "Dia de Treino desativado com sucesso!";
                 }else{
-                	request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+                	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
             }catch(Exception ex){
-                request.setAttribute("msg", "Ocorreu algum erro no sistema! Favor tentar novamente.");                    
-            }
+               msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";                    
+            }			
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("listaDiasTreinos", lista);
+			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 			
 		}else if("jspNovoUsuario".equals(action)){
 		//Carregar página Novo Usuario

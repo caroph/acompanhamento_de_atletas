@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import br.com.saat.core.Constants;
 import br.com.saat.core.Criptografia;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.negocio.CookieNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 
@@ -62,6 +64,13 @@ public class AutenticadorController extends Controller {
 			//Logout
             session.invalidate();
             
+            //Destruir cookie
+            Cookie novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, null);
+            if(novoCookie != null){
+				//Adicionar cookie à navegação
+				response.addCookie(novoCookie);
+			}
+            
             RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
             rs.forward(request, response);
             
@@ -71,12 +80,16 @@ public class AutenticadorController extends Controller {
 			String emailSenha = request.getParameter("emailSenha");
 			UsuarioNegocio negocio = new UsuarioNegocio();
 			
-			try {
-				msg = negocio.esqueciSenha(emailSenha);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			if(emailSenha != null && !"".equals(emailSenha)){
+				try {
+					msg = negocio.esqueciSenha(emailSenha);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				}
+			}else{
+				msg = "Por favor, informe o seu email corretamente!";
 			}
 			request.setAttribute("msg", msg);
 			RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));

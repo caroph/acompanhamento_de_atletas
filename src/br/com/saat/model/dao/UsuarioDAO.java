@@ -25,7 +25,7 @@ public class UsuarioDAO {
 //		stmtAutenticar = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, senha, "
 //				+ "perfil, CREF FROM usuario WHERE email LIKE ? AND senha LIKE ?");
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, perfil "
-				+ "FROM usuario WHERE email LIKE ? AND senha LIKE ? AND situacao = 1");
+				+ "FROM usuario WHERE email LIKE ? AND senha LIKE ? AND flCadastroAtivo = 1");
         Usuario usuario = new Usuario();
         
         stmtScript.setString(1, email);
@@ -46,7 +46,7 @@ public class UsuarioDAO {
 	public Usuario buscarUsuCookie(int idUsuario) throws SQLException {
 		// TODO Auto-generated method stub
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, perfil "
-				+ "FROM usuario WHERE idUsuario = ? AND situacao = 1");
+				+ "FROM usuario WHERE idUsuario = ? AND flCadastroAtivo = 1");
         Usuario usuario = new Usuario();
         
         stmtScript.setInt(1, idUsuario);
@@ -86,7 +86,7 @@ public class UsuarioDAO {
 		boolean retorno = false;
 		int rows;
 		
-		stmtScript = con.prepareStatement("SELECT idUsuario FROM usuario WHERE email = ? AND situacao = 1");
+		stmtScript = con.prepareStatement("SELECT idUsuario FROM usuario WHERE email = ? AND flCadastroAtivo = 1");
 		stmtScript.setString(1, emailSenha);
 		ResultSet rs = stmtScript.executeQuery();
 		

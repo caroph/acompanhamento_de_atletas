@@ -52,7 +52,7 @@ public class DiaTreinoDAO {
 				+ "ON t.idTpEquipe = e.idTpEquipe "
 				+ "INNER JOIN diaSemana s "
 				+ "ON t.idDiaSemana = s.idDiaSemana "
-				+ "WHERE t.situacao = 1");
+				+ "WHERE t.flCadastroAtivo = 1");
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
@@ -72,7 +72,7 @@ public class DiaTreinoDAO {
 		boolean retorno = false;
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("UPDATE diaTreino SET situacao = 0 WHERE idDiaTreino = ?");
+		stmtScript = con.prepareStatement("UPDATE diaTreino SET flCadastroAtivo = 0 WHERE idDiaTreino = ?");
 		
 		stmtScript.setInt(1, dia.getIdDiaTreino());
 		

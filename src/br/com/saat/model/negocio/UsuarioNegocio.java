@@ -2,7 +2,6 @@ package br.com.saat.model.negocio;
 
 import java.sql.SQLException;
 import java.util.Random;
-import java.util.UUID;
 
 import br.com.saat.core.Constants;
 import br.com.saat.core.Criptografia;
@@ -71,19 +70,19 @@ public class UsuarioNegocio {
 					email.enviaEmail(emailSenha, novaSenha, 1);
 					retorno = "Em instantes você receberá um email com sua nova senha!";
 				} catch(Exception e){
-					throw new Exception("Ocorreu algum erro ao enviar o email! Favor tentar novamente.");
+					//throw new Exception("Ocorreu algum erro ao enviar o email! Favor tentar novamente.");
 					//e.printStackTrace();
-					//retorno = "Ocorreu algum erro ao enviar o email! Favor tentar novamente.";	
+					retorno = "Ocorreu algum erro ao enviar o email! Favor tentar novamente.";	
 				}
 			}else{
-				throw new Exception("Email inválido! Favor informe novamente.");
-				//retorno = "Email inválido! Favor informe novamente.";
+				//throw new Exception("Email inválido! Favor informe novamente.");
+				retorno = "Email inválido! Favor informe novamente.";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new Exception("Ocorreu algum erro no banco de dados! Favor tentar novamente.");
+			//throw new Exception("Ocorreu algum erro no banco de dados! Favor tentar novamente.");
 			//e.printStackTrace();
-			//retorno = "Ocorreu algum erro no banco de dados! Favor tentar novamente.";
+			retorno = "Ocorreu algum erro no banco de dados! Favor tentar novamente.";
 		}
 		return retorno;
 	}
