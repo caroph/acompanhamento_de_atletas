@@ -27,7 +27,7 @@
 				<span class="hidden-xs">Usuários</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="SecretariaNovoUsuario.jsp">Novo</a></li>
+				<li><a class="" href="SecretariaController?action=jspNovoUsuario">Novo</a></li>
 				<li><a class="ajax-link" href="SecretariaUsuario.jsp">Buscar</a></li>
 			</ul>
 		</li>
