@@ -37,7 +37,7 @@ public class Controller extends HttpServlet {
 		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
 		
 		//Usuário inválido
-		if(usuario == null){
+		if(usuario == null || usuario.getIdPessoa() == 0){
 			//Destroir sessão
 			session.invalidate();
 			//Setar mensagem de erro

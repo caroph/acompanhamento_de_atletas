@@ -52,14 +52,14 @@ public class AutenticadorController extends Controller {
             try {
             	//Autenticar usuário
 				usuario = negocio.autenticar(email, senha);
+				
+				//Chamar a classe pai para verificar o usuário autenticado
+	        	super.doPost(request, response, usuario, lembrar, true);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				request.setAttribute("msg", "Ocorreu algum erro no sistema.  Favor tente novamente!");  
+				request.setAttribute("msg", e.getMessage());  
+				RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
+	            rs.forward(request, response);
 			}
-		            
-            //Chamar a classe pai para verificar o usuário autenticado
-        	super.doPost(request, response, usuario, lembrar, true);
-            
 		}else if("logout".equals(action)){
 			//Logout
             session.invalidate();
@@ -84,9 +84,7 @@ public class AutenticadorController extends Controller {
 				try {
 					msg = negocio.esqueciSenha(emailSenha);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+					msg = e.getMessage();
 				}
 			}else{
 				msg = "Por favor, informe o seu email corretamente!";

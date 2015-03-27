@@ -21,11 +21,9 @@ public class CookieNegocio {
 	    			cookie = null;
 	    		}			
 	    	} catch (Exception e) {
-	    		// TODO Auto-generated catch block
 	    		cookie = null;
 	    	}
 	    }
-	    
 	    return cookie;
 	}
 	
@@ -37,7 +35,6 @@ public class CookieNegocio {
 	            		CookieDAO dao = new CookieDAO();
 						return dao.buscar(cookie.getValue());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						return 0;
 					}	            	
 	            }

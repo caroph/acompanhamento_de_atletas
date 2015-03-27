@@ -1,6 +1,7 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -100,12 +101,10 @@ public class SecretariaController extends Controller {
             				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
             			}
             		}catch(Exception ex){
-            			msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";                    
+            			msg = ex.getMessage();                    
             		}
             	}
             } catch (java.text.ParseException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
             	msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			} 
 			
@@ -125,7 +124,12 @@ public class SecretariaController extends Controller {
 		}else if("jspBuscaDiaTreino".equals(action)){
 		//Carregar página Buscar Dias de Treinos
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
-			List<DiaTreino> lista = negocio.buscaDiasTreino();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
+			try{
+				lista = negocio.buscaDiasTreino();
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
 			
 			request.setAttribute("listaDiasTreinos", lista);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
@@ -134,6 +138,7 @@ public class SecretariaController extends Controller {
 			String msg = "";
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			
 			try{
                 if(negocio.desativar(dia)){
@@ -141,11 +146,11 @@ public class SecretariaController extends Controller {
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
+                lista = negocio.buscaDiasTreino();
             }catch(Exception ex){
-               msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";                    
+               msg = ex.getMessage();                    
             }			
 			
-			List<DiaTreino> lista = negocio.buscaDiasTreino();
 			request.setAttribute("listaDiasTreinos", lista);
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);

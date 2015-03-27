@@ -8,7 +8,6 @@ public enum Equipes {
 	private final String nome;
 	
 	private Equipes(int valor, String nome) {
-		// TODO Auto-generated constructor stub
 		this.valor = valor;
 		this.nome = nome;
 	}
