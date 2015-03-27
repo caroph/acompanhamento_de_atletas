@@ -86,26 +86,31 @@ public class SecretariaController extends Controller {
             	hrInicio = (Date)formatter.parse(inicio);
             	hrFim = (Date)formatter.parse(fim);
             	
-            	dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
-            	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
-            	dia.setHrInicio(hrInicio);
-            	dia.setHrFim(hrFim);
-            	
-            	List<Object> listaValidacao = negocio.validaDados(dia);
-            	boolean valida = (boolean) listaValidacao.get(0);
-            	if(!valida){
-            		msg = (String) listaValidacao.get(1);
-            	}else{
-            		try{
-            			if(negocio.inserir(dia)){
-            				msg = "Dia de Treino salvo com sucesso!";
-            			}else{
-            				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
-            			}
-            		}catch(Exception ex){
-            			msg = ex.getMessage();                    
-            		}
-            	}
+            	try {
+            		dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
+                	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
+                	dia.setHrInicio(hrInicio);
+                	dia.setHrFim(hrFim);
+                	
+                	List<Object> listaValidacao = negocio.validaDados(dia);
+                	boolean valida = (boolean) listaValidacao.get(0);
+                	if(!valida){
+                		msg = (String) listaValidacao.get(1);
+                	}else{
+                		try{
+                			if(negocio.inserir(dia)){
+                				msg = "Dia de Treino salvo com sucesso!";
+                			}else{
+                				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+                			}
+                		}catch(Exception ex){
+                			msg = ex.getMessage();                    
+                		}
+                	}
+				} catch (NumberFormatException e) {
+					// TODO: handle exception
+					msg = "Favor selecionar corretamente o Tipo de Equipe e/ou Dia da Semana!";
+				}
             } catch (java.text.ParseException e) {
             	msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			} 

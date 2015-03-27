@@ -51,22 +51,18 @@
 											<div class=" col-sm-3">
 												<label for="tpEquipe" class=" control-label">Equipe:</label>
 												<select class="form-control" id="tpEquipe" name="tpEquipe" required>
-													<option value="0">Selecione</option>
+													<option value="">Selecione</option>
 													<c:forEach var="equipe" items="${listaEquipes}">
-							                            <c:if test="${listaEquipes != null}">
-						                                     <option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
-						                                 </c:if>
+						                            	<option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
 						                            </c:forEach>
 												</select>
 											</div>
 											<div class=" col-sm-3">
 												<label for="diaSemana" class=" control-label">Dia da Semana:</label>
 												<select class="form-control" id="diaSemana" name="diaSemana" required>
-													<option value="0">Selecione</option>
+													<option value="">Selecione</option>
 													<c:forEach var="semana" items="${listaSemana}">
-							                            <c:if test="${listaSemana != null}">
-						                                     <option value="<c:out value='${semana.valor}'/>"><c:out value="${semana.nome}" /></option>
-						                                 </c:if>
+						                            	<option value="<c:out value='${semana.valor}'/>"><c:out value="${semana.nome}" /></option>
 						                            </c:forEach>
 												</select>
 											</div>
@@ -79,13 +75,13 @@
 												<input type="time" class="form-control" id="hrFim" name="hrFim" required />
 											</div>
 										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10 text-right">
-												<button type="button" class="btn btn-danger">Cancelar</button>
-												<button type="button" class="btn btn-info">Limpar</button>
-												<button type="submit" class="btn btn-primary">Salvar</button>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10 text-right">
+													<a href="SecretariaController" class="btn btn-danger">Cancelar</a>
+													<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
+													<button type="submit" class="btn btn-primary">Salvar</button>
+												</div>
 											</div>
-										</div>
 									</form>
 								</div>
 							</div>
@@ -99,21 +95,6 @@
 	
 	<%@include file="/layout/footer.jsp"%>
 	
-	<script type="text/javascript">
-	function DemoTimePicker(){
-		$('#hrInicio').timepicker({setDate: new Date()});
-		$('#hrFim').timepicker({setDate: new Date()});
-	}
-	$(document).ready(function() {		
-		
-		// Load Timepicker plugin
-		LoadTimePickerScript(DemoTimePicker);
-	});
-	</script>
-	
-	<%@include file="Modals.jsp"%>
-	
-
   </body>
 </html>
 

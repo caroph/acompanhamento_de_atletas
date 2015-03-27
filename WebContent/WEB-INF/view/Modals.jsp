@@ -1,33 +1,9 @@
 <!-- NOVAS -->
 
-<!-- Esqueci Senha -->
-<div class="modal fade" id="esqueciSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Recuperação de senha</h4>
-      </div>
-      <div class="modal-body">
-        <form role="form" method="post" action="Autenticador?action=esqueci">
-          <div class="form-group">
-            <label for="emailSenha" class="control-label">Favor informe seu email cadastrado no sistema:</label>
-            <input type="email" class="form-control" id="emailSenha" name="emailSenha" value="" required> 
-          </div>
-	      <div class="modal-footer">
-	        <input type="submit" class="btn btn-primary" value="Enviar">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	      </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Fim Esqueci Senha -->
 
 
 
-
+<!-- ---------------------ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ------------------ -->
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -57,11 +33,8 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-<!-- ---------------------ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ------------------ -->
+	
+	
 <!-- Modal ver detalhes do atleta -->
 <div class="modal fade" id="verDetalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog">
@@ -94,25 +67,6 @@
 		</div>
 	</div>
 </div>		
-	
-<!-- 	Modal Delete -->
-<!-- 	<div class="modal fade bs-example-modal-sm" id="deletar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"> -->
-<!-- 	  <div class="modal-dialog"> -->
-<!-- 	    <div class="modal-content"> -->
-<!-- 	    	<div class="modal-header"> -->
-<!-- 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button> -->
-<!-- 				<h4 class="modal-title" id="myModalLabel">Deletar</h4> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-body"> -->
-<!-- 				<label for="message-text" class="control-label" >Deseja realmente deletar?</label> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-footer"> -->
-<!-- 				<button type="button" class="btn btn-danger">Sim</button> -->
-<!-- 				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button> -->
-<!-- 			</div> -->
-<!-- 	    </div> -->
-<!-- 	  </div> -->
-<!-- 	</div> -->
 	
 <!-- Modal Imprimir -->
 <div class="modal fade" id="imprimir" tabindex="-1" role="dialog"

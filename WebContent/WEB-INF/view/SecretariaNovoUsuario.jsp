@@ -45,11 +45,17 @@
 											<div class="col-sm-4">
 												<label for="perfil" class=" control-label">Perfil:</label> <select
 													class="form-control" id="sel1">
-													<option value="0">Selecione</option>
+													<option value="">Selecione</option>
+<<<<<<< .mine
+													<c:forEach var="equipe" items="${listaEquipes}">
+						                            	<option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+						                            </c:forEach>
+=======
 													<c:forEach var="perfil" items="${listaPerfis}">
 														<option value="<c:out value='${perfil.valor}'/>"><c:out
 																value="${perfil.nome}" /></option>
 													</c:forEach>
+>>>>>>> .r107
 												</select>
 											</div>
 											<div class="col-sm-4">
@@ -94,8 +100,11 @@
 	</div>
 
 	<%@include file="/layout/footer.jsp"%>
+<<<<<<< .mine
+=======
 
 	<%@include file="Modals.jsp"%>
+>>>>>>> .r107
 
 
 </body>

@@ -76,3 +76,27 @@ function passar(){
 		var email = document.getElementById("emailSenha"); 
 		email.value = valorA.value; 
 		}; 
+
+
+//Plugin de Horário
+function DemoTimePicker(){
+	$('#hrInicio').timepicker({setDate: new Date()});
+	$('#hrFim').timepicker({setDate: new Date()});
+}
+
+$(document).ready(function() {				
+	// Load Timepicker plugin
+	LoadTimePickerScript(DemoTimePicker);
+});
+
+//Limpar Campos
+function LimparCampos() {
+	 
+    $(":time").each(function () {
+        $(this).val("");
+    });
+
+    $("select").each(function () {
+        $(this).val("Selecione");
+    });
+}
