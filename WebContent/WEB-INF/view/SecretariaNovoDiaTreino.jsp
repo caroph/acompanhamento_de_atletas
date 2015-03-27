@@ -72,18 +72,18 @@
 											</div>
 											<div class=" col-sm-3">
 												<label for="hrInicio" class=" control-label">Hora Início:</label>
-												<input type="text" class="form-control" id="hrInicio" name="hrInicio" required />
+												<input type="time" class="form-control" id="hrInicio" name="hrInicio" required />
 											</div>
 											<div class=" col-sm-3">
 												<label for="hrFim" class=" control-label">Hora Fim:</label>
-												<input type="text" class="form-control" id="hrFim" name="hrFim" required />
+												<input type="time" class="form-control" id="hrFim" name="hrFim" required />
 											</div>
-											<div class="form-group">
-												<div class="col-sm-offset-2 col-sm-10 text-right">
-													<button type="button" class="btn btn-danger">Cancelar</button>
-													<button type="button" class="btn btn-info">Limpar</button>
-													<button type="submit" class="btn btn-primary">Salvar</button>
-												</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10 text-right">
+												<button type="button" class="btn btn-danger">Cancelar</button>
+												<button type="button" class="btn btn-info">Limpar</button>
+												<button type="submit" class="btn btn-primary">Salvar</button>
 											</div>
 										</div>
 									</form>

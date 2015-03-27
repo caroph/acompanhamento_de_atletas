@@ -1,10 +1,12 @@
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<%@include file='/layout/head.jsp'%>
-	
-	<body>
-	
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@include file='/layout/head.jsp'%>
+
+<body>
+
 	<%@include file='/layout/header.jsp'%>
-	
+
 	<div id="main" class="container-fluid">
 		<div class="row">
 			<%@include file='/layout/navigationSecretaria.jsp'%>
@@ -23,24 +25,20 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i>
-										<span>Dias de Treino</span>
+										<i class="fa  fa-info-circle"></i> <span>Dias de Treino</span>
 									</div>
 									<div class="box-icons">
-										<a class="collapse-link">
-											<i class="fa fa-chevron-up"></i>
-										</a>
-										<a class="expand-link">
-											<i class="fa fa-expand"></i>
-										</a>
-										<a class="close-link">
-											<i class="fa fa-times"></i>
+										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+										</a> <a class="expand-link"> <i class="fa fa-expand"></i>
+										</a> <a class="close-link"> <i class="fa fa-times"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content no-padding">
-									<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable">
+									<table
+										class="table table-bordered table-striped table-hover table-heading table-datatable"
+										id="datatable">
 										<thead>
 											<tr>
 												<th>Equipe</th>
@@ -52,50 +50,56 @@
 										</thead>
 										<tbody>
 											<c:forEach var="treino" items="${listaDiasTreinos}">
-					                            <c:if test="${listaDiasTreinos != null}">
-													<tr>
-														<td><c:out value='${treino.dsTpEquipe}'/></td>
-														<td><c:out value='${treino.dsDiaSemana}'/></td>
-														<td align="center"><c:out value='${treino.hrInicio}'/></td>
-														<td align="center"><c:out value='${treino.hrFim}'/></td>
-														<td align="center"><a class="btn btn-danger" data-toggle="modal" data-target="#basicModal" id="btnListarAlunos">Desativar</a></td>
-													</tr>
-				                                 </c:if>
-				                            </c:forEach>
+												<tr>
+													<td><c:out value='${treino.dsTpEquipe}' /></td>
+													<td><c:out value='${treino.dsDiaSemana}' /></td>
+													<fmt:formatDate value="${treino.hrInicio}" pattern="HH:mm"
+														var="horaIFormatada" />
+													<td align="center"><c:out value='${horaIFormatada}' /></td>
+													<fmt:formatDate value="${treino.hrFim}" pattern="HH:mm"
+														var="horaFFormatada" />
+													<td align="center"><c:out value='${horaFFormatada}' /></td>
+													<td align="center"><a class="btn btn-danger"
+														href='SecretariaController?action=desativarDiaTreino&idDiaTreino=${treino.idDiaTreino}'
+														data-confirm="Deseja realmente desativar o dia de treino selecionado?">Desativar</a></td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			</div>
 			<!--End Content-->
 		</div>
 	</div>
-	
+
 	<%@include file="/layout/footer.jsp"%>
-	
+
 	<script type="text/javascript">
-	// Run Datables plugin and create 3 variants of settings
-	function AllTables(){
-		TestTable1();
-		LoadSelect2Script(MakeSelect2);
-	}
-	function MakeSelect2(){
-		$('select').select2();
-		$('.dataTables_filter').each(function(){
-			$(this).find('label input[type=text]').attr('placeholder', 'Buscar');
+		// Run Datables plugin and create 3 variants of settings
+		function AllTables() {
+			TestTable1();
+			LoadSelect2Script(MakeSelect2);
+		}
+		function MakeSelect2() {
+			$('select').select2();
+			$('.dataTables_filter').each(
+					function() {
+						$(this).find('label input[type=text]').attr(
+								'placeholder', 'Buscar');
+					});
+		}
+		$(document).ready(function() {
+			// Load Datatables and run plugin on tables 
+			LoadDataTablesScripts(AllTables);
+			// Add Drag-n-Drop feature
+			WinMove();
 		});
-	}
-	$(document).ready(function() {
-		// Load Datatables and run plugin on tables 
-		LoadDataTablesScripts(AllTables);
-		// Add Drag-n-Drop feature
-		WinMove();
-	});
 	</script>
 	<%@include file="Modals.jsp"%>
 
-  </body>
+</body>
 </html>

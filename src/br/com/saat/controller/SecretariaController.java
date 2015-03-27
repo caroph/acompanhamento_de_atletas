@@ -134,7 +134,6 @@ public class SecretariaController extends Controller {
 			String msg = "";
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
-			List<DiaTreino> lista = negocio.buscaDiasTreino();
 			
 			try{
                 if(negocio.desativar(dia)){
@@ -146,8 +145,9 @@ public class SecretariaController extends Controller {
                msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";                    
             }			
 			
-			request.setAttribute("msg", msg);
+			List<DiaTreino> lista = negocio.buscaDiasTreino();
 			request.setAttribute("listaDiasTreinos", lista);
+			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 			
 		}else if("jspNovoUsuario".equals(action)){
