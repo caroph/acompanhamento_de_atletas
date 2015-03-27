@@ -23,6 +23,8 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
+import br.com.saat.model.negocio.PerfisNegocio;
+import br.com.saat.model.negocio.UsuarioNegocio;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -43,9 +45,9 @@ public class SecretariaController extends Controller {
 		RequestDispatcher rd;
 		
 		//Verifica autenticação usuário
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		if(usuario == null || usuario.getPerfil() != Perfis.Secretaria.getValor()){
-			super.doPost(request, response, usuario, false, false);
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if(usuarioLogado == null || usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+			super.doPost(request, response, usuarioLogado, false, false);
 			return;
 		}
 		
@@ -156,12 +158,24 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 			
 		}else if("jspNovoUsuario".equals(action)){
-		//Carregar página Novo Usuario
-			EquipesNegocio negocioEquipe = new EquipesNegocio();
-			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			//Carregar página Novo Usuario
+			PerfisNegocio negocio = new PerfisNegocio();
+			List<Perfis> lista = negocio.listaPerfis();
 			
-			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaPerfis", lista);
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
+		}else if("inserirUsuario".equals(action)){
+			//Inserir novo usuário
+			String msg = "";
+			Usuario usuario = new Usuario();
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			
+			//int perfil = Integer.parseInt(request.getParameter("perfil"));
+			String nome = request.getParameter("nome");
+			String cref = request.getParameter("cref");
+			String email = request.getParameter("email");
+			String telResidencial = request.getParameter("telresidencial");
+			String telCelular = request.getParameter("telcelular");
 		}
 		rd = getServletContext().getRequestDispatcher(retorno);
 		rd.forward(request, response);
