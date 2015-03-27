@@ -3,7 +3,7 @@ package br.com.saat.model;
 public class Endereco {
 	private int idEndereco;
 	private String endereco;
-	private String numero;
+	private int numero;
 	private String complemento;
 	private String bairro;
 	private String estado;
@@ -13,7 +13,7 @@ public class Endereco {
 	
 	public Endereco(){}
 	
-	public Endereco(String endereco, String numero, String complemento, String bairro, String estado, String cidade, int tpEndereco, String telefone){
+	public Endereco(String endereco, int numero, String complemento, String bairro, String estado, String cidade, int tpEndereco, String telefone){
 		this.endereco = endereco;
 		this.numero = numero;
 		this.complemento = complemento;
@@ -38,10 +38,10 @@ public class Endereco {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {

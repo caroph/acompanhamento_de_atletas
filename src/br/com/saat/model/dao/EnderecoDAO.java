@@ -27,24 +27,24 @@ public class EnderecoDAO {
 			stmtScript = con.prepareStatement("INSERT INTO endereco ("
 					+ "idResponsavel,"
 					+ "endereco,"
-					+ "numero"
-					+ "complemento"
-					+ "bairro"
-					+ "estado"
-					+ "cidade"
-					+ "telefone"
+					+ "numero,"
+					+ "complemento,"
+					+ "bairro,"
+					+ "estado,"
+					+ "cidade,"
+					+ "telefone,"
 					+ "tpEndereco"
 					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		else if(tpPessoa == TpPessoa.Atleta.getValor())
 			stmtScript = con.prepareStatement("INSERT INTO endereco ("
 					+ "idAtleta,"
 					+ "endereco,"
-					+ "numero"
-					+ "complemento"
-					+ "bairro"
-					+ "estado"
-					+ "cidade"
-					+ "telefone"
+					+ "numero,"
+					+ "complemento,"
+					+ "bairro,"
+					+ "estado,"
+					+ "cidade,"
+					+ "telefone,"
 					+ "tpEndereco"
 					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		else
@@ -52,7 +52,7 @@ public class EnderecoDAO {
 		
 		stmtScript.setInt(1,idPessoa);
 		stmtScript.setString(2, endereco.getEndereco());
-		stmtScript.setString(3, endereco.getNumero());
+		stmtScript.setInt(3, endereco.getNumero());
 		stmtScript.setString(4, endereco.getComplemento());
 		stmtScript.setString(5, endereco.getBairro());
 		stmtScript.setString(6, endereco.getEstado());

@@ -1,15 +1,15 @@
-//window.onload = function() {
-//			new dgCidadesEstados(
-//				document.getElementById('estado'),
-//				document.getElementById('cidade'),
-//				true
-//			);
-//			new dgCidadesEstadosCom(
-//					document.getElementById('estadoCom'),
-//					document.getElementById('cidadeCom'),
-//					true
-//				);		
-//}
+window.onload = function() {
+			new dgCidadesEstados(
+				document.getElementById('estado'),
+				document.getElementById('cidade'),
+				true
+			);
+			new dgCidadesEstadosCom(
+				document.getElementById('estadoCom'),
+				document.getElementById('cidadeCom'),
+				true
+			);		
+}
 
 $('#selectInicio').on('change', function () {
 	var url = this.value.toString();
@@ -76,8 +76,7 @@ function passar(){
 		var email = document.getElementById("emailSenha"); 
 		email.value = valorA.value; 
 		}; 
-
-
+		
 //Plugin de Horário
 function DemoTimePicker(){
 	$('#hrInicio').timepicker({setDate: new Date()});

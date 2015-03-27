@@ -29,7 +29,7 @@ public class ResponsavelDAO {
 				+ "email, "
 				+ "celular"
 				+ ") "
-				+ "VALUES ?, ?, ?");
+				+ "VALUES (?, ?, ?)");
 		stmtScript.setString(1, responsavel.getNome());
 		stmtScript.setString(2, responsavel.getEmail());
 		stmtScript.setString(3, responsavel.getCelular());

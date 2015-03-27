@@ -17,7 +17,7 @@
 				<span class="hidden-xs">Responsáveis</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="SecretariaController?action=jspNovoResponsavel">Novo</a></li>
+				<li><a class="" href="SecretariaController?action=jspNovoResponsavel">Novo</a></li>
 				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaResponsavel">Buscar</a></li>
 			</ul>
 		</li>				
@@ -27,7 +27,7 @@
 				<span class="hidden-xs">Usuários</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="" href="SecretariaController?action=jspNovoUsuario">Novo</a></li>
+				<li><a class="ajax-link" href="SecretariaController?action=jspNovoUsuario">Novo</a></li>
 				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaUsuario">Buscar</a></li>
 			</ul>
 		</li>
