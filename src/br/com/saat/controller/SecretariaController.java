@@ -1,10 +1,10 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +23,6 @@ import br.com.saat.model.Perfis;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.TpEndereco;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.EnderecoDAO;
 import br.com.saat.model.dao.ResponsavelDAO;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
