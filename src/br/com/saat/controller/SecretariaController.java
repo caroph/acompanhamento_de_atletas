@@ -238,6 +238,31 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaUsuarios", lista);
 			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
 			
+		}else if("desativarUsuario".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			Usuario usuario = new Usuario();
+			usuario.setIdPessoa(Integer.parseInt(request.getParameter("idUsuario")));
+			
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			List<Usuario> lista = new ArrayList<Usuario>();
+			
+			try{
+                if(negocio.desativar(usuario)){
+                	msgSucesso = "Usuário desativado com sucesso!";
+                }else{
+                	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
+                }
+                lista = negocio.buscarUsuarios();
+            }catch(Exception ex){
+               msg = ex.getMessage();                    
+            }			
+			
+			request.setAttribute("listaUsuarios", lista);
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
+			
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 			

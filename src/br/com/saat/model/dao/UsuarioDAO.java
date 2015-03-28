@@ -156,4 +156,18 @@ public class UsuarioDAO {
 		}	
 		return lista;
 	}
+
+	public boolean desativar(Usuario usuario) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE usuario SET flCadastroAtivo = 0 WHERE idUsuario = ?");
+		stmtScript.setInt(1, usuario.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
+	}
 }

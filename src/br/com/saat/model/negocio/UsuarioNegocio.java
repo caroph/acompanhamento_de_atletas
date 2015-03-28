@@ -152,4 +152,16 @@ public class UsuarioNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os usuarios");
 		}
 	}
+
+	public boolean desativar(Usuario usuario) throws Exception{
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			if (dao.desativar(usuario)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao desativar o usuário!");
+		}
+		return false;
+	}
 }

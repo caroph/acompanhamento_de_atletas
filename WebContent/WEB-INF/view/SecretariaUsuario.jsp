@@ -33,6 +33,18 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content no-padding">
+									<c:if test="${ msg != null && msg != ''}">
+											<div class="alert alert-danger">
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msg}"></c:out>       
+									    	</div>
+								        </c:if>
+								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+											<div class="alert alert-success">
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msgSucesso}"></c:out>       
+									    	</div>
+								        </c:if>
 									<table
 										class="table table-bordered table-striped table-hover table-heading table-datatable"
 										id="datatable">
@@ -55,9 +67,12 @@
 													<td><c:out value='${usuario.telefone}' /></td>
 													<td><c:out value='${usuario.celular}' /></td>
 													<td align="center">
-														<a class="btn btn-info" href="">Visualizar</a>
-														<a class="btn btn-primary" href="" data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
-														<a class="btn btn-danger" href="" data-confirm="Deseja realmente desativar o usuário selecionado?">Desativar</a>
+														<a class="btn btn-info" href="#">Visualizar</a>
+														<a class="btn btn-primary" href="#" data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
+														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
+															<a class="btn btn-danger" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
+															data-confirm="Deseja realmente excluir o usuário selecionado?">Excluir</a>
+														</c:if>
 													</td>
 												</tr>
 											</c:forEach>
