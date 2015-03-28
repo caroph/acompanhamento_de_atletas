@@ -68,7 +68,8 @@
 													<td><c:out value='${usuario.celular}' /></td>
 													<td align="center">
 														<a class="btn btn-info" href="#">Visualizar</a>
-														<a class="btn btn-primary" href="#" data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
+														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
+														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
 															<a class="btn btn-danger" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
 															data-confirm="Deseja realmente excluir o usuário selecionado?">Excluir</a>

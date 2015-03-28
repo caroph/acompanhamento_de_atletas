@@ -36,6 +36,7 @@
 									<form class="form-horizontal" role="form"
 										action="SecretariaController?action=inserirUsuario"
 										method="post">
+										<input type="hidden" name="idUsuario" value="${usuario.idPessoa}"/>
 										<c:if test="${ msg != null && msg != ''}">
 											<div class="alert alert-danger">
 										        <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -54,34 +55,38 @@
 												<select class="form-control" id="perfil" name="perfil">
 													<option value="">Selecione</option>
 													<c:forEach var="perfil" items="${listaPerfis}">
-														<option value="<c:out value='${perfil.valor}'/>"><c:out
-																value="${perfil.nome}" /></option>
+														<c:if test="${perfil.valor == usuario.perfil}">
+			                                                <option selected value="<c:out value='${perfil.valor}'/>"><c:out value="${perfil.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${perfil.valor != usuario.perfil}">
+															<option value="<c:out value='${perfil.valor}'/>"><c:out value="${perfil.nome}" /></option>
+														</c:if>
 													</c:forEach>
 												</select>
 											</div>
 											<div class="col-sm-4">
 												<label for="nome" class="control-label">Nome:</label> 
-												<input type="text" class="form-control" id="nome" name="nome" />
+												<input type="text" value="${usuario.nome}" class="form-control" id="nome" name="nome" />
 											</div>
 											<div class="col-sm-4">
 												<label for="cref" class="control-label">CREF:</label> <input
-													type="text" class="form-control" id="cref" name="cref" />
+													type="text" value="${usuario.CREF}" class="form-control" id="cref" name="cref" />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="email" class="control-label">Email:</label> <input
-													type="email" class="form-control" id="email" name="email" />
+													type="email" value="${usuario.email}" class="form-control" id="email" name="email" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telresidencial" class="control-label">Telefone
 													Residencial:</label> <input type="text" class="form-control"
-													id="telresidencial" name="telresidencial" />
+													id="telresidencial" value="${usuario.telefone}" name="telresidencial" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telcelular" class="control-label">Telefone
 													Celular:</label> <input type="text" class="form-control"
-													id="telcelular" name="telcelular"/>
+													id="telcelular" value="${usuario.celular}" name="telcelular"/>
 											</div>
 										</div>
 										<div class="form-group">

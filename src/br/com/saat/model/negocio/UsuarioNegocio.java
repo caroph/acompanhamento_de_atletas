@@ -93,6 +93,8 @@ public class UsuarioNegocio {
 		UsuarioDAO dao = new UsuarioDAO();
 		
 		try{
+			boolean email = dao.buscarEmail(usuario.getEmail(), usuario.getIdPessoa());
+			
 			if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
 					&& usuario.getCREF().equals("")){
 				lista.add(false);
@@ -103,7 +105,7 @@ public class UsuarioNegocio {
 			}else if(usuario.getNome().equals("")){
 				lista.add(false);
 				lista.add("O campo 'Nome' é obrigatório!");
-			}else if(dao.buscarEmail(usuario.getEmail())){
+			}else if(email){
 				lista.add(false);
 				lista.add("Erro! Existe um usuário com o mesmo email no sistema!");
 			}else {
@@ -161,6 +163,28 @@ public class UsuarioNegocio {
 			}
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao desativar o usuário!");
+		}
+		return false;
+	}
+
+	public Usuario buscarUsuario(int idUsuario) throws Exception{
+		try{
+			UsuarioDAO dao = new UsuarioDAO();
+			Usuario usuario = dao.buscarUsuario(idUsuario);
+			return usuario;
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o usuário!");
+		}
+	}
+
+	public boolean alterar(Usuario usuario) throws Exception {
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			if (dao.alterar(usuario)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o usuario");
 		}
 		return false;
 	}

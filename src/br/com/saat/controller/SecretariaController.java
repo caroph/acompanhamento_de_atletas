@@ -192,6 +192,7 @@ public class SecretariaController extends Controller {
 			}
 			if(!exception){
 				//Dados do usuário
+				String idUsuario = request.getParameter("idUsuario");
 				usuario.setNome(request.getParameter("nome"));
 				usuario.setCREF(request.getParameter("cref"));
 				usuario.setEmail(request.getParameter("email"));
@@ -199,16 +200,27 @@ public class SecretariaController extends Controller {
 				usuario.setTelefone(request.getParameter("telresidencial"));
 				
 				try{
+					if(!idUsuario.equals("") && !idUsuario.equals("0")){
+						usuario.setIdPessoa(Integer.parseInt(idUsuario));
+					}
 					//Valida dados do usuário
 					List<Object> listaValidacao = negocio.validaDados(usuario);
 					boolean valida = (boolean) listaValidacao.get(0);
 				
 					if(valida){
-	        			if(negocio.inserir(usuario)){
-	        				msgSucesso = "Usuário salvo com sucesso!";
-	        			}else{
-	        				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
-	        			}
+						if(usuario.getIdPessoa() == 0){
+							if(negocio.inserir(usuario)){
+		        				msgSucesso = "Usuário cadastrado com sucesso!";
+		        			}else{
+		        				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+		        			}
+						}else{
+							if(negocio.alterar(usuario)){
+		        				msgSucesso = "Usuário alterado com sucesso!";
+		        			}else{
+		        				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+		        			}
+						}
 					}else{
 						msg = (String) listaValidacao.get(1);
 					}
@@ -223,6 +235,9 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaPerfis", lista);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
+			if(msgSucesso.equals("")){
+				request.setAttribute("usuario", usuario);
+			}
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 			
 		}else if("jspBuscaUsuario".equals(action)){
@@ -237,6 +252,26 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("listaUsuarios", lista);
 			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
+			
+		}else if("editarUsuario".equals(action)){
+			String msg = "";
+			int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+			Usuario usuario = new Usuario();
+			
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			
+			try{
+				usuario = negocio.buscarUsuario(idUsuario);
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
+			
+			PerfisNegocio perfisNegocio = new PerfisNegocio();
+			List<Perfis> lista = perfisNegocio.listaPerfis();
+			
+			request.setAttribute("listaPerfis", lista);
+			request.setAttribute("usuario", usuario);
+			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 			
 		}else if("desativarUsuario".equals(action)){
 			String msg = "";

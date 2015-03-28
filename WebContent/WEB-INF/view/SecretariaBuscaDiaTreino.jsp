@@ -61,7 +61,7 @@
 													<td align="center"><c:out value='${horaFFormatada}' /></td>
 													<td align="center"><a class="btn btn-danger"
 														href='SecretariaController?action=desativarDiaTreino&idDiaTreino=${treino.idDiaTreino}'
-														data-confirm="Deseja realmente desativar o dia de treino selecionado?">Desativar</a></td>
+														data-confirm="Deseja realmente excluir o dia de treino selecionado?">Excluir</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

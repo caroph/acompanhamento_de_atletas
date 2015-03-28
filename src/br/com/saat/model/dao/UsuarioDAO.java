@@ -125,10 +125,17 @@ public class UsuarioDAO {
 		return false;
 	}
 	
-	public boolean buscarEmail(String email) throws SQLException{		
-		stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ?");
-		stmtScript.setString(1, email);
-		
+	public boolean buscarEmail(String email, int idUsuario) throws SQLException{	
+		if(idUsuario == 0){
+			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ?");
+			stmtScript.setString(1, email);
+		}
+		else{
+			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ? and idUsuario != ?");
+			stmtScript.setString(1, email);
+			stmtScript.setInt(2, idUsuario);
+		}
+				
 		ResultSet rs = stmtScript.executeQuery();
 		
 		if(rs.next()){
@@ -162,6 +169,50 @@ public class UsuarioDAO {
 		
 		stmtScript = con.prepareStatement("UPDATE usuario SET flCadastroAtivo = 0 WHERE idUsuario = ?");
 		stmtScript.setInt(1, usuario.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
+	}
+
+	public Usuario buscarUsuario(int idUsuario) throws SQLException {
+		stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, perfil, cref FROM usuario "
+				+ "WHERE idUsuario = ?");
+		stmtScript.setInt(1, idUsuario);
+
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			Usuario usuario = new Usuario();
+			usuario.setIdPessoa(rs.getInt("idUsuario"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setEmail(rs.getString("email"));
+			usuario.setTelefone(rs.getString("telefone"));
+			usuario.setCelular(rs.getString("celular"));
+			usuario.setPerfil(rs.getInt("perfil"));
+			usuario.setCREF(rs.getString("cref"));
+			return usuario;
+		}
+		
+		return null;
+	}
+
+	public boolean alterar(Usuario usuario) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE usuario SET nome = ?, email = ?, telefone = ?, celular = ?, perfil = ?"
+				+ ", cref = ? WHERE idUsuario = ?");
+		
+		stmtScript.setString(1, usuario.getNome());
+		stmtScript.setString(2, usuario.getEmail());
+		stmtScript.setString(3, usuario.getTelefone());
+		stmtScript.setString(4, usuario.getCelular());
+		stmtScript.setInt(5, usuario.getPerfil());
+		stmtScript.setString(6, usuario.getCREF());
+		stmtScript.setInt(7, usuario.getIdPessoa());
 		
 		rows = stmtScript.executeUpdate();
 		
