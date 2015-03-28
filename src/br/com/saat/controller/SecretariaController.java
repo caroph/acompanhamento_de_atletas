@@ -196,21 +196,21 @@ public class SecretariaController extends Controller {
 				usuario.setCelular(request.getParameter("telcelular"));
 				usuario.setTelefone(request.getParameter("telresidencial"));
 				
-				List<Object> listaValidacao = negocio.validaDados(usuario);
-				boolean valida = (boolean) listaValidacao.get(0);
+				try{
+					List<Object> listaValidacao = negocio.validaDados(usuario);
+					boolean valida = (boolean) listaValidacao.get(0);
 				
-				if(valida){
-					try{
+					if(valida){
 	        			if(negocio.inserir(usuario)){
 	        				msgSucesso = "Usuário salvo com sucesso!";
 	        			}else{
 	        				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 	        			}
-	        		}catch(Exception ex){
-	        			msg = ex.getMessage();                    
-	        		}
-				}else{
-					msg = (String) listaValidacao.get(1);
+					}else{
+						msg = (String) listaValidacao.get(1);
+					}
+				}catch(Exception ex){
+					msg = ex.getMessage();  
 				}
 			}
 			

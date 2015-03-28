@@ -122,4 +122,16 @@ public class UsuarioDAO {
 		}		
 		return false;
 	}
+	
+	public boolean buscarEmail(String email) throws SQLException{		
+		stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ?");
+		stmtScript.setString(1, email);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			return true;
+		}		
+		return false;
+	}
 }

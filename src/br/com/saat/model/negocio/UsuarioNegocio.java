@@ -87,24 +87,30 @@ public class UsuarioNegocio {
 		return retorno;
 	}
 	
-	public List<Object> validaDados(Usuario usuario){
+	public List<Object> validaDados(Usuario usuario) throws Exception{
 		List<Object> lista = new ArrayList<Object>();
+		UsuarioDAO dao = new UsuarioDAO();
 		
-		if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
-				&& usuario.getCREF().equals("")){
-			lista.add(false);
-			lista.add("O campo 'CREF' é obrigatório!");
-		}else if(usuario.getEmail().equals("")){
-			lista.add(false);
-			lista.add("O campo 'Email' é obrigatório!");
-		}else if(usuario.getNome().equals("")){
-			lista.add(false);
-			lista.add("O campo 'Nome' é obrigatório!");
-		}else {
-			lista.add(true);
+		try{
+			if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
+					&& usuario.getCREF().equals("")){
+				lista.add(false);
+				lista.add("O campo 'CREF' é obrigatório!");
+			}else if(usuario.getEmail().equals("")){
+				lista.add(false);
+				lista.add("O campo 'Email' é obrigatório!");
+			}else if(usuario.getNome().equals("")){
+				lista.add(false);
+				lista.add("O campo 'Nome' é obrigatório!");
+			}else if(dao.buscarEmail(usuario.getEmail())){
+				lista.add(false);
+				lista.add("Erro! Existe um usuário com o mesmo email no sistema!");
+			}else {
+				lista.add(true);
+			}
+		}catch(Exception ex){
+			throw new Exception("Ocorreu algum erro ao buscar usuários com o mesmo email");
 		}
-		
-		
 		
 		return lista;
 	}
