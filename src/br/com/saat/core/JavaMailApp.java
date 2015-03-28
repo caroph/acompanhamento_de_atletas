@@ -46,7 +46,7 @@ public class JavaMailApp {
         
         if(tipo == 1){
             
-            message.setSubject("SAAT - Recuperação de Senha");//Assunto
+            message.setSubject("SAAT - Senha do Usuário");//Assunto
             message.setText("Olá!\n\n"
             		+ "Sua nova senha é: " + novaSenha + "\n\n"
     				+ "Favor alterá-la o mais breve possível!\n\n"

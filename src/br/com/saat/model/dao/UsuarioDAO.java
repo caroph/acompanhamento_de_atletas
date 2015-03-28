@@ -22,8 +22,6 @@ public class UsuarioDAO {
     }
 	
 	public Usuario autenticar(String email, String senha) throws SQLException{
-//		stmtAutenticar = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, senha, "
-//				+ "perfil, CREF FROM usuario WHERE email LIKE ? AND senha LIKE ?");
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, perfil "
 				+ "FROM usuario WHERE email LIKE ? AND senha LIKE ? AND flCadastroAtivo = 1");
         Usuario usuario = new Usuario();
@@ -44,7 +42,6 @@ public class UsuarioDAO {
     }
 
 	public Usuario buscarUsuCookie(int idUsuario) throws SQLException {
-		// TODO Auto-generated method stub
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, perfil "
 				+ "FROM usuario WHERE idUsuario = ? AND flCadastroAtivo = 1");
         Usuario usuario = new Usuario();
@@ -82,7 +79,6 @@ public class UsuarioDAO {
 	}
 
 	public boolean esqueciSenha(String emailSenha, String novaSenha) throws SQLException {
-		// TODO Auto-generated method stub
 		boolean retorno = false;
 		int rows;
 		
@@ -103,5 +99,27 @@ public class UsuarioDAO {
 		}
 		
 		return retorno;
+	}
+
+	public boolean inserir(Usuario usuario) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("INSERT INTO usuario (nome, email, telefone, celular, senha, perfil, cref) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)");
+		
+		stmtScript.setString(1, usuario.getNome());
+		stmtScript.setString(2, usuario.getEmail());
+		stmtScript.setString(3, usuario.getTelefone());
+		stmtScript.setString(4, usuario.getCelular());
+		stmtScript.setString(5, usuario.getSenha());
+		stmtScript.setInt(6, usuario.getPerfil());
+		stmtScript.setString(7, usuario.getCREF());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
 	}
 }

@@ -1,6 +1,8 @@
 package br.com.saat.model.negocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import br.com.saat.core.Constants;
@@ -83,5 +85,53 @@ public class UsuarioNegocio {
 			throw new Exception("Ocorreu algum erro no banco de dados! Favor tentar novamente.");
 		}
 		return retorno;
+	}
+	
+	public List<Object> validaDados(Usuario usuario){
+		List<Object> lista = new ArrayList<Object>();
+		
+		if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
+				&& usuario.getCREF().equals("")){
+			lista.add(false);
+			lista.add("O campo 'CREF' é obrigatório!");
+		}else if(usuario.getEmail().equals("")){
+			lista.add(false);
+			lista.add("O campo 'Email' é obrigatório!");
+		}else if(usuario.getNome().equals("")){
+			lista.add(false);
+			lista.add("O campo 'Nome' é obrigatório!");
+		}else {
+			lista.add(true);
+		}
+		
+		
+		
+		return lista;
+	}
+	
+	public boolean inserir(Usuario usuario) throws Exception{
+		Criptografia crip = new Criptografia();
+		Random gerador = new Random();
+		String novaSenha = Integer.toString(gerador.nextInt());
+		String novaSenhaCrip = crip.criptografa(novaSenha);
+		
+		usuario.setSenha(novaSenhaCrip);
+		
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			if (dao.inserir(usuario)) {
+//				try {
+//					JavaMailApp email = new JavaMailApp();
+//					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
+//				} catch (Exception e) {
+//					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usuario");
+//				}
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao inserir o usuario");
+		}
+
+		return false;
 	}
 }

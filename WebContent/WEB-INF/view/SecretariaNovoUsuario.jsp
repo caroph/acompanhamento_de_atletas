@@ -33,48 +33,55 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content">
-									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirUsuario"
+									<form class="form-horizontal" role="form"
+										action="SecretariaController?action=inserirUsuario"
 										method="post">
-										<c:if test="${ msg != null }">
+										<c:if test="${ msg != null && msg != ''}">
+											<div class="alert alert-danger">
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msg}"></c:out>       
+									    	</div>
+								        </c:if>
+								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
 											<div class="alert alert-success">
-												<a href="#" class="close" data-dismiss="alert">&times;</a>
-												<c:out value="${msg}"></c:out>
-											</div>
-										</c:if>
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msgSucesso}"></c:out>       
+									    	</div>
+								        </c:if>
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="perfil" class=" control-label">Perfil:</label> 
-<!-- 												<select -->
-<!-- 													class="form-control" id="sel1"> -->
-<!-- 													<option value="">Selecione</option> -->
-<%-- 													<c:forEach var="equipe" items="${listaEquipes}"> --%>
-<%-- 						                            	<option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option> --%>
-<%-- 						                            </c:forEach> --%>
-<!-- 												</select> -->
+												<select class="form-control" id="perfil" name="perfil">
+													<option value="">Selecione</option>
+													<c:forEach var="perfil" items="${listaPerfis}">
+														<option value="<c:out value='${perfil.valor}'/>"><c:out
+																value="${perfil.nome}" /></option>
+													</c:forEach>
+												</select>
 											</div>
 											<div class="col-sm-4">
-												<label for="nome" class="control-label">Nome:</label> <input
-													type="text" class="form-control" id="nome" />
+												<label for="nome" class="control-label">Nome:</label> 
+												<input type="text" class="form-control" id="nome" name="nome" />
 											</div>
 											<div class="col-sm-4">
 												<label for="cref" class="control-label">CREF:</label> <input
-													type="text" class="form-control" id="cref" />
+													type="text" class="form-control" id="cref" name="cref" />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="email" class="control-label">Email:</label> <input
-													type="email" class="form-control" id="email" />
+													type="email" class="form-control" id="email" name="email" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telresidencial" class="control-label">Telefone
 													Residencial:</label> <input type="text" class="form-control"
-													id="telresidencial" />
+													id="telresidencial" name="telresidencial" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telcelular" class="control-label">Telefone
 													Celular:</label> <input type="text" class="form-control"
-													id="telcelular" />
+													id="telcelular" name="telcelular"/>
 											</div>
 										</div>
 										<div class="form-group">

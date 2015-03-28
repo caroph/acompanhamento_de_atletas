@@ -41,10 +41,16 @@
 								</div>
 								<div class="box-content">
 									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirDiaTreino" method="post">
-										<c:if test="${ msg != null }">
-											<div class="alert alert-success">
+										<c:if test="${ msg != null && msg != ''}">
+											<div class="alert alert-danger">
 										        <a href="#" class="close" data-dismiss="alert">&times;</a>
 										            <c:out value="${msg}"></c:out>       
+									    	</div>
+								        </c:if>
+								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+											<div class="alert alert-success">
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msgmsgSucesso}"></c:out>       
 									    	</div>
 								        </c:if>
 										<div class="form-group">

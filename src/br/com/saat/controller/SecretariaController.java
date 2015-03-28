@@ -114,7 +114,6 @@ public class SecretariaController extends Controller {
                 		}
                 	}
 				} catch (NumberFormatException e) {
-					// TODO: handle exception
 					msg = "Favor selecionar corretamente o Tipo de Equipe e/ou Dia da Semana!";
 				}
             } catch (java.text.ParseException e) {
@@ -177,16 +176,52 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 		}else if("inserirUsuario".equals(action)){
 			//Inserir novo usuário
+			boolean exception = false;
 			String msg = "";
+			String msgSucesso = "";
 			Usuario usuario = new Usuario();
 			UsuarioNegocio negocio = new UsuarioNegocio();
 			
-			//int perfil = Integer.parseInt(request.getParameter("perfil"));
-			String nome = request.getParameter("nome");
-			String cref = request.getParameter("cref");
-			String email = request.getParameter("email");
-			String telResidencial = request.getParameter("telresidencial");
-			String telCelular = request.getParameter("telcelular");
+			try{
+				String perfil = request.getParameter("perfil");
+				usuario.setPerfil(Integer.parseInt(perfil));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o Perfil do Usuário!";
+				exception = true;
+			}
+			if(!exception){
+				usuario.setNome(request.getParameter("nome"));
+				usuario.setCREF(request.getParameter("cref"));
+				usuario.setEmail(request.getParameter("email"));
+				usuario.setCelular(request.getParameter("telcelular"));
+				usuario.setTelefone(request.getParameter("telresidencial"));
+				
+				List<Object> listaValidacao = negocio.validaDados(usuario);
+				boolean valida = (boolean) listaValidacao.get(0);
+				
+				if(valida){
+					try{
+	        			if(negocio.inserir(usuario)){
+	        				msgSucesso = "Usuário salvo com sucesso!";
+	        			}else{
+	        				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+	        			}
+	        		}catch(Exception ex){
+	        			msg = ex.getMessage();                    
+	        		}
+				}else{
+					msg = (String) listaValidacao.get(1);
+				}
+			}
+			
+			PerfisNegocio perfisNegocio = new PerfisNegocio();
+			List<Perfis> lista = perfisNegocio.listaPerfis();
+			
+			request.setAttribute("listaPerfis", lista);
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
+			
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);			
 		}else if ("inserirResponsavel".equals(action)){
