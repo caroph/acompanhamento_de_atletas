@@ -174,6 +174,7 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("listaPerfis", lista);
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
+			
 		}else if("inserirUsuario".equals(action)){
 			//Inserir novo usuário
 			boolean exception = false;
@@ -190,6 +191,7 @@ public class SecretariaController extends Controller {
 				exception = true;
 			}
 			if(!exception){
+				//Dados do usuário
 				usuario.setNome(request.getParameter("nome"));
 				usuario.setCREF(request.getParameter("cref"));
 				usuario.setEmail(request.getParameter("email"));
@@ -197,6 +199,7 @@ public class SecretariaController extends Controller {
 				usuario.setTelefone(request.getParameter("telresidencial"));
 				
 				try{
+					//Valida dados do usuário
 					List<Object> listaValidacao = negocio.validaDados(usuario);
 					boolean valida = (boolean) listaValidacao.get(0);
 				
@@ -222,8 +225,22 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 			
+		}else if("jspBuscaUsuario".equals(action)){
+			//Carregar página Buscar Dias de Treinos
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			List<Usuario> lista = new ArrayList<Usuario>();
+			try{
+				lista = negocio.buscarUsuarios();
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
+			
+			request.setAttribute("listaUsuarios", lista);
+			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
+			
 		}else if ("jspNovoResponsavel".equals(action)){
-			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);			
+			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
+			
 		}else if ("inserirResponsavel".equals(action)){
 			String msg = "";
 			Responsavel responsavel;
@@ -298,8 +315,6 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 		}
-		
-		
 		
 		rd = getServletContext().getRequestDispatcher(retorno);
 		rd.forward(request, response);

@@ -8,6 +8,8 @@ import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Usuario;
 
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
 	private Connection con;
@@ -133,5 +135,25 @@ public class UsuarioDAO {
 			return true;
 		}		
 		return false;
+	}
+
+	public List<Usuario> buscarUsuarios() throws SQLException {
+		List<Usuario> lista = new ArrayList<Usuario>();
+		stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, telefone, celular, perfil, cref FROM usuario WHERE "
+				+ "flCadastroAtivo = 1");		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Usuario usuario = new Usuario();
+			usuario.setIdPessoa(rs.getInt("idUsuario"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setEmail(rs.getString("email"));
+			usuario.setTelefone(rs.getString("telefone"));
+			usuario.setCelular(rs.getString("celular"));
+			usuario.setPerfil(rs.getInt("perfil"));
+			usuario.setCREF(rs.getString("cref"));
+			lista.add(usuario);
+		}	
+		return lista;
 	}
 }

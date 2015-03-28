@@ -8,6 +8,7 @@ import java.util.Random;
 import br.com.saat.core.Constants;
 import br.com.saat.core.Criptografia;
 import br.com.saat.core.JavaMailApp;
+import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.UsuarioDAO;
@@ -126,6 +127,7 @@ public class UsuarioNegocio {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 			if (dao.inserir(usuario)) {
+				//Comentado para não ficar enviando email sempre que salvar um usuário.
 //				try {
 //					JavaMailApp email = new JavaMailApp();
 //					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
@@ -139,5 +141,15 @@ public class UsuarioNegocio {
 		}
 
 		return false;
+	}
+
+	public List<Usuario> buscarUsuarios() throws Exception{
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			List<Usuario> lista = dao.buscarUsuarios();
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os usuarios");
+		}
 	}
 }
