@@ -61,13 +61,13 @@
 										<tbody>
 											<c:forEach var="usuario" items="${listaUsuarios}">
 												<tr>
-													<td><c:out value='${usuario.nome}' /></td>
-													<td><c:out value='${usuario.getNomePerfil()}' /></td>
-													<td><c:out value='${usuario.email}' /></td>
-													<td><c:out value='${usuario.telefone}' /></td>
-													<td><c:out value='${usuario.celular}' /></td>
-													<td align="center">
-														<a class="btn btn-info" href="#">Visualizar</a>
+													<td id="nome"><c:out value='${usuario.nome}' /></td>
+													<td id="perfil"><c:out value='${usuario.getNomePerfil()}' /></td>
+						 							<td id="email"><c:out value='${usuario.email}' /></td>
+													<td id="telefone"><c:out value='${usuario.telefone}' /></td>
+													<td id="celular"><c:out value='${usuario.celular}' /></td>
+													<td align="left">
+														<a class="btn btn-info" data-toggle="modal" data-id="${usuario.idPessoa}" data-target="#detalhes">Visualizar</a>
 														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
 														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
@@ -88,6 +88,28 @@
 			<!--End Content-->
 		</div>
 	</div>
+	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
+	class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
+					</div>
+					<div id="orderDetails" class="modal-body"></div>
+					<div class="modal-body">
+						Nome: XXXXX <br/>
+						Perfil: X<br/>
+						Emial: xxxx@gmail.com<br/>
+						Telefone Residencial: 333333333<br/>
+						Telefone Celular: 99999999<br/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>	
 
 	<%@include file="/layout/footer.jsp"%>
 	<script src="<%=Constants.JS%>/scriptTables.js"></script>
