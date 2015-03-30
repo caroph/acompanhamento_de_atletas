@@ -8,7 +8,6 @@ import java.util.Random;
 import br.com.saat.core.Constants;
 import br.com.saat.core.Criptografia;
 import br.com.saat.core.JavaMailApp;
-import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.UsuarioDAO;

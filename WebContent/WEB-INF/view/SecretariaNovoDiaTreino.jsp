@@ -27,14 +27,8 @@
 										<span>Dias de Treino</span>
 									</div>
 									<div class="box-icons">
-										<a class="collapse-link">
-											<i class="fa fa-chevron-up"></i>
-										</a>
 										<a class="expand-link">
 											<i class="fa fa-expand"></i>
-										</a>
-										<a class="close-link">
-											<i class="fa fa-times"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
@@ -50,7 +44,7 @@
 								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
 											<div class="alert alert-success">
 										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msgmsgSucesso}"></c:out>       
+										            <c:out value="${msgSucesso}"></c:out>       
 									    	</div>
 								        </c:if>
 										<div class="form-group">
@@ -83,9 +77,9 @@
 										</div>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10 text-right">
-													<a href="SecretariaController" class="btn btn-danger">Cancelar</a>
+													<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
 													<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
-													<button type="submit" class="btn btn-primary">Salvar</button>
+													<button type="submit" class="btn btn-primary" >Salvar</button>
 												</div>
 											</div>
 									</form>

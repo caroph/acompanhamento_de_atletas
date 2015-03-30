@@ -77,16 +77,21 @@ function passar(){
 		email.value = valorA.value; 
 		}; 
 		
-//Plugin de Horário
+//Plugin de Horário e Calendario
 function DemoTimePicker(){
 	$('#hrInicio').timepicker({setDate: new Date()});
 	$('#hrFim').timepicker({setDate: new Date()});
 }
 
-$(document).ready(function() {				
+$(document).ready(function() {			
+	// Initialize datepicker
+	$('#dtNascimento').datepicker({setDate: new Date()});
+	$('#dtValidade').datepicker({setDate: new Date()});
 	// Load Timepicker plugin
 	LoadTimePickerScript(DemoTimePicker);
 });
+
+//Plugin de Calendário
 
 //Limpar Campos
 function LimparCampos() {

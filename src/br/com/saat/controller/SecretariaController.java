@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
+import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.DiasSemana;
 import br.com.saat.model.Endereco;
@@ -22,8 +23,10 @@ import br.com.saat.model.Equipes;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.TpEndereco;
+import br.com.saat.model.TpPessoa;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.ResponsavelDAO;
+import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EnderecoNegocio;
@@ -64,6 +67,126 @@ public class SecretariaController extends Controller {
 		//Carregar página Novo Atleta
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
+		}else if("inserirAtleta".equals(action)){
+			boolean exception = false;
+			String escolha;
+			String msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			String msgSucesso = "";
+			String idAtleta;
+			int numero = 0;
+			
+			Atleta atleta = new Atleta();
+			AtletaNegocio negocio = new AtletaNegocio();
+			EnderecoNegocio endNegocio = new EnderecoNegocio();
+			
+			String nascimento = request.getParameter("dtNascimento");
+			String validade = request.getParameter("dtValidade");			
+            Date dtNascimento = null;
+            Date dtValidade = null; 
+            
+            try{
+            	DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+            	dtNascimento = (Date)formatter.parse(nascimento);
+            	dtValidade = (Date)formatter.parse(validade);
+			}catch(Exception ex){
+				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
+            try{
+            	numero = Integer.parseInt(request.getParameter("numero"));
+			}catch(Exception ex){
+				msg = "Favor informar corretamente o campo 'Número' do endereço";
+				exception = true;
+			}
+			if(!exception){
+				//Dados do Atleta
+				idAtleta = request.getParameter("idAtleta");
+				atleta.setNome(request.getParameter("nome"));
+				atleta.setEmail(request.getParameter("email"));
+				atleta.setCelular(request.getParameter("celular"));
+				atleta.setNrMatricula(request.getParameter("nrMatricula"));
+				atleta.setNrCadCBT(request.getParameter("nrCadCBT"));
+				atleta.setNrCadFPT(request.getParameter("nrCadFPT"));
+				atleta.setDtNascimento(dtNascimento);
+				atleta.setRG(request.getParameter("rg"));
+				atleta.setCPF(request.getParameter("cpf"));
+				atleta.setEscola(request.getParameter("escola"));
+				atleta.setSerie(request.getParameter("serie"));
+				atleta.setTurno(request.getParameter("turno"));
+				escolha = request.getParameter("acompPsicologico");
+				atleta.setAcompPsicologico("sim".equals(escolha)?true:false);
+				atleta.setMedicacaoAutorizada(request.getParameter("nmMedicoResponsavel"));
+				atleta.setTelMedicoResponsal(request.getParameter("telMedicoResponsavel"));
+				atleta.setConvenio(request.getParameter("convenio"));
+				escolha = request.getParameter("flAlergias");
+				atleta.setFlAlergias("sim".equals(escolha)?true:false);
+				atleta.setDsAlergias(request.getParameter("dsAlergias"));
+				escolha = request.getParameter("flMedicacao");
+				atleta.setFlMedicacao("sim".equals(escolha)?true:false);
+				atleta.setDsMedicacao(request.getParameter("dsMedicacao"));
+				atleta.setNmContatoEmergencia(request.getParameter("nmContatoEmergencia"));
+				atleta.setTelContatoEmergencia(request.getParameter("telContatoEmergencia"));
+				atleta.setGrauParentescoContatoEmergencia(request.getParameter("grauParentescoContatoEmergencia"));
+				atleta.setDtValidade(dtValidade);
+				
+				Endereco endereco = new Endereco();
+				endereco.setEndereco(request.getParameter("endereco"));
+				endereco.setNumero(numero);
+				endereco.setComplemento(request.getParameter("complemento"));
+				endereco.setBairro(request.getParameter("bairro"));
+				endereco.setEstado(request.getParameter("estado"));
+				endereco.setTelefone(request.getParameter("telefone"));
+				endereco.setTpEndereco(1);
+				
+				atleta.setEndereco(endereco);
+			
+				try {
+					if( !"".equals(idAtleta) && !"0".equals(idAtleta) ){
+						atleta.setIdPessoa(Integer.parseInt(idAtleta));
+					}
+					//Valida dados atleta
+					List<Object> listaValidacao = negocio.validaDados(atleta);
+					boolean valida = (boolean) listaValidacao.get(0);
+					
+					if(valida){
+						//Valida dados endereço
+						listaValidacao = endNegocio.validar(endereco);
+						valida = (boolean) listaValidacao.get(0);
+						
+						if(valida){
+							if(atleta.getIdPessoa() == 0){
+								//Inserindo Atleta
+								int idNovoAtleta = negocio.inserir(atleta); 
+								if(idNovoAtleta > 0){
+									//Inserindo endereço
+									if(endNegocio.inserir(endereco, idNovoAtleta, TpPessoa.Atleta.getValor())){
+										msgSucesso = "Atleta cadastrado com sucesso!";
+									}
+								}
+							}else{
+								if(negocio.alterar(atleta)){
+									msgSucesso = "Atleta alterado com sucesso!";
+								}
+							}
+						}else{
+							msg = (String) listaValidacao.get(1);
+						}
+					}else{
+						msg = (String) listaValidacao.get(1);
+					}
+				} catch (Exception ex) {
+					msg = ex.getMessage(); 
+				}
+			}
+
+			if("".equals(msgSucesso)){
+				request.setAttribute("msg", msg);
+				request.setAttribute("atleta", atleta);
+			}else{
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
+			
 		}else if("jspNovoDiaTreino".equals(action)){
 		//Carregar página Novo Dia de Treino
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
@@ -78,6 +201,8 @@ public class SecretariaController extends Controller {
 			
 		}else if("inserirDiaTreino".equals(action)){
 		//Inserir novo dia de treino
+			boolean exception = false;
+			String msgSucesso = "";
 			String msg = "";
 			DiaTreino dia = new DiaTreino();
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
@@ -87,38 +212,43 @@ public class SecretariaController extends Controller {
             Date hrInicio = null;
             Date hrFim = null; 
             
-            try {
+            try{
             	DateFormat formatter = new SimpleDateFormat("HH:mm");  
             	hrInicio = (Date)formatter.parse(inicio);
             	hrFim = (Date)formatter.parse(fim);
+			}catch(Exception ex){
+				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
+            
+            try{
+            	dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
+            	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o Tipo de Equipe e/ou Dia da Semana!";
+				exception = true;
+			}
+            
+            if(!exception){
+            	dia.setHrInicio(hrInicio);
+            	dia.setHrFim(hrFim);
             	
-            	try {
-            		dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
-                	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
-                	dia.setHrInicio(hrInicio);
-                	dia.setHrFim(hrFim);
-                	
-                	List<Object> listaValidacao = negocio.validaDados(dia);
-                	boolean valida = (boolean) listaValidacao.get(0);
-                	if(!valida){
-                		msg = (String) listaValidacao.get(1);
-                	}else{
-                		try{
-                			if(negocio.inserir(dia)){
-                				msg = "Dia de Treino salvo com sucesso!";
-                			}else{
-                				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
-                			}
-                		}catch(Exception ex){
-                			msg = ex.getMessage();                    
-                		}
-                	}
-				} catch (NumberFormatException e) {
-					msg = "Favor selecionar corretamente o Tipo de Equipe e/ou Dia da Semana!";
-				}
-            } catch (java.text.ParseException e) {
-            	msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
-			} 
+            	List<Object> listaValidacao = negocio.validaDados(dia);
+            	boolean valida = (boolean) listaValidacao.get(0);
+            	if(!valida){
+            		msg = (String) listaValidacao.get(1);
+            	}else{
+            		try{
+            			if(negocio.inserir(dia)){
+            				msgSucesso = "Dia de Treino salvo com sucesso!";
+            			}else{
+            				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+            			}
+            		}catch(Exception ex){
+            			msg = ex.getMessage();                    
+            		}
+            	}
+            }
 			
             EquipesNegocio negocioEquipe = new EquipesNegocio();
             List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
@@ -129,7 +259,11 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaSemana", listaSemana);
 			
-			request.setAttribute("msg", msg);
+			if(("").equals(msgSucesso)){
+				request.setAttribute("msg", msg);
+			}else{
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
 			
 			retorno = String.format("%s/SecretariaNovoDiaTreino.jsp", Constants.VIEW);
 		
@@ -241,7 +375,7 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
 			
 		}else if("jspBuscaUsuario".equals(action)){
-			//Carregar página Buscar Dias de Treinos
+			//Carregar página Buscar Usuario
 			UsuarioNegocio negocio = new UsuarioNegocio();
 			List<Usuario> lista = new ArrayList<Usuario>();
 			try{
@@ -251,10 +385,9 @@ public class SecretariaController extends Controller {
 			}
 			
 			request.setAttribute("listaUsuarios", lista);
-			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
+			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
 			
 		}else if("editarUsuario".equals(action)){
-			String msg = "";
 			int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 			Usuario usuario = new Usuario();
 			
