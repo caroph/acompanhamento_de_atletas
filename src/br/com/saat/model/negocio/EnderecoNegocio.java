@@ -13,7 +13,8 @@ public class EnderecoNegocio {
 		List<Object> lista = new ArrayList<Object>();
 		
 		if(endereco.getEndereco() == null || endereco.getEndereco().equals("")){
-			
+			lista.add(false);
+			lista.add("Informe corretamente o campo 'Endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial'" : "Residencial'")  + "!");
 		}else if(endereco.getNumero() == 0){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Numero' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");

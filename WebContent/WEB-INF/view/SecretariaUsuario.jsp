@@ -33,7 +33,7 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content no-padding">
-									<c:if test="${ msg != null && msg != ''}">
+										<c:if test="${ msg != null && msg != ''}">
 											<div class="alert alert-danger">
 										        <a href="#" class="close" data-dismiss="alert">&times;</a>
 										            <c:out value="${msg}"></c:out>       

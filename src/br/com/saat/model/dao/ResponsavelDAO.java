@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.TpPessoa;
+import br.com.saat.model.negocio.EnderecoNegocio;
 
 public class ResponsavelDAO {
 
@@ -27,7 +29,7 @@ public class ResponsavelDAO {
 		stmtScript = con.prepareStatement("INSERT INTO responsavel ("
 				+ "nome, "
 				+ "email, "
-				+ "celular"
+				+ "celular"				
 				+ ") "
 				+ "VALUES (?, ?, ?)");
 		stmtScript.setString(1, responsavel.getNome());
@@ -59,7 +61,7 @@ public class ResponsavelDAO {
 	}
 
 	private int recuperaId(String nome) throws SQLException{
-		stmtScript = con.prepareStatement("SELECT idResponsavel FROM responsavel WHERE nome = ?");
+		stmtScript = con.prepareStatement("SELECT idResponsavel FROM responsavel WHERE nome = ? AND flCadastroAtivo = 1");
 		stmtScript.setString(1, nome);
 		
 		ResultSet rs = stmtScript.executeQuery();
@@ -69,6 +71,42 @@ public class ResponsavelDAO {
 		}
 		
 		return 0;
+	}
+	
+	public ArrayList<Responsavel> buscarTodos() throws SQLException{
+		ArrayList<Responsavel> lista = new ArrayList<Responsavel>();
+		
+		stmtScript = con.prepareStatement("SELECT * FROM responsavel WHERE flCadastroAtivo = 1");
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Responsavel responsavel = new Responsavel();
+			responsavel.setIdPessoa(rs.getInt("idResponsavel"));
+			responsavel.setNome(rs.getString("nome"));
+			responsavel.setEmail(rs.getString("email"));
+			responsavel.setCelular(rs.getString("celular"));
+			
+			try {
+				EnderecoDAO enderecoDAO = new EnderecoDAO(this.con);
+				responsavel.setEnderecos(enderecoDAO.buscarEnderecos(responsavel.getIdPessoa(), TpPessoa.Responsavel.getValor()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			lista.add(responsavel);
+		}
+		
+		return lista;
+	}
+	
+	public boolean desativar(int idPessoa) throws SQLException{
+		stmtScript = con.prepareStatement("UPDATE responsavel SET flCadastroAtivo = 0 WHERE idResponsavel = ?");
+		stmtScript.setInt(1, idPessoa);
+		
+		if(stmtScript.executeUpdate() > 0)
+			return true;
+
+		return false;
 	}
 	
 }

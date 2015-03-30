@@ -2,7 +2,9 @@ package br.com.saat.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
@@ -33,7 +35,7 @@ public class EnderecoDAO {
 					+ "estado,"
 					+ "cidade,"
 					+ "telefone,"
-					+ "tpEndereco"
+					+ "idTpEndereco"
 					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		else if(tpPessoa == TpPessoa.Atleta.getValor())
 			stmtScript = con.prepareStatement("INSERT INTO endereco ("
@@ -45,7 +47,7 @@ public class EnderecoDAO {
 					+ "estado,"
 					+ "cidade,"
 					+ "telefone,"
-					+ "tpEndereco"
+					+ "idTpEndereco"
 					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		else
 			return false;
@@ -68,5 +70,33 @@ public class EnderecoDAO {
 		
 		
 	}
+	public ArrayList<Endereco>buscarEnderecos(int idPessoa, int tpPessoa) throws SQLException{
+		ArrayList<Endereco> lista = new ArrayList<Endereco>();
+		if(tpPessoa == TpPessoa.Responsavel.getValor())
+			stmtScript = con.prepareStatement("SELECT * FROM endereco WHERE idResponsavel = ?");
+		else if(tpPessoa == TpPessoa.Atleta.getValor())
+			stmtScript = con.prepareStatement("SELECT * FROM endereco WHERE idAtleta = ?");
+		else
+			return null;
+		
+		stmtScript.setInt(1, idPessoa);
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Endereco endereco = new Endereco(
+					rs.getString("endereco"), 
+					rs.getInt("numero"),
+					rs.getString("complemento"), 
+					rs.getString("bairro"), 
+					rs.getString("estado"), 
+					rs.getString("cidade"), 
+					rs.getInt("idTpEndereco"), 
+					rs.getString("telefone"));
+			lista.add(endereco);
+		}			
+		
+		return lista;
+	}
 	
 }
+ 

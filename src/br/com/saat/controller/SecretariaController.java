@@ -374,6 +374,46 @@ public class SecretariaController extends Controller {
 				
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
+		}else if("jspBuscaResponsavel".equals(action)){
+			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
+			ArrayList<Responsavel> listaResponsaveis = null;
+			String msg = "";
+			
+			try{
+				listaResponsaveis = responsavelNegocio.buscarTodos();
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("listaResponsaveis", listaResponsaveis);
+			retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
+		}else if("desativarResponsavel".equals(action)){
+			ArrayList<Responsavel> listaResponsaveis = null;
+			String msgSucesso = "";
+			String msg = "";
+			
+			try{
+				int idResponsavel = Integer.parseInt(request.getParameter("idResponsavel"));
+				ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
+				
+				//desativa o responsavel
+				if(responsavelNegocio.desativar(idResponsavel)){
+					msgSucesso = "Responsável desativado com sucesso!";
+				}else{
+					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				}
+				//busca os responsaveis denovo
+				listaResponsaveis = responsavelNegocio.buscarTodos();
+				
+			}catch(Exception ex){
+				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			}
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("listaResponsaveis", listaResponsaveis);
+			retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
 		}
 		
 		rd = getServletContext().getRequestDispatcher(retorno);

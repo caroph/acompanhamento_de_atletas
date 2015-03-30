@@ -42,4 +42,29 @@ public class ResponsavelNegocio {
 		return false;
 	}
 	
+	public ArrayList<Responsavel> buscarTodos() throws Exception{
+		ArrayList<Responsavel> lista = new ArrayList<Responsavel>();
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			lista = dao.buscarTodos();
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis cadastrados");
+		}
+		
+		return lista;
+	}
+	
+	public boolean desativar(int idResponsavel) throws Exception{
+		Responsavel responsavel;
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			if(dao.desativar(idResponsavel))
+				return true;
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis cadastrados");
+		}
+		
+		return false;
+	}
+	
 }

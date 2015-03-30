@@ -18,7 +18,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="SecretariaController?action=jspNovoResponsavel">Novo</a></li>
-				<li><a class="ajax-link" href="SecretariaController?action=jspBuscaResponsavel">Buscar</a></li>
+				<li><a class="" href="SecretariaController?action=jspBuscaResponsavel">Buscar</a></li>
 			</ul>
 		</li>				
 		<li class="dropdown">
