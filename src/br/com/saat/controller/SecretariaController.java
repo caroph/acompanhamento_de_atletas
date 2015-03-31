@@ -547,6 +547,26 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("listaResponsaveis", listaResponsaveis);
 			retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
+		}else if("editarResponsavel".equals(action)){
+			String msg = "";
+			Responsavel responsavel;
+			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();			
+			try{
+				//dados da pessoa
+				int idResponsavel = Integer.parseInt(request.getParameter("idResponsavel"));
+				responsavel = responsavelNegocio.buscarPorId(idResponsavel);
+				Endereco enderecoResidencial = responsavel.getEnderecos().get(0).getTpEndereco() == TpEndereco.Residencial.getValor()? responsavel.getEnderecos().get(0) : responsavel.getEnderecos().get(1);
+				Endereco enderecoComercial = responsavel.getEnderecos().get(1).getTpEndereco() == TpEndereco.Comercial.getValor()? responsavel.getEnderecos().get(1) : responsavel.getEnderecos().get(0);
+				
+				request.setAttribute("responsavel", responsavel);
+				request.setAttribute("enderecoResidencial", enderecoResidencial);
+				request.setAttribute("enderecoComercial", enderecoComercial);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("msg", msg);
+			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 		}
 		
 		rd = getServletContext().getRequestDispatcher(retorno);

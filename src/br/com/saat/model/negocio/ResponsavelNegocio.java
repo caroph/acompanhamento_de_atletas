@@ -53,6 +53,17 @@ public class ResponsavelNegocio {
 		return lista;
 	}
 	
+	public Responsavel buscarPorId(int idResponsavel) throws Exception{
+		Responsavel responsavel = new Responsavel();
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			responsavel = dao.buscarPorId(idResponsavel);
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o responsável selecionado");
+		}	
+		return responsavel;
+	}
+	
 	public boolean desativar(int idResponsavel) throws Exception{
 		Responsavel responsavel;
 		try{
@@ -60,7 +71,7 @@ public class ResponsavelNegocio {
 			if(dao.desativar(idResponsavel))
 				return true;
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis cadastrados");
+			throw new Exception("Erro! Ocorreu algum erro ao desativar o responsável selecionado");
 		}
 		
 		return false;

@@ -99,6 +99,32 @@ public class ResponsavelDAO {
 		return lista;
 	}
 	
+	public Responsavel buscarPorId(int idResponsavel) throws SQLException{
+		stmtScript = con.prepareStatement("SELECT * FROM responsavel WHERE idResponsavel = ?");
+		stmtScript.setInt(1, idResponsavel);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			Responsavel responsavel = new Responsavel();
+			responsavel.setIdPessoa(rs.getInt("idResponsavel"));
+			responsavel.setNome(rs.getString("nome"));
+			responsavel.setEmail(rs.getString("email"));
+			responsavel.setCelular(rs.getString("celular"));
+			
+			try {
+				EnderecoDAO enderecoDAO = new EnderecoDAO(this.con);
+				responsavel.setEnderecos(enderecoDAO.buscarEnderecos(responsavel.getIdPessoa(), TpPessoa.Responsavel.getValor()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return responsavel;
+		}
+	
+		return null;
+	}
+	
 	public boolean desativar(int idPessoa) throws SQLException{
 		stmtScript = con.prepareStatement("UPDATE responsavel SET flCadastroAtivo = 0 WHERE idResponsavel = ?");
 		stmtScript.setInt(1, idPessoa);

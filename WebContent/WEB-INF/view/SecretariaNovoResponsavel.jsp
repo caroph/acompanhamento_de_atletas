@@ -33,109 +33,135 @@
 								<div class="box-content">
 									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirResponsavel"
 										method="post">
-										<c:if test="${ msg != null }">
+										<input type="hidden" name="idResponsavel" value='${responsavel.idPessoa}'>
+										<c:if test="${ msg != null && msg != ''}">
+											<div class="alert alert-danger">
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msg}"></c:out>       
+									    	</div>
+								        </c:if>
+								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
 											<div class="alert alert-success">
-												<a href="#" class="close" data-dismiss="alert">&times;</a>
-												<c:out value="${msg}"></c:out>
-											</div>
-										</c:if>
+										        <a href="#" class="close" data-dismiss="alert">&times;</a>
+										            <c:out value="${msgSucesso}"></c:out>       
+									    	</div>
+								        </c:if>
 										<div class="form-group">
 											 <label for="nomeResponsavel" class="col-sm-4 control-label">Nome</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="nome" name="nome"/>
+												<input type="text" class="form-control" id="nome" name="nome" value='${responsavel.nome}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="email" class="col-sm-4 control-label">Email</label>
 											<div class="col-sm-8">
-												<input type="email" class="form-control" id="email" name="email"/>
+												<input type="email" class="form-control" id="email" name="email" value='${responsavel.email}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="endereco" class="col-sm-4 control-label">Endereço</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="endereco" name="endereco" />
+												<input type="text" class="form-control" id="endereco" name="endereco" value='${enderecoResidencial.endereco}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="numero" class="col-sm-4 control-label">Número</label>
 											<div class="col-sm-8">
-												<input type="number" class="form-control" id="numero" name="numero"/>
+												<input type="number" class="form-control" id="numero" name="numero" value='${enderecoResidencial.numero}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="complemento" class="col-sm-4 control-label">Complemento</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="complemento" name="complemento"/>
+												<input type="text" class="form-control" id="complemento" name="complemento" value='${enderecoResidencial.complemento}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="email" class="col-sm-4 control-label">Bairro</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="bairro" name="bairro" />
+												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="estadoResp" class="col-sm-4 control-label">Estado:</label>
 											<div class="col-sm-3">
-												<select class="form-control" name="estado" id="estado"> </select>
-												<input type="hidden" id="estadoSelecionado" name="estadoSelecionado"></input>
+												<c:if test="${responsavel.idPessoa != null && responsavel.idPessoa != ''}">
+													<select class="form-control" name="estado2" id="estado2" onchange="carregaScriptEstadoRes()">
+														<option selected>${enderecoResidencial.estado}</option>
+														<option>Alterar</option>											
+													</select>
+												</c:if>
+												<c:if test="${responsavel.idPessoa == null || responsavel.idPessoa == ''}">
+													<select class="form-control" name="estado" id="estado"></select>
+												</c:if>												
 											</div>
 											<label for="cidadeResp" class="col-sm-1 control-label">Cidade:</label>
 											<div class="col-sm-4">
-												<select class="form-control" name="cidade" id="cidade"> </select>
+												<c:if test="${responsavel.idPessoa != null && responsavel.idPessoa != ''}">
+													<select class="form-control" name="cidade2" id="cidade2">
+														<option id="idCidade2" selected>${enderecoResidencial.cidade}</option>
+														<option>Alterar</option>
+													</select>
+												</c:if>
+												<c:if test="${responsavel.idPessoa == null || responsavel.idPessoa == ''}">
+												<select class="form-control" name="cidade" id="cidade">
+													<c:if test="${enderecoResidencial.cidade != null && enderecoResidencial.cidade != ''}">
+														<option value="${enderecoResidencial.cidade}" selected> </option>
+													</c:if>	
+												</select>
+												</c:if>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="endereco" class="col-sm-4 control-label">Endereço (Comercial)</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom"/>
+												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom" value='${enderecoComercial.endereco}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="numero" class="col-sm-4 control-label">Número</label>
 											<div class="col-sm-8">
-												<input type="number" class="form-control" id="numeroCom" name="numeroCom"/>
+												<input type="number" class="form-control" id="numeroCom" name="numeroCom" value='${enderecoComercial.numero}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="complemento" class="col-sm-4 control-label">Complemento</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="complementoCom" name="complementoCom" />
+												<input type="text" class="form-control" id="complementoCom" name="complementoCom" value='${enderecoComercial.complemento}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="bairro" class="col-sm-4 control-label">Bairro</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="bairroCom" name="bairroCom"/>
+												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="nr" class="col-sm-4 control-label">Estado:</label>
 											<div class="col-sm-3">
-												<select class="form-control" name="estadoCom" id="estadoCom" name="estadoCom"> </select>
+												<select class="form-control" name="estadoCom" id="estadoCom" name="estadoCom" value='${enderecoComercial.estado}'> </select>
 											</div>
 											<label for="nr" class="col-sm-1 control-label">Cidade:</label>
 											<div class="col-sm-4">
-												<select class="form-control" name="cidadeCom" id="cidadeCom" name="cidadeCom"> </select>
+												<select class="form-control" name="cidadeCom" id="cidadeCom" name="cidadeCom" value='${enderecoComercial.cidade}'> </select>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="tel" class="col-sm-4 control-label">Telefone Residencial</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="telefone" name="telefone"/>
+												<input type="text" class="form-control" id="telefone" name="telefone" value='${enderecoResidencial.telefone}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="telCom" class="col-sm-4 control-label">Telefone Comercial</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="telefoneCom" name="telefoneCom"/>
+												<input type="text" class="form-control" id="telefoneCom" name="telefoneCom" value='${enderecoComercial.telefone}'/>
 											</div>
 										</div>
 										<div class="form-group">
 											 <label for="celular" class="col-sm-4 control-label">Telefone Celular</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" id="celular" name="celular"/>
+												<input type="text" class="form-control" id="celular" name="celular" value='${responsavel.celular}'/>
 											</div>
 										</div>										
 										<div class="form-group">

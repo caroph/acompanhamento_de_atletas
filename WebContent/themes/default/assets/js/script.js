@@ -77,6 +77,15 @@ function passar(){
 		email.value = valorA.value; 
 		}; 
 		
+function carregaScriptEstadoRes(){
+	document.getElementById('cidade2').innerHMTL = "";
+	new dgCidadesEstados(
+			document.getElementById('estado2'),
+			document.getElementById('cidade2'),
+			true
+		);
+};
+		
 //Plugin de Horário e Calendario
 function DemoTimePicker(){
 	$('#hrInicio').timepicker({setDate: new Date()});
