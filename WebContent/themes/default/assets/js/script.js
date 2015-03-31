@@ -1,14 +1,19 @@
-window.onload = function() {
-			new dgCidadesEstados(
-				document.getElementById('estado'),
-				document.getElementById('cidade'),
-				true
-			);
-			new dgCidadesEstadosCom(
-				document.getElementById('estadoCom'),
-				document.getElementById('cidadeCom'),
-				true
-			);		
+window.onload = function() {	
+		  new dgCidadesEstados({
+			    estado: document.getElementById('estado'),
+			    cidade: document.getElementById('cidade')
+			  });
+		  
+		  new dgCidadesEstados({
+			    estado: document.getElementById('estadoCom'),
+			    cidade: document.getElementById('cidadeCom')
+			  });
+		  
+//			new dgCidadesEstadosCom(
+//				document.getElementById('estadoCom'),
+//				document.getElementById('cidadeCom'),
+//				true
+//			);
 }
 
 $('#selectInicio').on('change', function () {

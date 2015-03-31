@@ -49,7 +49,6 @@ public class ResponsavelDAO {
 					}
 					return true;
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					return false;
 				}					
@@ -57,6 +56,31 @@ public class ResponsavelDAO {
 				return false;
 		}		
 		return false;
+	}
+	
+	public boolean alterar(Responsavel responsavel) throws SQLException{
+		stmtScript = con.prepareStatement("UPDATE responsavel SET nome = ?, email = ?, celular = ? WHERE idResponsavel = ?");
+		stmtScript.setString(1, responsavel.getNome());
+		stmtScript.setString(2, responsavel.getEmail());
+		stmtScript.setString(3, responsavel.getCelular());
+		stmtScript.setInt(4, responsavel.getIdPessoa());
+		
+		if(stmtScript.executeUpdate() > 0)
+		{			
+			try {
+				EnderecoDAO dao = new EnderecoDAO(this.con);
+				for(Endereco endereco : responsavel.getEnderecos()){
+					if(!dao.alterar(endereco, responsavel.getIdPessoa(),TpPessoa.Responsavel.getValor()))
+						return false;
+				}
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}					
+			
+		}else
+			return false;
 	}
 
 	private int recuperaId(String nome) throws SQLException{

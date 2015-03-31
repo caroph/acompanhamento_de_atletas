@@ -1,5 +1,6 @@
 package br.com.saat.model.negocio;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +31,23 @@ public class ResponsavelNegocio {
 	
 	
 	public boolean inserir(Responsavel responsavel) throws Exception{
-		
 		try{
 			ResponsavelDAO dao = new ResponsavelDAO();
 			if(dao.inserir(responsavel))
 				return true;
 		}catch(Exception ex){
 			throw new Exception("Erro! Ocorreu algum erro ao inserir o Responsável");
+		}
+		return false;
+	}
+	
+	public boolean alterar(Responsavel responsavel) throws Exception{
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			if(dao.alterar(responsavel))
+				return true;
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o Responsável");
 		}
 		return false;
 	}

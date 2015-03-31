@@ -83,33 +83,13 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="estadoResp" class="col-sm-4 control-label">Estado:</label>
+											<label for="estadoResp" class="col-sm-4 control-label">Estado</label>
 											<div class="col-sm-3">
-												<c:if test="${responsavel.idPessoa != null && responsavel.idPessoa != ''}">
-													<select class="form-control" name="estado2" id="estado2" onchange="carregaScriptEstadoRes()">
-														<option selected>${enderecoResidencial.estado}</option>
-														<option>Alterar</option>											
-													</select>
-												</c:if>
-												<c:if test="${responsavel.idPessoa == null || responsavel.idPessoa == ''}">
-													<select class="form-control" name="estado" id="estado"></select>
-												</c:if>												
+												<select class="form-control" name="estado" id="estado" value="${enderecoResidencial.estado}"></select>
 											</div>
 											<label for="cidadeResp" class="col-sm-1 control-label">Cidade:</label>
 											<div class="col-sm-4">
-												<c:if test="${responsavel.idPessoa != null && responsavel.idPessoa != ''}">
-													<select class="form-control" name="cidade2" id="cidade2">
-														<option id="idCidade2" selected>${enderecoResidencial.cidade}</option>
-														<option>Alterar</option>
-													</select>
-												</c:if>
-												<c:if test="${responsavel.idPessoa == null || responsavel.idPessoa == ''}">
-												<select class="form-control" name="cidade" id="cidade">
-													<c:if test="${enderecoResidencial.cidade != null && enderecoResidencial.cidade != ''}">
-														<option value="${enderecoResidencial.cidade}" selected> </option>
-													</c:if>	
-												</select>
-												</c:if>
+												<select class="form-control" name="cidade" id="cidade" value="${enderecoResidencial.cidade}"></select>
 											</div>
 										</div>
 										<div class="form-group">

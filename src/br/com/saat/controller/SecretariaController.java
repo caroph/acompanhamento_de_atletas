@@ -437,6 +437,7 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 			
 		}else if ("inserirResponsavel".equals(action)){
+			String msgSucesso = "";
 			String msg = "";
 			Responsavel responsavel;
 			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
@@ -491,11 +492,23 @@ public class SecretariaController extends Controller {
 						}else{
 							try {
 								ResponsavelDAO dao = new ResponsavelDAO();
-								if(dao.inserir(responsavel))
-									msg = "Responsável salvo com sucesso!";
-								else
-									msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
-							} catch (Exception e) {
+								//verifica se é uma inserção ou alteração
+								String idResponsavel = request.getParameter("idResponsavel");
+								if(!idResponsavel.equals("") && !(idResponsavel == null)){
+									responsavel.setIdPessoa(Integer.parseInt(idResponsavel));
+									if(responsavelNegocio.alterar(responsavel))
+										msgSucesso = "Responsável alterado com sucesso!";
+									else
+										msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+								}else{
+									if(responsavelNegocio.inserir(responsavel))
+										msgSucesso = "Responsável salvo com sucesso!";
+									else
+										msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+								}
+							} catch (ParseException e) {
+								msg = e.getMessage();
+							} catch (Exception e){
 								msg = e.getMessage();
 							}
 						}					
