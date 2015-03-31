@@ -95,13 +95,13 @@ public class UsuarioNegocio {
 			boolean email = dao.buscarEmail(usuario.getEmail(), usuario.getIdPessoa());
 			
 			if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
-					&& usuario.getCREF().equals("")){
+					&& "".equals(usuario.getCREF())){
 				lista.add(false);
 				lista.add("O campo 'CREF' é obrigatório!");
-			}else if(usuario.getEmail().equals("")){
+			}else if("".equals(usuario.getEmail())){
 				lista.add(false);
 				lista.add("O campo 'Email' é obrigatório!");
-			}else if(usuario.getNome().equals("")){
+			}else if("".equals(usuario.getNome())){
 				lista.add(false);
 				lista.add("O campo 'Nome' é obrigatório!");
 			}else if(email){
@@ -113,6 +113,10 @@ public class UsuarioNegocio {
 		}catch(Exception ex){
 			throw new Exception("Ocorreu algum erro ao buscar usuários com o mesmo email");
 		}
+		
+		if((usuario.getPerfil() != Perfis.PreparadorFisico.getValor() && usuario.getPerfil() != Perfis.Tecnico.getValor())
+				&& !("".equals(usuario.getCREF())))
+			usuario.setCREF("");
 		
 		return lista;
 	}

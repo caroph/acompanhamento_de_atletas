@@ -359,7 +359,7 @@ public class SecretariaController extends Controller {
 				usuario.setTelefone(request.getParameter("telresidencial"));
 				
 				try{
-					if(!idUsuario.equals("") && !idUsuario.equals("0")){
+					if(!"".equals(idUsuario) && !"0".equals(idUsuario)){
 						usuario.setIdPessoa(Integer.parseInt(idUsuario));
 					}
 					//Valida dados do usuário
@@ -394,7 +394,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaPerfis", lista);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
-			if(msgSucesso.equals("")){
+			if("".equals(msgSucesso)){
 				request.setAttribute("usuario", usuario);
 			}
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp", Constants.VIEW);
@@ -517,7 +517,7 @@ public class SecretariaController extends Controller {
 								ResponsavelDAO dao = new ResponsavelDAO();
 								//verifica se é uma inserção ou alteração
 								String idResponsavel = request.getParameter("idResponsavel");
-								if(!idResponsavel.equals("") && !(idResponsavel == null)){
+								if(!"".equals(idResponsavel) && !(idResponsavel == null)){
 									responsavel.setIdPessoa(Integer.parseInt(idResponsavel));
 									if(responsavelNegocio.alterar(responsavel))
 										msgSucesso = "Responsável alterado com sucesso!";
