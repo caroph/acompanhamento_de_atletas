@@ -21,7 +21,7 @@ public class AtletaNegocio {
 			lista.add("Informe corretamente o campo 'Nome' !");
 		} else if ("".equals(atleta.getDtNascimento()) || atleta.getDtNascimento() == null) {
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Data de Nasicmento' !");
+			lista.add("Informe corretamente o campo 'Data de Nascimento' !");
 		} else if ("".equals(atleta.getRG()) || atleta.getRG()== null) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'RG' !");

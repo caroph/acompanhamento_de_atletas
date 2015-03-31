@@ -15,7 +15,7 @@ public class Atleta extends Pessoa {
 	private String turno;
 	private boolean acompPsicologico;
 	private String nmMedicoResponsavel;
-	private String telMedicoResponsal;
+	private String telMedicoResponsavel;
 	private String convenio;
 	private String medicacaoAutorizada;
 	private boolean flAlergias;
@@ -35,7 +35,7 @@ public class Atleta extends Pessoa {
 			String nrCadCBT, Date dtNascimento, String RG, String CPF,
 			String escola, String serie, String turno,
 			boolean acompPsicologico, String nmMedicoResponsavel,
-			String telMedicoResponsal, String convenio,
+			String telMedicoResponsavel, String convenio,
 			String medicacaoAutorizada, boolean flAlergias, String dsAlergias,
 			boolean flMedicacao, String dsMedicacao,
 			String nmContatoEmergencia, String telContatoEmergencia,
@@ -53,7 +53,7 @@ public class Atleta extends Pessoa {
 		this.turno = turno;
 		this.acompPsicologico = acompPsicologico;
 		this.nmMedicoResponsavel = nmMedicoResponsavel;
-		this.telMedicoResponsal = telMedicoResponsal;
+		this.telMedicoResponsavel = telMedicoResponsavel;
 		this.convenio = convenio;
 		this.medicacaoAutorizada = medicacaoAutorizada;
 		this.flAlergias = flAlergias;
@@ -137,11 +137,11 @@ public class Atleta extends Pessoa {
 	public void setNmMedicoResponsavel(String nmMedicoResponsavel) {
 		this.nmMedicoResponsavel = nmMedicoResponsavel;
 	}
-	public String getTelMedicoResponsal() {
-		return telMedicoResponsal;
+	public String getTelMedicoResponsavel() {
+		return telMedicoResponsavel;
 	}
-	public void setTelMedicoResponsal(String telMedicoResponsal) {
-		this.telMedicoResponsal = telMedicoResponsal;
+	public void setTelMedicoResponsal(String telMedicoResponsavel) {
+		this.telMedicoResponsavel = telMedicoResponsavel;
 	}
 	public String getConvenio() {
 		return convenio;

@@ -115,9 +115,10 @@ public class SecretariaController extends Controller {
 				atleta.setTurno(request.getParameter("turno"));
 				escolha = request.getParameter("acompPsicologico");
 				atleta.setAcompPsicologico("sim".equals(escolha)?true:false);
-				atleta.setMedicacaoAutorizada(request.getParameter("nmMedicoResponsavel"));
+				atleta.setNmMedicoResponsavel(request.getParameter("nmMedicoResponsavel"));
 				atleta.setTelMedicoResponsal(request.getParameter("telMedicoResponsavel"));
 				atleta.setConvenio(request.getParameter("convenio"));
+				atleta.setMedicacaoAutorizada(request.getParameter("medicacaoAutorizada"));
 				escolha = request.getParameter("flAlergias");
 				atleta.setFlAlergias("sim".equals(escolha)?true:false);
 				atleta.setDsAlergias(request.getParameter("dsAlergias"));
@@ -135,8 +136,9 @@ public class SecretariaController extends Controller {
 				endereco.setComplemento(request.getParameter("complemento"));
 				endereco.setBairro(request.getParameter("bairro"));
 				endereco.setEstado(request.getParameter("estado"));
+				endereco.setCidade(request.getParameter("cidade"));
 				endereco.setTelefone(request.getParameter("telefone"));
-				endereco.setTpEndereco(1);
+				endereco.setTpEndereco(TpEndereco.Residencial.getValor());
 				
 				atleta.setEndereco(endereco);
 			

@@ -103,7 +103,7 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="nome" class=" control-label">Nome:</label>
-												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="name" required/>
+												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" required/>
 											</div>
 											<div class="col-sm-4" >
 												<label for="dtNascimento" class=" control-label">Data de Nascimento:</label>
@@ -126,16 +126,16 @@
 											</div>
 											<div class="col-sm-3">
 												<label for="rg" class=" control-label">RG:</label>
-												<input type="text"  value="${atleta.rg}"  class="form-control" id="rg" name="rg" required/>
+												<input type="text"  value="${atleta.RG}"  class="form-control" id="rg" name="rg" required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="cpf" class=" control-label">CPF:</label>
-												<input type="text"  value="${atleta.cpf}" class="form-control" id="cpf" name="cpf" required/>
+												<input type="text"  value="${atleta.CPF}" class="form-control" id="cpf" name="cpf" required/>
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
 											<label for="endereco" class=" control-label">Endereço Residencial:</label>
-											<input type="email"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" required />
+											<input type="text"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" required />
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
@@ -205,7 +205,7 @@
 											</div>
 											<div class="col-sm-8">
 												<label class=" control-label">Medicação autorizada a tomar em caso de dor:</label>
-												<input type="text"  value="${atleta.medicacaoAutorizaca}" class="form-control" id="medicacaoAutorizada" name="medicacaoAutorizada" />
+												<input type="text"  value="${atleta.medicacaoAutorizada}" class="form-control" id="medicacaoAutorizada" name="medicacaoAutorizada" />
 											</div>
 										</div>
 										<div class="form-group">

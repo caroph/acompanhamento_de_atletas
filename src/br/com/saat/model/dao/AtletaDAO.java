@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
 
@@ -28,7 +30,7 @@ public class AtletaDAO {
 				+ "acompPsicologico, nmMedicoResponsavel, convenio, medicacaoAutorizada, flAlergias, "
 				+ "dsAlergias, flMedicacao, dsMedicacao, nmContatoEmergencia, telContatoEmergencia,"
 				+ "grauParentescoContatoEmergencia, dtValidade) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 		stmtScript.setInt(1, 1);
 		stmtScript.setString(2, atleta.getNome());
