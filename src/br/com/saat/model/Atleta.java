@@ -3,7 +3,7 @@ package br.com.saat.model;
 import java.util.Date;
 
 public class Atleta extends Pessoa {
-	private int tpEquipe;
+	private int idTpEquipe;
 	private String nrMatricula;
 	private String nrCadFPT;
 	private String nrCadCBT;
@@ -31,7 +31,7 @@ public class Atleta extends Pessoa {
 	public Atleta(){}
 	
 	public Atleta(int idPessoa, String nome, String email,
-			int tpEquipe, String nrMatricula, String nrCadFPT,
+			int idTpEquipe, String nrMatricula, String nrCadFPT,
 			String nrCadCBT, Date dtNascimento, String RG, String CPF,
 			String escola, String serie, String turno,
 			boolean acompPsicologico, String nmMedicoResponsavel,
@@ -41,7 +41,7 @@ public class Atleta extends Pessoa {
 			String nmContatoEmergencia, String telContatoEmergencia,
 			String grauParentescoContatoEmergencia, Date dtValidade) {
 		super(idPessoa, nome, email);
-		this.tpEquipe = tpEquipe;
+		this.idTpEquipe = idTpEquipe;
 		this.nrMatricula = nrMatricula;
 		this.nrCadFPT = nrCadFPT;
 		this.nrCadCBT = nrCadCBT;
@@ -65,11 +65,11 @@ public class Atleta extends Pessoa {
 		this.grauParentescoContatoEmergencia = grauParentescoContatoEmergencia;
 		this.dtValidade = dtValidade;
 	}
-	public int getTpEquipe() {
-		return tpEquipe;
+	public int getIdTpEquipe() {
+		return idTpEquipe;
 	}
-	public void setTpEquipe(int tpEquipe) {
-		this.tpEquipe = tpEquipe;
+	public void setIdTpEquipe(int idTpEquipe) {
+		this.idTpEquipe = idTpEquipe;
 	}
 	public String getNrMatricula() {
 		return nrMatricula;
@@ -211,5 +211,17 @@ public class Atleta extends Pessoa {
 		this.endereco = endereco;
 	}
 	
+	public String getNomeEquipe(){
+		String retorno = "";
+		switch(this.idTpEquipe){
+			case 1:
+				retorno = Equipes.Equipe.getNome();
+				break;
+			case 2:
+				retorno = Equipes.PreEquipe.getNome();
+				break;
+		}
+		return retorno;
+	}
 	
 }

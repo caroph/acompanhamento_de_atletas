@@ -61,5 +61,15 @@ public class AtletaNegocio {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public List<Atleta> buscarAtletas() throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			List<Atleta> lista = dao.buscarAtletas();
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas.");
+		}
+	}
 	
 }

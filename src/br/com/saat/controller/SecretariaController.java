@@ -65,6 +65,10 @@ public class SecretariaController extends Controller {
 		
 		if("jspNovoAtleta".equals(action)){
 		//Carregar página Novo Atleta
+			EquipesNegocio negocioEquipe = new EquipesNegocio();
+			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			
+			request.setAttribute("listaEquipes", listaEquipes);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("inserirAtleta".equals(action)){
@@ -94,6 +98,7 @@ public class SecretariaController extends Controller {
 			}
             try{
             	numero = Integer.parseInt(request.getParameter("numero"));
+            	String diaTreino = request.getParameter("diasTreino");
 			}catch(Exception ex){
 				msg = "Favor informar corretamente o campo 'Número' do endereço";
 				exception = true;
@@ -187,7 +192,25 @@ public class SecretariaController extends Controller {
 			}else{
 				request.setAttribute("msgSucesso", msgSucesso);
 			}
+			
+			EquipesNegocio negocioEquipe = new EquipesNegocio();
+			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			
+			request.setAttribute("listaEquipes", listaEquipes);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
+			
+		}else if("jspBuscaAtleta".equals(action)){
+			//Carregar página Buscar Atleta
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> lista = new ArrayList<Atleta>();
+			try{
+				lista = negocio.buscarAtletas();
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
+			
+			request.setAttribute("listaAtletas", lista);
+			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspNovoDiaTreino".equals(action)){
 		//Carregar página Novo Dia de Treino

@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Novo Usu·rio</span>
+										<i class="fa  fa-info-circle"></i> <span>Novo Usu√°rio</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -91,6 +91,8 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
+												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
+												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
 												<button type="submit" class="btn btn-primary">Salvar</button>
 											</div>
 										</div>

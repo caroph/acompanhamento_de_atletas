@@ -28,9 +28,7 @@
 										<i class="fa  fa-info-circle"></i> <span>Dias de Treino</span>
 									</div>
 									<div class="box-icons">
-										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
 										</a> <a class="expand-link"> <i class="fa fa-expand"></i>
-										</a> <a class="close-link"> <i class="fa fa-times"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
@@ -43,7 +41,7 @@
 											<tr>
 												<th>Equipe</th>
 												<th>Dia da Semana</th>
-												<th style="text-align: center;">Hora Início</th>
+												<th style="text-align: center;">Hora Inï¿½cio</th>
 												<th style="text-align: center;">Hora Fim</th>
 												<th></th>
 											</tr>

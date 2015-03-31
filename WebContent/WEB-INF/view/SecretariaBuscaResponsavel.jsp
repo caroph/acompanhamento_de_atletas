@@ -24,12 +24,10 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Responsáveis</span>
+										<i class="fa  fa-info-circle"></i> <span>Responsï¿½veis</span>
 									</div>
 									<div class="box-icons">
-										<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
 										</a> <a class="expand-link"> <i class="fa fa-expand"></i>
-										</a> <a class="close-link"> <i class="fa fa-times"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
@@ -65,7 +63,7 @@
 													<td class="text-left" width="75%"><c:out value='${responsavel.nome}' /></td>
 													<td class="text-center" width="5%">
 														<a class="btn btn-primary" href='SecretariaController?action=editarResponsavel&idResponsavel=${responsavel.idPessoa}' 
-														data-confirm="Deseja realmente editar o responsável selecionado?">Editar</a>
+														data-confirm="Deseja realmente editar o responsï¿½vel selecionado?">Editar</a>
 													</td>
 													<td class="text-center" width="5%">
 														<a data-toggle="modal" href="#detalhes">Detalhes</a>
@@ -73,7 +71,7 @@
 													<td class="text-center" width="5%">
 														<a class="btn btn-danger"  
 														href='SecretariaController?action=desativarResponsavel&idResponsavel=${responsavel.idPessoa}'
-														data-confirm="Deseja realmente excluir o responsável selecionado?">Deletar</a>
+														data-confirm="Deseja realmente excluir o responsï¿½vel selecionado?">Deletar</a>
 													</td>
 													<td class="text-center" width="10%">
 														<a data-toggle="modal" href="#enviarEmail">Enviar Email</a>

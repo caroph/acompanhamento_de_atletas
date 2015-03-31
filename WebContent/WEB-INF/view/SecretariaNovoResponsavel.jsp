@@ -22,7 +22,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Novo Responsável</span>
+										<i class="fa  fa-info-circle"></i> <span>Novo Responsï¿½vel</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -59,13 +59,13 @@
 											</div>
 										</div>
 										<div class="form-group">
-											 <label for="endereco" class="col-sm-4 control-label">Endereço</label>
+											 <label for="endereco" class="col-sm-4 control-label">Endereï¿½o</label>
 											<div class="col-sm-8">
 												<input type="text" class="form-control" id="endereco" name="endereco" value='${enderecoResidencial.endereco}'/>
 											</div>
 										</div>
 										<div class="form-group">
-											 <label for="numero" class="col-sm-4 control-label">Número</label>
+											 <label for="numero" class="col-sm-4 control-label">Nï¿½mero</label>
 											<div class="col-sm-8">
 												<input type="number" class="form-control" id="numero" name="numero" value='${enderecoResidencial.numero}'/>
 											</div>
@@ -93,13 +93,13 @@
 											</div>
 										</div>
 										<div class="form-group">
-											 <label for="endereco" class="col-sm-4 control-label">Endereço (Comercial)</label>
+											 <label for="endereco" class="col-sm-4 control-label">Endereï¿½o (Comercial)</label>
 											<div class="col-sm-8">
 												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom" value='${enderecoComercial.endereco}'/>
 											</div>
 										</div>
 										<div class="form-group">
-											 <label for="numero" class="col-sm-4 control-label">Número</label>
+											 <label for="numero" class="col-sm-4 control-label">Nï¿½mero</label>
 											<div class="col-sm-8">
 												<input type="number" class="form-control" id="numeroCom" name="numeroCom" value='${enderecoComercial.numero}'/>
 											</div>
