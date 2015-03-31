@@ -25,7 +25,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Usuï¿½rios</span>
+										<i class="fa  fa-info-circle"></i> <span>Usuários</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i></a>
@@ -70,10 +70,10 @@
 														<a class="btn btn-info" data-toggle="modal" onClick="abrirModalUsuario('${usuario.nome}', '${usuario.getNomePerfil()}', '${usuario.email}',
 														'${usuario.telefone}', '${usuario.celular}', '${usuario.CREF}')" data-target="#detalhes">Visualizar</a>
 														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
-														data-confirm="Deseja realmente editar o usuï¿½rio selecionado?">Editar</a>
+														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
 															<a class="btn btn-danger" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
-															data-confirm="Deseja realmente excluir o usuï¿½rio selecionado?">Excluir</a>
+															data-confirm="Deseja realmente excluir o usuário selecionado?">Excluir</a>
 														</c:if>
 													</td>
 												</tr>
@@ -96,7 +96,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Detalhes Usuï¿½rio</h4>
+				<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
 				</div>
 				<div class="modal-body body-usuario">
 				</div>

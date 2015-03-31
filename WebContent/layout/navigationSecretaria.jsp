@@ -14,7 +14,7 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-group"></i>
-				<span class="hidden-xs">Responsï¿½veis</span>
+				<span class="hidden-xs">Responsáveis</span>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="SecretariaController?action=jspNovoResponsavel">Novo</a></li>
@@ -24,7 +24,7 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-user"></i>
-				<span class="hidden-xs">Usuï¿½rios</span>
+				<span class="hidden-xs">Usuários</span>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="SecretariaController?action=jspNovoUsuario">Novo</a></li>
@@ -44,7 +44,7 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-sort-numeric-asc"></i>
-				<span class="hidden-xs">Relatï¿½rios</span>
+				<span class="hidden-xs">Relatórios</span>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="ajax-link" href="">Atletas</a></li>

@@ -41,7 +41,7 @@
 											<tr>
 												<th>Equipe</th>
 												<th>Dia da Semana</th>
-												<th style="text-align: center;">Hora Inï¿½cio</th>
+												<th style="text-align: center;">Hora Início</th>
 												<th style="text-align: center;">Hora Fim</th>
 												<th></th>
 											</tr>

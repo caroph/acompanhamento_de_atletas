@@ -38,7 +38,7 @@
 									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirAtleta" method="post" >
 										<input type="hidden" name="idAtleta" value="${atleta.idPessoa}"/>
 										<div class="form-group">
-											<h3 class="text-center">Dados TÃ©cnicos</h3>
+											<h3 class="text-center">Dados Técnicos</h3>
 										</div>
 										<c:if test="${ msg != null && msg != ''}">
 											<div class="alert alert-danger">
@@ -63,15 +63,15 @@
 												</select>
 											</div>
 											<div class="col-sm-3">
-												<label for="nrMatricula" class=" control-label">Nï¿½ Matrï¿½cula:</label>
+												<label for="nrMatricula" class=" control-label">Nº Matrícula:</label>
 												<input type="text" value="${atleta.nrMatricula}" class="form-control" id="nrMatricula" name="nrMatricula" required/>
 											</div>
 											<div class="col-sm-3">
-												<label class=" control-label">Nï¿½  FPT:</label>
+												<label class=" control-label">Nº  FPT:</label>
 												<input type="text" value="${atleta.nrCadFPT}" class="form-control" id="nrCadFPT" name="nrCadFPT"  />
 											</div>
 											<div class="col-sm-3">
-												<label class=" control-label">Nï¿½  CBT:</label>
+												<label class=" control-label">Nº CBT:</label>
 												<input type="text" value="${atleta.nrCadCBT}" class="form-control" id="nrCadCBT" name="nrCadCBT"/>
 											</div>
 										</div>
@@ -131,12 +131,12 @@
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
-											<label for="endereco" class=" control-label">Endereï¿½o Residencial:</label>
+											<label for="endereco" class=" control-label">Endereço Residencial:</label>
 											<input type="text"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" required />
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
-	  											<label for="numero" class=" control-label">Nï¿½mero:</label>
+	  											<label for="numero" class=" control-label">Número:</label>
 												<input type="number"  value="${atleta.endereco.numero}"  class="form-control" id="numero" name="numero" required />
 											</div>
 											<div class="col-sm-4">
@@ -164,7 +164,7 @@
 												<input type="text"  value="${atleta.escola}"  class="form-control" id="escola" name="escola" />
 											</div>
 											<div class="col-sm-3">
-												<label class=" control-label">Sï¿½rie:</label>
+												<label class=" control-label">Série:</label>
 												<input type="text"  value="${atleta.serie}" class="form-control" id="serie" name="serie" />
 											</div>
 											<div class="col-sm-3">
@@ -175,63 +175,63 @@
 										<hr/>
 										<!-- EMERGï¿½NCIA -->
 										<div class="form-group">
-											<h3 class="text-center">Dados de Emergï¿½ncia</h3>
+											<h3 class="text-center">Dados de Emergência</h3>
 										</div>
 										<br/>
 										<div class="form-group">
 											<div class="col-sm-4">
-												<label class=" control-label">Nome Mï¿½dico Responsï¿½vel:</label>
+												<label class=" control-label">Nome Médico Responsável:</label>
 												<input type="text"  value="${atleta.nmMedicoResponsavel}" class="form-control" id="nmMedicoResponsavel" name="nmMedicoResponsavel" />
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Telefone do Mï¿½dico:</label>
+												<label class=" control-label">Telefone do Médico:</label>
 												<input type="number"  value="${atleta.telMedicoResponsavel}" class="form-control" id="telMedicoResponsavel" name="telMedicoResponsavel"/>
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Convï¿½nio Mï¿½dico Hospitalar:</label>
+												<label class=" control-label">Convênio Médico Hospitalar:</label>
 												<input type="text"  value="${atleta.convenio}" class="form-control" id="convenio" name="convenio"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
-												<label for="acompPsicologico" class=" control-label">Acompanhamento psicolï¿½gico externo:</label>
+												<label for="acompPsicologico" class=" control-label">Acompanhamento psicológico externo:</label>
 												<select class="form-control" id="acompPsicologico" name="acompPsicologico" required> 
 													<option value="sim">Sim</option> 
-													<option value="nao" selected>Nï¿½o</option> 
+													<option value="nao" selected>Nãoo</option> 
 												</select>
 											</div>
 											<div class="col-sm-8">
-												<label class=" control-label">Medicaï¿½ï¿½o autorizada a tomar em caso de dor:</label>
+												<label class=" control-label">Medicação autorizada a tomar em caso de dor:</label>
 												<input type="text"  value="${atleta.medicacaoAutorizada}" class="form-control" id="medicacaoAutorizada" name="medicacaoAutorizada" />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-2">
-												<label for="flAlergias" class=" control-label">Alï¿½rgico:</label>
+												<label for="flAlergias" class=" control-label">Alérgico:</label>
 												<select class="form-control" id="flAlergias" name="flAlergias" required> 
 													<option value="sim">Sim</option> 
-													<option value="nao" selected>Nï¿½o</option> 
+													<option value="nao" selected>Não</option> 
 												</select>
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Descriï¿½ï¿½o:</label>
+												<label class=" control-label">Descrição:</label>
 												<input type="text"  value="${atleta.dsAlergias}" class="form-control" id="dsAlergias" name="dsAlergias"/>
 											</div>
 											<div class="col-sm-2">
-												<label for="flMedicacao" class=" control-label">Medicaï¿½ï¿½o contï¿½nua:</label>
+												<label for="flMedicacao" class=" control-label">Medicação contínua:</label>
 												<select class="form-control" id="flMedicacao" name="flMedicacao" required> 
 													<option value="sim">Sim</option> 
-													<option value="nao" selected>Nï¿½o</option> 
+													<option value="nao" selected>Não</option> 
 												</select>
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Descriï¿½ï¿½o</label>
+												<label class=" control-label">Descrição</label>
 												<input type="text"  value="${atleta.dsMedicacao}" class="form-control" id="dsMedicacao" name="dsMedicacao" />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
-												<label for="nmContatoEmergencia" class=" control-label">Nome para emergï¿½ncia:</label>
+												<label for="nmContatoEmergencia" class=" control-label">Nome para emergência:</label>
 												<input type="text"  value="${atleta.nmContatoEmergencia}" class="form-control" id="nmContatoEmergencia" name="nmContatoEmergencia" required/>
 											</div>
 											<div class="col-sm-4">
@@ -254,7 +254,7 @@
 												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
 												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
 												<a class="btn btn-primary" href="SecretariaAnexosAtleta.jsp" id="anexos">Anexar Documentos</a>
-												<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Responsï¿½vel</a>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Responsável</a>
 												<button type="submit" class="btn btn-primary" >Salvar</button>
 											</div>
 										</div>

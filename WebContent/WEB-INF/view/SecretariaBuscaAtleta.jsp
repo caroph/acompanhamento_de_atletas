@@ -40,7 +40,7 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th>N Matrícula</th>
+												<th>N. Matrícula</th>
 												<th style="text-align: center;">Telefone</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>

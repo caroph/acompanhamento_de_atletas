@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Responsï¿½veis</span>
+										<i class="fa  fa-info-circle"></i> <span>Responsáveis</span>
 									</div>
 									<div class="box-icons">
 										</a> <a class="expand-link"> <i class="fa fa-expand"></i>
