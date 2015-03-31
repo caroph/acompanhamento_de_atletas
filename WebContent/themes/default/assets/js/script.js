@@ -113,3 +113,11 @@ function LimparCampos() {
         $(this).val("Selecione");
     });
 }
+
+function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
+	var html = "Nome: "+ nome + "<br/> Perfil: " + perfil + "<br/> Email: " + email + "<br/> Telefone: "
+	+ telefone + "<br/> Celular: " + celular;
+	if(cref != null && cref != "")
+		html += "<br/>CREF: " + cref;
+	$('.modal-body').html(html);
+}

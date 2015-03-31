@@ -67,7 +67,8 @@
 													<td id="telefone"><c:out value='${usuario.telefone}' /></td>
 													<td id="celular"><c:out value='${usuario.celular}' /></td>
 													<td align="left">
-														<a class="btn btn-info" data-toggle="modal" data-id="${usuario.idPessoa}" data-target="#detalhes">Visualizar</a>
+														<a class="btn btn-info" data-toggle="modal" onClick="abrirModalUsuario('${usuario.nome}', '${usuario.getNomePerfil()}', '${usuario.email}',
+														'${usuario.telefone}', '${usuario.celular}', '${usuario.CREF}')" data-target="#detalhes">Visualizar</a>
 														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
 														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
@@ -96,7 +97,6 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
 					</div>
-					<div id="orderDetails" class="modal-body"></div>
 					<div class="modal-body">
 						Nome: XXXXX <br/>
 						Perfil: X<br/>
