@@ -65,7 +65,6 @@ public class ResponsavelNegocio {
 	}
 	
 	public boolean desativar(int idResponsavel) throws Exception{
-		Responsavel responsavel;
 		try{
 			ResponsavelDAO dao = new ResponsavelDAO();
 			if(dao.desativar(idResponsavel))

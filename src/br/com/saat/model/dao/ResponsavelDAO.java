@@ -10,7 +10,6 @@ import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.TpPessoa;
-import br.com.saat.model.negocio.EnderecoNegocio;
 
 public class ResponsavelDAO {
 
