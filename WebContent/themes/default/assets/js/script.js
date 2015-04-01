@@ -133,6 +133,7 @@ function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComerci
 	
 	$('.body-responsavel').html(html);	
 }
+
 //Testando Checked List Group
 //$(function () {
 //    $('.list-group.checked-list-box .list-group-item').each(function () {

@@ -19,6 +19,7 @@
 	<link href="<%=Constants.PLUGINS%>/select2/select2.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/style.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/main.css" rel="stylesheet">
+	<script src="<%=Constants.PLUGINS%>/ckeditor/ckeditor.js" type="text/javascript"></script>
 	
 
     

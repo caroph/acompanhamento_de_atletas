@@ -12,6 +12,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class JavaMailApp {
 	public JavaMailApp(){};
     
@@ -59,5 +61,41 @@ public class JavaMailApp {
         
         Transport.send(message);
 
+    }
+    
+    public void enviarEmailResponsavel(String destinatario, String assunto, String mensagem) throws AddressException, MessagingException{
+    	Properties props = new Properties();
+        
+        /** Parâmetros de conexão com servidor Gmail */
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+
+        Session session = Session.getDefaultInstance(props,
+            new javax.mail.Authenticator() {
+                 @Override
+                 protected PasswordAuthentication getPasswordAuthentication() 
+                 {
+                       return new PasswordAuthentication("naotebukconsertos@gmail.com", "naotebuk2014");
+                 }
+            });
+
+        /** Ativa Debug para sessão */
+        session.setDebug(true);
+
+      
+      MimeMessage message = new MimeMessage(session);
+      message.setFrom(new InternetAddress("naotebukconsertos@gmail.com")); //Remetente          
+      message.setSubject(assunto);//Assunto
+      message.setText(mensagem,"utf-8","html");
+  
+      
+      /**Método para enviar a mensagem criada*/
+      Address[] toUser = InternetAddress.parse(destinatario);  //Destinatário(s)                  	
+      message.setRecipients(Message.RecipientType.TO, toUser);
+      
+      Transport.send(message);
     }
 }

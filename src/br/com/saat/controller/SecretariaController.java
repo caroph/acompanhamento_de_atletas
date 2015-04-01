@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
+import br.com.saat.core.JavaMailApp;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.DiasSemana;
@@ -666,6 +667,45 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
+		}else if("enviarEmailResponsavel".equals(action)){
+			String msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			
+			String email = request.getParameter("emailResponsavel");
+			
+			if(email.equals("") || email == null){
+				request.setAttribute("msg", msg);
+				retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
+			}else{
+				request.setAttribute("emailResponsavel", email);
+				retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
+			}
+		}else if("enviarEmailIndividual".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			String destinatario = request.getParameter("emailResponsavel");
+			String assunto = request.getParameter("assunto");
+			String msgEmail = request.getParameter("mensagemEmail");
+			
+			if(msgEmail.equals("") || msgEmail == null){
+				msg="Informe corretamente o campo 'Mensagem'";
+			}else{
+				if(assunto.equals("") || assunto == null){
+					assunto = "Sem assunto";
+				}
+				
+				try{
+					JavaMailApp email = new JavaMailApp();
+					email.enviarEmailResponsavel(destinatario, assunto, msgEmail);
+					msgSucesso = "Email enviado para " + destinatario + " com sucesso!";
+					
+				}catch(Exception ex){
+					msg = "Falha ao enviar email!";
+				}
+			}
+			request.setAttribute("emailResponsavel", destinatario);
+			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("msg", msg);
+			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
 		}
 		
 		rd = getServletContext().getRequestDispatcher(retorno);

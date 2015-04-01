@@ -78,7 +78,7 @@
 														data-confirm="Deseja realmente excluir o responsável selecionado?">Deletar</a>
 													</td>
 													<td class="text-center" width="10%">
-														<a class="btn btn-primary" data-toggle="modal" href="#enviarEmail">Enviar Email</a>
+														<a class="btn btn-primary" data-toggle="modal" href="SecretariaController?action=enviarEmailResponsavel&emailResponsavel=${responsavel.email}">Enviar Email</a>
 													</td>
 												</tr>
 											</c:forEach>
