@@ -28,7 +28,7 @@
 										<i class="fa  fa-info-circle"></i> <span>Dias de Treino</span>
 									</div>
 									<div class="box-icons">
-										</a> <a class="expand-link"> <i class="fa fa-expand"></i>
+										<a class="expand-link"> <i class="fa fa-expand"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
@@ -49,8 +49,8 @@
 										<tbody>
 											<c:forEach var="treino" items="${listaDiasTreinos}">
 												<tr>
-													<td><c:out value='${treino.dsTpEquipe}' /></td>
-													<td><c:out value='${treino.dsDiaSemana}' /></td>
+													<td><c:out value='${treino.getNomeEquipe()}' /></td>
+													<td><c:out value='${treino.getNomeDiaSemana()}' /></td>
 													<fmt:formatDate value="${treino.hrInicio}" pattern="HH:mm"
 														var="horaIFormatada" />
 													<td align="center"><c:out value='${horaIFormatada}' /></td>

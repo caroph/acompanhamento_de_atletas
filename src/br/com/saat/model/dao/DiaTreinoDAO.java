@@ -29,8 +29,8 @@ public class DiaTreinoDAO {
 		stmtScript = con.prepareStatement("INSERT INTO diaTreino (idTpEquipe, idDiaSemana, hrInicio, hrFim)"
 				+ "VALUES (?, ?, ?, ?)");
 		
-		stmtScript.setInt(1, dia.getTpEquipe());
-		stmtScript.setInt(2, dia.getDiaSemana());
+		stmtScript.setInt(1, dia.getIdTpEquipe());
+		stmtScript.setInt(2, dia.getIdDiaSemana());
 		stmtScript.setTime(3, new java.sql.Time(dia.hrInicio.getTime()));
 		stmtScript.setTime(4, new java.sql.Time(dia.hrFim.getTime()));
 		
@@ -46,12 +46,8 @@ public class DiaTreinoDAO {
 	public List<DiaTreino> buscaDiasTreinos() throws SQLException{
 		List<DiaTreino> lista = new ArrayList<DiaTreino>();
 		
-		stmtScript = con.prepareStatement("SELECT idDiaTreino, dsTpEquipe, dsDiaSemana, hrInicio, hrFim "
+		stmtScript = con.prepareStatement("SELECT idDiaTreino, idTpEquipe, idDiaSemana, hrInicio, hrFim "
 				+ "FROM diaTreino t "
-				+ "INNER JOIN tpEquipe e "
-				+ "ON t.idTpEquipe = e.idTpEquipe "
-				+ "INNER JOIN diaSemana s "
-				+ "ON t.idDiaSemana = s.idDiaSemana "
 				+ "WHERE t.flCadastroAtivo = 1");
 		
 		ResultSet rs = stmtScript.executeQuery();
@@ -59,8 +55,8 @@ public class DiaTreinoDAO {
 		while(rs.next()){
 			DiaTreino dia = new DiaTreino();
 			dia.setIdDiaTreino(rs.getInt("idDiaTreino"));
-			dia.setDsTpEquipe(rs.getString("dsTpEquipe"));
-			dia.setDsDiaSemana(rs.getString("dsDiaSemana"));
+			dia.setIdTpEquipe(rs.getInt("idTpEquipe"));
+			dia.setIdDiaDaSemana(rs.getInt("idDiaSemana"));
 			dia.setHrInicio(rs.getTime("hrInicio"));
 			dia.setHrFim(rs.getTime("hrFim"));
 			lista.add(dia);

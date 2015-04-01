@@ -20,6 +20,7 @@
 
 
     <script src="<%=Constants.PLUGINS%>/jquery/jquery-2.1.0.min.js"></script>
+    <script src="<%=Constants.JS%>/jquery.bootstrap-duallistbox.js"></script>
     <script src="<%=Constants.PLUGINS%>/jquery-ui/jquery-ui.min.js"></script>
 	<script src="<%=Constants.PLUGINS%>/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=Constants.PLUGINS%>/tinymce/tinymce.min.js"></script>

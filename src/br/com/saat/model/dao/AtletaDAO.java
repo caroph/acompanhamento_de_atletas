@@ -31,9 +31,9 @@ public class AtletaDAO {
 		stmtScript = con.prepareStatement("INSERT INTO atleta (idTpEquipe, nome, email, celular, "
 				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, turno, "
 				+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, medicacaoAutorizada, "
-				+ "flAlergias, dsAlergias, flMedicacao, dsMedicacao, nmContatoEmergencia, telContatoEmergencia,"
+				+ "flAlergias, dsAlergias, flMedicacao, dsMedicacao, nmContatoEmergencia, telContatoEmergencia, "
 				+ "grauParentescoContatoEmergencia, dtValidade) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 		stmtScript.setInt(1, 1);
 		stmtScript.setString(2, atleta.getNome());

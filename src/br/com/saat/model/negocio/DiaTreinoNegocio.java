@@ -11,10 +11,10 @@ public class DiaTreinoNegocio {
 	public List<Object> validaDados(DiaTreino dia) {
 		List<Object> lista = new ArrayList<Object>();
 
-		if (dia.getTpEquipe() == 0) {
+		if (dia.getIdTpEquipe() == 0) {
 			lista.add(false);
 			lista.add("Selecione corretamente o campo 'Equipe' !");
-		} else if (dia.getDiaSemana() == 0) {
+		} else if (dia.getIdDiaSemana() == 0) {
 			lista.add(false);
 			lista.add("Selecione corretamente o campo 'Dia da Semana' !");
 		} else if ("".equals(dia.getHrInicio())) {

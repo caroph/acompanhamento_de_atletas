@@ -78,6 +78,7 @@ public class SecretariaController extends Controller {
 			String msgSucesso = "";
 			String idAtleta;
 			int numero = 0;
+			int idTpEquipe = 0;
 			
 			Atleta atleta = new Atleta();
 			AtletaNegocio negocio = new AtletaNegocio();
@@ -97,8 +98,13 @@ public class SecretariaController extends Controller {
 				exception = true;
 			}
             try{
+            	idTpEquipe = Integer.parseInt(request.getParameter("tpEquipe"));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o campo 'Equipe'.";
+				exception = true;
+			}
+            try{
             	numero = Integer.parseInt(request.getParameter("numero"));
-            	String diaTreino = request.getParameter("diasTreino");
 			}catch(Exception ex){
 				msg = "Favor informar corretamente o campo 'Número' do endereço";
 				exception = true;
@@ -109,6 +115,7 @@ public class SecretariaController extends Controller {
 				atleta.setNome(request.getParameter("nome"));
 				atleta.setEmail(request.getParameter("email"));
 				atleta.setCelular(request.getParameter("celular"));
+				atleta.setIdTpEquipe(idTpEquipe);
 				atleta.setNrMatricula(request.getParameter("nrMatricula"));
 				atleta.setNrCadCBT(request.getParameter("nrCadCBT"));
 				atleta.setNrCadFPT(request.getParameter("nrCadFPT"));
@@ -146,7 +153,7 @@ public class SecretariaController extends Controller {
 				endereco.setTpEndereco(TpEndereco.Residencial.getValor());
 				
 				atleta.setEndereco(endereco);
-			
+				
 				try {
 					if( !"".equals(idAtleta) && !"0".equals(idAtleta) ){
 						atleta.setIdPessoa(Integer.parseInt(idAtleta));
@@ -247,8 +254,8 @@ public class SecretariaController extends Controller {
 			}
             
             try{
-            	dia.setTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
-            	dia.setDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
+            	dia.setIdTpEquipe(Integer.parseInt(request.getParameter("tpEquipe")));
+            	dia.setIdDiaDaSemana(Integer.parseInt(request.getParameter("diaSemana")));
 			}catch(Exception ex){
 				msg = "Favor selecionar corretamente o Tipo de Equipe e/ou Dia da Semana!";
 				exception = true;

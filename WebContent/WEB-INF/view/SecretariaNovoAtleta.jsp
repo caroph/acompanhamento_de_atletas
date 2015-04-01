@@ -76,22 +76,39 @@
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
-											<label class=" control-label">Dias de Treino:</label>
-								            <div class="well">
-								        		<ul id="check-list-box" class="list-group checked-list-box">
-								                  <li class="list-group-item" value="1">Cras justo odio</li>
-								                  <li class="list-group-item" value="2">Dapibus ac facilisis in</li>
-								                  <li class="list-group-item" value="3">Morbi leo risus</li>
-								                  <li class="list-group-item">Porta ac consectetur ac</li>
-								                  <li class="list-group-item">Vestibulum at eros</li>
-								                  <li class="list-group-item">Cras justo odio</li>
-								                  <li class="list-group-item">Dapibus ac facilisis in</li>
-								                  <li class="list-group-item">Morbi leo risus</li>
-								                  <li class="list-group-item">Porta ac consectetur ac</li>
-								                  <li class="list-group-item">Vestibulum at eros</li>
-								                </ul>
-								            </div>
-								            <input id="diasTreino" name="diasTreino" type="text" value=""/>
+										<!-- Testando Check List Group -->
+<!-- 											<label class=" control-label">Dias de Treino:</label> -->
+<!-- 								            <div class="well"> -->
+<!-- 								        		<ul id="check-list-box" class="list-group checked-list-box"> -->
+<!-- 								                  <li class="list-group-item" value="1">Cras justo odio</li> -->
+<!-- 								                  <li class="list-group-item" value="2">Dapibus ac facilisis in</li> -->
+<!-- 								                  <li class="list-group-item" value="3">Morbi leo risus</li> -->
+<!-- 								                  <li class="list-group-item"  value="4">Porta ac consectetur ac</li> -->
+<!-- 								                  <li class="list-group-item"  value="5">Vestibulum at eros</li> -->
+<!-- 								                  <li class="list-group-item">Cras justo odio</li> -->
+<!-- 								                  <li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 								                  <li class="list-group-item">Morbi leo risus</li> -->
+<!-- 								                  <li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 								                  <li class="list-group-item">Vestibulum at eros</li> -->
+<!-- 								                </ul> -->
+<!-- 								            </div> -->
+<!-- 								            <input id="diasTreino" name="diasTreino" type="text" value=""/> -->
+											<!-- Testando Dual List -->
+<!-- 											<label for="diasTreino">Dias de Treino:</label> -->
+<!-- 											 <div> -->
+<!-- 											     <select multiple="multiple" name="diasTreino" required> -->
+<!-- 												      <option value="option1">Atleta 1</option> -->
+<!-- 												      <option value="option2">Atleta 2</option> -->
+<!-- 												      <option value="option3">Atleta 3</option> -->
+<!-- 												      <option value="option4">Atleta 4</option> -->
+<!-- 												      <option value="option5">Atleta  5</option> -->
+<!-- 												      <option value="option6">Atleta 6</option> -->
+<!-- 												      <option value="option7">Atleta 7</option> -->
+<!-- 												      <option value="option8">Atleta 8</option> -->
+<!-- 												      <option value="option9">Atleta 9</option> -->
+<!-- 												      <option value="option0">Atleta 10</option> -->
+<!-- 											    </select> -->
+<!-- 											 </div> -->
 										</div>
 										<hr/>
 										<div class="form-group">
@@ -103,7 +120,7 @@
 												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" required/>
 											</div>
 											<div class="col-sm-4" >
-												<label for="dtNascimento" class=" control-label">Data de Nascimento:</label>
+												<label for="dtNascimento" class="control-label data">Data de Nascimento:</label>
 												<fmt:formatDate value="${atleta.dtNascimento}" pattern="dd/MM/yyyy" var="dtNascimento" />
 												<input type="text" value="${dtNascimento}" class="form-control" id="dtNascimento" name="dtNascimento" required/>
 											</div>
@@ -115,11 +132,11 @@
 										<div class="form-group">
 											<div class="col-sm-3">
 												<label for="telefone" class=" control-label">Telefone Residencial:</label>
-												<input type="number"  value="${atleta.endereco.telefone}" class="form-control" id="telefone" name="telefone" required/>
+												<input type="text"  value="${atleta.endereco.telefone}" class="form-control phone" id="telefone" name="telefone" required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="celular" class=" control-label">Telefone Celular:</label>
-												<input type="number"  value="${atleta.celular}" class="form-control" id="celular" name="celular" required/>
+												<input type="text"  value="${atleta.celular}" class="form-control phone" id="celular" name="celular" required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="rg" class=" control-label">RG:</label>
@@ -151,11 +168,11 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="estado" class=" control-label">Estado:</label>
-												<select class="form-control" name="estado" id="estado" name="estado" required></select>
+												<select class="form-control" name="estado" id="estado" name="estado" value="${atleta.endereco.estado}" required></select>
 											</div>
 											<div class="col-sm-8">
 												<label for="cidade" class=" control-label">Cidade:</label>
-												<select class="form-control" name="cidade" id="cidade" name="cidade" required></select>
+												<select class="form-control" name="cidade" id="cidade" name="cidade" value="${atleta.endereco.cidade}" required></select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -185,7 +202,7 @@
 											</div>
 											<div class="col-sm-4">
 												<label class=" control-label">Telefone do Médico:</label>
-												<input type="number"  value="${atleta.telMedicoResponsavel}" class="form-control" id="telMedicoResponsavel" name="telMedicoResponsavel"/>
+												<input type="text"  value="${atleta.telMedicoResponsavel}" class="form-control phone" id="telMedicoResponsavel" name="telMedicoResponsavel"/>
 											</div>
 											<div class="col-sm-4">
 												<label class=" control-label">Convênio Médico Hospitalar:</label>
@@ -197,8 +214,15 @@
 												<label for="acompPsicologico" class=" control-label">Acompanhamento psicológico externo:</label>
 												<select class="form-control" id="acompPsicologico" name="acompPsicologico" required> 
 													<option value="sim">Sim</option> 
-													<option value="nao" selected>Nãoo</option> 
+													<option value="nao" selected>Não</option> 
 												</select>
+<!-- 												<div class="toggle-switch toggle-switch-success"> -->
+<!-- 													<label> -->
+<!-- 														<input type="checkbox" checked=""> -->
+<!-- 														<div class="toggle-switch-inner"></div> -->
+<!-- 														<div class="toggle-switch-switch"><i class="fa fa-check"></i></div> -->
+<!-- 													</label> -->
+<!-- 												</div> -->
 											</div>
 											<div class="col-sm-8">
 												<label class=" control-label">Medicação autorizada a tomar em caso de dor:</label>
@@ -236,7 +260,7 @@
 											</div>
 											<div class="col-sm-4">
 												<label for="telContatoEmergencia" class=" control-label">Telefone:</label>
-												<input type="number"  value="${atleta.telContatoEmergencia}"  class="form-control" id="telContatoEmergencia" name="telContatoEmergencia" required/>
+												<input type="text"  value="${atleta.telContatoEmergencia}"  class="form-control phone" id="telContatoEmergencia" name="telContatoEmergencia" required/>
 											</div>
 											<div class="col-sm-4">
 												<label for="grauParentescoContatoEmergencia" class=" control-label">Grau de Parentesco:</label>
@@ -245,7 +269,7 @@
 										</div>
 										<hr>
 										<div class="form-group col-sm-4" >
-											<label for="dtValidade" class=" control-label">Data Validade Cadastro:</label>
+											<label for="dtValidade" class="control-label data">Data Validade Cadastro:</label>
 											<fmt:formatDate value="${atleta.dtValidade}" pattern="dd/MM/yyyy" var="dtValidade" />
 											<input type="text"  value="${dtValidade}" class="form-control" id="dtValidade" name="dtValidade" required />
 										</div>

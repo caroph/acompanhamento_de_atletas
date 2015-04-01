@@ -13,7 +13,10 @@ public class AtletaNegocio {
 	public List<Object> validaDados(Atleta atleta) {
 		List<Object> lista = new ArrayList<Object>();
 		
-		if ("".equals(atleta.getNrMatricula()) || atleta.getNrMatricula() == null) {
+		if (atleta.getIdTpEquipe() == 0) {
+			lista.add(false);
+			lista.add("Selecione corretamente o campo 'Equipe' !");
+		}else if ("".equals(atleta.getNrMatricula()) || atleta.getNrMatricula() == null) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Nº Matrícula Clube Curitibano' !");
 		} else if ("".equals(atleta.getNome()) || atleta.getNome() == null) {

@@ -2748,13 +2748,13 @@
     grouping: [ 3 ],
     currency: [ "$", "" ],
     dateTime: "%a %b %e %X %Y",
-    date: "%m/%d/%Y",
+    date: "%d/%m/%Y",
     time: "%H:%M:%S",
     periods: [ "AM", "PM" ],
-    days: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
-    shortDays: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
-    months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-    shortMonths: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
+    days: [ "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado" ],
+    shortDays: [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab" ],
+    months: [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+    shortMonths: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ]
   });
   d3.format = d3_locale_enUS.numberFormat;
   d3.geo = {};

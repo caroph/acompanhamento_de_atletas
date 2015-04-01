@@ -4,10 +4,8 @@ import java.util.Date;
 
 public class DiaTreino {
 	public int idDiaTreino;
-	public int tpEquipe;
-	public String dsTpEquipe;
-	public int diaSemana;
-	public String dsDiaSemana;
+	public int idTpEquipe;
+	public int idDiaSemana;
 	public Date hrInicio;
 	public Date hrFim;
 	
@@ -17,12 +15,12 @@ public class DiaTreino {
 		this.idDiaTreino = idDiaTreino;
 	}
 	
-	public DiaTreino(int idDiaTreino, int tpEquipe, int diaSemana,
+	public DiaTreino(int idDiaTreino, int idTpEquipe, int idDiaSemana,
 			Date hrInicio, Date hrFim) {
 		super();
 		this.idDiaTreino = idDiaTreino;
-		this.tpEquipe = tpEquipe;
-		this.diaSemana = diaSemana;
+		this.idTpEquipe = idTpEquipe;
+		this.idDiaSemana = idDiaSemana;
 		this.hrInicio = hrInicio;
 		this.hrFim = hrFim;
 	}
@@ -33,17 +31,17 @@ public class DiaTreino {
 	public void setIdDiaTreino(int idDiaTreino) {
 		this.idDiaTreino = idDiaTreino;
 	}
-	public int getTpEquipe() {
-		return tpEquipe;
+	public int getIdTpEquipe() {
+		return idTpEquipe;
 	}
-	public void setTpEquipe(int tpEquipe) {
-		this.tpEquipe = tpEquipe;
+	public void setIdTpEquipe(int idTpEquipe) {
+		this.idTpEquipe = idTpEquipe;
 	}
-	public int getDiaSemana() {
-		return diaSemana;
+	public int getIdDiaSemana() {
+		return idDiaSemana;
 	}
-	public void setDiaDaSemana(int diaSemana) {
-		this.diaSemana = diaSemana;
+	public void setIdDiaDaSemana(int idDiaSemana) {
+		this.idDiaSemana = idDiaSemana;
 	}
 	public Date getHrInicio() {
 		return hrInicio;
@@ -57,21 +55,46 @@ public class DiaTreino {
 	public void setHrFim(Date hrFim) {
 		this.hrFim = hrFim;
 	}
-
-	public String getDsTpEquipe() {
-		return dsTpEquipe;
+	
+	public String getNomeEquipe(){
+		String retorno = "";
+		switch(this.idTpEquipe){
+			case 1:
+				retorno = Equipes.Equipe.getNome();
+				break;
+			case 2:
+				retorno = Equipes.PreEquipe.getNome();
+				break;
+		}
+		return retorno;
 	}
-
-	public void setDsTpEquipe(String dsTpEquipe) {
-		this.dsTpEquipe = dsTpEquipe;
-	}
-
-	public String getDsDiaSemana() {
-		return dsDiaSemana;
-	}
-
-	public void setDsDiaSemana(String dsDiaSemana) {
-		this.dsDiaSemana = dsDiaSemana;
+	
+	public String getNomeDiaSemana(){
+		String retorno = "";
+		switch (this.idDiaSemana) {
+		case 1:
+			retorno = DiasSemana.Domingo.getNome();
+			break;
+		case 2:
+			retorno = DiasSemana.Segunda.getNome();
+			break;
+		case 3:
+			retorno = DiasSemana.Terca.getNome();
+			break;
+		case 4:
+			retorno = DiasSemana.Quarta.getNome();
+			break;
+		case 5:
+			retorno = DiasSemana.Quinta.getNome();
+			break;
+		case 6:
+			retorno = DiasSemana.Sexta.getNome();
+			break;
+		case 7:
+			retorno = DiasSemana.Sabado.getNome();
+			break;
+		}
+		return retorno;
 	}
 	
 }
