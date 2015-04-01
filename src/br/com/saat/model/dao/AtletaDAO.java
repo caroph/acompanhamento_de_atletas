@@ -35,7 +35,7 @@ public class AtletaDAO {
 				+ "grauParentescoContatoEmergencia, dtValidade) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
-		stmtScript.setInt(1, 1);
+		stmtScript.setInt(1, atleta.getIdTpEquipe());
 		stmtScript.setString(2, atleta.getNome());
 		stmtScript.setString(3, atleta.getEmail());
 		stmtScript.setString(4, atleta.getCelular());
@@ -84,7 +84,8 @@ public class AtletaDAO {
 				+ "FROM atleta a "
 				+ "INNER JOIN endereco e "
 				+ "ON a.idAtleta = e.idEndereco "
-				+ "WHERE flCadastroAtivo = 1 ");
+				+ "WHERE flCadastroAtivo = 1 "
+				+ "ORDER BY nome ");
 		
 		ResultSet rs = stmtScript.executeQuery();
 		

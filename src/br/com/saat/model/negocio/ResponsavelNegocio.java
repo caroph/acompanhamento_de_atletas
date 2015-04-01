@@ -1,6 +1,5 @@
 package br.com.saat.model.negocio;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

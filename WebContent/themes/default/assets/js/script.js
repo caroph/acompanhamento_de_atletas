@@ -56,7 +56,7 @@ $("#selectModelos").click(function(){
 });
 
 //Testando Dual List
-//var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
+var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 //$("#demoform").submit(function() {
 //  alert($('[name="diasTreino"]').val());
 //  return false;
@@ -228,3 +228,10 @@ function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComerci
 //        alert($bla);
 //    }
 //});
+
+//Combo Dinamico
+function carregaDiasTreino(){     
+//    document.forms[0].action.value="carregaDiasTreino";     
+    document.forms[0].action="SecretariaController?action=carregaDiasTreino";     
+    document.forms[0].submit();  
+}  

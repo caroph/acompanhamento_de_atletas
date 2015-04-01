@@ -55,10 +55,15 @@
 										<div class="form-group">
 											<div class="col-sm-3">
 												<label for="tpEquipe" class=" control-label">Equipe:</label>
-												<select class="form-control" id="tpEquipe" name="tpEquipe" required>
+												<select class="form-control" id="tpEquipe" name="tpEquipe" onchange="carregaDiasTreino()" required>
 													<option value="">Selecione</option>
 													<c:forEach var="equipe" items="${listaEquipes}">
-						                            	<option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+							                            <c:if test="${equipe.valor == atleta.idTpEquipe}">
+			                                                <option selected value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${equipe.valor != atleta.idTpEquipe}">
+															<option value="<c:out value='${equipe.valor}'/>"><c:out value="${equipe.nome}" /></option>
+														</c:if>
 						                            </c:forEach>
 												</select>
 											</div>
@@ -76,39 +81,15 @@
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
-										<!-- Testando Check List Group -->
-<!-- 											<label class=" control-label">Dias de Treino:</label> -->
-<!-- 								            <div class="well"> -->
-<!-- 								        		<ul id="check-list-box" class="list-group checked-list-box"> -->
-<!-- 								                  <li class="list-group-item" value="1">Cras justo odio</li> -->
-<!-- 								                  <li class="list-group-item" value="2">Dapibus ac facilisis in</li> -->
-<!-- 								                  <li class="list-group-item" value="3">Morbi leo risus</li> -->
-<!-- 								                  <li class="list-group-item"  value="4">Porta ac consectetur ac</li> -->
-<!-- 								                  <li class="list-group-item"  value="5">Vestibulum at eros</li> -->
-<!-- 								                  <li class="list-group-item">Cras justo odio</li> -->
-<!-- 								                  <li class="list-group-item">Dapibus ac facilisis in</li> -->
-<!-- 								                  <li class="list-group-item">Morbi leo risus</li> -->
-<!-- 								                  <li class="list-group-item">Porta ac consectetur ac</li> -->
-<!-- 								                  <li class="list-group-item">Vestibulum at eros</li> -->
-<!-- 								                </ul> -->
-<!-- 								            </div> -->
-<!-- 								            <input id="diasTreino" name="diasTreino" type="text" value=""/> -->
-											<!-- Testando Dual List -->
-<!-- 											<label for="diasTreino">Dias de Treino:</label> -->
-<!-- 											 <div> -->
-<!-- 											     <select multiple="multiple" name="diasTreino" required> -->
-<!-- 												      <option value="option1">Atleta 1</option> -->
-<!-- 												      <option value="option2">Atleta 2</option> -->
-<!-- 												      <option value="option3">Atleta 3</option> -->
-<!-- 												      <option value="option4">Atleta 4</option> -->
-<!-- 												      <option value="option5">Atleta  5</option> -->
-<!-- 												      <option value="option6">Atleta 6</option> -->
-<!-- 												      <option value="option7">Atleta 7</option> -->
-<!-- 												      <option value="option8">Atleta 8</option> -->
-<!-- 												      <option value="option9">Atleta 9</option> -->
-<!-- 												      <option value="option0">Atleta 10</option> -->
-<!-- 											    </select> -->
-<!-- 											 </div> -->
+										
+											<label for="diasTreino">Dias de Treino:</label>
+											 <div>
+												<select multiple="multiple" id="diasTreino" name="diasTreino" required>
+													<c:forEach var="dia" items="${listaDiasTreinos}">
+						                            	<option value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${dia.hrInicio} às ${dia.hrFim}" /></option>
+						                            </c:forEach>
+												</select>
+											 </div>
 										</div>
 										<hr/>
 										<div class="form-group">

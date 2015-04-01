@@ -40,7 +40,7 @@ public class DiaTreinoNegocio {
 			}
 		} catch (Exception e) {
 			throw new Exception(
-					"Erro! Ocorreu algum erro ao inserir o dia de treino");
+					"Erro! Ocorreu algum erro ao inserir o dia de treino.");
 		}
 
 		return retorno;
@@ -52,7 +52,7 @@ public class DiaTreinoNegocio {
 			List<DiaTreino> lista = dao.buscaDiasTreinos();
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
 		}
 	}
 
@@ -65,10 +65,38 @@ public class DiaTreinoNegocio {
 				retorno = true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao desativar o dia de treino!");
+			throw new Exception("Erro! Ocorreu algum erro ao desativar o dia de treino.");
 		}
 
 		return retorno;
 	}
+
+	public List<DiaTreino> carregaDiasTreino(int idTpEquipe) throws Exception{
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			List<DiaTreino> lista = dao.carregaDiasTreino(idTpEquipe);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
+		}
+	}
+	
+	public boolean inserirDiaTreinoAtleta(String[] diasTreino, int idAtleta) throws Exception {
+		boolean retorno = true;
+
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			for (String idDia : diasTreino) {
+				if (!dao.inserirDiaTreinoAtleta(idDia, idAtleta)) {
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			throw new Exception(
+				"Erro! Ocorreu algum erro ao inserir os dias de treino do atleta.");
+		}
+
+		return retorno;
+	} 
 
 }
