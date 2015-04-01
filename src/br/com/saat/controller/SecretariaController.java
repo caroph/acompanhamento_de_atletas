@@ -524,12 +524,27 @@ public class SecretariaController extends Controller {
 								ResponsavelDAO dao = new ResponsavelDAO();
 								//verifica se é uma inserção ou alteração
 								String idResponsavel = request.getParameter("idResponsavel");
+								String idEnderecoResidencial = request.getParameter("idEnderecoResidencial");
+								String idEnderecoComercial = request.getParameter("idEnderecoComercial");
+								
 								if(!"".equals(idResponsavel) && !(idResponsavel == null)){
 									responsavel.setIdPessoa(Integer.parseInt(idResponsavel));
-									if(responsavelNegocio.alterar(responsavel))
+									responsavel.getEnderecos().get(0).setIdEndereco(Integer.parseInt(idEnderecoResidencial));
+									responsavel.getEnderecos().get(1).setIdEndereco(Integer.parseInt(idEnderecoComercial));
+									
+									if(responsavelNegocio.alterar(responsavel)){
+										//seta os dados para que sejam carregados na pagina de retorno
 										msgSucesso = "Responsável alterado com sucesso!";
-									else
+										Endereco enderecoResidencial = responsavel.getEnderecos().get(0).getTpEndereco() == TpEndereco.Residencial.getValor()? responsavel.getEnderecos().get(0) : responsavel.getEnderecos().get(1);
+										Endereco enderecoComercial = responsavel.getEnderecos().get(1).getTpEndereco() == TpEndereco.Comercial.getValor()? responsavel.getEnderecos().get(1) : responsavel.getEnderecos().get(0);
+										
+										request.setAttribute("responsavel", responsavel);
+										request.setAttribute("enderecoResidencial", enderecoResidencial);
+										request.setAttribute("enderecoComercial", enderecoComercial);
+										
+									}else
 										msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+									
 								}else{
 									if(responsavelNegocio.inserir(responsavel))
 										msgSucesso = "Responsável salvo com sucesso!";
@@ -549,7 +564,8 @@ public class SecretariaController extends Controller {
 			}catch(ParseException ex){
 				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			}
-				
+			
+			request.setAttribute("msgSucesso", msgSucesso);	
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 		}else if("jspBuscaResponsavel".equals(action)){

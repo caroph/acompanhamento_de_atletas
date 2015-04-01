@@ -1,19 +1,13 @@
 window.onload = function() {	
-		  new dgCidadesEstados({
-			    estado: document.getElementById('estado'),
-			    cidade: document.getElementById('cidade')
-			  });
-		  
-		  new dgCidadesEstados({
-			    estado: document.getElementById('estadoCom'),
-			    cidade: document.getElementById('cidadeCom')
-			  });
-		  
-//			new dgCidadesEstadosCom(
-//				document.getElementById('estadoCom'),
-//				document.getElementById('cidadeCom'),
-//				true
-//			);
+	  new dgCidadesEstados({
+		    estado: document.getElementById('estado'),
+		    cidade: document.getElementById('cidade')
+		  });
+	  
+	  new dgCidadesEstados({
+		    estado: document.getElementById('estadoCom'),
+		    cidade: document.getElementById('cidadeCom')
+		  });
 }
 
 //Máscaras
@@ -89,16 +83,7 @@ function passar(){
 		var email = document.getElementById("emailSenha"); 
 		email.value = valorA.value; 
 		}; 
-		
-function carregaScriptEstadoRes(){
-	document.getElementById('cidade2').innerHMTL = "";
-	new dgCidadesEstados(
-			document.getElementById('estado2'),
-			document.getElementById('cidade2'),
-			true
-		);
-};
-		
+			
 //Plugin de Horário e Calendario
 function DemoTimePicker(){
 	$('#hrInicio').timepicker({setDate: new Date()});
@@ -128,13 +113,26 @@ function LimparCampos() {
 }
 
 function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
-	var html = "Nome: "+ nome + "<br/> Perfil: " + perfil + "<br/> Email: " + email + "<br/> Telefone: "
-	+ telefone + "<br/> Celular: " + celular;
+	var html = "<b>Nome:</b> "+ nome + "<br/>";
+	html += "<b>Perfil:</b> " + perfil + "<br/>"; 
+	html += "<b>Email:</b> " + email + "<br/>";
+	html += "<b>Telefone:</b> "+ telefone + "<br/>";
+	html += "<b>Celular:</b> " + celular + "<br/>";
+	
 	if(cref != null && cref != "")
-		html += "<br/>CREF: " + cref;
+		html += "CREF: " + cref + "<br/>";
 	$('.body-usuario').html(html);
 }
 
+function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComercial, celular){
+	var html = "<b>Nome:</b> " + nome + "<br/>";
+	html += "<b>Email:</b> " + email + "<br/>";
+	html += "<b>Telefone Residencial:</b> " + telResidencial + "<br/>";
+	html += "<b>Telefone Comercial:</b> " + telComercial + "<br/>";
+	html += "<b>Celular:</b> " + celular + "<br/>";
+	
+	$('.body-responsavel').html(html);	
+}
 //Testando Checked List Group
 //$(function () {
 //    $('.list-group.checked-list-box .list-group-item').each(function () {

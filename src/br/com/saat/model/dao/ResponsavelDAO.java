@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
@@ -30,14 +32,18 @@ public class ResponsavelDAO {
 				+ "email, "
 				+ "celular"				
 				+ ") "
-				+ "VALUES (?, ?, ?)");
+				+ "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		stmtScript.setString(1, responsavel.getNome());
 		stmtScript.setString(2, responsavel.getEmail());
 		stmtScript.setString(3, responsavel.getCelular());
 		
 		if(stmtScript.executeUpdate() > 0){
 			//recupera o id do usuário recem cadastrado
-			responsavel.setIdPessoa(recuperaId(responsavel.getNome()));
+			ResultSet rs = stmtScript.getGeneratedKeys();
+			if(rs.next())
+				responsavel.setIdPessoa(rs.getInt(1));
+			else
+				return false;
 			
 			if(responsavel.getIdPessoa() != 0)
 			{
@@ -83,19 +89,6 @@ public class ResponsavelDAO {
 			return false;
 	}
 
-	private int recuperaId(String nome) throws SQLException{
-		stmtScript = con.prepareStatement("SELECT idResponsavel FROM responsavel WHERE nome = ? AND flCadastroAtivo = 1");
-		stmtScript.setString(1, nome);
-		
-		ResultSet rs = stmtScript.executeQuery();
-		
-		if(rs.next()){
-			return rs.getInt("idResponsavel");
-		}
-		
-		return 0;
-	}
-	
 	public ArrayList<Responsavel> buscarTodos() throws SQLException{
 		ArrayList<Responsavel> lista = new ArrayList<Responsavel>();
 		

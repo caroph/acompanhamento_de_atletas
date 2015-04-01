@@ -63,18 +63,22 @@
 													<td class="text-left" width="75%"><c:out value='${responsavel.nome}' /></td>
 													<td class="text-center" width="5%">
 														<a class="btn btn-primary" href='SecretariaController?action=editarResponsavel&idResponsavel=${responsavel.idPessoa}' 
-														data-confirm="Deseja realmente editar o responsï¿½vel selecionado?">Editar</a>
+														data-confirm="Deseja realmente editar o responsável selecionado?">Editar</a>
 													</td>
 													<td class="text-center" width="5%">
-														<a data-toggle="modal" href="#detalhes">Detalhes</a>
+														<a class="btn btn-info" data-toggle="modal" href="#detalhes"
+														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}','${responsavel.enderecos[0].telefone}','${responsavel.enderecos[1].telefone}','${responsavel.celular}')"
+														>
+															Detalhes
+														</a>
 													</td>
 													<td class="text-center" width="5%">
 														<a class="btn btn-danger"  
 														href='SecretariaController?action=desativarResponsavel&idResponsavel=${responsavel.idPessoa}'
-														data-confirm="Deseja realmente excluir o responsï¿½vel selecionado?">Deletar</a>
+														data-confirm="Deseja realmente excluir o responsável selecionado?">Deletar</a>
 													</td>
 													<td class="text-center" width="10%">
-														<a data-toggle="modal" href="#enviarEmail">Enviar Email</a>
+														<a class="btn btn-primary" data-toggle="modal" href="#enviarEmail">Enviar Email</a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -102,6 +106,23 @@
 				</div>
 			</div>
 			<!--End Content-->
+		</div>
+	</div>
+	
+	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
+	class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+				<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
+				</div>
+				<div class="modal-body body-responsavel">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+				</div>
+			</div>
 		</div>
 	</div>
 

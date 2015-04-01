@@ -83,17 +83,17 @@ public class EnderecoDAO {
 					+ "idTpEndereco = ? "
 					+ "WHERE idEndereco = ?");
 		else if(tpPessoa == TpPessoa.Atleta.getValor())
-			stmtScript = con.prepareStatement("INSERT INTO endereco ("
-					+ "idAtleta,"
-					+ "endereco,"
-					+ "numero,"
-					+ "complemento,"
-					+ "bairro,"
-					+ "estado,"
-					+ "cidade,"
-					+ "telefone,"
-					+ "idTpEndereco"
-					+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			stmtScript = con.prepareStatement("UPDATE endereco SET "
+					+ "idResponsavel = ?,"
+					+ "endereco = ?,"
+					+ "numero = ?,"
+					+ "complemento = ?,"
+					+ "bairro = ?,"
+					+ "estado = ?,"
+					+ "cidade = ?,"
+					+ "telefone = ?,"
+					+ "idTpEndereco = ? "
+					+ "WHERE idEndereco = ?");		
 		else
 			return false;
 		
@@ -106,6 +106,7 @@ public class EnderecoDAO {
 		stmtScript.setString(7, endereco.getCidade());
 		stmtScript.setString(8, endereco.getTelefone());
 		stmtScript.setInt(9, endereco.getTpEndereco());
+		stmtScript.setInt(10, endereco.getIdEndereco());
 		
 		if(stmtScript.executeUpdate() > 0){
 			return true;
