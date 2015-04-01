@@ -80,12 +80,12 @@
 											</div>
 											<div class="col-sm-4">
 												<label for="telresidencial" class="control-label">Telefone
-													Residencial:</label> <input type="text" class="form-control"
+													Residencial:</label> <input type="text" class="form-control phone"
 													id="telresidencial" value="${usuario.telefone}" name="telresidencial" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telcelular" class="control-label">Telefone
-													Celular:</label> <input type="text" class="form-control"
+													Celular:</label> <input type="text" class="form-control phone"
 													id="telcelular" value="${usuario.celular}" name="telcelular"/>
 											</div>
 										</div>
