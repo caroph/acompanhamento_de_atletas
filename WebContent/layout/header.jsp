@@ -20,16 +20,28 @@
 <!-- 									<span class="badge">7</span> -->
 								</a>
 							</li>
-							<li>
-								<a href="Autenticador?action=logout">
-									<i class="fa fa-power-off"></i>
-								</a>
-							</li>
 							<li class="dropdown">
+								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right account">
 										<span class="welcome">Bem vindo(a),</span>
 										<span>${ sessionScope.usuarioLogado.nome }</span>
 									</div>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a data-toggle="modal" href="#alterarSenha">
+											<i class="fa fa-lock"></i>
+											<span>Alterar Senha</span>
+										</a>
+									</li>
+									<li>
+										<a href="Autenticador?action=logout">
+											<i class="fa fa-power-off"></i>
+											<span>Sair</span>
+										</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</div>
