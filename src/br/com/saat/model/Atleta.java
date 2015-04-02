@@ -12,7 +12,7 @@ public class Atleta extends Pessoa {
 	private String CPF;
 	private String escola;
 	private String serie;
-	private String turno;
+	private int idTurno;
 	private boolean acompPsicologico;
 	private String nmMedicoResponsavel;
 	private String telMedicoResponsavel;
@@ -24,7 +24,7 @@ public class Atleta extends Pessoa {
 	private String dsMedicacao;
 	private String nmContatoEmergencia;
 	private String telContatoEmergencia;
-	private String grauParentescoContatoEmergencia;
+	private int idGrauParentesco;
 	private Date dtValidade;
 	private Endereco endereco;
 	
@@ -33,13 +33,13 @@ public class Atleta extends Pessoa {
 	public Atleta(int idPessoa, String nome, String email,
 			int idTpEquipe, String nrMatricula, String nrCadFPT,
 			String nrCadCBT, Date dtNascimento, String RG, String CPF,
-			String escola, String serie, String turno,
+			String escola, String serie, int idTurno,
 			boolean acompPsicologico, String nmMedicoResponsavel,
 			String telMedicoResponsavel, String convenio,
 			String medicacaoAutorizada, boolean flAlergias, String dsAlergias,
 			boolean flMedicacao, String dsMedicacao,
 			String nmContatoEmergencia, String telContatoEmergencia,
-			String grauParentescoContatoEmergencia, Date dtValidade) {
+			int idGrauParentesco, Date dtValidade) {
 		super(idPessoa, nome, email);
 		this.idTpEquipe = idTpEquipe;
 		this.nrMatricula = nrMatricula;
@@ -50,7 +50,7 @@ public class Atleta extends Pessoa {
 		this.CPF = CPF;
 		this.escola = escola;
 		this.serie = serie;
-		this.turno = turno;
+		this.idTurno = idTurno;
 		this.acompPsicologico = acompPsicologico;
 		this.nmMedicoResponsavel = nmMedicoResponsavel;
 		this.telMedicoResponsavel = telMedicoResponsavel;
@@ -62,9 +62,10 @@ public class Atleta extends Pessoa {
 		this.dsMedicacao = dsMedicacao;
 		this.nmContatoEmergencia = nmContatoEmergencia;
 		this.telContatoEmergencia = telContatoEmergencia;
-		this.grauParentescoContatoEmergencia = grauParentescoContatoEmergencia;
+		this.idGrauParentesco = idGrauParentesco;
 		this.dtValidade = dtValidade;
 	}
+	
 	public int getIdTpEquipe() {
 		return idTpEquipe;
 	}
@@ -119,11 +120,11 @@ public class Atleta extends Pessoa {
 	public void setSerie(String serie) {
 		this.serie = serie;
 	}
-	public String getTurno() {
-		return turno;
+	public int getIdTurno() {
+		return idTurno;
 	}
-	public void setTurno(String turno) {
-		this.turno = turno;
+	public void setIdTurno(int idTurno) {
+		this.idTurno = idTurno;
 	}
 	public boolean isAcompPsicologico() {
 		return acompPsicologico;
@@ -191,12 +192,12 @@ public class Atleta extends Pessoa {
 	public void setTelContatoEmergencia(String telContatoEmergencia) {
 		this.telContatoEmergencia = telContatoEmergencia;
 	}
-	public String getGrauParentescoContatoEmergencia() {
-		return grauParentescoContatoEmergencia;
+	public int getIdGrauParentesco() {
+		return idGrauParentesco;
 	}
-	public void setGrauParentescoContatoEmergencia(
-			String grauParentescoContatoEmergencia) {
-		this.grauParentescoContatoEmergencia = grauParentescoContatoEmergencia;
+	public void setIdGrauParentesco(
+			int idGrauParentesco) {
+		this.idGrauParentesco = idGrauParentesco;
 	}
 	public Date getDtValidade() {
 		return dtValidade;
@@ -220,6 +221,50 @@ public class Atleta extends Pessoa {
 			case 2:
 				retorno = Equipes.PreEquipe.getNome();
 				break;
+		}
+		return retorno;
+	}
+	
+	public String getNomeGrauParentesco(){
+		String retorno = "";
+		switch (this.idGrauParentesco) {
+		case 1:
+			retorno = GrauParentesco.Mae.getNome();
+			break;
+		case 2:
+			retorno = GrauParentesco.Pai.getNome();
+			break;
+		case 3:
+			retorno = GrauParentesco.Tio.getNome();
+			break;
+		case 4:
+			retorno = GrauParentesco.Irmao.getNome();
+			break;
+		case 5:
+			retorno = GrauParentesco.Avo.getNome();
+			break;
+		case 6:
+			retorno = GrauParentesco.Outros.getNome();
+			break;
+		}
+		return retorno;
+	}
+	
+	public String getNomeTurno(){
+		String retorno = "";
+		switch (this.idTurno) {
+		case 1:
+			retorno = Turno.Manha.getNome();
+			break;
+		case 2:
+			retorno = Turno.Tarde.getNome();
+			break;
+		case 3:
+			retorno = Turno.Noite.getNome();
+			break;
+		case 4:
+			retorno = Turno.Integral.getNome();
+			break;
 		}
 		return retorno;
 	}

@@ -37,9 +37,6 @@ public class AtletaNegocio {
 		} else if ("".equals(atleta.getTelContatoEmergencia()) || atleta.getTelContatoEmergencia() == null) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Telefone Contato de Emergência' !");
-		} else if ("".equals(atleta.getGrauParentescoContatoEmergencia()) || atleta.getGrauParentescoContatoEmergencia() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Grau de Parentesco [Contato de Emergência]' !");
 		} else if ("".equals(atleta.getDtValidade()) || atleta.getDtValidade() == null) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Data de Validade' !");

@@ -315,12 +315,12 @@
 //        '     <button type="button" class="btn clear1 pull-right"></button>' +
         '   </span>' +
         '   <input class="filter" type="text">' +
-        '   <div class="btn-group buttons">' +
-        '     <button type="button" class="btn moveall" style="width: 100%;">' +
+        '   <div class="btn-group buttons" style="width: 100%;">' +
+        '     <button type="button" class="btn moveall" style="width: 100%;"\>' +
         '       <i></i>' +
         '       <i></i>' +
         '     </button>' +
-//        '     <button type="button" class="btn move">' +
+//        '     <button type="button" class="btn move" style="width: 100%;">' +
 //        '       <i></i>' +
 //        '     </button>' +
         '   </div>' +
@@ -333,7 +333,7 @@
 //        '     <button type="button" class="btn clear2 pull-right"></button>' +
         '   </span>' +
         '   <input class="filter" type="text">' +
-        '   <div class="btn-group buttons">' +
+        '   <div class="btn-group buttons" style="width: 100%;">' +
 //        '     <button type="button" class="btn remove">' +
 //        '       <i></i>' +
 //        '     </button>' +
@@ -342,7 +342,7 @@
         '       <i></i>' +
         '     </button>' +
         '   </div>' +
-        '   <select multiple="multiple"></select>' +
+        '   <select multiple="multiple" ></select>' +
         ' </div>' +
         '</div>')
         .insertBefore(this.element);

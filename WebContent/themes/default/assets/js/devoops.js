@@ -10,24 +10,26 @@
 // homepage: http://arshaw.com/fullcalendar
 // require moment.js
 //
-function LoadCalendarScript(callback){
-	function LoadFullCalendarScript(){
-		if(!$.fn.fullCalendar){
-			$.getScript('themes/default/assets/plugins/fullcalendar/fullcalendar.js', callback);
-		}
-		else {
-			if (callback && typeof(callback) === "function") {
-				callback();
-			}
-		}
-	}
-	if (!$.fn.moment){
-		$.getScript('themes/default/assets/plugins/moment/moment.min.js', LoadFullCalendarScript);
-	}
-	else {
-		LoadFullCalendarScript();
-	}
-}
+//function LoadCalendarScript(callback){
+//	function LoadFullCalendarScript(){
+//		if(!$.fn.fullCalendar){
+//			$.getScript('themes/default/assets/plugins/fullcalendar/fullcalendar.js', callback);
+//			alert("full");
+//		}
+//		else {
+//			if (callback && typeof(callback) === "function") {
+//				callback();
+//			}
+//		}
+//	}
+//	if (!$.fn.moment){
+//		$.getScript('themes/default/assets/plugins/moment/moment.min.js', LoadFullCalendarScript);
+//		alert("moment");
+//	}
+//	else {
+//		LoadFullCalendarScript();
+//	}
+//}
 //
 // Dynamically load  OpenStreetMap Plugin
 // homepage: http://openlayers.org

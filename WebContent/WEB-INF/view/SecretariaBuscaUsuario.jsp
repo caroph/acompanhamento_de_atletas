@@ -34,17 +34,17 @@
 								</div>
 								<div class="box-content no-padding">
 									<c:if test="${ msg != null && msg != ''}">
-											<div class="alert alert-danger">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msg}"></c:out>       
-									    	</div>
-								        </c:if>
-								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
-											<div class="alert alert-success">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msgSucesso}"></c:out>       
-									    	</div>
-								        </c:if>
+										<div class="alert alert-danger">
+									        <a href="#" class="close" data-dismiss="alert">&times;</a>
+									            <c:out value="${msg}"></c:out>       
+								    	</div>
+							        </c:if>
+							        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+										<div class="alert alert-success">
+									        <a href="#" class="close" data-dismiss="alert">&times;</a>
+									            <c:out value="${msgSucesso}"></c:out>       
+								    	</div>
+							        </c:if>
 									<table
 										class="table table-bordered table-striped table-hover table-heading table-datatable"
 										id="datatable">

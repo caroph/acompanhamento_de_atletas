@@ -1,3 +1,4 @@
+//Plugin Estados e Cidade
 window.onload = function() {	
 	  new dgCidadesEstados({
 		    estado: document.getElementById('estado'),
@@ -17,50 +18,10 @@ $(document).ready(function(){
 	   $("#cpf").mask("999.999.999-99");
 	});
 
-$('#selectInicio').on('change', function () {
-	var url = this.value.toString();
-	$(window.document.location).attr('href',url);
-});
-			
-$('.mostrarProgresso').click(function() {
-	$('#progress').css("display", "block");
-});
-$('#fechar').click(function() {
-	$('#progress').css("display", "none");
-});
 
-$("#listaHistorico").accordion();
-
-$("#objetivoConsulta").click(function(){
-	$("#exibeObjetivoConsulta").toggle();
-});
-
-$("#praticaAtividade").click(function(){
-	$("#exibePraticaAtividade").toggle();
-});
-
-$("#avaliacaoDietetica").click(function(){
-	$("#exibeAvaliacaoDietetica").toggle();
-});
-
-$("#recordatorioAlimentar").click(function(){
-	$("#exibeRecordatorio").toggle();
-});
-	
-$("#dadosAntropometricos").click(function(){
-	$("#exideDadosAntropometricos").toggle();
-});
-
-$("#selectModelos").click(function(){
-	$("descricaoModelo").css("display", "block");
-});
-
-//Testando Dual List
+//Plugin Dual List
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
-//$("#demoform").submit(function() {
-//  alert($('[name="diasTreino"]').val());
-//  return false;
-//});
+
 
 
 //Alert de Confirmação
@@ -83,13 +44,22 @@ function passar(){
 		var email = document.getElementById("emailSenha"); 
 		email.value = valorA.value; 
 		}; 
+		
+//Limpar Campos
+		function LimparCampos() {
+			$(":time").each(function () {
+				$(this).val("");
+			});
+			$("select").each(function () {
+				$(this).val("Selecione");
+			});
+		}
 			
 //Plugin de Horário e Calendario
 function DemoTimePicker(){
 	$('#hrInicio').timepicker({setDate: new Date()});
 	$('#hrFim').timepicker({setDate: new Date()});
 }
-
 $(document).ready(function() {			
 	// Initialize datepicker
 	$('#dtNascimento').datepicker({setDate: new Date()});
@@ -98,19 +68,6 @@ $(document).ready(function() {
 	LoadTimePickerScript(DemoTimePicker);
 });
 
-//Plugin de Calendário
-
-//Limpar Campos
-function LimparCampos() {
-	 
-    $(":time").each(function () {
-        $(this).val("");
-    });
-
-    $("select").each(function () {
-        $(this).val("Selecione");
-    });
-}
 
 function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
 	var html = "<b>Nome:</b> "+ nome + "<br/>";
@@ -134,105 +91,47 @@ function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComerci
 	$('.body-responsavel').html(html);	
 }
 
-//Testando Checked List Group
-//$(function () {
-//    $('.list-group.checked-list-box .list-group-item').each(function () {
-//        
-//        // Settings
-//        var $widget = $(this),
-//            $checkbox = $('<input type="checkbox" class="hidden" />'),
-//            color = ($widget.data('color') ? $widget.data('color') : "primary"),
-//            style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
-//            settings = {
-//                on: {
-//                    icon: 'fa fa-check-square-o'
-//                },
-//                off: {
-//                    icon: 'fa fa-square-o'
-//                }
-//            };
-//            
-//        $widget.css('cursor', 'pointer')
-//        $widget.append($checkbox);
-//
-//        // Event Handlers
-//        $widget.on('click', function () {
-//            $checkbox.prop('checked', !$checkbox.is(':checked'));
-//            $checkbox.triggerHandler('change');
-//            updateDisplay();
-//        });
-//        $checkbox.on('change', function () {
-//            updateDisplay();
-//            escreverJson();
-//        });
-//          
-//
-//        // Actions
-//        function updateDisplay() {
-//            var isChecked = $checkbox.is(':checked');
-//
-//            // Set the button's state
-//            $widget.data('state', (isChecked) ? "on" : "off");
-//
-//            // Set the button's icon
-//            $widget.find('.state-icon')
-//                .removeClass()
-//                .addClass('state-icon ' + settings[$widget.data('state')].icon);
-//
-//            // Update the button's color
-//            if (isChecked) {
-//                $widget.addClass(style + color + ' active');
-//            } else {
-//                $widget.removeClass(style + color + ' active');
-//            }
-//            
-//        }
-//
-////        // Initialization
-//        function init() {
-//            
-//            if ($widget.data('checked') == true) {
-//                $checkbox.prop('checked', !$checkbox.is(':checked'));
-//            }
-//            
-//            updateDisplay();
-//
-//            // Inject the icon if applicable
-//            if ($widget.find('.state-icon').length == 0) {
-//                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
-//            }
-//        }
-//        init();
-//    });
-//    
-//    $('#salvar').on('click', function(event) {
-//    	alert("oi");
-//        event.preventDefault(); 
-//        var checkedItems = {}, counter = 0;
-//        $("#check-list-box li.active").each(function(idx, li) {
-//            checkedItems[counter] = $(li).text();
-//            counter++;
-//        });
-//        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-//    });
-    
-//    function escreverJson(){
-//        event.preventDefault(); 
-//        var checkedItems = {}, counter = 0;
-//        $("#check-list-box li.active").each(function(idx, li) {
-////            checkedItems[counter] = $(li).text();
-//        	checkedItems[counter] = $(li).val();
-//            counter++;
-//        });
-//        $('#diasTreino').val(JSON.stringify(checkedItems, null));
-//        var bla =  $('#diasTreino').val();
-//        alert($bla);
-//    }
-//});
-
-//Combo Dinamico
+//Combo Dinamico - Dias de Treino Atleta
 function carregaDiasTreino(){     
 //    document.forms[0].action.value="carregaDiasTreino";     
     document.forms[0].action="SecretariaController?action=carregaDiasTreino";     
     document.forms[0].submit();  
 }  
+
+//$('#selectInicio').on('change', function () {
+//	var url = this.value.toString();
+//	$(window.document.location).attr('href',url);
+//});
+//			
+//$('.mostrarProgresso').click(function() {
+//	$('#progress').css("display", "block");
+//});
+//$('#fechar').click(function() {
+//	$('#progress').css("display", "none");
+//});
+//
+//$("#listaHistorico").accordion();
+//
+//$("#objetivoConsulta").click(function(){
+//	$("#exibeObjetivoConsulta").toggle();
+//});
+//
+//$("#praticaAtividade").click(function(){
+//	$("#exibePraticaAtividade").toggle();
+//});
+//
+//$("#avaliacaoDietetica").click(function(){
+//	$("#exibeAvaliacaoDietetica").toggle();
+//});
+//
+//$("#recordatorioAlimentar").click(function(){
+//	$("#exibeRecordatorio").toggle();
+//});
+//	
+//$("#dadosAntropometricos").click(function(){
+//	$("#exideDadosAntropometricos").toggle();
+//});
+//
+//$("#selectModelos").click(function(){
+//	$("descricaoModelo").css("display", "block");
+//});

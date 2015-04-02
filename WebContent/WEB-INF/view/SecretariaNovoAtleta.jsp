@@ -69,24 +69,26 @@
 											</div>
 											<div class="col-sm-3">
 												<label for="nrMatricula" class=" control-label">Nº Matrícula:</label>
-												<input type="text" value="${atleta.nrMatricula}" class="form-control" id="nrMatricula" name="nrMatricula" required/>
+												<input type="text" value="${atleta.nrMatricula}" class="form-control" id="nrMatricula" name="nrMatricula" maxlength="20" required/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Nº  FPT:</label>
-												<input type="text" value="${atleta.nrCadFPT}" class="form-control" id="nrCadFPT" name="nrCadFPT"  />
+												<input type="text" value="${atleta.nrCadFPT}" class="form-control" id="nrCadFPT" name="nrCadFPT" maxlength="20" />
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Nº CBT:</label>
-												<input type="text" value="${atleta.nrCadCBT}" class="form-control" id="nrCadCBT" name="nrCadCBT"/>
+												<input type="text" value="${atleta.nrCadCBT}" class="form-control" id="nrCadCBT" name="nrCadCBT" maxlength="20"/>
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
 										
-											<label for="diasTreino">Dias de Treino:</label>
+											<label for="diasTreino">Dias de Treino: <small>[Disponíveis | Selecionados]</small></label>
 											 <div>
-												<select multiple="multiple" id="diasTreino" name="diasTreino" required>
+												<select multiple="multiple" id="diasTreino" name="diasTreino">
 													<c:forEach var="dia" items="${listaDiasTreinos}">
-						                            	<option value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${dia.hrInicio} às ${dia.hrFim}" /></option>
+														<fmt:formatDate value="${dia.hrInicio}" pattern="HH:mm" var="hrInicioF" />
+														<fmt:formatDate value="${dia.hrFim}" pattern="HH:mm" var="hrFimF" />
+						                            	<option value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${hrInicioF} às ${hrFimF}" /></option>
 						                            </c:forEach>
 												</select>
 											 </div>
@@ -98,7 +100,7 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="nome" class=" control-label">Nome:</label>
-												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" required/>
+												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" maxlength="255" required/>
 											</div>
 											<div class="col-sm-4" >
 												<label for="dtNascimento" class="control-label data">Data de Nascimento:</label>
@@ -107,7 +109,7 @@
 											</div>
 											<div class="col-sm-4">
 												<label for="email" class=" control-label">Email:</label>
-												<input type="email"  value="${atleta.email}" class="form-control" id="email" name="email" required/>
+												<input type="email"  value="${atleta.email}" class="form-control" id="email" name="email" maxlength="70" required/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -121,37 +123,37 @@
 											</div>
 											<div class="col-sm-3">
 												<label for="rg" class=" control-label">RG:</label>
-												<input type="text"  value="${atleta.RG}"  class="form-control" id="rg" name="rg" required/>
+												<input type="text"  value="${atleta.RG}"  class="form-control" id="rg" name="rg" maxlength="13" required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="cpf" class=" control-label">CPF:</label>
 												<input type="text"  value="${atleta.CPF}" class="form-control" id="cpf" name="cpf" required/>
 											</div>
 										</div>
-										<div class="form-group col-sm-12">
-											<label for="endereco" class=" control-label">Endereço Residencial:</label>
-											<input type="text"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" required />
-										</div>
 										<div class="form-group">
-											<div class="col-sm-4">
+											<div class="col-sm-8">
+												<label for="endereco" class=" control-label">Endereço Residencial:</label>
+												<input type="text"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" maxlength="255" required />
+											</div>
+											<div class="col-sm-1">
 	  											<label for="numero" class=" control-label">Número:</label>
-												<input type="number"  value="${atleta.endereco.numero}"  class="form-control" id="numero" name="numero" required />
+												<input type="number"  value="${atleta.endereco.numero}"  class="form-control" id="numero" name="numero" maxlength="11" required />
 											</div>
-											<div class="col-sm-4">
+											<div class="col-sm-3">
 												<label class=" control-label">Complemento:</label>
-												<input type="text"  value="${atleta.endereco.complemento}" class="form-control" id="complemento" name="complemento" />
-											</div>
-											<div class="col-sm-4">
-												<label for="bairro" class="control-label">Bairro:</label>
-												<input type="text"  value="${atleta.endereco.bairro}"  class="form-control" id="bairro" name="bairro" required/>
+												<input type="text"  value="${atleta.endereco.complemento}" class="form-control" id="complemento" name="complemento" maxlength="45"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="col-sm-4">
+											<div class="col-sm-3">
+												<label for="bairro" class="control-label">Bairro:</label>
+												<input type="text"  value="${atleta.endereco.bairro}"  class="form-control" id="bairro" name="bairro" maxlength="45" required/>
+											</div>
+											<div class="col-sm-3">
 												<label for="estado" class=" control-label">Estado:</label>
 												<select class="form-control" name="estado" id="estado" name="estado" value="${atleta.endereco.estado}" required></select>
 											</div>
-											<div class="col-sm-8">
+											<div class="col-sm-6">
 												<label for="cidade" class=" control-label">Cidade:</label>
 												<select class="form-control" name="cidade" id="cidade" name="cidade" value="${atleta.endereco.cidade}" required></select>
 											</div>
@@ -159,15 +161,25 @@
 										<div class="form-group">
 											<div class="col-sm-6">
 												<label class=" control-label">Escola:</label>
-												<input type="text"  value="${atleta.escola}"  class="form-control" id="escola" name="escola" />
+												<input type="text"  value="${atleta.escola}"  class="form-control" id="escola" name="escola" maxlength="150"/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Série:</label>
-												<input type="text"  value="${atleta.serie}" class="form-control" id="serie" name="serie" />
+												<input type="text"  value="${atleta.serie}" class="form-control" id="serie" name="serie" maxlength="5"/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Turno:</label>
-												<input type="text"  value="${atleta.turno}"  class="form-control" id="turno" name="turno" />
+												<select class="form-control" id="turno" name="turno" required>
+													<option value="">Selecione</option>
+													<c:forEach var="turno" items="${listaTurnos}">
+							                            <c:if test="${turno.valor == atleta.idTurno}">
+															<option selected value="<c:out value='${turno.valor}'/>"><c:out value="${turno.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${turno.valor != atleta.idTurno}">
+			                                                <option value="<c:out value='${turno.valor}'/>"><c:out value="${turno.nome}" /></option>
+														</c:if>
+						                            </c:forEach>
+												</select>
 											</div>
 										</div>
 										<hr/>
@@ -179,15 +191,15 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label class=" control-label">Nome Médico Responsável:</label>
-												<input type="text"  value="${atleta.nmMedicoResponsavel}" class="form-control" id="nmMedicoResponsavel" name="nmMedicoResponsavel" />
+												<input type="text"  value="${atleta.nmMedicoResponsavel}" class="form-control" id="nmMedicoResponsavel" name="nmMedicoResponsavel" maxlength="255"/>
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Telefone do Médico:</label>
+												<label class=" control-label">Telefone:</label>
 												<input type="text"  value="${atleta.telMedicoResponsavel}" class="form-control phone" id="telMedicoResponsavel" name="telMedicoResponsavel"/>
 											</div>
 											<div class="col-sm-4">
-												<label class=" control-label">Convênio Médico Hospitalar:</label>
-												<input type="text"  value="${atleta.convenio}" class="form-control" id="convenio" name="convenio"/>
+												<label class=" control-label">Convênio Médico:</label>
+												<input type="text"  value="${atleta.convenio}" class="form-control" id="convenio" name="convenio" maxlength="45"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -197,22 +209,15 @@
 													<option value="sim">Sim</option> 
 													<option value="nao" selected>Não</option> 
 												</select>
-<!-- 												<div class="toggle-switch toggle-switch-success"> -->
-<!-- 													<label> -->
-<!-- 														<input type="checkbox" checked=""> -->
-<!-- 														<div class="toggle-switch-inner"></div> -->
-<!-- 														<div class="toggle-switch-switch"><i class="fa fa-check"></i></div> -->
-<!-- 													</label> -->
-<!-- 												</div> -->
 											</div>
 											<div class="col-sm-8">
-												<label class=" control-label">Medicação autorizada a tomar em caso de dor:</label>
-												<input type="text"  value="${atleta.medicacaoAutorizada}" class="form-control" id="medicacaoAutorizada" name="medicacaoAutorizada" />
+												<label class=" control-label">Medicação para dor:</label>
+												<input type="text"  value="${atleta.medicacaoAutorizada}" class="form-control" id="medicacaoAutorizada" name="medicacaoAutorizada" maxlength="255"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-2">
-												<label for="flAlergias" class=" control-label">Alérgico:</label>
+												<label for="flAlergias" class=" control-label">Alérgias:</label>
 												<select class="form-control" id="flAlergias" name="flAlergias" required> 
 													<option value="sim">Sim</option> 
 													<option value="nao" selected>Não</option> 
@@ -220,7 +225,7 @@
 											</div>
 											<div class="col-sm-4">
 												<label class=" control-label">Descrição:</label>
-												<input type="text"  value="${atleta.dsAlergias}" class="form-control" id="dsAlergias" name="dsAlergias"/>
+												<input type="text"  value="${atleta.dsAlergias}" class="form-control" id="dsAlergias" name="dsAlergias" maxlength="1000"/>
 											</div>
 											<div class="col-sm-2">
 												<label for="flMedicacao" class=" control-label">Medicação contínua:</label>
@@ -231,21 +236,31 @@
 											</div>
 											<div class="col-sm-4">
 												<label class=" control-label">Descrição</label>
-												<input type="text"  value="${atleta.dsMedicacao}" class="form-control" id="dsMedicacao" name="dsMedicacao" />
+												<input type="text"  value="${atleta.dsMedicacao}" class="form-control" id="dsMedicacao" name="dsMedicacao" maxlength="1000"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="nmContatoEmergencia" class=" control-label">Nome para emergência:</label>
-												<input type="text"  value="${atleta.nmContatoEmergencia}" class="form-control" id="nmContatoEmergencia" name="nmContatoEmergencia" required/>
+												<input type="text"  value="${atleta.nmContatoEmergencia}" class="form-control" id="nmContatoEmergencia" name="nmContatoEmergencia" maxlength="255" required/>
 											</div>
 											<div class="col-sm-4">
 												<label for="telContatoEmergencia" class=" control-label">Telefone:</label>
 												<input type="text"  value="${atleta.telContatoEmergencia}"  class="form-control phone" id="telContatoEmergencia" name="telContatoEmergencia" required/>
 											</div>
 											<div class="col-sm-4">
-												<label for="grauParentescoContatoEmergencia" class=" control-label">Grau de Parentesco:</label>
-												<input type="tel"  value="${atleta.grauParentescoContatoEmergencia}" class="form-control" id="grauParentescoContatoEmergencia" name="grauParentescoContatoEmergencia" required/>
+												<label for="grauParentesco" class=" control-label">Grau de Parentesco:</label>
+												<select class="form-control" id="grauParentesco" name="grauParentesco" required>
+													<option value="">Selecione</option>
+													<c:forEach var="grau" items="${listaGrauParentesco}">
+							                            <c:if test="${grau.valor == atleta.idGrauParentesco}">
+															<option selected value="<c:out value='${grau.valor}'/>"><c:out value="${grau.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${grau.valor != atleta.idTpEquipe}">
+			                                                <option value="<c:out value='${grau.valor}'/>"><c:out value="${grau.nome}" /></option>
+														</c:if>
+						                            </c:forEach>
+												</select>
 											</div>
 										</div>
 										<hr>

@@ -49,7 +49,7 @@ public class DiaTreinoDAO {
 		stmtScript = con.prepareStatement("SELECT idDiaTreino, idTpEquipe, idDiaSemana, hrInicio, hrFim "
 				+ "FROM diaTreino t "
 				+ "WHERE t.flCadastroAtivo = 1 "
-				+ "ORDER BY idDiaSemana, htInicio, hrFim ");
+				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
@@ -88,7 +88,7 @@ public class DiaTreinoDAO {
 		stmtScript = con.prepareStatement("SELECT idDiaTreino, idDiaSemana, hrInicio, hrFim "
 				+ "FROM diaTreino t "
 				+ "WHERE t.flCadastroAtivo = 1 AND idTpEquipe = ? "
-				+ "ORDER BY idDiaSemana, htInicio, hrFim ");
+				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
 		
 		stmtScript.setInt(1, idTpEquipe);
 		ResultSet rs = stmtScript.executeQuery();

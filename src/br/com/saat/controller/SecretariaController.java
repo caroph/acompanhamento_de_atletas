@@ -21,18 +21,22 @@ import br.com.saat.model.DiaTreino;
 import br.com.saat.model.DiasSemana;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Equipes;
+import br.com.saat.model.GrauParentesco;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.TpEndereco;
 import br.com.saat.model.TpPessoa;
+import br.com.saat.model.Turno;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EnderecoNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
+import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
+import br.com.saat.model.negocio.TurnoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
@@ -68,7 +72,16 @@ public class SecretariaController extends Controller {
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 			
+			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+			
+			TurnoNegocio turnoNegocio = new TurnoNegocio();
+			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
 			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaGrauParentesco", listaGraus);
+			request.setAttribute("listaTurnos", listaTurnos);
+			
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if ("carregaDiasTreino".equals(action)){
@@ -96,7 +109,16 @@ public class SecretariaController extends Controller {
 			
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();			
+			
+			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+			
+			TurnoNegocio turnoNegocio = new TurnoNegocio();
+			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
 			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaGrauParentesco", listaGraus);
+			request.setAttribute("listaTurnos", listaTurnos);
 			
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 		}else if("inserirAtleta".equals(action)){
@@ -107,7 +129,9 @@ public class SecretariaController extends Controller {
 			String idAtleta;
 			int numero = 0;
 			int idTpEquipe = 0;
-			String[] diasTreino;
+			int idGrauParentesco = 0;
+			int idTurno = 0;
+			String[] diasTreino = null;
 			
 			Atleta atleta = new Atleta();
 			
@@ -136,6 +160,18 @@ public class SecretariaController extends Controller {
 				msg = "Favor informar corretamente o campo 'Número' do endereço";
 				exception = true;
 			}
+            try{
+            	idTurno = Integer.parseInt(request.getParameter("turno"));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o campo 'Turno'.";
+				exception = true;
+			}
+            try{
+            	idGrauParentesco = Integer.parseInt(request.getParameter("grauParentesco"));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o campo 'Grau de Parentesco'.";
+				exception = true;
+			}
 			if(!exception){
 				Endereco endereco = new Endereco();
 				AtletaNegocio negocio = new AtletaNegocio();
@@ -156,7 +192,7 @@ public class SecretariaController extends Controller {
 				atleta.setCPF(request.getParameter("cpf"));
 				atleta.setEscola(request.getParameter("escola"));
 				atleta.setSerie(request.getParameter("serie"));
-				atleta.setTurno(request.getParameter("turno"));
+				atleta.setIdTurno(idTurno);
 				escolha = request.getParameter("acompPsicologico");
 				atleta.setAcompPsicologico("sim".equals(escolha)?true:false);
 				atleta.setNmMedicoResponsavel(request.getParameter("nmMedicoResponsavel"));
@@ -171,7 +207,7 @@ public class SecretariaController extends Controller {
 				atleta.setDsMedicacao(request.getParameter("dsMedicacao"));
 				atleta.setNmContatoEmergencia(request.getParameter("nmContatoEmergencia"));
 				atleta.setTelContatoEmergencia(request.getParameter("telContatoEmergencia"));
-				atleta.setGrauParentescoContatoEmergencia(request.getParameter("grauParentescoContatoEmergencia"));
+				atleta.setIdGrauParentesco(idGrauParentesco);
 				atleta.setDtValidade(dtValidade);
 				atleta.setEndereco(endereco);
 				
@@ -236,6 +272,7 @@ public class SecretariaController extends Controller {
 			if("".equals(msgSucesso)){
 				request.setAttribute("msg", msg);
 				request.setAttribute("atleta", atleta);
+				request.setAttribute("listaDiasTreinos", diasTreino);
 			}else{
 				request.setAttribute("msgSucesso", msgSucesso);
 			}
@@ -243,7 +280,15 @@ public class SecretariaController extends Controller {
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 			
+			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+			
+			TurnoNegocio turnoNegocio = new TurnoNegocio();
+			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
 			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaGrauParentesco", listaGraus);
+			request.setAttribute("listaTurnos", listaTurnos);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspBuscaAtleta".equals(action)){
@@ -354,13 +399,14 @@ public class SecretariaController extends Controller {
 		
 		}else if("desativarDiaTreino".equals(action)){
 			String msg = "";
+			String msgSucesso = "";
 			DiaTreino dia = new DiaTreino(Integer.parseInt(request.getParameter("idDiaTreino")));
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			
 			try{
                 if(negocio.desativar(dia)){
-                	msg = "Dia de Treino desativado com sucesso!";
+                	msgSucesso = "Dia de Treino desativado com sucesso!";
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
@@ -371,6 +417,7 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("listaDiasTreinos", lista);
 			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 			
 		}else if("jspNovoUsuario".equals(action)){
@@ -501,7 +548,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaUsuarios", lista);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
-			retorno = String.format("%s/SecretariaUsuario.jsp", Constants.VIEW);
+			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
 			
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);

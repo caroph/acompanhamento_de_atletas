@@ -49,10 +49,8 @@
 									    	</div>
 								        </c:if>
    										<div class="form-group">
-											<div class="col-sm-12">
-												<h5><b>Dados Pessoais</b></h5>
-												<hr/>
-											</div>
+											<h4 class="text-center">Dados Pessoais</h4>
+											<hr/>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-8">
@@ -78,12 +76,10 @@
 												<input type="text" class="form-control phone" id="celular" name="celular" value='${responsavel.celular}'/>
 											</div>
 										</div>
-										<div class="form-group" style="margin-top: 30px;">
-											<div class="col-sm-12">
-												<h5><b>Endereço Residencial</b></h5>
-												<hr/>
-											</div>
-										</div>										
+										<div class="form-group">
+											<h4 class="text-center">Endereço Residencial</h4>
+											<hr/>						
+										</div>			
 										<div class="form-group">
 											<div class="col-sm-8">
 												<label for="endereco" class="control-label">Endereço</label>
@@ -103,21 +99,19 @@
 												<label for="bairro" class="control-label">Bairro</label>
 												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}'/>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-3">
 												<label for="estadoResp" class="control-label">Estado</label>
 												<select class="form-control" name="estado" id="estado" value="${enderecoResidencial.estado}"></select>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-6">
 												<label for="cidadeResp" class="control-label">Cidade:</label>
 												<select class="form-control" name="cidade" id="cidade" value="${enderecoResidencial.cidade}"></select>
 											</div>
 										</div>
-										<div class="form-group" style="margin-top: 30px;">
-											<div class="col-sm-12">
-												<h5><b>Endereço Comercial</b></h5>
-												<hr/>
-											</div>
-										</div>	
+										<div class="form-group">
+											<h4 class="text-center">Endereço Comercial</h4>
+											<hr/>	
+										</div>
 										<div class="form-group">
 											<div class="col-sm-8">
 												<label for="endereco" class="control-label">Endereço</label>
@@ -137,11 +131,11 @@
 												<label for="bairro" class="control-label">Bairro</label>
 												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}'/>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-3">
 												<label for="nr" class="control-label">Estado:</label>
 												<select class="form-control" name="estadoCom" id="estadoCom" name="estadoCom" value='${enderecoComercial.estado}'> </select>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-6">
 												<label for="nr" class="control-label">Cidade:</label>
 												<select class="form-control" name="cidadeCom" id="cidadeCom" name="cidadeCom" value='${enderecoComercial.cidade}'> </select>
 											</div>

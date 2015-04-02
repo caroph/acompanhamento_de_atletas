@@ -29,10 +29,10 @@ public class AtletaDAO {
 		int idAtleta = 0;
 		
 		stmtScript = con.prepareStatement("INSERT INTO atleta (idTpEquipe, nome, email, celular, "
-				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, turno, "
+				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
 				+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, medicacaoAutorizada, "
 				+ "flAlergias, dsAlergias, flMedicacao, dsMedicacao, nmContatoEmergencia, telContatoEmergencia, "
-				+ "grauParentescoContatoEmergencia, dtValidade) "
+				+ "idGrauParentesco, dtValidade) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 		stmtScript.setInt(1, atleta.getIdTpEquipe());
@@ -47,7 +47,7 @@ public class AtletaDAO {
 		stmtScript.setString(10, atleta.getCPF());
 		stmtScript.setString(11, atleta.getEscola());
 		stmtScript.setString(12, atleta.getSerie());
-		stmtScript.setString(13, atleta.getTurno());
+		stmtScript.setInt(13, atleta.getIdTurno());
 		stmtScript.setBoolean(14, atleta.isAcompPsicologico());
 		stmtScript.setString(15, atleta.getNmMedicoResponsavel());
 		stmtScript.setString(16, atleta.getTelMedicoResponsavel());
@@ -59,7 +59,7 @@ public class AtletaDAO {
 		stmtScript.setString(22, atleta.getDsMedicacao());
 		stmtScript.setString(23, atleta.getNmContatoEmergencia());
 		stmtScript.setString(24, atleta.getTelContatoEmergencia());
-		stmtScript.setString(25, atleta.getGrauParentescoContatoEmergencia());
+		stmtScript.setInt(25, atleta.getIdGrauParentesco());
 		stmtScript.setDate(26, new java.sql.Date(atleta.getDtValidade().getTime()));
 		
 		stmtScript.executeUpdate();
@@ -75,10 +75,10 @@ public class AtletaDAO {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
 		stmtScript = con.prepareStatement("SELECT a.idAtleta, idTpEquipe, nome, email, celular, "
-				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, turno, "
+				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
 				+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, "
 				+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
-				+ "nmContatoEmergencia, telContatoEmergencia, grauParentescoContatoEmergencia, "
+				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
 				+ "dtValidade, endereco, numero, complemento,"
 				+ "bairro, estado, cidade, telefone "
 				+ "FROM atleta a "
@@ -106,7 +106,7 @@ public class AtletaDAO {
 			atleta.setCPF(rs.getString(11));
 			atleta.setEscola(rs.getString(12));
 			atleta.setSerie(rs.getString(13));
-			atleta.setTurno(rs.getString(14));
+			atleta.setIdTurno(rs.getInt(14));
 			atleta.setAcompPsicologico(rs.getBoolean(15));
 			atleta.setNmMedicoResponsavel(rs.getString(16));
 			atleta.setTelMedicoResponsal(rs.getString(17));
@@ -118,7 +118,7 @@ public class AtletaDAO {
 			atleta.setDsMedicacao(rs.getString(23));
 			atleta.setNmContatoEmergencia(rs.getString(24));
 			atleta.setTelContatoEmergencia(rs.getString(25));
-			atleta.setGrauParentescoContatoEmergencia(rs.getString(26));
+			atleta.setIdGrauParentesco(rs.getInt(26));
 			atleta.setDtValidade(rs.getDate(27));
 			atleta.setEndereco(endereco);
 			
