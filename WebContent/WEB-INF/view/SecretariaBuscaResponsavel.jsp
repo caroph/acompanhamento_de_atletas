@@ -67,7 +67,7 @@
 													</td>
 													<td class="text-center" width="5%">
 														<a class="btn btn-info" data-toggle="modal" href="#detalhes"
-														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}','${responsavel.enderecos[0].telefone}','${responsavel.enderecos[1].telefone}','${responsavel.celular}')"
+														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
 														>
 															Detalhes
 														</a>
@@ -80,21 +80,6 @@
 													<td class="text-center" width="10%">
 														<a class="btn btn-primary" data-toggle="modal" href="SecretariaController?action=enviarEmailResponsavel&emailResponsavel=${responsavel.email}">Enviar Email</a>
 													</td>
-												</tr>
-											</c:forEach>
-											<c:forEach var="treino" items="${listaDiasTreinos}">
-												<tr>
-													<td><c:out value='${treino.dsTpEquipe}' /></td>
-													<td><c:out value='${treino.dsDiaSemana}' /></td>
-													<fmt:formatDate value="${treino.hrInicio}" pattern="HH:mm"
-														var="horaIFormatada" />
-													<td align="center"><c:out value='${horaIFormatada}' /></td>
-													<fmt:formatDate value="${treino.hrFim}" pattern="HH:mm"
-														var="horaFFormatada" />
-													<td align="center"><c:out value='${horaFFormatada}' /></td>
-													<td align="center"><a class="btn btn-danger"
-														href='SecretariaController?action=desativarDiaTreino&idDiaTreino=${treino.idDiaTreino}'
-														data-confirm="Deseja realmente excluir o dia de treino selecionado?">Excluir</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -115,7 +100,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
+				<h4 class="modal-title" id="myModalLabel">Detalhes do Responsável</h4>
 				</div>
 				<div class="modal-body body-responsavel">
 				</div>

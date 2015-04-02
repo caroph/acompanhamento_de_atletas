@@ -55,25 +55,25 @@
 										<div class="form-group">
 											<div class="col-sm-8">
 												<label for="nomeResponsavel" class="control-label">Nome</label>
-												<input type="text" class="form-control" id="nome" name="nome" value='${responsavel.nome}'/>
+												<input type="text" class="form-control" id="nome" name="nome" value='${responsavel.nome}' required/>
 											</div>
 											<div class="col-sm-4">
 												<label for="email" class="control-label">Email</label>
-												<input type="email" class="form-control" id="email" name="email" value='${responsavel.email}'/>
+												<input type="email" class="form-control" id="email" name="email" value='${responsavel.email}' required/>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-2">
 												<label for="tel" class="control-label">Telefone Residencial</label>
-												<input type="text" class="form-control phone" id="telefone" name="telefone" value='${enderecoResidencial.telefone}'/>
+												<input type="text" class="form-control phone" id="telefone" name="telefone" value='${enderecoResidencial.telefone}' required/>
 											</div>
 											<div class="col-sm-2">
 												<label for="telCom" class="control-label">Telefone Comercial</label>
-												<input type="text" class="form-control phone" id="telefoneCom" name="telefoneCom" value='${enderecoComercial.telefone}'/>
+												<input type="text" class="form-control phone" id="telefoneCom" name="telefoneCom" value='${enderecoComercial.telefone}' required/>
 											</div>
 											<div class="col-sm-2">
 												<label for="celular" class="control-label">Telefone Celular</label>
-												<input type="text" class="form-control phone" id="celular" name="celular" value='${responsavel.celular}'/>
+												<input type="text" class="form-control phone" id="celular" name="celular" value='${responsavel.celular}' required/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -83,29 +83,29 @@
 										<div class="form-group">
 											<div class="col-sm-8">
 												<label for="endereco" class="control-label">Endereço</label>
-												<input type="text" class="form-control" id="endereco" name="endereco" value='${enderecoResidencial.endereco}'/>
+												<input type="text" class="form-control" id="endereco" name="endereco" value='${enderecoResidencial.endereco}' required/>
 											</div>
 											<div class="col-sm-1">
 												<label for="numero" class="control-label">Número</label>
-												<input type="number" class="form-control" id="numero" name="numero" value='${enderecoResidencial.numero}'/>
+												<input type="number" class="form-control" id="numero" name="numero" value='${enderecoResidencial.numero}' required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="complemento" class="control-label">Complemento</label>
-												<input type="text" class="form-control" id="complemento" name="complemento" value='${enderecoResidencial.complemento}'/>
+												<input type="text" class="form-control" id="complemento" name="complemento" value='${enderecoResidencial.complemento}' required/>
 											</div>
 										</div>										
 										<div class="form-group">
  											<div class="col-sm-3">
 												<label for="bairro" class="control-label">Bairro</label>
-												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}'/>
+												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}' required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="estadoResp" class="control-label">Estado</label>
-												<select class="form-control" name="estado" id="estado" value="${enderecoResidencial.estado}"></select>
+												<select class="form-control" name="estado" id="estado" value="${enderecoResidencial.estado}" required></select>
 											</div>
 											<div class="col-sm-6">
 												<label for="cidadeResp" class="control-label">Cidade:</label>
-												<select class="form-control" name="cidade" id="cidade" value="${enderecoResidencial.cidade}"></select>
+												<select class="form-control" name="cidade" id="cidade" value="${enderecoResidencial.cidade}" required></select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -115,29 +115,29 @@
 										<div class="form-group">
 											<div class="col-sm-8">
 												<label for="endereco" class="control-label">Endereço</label>
-												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom" value='${enderecoComercial.endereco}'/>
+												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom" value='${enderecoComercial.endereco}' required/>
 											</div>
 											<div class="col-sm-1">
 												<label for="numero" class="control-label">Número</label>
-												<input type="number" class="form-control" id="numeroCom" name="numeroCom" value='${enderecoComercial.numero}'/>
+												<input type="number" class="form-control" id="numeroCom" name="numeroCom" value='${enderecoComercial.numero}' required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="complemento" class="control-label">Complemento</label>
-												<input type="text" class="form-control" id="complementoCom" name="complementoCom" value='${enderecoComercial.complemento}'/>
+												<input type="text" class="form-control" id="complementoCom" name="complementoCom" value='${enderecoComercial.complemento}' required/>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-3">
 												<label for="bairro" class="control-label">Bairro</label>
-												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}'/>
+												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}' required/>
 											</div>
 											<div class="col-sm-3">
 												<label for="nr" class="control-label">Estado:</label>
-												<select class="form-control" name="estadoCom" id="estadoCom" name="estadoCom" value='${enderecoComercial.estado}'> </select>
+												<select class="form-control" name="estadoCom" id="estadoCom" name="estadoCom" value='${enderecoComercial.estado}' required> </select>
 											</div>
 											<div class="col-sm-6">
 												<label for="nr" class="control-label">Cidade:</label>
-												<select class="form-control" name="cidadeCom" id="cidadeCom" name="cidadeCom" value='${enderecoComercial.cidade}'> </select>
+												<select class="form-control" name="cidadeCom" id="cidadeCom" name="cidadeCom" value='${enderecoComercial.cidade}' required> </select>
 											</div>
 										</div>
 										<div class="form-group">

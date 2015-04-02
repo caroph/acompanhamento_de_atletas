@@ -273,7 +273,7 @@
 											<div class="col-sm-offset-2 col-sm-10 text-right">
 												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
 												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
-												<a class="btn btn-primary" href="SecretariaAnexosAtleta.jsp" id="anexos">Anexar Documentos</a>
+												<a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta" id="anexos">Anexar Documentos</a>
 												<a class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Vincular Responsável</a>
 												<button type="submit" class="btn btn-primary" >Salvar</button>
 											</div>

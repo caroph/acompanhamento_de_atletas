@@ -753,6 +753,15 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
+		}else if ("jspAnexarDocumentosAtleta".equals(action)){
+			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);			
+		}else if("anexarDocumento".equals(action)){
+			String idPessoa = request.getParameter("idPessoa");
+			String idTpDocumento = request.getParameter("idTpDocumento");
+			String msgSucesso="Foi e Voltou! idPessoa: " + idPessoa + "idTpDocumento: " + idTpDocumento;
+			
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
 		}
 		
 		rd = getServletContext().getRequestDispatcher(retorno);

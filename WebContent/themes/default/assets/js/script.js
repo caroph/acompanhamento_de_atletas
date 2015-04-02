@@ -81,14 +81,71 @@ function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
 	$('.body-usuario').html(html);
 }
 
-function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComercial, celular){
+function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComercial, celular, endRes, numeroRes, compRes, bairroRes, estadoRes, cidadeRes, endCom, numeroCom, compCom, bairroCom, estadoCom, cidadeCom){
 	var html = "<b>Nome:</b> " + nome + "<br/>";
 	html += "<b>Email:</b> " + email + "<br/>";
 	html += "<b>Telefone Residencial:</b> " + telResidencial + "<br/>";
 	html += "<b>Telefone Comercial:</b> " + telComercial + "<br/>";
 	html += "<b>Celular:</b> " + celular + "<br/>";
-	
+	html += "<b>Endereco Residencial:</b> " + endRes + ", " + numeroRes + ", " + compRes + " - " + bairroRes + " - " + cidadeRes + "/" + estadoRes + "<br/>";
+	html += "<b>Endereco Comercial:</b> " + endCom + ", " + numeroCom + ", " + compCom + " - " + bairroCom + " - " + cidadeCom + "/" + estadoCom + "<br/>";		
 	$('.body-responsavel').html(html);	
+}
+
+function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
+	//Valor que irá aparecer na label
+	var strNmDoc;
+	
+	switch(idTpDocumento){
+	case 1:
+		strNmDoc = "Termo de compromisso do manual do atleta";
+		break;	
+	case 2:
+		strNmDoc = "Declara\u00e7\u00e3o m\u00e9dica";
+		break;
+	case 3:
+		strNmDoc = "Autoriza\u00e7\u00e3o de viagem e hospedagem";
+		break;
+	case 4:
+		strNmDoc = "Autoriza\u00e7\u00e3o de imagem";
+		break;
+	case 5:
+		strNmDoc = "C\u00f3pia do RG";
+		break;
+	case 6:
+		strNmDoc = "C\u00f3pia do CPF";
+		break;
+	default:
+		strNmDoc = "Valor Inv\u00e1lido!";
+		break;
+	}
+	
+	var html = "<form class='form-horizontal' role='form' action='SecretariaController?action=anexarDocumento' method='post'>"+
+					"<input type='hidden' id='idPessoa' name='idPessoa' value='"+ idPessoa +"'/>"+
+					"<input type='hidden' id='idTpDocumento' name='idTpDocumento' value='"+ idTpDocumento +"'/>"+
+					"<div class='form-group'>"+
+						"<label for='nmArquivo' class='col-sm-12 text-left'>" + strNmDoc + "</label>"+
+						"<div class='col-sm-12'>"+
+							"<input type='file' class='form-control text-left' id='arquivo' name='arquivo'/>"+
+						"</div>" +
+					"</div>" +
+					"<div class='form-group'>" +
+						"<div class='col-sm-8'></div>" +
+						"<div class='col-sm-4'>" +
+							"<input type='submit' class='form-control btn btn-primary' id='anexarArquivo' name='anexarArquivo' value='Anexar Arquivo'/>" +
+						"</div>"+
+					"</div>" +
+				"</form>";
+	
+	$('.body-anexarArquivo').html(html);
+//	<form class="form-horizontal" role="form" action="SecretariaController?action=anexarDocumentos" method="post">
+//		<div class="form-group">
+//			<label for="nomeResponsavel" class="col-sm-2 control-label text-right">Foto do Atleta</label>
+//			<div class="col-sm-3">
+//				<input type="file" class="form-control" id="foto" name="foto"/>
+//			</div>
+//		</div>
+//	</form>
 }
 
 //Combo Dinamico - Dias de Treino Atleta
