@@ -570,7 +570,6 @@ public class SecretariaController extends Controller {
 			} 
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
-			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
 						
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);

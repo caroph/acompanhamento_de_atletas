@@ -19,6 +19,18 @@
 							</ol>
 						</div>
 					</div>
+					<c:if test="${ msg != null && msg != ''}">
+						<div class="alert alert-danger">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msg}"></c:out>       
+				    	</div>
+			        </c:if>
+			        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+						<div class="alert alert-success">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msgSucesso}"></c:out>       
+				    	</div>
+			        </c:if>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
@@ -37,18 +49,6 @@
 										action="SecretariaController?action=inserirUsuario"
 										method="post">
 										<input type="hidden" name="idUsuario" value="${usuario.idPessoa}"/>
-										<c:if test="${ msg != null && msg != ''}">
-											<div class="alert alert-danger">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msg}"></c:out>       
-									    	</div>
-								        </c:if>
-								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
-											<div class="alert alert-success">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msgSucesso}"></c:out>       
-									    	</div>
-								        </c:if>
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="perfil" class=" control-label">Perfil:</label> 

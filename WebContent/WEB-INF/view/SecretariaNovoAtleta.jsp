@@ -19,6 +19,18 @@
 							</ol>
 						</div>
 					</div>
+					<c:if test="${ msg != null && msg != ''}">
+						<div class="alert alert-danger">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msg}"></c:out>       
+				    	</div>
+			        </c:if>
+			        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+						<div class="alert alert-success">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msgSucesso}"></c:out>       
+				    	</div>
+			        </c:if>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
@@ -40,18 +52,6 @@
 										<div class="form-group">
 											<h3 class="text-center">Dados Técnicos</h3>
 										</div>
-										<c:if test="${ msg != null && msg != ''}">
-											<div class="alert alert-danger">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msg}"></c:out>       
-									    	</div>
-								        </c:if>
-								        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
-											<div class="alert alert-success">
-										        <a href="#" class="close" data-dismiss="alert">&times;</a>
-										            <c:out value="${msgSucesso}"></c:out>       
-									    	</div>
-								        </c:if>
 										<div class="form-group">
 											<div class="col-sm-3">
 												<label for="tpEquipe" class=" control-label">Equipe:</label>
