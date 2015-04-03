@@ -52,7 +52,7 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="perfil" class=" control-label">Perfil:</label> 
-												<select class="form-control" id="perfil" name="perfil">
+												<select class="form-control" id="perfil" name="perfil" required>
 													<option value="">Selecione</option>
 													<c:forEach var="perfil" items="${listaPerfis}">
 														<c:if test="${perfil.valor == usuario.perfil}">
@@ -66,7 +66,7 @@
 											</div>
 											<div class="col-sm-4">
 												<label for="nome" class="control-label">Nome:</label> 
-												<input type="text" value="${usuario.nome}" class="form-control" id="nome" name="nome" />
+												<input type="text" value="${usuario.nome}" required class="form-control" id="nome" name="nome" />
 											</div>
 											<div class="col-sm-4">
 												<label for="cref" class="control-label">CREF:</label> <input
@@ -76,7 +76,7 @@
 										<div class="form-group">
 											<div class="col-sm-4">
 												<label for="email" class="control-label">Email:</label> <input
-													type="email" value="${usuario.email}" class="form-control" id="email" name="email" />
+													type="email" value="${usuario.email}" required class="form-control" id="email" name="email" />
 											</div>
 											<div class="col-sm-4">
 												<label for="telresidencial" class="control-label">Telefone

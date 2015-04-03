@@ -221,4 +221,19 @@ public class UsuarioDAO {
 		}		
 		return false;
 	}
+
+	public boolean buscarSenha(String senhaAtual, int idUsuario) throws SQLException {
+		stmtScript = con.prepareStatement("SELECT senha FROM usuario WHERE idUsuario = ?");
+		stmtScript.setInt(1, idUsuario);
+			
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			if(rs.getString("senha").equals(senhaAtual)){
+				return true;
+			}
+			return false;
+		}		
+		return false;
+	}
 }

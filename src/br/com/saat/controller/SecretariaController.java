@@ -550,6 +550,28 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
 			
+		}else if("alterarSenhaUsuario".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			String senhaAtual = request.getParameter("senhaAtual");
+			String novaSenha = request.getParameter("novaSenha");
+			String confirmacaoSenha = request.getParameter("confirmacaoSenha");
+			
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			try {
+				msg = negocio.verificarSenha(senhaAtual, novaSenha, confirmacaoSenha, usuarioLogado.getIdPessoa());
+				if(msg == null || "".equals(msg)){
+					if(negocio.alterarSenha(usuarioLogado, novaSenha, senhaAtual)){
+						msgSucesso = "Senha alterada com sucesso!";
+					}
+				}
+			} catch (Exception e) {
+				msg = e.getMessage();
+			} 
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
+						
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 			

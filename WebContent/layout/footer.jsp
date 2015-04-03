@@ -29,5 +29,7 @@
 	<script src="<%=Constants.JS%>/cidades-estados-1.0.js" type="text/javascript" ></script>
 	<script src="<%=Constants.JS%>/devoops.js" type="text/javascript" ></script>
 	<script src="<%=Constants.JS%>/script.js"></script>
+	
+	<%@include file="../WEB-INF/view/ModalsGerais.jsp"%>
 
 	  

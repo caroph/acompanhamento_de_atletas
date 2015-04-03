@@ -191,4 +191,40 @@ public class UsuarioNegocio {
 		}
 		return false;
 	}
+
+	public String verificarSenha(String senhaAtual, String novaSenha,
+			String confirmacaoSenha, int idUsuario) throws Exception {
+		Criptografia crip = new Criptografia();
+		if("".equals(senhaAtual)){
+			return "Preencha a senha atual!";
+		}else if("".equals(novaSenha)){
+			return "Preencha a nova senha!";
+		}else if("".equals(confirmacaoSenha)){
+			return "Preencha a confirmação de senha!";
+		}else if(!novaSenha.equals(confirmacaoSenha)){
+			return "A confirmação deve ser igual a senha!";
+		}else{
+			try{
+				UsuarioDAO dao = new UsuarioDAO();
+				if(!dao.buscarSenha(crip.criptografa(senhaAtual), idUsuario))
+					return "A senha atual não confere!";
+			}catch(Exception ex){
+				throw new Exception("Ocorreu algum erro ao comparar a senha atual!");
+			}
+		}
+		return null;
+	}
+
+	public boolean alterarSenha(Usuario usuario, String senhaNova, String senhaAtual) throws Exception {
+		Criptografia crip = new Criptografia();
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			if (dao.alterarSenha(usuario, crip.criptografa(senhaAtual), crip.criptografa(senhaNova))) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao alterar a senha");
+		}
+		return false;
+	}
 }
