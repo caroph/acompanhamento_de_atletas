@@ -120,14 +120,20 @@ function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 		break;
 	}
 	
-	var html = "<form class='form-horizontal' role='form' action='SecretariaController?action=anexarDocumento' method='post'>"+
+	var html = "<form class='form-horizontal' role='form' action='SecretariaController?action=anexarDocumento' enctype='multipart/form-data' method='post'>"+
 					"<input type='hidden' id='idPessoa' name='idPessoa' value='"+ idPessoa +"'/>"+
 					"<input type='hidden' id='idTpDocumento' name='idTpDocumento' value='"+ idTpDocumento +"'/>"+
 					"<div class='form-group'>"+
 						"<label for='nmArquivo' class='col-sm-12 text-left'>" + strNmDoc + "</label>"+
 						"<div class='col-sm-12'>"+
-							"<input type='file' class='form-control text-left' id='arquivo' name='arquivo'/>"+
+							"<input type='file' class='form-control text-left' id='arquivo' name='arquivo' required/>"+
 						"</div>" +
+					"</div>" +
+					"<div class='form-group'>" +
+						"<label for='dtValidadeArquivo' class='col-sm-12 text-left'>Data de validade do documento</label>" +
+						"<div class='col-sm-5'>" +
+							"<input type='date' class='form-control' id='dtValidade' name='dtValidade'/>" +
+						"</div>"+
 					"</div>" +
 					"<div class='form-group'>" +
 						"<div class='col-sm-8'></div>" +

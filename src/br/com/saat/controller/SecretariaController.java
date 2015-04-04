@@ -1,11 +1,17 @@
 package br.com.saat.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +20,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.*;
+import org.apache.tomcat.util.http.fileupload.UploadContext;
+
 import br.com.saat.core.Constants;
 import br.com.saat.core.JavaMailApp;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.DiasSemana;
+import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Equipes;
 import br.com.saat.model.GrauParentesco;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Responsavel;
+import br.com.saat.model.TpDocumento;
 import br.com.saat.model.TpEndereco;
 import br.com.saat.model.TpPessoa;
 import br.com.saat.model.Turno;
@@ -31,6 +42,7 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
+import br.com.saat.model.negocio.DocumentoNegocio;
 import br.com.saat.model.negocio.EnderecoNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
@@ -807,16 +819,134 @@ public class SecretariaController extends Controller {
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);			
 		}else if("anexarDocumento".equals(action)){
+			String dtValidade = request.getParameter("dtValidade");
 			String idPessoa = request.getParameter("idPessoa");
 			String idTpDocumento = request.getParameter("idTpDocumento");
-			String msgSucesso="Foi e Voltou! idPessoa: " + idPessoa + "idTpDocumento: " + idTpDocumento;
+			//String msgSucesso="Foi e Voltou! idPessoa: " + idPessoa + " idTpDocumento: " + idTpDocumento + " dtValidade: " + dtValidade;
+			String msgSucesso = "";
+			String msg = "";
 			
+			try{
+				DocumentoNegocio documentoNegocio = new DocumentoNegocio();
+				Documento documento = new Documento();
+				SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+				
+				if(!idPessoa.equals("") && idPessoa != null)
+					documento.setIdPessoa(Integer.parseInt(idPessoa));
+				if(!idTpDocumento.equals("") && idTpDocumento != null)
+					documento.setTpDocumento(Integer.parseInt(idTpDocumento));
+				if(!dtValidade.equals("") && dtValidade != null)
+					documento.setValidade(df.parse(dtValidade));
+				
+				List<Object> validacao = documentoNegocio.validar(documento);
+				
+				if((boolean)validacao.get(0)){
+					if(upload(documento, request)){
+						msgSucesso = "Arquivo anexado com sucesso";
+					}else{
+						msg = "Erro ao anexar arquivo, tente novamente";
+					}
+					
+				}else{
+					msg = (String) validacao.get(1);
+				}		
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}			
+			
+			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
 		}
 		
 		rd = getServletContext().getRequestDispatcher(retorno);
 		rd.forward(request, response);
+	}
+
+	private boolean upload(Documento documento, HttpServletRequest request) {
+		String path = getUploadPath(documento);
+		String nmDocumento = ""; 
+		int tpDocumento = documento.getTpDocumento();
+		
+		//valida qual vai ser o nome do documento
+		if(tpDocumento == TpDocumento.termoDeCompromisso.getValor())
+			nmDocumento += "termo_compromisso_manual";
+		else if(tpDocumento == TpDocumento.declaracaoMedica.getValor())
+			nmDocumento += "declaracao_medica";
+		else if(tpDocumento == TpDocumento.autorizacaoDeViagem.getValor())
+			nmDocumento += "autorizacao_viagem_hospedagem";
+		else if(tpDocumento == TpDocumento.autorizacaoDeImagem.getValor())
+			nmDocumento += "autorizacao_imagem";
+		else if(tpDocumento == TpDocumento.copiaDoRG.getValor())
+			nmDocumento += "copia_rg";
+		else if(tpDocumento == TpDocumento.copiaDoCPF.getValor())
+			nmDocumento += "copia_cpf";
+		else if(tpDocumento == TpDocumento.fotoDoAtleta.getValor())
+			nmDocumento += "foto_atleta";
+		else
+			return false;
+		
+		//Faz upload
+		try{
+			@SuppressWarnings("deprecation")
+			DiskFileUpload fu = new DiskFileUpload(); 
+			@SuppressWarnings("deprecation")
+			//pega uma lista com todos os item do form
+			List ListaItensFormulario = fu.parseRequest(request); 
+			Iterator i = ListaItensFormulario.iterator(); 
+			//Itera a lista
+			while(i.hasNext()){
+				FileItem item = (FileItem)i.next();
+				//se não for um form field é um arquivo
+				if(!item.isFormField()){
+					InputStream in = item.getInputStream();
+					File arquivo = new File(path + "/" + nmDocumento);
+					FileOutputStream out = new FileOutputStream(arquivo);
+					//lê o input e joga dentro do arquivo através de um OutputStream
+					int c; 
+					while((c = in.read()) != -1) 
+						out.write(c); 
+					out.close();
+				}				
+			}
+			return true;
+			
+		}catch(Exception ex){
+			return false;
+		}
+	}
+
+	private String getUploadPath(Documento documento) {
+		String path = getServletContext().getRealPath("/") + "documentacaoAtletas\\";
+
+		//verifica se a pasta documentacaoAtletas esta criada
+		if(criaDiretorio(path)){
+			//verifica se a pasta do aluno esta criada 
+			path = getServletContext().getRealPath("/") + "documentacaoAtletas\\" + String.valueOf(documento.getIdPessoa());
+			if (criaDiretorio(path))
+				return path;
+			else
+				return "";
+		}else{
+			return "";
+		}
+	}
+
+	private boolean criaDiretorio(String path) {
+		//Se a pasta não existir cria, caso não consiga criar retorna falso
+		try{
+			if(!Paths.get(path).toFile().exists()){
+				File dir = new File(path);
+				if(dir.mkdir())
+					return true;
+				else
+					return false;
+			}else{
+				return true;
+			}
+		}catch(Exception ex){
+			return false;
+		}
 	}
 
 }
