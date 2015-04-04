@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.*;
+import org.apache.commons.io.*;
 import org.apache.tomcat.util.http.fileupload.UploadContext;
 
 import br.com.saat.core.Constants;
@@ -819,10 +820,6 @@ public class SecretariaController extends Controller {
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);			
 		}else if("anexarDocumento".equals(action)){
-			String dtValidade = request.getParameter("dtValidade");
-			String idPessoa = request.getParameter("idPessoa");
-			String idTpDocumento = request.getParameter("idTpDocumento");
-			//String msgSucesso="Foi e Voltou! idPessoa: " + idPessoa + " idTpDocumento: " + idTpDocumento + " dtValidade: " + dtValidade;
 			String msgSucesso = "";
 			String msg = "";
 			
@@ -831,25 +828,50 @@ public class SecretariaController extends Controller {
 				Documento documento = new Documento();
 				SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
 				
-				if(!idPessoa.equals("") && idPessoa != null)
-					documento.setIdPessoa(Integer.parseInt(idPessoa));
-				if(!idTpDocumento.equals("") && idTpDocumento != null)
-					documento.setTpDocumento(Integer.parseInt(idTpDocumento));
-				if(!dtValidade.equals("") && dtValidade != null)
-					documento.setValidade(df.parse(dtValidade));
-				
-				List<Object> validacao = documentoNegocio.validar(documento);
-				
-				if((boolean)validacao.get(0)){
-					if(upload(documento, request)){
-						msgSucesso = "Arquivo anexado com sucesso";
+				@SuppressWarnings("deprecation")
+				DiskFileUpload fu = new DiskFileUpload(); 
+				@SuppressWarnings("deprecation")
+				//pega uma lista com todos os itens do form
+				List ListaItensFormulario = fu.parseRequest(request); 
+				Iterator i = ListaItensFormulario.iterator(); 
+				//Itera a lista
+				while(i.hasNext()){
+					FileItem item = (FileItem)i.next();
+					String s = "";
+					//se for um form field resgata o valor e insere no objeto;
+					if(item.isFormField()){
+						if(item.getFieldName().equals("idPessoa")){
+							s = item.getString();
+							if(!s.equals("") && s != null)
+								documento.setIdPessoa(Integer.parseInt(s));
+						}else if(item.getFieldName().equals("idTpDocumento")){
+							s = item.getString();
+							if(!s.equals("") && s != null)
+								documento.setTpDocumento(Integer.parseInt(s));
+						}else if(item.getFieldName().equals("dtValidade")){
+							s = item.getString();
+							if(!s.equals("") && s != null)
+								documento.setValidade(df.parse(s));
+						}
+					//se não for um form field é um arquivo
 					}else{
-						msg = "Erro ao anexar arquivo, tente novamente";
+						String path = getUploadPath(documento);
+						InputStream in = item.getInputStream();
+						String nmDocumento = nomearArquivo(documento.getTpDocumento(), documento.getIdPessoa(), item.getName());
+						if(!nmDocumento.equals("Extensão de arquivo inválida!") && !nmDocumento.equals("Tipo de arquivo inválido!")){
+							File arquivo = new File(path + "\\" + nmDocumento);
+							FileOutputStream out = new FileOutputStream(arquivo);
+							//lê o input e joga dentro do arquivo através de um OutputStream
+							int c; 
+							while((c = in.read()) != -1) 
+								out.write(c); 
+							out.close();
+							msgSucesso = "Arquivo anexado com sucesso";
+						}else{
+							msg = nmDocumento;
+						}
 					}
-					
-				}else{
-					msg = (String) validacao.get(1);
-				}		
+				}				
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}			
@@ -863,57 +885,41 @@ public class SecretariaController extends Controller {
 		rd.forward(request, response);
 	}
 
-	private boolean upload(Documento documento, HttpServletRequest request) {
-		String path = getUploadPath(documento);
+	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {
 		String nmDocumento = ""; 
-		int tpDocumento = documento.getTpDocumento();
+		String[] explode = nmArquivo.split("\\.");
+		String extensao = explode[(explode.length - 1)];
+		List<String> extensoesValidas = new ArrayList<String>(){{
+			add("jpg");
+			add("png");
+			add("pdf");
+			add("doc");
+			}};
 		
+		if(!extensao.equals("") || extensao != null){
+			if(!extensoesValidas.contains(extensao))
+				return "Extensão de arquivo inválida!";
+		}
+				
 		//valida qual vai ser o nome do documento
 		if(tpDocumento == TpDocumento.termoDeCompromisso.getValor())
-			nmDocumento += "termo_compromisso_manual";
+			nmDocumento = "termo_compromisso_manual";
 		else if(tpDocumento == TpDocumento.declaracaoMedica.getValor())
-			nmDocumento += "declaracao_medica";
+			nmDocumento = "declaracao_medica";
 		else if(tpDocumento == TpDocumento.autorizacaoDeViagem.getValor())
-			nmDocumento += "autorizacao_viagem_hospedagem";
+			nmDocumento = "autorizacao_viagem_hospedagem";
 		else if(tpDocumento == TpDocumento.autorizacaoDeImagem.getValor())
-			nmDocumento += "autorizacao_imagem";
+			nmDocumento = "autorizacao_imagem";
 		else if(tpDocumento == TpDocumento.copiaDoRG.getValor())
-			nmDocumento += "copia_rg";
+			nmDocumento = "copia_rg";
 		else if(tpDocumento == TpDocumento.copiaDoCPF.getValor())
-			nmDocumento += "copia_cpf";
+			nmDocumento = "copia_cpf";
 		else if(tpDocumento == TpDocumento.fotoDoAtleta.getValor())
-			nmDocumento += "foto_atleta";
+			nmDocumento = "foto_atleta";
 		else
-			return false;
+			return "Tipo de arquivo inválido!";
 		
-		//Faz upload
-		try{
-			@SuppressWarnings("deprecation")
-			DiskFileUpload fu = new DiskFileUpload(); 
-			@SuppressWarnings("deprecation")
-			//pega uma lista com todos os item do form
-			List ListaItensFormulario = fu.parseRequest(request); 
-			Iterator i = ListaItensFormulario.iterator(); 
-			//Itera a lista
-			while(i.hasNext()){
-				FileItem item = (FileItem)i.next();
-				//se não for um form field é um arquivo
-				if(!item.isFormField()){
-					InputStream in = item.getInputStream();
-					File arquivo = new File(path + "/" + nmDocumento);
-					FileOutputStream out = new FileOutputStream(arquivo);
-					//lê o input e joga dentro do arquivo através de um OutputStream
-					int c; 
-					while((c = in.read()) != -1) 
-						out.write(c); 
-					out.close();
-				}				
-			}
-			return true;
-			
-		}catch(Exception ex){
-			return false;
-		}
+		return String.valueOf(idPessoa) + "_" + nmDocumento + "." + extensao;
 	}
 
 	private String getUploadPath(Documento documento) {

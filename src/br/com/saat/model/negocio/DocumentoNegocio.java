@@ -18,7 +18,7 @@ public class DocumentoNegocio {
 			listaValidacao.add("Tipo de documento inválido!");
 		}else if(documento.getIdPessoa() <= 0){
 			listaValidacao.add(false);
-			listaValidacao.add("Tipo de documento inválido!");
+			listaValidacao.add("IdPessoa inválido!");
 		}
 		listaValidacao.add(true);
 		
