@@ -49,6 +49,7 @@
 								<div class="box-content"> 
 									<form class="form-horizontal" role="form" action="SecretariaController?action=inserirAtleta" method="post" >
 										<input type="hidden" name="idAtleta" value="${atleta.idPessoa}"/>
+										<input type="hidden" name="idEndereco" value="${atleta.endereco.idEndereco}"/>
 										<div class="form-group">
 											<h3 class="text-center">Dados Técnicos</h3>
 										</div>

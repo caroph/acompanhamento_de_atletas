@@ -122,4 +122,21 @@ public class DiaTreinoDAO {
 		
 		return retorno;
 	}
+
+	public boolean excluirDiasTreinoAtleta(int idAtleta) throws SQLException {
+		boolean retorno = false;
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("DELETE FROM diasTreinoAtleta WHERE idAtleta = ?");
+		
+		stmtScript.setInt(1, idAtleta);
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			retorno = true;
+		}	
+		
+		return retorno;
+	}
 }

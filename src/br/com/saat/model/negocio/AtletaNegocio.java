@@ -57,8 +57,15 @@ public class AtletaNegocio {
 		}
 	}
 
-	public boolean alterar(Atleta atleta) {
-		// TODO Auto-generated method stub
+	public boolean alterar(Atleta atleta) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if (dao.alterar(atleta)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o atleta.");
+		}
 		return false;
 	}
 
@@ -69,6 +76,16 @@ public class AtletaNegocio {
 			return lista;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas.");
+		}
+	}
+
+	public Atleta buscarAtleta(int idAtleta) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			Atleta atleta = dao.buscarAtleta(idAtleta);
+			return atleta;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o atleta.");
 		}
 	}
 	

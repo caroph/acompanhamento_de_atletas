@@ -97,6 +97,20 @@ public class DiaTreinoNegocio {
 		}
 
 		return retorno;
+	}
+
+	public boolean alterar(String[] diasTreino, int idAtleta) throws Exception {
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			if(!dao.excluirDiasTreinoAtleta(idAtleta)){
+				return false;
+			}else{
+				inserirDiaTreinoAtleta(diasTreino, idAtleta);
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao alterar os dias de treino do atleta.");
+		}
+		return false;
 	} 
 
 }

@@ -127,6 +127,7 @@ public class SecretariaController extends Controller {
 			String msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			String msgSucesso = "";
 			String idAtleta;
+			String idEndereco;
 			int numero = 0;
 			int idTpEquipe = 0;
 			int idGrauParentesco = 0;
@@ -211,6 +212,7 @@ public class SecretariaController extends Controller {
 				atleta.setDtValidade(dtValidade);
 				atleta.setEndereco(endereco);
 				
+				idEndereco = request.getParameter("idEndereco");
 				endereco.setEndereco(request.getParameter("endereco"));
 				endereco.setNumero(numero);
 				endereco.setComplemento(request.getParameter("complemento"));
@@ -223,8 +225,9 @@ public class SecretariaController extends Controller {
 				diasTreino = request.getParameterValues("diasTreino");
 				
 				try {
-					if( !"".equals(idAtleta) && !"0".equals(idAtleta) ){
+					if( !"".equals(idAtleta) && !"0".equals(idAtleta) && !"".equals(idEndereco) && !"0".equals(idEndereco) ){
 						atleta.setIdPessoa(Integer.parseInt(idAtleta));
+						endereco.setIdEndereco(Integer.parseInt(idEndereco));
 					}
 					//Valida dados atleta
 					List<Object> listaValidacao = negocio.validaDados(atleta);
@@ -237,7 +240,7 @@ public class SecretariaController extends Controller {
 						
 						if(valida){
 							//Valida seleção de dias de treino
-							if(!"".equals(diasTreino)){
+							if(!"".equals(diasTreino) && diasTreino != null){
 								if(atleta.getIdPessoa() == 0){
 									//Inserindo Atleta
 									int idNovoAtleta = negocio.inserir(atleta); 
@@ -251,7 +254,7 @@ public class SecretariaController extends Controller {
 										}
 									}
 								}else{
-									if(negocio.alterar(atleta)){
+									if(negocio.alterar(atleta) && endNegocio.alterar(atleta) && diaNegocio.alterar(diasTreino, atleta.getIdPessoa())){
 										msgSucesso = "Atleta alterado com sucesso!";
 									}
 								}
@@ -303,6 +306,33 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
+			
+		}else if("editarAtleta".equals(action)){
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			Atleta atleta = new Atleta();
+
+			AtletaNegocio negocio = new AtletaNegocio();
+				
+			try{
+				atleta = negocio.buscarAtleta(idAtleta);
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
+			
+			EquipesNegocio negocioEquipe = new EquipesNegocio();
+			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			
+			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+			
+			TurnoNegocio turnoNegocio = new TurnoNegocio();
+			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaGrauParentesco", listaGraus);
+			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspNovoDiaTreino".equals(action)){
 		//Carregar página Novo Dia de Treino

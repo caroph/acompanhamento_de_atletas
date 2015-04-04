@@ -3,8 +3,10 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.TpEndereco;
+import br.com.saat.model.TpPessoa;
 import br.com.saat.model.dao.EnderecoDAO;
 
 public class EnderecoNegocio {
@@ -54,6 +56,18 @@ public class EnderecoNegocio {
 		}catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao inserir o Endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial"));
 		}			
+	}
+
+	public boolean alterar(Atleta atleta) throws Exception {
+		try {
+			EnderecoDAO dao = new EnderecoDAO();
+			if (dao.alterar(atleta.getEndereco(), atleta.getIdPessoa(), TpPessoa.Atleta.getValor())) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o endereço do atleta.");
+		}
+		return false;
 	}
 	
 	

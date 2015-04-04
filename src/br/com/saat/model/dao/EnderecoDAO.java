@@ -84,7 +84,7 @@ public class EnderecoDAO {
 					+ "WHERE idEndereco = ?");
 		else if(tpPessoa == TpPessoa.Atleta.getValor())
 			stmtScript = con.prepareStatement("UPDATE endereco SET "
-					+ "idResponsavel = ?,"
+					+ "idAtleta = ?,"
 					+ "endereco = ?,"
 					+ "numero = ?,"
 					+ "complemento = ?,"
@@ -116,7 +116,6 @@ public class EnderecoDAO {
 	}
 	
 	
-	
 	public ArrayList<Endereco>buscarEnderecos(int idPessoa, int tpPessoa) throws SQLException{
 		ArrayList<Endereco> lista = new ArrayList<Endereco>();
 		if(tpPessoa == TpPessoa.Responsavel.getValor())
@@ -145,6 +144,7 @@ public class EnderecoDAO {
 		
 		return lista;
 	}
+
 	
 }
  
