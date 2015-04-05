@@ -449,7 +449,7 @@ public class SecretariaController extends Controller {
 			
 			try{
                 if(negocio.desativar(dia)){
-                	msgSucesso = "Dia de Treino desativado com sucesso!";
+                	msgSucesso = "Dia de Treino excluido com sucesso!";
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
@@ -579,7 +579,7 @@ public class SecretariaController extends Controller {
 			
 			try{
                 if(negocio.desativar(usuario)){
-                	msgSucesso = "Usuário desativado com sucesso!";
+                	msgSucesso = "Usuário excluido com sucesso!";
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
