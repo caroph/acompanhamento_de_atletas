@@ -847,6 +847,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
+			request.setAttribute("idPessoa", request.getParameter("idPessoa"));
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);			
 		}else if("anexarDocumento".equals(action)){
 			String msgSucesso = "";
@@ -888,22 +889,32 @@ public class SecretariaController extends Controller {
 						InputStream in = item.getInputStream();
 						String nmDocumento = nomearArquivo(documento.getTpDocumento(), documento.getIdPessoa(), item.getName());
 						if(!nmDocumento.equals("Extensão de arquivo inválida!") && !nmDocumento.equals("Tipo de arquivo inválido!")){
-							File arquivo = new File(path + "\\" + nmDocumento);
+							path += "\\" + nmDocumento;
+							File arquivo = new File(path);
 							FileOutputStream out = new FileOutputStream(arquivo);
 							//lê o input e joga dentro do arquivo através de um OutputStream
 							int c; 
 							while((c = in.read()) != -1) 
 								out.write(c); 
 							out.close();
+							
+							documento.setSrc(path);
 							msgSucesso = "Arquivo anexado com sucesso";
 						}else{
 							msg = nmDocumento;
 						}
 					}
-				}				
+					
+					if(!documentoNegocio.inserir(documento)){
+						msg = "Erro ao gravar documento no banco de dados!";
+					}
+					
+				}	
+				request.setAttribute("idPessoa", documento.getIdPessoa());
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}			
+			
 			
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
@@ -952,12 +963,16 @@ public class SecretariaController extends Controller {
 	}
 
 	private String getUploadPath(Documento documento) {
-		String path = getServletContext().getRealPath("/") + "documentacaoAtletas\\";
-
+		String path = getServletContext().getRealPath("/");
+		String[] explode = path.split("\\\\"); 
+		//tira a pasta do contexto para evitar que os arquivos sejam perdidos no próximo restart do server
+		explode[explode.length - 1] = "saatDocumentacaoAtletas\\";
+		path = String.join("\\", explode);
+		
 		//verifica se a pasta documentacaoAtletas esta criada
 		if(criaDiretorio(path)){
 			//verifica se a pasta do aluno esta criada 
-			path = getServletContext().getRealPath("/") + "documentacaoAtletas\\" + String.valueOf(documento.getIdPessoa());
+			path += String.valueOf(documento.getIdPessoa());
 			if (criaDiretorio(path))
 				return path;
 			else

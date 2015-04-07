@@ -60,33 +60,43 @@
 											<td><a data-toggle="modal" href="#visualizarDoc">Termo de Compromisso do Manual do Atleta</a></td>
 											<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 											<td>
-												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,123)">Anexar</a>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Anexar</a>
 											</td>
 										</tr>
 										<tr>
 											<td><a data-toggle="modal" href="#visualizarDoc">Declaração Médica</a></td>
 											<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(2,${idPessoa})">Anexar</a>
+											</td>
 										</tr>
 										<tr>
 											<td><a data-toggle="modal" href="#visualizarDoc">Autorização de Viagem e Hospedagem</a></td>
 											<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(3,${idPessoa})">Anexar</a>
+											</td>
 										</tr>
 										<tr>
 											<td><a data-toggle="modal" href="#visualizarDoc">Autorização de Imagem</a></td>
 											<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(4,${idPessoa})">Anexar</a>
+											</td>
 										</tr>
 										<tr>
 											<td><a data-toggle="modal" href="#visualizarDoc">Cópia do RG</a></td>
 											<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(5,${idPessoa})">Anexar</a>
+											</td>
 										</tr>
 										<tr>
 											<td><a data-toggle="modal" href="#visualizarDoc">Cópia do CPF</a></td>
 											<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="btnAnexo">Anexar</a></td>
+											<td>
+												<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(6,${idPessoa})">Anexar</a>
+											</td>
 										</tr>
 									</table>
 								</div>
@@ -105,7 +115,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h4 class="modal-title" id="myModalLabel">Detalhes Usuário</h4>
+					<h4 class="modal-title" id="myModalLabel">Anexar Arquivo</h4>
 				</div>
 				<div class="modal-body body-anexarArquivo">
 				</div>
