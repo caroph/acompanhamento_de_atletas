@@ -89,4 +89,15 @@ public class AtletaNegocio {
 		}
 	}
 	
+	public List<Integer> buscaDiasTreinoAtleta(int idAtleta) throws Exception{
+		List<Integer> lista = new ArrayList<Integer>();
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			lista = dao.buscaDiasTreinoAtleta(idAtleta);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treino do atleta.");
+		}
+		return lista;
+	}
+	
 }

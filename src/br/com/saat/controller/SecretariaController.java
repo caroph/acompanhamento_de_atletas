@@ -81,7 +81,7 @@ public class SecretariaController extends Controller {
 		String action = request.getParameter("action");
 		
 		if("jspNovoAtleta".equals(action)){
-		//Carregar página Novo Atleta
+			//Carregar página Novo Atleta
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 			
@@ -112,6 +112,17 @@ public class SecretariaController extends Controller {
 				
 				try{
 					lista = negocio.carregaDiasTreino(idTipoEquipe);
+					String idAtleta = request.getParameter("idAtleta");
+					if(idAtleta != null || !"".equals(idAtleta)){
+						AtletaNegocio atletaNegocio = new AtletaNegocio();
+						List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(Integer.parseInt(idAtleta));
+						
+						for (DiaTreino dia : lista) {
+							if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
+								dia.setSelecionado(true);
+							}
+						}
+					}
 				}catch(Exception ex){
 					request.setAttribute("msg", ex.getMessage());
 				}
@@ -340,6 +351,24 @@ public class SecretariaController extends Controller {
 			
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			DiaTreinoNegocio negocioDiaTreino = new DiaTreinoNegocio();
+			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
+			
+			try{
+				listaDiaTreino = negocioDiaTreino.carregaDiasTreino(atleta.getIdTpEquipe());
+				List<Integer> listaDias = negocio.buscaDiasTreinoAtleta(atleta.getIdPessoa());
+				
+				for (DiaTreino dia : listaDiaTreino) {
+					if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
+						dia.setSelecionado(true);
+					}
+				}
+				
+				request.setAttribute("listaDiasTreinos", listaDiaTreino);
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
 			
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);

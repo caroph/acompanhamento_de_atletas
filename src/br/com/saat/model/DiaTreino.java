@@ -8,11 +8,15 @@ public class DiaTreino {
 	public int idDiaSemana;
 	public Date hrInicio;
 	public Date hrFim;
+	public boolean selecionado;
 	
-	public DiaTreino(){}
+	public DiaTreino(){
+		this.selecionado = false;
+	}
 	
 	public DiaTreino(int idDiaTreino){
 		this.idDiaTreino = idDiaTreino;
+		this.selecionado = false;
 	}
 	
 	public DiaTreino(int idDiaTreino, int idTpEquipe, int idDiaSemana,
@@ -23,6 +27,7 @@ public class DiaTreino {
 		this.idDiaSemana = idDiaSemana;
 		this.hrInicio = hrInicio;
 		this.hrFim = hrFim;
+		this.selecionado = false;
 	}
 	
 	public int getIdDiaTreino() {
@@ -96,5 +101,14 @@ public class DiaTreino {
 		}
 		return retorno;
 	}
+
+	public boolean isSelecionado() {
+		return selecionado;
+	}
+
+	public void setSelecionado(boolean selecionado) {
+		this.selecionado = selecionado;
+	}
+	
 	
 }

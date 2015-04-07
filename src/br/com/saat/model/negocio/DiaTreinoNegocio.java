@@ -110,7 +110,7 @@ public class DiaTreinoNegocio {
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao alterar os dias de treino do atleta.");
 		}
-		return false;
+		return true;
 	} 
 
 }

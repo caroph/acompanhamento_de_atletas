@@ -89,7 +89,12 @@
 													<c:forEach var="dia" items="${listaDiasTreinos}">
 														<fmt:formatDate value="${dia.hrInicio}" pattern="HH:mm" var="hrInicioF" />
 														<fmt:formatDate value="${dia.hrFim}" pattern="HH:mm" var="hrFimF" />
-						                            	<option value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${hrInicioF} às ${hrFimF}" /></option>
+														<c:if test="${dia.selecionado == false}">
+						                            		<option value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${hrInicioF} às ${hrFimF}" /></option>
+						                            	</c:if>
+						                            	<c:if test="${dia.selecionado == true}">
+						                            		<option selected value="<c:out value='${dia.idDiaTreino}'/>"><c:out value="${dia.getNomeDiaSemana()} - ${hrInicioF} às ${hrFimF}" /></option>
+						                            	</c:if>
 						                            </c:forEach>
 												</select>
 											 </div>
@@ -257,7 +262,7 @@
 							                            <c:if test="${grau.valor == atleta.idGrauParentesco}">
 															<option selected value="<c:out value='${grau.valor}'/>"><c:out value="${grau.nome}" /></option>
 			                                            </c:if>
-			                                            <c:if test="${grau.valor != atleta.idTpEquipe}">
+			                                            <c:if test="${grau.valor != atleta.idGrauParentesco}">
 			                                                <option value="<c:out value='${grau.valor}'/>"><c:out value="${grau.nome}" /></option>
 														</c:if>
 						                            </c:forEach>

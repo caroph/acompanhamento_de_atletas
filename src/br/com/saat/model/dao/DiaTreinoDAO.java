@@ -127,7 +127,7 @@ public class DiaTreinoDAO {
 		boolean retorno = false;
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("DELETE FROM diasTreinoAtleta WHERE idAtleta = ?");
+		stmtScript = con.prepareStatement("DELETE FROM diatreinoatleta WHERE idAtleta = ?");
 		
 		stmtScript.setInt(1, idAtleta);
 		

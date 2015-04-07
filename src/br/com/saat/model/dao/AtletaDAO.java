@@ -249,4 +249,23 @@ public class AtletaDAO {
 		return false;
 	}
 	
+	public List<Integer> buscaDiasTreinoAtleta(int idAtleta) throws SQLException{
+		List<Integer> lista = new ArrayList<Integer>();
+		
+		stmtScript = con.prepareStatement(
+				"SELECT d.idDiaTreino FROM saat.atleta a "
+				+ "JOIN saat.diatreinoatleta da on a.idAtleta = da.idAtleta "
+				+ "JOIN saat.diatreino d on da.idDiaTreino = d.idDiaTreino "
+				+ "WHERE a.idAtleta = ?");
+		
+		stmtScript.setInt(1, idAtleta);
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	lista.add(rs.getInt(1));
+        }
+		
+		return lista;
+	}
+	
 }
