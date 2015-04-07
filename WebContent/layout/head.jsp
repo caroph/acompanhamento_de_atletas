@@ -9,9 +9,9 @@
     
 
 
-	<link href="<%=Constants.PLUGINS%>/bootstrap/bootstrap.css" rel="stylesheet">
-	<link href="<%=Constants.PLUGINS%>/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+ 	<link href="<%=Constants.PLUGINS%>/bootstrap/bootstrap.css" rel="stylesheet">
+ 	<link href="<%=Constants.PLUGINS%>/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+ 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
 <%-- 	<link href="<%=Constants.PLUGINS%>/fancybox/jquery.fancybox.css" rel="stylesheet"> --%>
 <%-- 	<link href="<%=Constants.PLUGINS%>/fullcalendar/fullcalendar.css" rel="stylesheet"> --%>
@@ -19,7 +19,8 @@
 	<link href="<%=Constants.PLUGINS%>/select2/select2.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/style.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/main.css" rel="stylesheet">
-	<script src="<%=Constants.PLUGINS%>/ckeditor/ckeditor.js" type="text/javascript"></script>
+	<link href="<%=Constants.PLUGINS%>/weekcalendar/jquery.weekcalendar.css" rel="stylesheet">
+	
 	
 	
 

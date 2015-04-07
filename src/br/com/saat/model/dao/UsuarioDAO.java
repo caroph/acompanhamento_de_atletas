@@ -127,11 +127,12 @@ public class UsuarioDAO {
 	
 	public boolean buscarEmail(String email, int idUsuario) throws SQLException{	
 		if(idUsuario == 0){
-			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ?");
+			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ? AND flCadastroAtivo = 1");
 			stmtScript.setString(1, email);
 		}
 		else{
-			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ? and idUsuario != ?");
+			stmtScript = con.prepareStatement("SELECT email FROM usuario WHERE email LIKE ? and idUsuario != ? AND "
+					+ "flCadastroAtivo = 1");
 			stmtScript.setString(1, email);
 			stmtScript.setInt(2, idUsuario);
 		}
