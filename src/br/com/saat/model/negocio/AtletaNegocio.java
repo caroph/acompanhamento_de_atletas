@@ -69,10 +69,10 @@ public class AtletaNegocio {
 		return false;
 	}
 
-	public List<Atleta> buscarAtletas() throws Exception {
+	public List<Atleta> buscarAtletas(int ativo) throws Exception {
 		try {
 			AtletaDAO dao = new AtletaDAO();
-			List<Atleta> lista = dao.buscarAtletas();
+			List<Atleta> lista = dao.buscarAtletas(ativo);
 			return lista;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas.");
@@ -98,6 +98,30 @@ public class AtletaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treino do atleta.");
 		}
 		return lista;
+	}
+
+	public boolean desativar(Atleta atleta) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if (dao.desativar(atleta)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao desativar o atleta!");
+		}
+		return false;
+	}
+
+	public boolean ativar(Atleta atleta) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if (dao.ativar(atleta)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao ativar o atleta!");
+		}
+		return false;
 	}
 	
 }

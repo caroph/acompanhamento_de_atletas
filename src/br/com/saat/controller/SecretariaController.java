@@ -322,13 +322,16 @@ public class SecretariaController extends Controller {
 			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
+			List<Atleta> listaDesativados = new ArrayList<Atleta>();
 			try{
-				lista = negocio.buscarAtletas();
+				lista = negocio.buscarAtletas(1);
+				listaDesativados = negocio.buscarAtletas(0);
 			}catch(Exception ex){
 				request.setAttribute("msg", ex.getMessage());
 			}
 			
 			request.setAttribute("listaAtletas", lista);
+			request.setAttribute("listaAtletasDesativados", listaDesativados);
 			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			
 		}else if("editarAtleta".equals(action)){
@@ -375,6 +378,62 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaTurnos", listaTurnos);
 			request.setAttribute("atleta", atleta);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
+			
+		}else if("desativarAtleta".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			Atleta atleta = new Atleta();
+			atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+			
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> lista = new ArrayList<Atleta>();
+			List<Atleta> listaDesativados = new ArrayList<Atleta>();
+			
+			try{
+                if(negocio.desativar(atleta)){
+                	msgSucesso = "Atleta desativado com sucesso!";
+                }else{
+                	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
+                }
+                lista = negocio.buscarAtletas(1);
+                listaDesativados = negocio.buscarAtletas(0);
+            }catch(Exception ex){
+               msg = ex.getMessage();                    
+            }			
+			
+			request.setAttribute("listaAtletasDesativados", listaDesativados);
+			request.setAttribute("listaAtletas", lista);
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
+
+		}else if("ativarAtleta".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			Atleta atleta = new Atleta();
+			atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+			
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> lista = new ArrayList<Atleta>();
+			List<Atleta> listaDesativados = new ArrayList<Atleta>();
+			
+			try{
+                if(negocio.ativar(atleta)){
+                	msgSucesso = "Atleta ativado com sucesso!";
+                }else{
+                	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
+                }
+                lista = negocio.buscarAtletas(1);
+                listaDesativados = negocio.buscarAtletas(0);
+            }catch(Exception ex){
+               msg = ex.getMessage();                    
+            }			
+			
+			request.setAttribute("listaAtletasDesativados", listaDesativados);
+			request.setAttribute("listaAtletas", lista);
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspNovoDiaTreino".equals(action)){
 		//Carregar página Novo Dia de Treino

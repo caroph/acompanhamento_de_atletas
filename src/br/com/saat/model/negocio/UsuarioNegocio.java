@@ -165,7 +165,7 @@ public class UsuarioNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao desativar o usuário!");
+			throw new Exception("Erro! Ocorreu algum erro ao excluir o usuário!");
 		}
 		return false;
 	}

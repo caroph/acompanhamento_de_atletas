@@ -71,7 +71,7 @@ public class AtletaDAO {
 		return idAtleta;
 	}
 
-	public List<Atleta> buscarAtletas() throws SQLException {
+	public List<Atleta> buscarAtletas(int ativo) throws SQLException {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
 		stmtScript = con.prepareStatement("SELECT a.idAtleta, idTpEquipe, nome, email, celular, "
@@ -84,8 +84,8 @@ public class AtletaDAO {
 				+ "FROM atleta a "
 				+ "INNER JOIN endereco e "
 				+ "ON a.idAtleta = e.idEndereco "
-				+ "WHERE flCadastroAtivo = 1 "
-				+ "ORDER BY nome ");
+				+ "WHERE flCadastroAtivo = " + String.valueOf(ativo)
+				+ " ORDER BY nome ");
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
@@ -253,9 +253,9 @@ public class AtletaDAO {
 		List<Integer> lista = new ArrayList<Integer>();
 		
 		stmtScript = con.prepareStatement(
-				"SELECT d.idDiaTreino FROM saat.atleta a "
-				+ "JOIN saat.diatreinoatleta da on a.idAtleta = da.idAtleta "
-				+ "JOIN saat.diatreino d on da.idDiaTreino = d.idDiaTreino "
+				"SELECT d.idDiaTreino FROM atleta a "
+				+ "JOIN diatreinoatleta da on a.idAtleta = da.idAtleta "
+				+ "JOIN diatreino d on da.idDiaTreino = d.idDiaTreino "
 				+ "WHERE a.idAtleta = ?");
 		
 		stmtScript.setInt(1, idAtleta);
@@ -266,6 +266,34 @@ public class AtletaDAO {
         }
 		
 		return lista;
+	}
+
+	public boolean desativar(Atleta atleta) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE atleta SET flCadastroAtivo = 0 WHERE idAtleta = ?");
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
+	}
+
+	public boolean ativar(Atleta atleta) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE atleta SET flCadastroAtivo = 1 WHERE idAtleta = ?");
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
 	}
 	
 }
