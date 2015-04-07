@@ -113,7 +113,7 @@ public class SecretariaController extends Controller {
 				try{
 					lista = negocio.carregaDiasTreino(idTipoEquipe);
 					String idAtleta = request.getParameter("idAtleta");
-					if(idAtleta != null || !"".equals(idAtleta)){
+					if(idAtleta != null && !"".equals(idAtleta)){
 						AtletaNegocio atletaNegocio = new AtletaNegocio();
 						List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(Integer.parseInt(idAtleta));
 						
