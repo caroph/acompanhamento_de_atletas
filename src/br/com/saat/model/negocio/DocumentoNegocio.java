@@ -46,4 +46,15 @@ public class DocumentoNegocio {
 		
 		return false;
 	}
+	
+	public ArrayList<Documento> buscarTodosAtleta(int idPessoa) throws Exception{
+		
+		try{
+			DocumentoDAO dao = new DocumentoDAO();
+			return dao.buscarTodosAtleta(idPessoa);			
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+	
 }

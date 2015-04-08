@@ -144,14 +144,14 @@ function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 				"</form>";
 	
 	$('.body-anexarArquivo').html(html);
-//	<form class="form-horizontal" role="form" action="SecretariaController?action=anexarDocumentos" method="post">
-//		<div class="form-group">
-//			<label for="nomeResponsavel" class="col-sm-2 control-label text-right">Foto do Atleta</label>
-//			<div class="col-sm-3">
-//				<input type="file" class="form-control" id="foto" name="foto"/>
-//			</div>
-//		</div>
-//	</form>
+}
+
+function visualizarDoc(srcDocumento){
+	var html = "<img src='" + srcDocumento + "'>";
+	//var html = "<img src='C:\\Program Files\\apache-tomcat-7.0.52\\wtpwebapps\\saatDocumentacaoAtletas\\1\\1_termo_compromisso_manual.jpg'/>";
+	//alert(srcDocumento);
+	//var html = "<b>" + srcDocumento + "</b>";
+	$('.body-imgVisualizarDoc').html(html);
 }
 
 //Combo Dinamico - Dias de Treino Atleta

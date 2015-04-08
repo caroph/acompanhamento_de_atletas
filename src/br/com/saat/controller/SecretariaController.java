@@ -906,8 +906,60 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
-			request.setAttribute("idPessoa", request.getParameter("idPessoa"));
-			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);			
+			String msg = "";
+			int idPessoa = 0;
+			Documento termoDeCompromisso = null;
+			Documento declaracaoMedica = null;
+			Documento autorizacaoViagem = null;
+			Documento autorizacaoImagem = null;
+			Documento copiaRG = null;
+			Documento copiaCPF = null;
+			Documento fotoAtleta = null;
+			
+			try{
+				idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
+				DocumentoNegocio documentoNegocio = new DocumentoNegocio();
+				
+				ArrayList<Documento> listaDocumento = documentoNegocio.buscarTodosAtleta(idPessoa);
+				
+				for(Documento documento : listaDocumento){
+					if(documento.getTpDocumento() == TpDocumento.termoDeCompromisso.getValor()){
+						//troca todos os '/' por '//' - importante p/ visualização
+						//documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+						termoDeCompromisso = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.declaracaoMedica.getValor()){
+						declaracaoMedica = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeViagem.getValor()){
+						autorizacaoViagem = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeImagem.getValor()){
+						autorizacaoImagem = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.copiaDoRG.getValor()){
+						copiaRG = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.copiaDoCPF.getValor()){
+						copiaCPF = documento;
+					}else if(documento.getTpDocumento() == TpDocumento.fotoDoAtleta.getValor()){
+						fotoAtleta = documento;
+					}
+				}
+				
+				
+			}catch(ParseException ex){
+				msg = "idPessoa Inválido!";
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+
+			request.setAttribute("idPessoa", idPessoa);
+			request.setAttribute("termoDeCompromisso", termoDeCompromisso);
+			request.setAttribute("declaracaoMedica", declaracaoMedica);
+			request.setAttribute("autorizacaoViagem", autorizacaoViagem);
+			request.setAttribute("autorizacaoImagem", autorizacaoImagem);
+			request.setAttribute("copiaRG", copiaRG);
+			request.setAttribute("copiaCPF", copiaCPF);
+			request.setAttribute("fotoAtleta", fotoAtleta);
+			request.setAttribute("msg", msg);
+			
+			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);	
 		}else if("anexarDocumento".equals(action)){
 			String msgSucesso = "";
 			String msg = "";
@@ -962,13 +1014,13 @@ public class SecretariaController extends Controller {
 						}else{
 							msg = nmDocumento;
 						}
-					}
-					
-					if(!documentoNegocio.inserir(documento)){
-						msg = "Erro ao gravar documento no banco de dados!";
-					}
-					
+					}					
 				}	
+				
+				if(!documentoNegocio.inserir(documento)){
+					msg = "Erro ao gravar documento no banco de dados!";
+				}
+				
 				request.setAttribute("idPessoa", documento.getIdPessoa());
 			}catch(Exception ex){
 				msg = ex.getMessage();

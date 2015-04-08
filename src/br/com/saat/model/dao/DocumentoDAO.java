@@ -3,7 +3,9 @@ package br.com.saat.model.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Documento;
@@ -39,5 +41,24 @@ public class DocumentoDAO {
 			return true;
 		}		
 		return false;
+	}
+	
+	public ArrayList<Documento> buscarTodosAtleta(int idPessoa) throws Exception{
+		ArrayList<Documento> lista = new ArrayList<Documento>();
+		stmtScript = con.prepareStatement("SELECT * FROM documento WHERE idAtleta = ? AND validadeDocumento >= NOW() OR validadeDocumento IS NULL");
+		
+		stmtScript.setInt(1, idPessoa);
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Documento documento = new Documento();
+			documento.setTpDocumento(rs.getInt("tpDocumento"));
+			documento.setSrc(rs.getString("srcDocumento"));
+			documento.setValidade(rs.getDate("validadeDocumento"));
+			
+			lista.add(documento);
+		}
+		
+		return lista;
 	}
 }
