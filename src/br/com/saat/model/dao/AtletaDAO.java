@@ -295,5 +295,10 @@ public class AtletaDAO {
 		}		
 		return false;
 	}
+
+	public boolean vincularResponsavel(int idAtleta, int idResponsavel,
+			int idGrauParentesco) {
+		return false;
+	}
 	
 }

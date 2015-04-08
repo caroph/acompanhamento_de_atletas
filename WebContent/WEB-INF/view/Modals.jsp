@@ -4,31 +4,31 @@
 
 
 <!-- ---------------------ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ------------------ -->
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="vincularResponsavel" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h4 class="modal-title" id="myModalLabel">Vincular Responsável</h4>
 				</div>
-				<div class="modal-body">
-					<!-- <div class="form-group">
-						<input type="text" class="form-control" id="search" />
-						</div> <button type="submit" class="btn btn-default">Buscar</button>
-					</div> -->
-					<div class="radio">
-						<label><input type="radio" name="optradio"/> Responsável 1</label>
-					</div>
-					<div class="radio">
-						<label><input type="radio" name="optradio"/> Responsável 2</label>
-					</div>
-					<div class="radio">
-						<label><input type="radio" name="optradio"/> Responsável 3</label>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<a class="btn btn-primary" href="SecretariaNovoResponsavel.jsp">Novo Responsável</a>
-					<button type="button" class="btn btn-primary">Vincular</button>
+				<div class="vincular-body" style="margin-left: 20px;">
+					<form method="POST" action="SecretariaController?action=vincularResponsavel">
+						<p></p>
+						<select class="form-control" id="grauParentesco" style="width: 95%;" name="grauParentesco" required>
+							<option selected>Selecione</option>
+							<option value="1">Mãe</option>
+							<option value="2">Pai</option>
+							<option value="3">Tio(a)</option>
+							<option value="4">Irmão(ã)</option>
+							<option value="5">Avô(ó)</option>
+							<option value="6">Outros</option>
+						</select>
+						
+						<div class="modal-footer">
+							<a class="btn btn-primary" href="SecretariaController?action=jspNovoResponsavel">Novo Responsável</a>
+							<button type="submit" class="btn btn-primary">Vincular</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

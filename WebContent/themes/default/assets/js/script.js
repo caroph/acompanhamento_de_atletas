@@ -22,7 +22,22 @@ $(document).ready(function(){
 //Plugin Dual List
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 
-
+//Vincular Responsável
+function abrirModalVinculacao(atleta){
+	$("#vincularResponsavel").modal();
+	$.ajax({
+		type : "POST",
+		url : "SecretariaController?action=buscarResponsaveisVinculacao&idAtleta=" + atleta,
+		success : function(data) {
+			var html = "";
+			$.each(data.listaResponsaveis, function(index, item){
+				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>"
+			});
+			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />"
+			$('.vincular-body p').html(html);
+		}
+	});
+}
 
 //Alert de Confirmação
 $(document).ready(function() {

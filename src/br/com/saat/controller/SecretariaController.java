@@ -10,8 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,6 +54,7 @@ import br.com.saat.model.negocio.ResponsavelNegocio;
 import br.com.saat.model.negocio.TurnoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
+import com.google.gson.Gson;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/SecretariaController")
@@ -77,7 +80,7 @@ public class SecretariaController extends Controller {
 			return;
 		}
 		
-		String retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
+		String retorno = null;//String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 		String action = request.getParameter("action");
 		
 		if("jspNovoAtleta".equals(action)){
@@ -316,6 +319,102 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
+			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
+			
+		}else if("buscarResponsaveisVinculacao".equals(action)){
+			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
+			ArrayList<Responsavel> listaResponsaveis = null;
+			String msg = "";
+			
+			String atleta = request.getParameter("idAtleta");
+			
+			try{
+				listaResponsaveis = responsavelNegocio.buscarTodos();
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("idAtleta", atleta);
+			lista.put("listaResponsaveis", listaResponsaveis);
+			
+		    String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		    request.setAttribute("msg", msg);
+		    
+		}else if("vincularResponsavel".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			int idResponsavel = 0;
+        	int idGrauParentesco = 0;
+        	
+			boolean exception = false;
+			
+			try{
+            	idResponsavel = Integer.parseInt(request.getParameter("responsavel"));
+			}catch(Exception ex){
+				msg = "Favor selecionar um responsável";
+				exception = true;
+			}
+			try{
+            	idGrauParentesco = Integer.parseInt(request.getParameter("grauParentesco"));
+			}catch(Exception ex){
+				msg = "Favor selecionar corretamente o campo 'Grau de Parentesco'.";
+				exception = true;
+			}
+			
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			Atleta atleta = new Atleta();
+
+			AtletaNegocio negocio = new AtletaNegocio();
+				
+			try{
+				if(!exception){
+					if(negocio.vincularResponsavel(idAtleta, idResponsavel, idGrauParentesco)){
+						msgSucesso = "Responsável vinculado com sucesso!";
+					}
+				}
+				atleta = negocio.buscarAtleta(idAtleta);
+			}catch(Exception ex){
+				request.setAttribute("msg", ex.getMessage());
+			}
+			
+			EquipesNegocio negocioEquipe = new EquipesNegocio();
+			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
+			
+			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+			
+			TurnoNegocio turnoNegocio = new TurnoNegocio();
+			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			DiaTreinoNegocio negocioDiaTreino = new DiaTreinoNegocio();
+			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
+			
+			try{
+				listaDiaTreino = negocioDiaTreino.carregaDiasTreino(atleta.getIdTpEquipe());
+				List<Integer> listaDias = negocio.buscaDiasTreinoAtleta(atleta.getIdPessoa());
+				
+				for (DiaTreino dia : listaDiaTreino) {
+					if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
+						dia.setSelecionado(true);
+					}
+				}
+				
+				request.setAttribute("listaDiasTreinos", listaDiaTreino);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("listaEquipes", listaEquipes);
+			request.setAttribute("listaGrauParentesco", listaGraus);
+			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("atleta", atleta);
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("jspBuscaAtleta".equals(action)){
@@ -701,6 +800,7 @@ public class SecretariaController extends Controller {
 			} 
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 						
 		}else if ("jspNovoResponsavel".equals(action)){
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
@@ -1032,8 +1132,10 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
 		}
 		
-		rd = getServletContext().getRequestDispatcher(retorno);
-		rd.forward(request, response);
+		if(retorno != null){
+			rd = getServletContext().getRequestDispatcher(retorno);
+			rd.forward(request, response);
+		}
 	}
 
 	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {

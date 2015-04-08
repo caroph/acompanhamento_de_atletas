@@ -123,5 +123,18 @@ public class AtletaNegocio {
 		}
 		return false;
 	}
+
+	public boolean vincularResponsavel(int idAtleta, int idResponsavel,
+			int idGrauParentesco) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if (dao.vincularResponsavel(idAtleta, idResponsavel, idGrauParentesco)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao vincular o responsável!");
+		}
+		return false;
+	}
 	
 }
