@@ -62,14 +62,12 @@
 											<c:choose>
 												<c:when test="${termoDeCompromisso != null}">
 													<tr>
-														<td><a href="${termoDeCompromisso.src}">Termo de Compromisso do Manual do Atleta</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${termoDeCompromisso.src}')">Termo de Compromisso do Manual do Atleta</a></td>
 														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 														<td>
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Alterar</a>
 														</td>
 													</tr>
-													<b>${termoDeCompromisso.src}</b>
-													<img src="C:/Program Files/apache-tomcat-7.0.52/wtpwebapps/saatDocumentacaoAtletas/1/1_termo_compromisso_manual.jpg">
 												</c:when>
 												<c:otherwise>
 													<tr>

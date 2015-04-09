@@ -1024,8 +1024,8 @@ public class SecretariaController extends Controller {
 				
 				for(Documento documento : listaDocumento){
 					if(documento.getTpDocumento() == TpDocumento.termoDeCompromisso.getValor()){
-						//troca todos os '/' por '//' - importante p/ visualização
-						//documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+						//troca todos os '/' por '//' - importante p/ visualização no js
+						documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 						termoDeCompromisso = documento;
 					}else if(documento.getTpDocumento() == TpDocumento.declaracaoMedica.getValor()){
 						declaracaoMedica = documento;
@@ -1102,6 +1102,10 @@ public class SecretariaController extends Controller {
 						if(!nmDocumento.equals("Extensão de arquivo inválida!") && !nmDocumento.equals("Tipo de arquivo inválido!")){
 							path += "\\" + nmDocumento;
 							File arquivo = new File(path);
+//							path = arquivo.getAbsolutePath();
+//							String path2 = arquivo.getCanonicalPath();
+//							String path3 = arquivo.getPath();
+							
 							FileOutputStream out = new FileOutputStream(arquivo);
 							//lê o input e joga dentro do arquivo através de um OutputStream
 							int c; 
@@ -1109,7 +1113,7 @@ public class SecretariaController extends Controller {
 								out.write(c); 
 							out.close();
 							
-							documento.setSrc(path);
+							documento.setSrc("..\\saatDocumentacaoAtletas" + "\\" + String.valueOf(documento.getIdPessoa() + "\\" + nmDocumento));
 							msgSucesso = "Arquivo anexado com sucesso";
 						}else{
 							msg = nmDocumento;
@@ -1176,20 +1180,11 @@ public class SecretariaController extends Controller {
 	}
 
 	private String getUploadPath(Documento documento) {
-		String path = getServletContext().getRealPath("/");
-		String[] explode = path.split("\\\\"); 
-		//tira a pasta do contexto para evitar que os arquivos sejam perdidos no próximo restart do server
-		explode[explode.length - 1] = "saatDocumentacaoAtletas\\";
-		path = String.join("\\", explode);
+		String path = getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\" + String.valueOf(documento.getIdPessoa()));
 		
-		//verifica se a pasta documentacaoAtletas esta criada
+		//verifica se a pasta do aluno esta criada
 		if(criaDiretorio(path)){
-			//verifica se a pasta do aluno esta criada 
-			path += String.valueOf(documento.getIdPessoa());
-			if (criaDiretorio(path))
-				return path;
-			else
-				return "";
+			return path;
 		}else{
 			return "";
 		}
