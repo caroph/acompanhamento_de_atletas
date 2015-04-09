@@ -22,23 +22,6 @@ $(document).ready(function(){
 //Plugin Dual List
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 
-//Vincular Responsável
-function abrirModalVinculacao(atleta){
-	$("#vincularResponsavel").modal();
-	$.ajax({
-		type : "POST",
-		url : "SecretariaController?action=buscarResponsaveisVinculacao&idAtleta=" + atleta,
-		success : function(data) {
-			var html = "";
-			$.each(data.listaResponsaveis, function(index, item){
-				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>"
-			});
-			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />"
-			$('.vincular-body p').html(html);
-		}
-	});
-}
-
 //Alert de Confirmação
 $(document).ready(function() {
 	$('a[data-confirm]').click(function(ev) {
@@ -83,6 +66,22 @@ $(document).ready(function() {
 	LoadTimePickerScript(DemoTimePicker);
 });
 
+//Vincular Responsável
+function abrirModalVinculacao(atleta){
+	$("#vincularResponsavel").modal();
+	$.ajax({
+		type : "POST",
+		url : "SecretariaController?action=buscarResponsaveisVinculacao&idAtleta=" + atleta,
+		success : function(data) {
+			var html = "";
+			$.each(data.listaResponsaveis, function(index, item){
+				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>"
+			});
+			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />"
+			$('.vincular-body p').html(html);
+		}
+	});
+}
 
 function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
 	var html = "<b>Nome:</b> "+ nome + "<br/>";
@@ -94,6 +93,37 @@ function abrirModalUsuario(nome, perfil, email, telefone, celular, cref){
 	if(cref != null && cref != "")
 		html += "CREF: " + cref + "<br/>";
 	$('.body-usuario').html(html);
+}
+
+function abrirModalAtleta(idAtleta){
+	$("#detalhes").modal();
+	$.ajax({
+		type : "POST",
+		url : "SecretariaController?action=buscarAtletaDetalhes&idAtleta=" + idAtleta,
+		success : function(data) {
+			var html = "<b>Nome:</b> " + data.atleta.nome + "<br/>";
+			html += "<b>Equipe:</b> " + data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
+			html += "<br/><b>Dias de Treino:</b> " + "<br/>";
+			var diasSemana = data.diaSemana;
+			$.each(data.atleta.listaDiasTreinos, function(index, item){
+				html += diasSemana[item.idDiaSemana - 1] + " - " + item.hrInicio + " - " + item.hrFim + "<br/>";
+			});
+			html += "<br/><b>N. Matricula:</b> " + data.atleta.nrMatricula + "<br/>";
+			html += "<b>N. Cadastro CBT:</b> " + data.atleta.nrCadCBT + "<br/>";
+			html += "<b>N. Cadastro FTP:</b> " + data.atleta.nrCadFPT + "<br/>";
+			html += "<br/><b>Responsaveis:</b> " + "<br/>";
+			var grauParentesco = data.grauParentesco;
+			$.each(data.atleta.listaResponsaveis, function(index, item){
+				html += grauParentesco[item.idGrauParentesco - 1] + " - " + item.nome + " - " + item.celular + "<br/>";
+			});
+			html += "<br/><b>Contato de Emergencia:</b> " + "<br/>";
+			html += "<b>Nome:</b> " + data.atleta.nmContatoEmergencia + "<br/>";
+			html += "<b>Grau de Parentesco:</b> " + data.grauParentesco[data.atleta.idGrauParentesco - 1] + "<br/>";
+			html += "<b>Telefone:</b> " + data.atleta.telContatoEmergencia + "<br/>";
+			
+			$('.body-atleta').html(html);
+		}
+	});
 }
 
 function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComercial, celular, endRes, numeroRes, compRes, bairroRes, estadoRes, cidadeRes, endCom, numeroCom, compCom, bairroCom, estadoCom, cidadeCom){

@@ -417,6 +417,35 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
+		}else if("buscarAtletaDetalhes".equals(action)){
+			String msg = "";
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			Atleta atleta = new Atleta();
+			AtletaNegocio negocio = new AtletaNegocio();
+			
+			try{
+				atleta = negocio.buscarAtletaDetalhes(idAtleta);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			List<String> listaGrauParentesco = new GrauParentescoNegocio().listaGrausString();
+			List<String> listaDiaSemana = new DiasSemanaNegocio().listaSemanaString();
+			List<String> listaEquipe = new EquipesNegocio().listaEquipeString();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("atleta", atleta);
+			lista.put("grauParentesco", listaGrauParentesco);
+			lista.put("diaSemana", listaDiaSemana);
+			lista.put("equipe", listaEquipe);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		    request.setAttribute("msg", msg);
+			
 		}else if("jspBuscaAtleta".equals(action)){
 			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();

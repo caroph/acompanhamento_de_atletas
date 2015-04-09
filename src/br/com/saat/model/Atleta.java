@@ -1,6 +1,7 @@
 package br.com.saat.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Atleta extends Pessoa {
 	private int idTpEquipe;
@@ -27,6 +28,8 @@ public class Atleta extends Pessoa {
 	private int idGrauParentesco;
 	private Date dtValidade;
 	private Endereco endereco;
+	private List<DiaTreino> listaDiasTreinos;
+	private List<Responsavel> listaResponsaveis;
 	
 	public Atleta(){}
 	
@@ -268,5 +271,22 @@ public class Atleta extends Pessoa {
 		}
 		return retorno;
 	}
+
+	public List<DiaTreino> getListaDiasTreinos() {
+		return listaDiasTreinos;
+	}
+
+	public void setListaDiasTreinos(List<DiaTreino> listaDiasTreinos) {
+		this.listaDiasTreinos = listaDiasTreinos;
+	}
+
+	public List<Responsavel> getListaResponsaveis() {
+		return listaResponsaveis;
+	}
+
+	public void setListaResponsaveis(List<Responsavel> listaResponsaveis) {
+		this.listaResponsaveis = listaResponsaveis;
+	}
+	
 	
 }

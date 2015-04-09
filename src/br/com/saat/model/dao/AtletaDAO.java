@@ -9,7 +9,9 @@ import java.util.List;
 
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
+import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Endereco;
+import br.com.saat.model.Responsavel;
 
 import com.mysql.jdbc.Statement;
 
@@ -297,8 +299,76 @@ public class AtletaDAO {
 	}
 
 	public boolean vincularResponsavel(int idAtleta, int idResponsavel,
-			int idGrauParentesco) {
+			int idGrauParentesco) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("INSERT INTO atletaresponsavel (idAtleta, idResponsavel, "
+				+ "idGrauParentesco) VALUES (?,?,?)");
+		stmtScript.setInt(1, idAtleta);
+		stmtScript.setInt(2, idResponsavel);
+		stmtScript.setInt(3, idGrauParentesco);
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
 		return false;
+	}
+
+	public Atleta buscarAtletaDetalhes(int idAtleta) throws SQLException {
+		Atleta atleta = new Atleta();
+		
+		stmtScript = con.prepareStatement("SELECT nome, idTpEquipe, nrMatricula, nrCadCBT, nrCadFPT, "
+				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco FROM atleta WHERE idAtleta = ?");
+		stmtScript.setInt(1, idAtleta);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			atleta.setIdPessoa(idAtleta);
+			atleta.setNome(rs.getString(1));
+			atleta.setIdTpEquipe(rs.getInt(2));
+			atleta.setNrMatricula(rs.getString(3));
+			atleta.setNrCadCBT(rs.getString(4));
+			atleta.setNrCadFPT(rs.getString(5));
+			atleta.setNmContatoEmergencia(rs.getString(6));
+			atleta.setTelContatoEmergencia(rs.getString(7));
+			atleta.setIdGrauParentesco(rs.getInt(8));
+			
+			stmtScript = con.prepareStatement("SELECT dt.idDiaSemana, dt.hrInicio, dt.hrFim "
+					+ "FROM diatreinoatleta dta JOIN diatreino dt on dt.idDiaTreino = dta.idDiaTreino "
+					+ "WHERE dta.idAtleta = ?");
+			stmtScript.setInt(1, idAtleta);
+			ResultSet rsDiaTreino = stmtScript.executeQuery();
+			
+			List<DiaTreino> listaDiasTreino = new ArrayList<DiaTreino>();
+			while(rsDiaTreino.next()){
+				DiaTreino dt = new DiaTreino();
+				dt.setIdDiaDaSemana(rsDiaTreino.getInt(1));
+				dt.setHrInicio(rsDiaTreino.getTime(2));
+				dt.setHrFim(rsDiaTreino.getTime(3));
+				listaDiasTreino.add(dt);
+			}
+			atleta.setListaDiasTreinos(listaDiasTreino);
+			
+			stmtScript = con.prepareStatement("SELECT r.nome, r.celular, ar.idGrauParentesco FROM responsavel r "
+					+ "JOIN atletaresponsavel ar on ar.idResponsavel = r.idResponsavel WHERE ar.idAtleta = ?");
+			stmtScript.setInt(1, idAtleta);
+			ResultSet rsResponsavel = stmtScript.executeQuery();
+			
+			List<Responsavel> listaResponsaveis = new ArrayList<Responsavel>();
+			while(rsResponsavel.next()){
+				Responsavel resp = new Responsavel();
+				resp.setNome(rsResponsavel.getString(1));
+				resp.setCelular(rsResponsavel.getString(2));
+				resp.setIdGrauParentesco(rsResponsavel.getInt(3));
+				listaResponsaveis.add(resp);
+			}
+			atleta.setListaResponsaveis(listaResponsaveis);
+		}
+				
+		return atleta;
 	}
 	
 }

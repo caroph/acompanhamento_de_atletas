@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Responsavel extends Pessoa {
 	private ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
+	public int idGrauParentesco;
 	
 	public Responsavel(){}
 	
@@ -21,6 +22,39 @@ public class Responsavel extends Pessoa {
 
 	public void setEnderecos(ArrayList<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+	
+	public int getIdGrauParentesco() {
+		return idGrauParentesco;
+	}
+
+	public void setIdGrauParentesco(int idGrauParentesco) {
+		this.idGrauParentesco = idGrauParentesco;
+	}
+
+	public String getNomeGrauParentesco(){
+		String retorno = "";
+		switch (this.idGrauParentesco) {
+		case 1:
+			retorno = GrauParentesco.Mae.getNome();
+			break;
+		case 2:
+			retorno = GrauParentesco.Pai.getNome();
+			break;
+		case 3:
+			retorno = GrauParentesco.Tio.getNome();
+			break;
+		case 4:
+			retorno = GrauParentesco.Irmao.getNome();
+			break;
+		case 5:
+			retorno = GrauParentesco.Avo.getNome();
+			break;
+		case 6:
+			retorno = GrauParentesco.Outros.getNome();
+			break;
+		}
+		return retorno;
 	}
 	
 }

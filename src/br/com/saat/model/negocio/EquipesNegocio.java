@@ -18,4 +18,12 @@ public class EquipesNegocio {
 		return lista;
 	}
 
+	public List<String> listaEquipeString() {
+		List<String> lista = new ArrayList<String>();
+		for (Equipes e : Equipes.values()) {
+			lista.add(e.getNome());
+		}
+		return lista;
+	}
+
 }

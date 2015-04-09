@@ -16,4 +16,12 @@ public class GrauParentescoNegocio {
 		}
 		return lista;
 	}
+
+	public List<String> listaGrausString() {
+		List<String> lista = new ArrayList<String>();
+		for (GrauParentesco g : GrauParentesco.values()) {
+			lista.add(g.getNome());
+		}
+		return lista;
+	}
 }

@@ -136,5 +136,15 @@ public class AtletaNegocio {
 		}
 		return false;
 	}
+
+	public Atleta buscarAtletaDetalhes(int idAtleta) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			Atleta atleta = dao.buscarAtletaDetalhes(idAtleta);
+			return atleta;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o atleta.");
+		}
+	}
 	
 }

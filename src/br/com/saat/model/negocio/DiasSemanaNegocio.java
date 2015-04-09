@@ -17,4 +17,11 @@ public class DiasSemanaNegocio {
 		return lista;
 	}
 	
+	public List<String> listaSemanaString(){
+		List<String> lista = new ArrayList<String>();
+		for (DiasSemana d : DiasSemana.values()) {
+			lista.add(d.getNome());
+			}		
+		return lista;
+	}
 }
