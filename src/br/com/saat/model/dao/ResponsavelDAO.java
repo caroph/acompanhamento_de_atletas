@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
@@ -149,6 +150,34 @@ public class ResponsavelDAO {
 			return true;
 
 		return false;
+	}
+
+	public List<Responsavel> buscarRespNaoVinculado(int idAtleta) throws SQLException {
+	 List<Responsavel> lista = new ArrayList<Responsavel>();
+		
+		stmtScript = con.prepareStatement("SELECT idResponsavel, nome, email, celular FROM responsavel "
+				+ "WHERE idResponsavel NOT IN(SELECT idResponsavel FROM atletaresponsavel "
+				+ "WHERE idAtleta = " + idAtleta + ")");
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Responsavel responsavel = new Responsavel();
+			responsavel.setIdPessoa(rs.getInt("idResponsavel"));
+			responsavel.setNome(rs.getString("nome"));
+			responsavel.setEmail(rs.getString("email"));
+			responsavel.setCelular(rs.getString("celular"));
+			
+			try {
+				EnderecoDAO enderecoDAO = new EnderecoDAO(this.con);
+				responsavel.setEnderecos(enderecoDAO.buscarEnderecos(responsavel.getIdPessoa(), TpPessoa.Responsavel.getValor()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			lista.add(responsavel);
+		}
+		
+		return lista;
 	}
 	
 }

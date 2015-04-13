@@ -86,4 +86,15 @@ public class ResponsavelNegocio {
 		return false;
 	}
 	
+	public List<Responsavel> buscarRespNaoVinculado(int idAtleta) throws Exception{
+		List<Responsavel> lista = new ArrayList<Responsavel>();
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			lista = dao.buscarRespNaoVinculado(idAtleta);
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis");
+		}
+		
+		return lista;
+	}
 }

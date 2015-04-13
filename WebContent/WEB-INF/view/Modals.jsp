@@ -14,7 +14,7 @@
 				<div class="vincular-body" style="margin-left: 20px;">
 					<form method="POST" action="SecretariaController?action=vincularResponsavel">
 						<p></p>
-						<select class="form-control" id="grauParentesco" style="width: 95%;" name="grauParentesco" required>
+						<select style="width: 95%;" name="grauParentesco" required>
 							<option selected>Selecione</option>
 							<option value="1">Mãe</option>
 							<option value="2">Pai</option>

@@ -323,13 +323,14 @@ public class SecretariaController extends Controller {
 			
 		}else if("buscarResponsaveisVinculacao".equals(action)){
 			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
-			ArrayList<Responsavel> listaResponsaveis = null;
+			List<Responsavel> listaResponsaveis = null;
 			String msg = "";
 			
 			String atleta = request.getParameter("idAtleta");
+			int idAtleta = Integer.parseInt(atleta);
 			
 			try{
-				listaResponsaveis = responsavelNegocio.buscarTodos();
+				listaResponsaveis = responsavelNegocio.buscarRespNaoVinculado(idAtleta);
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}
