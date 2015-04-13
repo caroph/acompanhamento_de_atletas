@@ -450,16 +450,13 @@ public class SecretariaController extends Controller {
 			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
-			List<Atleta> listaDesativados = new ArrayList<Atleta>();
 			try{
-				lista = negocio.buscarAtletas(1);
-				listaDesativados = negocio.buscarAtletas(0);
+				lista = negocio.buscarAtletas(2);
 			}catch(Exception ex){
 				request.setAttribute("msg", ex.getMessage());
 			}
 			
 			request.setAttribute("listaAtletas", lista);
-			request.setAttribute("listaAtletasDesativados", listaDesativados);
 			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			
 		}else if("editarAtleta".equals(action)){
@@ -514,22 +511,18 @@ public class SecretariaController extends Controller {
 			atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
 			
 			AtletaNegocio negocio = new AtletaNegocio();
-			List<Atleta> lista = new ArrayList<Atleta>();
-			List<Atleta> listaDesativados = new ArrayList<Atleta>();
-			
+			List<Atleta> lista = new ArrayList<Atleta>();			
 			try{
                 if(negocio.desativar(atleta)){
                 	msgSucesso = "Atleta desativado com sucesso!";
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
-                lista = negocio.buscarAtletas(1);
-                listaDesativados = negocio.buscarAtletas(0);
+                lista = negocio.buscarAtletas(2);
             }catch(Exception ex){
                msg = ex.getMessage();                    
             }			
-			
-			request.setAttribute("listaAtletasDesativados", listaDesativados);
+		
 			request.setAttribute("listaAtletas", lista);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
@@ -543,7 +536,6 @@ public class SecretariaController extends Controller {
 			
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
-			List<Atleta> listaDesativados = new ArrayList<Atleta>();
 			
 			try{
                 if(negocio.ativar(atleta)){
@@ -551,13 +543,11 @@ public class SecretariaController extends Controller {
                 }else{
                 	msg =  "Ocorreu algum erro no sistema! Favor tentar novamente.";
                 }
-                lista = negocio.buscarAtletas(1);
-                listaDesativados = negocio.buscarAtletas(0);
+                lista = negocio.buscarAtletas(2);
             }catch(Exception ex){
                msg = ex.getMessage();                    
             }			
 			
-			request.setAttribute("listaAtletasDesativados", listaDesativados);
 			request.setAttribute("listaAtletas", lista);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);

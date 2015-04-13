@@ -76,18 +76,32 @@ public class AtletaDAO {
 	public List<Atleta> buscarAtletas(int ativo) throws SQLException {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
-		stmtScript = con.prepareStatement("SELECT a.idAtleta, idTpEquipe, nome, email, celular, "
-				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
-				+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, "
-				+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
-				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
-				+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
-				+ "bairro, estado, cidade, telefone "
-				+ "FROM atleta a "
-				+ "INNER JOIN endereco e "
-				+ "ON a.idAtleta = e.idEndereco "
-				+ "WHERE flCadastroAtivo = " + String.valueOf(ativo)
-				+ " ORDER BY nome ");
+		if(ativo < 2){
+			stmtScript = con.prepareStatement("SELECT a.idAtleta, idTpEquipe, nome, email, celular, "
+					+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
+					+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, "
+					+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
+					+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
+					+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
+					+ "bairro, estado, cidade, telefone, flCadastroAtivo "
+					+ "FROM atleta a "
+					+ "INNER JOIN endereco e "
+					+ "ON a.idAtleta = e.idEndereco "
+					+ "WHERE flCadastroAtivo = " + String.valueOf(ativo)
+					+ " ORDER BY nome ");
+		}else{
+			stmtScript = con.prepareStatement("SELECT a.idAtleta, idTpEquipe, nome, email, celular, "
+					+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
+					+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, "
+					+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
+					+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
+					+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
+					+ "bairro, estado, cidade, telefone, flCadastroAtivo "
+					+ "FROM atleta a "
+					+ "INNER JOIN endereco e "
+					+ "ON a.idAtleta = e.idEndereco "
+					+ " ORDER BY nome ");
+		}
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
@@ -122,6 +136,7 @@ public class AtletaDAO {
 			atleta.setTelContatoEmergencia(rs.getString(25));
 			atleta.setIdGrauParentesco(rs.getInt(26));
 			atleta.setDtValidade(rs.getDate(27));
+			atleta.setFlCadastroAtivo(rs.getInt(36));
 			atleta.setEndereco(endereco);
 			
 			endereco.setIdEndereco(rs.getInt(28));

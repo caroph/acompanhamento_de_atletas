@@ -28,6 +28,7 @@ public class Atleta extends Pessoa {
 	private int idGrauParentesco;
 	private Date dtValidade;
 	private Endereco endereco;
+	private int flCadastroAtivo;
 	private List<DiaTreino> listaDiasTreinos;
 	private List<Responsavel> listaResponsaveis;
 	
@@ -286,6 +287,14 @@ public class Atleta extends Pessoa {
 
 	public void setListaResponsaveis(List<Responsavel> listaResponsaveis) {
 		this.listaResponsaveis = listaResponsaveis;
+	}
+
+	public int getFlCadastroAtivo() {
+		return flCadastroAtivo;
+	}
+
+	public void setFlCadastroAtivo(int flCadastroAtivo) {
+		this.flCadastroAtivo = flCadastroAtivo;
 	}
 	
 	
