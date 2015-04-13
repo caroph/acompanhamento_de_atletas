@@ -9,7 +9,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Vincular Responsável</h4>
+				<h4 class="modal-title" id="myModalLabel">Vincular Responsável  ${pagina}</h4>
 				</div>
 				<div class="vincular-body" style="margin-left: 20px;">
 					<form method="POST" action="SecretariaController?action=vincularResponsavel">
@@ -23,7 +23,6 @@
 							<option value="5">Avô(ó)</option>
 							<option value="6">Outros</option>
 						</select>
-						
 						<div class="modal-footer">
 							<a class="btn btn-primary" href="SecretariaController?action=jspNovoResponsavel">Novo Responsável</a>
 							<button type="submit" class="btn btn-primary">Vincular</button>

@@ -72,7 +72,7 @@
 															data-confirm="Deseja realmente editar o atleta selecionado?">Editar</a>
 															<a class="btn btn-danger" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 
 																data-confirm="Deseja realmente desativar o atleta selecionado?">Desativar</a>
-															<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}')">Vincular Responsável</a>
+															<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 1)">Vincular Responsável</a>
 														</c:if>
 														<c:if test="${atleta.flCadastroAtivo == 0}">
 															<a class="btn btn-primary" href='SecretariaController?action=ativarAtleta&idAtleta=${atleta.idPessoa}' 

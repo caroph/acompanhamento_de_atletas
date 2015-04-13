@@ -326,6 +326,8 @@ public class SecretariaController extends Controller {
 			List<Responsavel> listaResponsaveis = null;
 			String msg = "";
 			
+			String pagina = request.getParameter("pagina");
+			
 			String atleta = request.getParameter("idAtleta");
 			int idAtleta = Integer.parseInt(atleta);
 			
@@ -337,6 +339,7 @@ public class SecretariaController extends Controller {
 			
 			Map<String, Object> lista = new LinkedHashMap<String, Object>();
 			lista.put("idAtleta", atleta);
+			lista.put("pagina", pagina);
 			lista.put("listaResponsaveis", listaResponsaveis);
 			
 		    String json = new Gson().toJson(lista);
@@ -353,6 +356,8 @@ public class SecretariaController extends Controller {
         	int idGrauParentesco = 0;
         	
 			boolean exception = false;
+			
+			String pagina = request.getParameter("pagina");
 			
 			try{
             	idResponsavel = Integer.parseInt(request.getParameter("responsavel"));
@@ -383,40 +388,54 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msg", ex.getMessage());
 			}
 			
-			EquipesNegocio negocioEquipe = new EquipesNegocio();
-			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
-			
-			GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
-			List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
-			
-			TurnoNegocio turnoNegocio = new TurnoNegocio();
-			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
-			
-			DiaTreinoNegocio negocioDiaTreino = new DiaTreinoNegocio();
-			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
-			
-			try{
-				listaDiaTreino = negocioDiaTreino.carregaDiasTreino(atleta.getIdTpEquipe());
-				List<Integer> listaDias = negocio.buscaDiasTreinoAtleta(atleta.getIdPessoa());
+			if(!"1".equals(pagina)){
+				EquipesNegocio negocioEquipe = new EquipesNegocio();
+				List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 				
-				for (DiaTreino dia : listaDiaTreino) {
-					if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
-						dia.setSelecionado(true);
+				GrauParentescoNegocio negocioGrau = new GrauParentescoNegocio();
+				List<GrauParentesco> listaGraus = negocioGrau.listaGraus();
+				
+				TurnoNegocio turnoNegocio = new TurnoNegocio();
+				List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+				
+				DiaTreinoNegocio negocioDiaTreino = new DiaTreinoNegocio();
+				List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
+				
+				try{
+					listaDiaTreino = negocioDiaTreino.carregaDiasTreino(atleta.getIdTpEquipe());
+					List<Integer> listaDias = negocio.buscaDiasTreinoAtleta(atleta.getIdPessoa());
+					
+					for (DiaTreino dia : listaDiaTreino) {
+						if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
+							dia.setSelecionado(true);
+						}
 					}
+					
+					request.setAttribute("listaDiasTreinos", listaDiaTreino);
+				}catch(Exception ex){
+					msg = ex.getMessage();
 				}
 				
-				request.setAttribute("listaDiasTreinos", listaDiaTreino);
-			}catch(Exception ex){
-				msg = ex.getMessage();
+				request.setAttribute("listaEquipes", listaEquipes);
+				request.setAttribute("listaGrauParentesco", listaGraus);
+				request.setAttribute("listaTurnos", listaTurnos);
+				request.setAttribute("atleta", atleta);
+				
+				retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
+			}else{
+				List<Atleta> lista = new ArrayList<Atleta>();
+				try{
+					lista = negocio.buscarAtletas(2);
+				}catch(Exception ex){
+					msg = ex.getMessage();
+				}
+				
+				request.setAttribute("listaAtletas", lista);
+				retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			}
 			
-			request.setAttribute("listaEquipes", listaEquipes);
-			request.setAttribute("listaGrauParentesco", listaGraus);
-			request.setAttribute("listaTurnos", listaTurnos);
-			request.setAttribute("atleta", atleta);
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
-			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if("buscarAtletaDetalhes".equals(action)){
 			String msg = "";

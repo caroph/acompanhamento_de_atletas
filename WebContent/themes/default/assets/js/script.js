@@ -67,17 +67,18 @@ $(document).ready(function() {
 });
 
 //Vincular Responsável
-function abrirModalVinculacao(atleta){
+function abrirModalVinculacao(atleta, pagina){
 	$("#vincularResponsavel").modal();
 	$.ajax({
 		type : "POST",
-		url : "SecretariaController?action=buscarResponsaveisVinculacao&idAtleta=" + atleta,
+		url : "SecretariaController?action=buscarResponsaveisVinculacao&idAtleta=" + atleta + "&pagina=" + pagina,
 		success : function(data) {
 			var html = "";
 			$.each(data.listaResponsaveis, function(index, item){
 				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>"
 			});
 			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />"
+			html += "<input type='hidden' name='pagina' value=" + data.pagina + " />"
 			$('.vincular-body p').html(html);
 		}
 	});
