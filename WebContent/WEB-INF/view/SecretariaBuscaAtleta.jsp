@@ -66,8 +66,8 @@
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="left">
+														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 														<c:if test="${atleta.flCadastroAtivo == 1}">
-															<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 															<a class="btn btn-primary" href='SecretariaController?action=editarAtleta&idAtleta=${atleta.idPessoa}' 
 															data-confirm="Deseja realmente editar o atleta selecionado?">Editar</a>
 															<a class="btn btn-danger" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 
