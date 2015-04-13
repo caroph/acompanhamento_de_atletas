@@ -75,10 +75,16 @@ function abrirModalVinculacao(atleta, pagina){
 		success : function(data) {
 			var html = "";
 			$.each(data.listaResponsaveis, function(index, item){
-				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>"
+				html += "<input name='responsavel' value=" + item.idPessoa + " type='radio'/>   " + item.nome + "<br/>";
 			});
-			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />"
-			html += "<input type='hidden' name='pagina' value=" + data.pagina + " />"
+			html += "<input type='hidden' name='idAtleta' value=" + data.idAtleta + " />";
+			html += "<input type='hidden' name='pagina' value=" + data.pagina + " />";
+			html += "<select class='form-control' style='width: 95%;' name='grauParentesco' required>";
+			html +="<option selected>Selecione</option>";
+			$.each(data.grauParentesco, function(index, item){
+				html +="<option value=" + index + ">" + item + "</option>";
+			});
+			html +="</select>";
 			$('.vincular-body p').html(html);
 		}
 	});

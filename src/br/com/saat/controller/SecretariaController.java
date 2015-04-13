@@ -337,10 +337,13 @@ public class SecretariaController extends Controller {
 				msg = ex.getMessage();
 			}
 			
+			Map<Integer,String> listaParentesco = new GrauParentescoNegocio().listaGrausObject();
+			
 			Map<String, Object> lista = new LinkedHashMap<String, Object>();
 			lista.put("idAtleta", atleta);
 			lista.put("pagina", pagina);
 			lista.put("listaResponsaveis", listaResponsaveis);
+			lista.put("grauParentesco", listaParentesco);
 			
 		    String json = new Gson().toJson(lista);
 

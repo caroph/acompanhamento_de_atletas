@@ -14,15 +14,7 @@
 				<div class="vincular-body" style="margin-left: 20px;">
 					<form method="POST" action="SecretariaController?action=vincularResponsavel">
 						<p></p>
-						<select style="width: 95%;" name="grauParentesco" required>
-							<option selected>Selecione</option>
-							<option value="1">Mãe</option>
-							<option value="2">Pai</option>
-							<option value="3">Tio(a)</option>
-							<option value="4">Irmão(ã)</option>
-							<option value="5">Avô(ó)</option>
-							<option value="6">Outros</option>
-						</select>
+						
 						<div class="modal-footer">
 							<a class="btn btn-primary" href="SecretariaController?action=jspNovoResponsavel">Novo Responsável</a>
 							<button type="submit" class="btn btn-primary">Vincular</button>
