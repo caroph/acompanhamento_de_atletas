@@ -66,6 +66,7 @@
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="left">
+														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 														<a class="btn btn-info">Registrar Presença</a>
 														<a class="btn btn-info">Novo Atendimento</a>
 														<a class="btn btn-info">Incluir Observação</a>

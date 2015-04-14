@@ -106,7 +106,7 @@ function abrirModalAtleta(idAtleta){
 	$("#detalhes").modal();
 	$.ajax({
 		type : "POST",
-		url : "SecretariaController?action=buscarAtletaDetalhes&idAtleta=" + idAtleta,
+		url : "Controller?action=buscarAtletaDetalhes&idAtleta=" + idAtleta,
 		success : function(data) {
 			var html = "<b>Nome:</b> " + data.atleta.nome + "<br/>";
 			html += "<b>Equipe:</b> " + data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
