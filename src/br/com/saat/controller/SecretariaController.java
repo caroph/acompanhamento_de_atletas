@@ -1147,6 +1147,8 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
+		}else{
+			retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 		}
 		
 		if(retorno != null){

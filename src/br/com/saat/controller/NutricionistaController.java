@@ -56,6 +56,8 @@ public class NutricionistaController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
+		}else{
+			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 		}
 		
 		if(retorno != null){
