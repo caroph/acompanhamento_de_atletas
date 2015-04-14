@@ -7,7 +7,7 @@
 	
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<%@include file='/layout/navigationFisioterapia.jsp'%>
+			<%@include file='/layout/navigationNutricionista.jsp'%>
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
