@@ -8,6 +8,8 @@ public class DiaTreino {
 	public int idDiaSemana;
 	public Date hrInicio;
 	public Date hrFim;
+	public String hrInicioDisplay;
+	public String hrFimDisplay;
 	public boolean selecionado;
 	
 	public DiaTreino(){
@@ -109,6 +111,21 @@ public class DiaTreino {
 	public void setSelecionado(boolean selecionado) {
 		this.selecionado = selecionado;
 	}
-	
-	
+
+	public String getHrInicioDisplay() {
+		return hrInicioDisplay;
+	}
+
+	public void setHrInicioDisplay(String hrInicioDisplay) {
+		this.hrInicioDisplay = hrInicioDisplay;
+	}
+
+	public String getHrFimDisplay() {
+		return hrFimDisplay;
+	}
+
+	public void setHrFimDisplay(String hrFimDisplay) {
+		this.hrFimDisplay = hrFimDisplay;
+	}
+		
 }

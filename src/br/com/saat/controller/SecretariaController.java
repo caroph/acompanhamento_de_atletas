@@ -450,7 +450,7 @@ public class SecretariaController extends Controller {
 				atleta = negocio.buscarAtletaDetalhes(idAtleta);
 			}catch(Exception ex){
 				msg = ex.getMessage();
-			}
+			}		
 			
 			List<String> listaGrauParentesco = new GrauParentescoNegocio().listaGrausString();
 			List<String> listaDiaSemana = new DiasSemanaNegocio().listaSemanaString();

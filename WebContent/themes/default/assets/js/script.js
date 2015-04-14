@@ -113,7 +113,7 @@ function abrirModalAtleta(idAtleta){
 			html += "<br/><b>Dias de Treino:</b> " + "<br/>";
 			var diasSemana = data.diaSemana;
 			$.each(data.atleta.listaDiasTreinos, function(index, item){
-				html += diasSemana[item.idDiaSemana - 1] + " - " + item.hrInicio + " - " + item.hrFim + "<br/>";
+				html += diasSemana[item.idDiaSemana - 1] + " - " + item.hrInicioDisplay + " - " + item.hrFimDisplay + "<br/>";
 			});
 			html += "<br/><b>N. Matricula:</b> " + data.atleta.nrMatricula + "<br/>";
 			html += "<b>N. Cadastro CBT:</b> " + data.atleta.nrCadCBT + "<br/>";

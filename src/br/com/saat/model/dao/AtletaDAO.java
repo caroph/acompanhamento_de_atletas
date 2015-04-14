@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -363,6 +364,9 @@ public class AtletaDAO {
 				dt.setIdDiaDaSemana(rsDiaTreino.getInt(1));
 				dt.setHrInicio(rsDiaTreino.getTime(2));
 				dt.setHrFim(rsDiaTreino.getTime(3));
+				SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+				dt.setHrFimDisplay(dateFormat.format(dt.getHrFim()));
+				dt.setHrInicioDisplay(dateFormat.format(dt.getHrInicio()));
 				listaDiasTreino.add(dt);
 			}
 			atleta.setListaDiasTreinos(listaDiasTreino);
