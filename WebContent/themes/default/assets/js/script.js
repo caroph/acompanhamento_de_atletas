@@ -167,6 +167,9 @@ function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 	case 6:
 		strNmDoc = "C\u00f3pia do CPF";
 		break;
+	case 7:
+		strNmDoc = "Foto do Atleta";
+		break;
 	default:
 		strNmDoc = "Valor Inv\u00e1lido!";
 		break;
@@ -199,10 +202,18 @@ function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 }
 
 function visualizarDoc(srcDocumento){
-	var html = "<img src='" + srcDocumento + "'>";
-	//var html = "<img src='C:\\Program Files\\apache-tomcat-7.0.52\\wtpwebapps\\saatDocumentacaoAtletas\\1\\1_termo_compromisso_manual.jpg'/>";
-	//alert(srcDocumento);
-	//var html = "<b>" + srcDocumento + "</b>";
+	var explode = srcDocumento.split(".");
+	var extensao = explode[explode.length - 1];
+	var html = "";
+	if(extensao == "doc" || extensao == "docx"){
+		html += "<b>Formato de arquivo '." + extensao + "' n\u00e3o suportado para visualiza\u00e7\u00e3o online. Download iniciado.</b>";
+		html += "<iframe width='100%' frameBorder='0' src='" + srcDocumento + "'> </iframe>";
+	}else{
+		html += "<iframe width='100%' style='min-height: 500px; max-height: 500px;' frameBorder='0' src='" + srcDocumento + "'> </iframe>";
+	}	
+	
+	
+	
 	$('.body-imgVisualizarDoc').html(html);
 }
 

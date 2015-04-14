@@ -1019,68 +1019,18 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msg", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
-			String msg = "";
-			int idPessoa = 0;
-			Documento termoDeCompromisso = null;
-			Documento declaracaoMedica = null;
-			Documento autorizacaoViagem = null;
-			Documento autorizacaoImagem = null;
-			Documento copiaRG = null;
-			Documento copiaCPF = null;
-			Documento fotoAtleta = null;
+			request.setAttribute("idPessoa", request.getParameter("idPessoa"));
+			listarDocumentosAtleta(request);			
+			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
 			
-			try{
-				idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
-				DocumentoNegocio documentoNegocio = new DocumentoNegocio();
-				
-				ArrayList<Documento> listaDocumento = documentoNegocio.buscarTodosAtleta(idPessoa);
-				
-				for(Documento documento : listaDocumento){
-					if(documento.getTpDocumento() == TpDocumento.termoDeCompromisso.getValor()){
-						//troca todos os '/' por '//' - importante p/ visualização no js
-						documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
-						termoDeCompromisso = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.declaracaoMedica.getValor()){
-						declaracaoMedica = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeViagem.getValor()){
-						autorizacaoViagem = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeImagem.getValor()){
-						autorizacaoImagem = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.copiaDoRG.getValor()){
-						copiaRG = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.copiaDoCPF.getValor()){
-						copiaCPF = documento;
-					}else if(documento.getTpDocumento() == TpDocumento.fotoDoAtleta.getValor()){
-						fotoAtleta = documento;
-					}
-				}
-				
-				
-			}catch(ParseException ex){
-				msg = "idPessoa Inválido!";
-			}catch(Exception ex){
-				msg = ex.getMessage();
-			}
-
-			request.setAttribute("idPessoa", idPessoa);
-			request.setAttribute("termoDeCompromisso", termoDeCompromisso);
-			request.setAttribute("declaracaoMedica", declaracaoMedica);
-			request.setAttribute("autorizacaoViagem", autorizacaoViagem);
-			request.setAttribute("autorizacaoImagem", autorizacaoImagem);
-			request.setAttribute("copiaRG", copiaRG);
-			request.setAttribute("copiaCPF", copiaCPF);
-			request.setAttribute("fotoAtleta", fotoAtleta);
-			request.setAttribute("msg", msg);
-			
-			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);	
 		}else if("anexarDocumento".equals(action)){
 			String msgSucesso = "";
 			String msg = "";
+			Documento documento = new Documento();
 			
 			try{
 				DocumentoNegocio documentoNegocio = new DocumentoNegocio();
-				Documento documento = new Documento();
-				SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				
 				@SuppressWarnings("deprecation")
 				DiskFileUpload fu = new DiskFileUpload(); 
@@ -1106,6 +1056,7 @@ public class SecretariaController extends Controller {
 							s = item.getString();
 							if(!s.equals("") && s != null)
 								documento.setValidade(df.parse(s));
+								//documento.setValidade(new java.util.Date(s));
 						}
 					//se não for um form field é um arquivo
 					}else{
@@ -1115,10 +1066,7 @@ public class SecretariaController extends Controller {
 						if(!nmDocumento.equals("Extensão de arquivo inválida!") && !nmDocumento.equals("Tipo de arquivo inválido!")){
 							path += "\\" + nmDocumento;
 							File arquivo = new File(path);
-//							path = arquivo.getAbsolutePath();
-//							String path2 = arquivo.getCanonicalPath();
-//							String path3 = arquivo.getPath();
-							
+
 							FileOutputStream out = new FileOutputStream(arquivo);
 							//lê o input e joga dentro do arquivo através de um OutputStream
 							int c; 
@@ -1134,18 +1082,26 @@ public class SecretariaController extends Controller {
 					}					
 				}	
 				
-				if(!documentoNegocio.inserir(documento)){
-					msg = "Erro ao gravar documento no banco de dados!";
+				int idDocumentoBanco = documentoNegocio.exists(documento);
+				if(idDocumentoBanco != 0){
+					documento.setIdDocumento(idDocumentoBanco);
+					if(!documentoNegocio.alterar(documento)){
+						msg = "Erro ao gravar documento no banco de dados!";
+					}
+				}else{
+					if(!documentoNegocio.inserir(documento)){
+						msg = "Erro ao gravar documento no banco de dados!";
+					}
 				}
 				
-				request.setAttribute("idPessoa", documento.getIdPessoa());
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}			
 			
-			
+			request.setAttribute("idPessoa", documento.getIdPessoa());
 			request.setAttribute("msg", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
+			listarDocumentosAtleta(request);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
 		}else{
 			retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
@@ -1155,6 +1111,74 @@ public class SecretariaController extends Controller {
 			rd = getServletContext().getRequestDispatcher(retorno);
 			rd.forward(request, response);
 		}
+	}
+
+	private void listarDocumentosAtleta(HttpServletRequest request) {
+		String msg = request.getParameter("msg");
+		int idPessoa = 0;
+		
+		Documento termoDeCompromisso = null;
+		Documento declaracaoMedica = null;
+		Documento autorizacaoViagem = null;
+		Documento autorizacaoImagem = null;
+		Documento copiaRG = null;
+		Documento copiaCPF = null;
+		Documento fotoAtleta = null;
+		
+		try{
+			idPessoa = Integer.parseInt(request.getAttribute("idPessoa").toString());
+			DocumentoNegocio documentoNegocio = new DocumentoNegocio();
+			
+			ArrayList<Documento> listaDocumento = documentoNegocio.buscarTodosAtleta(idPessoa);
+			
+			for(Documento documento : listaDocumento){
+				if(documento.getTpDocumento() == TpDocumento.termoDeCompromisso.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					termoDeCompromisso = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.declaracaoMedica.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					declaracaoMedica = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeViagem.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					autorizacaoViagem = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.autorizacaoDeImagem.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					autorizacaoImagem = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.copiaDoRG.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					copiaRG = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.copiaDoCPF.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					copiaCPF = documento;
+				}else if(documento.getTpDocumento() == TpDocumento.fotoDoAtleta.getValor()){
+					//troca todos os '/' por '//' - importante p/ visualização no js
+					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
+					fotoAtleta = documento;
+				}
+			}
+			
+			
+		}catch(ParseException ex){
+			msg = "idPessoa Inválido!";
+		}catch(Exception ex){
+			msg = ex.getMessage();
+		}
+
+		request.setAttribute("idPessoa", idPessoa);
+		request.setAttribute("termoDeCompromisso", termoDeCompromisso);
+		request.setAttribute("declaracaoMedica", declaracaoMedica);
+		request.setAttribute("autorizacaoViagem", autorizacaoViagem);
+		request.setAttribute("autorizacaoImagem", autorizacaoImagem);
+		request.setAttribute("copiaRG", copiaRG);
+		request.setAttribute("copiaCPF", copiaCPF);
+		request.setAttribute("fotoAtleta", fotoAtleta);
+		request.setAttribute("msg", msg);		
 	}
 
 	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {
