@@ -98,7 +98,8 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp", Constants.VIEW);
 			
 		}else if ("carregaDiasTreino".equals(action)){
-			
+			String msg = "";
+			boolean exception = false;
 			String tpEquipe = request.getParameter("tpEquipe");
 					
 			if(!"".equals(tpEquipe)){		
@@ -107,28 +108,114 @@ public class SecretariaController extends Controller {
 				Atleta atleta = new Atleta();
 				atleta.setIdTpEquipe(idTipoEquipe);
 				
-				DiaTreinoNegocio negocio = new DiaTreinoNegocio();
-				List<DiaTreino> lista = new ArrayList<DiaTreino>();
-				
-				try{
-					lista = negocio.carregaDiasTreino(idTipoEquipe);
-					String idAtleta = request.getParameter("idAtleta");
-					if(idAtleta != null && !"".equals(idAtleta)){
+				if(!"".equals(request.getParameter("idAtleta"))){
+					DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+					List<DiaTreino> lista = new ArrayList<DiaTreino>();
+					
+					String nascimento = request.getParameter("dtNascimento");
+					String validade = request.getParameter("dtValidade");			
+		            Date dtNascimento = null;
+		            Date dtValidade = null; 
+		            int numero = 0;
+		            int idTurno = 0;
+		            int idGrauParentesco = 0;
+		            String escolha;
+		            int idEndereco;
+		            int idAtleta = 0;
+		            
+		            try{
+		            	DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		            	dtNascimento = (Date)formatter.parse(nascimento);
+		            	dtValidade = (Date)formatter.parse(validade);
+					}catch(Exception ex){
+						msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+						exception = true;
+					}
+		            try{
+		            	numero = Integer.parseInt(request.getParameter("numero"));
+					}catch(Exception ex){
+						msg = "Favor informar corretamente o campo 'Número' do endereço";
+						exception = true;
+					}
+		            try{
+		            	idTurno = Integer.parseInt(request.getParameter("turno"));
+					}catch(Exception ex){
+						msg = "Favor selecionar corretamente o campo 'Turno'.";
+						exception = true;
+					}
+		            try{
+		            	idGrauParentesco = Integer.parseInt(request.getParameter("grauParentesco"));
+					}catch(Exception ex){
+						msg = "Favor selecionar corretamente o campo 'Grau de Parentesco'.";
+						exception = true;
+					}
+					if(!exception){
+						Endereco endereco = new Endereco();
 						AtletaNegocio atletaNegocio = new AtletaNegocio();
-						List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(Integer.parseInt(idAtleta));
+						EnderecoNegocio endNegocio = new EnderecoNegocio();
 						
+						//Dados do Atleta
+						idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+						atleta.setIdPessoa(idAtleta);
+						atleta.setNome(request.getParameter("nome"));
+						atleta.setEmail(request.getParameter("email"));
+						atleta.setCelular(request.getParameter("celular"));
+						atleta.setNrMatricula(request.getParameter("nrMatricula"));
+						atleta.setNrCadCBT(request.getParameter("nrCadCBT"));
+						atleta.setNrCadFPT(request.getParameter("nrCadFPT"));
+						atleta.setDtNascimento(dtNascimento);
+						atleta.setRG(request.getParameter("rg"));
+						atleta.setCPF(request.getParameter("cpf"));
+						atleta.setEscola(request.getParameter("escola"));
+						atleta.setSerie(request.getParameter("serie"));
+						atleta.setIdTurno(idTurno);
+						escolha = request.getParameter("acompPsicologico");
+						atleta.setAcompPsicologico("sim".equals(escolha)?true:false);
+						atleta.setNmMedicoResponsavel(request.getParameter("nmMedicoResponsavel"));
+						atleta.setTelMedicoResponsal(request.getParameter("telMedicoResponsavel"));
+						atleta.setConvenio(request.getParameter("convenio"));
+						atleta.setMedicacaoAutorizada(request.getParameter("medicacaoAutorizada"));
+						escolha = request.getParameter("flAlergias");
+						atleta.setFlAlergias("sim".equals(escolha)?true:false);
+						atleta.setDsAlergias(request.getParameter("dsAlergias"));
+						escolha = request.getParameter("flMedicacao");
+						atleta.setFlMedicacao("sim".equals(escolha)?true:false);
+						atleta.setDsMedicacao(request.getParameter("dsMedicacao"));
+						atleta.setNmContatoEmergencia(request.getParameter("nmContatoEmergencia"));
+						atleta.setTelContatoEmergencia(request.getParameter("telContatoEmergencia"));
+						atleta.setIdGrauParentesco(idGrauParentesco);
+						atleta.setDtValidade(dtValidade);
+						atleta.setEndereco(endereco);
+						
+						idEndereco = Integer.parseInt(request.getParameter("idEndereco"));
+						endereco.setIdEndereco(idEndereco);
+						endereco.setEndereco(request.getParameter("endereco"));
+						endereco.setNumero(numero);
+						endereco.setComplemento(request.getParameter("complemento"));
+						endereco.setBairro(request.getParameter("bairro"));
+						endereco.setEstado(request.getParameter("estado"));
+						endereco.setCidade(request.getParameter("cidade"));
+						endereco.setTelefone(request.getParameter("telefone"));
+						endereco.setTpEndereco(TpEndereco.Residencial.getValor());
+						
+					}
+					
+					try{
+						lista = negocio.carregaDiasTreino(idTipoEquipe);
+						AtletaNegocio atletaNegocio = new AtletaNegocio();
+						List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(idAtleta);
 						for (DiaTreino dia : lista) {
 							if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
 								dia.setSelecionado(true);
 							}
 						}
+					}catch(Exception ex){
+						request.setAttribute("msg", ex.getMessage());
 					}
-				}catch(Exception ex){
-					request.setAttribute("msg", ex.getMessage());
+					
+					request.setAttribute("listaDiasTreinos", lista);
+					request.setAttribute("atleta", atleta);
 				}
-				
-				request.setAttribute("listaDiasTreinos", lista);
-				request.setAttribute("atleta", atleta);
 			}
 			
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
