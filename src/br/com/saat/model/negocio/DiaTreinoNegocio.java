@@ -23,6 +23,9 @@ public class DiaTreinoNegocio {
 		} else if ("".equals(dia.getHrFim())) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Hora Fim' !");
+		} else if(dia.getHrInicio().after(dia.getHrFim())){
+			lista.add(false);
+			lista.add("A hora inicial deve ser menor que a hora final !");
 		} else {
 			lista.add(true);
 		}
