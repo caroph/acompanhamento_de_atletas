@@ -2,6 +2,8 @@ package br.com.saat.model;
 
 import java.util.ArrayList;
 
+import br.com.saat.enumeradores.GrauParentesco;
+
 public class Responsavel extends Pessoa {
 	private ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 	public int idGrauParentesco;

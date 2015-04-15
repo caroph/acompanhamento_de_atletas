@@ -1,4 +1,4 @@
-package br.com.saat.model;
+package br.com.saat.enumeradores;
 
 public enum TpEndereco {
 	Residencial (1),

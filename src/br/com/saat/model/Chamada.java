@@ -1,11 +1,13 @@
 package br.com.saat.model;
 
+import java.util.Date;
+
 public class Chamada {
 	public int idChamada;
 	public int idUsuario;
 	public int idDiaTreino;
 	public int nrQuadra;
-	public int dtChamada;
+	public Date dtChamada;
 	public Usuario usuario;
 	public DiaTreino diaTreino;
 	
@@ -33,10 +35,10 @@ public class Chamada {
 	public void setNrQuadra(int nrQuadra) {
 		this.nrQuadra = nrQuadra;
 	}
-	public int getDtChamada() {
+	public Date getDtChamada() {
 		return dtChamada;
 	}
-	public void setDtChamada(int dtChamada) {
+	public void setDtChamada(Date dtChamada) {
 		this.dtChamada = dtChamada;
 	}
 	public Usuario getUsuario() {

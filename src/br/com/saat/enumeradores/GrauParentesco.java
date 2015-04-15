@@ -1,4 +1,4 @@
-package br.com.saat.model;
+package br.com.saat.enumeradores;
 
 public enum GrauParentesco {
 	Mae (1, "Mãe"),

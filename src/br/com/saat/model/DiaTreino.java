@@ -2,6 +2,9 @@ package br.com.saat.model;
 
 import java.util.Date;
 
+import br.com.saat.enumeradores.DiasSemana;
+import br.com.saat.enumeradores.Equipes;
+
 public class DiaTreino {
 	public int idDiaTreino;
 	public int idTpEquipe;

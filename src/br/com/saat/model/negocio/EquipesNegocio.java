@@ -3,7 +3,7 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.saat.model.Equipes;
+import br.com.saat.enumeradores.Equipes;
 
 public class EquipesNegocio {
 

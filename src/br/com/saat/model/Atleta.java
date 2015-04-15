@@ -3,6 +3,10 @@ package br.com.saat.model;
 import java.util.Date;
 import java.util.List;
 
+import br.com.saat.enumeradores.Equipes;
+import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.Turno;
+
 public class Atleta extends Pessoa {
 	private int idTpEquipe;
 	private String nrMatricula;

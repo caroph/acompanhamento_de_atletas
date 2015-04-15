@@ -1,4 +1,4 @@
-package br.com.saat.model;
+package br.com.saat.enumeradores;
 
 public enum Turno {
 	Manha (1, "Manhã"), 

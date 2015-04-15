@@ -1,5 +1,7 @@
 package br.com.saat.model.negocio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.saat.model.Chamada;
@@ -8,14 +10,18 @@ import br.com.saat.model.dao.ChamadaDAO;
 public class ChamadaNegocio {
 	public ChamadaNegocio(){}
 	
-	public Chamada buscarChamadaPorDia(Date dia, int idDiaTreino) throws Exception{
+	public Chamada buscarChamadaPorDia(String data, int idDiaTreino) throws Exception{
 		ChamadaDAO dao = new ChamadaDAO();
-		Chamada chamada = new Chamada();
+		
+		Date dt = new Date();
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+		dt = formatter.parse(data);
+		
 		try{
-			chamada = dao.buscarChamadaPorData(dia, idDiaTreino);
+			Chamada chamada = dao.buscarChamadaPorData(dt, idDiaTreino);
+			return chamada;
 		}catch(Exception ex){
-			throw new Exception("Erro ao buscar a chamada");
-		}
-		return chamada;
+			throw new Exception("Erro ao buscar a chamada!");
+		}		
 	}
 }

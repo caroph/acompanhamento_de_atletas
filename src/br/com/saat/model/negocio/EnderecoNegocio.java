@@ -3,10 +3,10 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.enumeradores.TpEndereco;
+import br.com.saat.enumeradores.TpPessoa;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Endereco;
-import br.com.saat.model.TpEndereco;
-import br.com.saat.model.TpPessoa;
 import br.com.saat.model.dao.EnderecoDAO;
 
 public class EnderecoNegocio {

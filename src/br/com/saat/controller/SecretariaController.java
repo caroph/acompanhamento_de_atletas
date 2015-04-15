@@ -26,19 +26,19 @@ import org.apache.commons.fileupload.FileItem;
 
 import br.com.saat.core.Constants;
 import br.com.saat.core.JavaMailApp;
+import br.com.saat.enumeradores.DiasSemana;
+import br.com.saat.enumeradores.Equipes;
+import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.TpDocumento;
+import br.com.saat.enumeradores.TpEndereco;
+import br.com.saat.enumeradores.TpPessoa;
+import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
-import br.com.saat.model.DiasSemana;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
-import br.com.saat.model.Equipes;
-import br.com.saat.model.GrauParentesco;
-import br.com.saat.model.Perfis;
 import br.com.saat.model.Responsavel;
-import br.com.saat.model.TpDocumento;
-import br.com.saat.model.TpEndereco;
-import br.com.saat.model.TpPessoa;
-import br.com.saat.model.Turno;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
@@ -211,7 +211,7 @@ public class SecretariaController extends Controller {
 							}
 						}
 					}catch(Exception ex){
-						request.setAttribute("msg", ex.getMessage());
+						msg = ex.getMessage();
 					}
 					
 					request.setAttribute("listaDiasTreinos", lista);
@@ -228,6 +228,7 @@ public class SecretariaController extends Controller {
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
 			
+			request.setAttribute("msg", msg);
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);

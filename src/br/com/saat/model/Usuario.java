@@ -1,5 +1,7 @@
 package br.com.saat.model;
 
+import br.com.saat.enumeradores.Perfis;
+
 public class Usuario extends Pessoa{
 	public String senha;
 	public int perfil;

@@ -9,10 +9,10 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import br.com.saat.enumeradores.TpPessoa;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
-import br.com.saat.model.TpPessoa;
 
 public class ResponsavelDAO {
 

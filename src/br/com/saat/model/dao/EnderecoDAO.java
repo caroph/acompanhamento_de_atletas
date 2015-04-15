@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.saat.enumeradores.TpPessoa;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
-import br.com.saat.model.TpPessoa;
 
 public class EnderecoDAO {
 

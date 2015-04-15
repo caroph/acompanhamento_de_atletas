@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
+import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.Chamada;
 import br.com.saat.model.DiaTreino;
-import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 
 @WebServlet("/NutricionistaController")
@@ -65,12 +67,19 @@ public class NutricionistaController extends Controller {
 			String hora = request.getParameter("hrPresenca");
 			
 			DiaTreinoNegocio diaNegocio = new DiaTreinoNegocio();
+			ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
 			try {
 				DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
+				Chamada chamada = chamadaNegocio.buscarChamadaPorDia(data, diaTreino.getIdDiaTreino());
+				
+				if(chamada == null){
+					
+				}else{
+					
+				}
 			} catch (Exception e) {
 				msg = e.getMessage();
-			}
-			//Deixei para depois fazer a consulta de semana, comparação com dia de treino e verificação da Chamada existente.
+			}			
 			
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
