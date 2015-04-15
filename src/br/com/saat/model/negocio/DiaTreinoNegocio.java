@@ -1,6 +1,11 @@
 package br.com.saat.model.negocio;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.saat.model.DiaTreino;
@@ -114,6 +119,36 @@ public class DiaTreinoNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao alterar os dias de treino do atleta.");
 		}
 		return true;
+	}
+
+	public DiaTreino buscarDiaTreino(String data, int idAtleta, String hr) throws Exception {
+		Date dt = new Date();
+		DateFormat formatter = new SimpleDateFormat("HH:mm"); 
+		SimpleDateFormat formatterData = new SimpleDateFormat("yyyy-MM-dd");
+    	Date hora = new Date();
+		
+		if(!"".equals(data))
+			dt = formatterData.parse(data);		 
+		
+		if(!"".equals(hr)){
+			try {
+				hora = (Date)formatter.parse(hr);
+			} catch (Exception e) {
+				throw new Exception("Erro ao formatar o horário de treino");
+			}
+		}
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(dt);
+		int semana = c.get(Calendar.DAY_OF_WEEK);
+		
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			DiaTreino dia = dao.buscarDiaTreino(semana, idAtleta, hora);
+			return dia;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
+		}
 	} 
 
 }

@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +19,11 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Perfis;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.DiaTreinoNegocio;
 
 @WebServlet("/NutricionistaController")
 public class NutricionistaController extends Controller {
@@ -66,22 +69,26 @@ public class NutricionistaController extends Controller {
 			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
 			String data = request.getParameter("dataPresenca");
 			String hora = request.getParameter("hrPresenca");
-			Date dt = new Date();
-			DateFormat formatter = new SimpleDateFormat("HH:mm");  
-        	Date hr = new Date();
 			
-			if(!"".equals(data))
-				dt = new Date(data);
+			DiaTreinoNegocio diaNegocio = new DiaTreinoNegocio();
+			try {
+				DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
+			} catch (Exception e) {
+				msg = e.getMessage();
+			}
+			//Deixei para depois fazer a consulta de semana, comparação com dia de treino e verificação da Chamada existente.
 			
-			if(!"".equals(hora)){
-				try {
-					hr = (Date)formatter.parse(hora);
-				} catch (ParseException e) {
-					msg = "Erro ao formatar o horário de treino";
-				}
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> lista = new ArrayList<Atleta>();
+			try{
+				lista = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				msg = ex.getMessage();
 			}
 			
-			//Deixei para depois fazer a consulta de semana, comparação com dia de treino e verificação da Chamada existente.
+			request.setAttribute("listaAtletas", lista);
+			request.setAttribute("msg", msg);
+			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
 			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);

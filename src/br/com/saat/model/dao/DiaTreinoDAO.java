@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.saat.model.ConnectionFactory;
@@ -138,5 +139,30 @@ public class DiaTreinoDAO {
 		}	
 		
 		return retorno;
+	}
+
+	public DiaTreino buscarDiaTreino(int semana, int idAtleta, Date hr) throws SQLException {
+		stmtScript = con.prepareStatement("SELECT d.* FROM diatreino d "
+				+ "JOIN diatreinoatleta a on d.idDiaTreino = a.idDiaTreino "
+				+ "WHERE d.idDiaSemana = ?"
+				+ " AND a.idAtleta = ?"
+				+ " AND hrInicio < ?"
+				+ " AND hrFim > ?");
+		
+		stmtScript.setInt(1, semana);
+		stmtScript.setInt(2, idAtleta);
+		stmtScript.setTime(3, new java.sql.Time(hr.getTime()));
+		stmtScript.setTime(4, new java.sql.Time(hr.getTime()));
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		DiaTreino dia = new DiaTreino();
+		if(rs.next()){			
+			dia.setIdDiaTreino(rs.getInt("idDiaTreino"));
+			dia.setIdDiaDaSemana(rs.getInt("idDiaSemana"));
+			dia.setHrInicio(rs.getTime("hrInicio"));
+			dia.setHrFim(rs.getTime("hrFim"));
+		}
+		return dia;
 	}
 }
