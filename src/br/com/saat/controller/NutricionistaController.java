@@ -81,6 +81,8 @@ public class NutricionistaController extends Controller {
 				}
 			}
 			
+			//Deixei para depois fazer a consulta de semana, comparação com dia de treino e verificação da Chamada existente.
+			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 		}
