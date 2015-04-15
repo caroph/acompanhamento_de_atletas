@@ -1,13 +1,10 @@
 package br.com.saat.model.negocio;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.saat.model.Documento;
-import br.com.saat.model.TpDocumento;
 import br.com.saat.model.dao.DocumentoDAO;
 
 public class DocumentoNegocio {
