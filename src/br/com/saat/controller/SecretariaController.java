@@ -109,10 +109,12 @@ public class SecretariaController extends Controller {
 				Atleta atleta = new Atleta();
 				atleta.setIdTpEquipe(idTipoEquipe);
 				
-				if(!"".equals(request.getParameter("idAtleta"))){
-					DiaTreinoNegocio negocio = new DiaTreinoNegocio();
-					List<DiaTreino> lista = new ArrayList<DiaTreino>();
-					
+				DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+				List<DiaTreino> lista = new ArrayList<DiaTreino>();
+				
+				if(!"".equals(request.getParameter("idAtleta")) && 
+						!"0".equals(request.getParameter("idAtleta"))){
+										
 					String nascimento = request.getParameter("dtNascimento");
 					String validade = request.getParameter("dtValidade");			
 		            Date dtNascimento = null;
@@ -199,24 +201,27 @@ public class SecretariaController extends Controller {
 						endereco.setTelefone(request.getParameter("telefone"));
 						endereco.setTpEndereco(TpEndereco.Residencial.getValor());
 						
-					}
-					
+						try{
+							lista = negocio.carregaDiasTreino(idTipoEquipe);
+							List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(idAtleta);
+							for (DiaTreino dia : lista) {
+								if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
+									dia.setSelecionado(true);
+								}
+							}
+						}catch(Exception ex){
+							msg = ex.getMessage();
+						}
+					}					
+				}else{
 					try{
 						lista = negocio.carregaDiasTreino(idTipoEquipe);
-						AtletaNegocio atletaNegocio = new AtletaNegocio();
-						List<Integer> listaDias = atletaNegocio.buscaDiasTreinoAtleta(idAtleta);
-						for (DiaTreino dia : lista) {
-							if(listaDias != null && listaDias.contains(dia.getIdDiaTreino())){
-								dia.setSelecionado(true);
-							}
-						}
 					}catch(Exception ex){
 						msg = ex.getMessage();
 					}
-					
-					request.setAttribute("listaDiasTreinos", lista);
-					request.setAttribute("atleta", atleta);
 				}
+				request.setAttribute("atleta", atleta);				
+				request.setAttribute("listaDiasTreinos", lista);
 			}
 			
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
@@ -227,7 +232,7 @@ public class SecretariaController extends Controller {
 			
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
-			
+						
 			request.setAttribute("msg", msg);
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
