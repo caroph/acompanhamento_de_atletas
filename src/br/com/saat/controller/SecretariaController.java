@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -23,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.*;
-import org.apache.commons.io.*;
-import org.apache.tomcat.util.http.fileupload.UploadContext;
 
 import br.com.saat.core.Constants;
 import br.com.saat.core.JavaMailApp;

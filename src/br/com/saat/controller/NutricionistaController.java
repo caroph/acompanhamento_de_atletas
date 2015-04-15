@@ -1,7 +1,11 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -56,6 +60,27 @@ public class NutricionistaController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
+		}else if("RegistrarPresenca".equals(action)){
+			String msg = "";
+			
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			String data = request.getParameter("dataPresenca");
+			String hora = request.getParameter("hrPresenca");
+			Date dt = new Date();
+			DateFormat formatter = new SimpleDateFormat("HH:mm");  
+        	Date hr = new Date();
+			
+			if(!"".equals(data))
+				dt = new Date(data);
+			
+			if(!"".equals(hora)){
+				try {
+					hr = (Date)formatter.parse(hora);
+				} catch (ParseException e) {
+					msg = "Erro ao formatar o horário de treino";
+				}
+			}
+			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 		}

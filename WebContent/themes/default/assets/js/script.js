@@ -144,6 +144,14 @@ function abrirModalVisualizarResponsavel(nome, email, telResidencial, telComerci
 	$('.body-responsavel').html(html);	
 }
 
+function registrarPresenca(idAtleta, nomeAtleta){
+	$("#anunciarPresenca").modal();
+	var label = $("#lblNomeAtleta");
+	label.html('Confirma que o(a) atleta ' + nomeAtleta + ' esta em consulta?');
+	var a = $("#idAtleta")
+	a.val(idAtleta);
+}
+
 function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 	//Valor que irá aparecer na label
 	var strNmDoc;
