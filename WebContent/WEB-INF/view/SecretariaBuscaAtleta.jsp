@@ -56,6 +56,9 @@
 												<th style="text-align: center;">Telefone</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -65,20 +68,30 @@
 													<td><c:out value='${atleta.nrMatricula}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
-													<td align="left">
+													<td align="center">
 														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
-														<c:if test="${atleta.flCadastroAtivo == 1}">
+													</td>
+													<c:if test="${atleta.flCadastroAtivo == 1}">
+														<td>
 															<a class="btn btn-primary" href='SecretariaController?action=editarAtleta&idAtleta=${atleta.idPessoa}' 
 															data-confirm="Deseja realmente editar o atleta selecionado?">Editar</a>
+														</td>
+														<td>	
 															<a class="btn btn-danger" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 
 																data-confirm="Deseja realmente desativar o atleta selecionado?">Desativar</a>
+														</td>
+														<td>	
 															<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 1)">Vincular Responsável</a>
-														</c:if>
-														<c:if test="${atleta.flCadastroAtivo == 0}">
+														</td>
+													</c:if>
+													<c:if test="${atleta.flCadastroAtivo == 0}">														
+														<td>
 															<a class="btn btn-primary" href='SecretariaController?action=ativarAtleta&idAtleta=${atleta.idPessoa}' 
 															data-confirm="Deseja realmente ativar o atleta selecionado?">Ativar</a>
-														</c:if>
-													</td>
+														</td>														
+														<td></td>
+														<td></td>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</tbody>
