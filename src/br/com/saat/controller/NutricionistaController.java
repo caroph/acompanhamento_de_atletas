@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Presenca;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.DiaTreino;
@@ -20,6 +21,7 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
+import br.com.saat.model.negocio.PresencaChamadaNegocio;
 
 @WebServlet("/NutricionistaController")
 public class NutricionistaController extends Controller {
@@ -75,7 +77,8 @@ public class NutricionistaController extends Controller {
 				if(chamada == null){
 					
 				}else{
-					
+					PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
+					pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, Presenca.Nutricionista.getValor());
 				}
 			} catch (Exception e) {
 				msg = e.getMessage();

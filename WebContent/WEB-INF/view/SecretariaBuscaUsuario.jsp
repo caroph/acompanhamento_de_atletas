@@ -56,6 +56,8 @@
 												<th>Telefone</th>
 												<th>Celular</th>
 												<th></th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -66,11 +68,14 @@
 						 							<td id="email"><c:out value='${usuario.email}' /></td>
 													<td id="telefone"><c:out value='${usuario.telefone}' /></td>
 													<td id="celular"><c:out value='${usuario.celular}' /></td>
-													<td align="left">
+													<td align="center">
 														<a class="btn btn-info" data-toggle="modal" onClick="abrirModalUsuario('${usuario.nome}', '${usuario.getNomePerfil()}', '${usuario.email}',
 														'${usuario.telefone}', '${usuario.celular}', '${usuario.CREF}')" data-target="#detalhes">Visualizar</a>
+													<td align="center">
 														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
 														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
+													</td>
+													<td align="center">
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
 															<a class="btn btn-danger" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
 															data-confirm="Deseja realmente excluir o usuário selecionado?">Excluir</a>

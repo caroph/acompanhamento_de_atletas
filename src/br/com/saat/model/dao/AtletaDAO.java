@@ -99,7 +99,7 @@ public class AtletaDAO {
 					+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
 					+ "bairro, estado, cidade, telefone, flCadastroAtivo "
 					+ "FROM atleta a "
-					+ "INNER JOIN endereco e "
+					+ "LEFT JOIN endereco e "
 					+ "ON a.idAtleta = e.idEndereco "
 					+ " ORDER BY nome ");
 		}
