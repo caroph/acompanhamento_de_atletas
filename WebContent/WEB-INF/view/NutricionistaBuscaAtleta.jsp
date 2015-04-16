@@ -56,6 +56,10 @@
 												<th style="text-align: center;">Telefone</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -65,12 +69,20 @@
 													<td><c:out value='${atleta.nrMatricula}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
-													<td align="left">
+													<td align="center">
 														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
-														<a class="btn btn-info" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Registrar Presença</a>
-														<a class="btn btn-info">Novo Atendimento</a>
-														<a class="btn btn-info">Incluir Observação</a>
-														<a class="btn btn-info">Dieta</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary">Atendimento</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary">Observação</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary">Dieta</a>												
 													</td>
 												</tr>
 											</c:forEach>
