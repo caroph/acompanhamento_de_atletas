@@ -1166,6 +1166,7 @@ public class SecretariaController extends Controller {
 							out.close();
 							
 							documento.setSrc("..\\saatDocumentacaoAtletas" + "\\" + String.valueOf(documento.getIdPessoa() + "\\" + nmDocumento));
+							//documento.setSrc("\\\\..\\\\saatDocumentacaoAtletas" +"\\\\" + String.valueOf(documento.getIdPessoa() + "\\\\" + nmDocumento));
 							msgSucesso = "Arquivo anexado com sucesso";
 						}else{
 							msg = nmDocumento;
@@ -1310,7 +1311,8 @@ public class SecretariaController extends Controller {
 	}
 
 	private String getUploadPath(Documento documento) {
-		String path = getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\" + String.valueOf(documento.getIdPessoa()));
+		//String path = getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\" + String.valueOf(documento.getIdPessoa()));
+		String path = getServletContext().getRealPath("") + "\\..\\saatDocumentacaoAtletas"  + "\\" + String.valueOf(documento.getIdPessoa());
 		
 		//verifica se a pasta do aluno esta criada
 		if(criaDiretorio(path)){
