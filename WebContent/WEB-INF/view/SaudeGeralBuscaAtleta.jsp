@@ -9,14 +9,14 @@
 
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<%@include file='/layout/navigationNutricionista.jsp'%>
+			<%@include file='/layout/navigationSaudeGeral.jsp'%>
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
 					<div class="row">
 						<div id="breadcrumb" class="col-xs-12">
 							<ol class="breadcrumb">
-								<li><a href="NutricionistaController">Home</a></li>
+								<li><a href="SaudeGeralController">Home</a></li>
 							</ol>
 						</div>
 					</div>
@@ -59,7 +59,6 @@
 												<th></th>
 												<th></th>
 												<th></th>
-												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -76,14 +75,14 @@
 														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary">Atendimento</a>
+														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Atendimento</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary">Histórico</a>												
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->
 <!-- 													</td> -->
-													<td align="center">
-														<a class="btn btn-primary">Dieta</a>												
-													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

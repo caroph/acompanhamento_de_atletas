@@ -32,11 +32,9 @@ public class UsuarioNegocio {
 		int perfil = usuario.getPerfil();
 		if (perfil == Perfis.Secretaria.getValor())
 			return String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
-		else if (perfil == Perfis.Fisioterapeuta.getValor())
+		else if (perfil == Perfis.Fisioterapeuta.getValor() || perfil == Perfis.Psicologa.getValor())
 			return String
-					.format("%s/FisioterapiaPrincipal.jsp", Constants.VIEW);
-		else if (perfil == Perfis.Psicologa.getValor())
-			return String.format("%s/PsicologiaPrincipal.jsp", Constants.VIEW);
+					.format("%s/SaudeGeralPrincipal.jsp", Constants.VIEW);
 		else if (perfil == Perfis.Nutricionista.getValor())
 			return String.format("%s/NutricionistaPrincipal.jsp",
 					Constants.VIEW);

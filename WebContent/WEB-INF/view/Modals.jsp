@@ -56,6 +56,45 @@
 </div>
 
 
+<!-- Novo Atendimento -->
+<div class="modal fade bs-example-modal-sm" id="novoAtendimento" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h4 class="modal-title" id="myModalLabel">Novo Atendimento</h4>
+		</div>
+		<div class="modal-body">
+			<form method="POST" action="SaudeGeralController?action=novoAtendimento">
+				<label id="lblNomeAtleta" style="padding-bottom: 16px;" class="control-label" ></label>
+				<input type="hidden" id="idAtleta" name="idAtleta" value=""/>
+				<div class="col-md-6">
+					<div class="col-md-2">Data:</div>
+					<div class="col-md-10">
+						<input type="date" class="form-control" id="dataPresenca" name="dataPresenca"/>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-2"> Hora: </div>
+					<div class="col-md-10">
+						<input type="time" class="form-control" id="hrPresenca" name="hrPresenca" />
+					</div>
+				</div>
+				<div class="col-md-12">
+					<label class=" control-label">Anotações:</label>
+					<textarea type="text" class="form-control" id="anotacao" name="anotacao"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-info">Incluir Observação</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ---------------------ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ANTIGAS! ------------------ -->
 

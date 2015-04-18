@@ -152,6 +152,14 @@ function registrarPresenca(idAtleta, nomeAtleta){
 	a.val(idAtleta);
 }
 
+function novoAtendimento(idAtleta, nomeAtleta){
+	$("#novoAtendimento").modal();
+	var label = $("#lblNomeAtleta");
+	label.html('Novo atendimento ao atleta ' + nomeAtleta + ':');
+	var a = $("#idAtleta")
+	a.val(idAtleta);
+}
+
 function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 	//Valor que irá aparecer na label
 	var strNmDoc;
