@@ -146,8 +146,8 @@ public class DiaTreinoDAO {
 				+ "JOIN diatreinoatleta a on d.idDiaTreino = a.idDiaTreino "
 				+ "WHERE d.idDiaSemana = ?"
 				+ " AND a.idAtleta = ?"
-				+ " AND hrInicio < ?"
-				+ " AND hrFim > ?");
+				+ " AND hrInicio <= ?"
+				+ " AND hrFim >= ?");
 		
 		stmtScript.setInt(1, semana);
 		stmtScript.setInt(2, idAtleta);

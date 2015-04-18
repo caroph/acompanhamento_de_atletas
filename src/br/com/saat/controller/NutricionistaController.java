@@ -1,7 +1,10 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -70,20 +73,40 @@ public class NutricionistaController extends Controller {
 			
 			DiaTreinoNegocio diaNegocio = new DiaTreinoNegocio();
 			ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
-			try {
-				DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
-				Chamada chamada = chamadaNegocio.buscarChamadaPorDia(data, diaTreino.getIdDiaTreino());
-				
-				if(chamada == null){
-					
-				}else{
-					PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
-					pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, Presenca.Nutricionista.getValor());
-				}
-			} catch (Exception e) {
-				msg = e.getMessage();
-			}			
 			
+			List<Object> listaValidacao = chamadaNegocio.validaDados(data, hora);
+			boolean valida = (boolean) listaValidacao.get(0);
+			if(valida){
+				try {
+					DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
+					if(diaTreino.getIdDiaTreino() != 0){
+						Chamada chamada = chamadaNegocio.buscarChamadaPorDia(data, diaTreino.getIdDiaTreino());
+						
+						if(chamada.getIdChamada() == 0){
+							Date dt = new Date();
+							DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+							dt = formatter.parse(data);
+							chamada = new Chamada(usuarioLogado.getIdPessoa(), 
+									diaTreino.getIdDiaTreino(), 0, dt);
+							chamada = chamadaNegocio.salvarChamada(chamada);
+						}
+						PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
+						if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
+								Presenca.Nutricionista.getValor(), null)){
+							msg = "Presença registrada com sucesso!";
+						}else{
+							msg = "Ocorreu algum erro ao salvar a presença do atleta!";
+						}
+					}else{
+						msg = "O atleta não está em treino neste horário!";
+					}
+					
+				} catch (Exception e) {
+					msg = e.getMessage();
+				}			
+			}else{
+				msg = (String) listaValidacao.get(1);
+			}
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
 			try{

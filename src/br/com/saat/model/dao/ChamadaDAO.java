@@ -40,4 +40,25 @@ public class ChamadaDAO {
 		}
 		return chamada;
 	}
+
+	public Chamada salvarChamada(Chamada chamada) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("INSERT INTO chamada (idUsuario, idDiaTreino, nrQuadra, dtChamada)"
+				+ "VALUES (?, ?, ?, ?)");
+		
+		stmtScript.setInt(1, chamada.getIdUsuario());
+		stmtScript.setInt(2, chamada.getIdDiaTreino());
+		stmtScript.setInt(3, chamada.getNrQuadra());
+		stmtScript.setDate(4, new java.sql.Date(chamada.getDtChamada().getTime()));
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			chamada = buscarChamadaPorData(chamada.getDtChamada(), chamada.getIdDiaTreino());
+			return chamada;
+		}	
+		
+		return null;
+	}
 }

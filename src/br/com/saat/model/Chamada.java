@@ -11,6 +11,14 @@ public class Chamada {
 	public Usuario usuario;
 	public DiaTreino diaTreino;
 	
+	public Chamada(int idPessoa, int idDiaTreino, int nrQuadra, Date dtChamada) {
+		this.idUsuario = idPessoa;
+		this.idDiaTreino = idDiaTreino;
+		this.nrQuadra = nrQuadra;
+		this.dtChamada = dtChamada;
+	}
+	public Chamada() { }
+	
 	public int getIdChamada() {
 		return idChamada;
 	}

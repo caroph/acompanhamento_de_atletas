@@ -5,10 +5,11 @@ import br.com.saat.model.dao.PresencaChamadaDAO;
 public class PresencaChamadaNegocio {
 	public PresencaChamadaNegocio(){}
 
-	public void salvarPresencaChamada(int idChamada, int idAtleta, int estadoPresenca) throws Exception {
+	public boolean salvarPresencaChamada(int idChamada, int idAtleta, int estadoPresenca, String justificativa) 
+			throws Exception {
 		PresencaChamadaDAO dao = new PresencaChamadaDAO();
 		try{
-			dao.salvarPresencaChamada(idChamada, idAtleta, estadoPresenca);
+			return dao.salvarPresencaChamada(idChamada, idAtleta, estadoPresenca, justificativa);
 		}catch(Exception ex){
 			throw new Exception("Erro ao registrar presença");
 		}
