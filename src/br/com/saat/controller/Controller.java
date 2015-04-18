@@ -1,6 +1,10 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +22,20 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import br.com.saat.core.Constants;
+import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Presenca;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.Chamada;
+import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.CookieNegocio;
+import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
+import br.com.saat.model.negocio.PresencaChamadaNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 @WebServlet("/Controller")
@@ -82,6 +93,81 @@ public class Controller extends HttpServlet {
 		    response.getWriter().write(json);
 		    request.setAttribute("msg", msg);
 			
+		}else if("RegistrarPresenca".equals(request.getParameter("action"))){
+			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Nutricionista.getValor() || perfil == Perfis.Fisioterapeuta.getValor() ||
+					perfil == Perfis.Psicologa.getValor()){
+				String msg = "";
+				String msgSucesso = "";
+				
+				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				String data = request.getParameter("dataPresenca");
+				String hora = request.getParameter("hrPresenca");
+				
+				DiaTreinoNegocio diaNegocio = new DiaTreinoNegocio();
+				ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
+				
+				List<Object> listaValidacao = chamadaNegocio.validaDados(data, hora);
+				boolean valida = (boolean) listaValidacao.get(0);
+				if(valida){
+					try {
+						DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
+						if(diaTreino.getIdDiaTreino() != 0){
+							Chamada chamada = chamadaNegocio.buscarChamadaPorDia(data, diaTreino.getIdDiaTreino());
+							
+							if(chamada.getIdChamada() == 0){
+								Date dt = new Date();
+								DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+								dt = formatter.parse(data);
+								chamada = new Chamada(usuarioLogado.getIdPessoa(), 
+										diaTreino.getIdDiaTreino(), 0, dt);
+								chamada = chamadaNegocio.salvarChamada(chamada);
+							}
+							PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
+							int presenca = Presenca.Nutricionista.getValor();
+							if(perfil == Perfis.Psicologa.getValor())
+								presenca = Presenca.Psicologo.getValor();
+							else if(perfil == Perfis.Fisioterapeuta.getValor());
+								presenca = Presenca.Fisioterapeuta.getValor();
+							
+							
+							if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
+									presenca, null)){
+								msgSucesso = "Presença registrada com sucesso!";
+							}else{
+								msg = "Ocorreu algum erro ao salvar a presença do atleta!";
+							}
+						}else{
+							msg = "O atleta não está em treino neste horário!";
+						}
+						
+					} catch (Exception e) {
+						msg = e.getMessage();
+					}			
+				}else{
+					msg = (String) listaValidacao.get(1);
+				}
+				AtletaNegocio negocio = new AtletaNegocio();
+				List<Atleta> lista = new ArrayList<Atleta>();
+				try{
+					lista = negocio.buscarAtletas(1);
+				}catch(Exception ex){
+					msg = ex.getMessage();
+				}
+				
+				request.setAttribute("listaAtletas", lista);
+				request.setAttribute("msg", msg);
+				request.setAttribute("msgSucesso", msgSucesso);
+				if(perfil == Perfis.Nutricionista.getValor())
+					retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
+				else
+					retorno = String.format("%s/SaudeGeralBuscaAtleta.jsp", Constants.VIEW);
+			}else{
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
+			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
+			requestDispatcher.forward(request, response);
 		}
 	}
 

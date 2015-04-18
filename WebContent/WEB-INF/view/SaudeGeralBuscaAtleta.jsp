@@ -52,9 +52,7 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th>N. Matrícula</th>
 												<th style="text-align: center;">Telefone</th>
-												<th style="text-align: center;">Equipe</th>
 												<th></th>
 												<th></th>
 												<th></th>
@@ -65,9 +63,7 @@
 											<c:forEach var="atleta" items="${listaAtletas}">
 												<tr>
 													<td><c:out value='${atleta.nome}' /></td>
-													<td><c:out value='${atleta.nrMatricula}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
-													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="center">
 														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 													</td>

@@ -64,61 +64,6 @@ public class NutricionistaController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
-		}else if("RegistrarPresenca".equals(action)){
-			String msg = "";
-			
-			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
-			String data = request.getParameter("dataPresenca");
-			String hora = request.getParameter("hrPresenca");
-			
-			DiaTreinoNegocio diaNegocio = new DiaTreinoNegocio();
-			ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
-			
-			List<Object> listaValidacao = chamadaNegocio.validaDados(data, hora);
-			boolean valida = (boolean) listaValidacao.get(0);
-			if(valida){
-				try {
-					DiaTreino diaTreino = diaNegocio.buscarDiaTreino(data, idAtleta, hora);
-					if(diaTreino.getIdDiaTreino() != 0){
-						Chamada chamada = chamadaNegocio.buscarChamadaPorDia(data, diaTreino.getIdDiaTreino());
-						
-						if(chamada.getIdChamada() == 0){
-							Date dt = new Date();
-							DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-							dt = formatter.parse(data);
-							chamada = new Chamada(usuarioLogado.getIdPessoa(), 
-									diaTreino.getIdDiaTreino(), 0, dt);
-							chamada = chamadaNegocio.salvarChamada(chamada);
-						}
-						PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
-						if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
-								Presenca.Nutricionista.getValor(), null)){
-							msg = "Presença registrada com sucesso!";
-						}else{
-							msg = "Ocorreu algum erro ao salvar a presença do atleta!";
-						}
-					}else{
-						msg = "O atleta não está em treino neste horário!";
-					}
-					
-				} catch (Exception e) {
-					msg = e.getMessage();
-				}			
-			}else{
-				msg = (String) listaValidacao.get(1);
-			}
-			AtletaNegocio negocio = new AtletaNegocio();
-			List<Atleta> lista = new ArrayList<Atleta>();
-			try{
-				lista = negocio.buscarAtletas(1);
-			}catch(Exception ex){
-				msg = ex.getMessage();
-			}
-			
-			request.setAttribute("listaAtletas", lista);
-			request.setAttribute("msg", msg);
-			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
-			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 		}

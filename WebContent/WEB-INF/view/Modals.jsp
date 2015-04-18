@@ -30,7 +30,7 @@
 			<h4 class="modal-title" id="myModalLabel">Anunciar Presença</h4>
 		</div>
 		<div class="modal-body">
-			<form method="POST" action="NutricionistaController?action=RegistrarPresenca">
+			<form method="POST" action="Controller?action=RegistrarPresenca">
 				<label id="lblNomeAtleta" style="padding-bottom: 16px;" class="control-label" >Confirma que o(a) atleta está em consulta? (incluir data e hora)</label>
 				<input type="hidden" id="idAtleta" name="idAtleta" value=""/>
 				<div class="col-md-6">
