@@ -110,6 +110,7 @@ function abrirModalAtleta(idAtleta){
 		success : function(data) {
 			var html = "<b>Nome:</b> " + data.atleta.nome + "<br/>";
 			html += "<b>Equipe:</b> " + data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
+			html += "<b>Data de nascimento:</b> " + data.atleta.dtNascimentoDisplay + "<br/>";
 			html += "<br/><b>Dias de Treino:</b> " + "<br/>";
 			var diasSemana = data.diaSemana;
 			$.each(data.atleta.listaDiasTreinos, function(index, item){

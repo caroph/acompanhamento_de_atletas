@@ -336,7 +336,7 @@ public class AtletaDAO {
 		Atleta atleta = new Atleta();
 		
 		stmtScript = con.prepareStatement("SELECT nome, idTpEquipe, nrMatricula, nrCadCBT, nrCadFPT, "
-				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco FROM atleta WHERE idAtleta = ?");
+				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, dtNascimento FROM atleta WHERE idAtleta = ?");
 		stmtScript.setInt(1, idAtleta);
 		
 		ResultSet rs = stmtScript.executeQuery();
@@ -351,6 +351,7 @@ public class AtletaDAO {
 			atleta.setNmContatoEmergencia(rs.getString(6));
 			atleta.setTelContatoEmergencia(rs.getString(7));
 			atleta.setIdGrauParentesco(rs.getInt(8));
+			atleta.setDtNascimento(rs.getDate(9));
 			
 			stmtScript = con.prepareStatement("SELECT dt.idDiaSemana, dt.hrInicio, dt.hrFim "
 					+ "FROM diatreinoatleta dta JOIN diatreino dt on dt.idDiaTreino = dta.idDiaTreino "

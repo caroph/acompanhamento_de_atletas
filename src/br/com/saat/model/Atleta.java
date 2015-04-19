@@ -35,6 +35,7 @@ public class Atleta extends Pessoa {
 	private int flCadastroAtivo;
 	private List<DiaTreino> listaDiasTreinos;
 	private List<Responsavel> listaResponsaveis;
+	private String dtNascimentoDisplay;
 	
 	public Atleta(){}
 	
@@ -300,6 +301,16 @@ public class Atleta extends Pessoa {
 	public void setFlCadastroAtivo(int flCadastroAtivo) {
 		this.flCadastroAtivo = flCadastroAtivo;
 	}
-	
-	
+
+	public String getDtNascimentoDisplay() {
+		return dtNascimentoDisplay;
+	}
+
+	public void setDtNascimentoDisplay(String dtNascimentoDisplay) {
+		this.dtNascimentoDisplay = dtNascimentoDisplay;
+	}
+
+	public void setTelMedicoResponsavel(String telMedicoResponsavel) {
+		this.telMedicoResponsavel = telMedicoResponsavel;
+	}	
 }

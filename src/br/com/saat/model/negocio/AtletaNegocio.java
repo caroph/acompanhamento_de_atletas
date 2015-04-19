@@ -1,5 +1,7 @@
 package br.com.saat.model.negocio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,6 +143,9 @@ public class AtletaNegocio {
 		try {
 			AtletaDAO dao = new AtletaDAO();
 			Atleta atleta = dao.buscarAtletaDetalhes(idAtleta);
+			DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
+			String dt = formatter.format(atleta.getDtNascimento());
+			atleta.setDtNascimentoDisplay(dt);
 			return atleta;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar o atleta.");
