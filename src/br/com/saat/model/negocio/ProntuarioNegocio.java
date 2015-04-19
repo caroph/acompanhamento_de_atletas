@@ -62,21 +62,21 @@ public class ProntuarioNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os últimos atendimentos.");
 		}
 	}
-//
-//	public boolean desativar(DiaTreino dia) throws Exception{
-//		boolean retorno = false;
-//
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			if (dao.desativar(dia)) {
-//				retorno = true;
-//			}
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao desativar o dia de treino.");
-//		}
-//
-//		return retorno;
-//	}
+
+	public boolean excluir(int idProntuario) throws Exception{
+		boolean retorno = false;
+
+		try {
+			ProntuarioDAO dao = new ProntuarioDAO();
+			if (dao.excluir(idProntuario)) {
+				retorno = true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao excluir o atendimento.");
+		}
+
+		return retorno;
+	}
 //
 //	public List<DiaTreino> carregaDiasTreino(int idTpEquipe) throws Exception{
 //		try {

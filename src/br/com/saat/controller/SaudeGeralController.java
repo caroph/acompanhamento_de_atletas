@@ -176,9 +176,54 @@ public class SaudeGeralController extends Controller {
 					request.setAttribute("msgErro", ex.getMessage());
 				}
 				request.setAttribute("nomeAtleta", nomeAtleta);
+				request.setAttribute("idAtleta", idAtleta);
 			}
 			
 			retorno = String.format("%s/SaudeGeralHistorico.jsp", Constants.VIEW);
+			
+		}else if("excluirAtendimento".equals(action)){
+			boolean exception = false;
+			int idProntuario = 0; 
+			int idAtleta = 0;
+			int idUsuario = 0;
+			String nomeAtleta = "";
+			
+			try{
+				idProntuario = Integer.parseInt(request.getParameter("idProntuario"));
+				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				idUsuario = usuarioLogado.getIdPessoa();
+				nomeAtleta = request.getParameter("nome");
+            }catch(Exception ex){
+            	request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+            	exception = true;
+            }
+			
+			if(!exception){
+				ProntuarioNegocio negocio = new ProntuarioNegocio();
+				try{
+	                if(negocio.excluir(idProntuario)){
+	                	request.setAttribute("msgSucesso", "Atendimento excluido com sucesso!");  
+	                	try{
+	    					List<Prontuario> lista = negocio.buscaHistorico(idAtleta, idUsuario);
+	    					if(!lista.isEmpty()){
+	    						request.setAttribute("listaProntuario", lista);
+	    					}else{
+	    						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
+	    					}
+	    				}catch(Exception ex){
+	    					request.setAttribute("msgErro", ex.getMessage());
+	    				}
+	    				request.setAttribute("nomeAtleta", nomeAtleta);
+	    				request.setAttribute("idAtleta", idAtleta);
+	                }else{
+	                	request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+	                	}
+	            }catch(Exception ex){
+	            	request.setAttribute("msgErro", ex.getMessage());                   
+	            }
+			}
+			retorno = String.format("%s/SaudeGeralHistorico.jsp", Constants.VIEW);
+			
 		}else{
 			//Página Principal
 			int idUsuario = usuarioLogado.idPessoa;
