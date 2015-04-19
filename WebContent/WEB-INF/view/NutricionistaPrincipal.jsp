@@ -12,13 +12,6 @@
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
 					<div class="row">
-						<div id="breadcrumb" class="col-xs-12">
-							<ol class="breadcrumb">
-								<li><a href="SecretariaController">Home</a></li>
-							</ol>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
 								<div class="box-header">

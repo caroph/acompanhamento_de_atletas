@@ -10,13 +10,6 @@
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
-					<div class="row">
-						<div id="breadcrumb" class="col-xs-12">
-							<ol class="breadcrumb">
-								<li><a href="SecretariaController">Home</a></li>
-							</ol>
-						</div>
-					</div>
 					<c:if test="${ msg != null && msg != ''}">
 						<div class="alert alert-danger">
 					        <a href="#" class="close" data-dismiss="alert">&times;</a>
