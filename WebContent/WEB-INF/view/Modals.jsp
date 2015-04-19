@@ -31,7 +31,7 @@
 		</div>
 		<div class="modal-body">
 			<form method="POST" action="Controller?action=RegistrarPresenca">
-				<label id="lblNomeAtleta" style="padding-bottom: 16px;" class="control-label" >Confirma que o(a) atleta está em consulta? (incluir data e hora)</label>
+				<label id="lblNomeAtleta" style="padding-bottom: 16px;" class="control-label" ></label>
 				<input type="hidden" id="idAtleta" name="idAtleta" value=""/>
 				<div class="col-md-6">
 					<div class="col-md-2">Data:</div>
@@ -66,26 +66,22 @@
 		</div>
 		<div class="modal-body">
 			<form method="POST" action="SaudeGeralController?action=novoAtendimento">
-				<label id="lblNomeAtleta" style="padding-bottom: 16px;" class="control-label" ></label>
-				<input type="hidden" id="idAtleta" name="idAtleta" value=""/>
-				<div class="col-md-6">
-					<div class="col-md-2">Data:</div>
-					<div class="col-md-10">
-						<input type="date" class="form-control" id="dataPresenca" name="dataPresenca"/>
+				<label id="lblAtendimento" style="padding-bottom: 16px;" class="control-label col-sm-12"></label>
+				<input type="hidden" id="idAtletaAtend" name="idAtletaAtend"/>
+					<div class="col-sm-6">
+						<label for="dtAtendimento" class=" control-label">Data:</label>
+						<input type="date" class="form-control" id="dtAtendimento" name="dtAtendimento" required/>
 					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="col-md-2"> Hora: </div>
-					<div class="col-md-10">
-						<input type="time" class="form-control" id="hrPresenca" name="hrPresenca" />
+					<div class="col-sm-6">
+						<label for="hrAtendimento" class=" control-label">Hora:</label>
+						<input type="time" class="form-control" id="hrAtendimento" name="hrAtendimento" required/>
 					</div>
-				</div>
 				<div class="col-md-12">
 					<label class=" control-label">Anotações:</label>
-					<textarea type="text" class="form-control" id="anotacao" name="anotacao"></textarea>
+					<textarea class="form-control" id="anotacao" name="anotacao" required></textarea>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-info">Incluir Observação</button>
+<!-- 					<button type="button" class="btn btn-info">Incluir Observação</button> -->
 					<button type="submit" class="btn btn-primary">Salvar</button>
 					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 				</div>

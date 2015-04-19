@@ -74,7 +74,7 @@
 														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Atendimento</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary">Histórico</a>												
+														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}">Histórico</a>												
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->

@@ -155,9 +155,9 @@ function registrarPresenca(idAtleta, nomeAtleta){
 
 function novoAtendimento(idAtleta, nomeAtleta){
 	$("#novoAtendimento").modal();
-	var label = $("#lblNomeAtleta");
+	var label = $("#lblAtendimento");
 	label.html('Novo atendimento ao atleta ' + nomeAtleta + ':');
-	var a = $("#idAtleta")
+	var a = $("#idAtletaAtend");
 	a.val(idAtleta);
 }
 
@@ -253,7 +253,7 @@ function carregaDiasTreino(){
 //	$('#progress').css("display", "none");
 //});
 //
-//$("#listaHistorico").accordion();
+$("#listaHistorico").accordion();
 //
 //$("#objetivoConsulta").click(function(){
 //	$("#exibeObjetivoConsulta").toggle();
