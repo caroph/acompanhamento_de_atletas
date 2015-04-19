@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
+import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Documento;
 
@@ -92,5 +95,41 @@ public class DocumentoDAO {
 			return true;
 		}		
 		return false;
+	}
+
+	public ArrayList<HashMap<Integer,String>> buscarPendencias() throws Exception{
+		stmtScript = con.prepareStatement("SELECT * FROM pendencia ORDER BY tpDocumento");
+		ResultSet rs = stmtScript.executeQuery();
+		
+		ArrayList<HashMap<Integer,String>> listaPendencias = new ArrayList<HashMap<Integer,String>>();
+			
+		for(int i = 0; i < 7; i++)
+			listaPendencias.add(new HashMap<Integer,String>());
+		
+		while(rs.next()){
+			int tpDocumentoPendente = rs.getInt("tpDocumento");
+			int idPessoa = rs.getInt("idPessoa");
+			
+			AtletaDAO atletaDAO = new AtletaDAO(con);
+			String nmAtleta = atletaDAO.buscarNome(idPessoa);
+			
+			if(tpDocumentoPendente == TpDocumento.termoDeCompromisso.getValor()){
+				listaPendencias.get(0).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.declaracaoMedica.getValor()){
+				listaPendencias.get(1).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.autorizacaoDeViagem.getValor()){
+				listaPendencias.get(2).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.autorizacaoDeImagem.getValor()){
+				listaPendencias.get(3).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.copiaDoRG.getValor()){
+				listaPendencias.get(4).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.copiaDoCPF.getValor()){
+				listaPendencias.get(5).put(idPessoa, nmAtleta);
+			}else if(tpDocumentoPendente == TpDocumento.fotoDoAtleta.getValor()){
+				listaPendencias.get(6).put(idPessoa, nmAtleta);
+			}
+		}
+				
+		return listaPendencias;
 	}
 }

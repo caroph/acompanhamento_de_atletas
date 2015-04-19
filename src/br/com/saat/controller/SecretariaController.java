@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -81,7 +82,29 @@ public class SecretariaController extends Controller {
 		String retorno = null;//String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 		String action = request.getParameter("action");
 		
-		if("jspNovoAtleta".equals(action)){
+		
+		if("jspPaginaInicialSecretaria".equals(action)){
+			DocumentoNegocio documentoNegocio = new DocumentoNegocio();
+			int nrPendencias = 0;
+			String msg = "";
+			
+			ArrayList<HashMap<Integer,String>> listaPendencias = null;
+			try{
+				listaPendencias = documentoNegocio.buscarPendencias();
+				
+				for(HashMap<Integer,String> pendencia : listaPendencias){
+					nrPendencias += pendencia.size();
+				}					
+				
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("listaPendencias", listaPendencias);
+			request.setAttribute("nrPendencias", nrPendencias);
+			request.setAttribute("msg", msg);
+			retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);			
+		}else if("jspNovoAtleta".equals(action)){
 			//Carregar página Novo Atleta
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();

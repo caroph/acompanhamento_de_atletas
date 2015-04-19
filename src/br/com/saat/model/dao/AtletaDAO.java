@@ -390,5 +390,16 @@ public class AtletaDAO {
 				
 		return atleta;
 	}
+
+	public String buscarNome(int idPessoa) throws Exception{
+		stmtScript = con.prepareStatement("SELECT nome FROM atleta WHERE idAtleta = ?");
+		stmtScript.setInt(1, idPessoa);
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			return rs.getString("nome");
+		}else
+			return "";
+	}
 	
 }

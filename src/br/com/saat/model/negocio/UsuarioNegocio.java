@@ -31,7 +31,7 @@ public class UsuarioNegocio {
 	public String retornoLogin(Usuario usuario) {
 		int perfil = usuario.getPerfil();
 		if (perfil == Perfis.Secretaria.getValor())
-			return String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
+			return String.format("/SecretariaController?action=jspPaginaInicialSecretaria");
 		else if (perfil == Perfis.Fisioterapeuta.getValor() || perfil == Perfis.Psicologa.getValor())
 			return String
 					.format("%s/SaudeGeralPrincipal.jsp", Constants.VIEW);

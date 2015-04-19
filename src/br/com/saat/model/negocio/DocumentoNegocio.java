@@ -2,6 +2,7 @@ package br.com.saat.model.negocio;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import br.com.saat.model.Documento;
@@ -82,5 +83,21 @@ public class DocumentoNegocio {
 		
 		return false;
 	}
+
+	public ArrayList<HashMap<Integer,String>> buscarPendencias() throws Exception {
+		ArrayList<HashMap<Integer,String>> listaPendencias = null;
+		
+		try{
+			DocumentoDAO dao = new DocumentoDAO();
+			listaPendencias = dao.buscarPendencias();
+		}catch(SQLException ex){
+			throw ex;
+		}catch(Exception ex){
+			throw new Exception("Erro ao consultar documentos pendentes!");
+		}		
+		return listaPendencias;
+	}
 	
 }
+
+		
