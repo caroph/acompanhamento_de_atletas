@@ -107,7 +107,7 @@ public class SaudeGeralController extends Controller {
             	Prontuario prontuario = new Prontuario();
     			ProntuarioNegocio negocio = new ProntuarioNegocio();
     			
-    			prontuario.setDtaAtendimento(dtAtendimento);
+    			prontuario.setDtAtendimento(dtAtendimento);
     			prontuario.setHrAtendimento(hrAtendimento);
     			prontuario.setAnotacao(request.getParameter("anotacao"));
     			prontuario.setAtleta(atleta);
@@ -148,8 +148,55 @@ public class SaudeGeralController extends Controller {
 				request.setAttribute("listaAtletas", lista);
 				retorno = String.format("%s/SaudeGeralBuscaAtleta.jsp", Constants.VIEW);
             }
+		}else if ("jspHistorico".equals(action)){
+			boolean exception = false;
+			int idAtleta = 0;
+			int idUsuario = 0;
+			String nomeAtleta = "";
+			
+			try{
+				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				idUsuario = usuarioLogado.getIdPessoa();
+				nomeAtleta = request.getParameter("nome");
+            }catch(Exception ex){
+            	request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+            	exception = true;
+            }
+			
+			if(!exception){
+				ProntuarioNegocio negocio = new ProntuarioNegocio();
+				try{
+					List<Prontuario> lista = negocio.buscaHistorico(idAtleta, idUsuario);
+					if(!lista.isEmpty()){
+						request.setAttribute("listaProntuario", lista);
+					}else{
+						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
+					}
+				}catch(Exception ex){
+					request.setAttribute("msgErro", ex.getMessage());
+				}
+				request.setAttribute("nomeAtleta", nomeAtleta);
+			}
+			
+			retorno = String.format("%s/SaudeGeralHistorico.jsp", Constants.VIEW);
 		}else{
-		retorno = String.format("%s/SaudeGeralPrincipal.jsp", Constants.VIEW);
+			//Página Principal
+			int idUsuario = usuarioLogado.idPessoa;
+			
+			ProntuarioNegocio negocio = new ProntuarioNegocio();
+			
+			try{
+				List<Prontuario> lista = negocio.buscaUltimosAtend(idUsuario);
+				if(!lista.isEmpty()){
+					request.setAttribute("listaAtendimento", lista);
+				}else{
+					request.setAttribute("msgAlerta", "Nenhum atendimento registrado.");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			retorno = String.format("%s/SaudeGeralPrincipal.jsp", Constants.VIEW);
 		}
 		
 		if(retorno != null){

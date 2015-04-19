@@ -13,13 +13,6 @@
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
-					<div class="row">
-						<div id="breadcrumb" class="col-xs-12">
-							<ol class="breadcrumb">
-								<li><a href="SaudeGeralController">Home</a></li>
-							</ol>
-						</div>
-					</div>
 					<c:if test="${ msg != null && msg != ''}">
 						<div class="alert alert-danger">
 					        <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -74,7 +67,7 @@
 														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Atendimento</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}">Histórico</a>												
+														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}">Histórico</a>												
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->

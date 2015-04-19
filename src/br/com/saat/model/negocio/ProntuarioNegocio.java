@@ -11,7 +11,7 @@ public class ProntuarioNegocio {
 	public List<Object> validaDados(Prontuario prontuario) {
 		List<Object> lista = new ArrayList<Object>();
 
-		if ("".equals(prontuario.getDtaAtendimento()) || prontuario.getDtaAtendimento() == null) {
+		if ("".equals(prontuario.getDtAtendimento()) || prontuario.getDtAtendimento() == null) {
 			lista.add(false);
 			lista.add("Selecione corretamente o campo 'Data' !");
 		} else if ("".equals(prontuario.getHrAtendimento()) || prontuario.getHrAtendimento() == null) {
@@ -43,15 +43,25 @@ public class ProntuarioNegocio {
 		return retorno;
 	}
 
-//	public List<DiaTreino> buscaDiasTreino() throws Exception{
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			List<DiaTreino> lista = dao.buscaDiasTreinos();
-//			return lista;
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
-//		}
-//	}
+	public List<Prontuario> buscaHistorico(int idAtleta, int idUsuario) throws Exception{
+		try {
+			ProntuarioDAO dao = new ProntuarioDAO();
+			List<Prontuario> lista = dao.buscaHistorico(idAtleta, idUsuario);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o histórico de atendimentos.");
+		}
+	}
+	
+	public List<Prontuario> buscaUltimosAtend(int idUsuario) throws Exception {
+		try {
+			ProntuarioDAO dao = new ProntuarioDAO();
+			List<Prontuario> lista = dao.buscaUltimosAtend(idUsuario);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os últimos atendimentos.");
+		}
+	}
 //
 //	public boolean desativar(DiaTreino dia) throws Exception{
 //		boolean retorno = false;
@@ -139,5 +149,7 @@ public class ProntuarioNegocio {
 //			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
 //		}
 //	} 
+
+
 
 }

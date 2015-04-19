@@ -6,7 +6,7 @@ public class Prontuario {
 	private int idProntuario;
 	private Atleta atleta;
 	private Usuario usuario;
-	private Date dtaAtendimento;
+	private Date dtAtendimento;
 	private Date hrAtendimento;
 	private String anotacao;
 	
@@ -28,11 +28,11 @@ public class Prontuario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public Date getDtaAtendimento() {
-		return dtaAtendimento;
+	public Date getDtAtendimento() {
+		return dtAtendimento;
 	}
-	public void setDtaAtendimento(Date dtaAtendimento) {
-		this.dtaAtendimento = dtaAtendimento;
+	public void setDtAtendimento(Date dtAtendimento) {
+		this.dtAtendimento = dtAtendimento;
 	}
 	public Date getHrAtendimento() {
 		return hrAtendimento;
