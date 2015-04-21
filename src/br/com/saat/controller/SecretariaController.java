@@ -102,7 +102,7 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("listaPendencias", listaPendencias);
 			request.setAttribute("nrPendencias", nrPendencias);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);	
 			
 		}else if("jspNovoAtleta".equals(action)){

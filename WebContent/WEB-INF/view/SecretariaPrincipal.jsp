@@ -1,10 +1,10 @@
-	<%@include file='/layout/head.jsp'%>
-	
-	<body>
-	
 	<%@include file='/layout/header.jsp'%>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+	<%@include file='/layout/head.jsp'%>
+	
+	<body>
 	
 	<div id="main" class="container-fluid">
 		<div class="row">
@@ -16,6 +16,12 @@
 						<div class="alert alert-danger">
 					        <a href="#" class="close" data-dismiss="alert">&times;</a>
 					            <c:out value="${msg}"></c:out>       
+				    	</div>
+			        </c:if>
+			        <c:if test="${ msgErro != null && msgErro != ''}">
+						<div class="alert alert-danger">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msgErro}"></c:out>       
 				    	</div>
 			        </c:if>
 			        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
