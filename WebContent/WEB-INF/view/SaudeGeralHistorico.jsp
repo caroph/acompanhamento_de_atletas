@@ -56,7 +56,7 @@
 														<h4><c:out value='${dtFormatada}'/> - <c:out value='${hrFormatada}'/></h4>
 													</div>
 													<div class="col-md-1 column" style="padding-top: 8px;">
-														<a href="#" style="padding-left: 20px;"><i class="fa fa-pencil"></i></a>
+														<a data-toggle="modal" href="#novoAtendimento" onclick="passarDadosPront('${idAtleta}','${prontuario.idProntuario}','${prontuario.dtAtendimento}','${hrFormatada}','${prontuario.anotacao}')" style="padding-left: 20px;"><i class="fa fa-pencil"></i></a>
 														<a href="SaudeGeralController?action=excluirAtendimento&idProntuario=${prontuario.idProntuario}&idAtleta=${idAtleta}&nome=${nomeAtleta}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir o atendimento selecionado?"><i class="fa fa-trash-o"></i></a>
 													</div>
 												</div>

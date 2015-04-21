@@ -161,6 +161,19 @@ function novoAtendimento(idAtleta, nomeAtleta){
 	a.val(idAtleta);
 }
 
+function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento, anotacao){ 
+		var idAtletaM = document.getElementById("idAtletaAtend"); 
+		idAtletaM.value = idAtleta;
+		var idProntuarioM = document.getElementById("idProntuario");
+		idProntuarioM.value = idProntuario;
+		var dtAtendimentoM = document.getElementById("dtAtendimento"); 
+		dtAtendimentoM.value = dtAtendimento; //Formato yyyy-MM-dd
+		var hrAtendimentoM = document.getElementById("hrAtendimento"); 
+		hrAtendimentoM.value = hrAtendimento;
+		var anotacaoM = document.getElementById("anotacao"); 
+		anotacaoM.value = anotacao;
+		}; 
+
 function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 	//Valor que irá aparecer na label
 	var strNmDoc;

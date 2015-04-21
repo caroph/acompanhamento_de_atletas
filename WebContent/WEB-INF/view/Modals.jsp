@@ -68,6 +68,7 @@
 			<form method="POST" action="SaudeGeralController?action=novoAtendimento">
 				<label id="lblAtendimento" style="padding-bottom: 16px;" class="control-label col-sm-12"></label>
 				<input type="hidden" id="idAtletaAtend" name="idAtletaAtend"/>
+				<input type="hidden" id="idProntuario" name="idProntuario"/>
 					<div class="col-sm-6">
 						<label for="dtAtendimento" class=" control-label">Data:</label>
 						<input type="date" class="form-control" id="dtAtendimento" name="dtAtendimento" required/>

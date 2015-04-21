@@ -41,23 +41,23 @@
 				<li><a class="" href="SecretariaController?action=jspBuscaDiaTreino">Buscar</a></li>
 			</ul>
 		</li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle">
-				<i class="fa fa-sort-numeric-asc"></i>
-				<span class="hidden-xs">Relatórios</span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="">Atletas</a></li>
-				<li><a class="ajax-link" href="">Uniformes</a></li>
-				<li><a class="ajax-link" href="">Torneios</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="">
-				<i class="fa fa-envelope"></i>
-				<span class="hidden-xs">Enviar email</span>
-			</a>
-		</li>
+<!-- 		<li class="dropdown"> -->
+<!-- 			<a href="#" class="dropdown-toggle"> -->
+<!-- 				<i class="fa fa-sort-numeric-asc"></i> -->
+<!-- 				<span class="hidden-xs">Relatórios</span> -->
+<!-- 			</a> -->
+<!-- 			<ul class="dropdown-menu"> -->
+<!-- 				<li><a class="ajax-link" href="">Atletas</a></li> -->
+<!-- 				<li><a class="ajax-link" href="">Uniformes</a></li> -->
+<!-- 				<li><a class="ajax-link" href="">Torneios</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</li> -->
+<!-- 		<li> -->
+<!-- 			<a href=""> -->
+<!-- 				<i class="fa fa-envelope"></i> -->
+<!-- 				<span class="hidden-xs">Enviar email</span> -->
+<!-- 			</a> -->
+<!-- 		</li> -->
 	</ul>
 </div>
 		

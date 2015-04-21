@@ -116,45 +116,27 @@ public class ProntuarioDAO {
 		return retorno;
 	}
 
-//	public boolean excluirDiasTreinoAtleta(int idAtleta) throws SQLException {
-//		boolean retorno = false;
-//		int rows = 0;
-//		
-//		stmtScript = con.prepareStatement("DELETE FROM diatreinoatleta WHERE idAtleta = ?");
-//		
-//		stmtScript.setInt(1, idAtleta);
-//		
-//		rows = stmtScript.executeUpdate();
-//		
-//		if(rows>0){
-//			retorno = true;
-//		}	
-//		
-//		return retorno;
-//	}
-//
-//	public DiaTreino buscarDiaTreino(int semana, int idAtleta, Date hr) throws SQLException {
-//		stmtScript = con.prepareStatement("SELECT d.* FROM diatreino d "
-//				+ "JOIN diatreinoatleta a on d.idDiaTreino = a.idDiaTreino "
-//				+ "WHERE d.idDiaSemana = ?"
-//				+ " AND a.idAtleta = ?"
-//				+ " AND hrInicio < ?"
-//				+ " AND hrFim > ?");
-//		
-//		stmtScript.setInt(1, semana);
-//		stmtScript.setInt(2, idAtleta);
-//		stmtScript.setTime(3, new java.sql.Time(hr.getTime()));
-//		stmtScript.setTime(4, new java.sql.Time(hr.getTime()));
-//		
-//		ResultSet rs = stmtScript.executeQuery();
-//		
-//		DiaTreino dia = new DiaTreino();
-//		if(rs.next()){			
-//			dia.setIdDiaTreino(rs.getInt("idDiaTreino"));
-//			dia.setIdDiaDaSemana(rs.getInt("idDiaSemana"));
-//			dia.setHrInicio(rs.getTime("hrInicio"));
-//			dia.setHrFim(rs.getTime("hrFim"));
-//		}
-//		return dia;
-//	}
+	public boolean alterar(Prontuario prontuario) throws SQLException {
+		boolean retorno = false;
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE prontuario "
+				+ "SET dtAtendimento = ?, "
+				+ "	   hrAtendimento = ?, "
+				+ "	   anotacao = ? "
+				+ "WHERE idProntuario = ? ");
+		
+		stmtScript.setDate(1, new java.sql.Date(prontuario.getDtAtendimento().getTime()));
+		stmtScript.setTime(2, new java.sql.Time(prontuario.getHrAtendimento().getTime()));
+		stmtScript.setString(3, prontuario.getAnotacao());
+		stmtScript.setInt(4, prontuario.getIdProntuario());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			retorno = true;
+		}	
+		
+		return retorno;
+	}
 }

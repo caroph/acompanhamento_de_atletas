@@ -66,6 +66,7 @@ public class SaudeGeralController extends Controller {
 			boolean exception = false;
 			String msgSucesso = "";
 			String msg = "";
+			int idProntuario = 0;
 			
 			Atleta atleta = new Atleta();
 			Usuario usuario = new Usuario();
@@ -84,6 +85,7 @@ public class SaudeGeralController extends Controller {
             	
             	atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtletaAtend")));
     			usuario.setIdPessoa(usuarioLogado.getIdPessoa());
+    			idProntuario = Integer.parseInt(request.getParameter("idProntuario"));
             }catch(Exception ex){
             	msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
             	exception = true;
@@ -99,15 +101,27 @@ public class SaudeGeralController extends Controller {
     			prontuario.setAtleta(atleta);
     			prontuario.setUsuario(usuario);
     			
-    			//Valida dados prontuário
-				List<Object> listaValidacao = negocio.validaDados(prontuario);
-				boolean valida = (boolean) listaValidacao.get(0);
 				
 				try {
+					if( !"".equals(idProntuario) && !"0".equals(idProntuario)){
+						prontuario.setIdProntuario(idProntuario);
+					}
+					
+					//Valida dados prontuário
+					List<Object> listaValidacao = negocio.validaDados(prontuario);
+					boolean valida = (boolean) listaValidacao.get(0);
+					
 					if(valida){
-						//Inserindo prontuário
-						if(negocio.inserir(prontuario)){
-							msgSucesso = "Atendimento cadastrado com sucesso!";
+						if(prontuario.getIdProntuario() == 0){
+							//Inserir prontuário
+							if(negocio.inserir(prontuario)){
+								msgSucesso = "Atendimento cadastrado com sucesso!";
+							}
+						}else{
+							//Alterar
+							if(negocio.alterar(prontuario)){
+								msgSucesso = "Atendimento alterado com sucesso!";
+							}
 						}
 					}else{
 						msg = (String) listaValidacao.get(1);
