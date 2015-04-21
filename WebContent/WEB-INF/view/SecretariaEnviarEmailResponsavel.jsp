@@ -41,9 +41,6 @@
 											<div class="col-sm-12">
 												<label for="mensagem" class="control-label">Mensagem</label>
 												<textarea class="form-control" id="mensagemEmail" name="mensagemEmail"></textarea>
-												<script type="text/javascript">
-													CKEDITOR.replace( 'mensagemEmail' );
-												</script>
 											</div>
 										</div>										
 										<div class="form-group">
@@ -63,7 +60,6 @@
 	</div>
 
 	<%@include file="/layout/footer.jsp"%>
-
 
 </body>
 </html>

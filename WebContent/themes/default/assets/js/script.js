@@ -174,6 +174,9 @@ function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento, 
 		anotacaoM.value = anotacao;
 		}; 
 
+//Campo de mensagem
+CKEDITOR.replace( 'mensagemEmail' );
+		
 function abrirModalAnexarArquivo(idTpDocumento,idPessoa){
 	//Valor que irá aparecer na label
 	var strNmDoc;
