@@ -201,7 +201,7 @@ public class Controller extends HttpServlet {
 			boolean login) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher;
 		UsuarioNegocio usuarioNegocio;
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
 		
 		//Usuário inválido
@@ -243,7 +243,8 @@ public class Controller extends HttpServlet {
 				}
 			}
 		}
-		session.setAttribute("pagina", retorno);
+		if(request.getSession(false) != null)
+			session.setAttribute("pagina", retorno);
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 		requestDispatcher.forward(request, response);
 	}
