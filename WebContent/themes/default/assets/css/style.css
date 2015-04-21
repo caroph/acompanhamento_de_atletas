@@ -350,7 +350,7 @@ a.show-sidebar:hover {
   line-height: 28px;
 }
 .box-name:hover {
-  cursor: move;
+/*   cursor: move; */
 }
 .box-name > i {
   margin-right:5px;
@@ -1946,7 +1946,7 @@ td.beauty-hover {
   background: #f5f5f5;
 }
 .external-event:hover {
-  cursor: move;
+/*   cursor: move; */
   background: #6AA6D6;
   color:#f8f8f8;
 }

@@ -99,8 +99,8 @@ public class SecretariaController extends Controller {
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}
-			if(listaPendencias.isEmpty()){
-				request.setAttribute("msgAlerta", "Não foram encontradas pendências para os atletas");
+			if(listaPendencias == null){
+				request.setAttribute("msgAlerta", "Nenhum atleta possui pendência!");
 			}
 			
 			request.setAttribute("listaPendencias", listaPendencias);

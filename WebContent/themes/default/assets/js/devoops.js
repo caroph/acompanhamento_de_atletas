@@ -269,7 +269,7 @@ function WinMove(){
 		.draggable({
 			revert: true,
 			zIndex: 2000,
-			cursor: "crosshair",
+//			cursor: "crosshair",
 			handle: '.box-name',
 			opacity: 0.8
 		})

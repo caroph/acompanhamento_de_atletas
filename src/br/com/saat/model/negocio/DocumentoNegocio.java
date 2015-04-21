@@ -90,6 +90,18 @@ public class DocumentoNegocio {
 		try{
 			DocumentoDAO dao = new DocumentoDAO();
 			listaPendencias = dao.buscarPendencias();
+			
+			boolean listaVazia = false;
+			
+			for (HashMap<Integer, String> item : listaPendencias) {
+				if(item.size() == 0){
+					listaVazia = true;
+				}
+			}
+
+			if(listaVazia){
+				listaPendencias = null;
+			}
 		}catch(SQLException ex){
 			throw ex;
 		}catch(Exception ex){
