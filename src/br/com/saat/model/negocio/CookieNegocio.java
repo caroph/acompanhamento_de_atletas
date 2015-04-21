@@ -10,7 +10,7 @@ public class CookieNegocio {
 	public static Cookie addCookie(String name, String value, int maxAge, Usuario usuario) {
 		//Setar parâmetros do cookie
 	    Cookie cookie = new Cookie(name, value);
-	    cookie.setPath("/tcc-saat/");
+	    //cookie.setPath("/TCC-git/");
 	    cookie.setMaxAge(maxAge);
 	    
 	    //Se não for um cookie nulo, adicioná-lo ao banco de dados
