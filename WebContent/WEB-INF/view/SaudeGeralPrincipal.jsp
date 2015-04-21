@@ -21,6 +21,12 @@
 					            <c:out value="${msgAlerta}"></c:out>       
 				    	</div>
 			        </c:if>
+			        <c:if test="${ msgSucesso != null && msgSucesso != ''}">
+						<div class="alert alert-success">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					            <c:out value="${msgSucesso}"></c:out>       
+				    	</div>
+			        </c:if>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="box">
