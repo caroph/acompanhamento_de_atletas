@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.model.ConnectionFactory;

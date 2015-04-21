@@ -183,7 +183,6 @@ public class SecretariaController extends Controller {
 					if(!exception){
 						Endereco endereco = new Endereco();
 						AtletaNegocio atletaNegocio = new AtletaNegocio();
-						EnderecoNegocio endNegocio = new EnderecoNegocio();
 						
 						//Dados do Atleta
 						idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
