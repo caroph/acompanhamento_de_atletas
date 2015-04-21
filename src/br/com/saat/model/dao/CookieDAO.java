@@ -29,7 +29,9 @@ public class CookieDAO {
 		ResultSet rs = stmtScript.executeQuery();
 		
 		if(rs.next()){
-			stmtScript = con.prepareStatement("UPDATE cookie SET valueCookie = ? WHERE idCookie = ?");
+			stmtScript = con.prepareStatement("UPDATE cookie "
+					+ "SET valueCookie = ?, dtaGeracao = now() "
+					+ "WHERE idCookie = ?");
 			stmtScript.setString(1, uuii);
 			stmtScript.setInt(2, rs.getInt("idCookie"));
 		}else{

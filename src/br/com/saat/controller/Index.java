@@ -50,7 +50,7 @@ public class Index extends Controller {
 				usuario = null;
 				request.setAttribute("msg", ex.getMessage());
 			}
-			super.doPost(request, response, usuario, true, false);
+			super.doPost(request, response, usuario, true, true);
 		} else {
 			rd = getServletContext().getRequestDispatcher(
 					String.format("%s/Index.jsp", Constants.VIEW));

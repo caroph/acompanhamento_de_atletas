@@ -190,6 +190,15 @@ public class Controller extends HttpServlet {
 			}else{
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}else if("voltaPaginaInicial".equals(action)){			
+			Usuario usuario = (Usuario)session.getAttribute("usuarioLogado");
+			
+			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+			
+			retorno = usuarioNegocio.retornoLogin(usuario);
+			
+			RequestDispatcher rs = getServletContext().getRequestDispatcher(retorno);
+            rs.forward(request, response);		
 		}
 		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);

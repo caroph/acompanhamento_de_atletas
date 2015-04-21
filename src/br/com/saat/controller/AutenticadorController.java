@@ -74,15 +74,6 @@ public class AutenticadorController extends Controller {
             RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
             rs.forward(request, response);
             
-		}else if("voltaPaginaInicial".equals(action)){			
-			Usuario usuario = (Usuario)session.getAttribute("usuarioLogado");
-			
-			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-			
-			String retorno = usuarioNegocio.retornoLogin(usuario);
-			
-			RequestDispatcher rs = getServletContext().getRequestDispatcher(retorno);
-            rs.forward(request, response);		
 		}else{
 			//Esqueci minha senha
 			String msg;

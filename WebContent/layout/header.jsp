@@ -3,7 +3,7 @@
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="Autenticador?action=voltaPaginaInicial">SAAT</a>
+				<a href="Controller?action=voltaPaginaInicial">SAAT</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
