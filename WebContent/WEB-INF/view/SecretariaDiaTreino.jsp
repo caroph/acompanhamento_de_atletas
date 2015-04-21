@@ -13,18 +13,7 @@
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
-					<c:if test="${ msg != null && msg != ''}">
-						<div class="alert alert-danger">
-							<a href="#" class="close" data-dismiss="alert">&times;</a>
-							<c:out value="${msg}"></c:out>
-						</div>
-					</c:if>
-					<c:if test="${ msgSucesso != null && msgSucesso != ''}">
-						<div class="alert alert-success">
-							<a href="#" class="close" data-dismiss="alert">&times;</a>
-							<c:out value="${msgSucesso}"></c:out>
-						</div>
-					</c:if>
+					<%@include file="Mensagem.jsp"%>
 					<div id="calendar"></div>
 					<div id="event_edit_container">
 						<form>

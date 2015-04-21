@@ -14,10 +14,10 @@
 								<h3 class="page-header">Sistema de Acompanhamento de Atletas de Tênis</h3>
 							</div>
 							<form role="form" method="post" action="Autenticador?action=login">
-								<c:if test="${ msg != null }">
+								<c:if test="${ msgErro != null }">
 									<div class="alert alert-danger">
 								        <a href="#" class="close" data-dismiss="alert">&times;</a>
-								            <c:out value="${msg}"></c:out>       
+								            <c:out value="${msgErro}"></c:out>       
 							    	</div>
 						        </c:if>
 								<div class="form-group">

@@ -56,7 +56,7 @@ public class AutenticadorController extends Controller {
 				//Chamar a classe pai para verificar o usuário autenticado
 	        	super.doPost(request, response, usuario, lembrar, true);
 			} catch (Exception e) {
-				request.setAttribute("msg", e.getMessage());  
+				request.setAttribute("msgErro", e.getMessage());  
 				RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
 	            rs.forward(request, response);
 			}
@@ -98,7 +98,7 @@ public class AutenticadorController extends Controller {
 			}else{
 				msg = "Por favor, informe o seu email corretamente!";
 			}
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
             rs.forward(request, response);
 		}

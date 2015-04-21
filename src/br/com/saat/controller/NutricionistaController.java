@@ -60,7 +60,7 @@ public class NutricionistaController extends Controller {
 			try{
 				lista = negocio.buscarAtletas(1);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaAtletas", lista);

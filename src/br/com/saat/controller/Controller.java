@@ -62,7 +62,7 @@ public class Controller extends HttpServlet {
 			//Destroir sessão
 			session.invalidate();
 			//Setar mensagem de erro
-			request.setAttribute("msg", "Você não possui permissão de acesso ao sistema!"); 
+			request.setAttribute("msgErro", "Você não possui permissão de acesso ao sistema!"); 
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
 			
 		}else if("alterarSenhaUsuario".equals(action)){
@@ -83,8 +83,8 @@ public class Controller extends HttpServlet {
 			} catch (Exception e) {
 				msg = e.getMessage();
 			} 
-			request.setAttribute("msg", msg);
-			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("msgErroSenha", msg);
+			request.setAttribute("msgSucessoSenha", msgSucesso);
 			//retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
 			retorno = session.getAttribute("pagina").toString();
 						
@@ -115,7 +115,7 @@ public class Controller extends HttpServlet {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
-		    request.setAttribute("msg", msg);
+		    request.setAttribute("msgErro", msg);
 			
 		}else if("RegistrarPresenca".equals(action)){
 			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
@@ -181,7 +181,7 @@ public class Controller extends HttpServlet {
 				}
 				
 				request.setAttribute("listaAtletas", lista);
-				request.setAttribute("msg", msg);
+				request.setAttribute("msgErro", msg);
 				request.setAttribute("msgSucesso", msgSucesso);
 				if(perfil == Perfis.Nutricionista.getValor())
 					retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
@@ -210,9 +210,9 @@ public class Controller extends HttpServlet {
 			session.invalidate();
 			//Setar mensagem de erro
 			if(login)
-				request.setAttribute("msg", "Email ou senha inválidos!"); 
+				request.setAttribute("msgErro", "Email ou senha inválidos!"); 
 			else
-				request.setAttribute("msg", "Você não possui permissão de acesso ao sistema!"); 
+				request.setAttribute("msgErro", "Você não possui permissão de acesso ao sistema!"); 
 		//Usuário válido
 		}else{
 			//Pegar página para redirecionamento

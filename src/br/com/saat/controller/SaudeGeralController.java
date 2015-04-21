@@ -54,7 +54,7 @@ public class SaudeGeralController extends Controller {
 			try{
 				lista = negocio.buscarAtletas(1);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaAtletas", lista);
@@ -136,11 +136,11 @@ public class SaudeGeralController extends Controller {
 				try{
 					lista = atletaNegocio.buscarAtletas(1);
 				}catch(Exception ex){
-					request.setAttribute("msg", ex.getMessage());
+					request.setAttribute("msgErro", ex.getMessage());
 				}
 				
 				if("".equals(msgSucesso)){
-					request.setAttribute("msg", msg);
+					request.setAttribute("msgErro", msg);
 				}else{
 					request.setAttribute("msgSucesso", msgSucesso);
 				}

@@ -99,6 +99,9 @@ public class SecretariaController extends Controller {
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}
+			if(listaPendencias.isEmpty()){
+				request.setAttribute("msgAlerta", "Não foram encontradas pendências para os atletas");
+			}
 			
 			request.setAttribute("listaPendencias", listaPendencias);
 			request.setAttribute("nrPendencias", nrPendencias);
@@ -258,7 +261,7 @@ public class SecretariaController extends Controller {
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
 						
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
@@ -416,7 +419,7 @@ public class SecretariaController extends Controller {
 			}
 
 			if("".equals(msgSucesso)){
-				request.setAttribute("msg", msg);
+				request.setAttribute("msgErro", msg);
 				request.setAttribute("atleta", atleta);
 				request.setAttribute("listaDiasTreinos", diasTreino);
 			}else{
@@ -467,7 +470,7 @@ public class SecretariaController extends Controller {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
-		    request.setAttribute("msg", msg);
+		    request.setAttribute("msgErro", msg);
 		    
 		}else if("vincularResponsavel".equals(action)){
 			String msg = "";
@@ -505,7 +508,7 @@ public class SecretariaController extends Controller {
 				}
 				atleta = negocio.buscarAtleta(idAtleta);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			if(!"1".equals(pagina)){
@@ -556,7 +559,7 @@ public class SecretariaController extends Controller {
 				servletRetorno = "/SecretariaController?action=jspBuscaAtleta";
 			}
 			
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			
 		}else if("jspBuscaAtleta".equals(action)){
@@ -566,7 +569,7 @@ public class SecretariaController extends Controller {
 			try{
 				lista = negocio.buscarAtletas(2);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaAtletas", lista);
@@ -582,7 +585,7 @@ public class SecretariaController extends Controller {
 			try{
 				atleta = negocio.buscarAtleta(idAtleta);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
@@ -609,7 +612,7 @@ public class SecretariaController extends Controller {
 				
 				request.setAttribute("listaDiasTreinos", listaDiaTreino);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaEquipes", listaEquipes);
@@ -639,7 +642,7 @@ public class SecretariaController extends Controller {
             }			
 		
 			request.setAttribute("listaAtletas", lista);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspBuscaAtleta";
@@ -665,7 +668,7 @@ public class SecretariaController extends Controller {
             }			
 			
 			request.setAttribute("listaAtletas", lista);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaAtleta.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspBuscaAtleta";
@@ -744,7 +747,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaSemana", listaSemana);
 			
 			if(("").equals(msgSucesso)){
-				request.setAttribute("msg", msg);
+				request.setAttribute("msgErro", msg);
 			}else{
 				request.setAttribute("msgSucesso", msgSucesso);
 			}
@@ -758,7 +761,7 @@ public class SecretariaController extends Controller {
 			try{
 				lista = negocio.buscaDiasTreino();
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaDiasTreinos", lista);
@@ -784,7 +787,7 @@ public class SecretariaController extends Controller {
             }			
 			
 			request.setAttribute("listaDiasTreinos", lista);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaDiaTreino.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspBuscaDiaTreino";
@@ -856,7 +859,7 @@ public class SecretariaController extends Controller {
 			List<Perfis> lista = perfisNegocio.listaPerfis();
 			
 			request.setAttribute("listaPerfis", lista);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			if("".equals(msgSucesso)){
 				request.setAttribute("usuario", usuario);
@@ -870,7 +873,7 @@ public class SecretariaController extends Controller {
 			try{
 				lista = negocio.buscarUsuarios();
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			request.setAttribute("listaUsuarios", lista);
@@ -886,7 +889,7 @@ public class SecretariaController extends Controller {
 			try{
 				usuario = negocio.buscarUsuario(idUsuario);
 			}catch(Exception ex){
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
 			PerfisNegocio perfisNegocio = new PerfisNegocio();
@@ -918,7 +921,7 @@ public class SecretariaController extends Controller {
             }			
 			
 			request.setAttribute("listaUsuarios", lista);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaBuscaUsuario.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspBuscaUsuario";
@@ -1026,7 +1029,7 @@ public class SecretariaController extends Controller {
 			}
 			
 			request.setAttribute("msgSucesso", msgSucesso);	
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 			
 		}else if("jspBuscaResponsavel".equals(action)){
@@ -1040,7 +1043,7 @@ public class SecretariaController extends Controller {
 				msg = ex.getMessage();
 			}
 			
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("listaResponsaveis", listaResponsaveis);
 			retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspBuscaResponsavel";
@@ -1067,7 +1070,7 @@ public class SecretariaController extends Controller {
 				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			}
 			
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("listaResponsaveis", listaResponsaveis);
 			retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
@@ -1091,7 +1094,7 @@ public class SecretariaController extends Controller {
 				msg = ex.getMessage();
 			}
 			
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=editarResponsavel&idResponsavel=" + request.getParameter("idResponsavel");
 			
@@ -1101,7 +1104,7 @@ public class SecretariaController extends Controller {
 			String email = request.getParameter("emailResponsavel");
 			
 			if(email.equals("") || email == null){
-				request.setAttribute("msg", msg);
+				request.setAttribute("msgErro", msg);
 				retorno = String.format("%s/SecretariaBuscaResponsavel.jsp", Constants.VIEW);
 			}else{
 				request.setAttribute("emailResponsavel", email);
@@ -1133,7 +1136,7 @@ public class SecretariaController extends Controller {
 			}
 			request.setAttribute("emailResponsavel", destinatario);
 			request.setAttribute("msgSucesso", msgSucesso);
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp", Constants.VIEW);
 			
 		}else if ("jspAnexarDocumentosAtleta".equals(action)){
@@ -1219,7 +1222,7 @@ public class SecretariaController extends Controller {
 			}			
 			
 			request.setAttribute("idPessoa", documento.getIdPessoa());
-			request.setAttribute("msg", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			listarDocumentosAtleta(request);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp", Constants.VIEW);
@@ -1236,7 +1239,7 @@ public class SecretariaController extends Controller {
 	}
 
 	private void listarDocumentosAtleta(HttpServletRequest request) {
-		String msg = request.getParameter("msg");
+		String msg = request.getParameter("msgErro");
 		int idPessoa = 0;
 		
 		Documento termoDeCompromisso = null;
@@ -1300,7 +1303,7 @@ public class SecretariaController extends Controller {
 		request.setAttribute("copiaRG", copiaRG);
 		request.setAttribute("copiaCPF", copiaCPF);
 		request.setAttribute("fotoAtleta", fotoAtleta);
-		request.setAttribute("msg", msg);		
+		request.setAttribute("msgErro", msg);		
 	}
 
 	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {
