@@ -6,15 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
@@ -23,34 +20,22 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.ProntuarioNegocio;
 
-/**
- * Servlet implementation class SaudeGeralController
- */
 @WebServlet("/SaudeGeralController")
 public class SaudeGeralController extends Controller {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public SaudeGeralController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
+		String servletRetorno = "/SaudeGeralController";
 		
 		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -74,6 +59,7 @@ public class SaudeGeralController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/SaudeGeralBuscaAtleta.jsp", Constants.VIEW);
+			servletRetorno = "/SaudeGeralController?action=jspBuscarAtletas";
 			
 		}else if ("novoAtendimento".equals(action)){
 			//inserir Novo Atendimento
@@ -147,6 +133,7 @@ public class SaudeGeralController extends Controller {
 				
 				request.setAttribute("listaAtletas", lista);
 				retorno = String.format("%s/SaudeGeralBuscaAtleta.jsp", Constants.VIEW);
+				servletRetorno = "/SaudeGeralController?action=jspBuscarAtletas";
             }
 		}else if ("jspHistorico".equals(action)){
 			boolean exception = false;
@@ -180,6 +167,8 @@ public class SaudeGeralController extends Controller {
 			}
 			
 			retorno = String.format("%s/SaudeGeralHistorico.jsp", Constants.VIEW);
+			servletRetorno = "/SaudeGeralController?action=jspHistorico&idAtleta=" + 
+					request.getParameter("idAtleta")+ "&nome=" + nomeAtleta;
 			
 		}else if("excluirAtendimento".equals(action)){
 			boolean exception = false;
@@ -223,6 +212,7 @@ public class SaudeGeralController extends Controller {
 	            }
 			}
 			retorno = String.format("%s/SaudeGeralHistorico.jsp", Constants.VIEW);
+			servletRetorno = "/SaudeGeralController?action=jspHistorico";
 			
 		}else{
 			//Página Principal
@@ -245,6 +235,7 @@ public class SaudeGeralController extends Controller {
 		}
 		
 		if(retorno != null){
+			session.setAttribute("pagina", servletRetorno);
 			rd = getServletContext().getRequestDispatcher(retorno);
 			rd.forward(request, response);
 		}

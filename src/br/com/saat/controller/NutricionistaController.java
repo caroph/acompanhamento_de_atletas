@@ -41,6 +41,7 @@ public class NutricionistaController extends Controller {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
+		String servletRetorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 		
 		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -64,11 +65,14 @@ public class NutricionistaController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
+			servletRetorno = retorno;
 		}
 		
 		if(retorno != null){
+			session.setAttribute("pagina", servletRetorno);
 			rd = getServletContext().getRequestDispatcher(retorno);
 			rd.forward(request, response);
 		}

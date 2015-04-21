@@ -86,7 +86,7 @@ a.show-sidebar:hover {
   -moz-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
-    padding-top: 15px;
+  padding-top: 15px;
 }
 .full-content {
   overflow: hidden;

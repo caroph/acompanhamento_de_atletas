@@ -6,7 +6,7 @@
 			<h4 class="modal-title" id="myModalLabel">Alterar Senha</h4>
 			</div>
 			<div class="modal-body">
-				<form role="form" method="post" action="SecretariaController?action=alterarSenhaUsuario">
+				<form role="form" method="post" action="Controller?action=alterarSenhaUsuario">
 					<div class="form-group">
 						<div>
 							<label for="senhaAtual" class="control-label">Senha atual:</label> 

@@ -53,7 +53,9 @@ public class Controller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		RequestDispatcher requestDispatcher;
 		HttpSession session = request.getSession();
-		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
+		String retorno = null;
+		
+		String action = request.getParameter("action");
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || usuarioLogado.getIdPessoa() == 0){
@@ -61,10 +63,32 @@ public class Controller extends HttpServlet {
 			session.invalidate();
 			//Setar mensagem de erro
 			request.setAttribute("msg", "Você não possui permissão de acesso ao sistema!"); 
-			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
-			requestDispatcher.forward(request, response);
+			retorno = String.format("%s/Index.jsp", Constants.VIEW);
 			
-		}else if("buscarAtletaDetalhes".equals(request.getParameter("action"))){
+		}else if("alterarSenhaUsuario".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			String senhaAtual = request.getParameter("senhaAtual");
+			String novaSenha = request.getParameter("novaSenha");
+			String confirmacaoSenha = request.getParameter("confirmacaoSenha");
+			
+			UsuarioNegocio negocio = new UsuarioNegocio();
+			try {
+				msg = negocio.verificarSenha(senhaAtual, novaSenha, confirmacaoSenha, usuarioLogado.getIdPessoa());
+				if(msg == null || "".equals(msg)){
+					if(negocio.alterarSenha(usuarioLogado, novaSenha, senhaAtual)){
+						msgSucesso = "Senha alterada com sucesso!";
+					}
+				}
+			} catch (Exception e) {
+				msg = e.getMessage();
+			} 
+			request.setAttribute("msg", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			//retorno = String.format("%s/SecretariaPrincipal.jsp", Constants.VIEW);
+			retorno = session.getAttribute("pagina").toString();
+						
+		}else if("buscarAtletaDetalhes".equals(action)){
 			String msg = "";
 			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
 			Atleta atleta = new Atleta();
@@ -93,7 +117,7 @@ public class Controller extends HttpServlet {
 		    response.getWriter().write(json);
 		    request.setAttribute("msg", msg);
 			
-		}else if("RegistrarPresenca".equals(request.getParameter("action"))){
+		}else if("RegistrarPresenca".equals(action)){
 			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 			int perfil = usuarioLogado.getPerfil();
 			if(perfil == Perfis.Nutricionista.getValor() || perfil == Perfis.Fisioterapeuta.getValor() ||
@@ -166,6 +190,8 @@ public class Controller extends HttpServlet {
 			}else{
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}
+		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 			requestDispatcher.forward(request, response);
 		}
@@ -211,12 +237,13 @@ public class Controller extends HttpServlet {
 	        	}
 				
 				//Cookie válido
-				if(novoCookie != null){
+				if(novoCookie.getValue() != null){
 					//Adicionar cookie à navegação
 					response.addCookie(novoCookie);
 				}
 			}
 		}
+		session.setAttribute("pagina", retorno);
 		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 		requestDispatcher.forward(request, response);
 	}
