@@ -33,7 +33,7 @@
 										<input type="hidden" name="idAtleta" value="${atleta.idPessoa}"/>
 										<input type="hidden" name="idEndereco" value="${atleta.endereco.idEndereco}"/>
 										<div class="form-group">
-											<h3 class="text-center">Dados Técnicos</h3>
+											<h4 class="text-center">Dados Técnicos</h4>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-3">
@@ -83,7 +83,7 @@
 										</div>
 										<hr/>
 										<div class="form-group">
-											<h3 class="text-center">Dados Pessoais</h3>
+											<h4 class="text-center">Dados Pessoais</h4>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-4">
@@ -173,7 +173,7 @@
 										<hr/>
 										<!-- EMERGï¿½NCIA -->
 										<div class="form-group">
-											<h3 class="text-center">Dados de Emergência</h3>
+											<h4 class="text-center">Dados de Emergência</h4>
 										</div>
 										<br/>
 										<div class="form-group">

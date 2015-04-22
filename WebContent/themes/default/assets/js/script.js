@@ -232,28 +232,28 @@ function abrirModalAnexarArquivo(idTpDocumento, idPessoa) {
 
 	switch (idTpDocumento) {
 	case 1:
-		strNmDoc = "Termo de compromisso do manual do atleta";
+		strNmDoc = "Termo de compromisso do manual do atleta:";
 		break;
 	case 2:
-		strNmDoc = "Declara\u00e7\u00e3o m\u00e9dica";
+		strNmDoc = "Declara\u00e7\u00e3o m\u00e9dica:";
 		break;
 	case 3:
-		strNmDoc = "Autoriza\u00e7\u00e3o de viagem e hospedagem";
+		strNmDoc = "Autoriza\u00e7\u00e3o de viagem e hospedagem:";
 		break;
 	case 4:
-		strNmDoc = "Autoriza\u00e7\u00e3o de imagem";
+		strNmDoc = "Autoriza\u00e7\u00e3o de imagem:";
 		break;
 	case 5:
-		strNmDoc = "C\u00f3pia do RG";
+		strNmDoc = "C\u00f3pia do RG:";
 		break;
 	case 6:
-		strNmDoc = "C\u00f3pia do CPF";
+		strNmDoc = "C\u00f3pia do CPF:";
 		break;
 	case 7:
-		strNmDoc = "Foto do Atleta";
+		strNmDoc = "Foto do atleta:";
 		break;
 	default:
-		strNmDoc = "Valor Inv\u00e1lido!";
+		strNmDoc = "Valor inv\u00e1lido!";
 		break;
 	}
 
@@ -265,24 +265,22 @@ function abrirModalAnexarArquivo(idTpDocumento, idPessoa) {
 			+ idTpDocumento
 			+ "'/>"
 			+ "<div class='form-group'>"
-			+ "<label for='nmArquivo' class='col-sm-12 text-left'>"
+			+ "<div class='col-sm-8'>"
+			+ "<label for='nmArquivo' class='text-left'>"
 			+ strNmDoc
 			+ "</label>"
-			+ "<div class='col-sm-12'>"
 			+ "<input type='file' class='form-control text-left' id='arquivo' name='arquivo' required/>"
 			+ "</div>"
-			+ "</div>"
-			+ "<div class='form-group'>"
-			+ "<label for='dtValidadeArquivo' class='col-sm-12 text-left'>Data de validade do documento</label>"
-			+ "<div class='col-sm-5'>"
-			+ "<input type='date' class='form-control' id='dtValidade' name='dtValidade'/>"
-			+ "</div>"
-			+ "</div>"
-			+ "<div class='form-group'>"
-			+ "<div class='col-sm-8'></div>"
 			+ "<div class='col-sm-4'>"
-			+ "<input type='submit' class='form-control btn btn-primary' id='anexarArquivo' name='anexarArquivo' value='Anexar Arquivo'/>"
-			+ "</div>" + "</div>" + "</form>";
+			+ "<label for='dtValidadeArquivo' class='text-left'>Data de validade:</label>"
+			+ "<input type='date' class='form-control data' id='dtValidade' name='dtValidade'/>"
+			+ "</div>" 
+			+ "</div>"
+			+ "<div class='modal-footer'>"
+			+ "<button type='submit' class='btn btn-primary' id='anexarArquivo'>Anexar Arquivo</button>"
+			+ "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Cancelar</button>"
+			+ "</div>"
+			+ "</form>";
 
 	$('.body-anexarArquivo').html(html);
 }

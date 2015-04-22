@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Usuários</span>
+										<i class="fa  fa-user"></i> <span>Usuários</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i></a>

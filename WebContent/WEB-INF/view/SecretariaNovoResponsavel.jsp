@@ -16,7 +16,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Novo Responsável</span>
+										<i class="fa  fa-plus-circle"></i> <span>Novo Responsável</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -32,7 +32,6 @@
 										<input type="hidden" name="idEnderecoComercial" value='${enderecoComercial.idEndereco}'>
    										<div class="form-group">
 											<h4 class="text-center">Dados Pessoais</h4>
-											<hr/>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-8">
@@ -58,9 +57,9 @@
 												<input type="text" class="form-control phone" id="celular" name="celular" value='${responsavel.celular}' required/>
 											</div>
 										</div>
+										<hr/>						
 										<div class="form-group">
 											<h4 class="text-center">Endereço Residencial</h4>
-											<hr/>						
 										</div>			
 										<div class="form-group">
 											<div class="col-sm-8">
@@ -90,9 +89,9 @@
 												<select class="form-control" name="cidade" id="cidade" value="${enderecoResidencial.cidade}" required></select>
 											</div>
 										</div>
+										<hr/>	
 										<div class="form-group">
 											<h4 class="text-center">Endereço Comercial</h4>
-											<hr/>	
 										</div>
 										<div class="form-group">
 											<div class="col-sm-8">
@@ -124,6 +123,8 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
+												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
+												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
 												 <button type="submit" class="btn btn-primary">Salvar</button>
 											</div>
 										</div>

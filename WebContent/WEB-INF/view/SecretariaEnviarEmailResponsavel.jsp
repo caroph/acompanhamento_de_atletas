@@ -18,7 +18,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Enviar Email</span>
+										<i class="fa  fa-envelope"></i> <span>Enviar Email</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>

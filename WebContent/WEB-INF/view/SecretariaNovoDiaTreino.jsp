@@ -17,7 +17,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i>
+										<i class="fa  fa-plus-circle"></i>
 										<span>Dias de Treino</span>
 									</div>
 									<div class="box-icons">

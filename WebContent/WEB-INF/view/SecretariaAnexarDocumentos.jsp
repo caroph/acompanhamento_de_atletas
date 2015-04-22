@@ -38,17 +38,17 @@
 												<c:when test="${fotoAtleta != null}">
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${fotoAtleta.src}')">Foto do atleta</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td class="text-left">
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(7,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(7,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarFoto">Foto do Atleta</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td class="text-left">
+														<td><a data-toggle="modal" href="#visualizarFoto">Foto do atleta</a></td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(7,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -58,17 +58,17 @@
 												<c:when test="${termoDeCompromisso != null}">
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${termoDeCompromisso.src}')">Termo de compromisso do manual do atleta</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td>
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td><a data-toggle="modal" href="#">Termo de Compromisso do Manual do Atleta</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td><a data-toggle="modal" href="#">Termo de compromisso do manual do atleta</a></td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -78,17 +78,17 @@
 												<c:when test="${declaracaoMedica != null}">
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${declaracaoMedica.src}')">Declaração médica</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td>
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(2,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(2,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td><a data-toggle="modal" href="#">Declaração Médica</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td><a data-toggle="modal" href="#">Declaração médica</a></td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(2,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -98,17 +98,17 @@
 												<c:when test="${autorizacaoViagem != null}">
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoViagem.src}')">Autorização de viagem e hospedagem</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td>
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(3,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(3,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td><a data-toggle="modal" href="#">Autorização de Viagem e Hospedagem</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td><a data-toggle="modal" href="#">Autorização de viagem e hospedagem</a></td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(3,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -119,18 +119,18 @@
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoImagem.src}')">Autorização de imagem</a></td>
 														<td class="text-center"><i
-															class="fa fa-check-circle-o"></i></td>
+															class="fa fa-check-circle-o icon-ok"></i></td>
 														<td><a class="btn btn-primary" data-toggle="modal"
 															data-target="#anexarArquivo" id="btnAnexo"
-															onclick="abrirModalAnexarArquivo(4,${idPessoa})">Alterar</a>
+															onclick="abrirModalAnexarArquivo(4,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td><a data-toggle="modal" href="#">Autorização de Imagem</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td><a data-toggle="modal" href="#">Autorização de imagem</a></td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(4,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -140,17 +140,17 @@
 												<c:when test="${copiaRG != null}">
 													<tr>			
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${copiaRG.src}')">Cópia do RG</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td>
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(5,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(5,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
 														<td><a data-toggle="modal" href="#">Cópia do RG</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(5,${idPessoa})">Anexar</a>
 														</td>
 													</tr>
@@ -160,17 +160,17 @@
 												<c:when test="${copiaCPF != null}">
 													<tr>
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${copiaCPF.src}')">Cópia do CPF</a></td>
-														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
-														<td>
-															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(6,${idPessoa})">Alterar</a>
+														<td class="text-center"><abbr title="Anexado"><i class="fa fa-check-circle-o icon-ok"></i></abbr></td>
+														<td class="text-center">
+															<a class="btn btn-primary editAnexo" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(6,${idPessoa})">Editar</a>
 														</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<tr>
 														<td><a data-toggle="modal" href="#">Cópia do CPF</a></td>
-														<td class="text-center"><i class="fa fa-times-circle-o"></i></td>
-														<td>
+														<td class="text-center"><abbr title="Anexo Pendente"><i class="fa fa-times-circle-o icon-nok"></i></abbr></td>
+														<td class="text-center">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(6,${idPessoa})">Anexar</a>
 														</td>
 													</tr>	
@@ -198,16 +198,13 @@
 				</div>
 				<div class="modal-body body-anexarArquivo">
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
-				</div>
 			</div>
 		</div>
 	</div>	
 	
 	<div class="modal fade" id="visualizarDoc" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
 	class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -216,7 +213,7 @@
 				<div class="modal-body body-imgVisualizarDoc">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					<button type="button" class="btn" data-dismiss="modal" id="fechar">Fechar</button>
 				</div>
 			</div>
 		</div>
