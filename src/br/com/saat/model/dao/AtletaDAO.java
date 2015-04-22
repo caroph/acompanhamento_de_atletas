@@ -401,5 +401,63 @@ public class AtletaDAO {
 		}else
 			return "";
 	}
+
+	public String verificarCodigos(int idPessoa, String nrMatricula,
+			String nrCadCBT, String nrCadFPT) throws SQLException {
+		if(idPessoa == 0){
+			stmtScript = con.prepareStatement("SELECT nrMatricula FROM atleta "
+					+ "WHERE nrMatricula = ?");
+			stmtScript.setString(1, nrMatricula);
+			
+			ResultSet rsNrMatricula = stmtScript.executeQuery();
+			if(rsNrMatricula.next())
+				return "Já existe um atleta com o mesmo numero de matrícula registrado no sistema!";			
+			
+			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
+					+ "WHERE nrCadCBT = ?");			
+			stmtScript.setString(1, nrCadCBT);	
+			
+			ResultSet rsCBT = stmtScript.executeQuery();
+			if(rsCBT.next())
+				return "Já existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
+			
+			stmtScript = con.prepareStatement("SELECT nrCadFPT FROM atleta "
+					+ "WHERE nrCadFPT = ?");
+			stmtScript.setString(1, nrCadFPT);
+			
+			ResultSet rsFPT = stmtScript.executeQuery();
+			if(rsFPT.next())
+				return "Já existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
+		}
+		else{
+			stmtScript = con.prepareStatement("SELECT nrMatricula FROM atleta "
+					+ "WHERE nrMatricula = ? AND idAtleta != ?");
+			stmtScript.setString(1, nrMatricula);
+			stmtScript.setInt(2, idPessoa);
+			
+			ResultSet rsNrMatricula = stmtScript.executeQuery();
+			if(rsNrMatricula.next())
+				return "Já existe um atleta com o mesmo numero de matrícula registrado no sistema!";			
+			
+			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
+					+ "WHERE nrCadCBT = ? AND idAtleta != ?");			
+			stmtScript.setString(1, nrCadCBT);	
+			stmtScript.setInt(2, idPessoa);
+			
+			ResultSet rsCBT = stmtScript.executeQuery();
+			if(rsCBT.next())
+				return "Já existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
+			
+			stmtScript = con.prepareStatement("SELECT nrCadFPT FROM atleta "
+					+ "WHERE nrCadFPT = ? AND idAtleta != ?");
+			stmtScript.setString(1, nrCadFPT);
+			stmtScript.setInt(2, idPessoa);
+			
+			ResultSet rsFPT = stmtScript.executeQuery();
+			if(rsFPT.next())
+				return "Já existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
+		}	
+		return "";
+	}
 	
 }

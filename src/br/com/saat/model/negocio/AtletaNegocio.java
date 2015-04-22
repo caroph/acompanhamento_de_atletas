@@ -12,38 +12,49 @@ public class AtletaNegocio {
 
 	public AtletaNegocio(){}
 
-	public List<Object> validaDados(Atleta atleta) {
+	public List<Object> validaDados(Atleta atleta) throws Exception {
 		List<Object> lista = new ArrayList<Object>();
+		AtletaDAO dao = new AtletaDAO();
 		
-		if (atleta.getIdTpEquipe() == 0) {
-			lista.add(false);
-			lista.add("Selecione corretamente o campo 'Equipe' !");
-		}else if ("".equals(atleta.getNrMatricula()) || atleta.getNrMatricula() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Nº Matrícula Clube Curitibano' !");
-		} else if ("".equals(atleta.getNome()) || atleta.getNome() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Nome' !");
-		} else if ("".equals(atleta.getDtNascimento()) || atleta.getDtNascimento() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Data de Nascimento' !");
-		} else if ("".equals(atleta.getRG()) || atleta.getRG()== null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'RG' !");
-		} else if ("".equals(atleta.getCPF()) || atleta.getCPF() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'CPF' !");
-		} else if ("".equals(atleta.getNmContatoEmergencia()) || atleta.getNmContatoEmergencia() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Nome Contato Emergência' !");
-		} else if ("".equals(atleta.getTelContatoEmergencia()) || atleta.getTelContatoEmergencia() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Telefone Contato de Emergência' !");
-		} else if ("".equals(atleta.getDtValidade()) || atleta.getDtValidade() == null) {
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Data de Validade' !");
-		}else {
-			lista.add(true);
+		try{
+			String codigoExistente = dao.verificarCodigos(atleta.getIdPessoa(), atleta.getNrMatricula(),
+					atleta.getNrCadCBT(), atleta.getNrCadFPT());
+			
+			if (atleta.getIdTpEquipe() == 0) {
+				lista.add(false);
+				lista.add("Selecione corretamente o campo 'Equipe' !");
+			}else if ("".equals(atleta.getNrMatricula()) || atleta.getNrMatricula() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Nº Matrícula Clube Curitibano' !");
+			} else if ("".equals(atleta.getNome()) || atleta.getNome() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Nome' !");
+			} else if ("".equals(atleta.getDtNascimento()) || atleta.getDtNascimento() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Data de Nascimento' !");
+			} else if ("".equals(atleta.getRG()) || atleta.getRG()== null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'RG' !");
+			} else if ("".equals(atleta.getCPF()) || atleta.getCPF() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'CPF' !");
+			} else if ("".equals(atleta.getNmContatoEmergencia()) || atleta.getNmContatoEmergencia() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Nome Contato Emergência' !");
+			} else if ("".equals(atleta.getTelContatoEmergencia()) || atleta.getTelContatoEmergencia() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Telefone Contato de Emergência' !");
+			} else if ("".equals(atleta.getDtValidade()) || atleta.getDtValidade() == null) {
+				lista.add(false);
+				lista.add("Informe corretamente o campo 'Data de Validade' !");
+			}else if(!"".equals(codigoExistente)){
+				lista.add(false);
+				lista.add(codigoExistente);
+			}else {
+				lista.add(true);
+			}
+		}catch(Exception ex){
+			throw new Exception("Ocorreu algum erro ao buscar atletas com mesmos numeros de cadastro!");
 		}
 		
 		return lista;
