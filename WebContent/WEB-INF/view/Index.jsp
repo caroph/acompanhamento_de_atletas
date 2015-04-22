@@ -22,8 +22,7 @@
 						        </c:if>
 								<div class="form-group">
 									<label class="control-label">Email</label>
-									<input type="text" class="form-control" name="email" id="email" required/>
-									<!-- ALTERAR PARA type="email" -->
+									<input type="email" class="form-control" name="email" id="email" required/>
 								</div>
 								<div class="form-group">
 									<label class="control-label">Senha</label>

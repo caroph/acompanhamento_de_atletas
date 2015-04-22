@@ -33,6 +33,8 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
+												<th style="text-align: center;">Email</th>
+												<th style="text-align: center;">Celular</th>
 												<th></th>
 												<th></th>
 												<th></th>
@@ -42,24 +44,24 @@
 										<tbody>
 											<c:forEach var="responsavel" items="${listaResponsaveis}">
 												<tr>
-													<td class="text-left" width="75%"><c:out value='${responsavel.nome}' /></td>
-													<td class="text-center" width="5%">
+													<td><c:out value='${responsavel.nome}' /></td>
+													<td class="text-center"><c:out value='${responsavel.email}' /></td>
+													<td class="text-center"><c:out value='${responsavel.celular}' /></td>
+													<td class="text-center">
+														<a class="btn btn-info" data-toggle="modal" href="#detalhes"
+														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
+														>Visualizar</a>
+													</td>
+													<td class="text-center">
 														<a class="btn btn-primary" href='SecretariaController?action=editarResponsavel&idResponsavel=${responsavel.idPessoa}' 
 														data-confirm="Deseja realmente editar o responsável selecionado?">Editar</a>
 													</td>
-													<td class="text-center" width="5%">
-														<a class="btn btn-info" data-toggle="modal" href="#detalhes"
-														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
-														>
-															Detalhes
-														</a>
-													</td>
-													<td class="text-center" width="5%">
+													<td class="text-center">
 														<a class="btn btn-danger"  
 														href='SecretariaController?action=desativarResponsavel&idResponsavel=${responsavel.idPessoa}'
-														data-confirm="Deseja realmente excluir o responsável selecionado?">Deletar</a>
+														data-confirm="Deseja realmente excluir o responsável selecionado?">Excluir</a>
 													</td>
-													<td class="text-center" width="10%">
+													<td class="text-center">
 														<a class="btn btn-primary" data-toggle="modal" href="SecretariaController?action=enviarEmailResponsavel&emailResponsavel=${responsavel.email}">Enviar Email</a>
 													</td>
 												</tr>

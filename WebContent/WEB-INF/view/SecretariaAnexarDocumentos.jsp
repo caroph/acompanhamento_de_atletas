@@ -16,7 +16,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Anexar Documento</span>
+										<i class="fa fa-upload"></i> <span>Anexar Documento</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -37,7 +37,7 @@
 											<c:choose>
 												<c:when test="${fotoAtleta != null}">
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${fotoAtleta.src}')">Foto do Atleta</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${fotoAtleta.src}')">Foto do atleta</a></td>
 														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 														<td class="text-left">
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(7,${idPessoa})">Alterar</a>
@@ -57,7 +57,7 @@
 											<c:choose>
 												<c:when test="${termoDeCompromisso != null}">
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${termoDeCompromisso.src}')">Termo de Compromisso do Manual do Atleta</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${termoDeCompromisso.src}')">Termo de compromisso do manual do atleta</a></td>
 														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 														<td>
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(1,${idPessoa})">Alterar</a>
@@ -77,7 +77,7 @@
 											<c:choose>
 												<c:when test="${declaracaoMedica != null}">
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${declaracaoMedica.src}')">Declaração Médica</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${declaracaoMedica.src}')">Declaração médica</a></td>
 														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 														<td>
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(2,${idPessoa})">Alterar</a>
@@ -97,7 +97,7 @@
 											<c:choose>
 												<c:when test="${autorizacaoViagem != null}">
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoViagem.src}')">Autorização de Viagem e Hospedagem</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoViagem.src}')">Autorização de viagem e hospedagem</a></td>
 														<td class="text-center"><i class="fa fa-check-circle-o"></i></td>
 														<td>
 															<a class="btn btn-primary" data-toggle="modal" data-target="#anexarArquivo" id="btnAnexo" onclick="abrirModalAnexarArquivo(3,${idPessoa})">Alterar</a>
@@ -117,7 +117,7 @@
 											<c:choose>
 												<c:when test="${autorizacaoImagem != null}">
 													<tr>
-														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoImagem.src}')">Autorização de Imagem</a></td>
+														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoImagem.src}')">Autorização de imagem</a></td>
 														<td class="text-center"><i
 															class="fa fa-check-circle-o"></i></td>
 														<td><a class="btn btn-primary" data-toggle="modal"

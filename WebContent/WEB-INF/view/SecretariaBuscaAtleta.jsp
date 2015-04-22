@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Atletas</span>
+										<i class="fa fa-male"></i> <span>Atletas</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -34,7 +34,7 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th>N. Matrícula</th>
+												<th>Nº Matrícula</th>
 												<th style="text-align: center;">Telefone</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>
@@ -93,12 +93,12 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h4 class="modal-title" id="myModalLabel">Detalhes Atleta</h4>
+					<h4 class="modal-title" id="myModalLabel">Detalhes do Atleta</h4>
 				</div>
 				<div class="modal-body body-atleta">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					<button type="button" class="btn" data-dismiss="modal" id="fechar">Fechar</button>
 				</div>
 			</div>
 		</div>

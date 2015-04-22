@@ -12,6 +12,10 @@
     background-color: #9BBE94;
 }
 
+.tbModal{
+	  margin-bottom: 0 !important;
+}
+
 /* DEMO ONLY - REMOVES UNWANTED MARGIN */
 .well .list-group {
     margin-bottom: 0px;

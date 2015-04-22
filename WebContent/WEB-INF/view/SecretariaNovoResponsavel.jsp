@@ -73,7 +73,7 @@
 											</div>
 											<div class="col-sm-3">
 												<label for="complemento" class="control-label">Complemento</label>
-												<input type="text" class="form-control" id="complemento" name="complemento" value='${enderecoResidencial.complemento}' required/>
+												<input type="text" class="form-control" id="complemento" name="complemento" value='${enderecoResidencial.complemento}'/>
 											</div>
 										</div>										
 										<div class="form-group">
@@ -105,7 +105,7 @@
 											</div>
 											<div class="col-sm-3">
 												<label for="complemento" class="control-label">Complemento</label>
-												<input type="text" class="form-control" id="complementoCom" name="complementoCom" value='${enderecoComercial.complemento}' required/>
+												<input type="text" class="form-control" id="complementoCom" name="complementoCom" value='${enderecoComercial.complemento}'/>
 											</div>
 										</div>
 										<div class="form-group">

@@ -1058,7 +1058,7 @@ public class SecretariaController extends Controller {
 				
 				//desativa o responsavel
 				if(responsavelNegocio.desativar(idResponsavel)){
-					msgSucesso = "Responsável desativado com sucesso!";
+					msgSucesso = "Responsável excluído com sucesso!";
 				}else{
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -1311,13 +1311,17 @@ public class SecretariaController extends Controller {
 		String extensao = explode[(explode.length - 1)];
 		List<String> extensoesValidas = new ArrayList<String>(){{
 			add("jpg");
+			add("jpeg");
 			add("png");
 			add("pdf");
 			add("doc");
+			add("docx");
+			add("xls");
+			add("xlsx");
 			}};
 		
 		if(!extensao.equals("") || extensao != null){
-			if(!extensoesValidas.contains(extensao))
+			if(!extensoesValidas.contains(extensao.toLowerCase()))
 				return "Extensão de arquivo inválida!";
 		}
 				

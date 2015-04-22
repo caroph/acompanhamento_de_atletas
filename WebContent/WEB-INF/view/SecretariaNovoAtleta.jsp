@@ -18,7 +18,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i>
+										<i class="fa fa-plus-circle"></i>
 										<span>Cadastro do Atleta</span>
 									</div>
 									<div class="box-icons">
@@ -91,9 +91,9 @@
 												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" maxlength="255" required/>
 											</div>
 											<div class="col-sm-4" >
-												<label for="dtNascimento" class="control-label data">Data de Nascimento:</label>
+												<label for="dtNascimento" class="control-label">Data de Nascimento:</label>
 												<fmt:formatDate value="${atleta.dtNascimento}" pattern="dd/MM/yyyy" var="dtNascimento" />
-												<input type="text" value="${dtNascimento}" class="form-control" id="dtNascimento" name="dtNascimento" required/>
+												<input type="text" value="${dtNascimento}" class="form-control data" id="dtNascimento" name="dtNascimento" required/>
 											</div>
 											<div class="col-sm-4">
 												<label for="email" class=" control-label">Email:</label>
@@ -253,9 +253,9 @@
 										</div>
 										<hr>
 										<div class="form-group col-sm-4" >
-											<label for="dtValidade" class="control-label data">Data Validade Cadastro:</label>
+											<label for="dtValidade" class="control-label">Data Validade Cadastro:</label>
 											<fmt:formatDate value="${atleta.dtValidade}" pattern="dd/MM/yyyy" var="dtValidade" />
-											<input type="text"  value="${dtValidade}" class="form-control" id="dtValidade" name="dtValidade" required />
+											<input type="text"  value="${dtValidade}" class="form-control data" id="dtValidade" name="dtValidade" required />
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
