@@ -289,7 +289,7 @@ function visualizarDoc(srcDocumento) {
 	var explode = srcDocumento.split(".");
 	var extensao = explode[explode.length - 1];
 	var html = "";
-	if (extensao == "doc" || extensao == "docx") {
+	if (extensao == "doc" || extensao == "docx" || extensao == "xls" || extensao == "xlsx") {
 		html += "<b>Formato de arquivo '."
 				+ extensao
 				+ "' n\u00e3o suportado para visualiza\u00e7\u00e3o online. Download iniciado.</b>";
