@@ -15,7 +15,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i>
+										<i class="fa  fa-pencil-square"></i>
 										<span>Últimos Atendimentos</span>
 									</div>
 									<div class="box-icons">

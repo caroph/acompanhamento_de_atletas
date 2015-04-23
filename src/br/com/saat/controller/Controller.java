@@ -197,8 +197,6 @@ public class Controller extends HttpServlet {
 			
 			retorno = usuarioNegocio.retornoLogin(usuario);
 			
-			RequestDispatcher rs = getServletContext().getRequestDispatcher(retorno);
-            rs.forward(request, response);		
 		}
 		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);

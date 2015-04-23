@@ -8,15 +8,15 @@
 				<span class="hidden-xs">Atletas</span>
 			</a>
 		</li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle">
-				<i class="fa fa-group"></i>
-				<span class="hidden-xs">Cardápios</span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a class="ajax-link" href="NutricionistaNovoModelo.jsp">Modelos</a></li>
-			</ul>
-		</li>				
+<!-- 		<li class="dropdown"> -->
+<!-- 			<a href="#" class="dropdown-toggle"> -->
+<!-- 				<i class="fa fa-book"></i> -->
+<!-- 				<span class="hidden-xs">Cardápios</span> -->
+<!-- 			</a> -->
+<!-- 			<ul class="dropdown-menu"> -->
+<!-- 				<li><a class="ajax-link" href="NutricionistaNovoModelo.jsp">Modelos</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</li>				 -->
 	</ul>
 </div>
 		

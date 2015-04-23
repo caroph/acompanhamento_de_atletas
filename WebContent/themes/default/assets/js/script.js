@@ -21,6 +21,9 @@ $(document).ready(function() {
 // Plugin Dual List
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 
+//Plugin Histórico de Atendimento
+$("#listaHistorico").accordion();
+
 // Alert de Confirmação
 $(document)
 		.ready(
@@ -63,14 +66,14 @@ function LimparCampos() {
 }
 
 // Plugin de Horário e Calendario
-function DemoTimePicker() {
-	$('#hrInicio').timepicker({
-		setDate : new Date()
-	});
-	$('#hrFim').timepicker({
-		setDate : new Date()
-	});
-}
+//function DemoTimePicker() {
+//	$('#hrInicio').timepicker({
+//		setDate : new Date()
+//	});
+//	$('#hrFim').timepicker({
+//		setDate : new Date()
+//	});
+//}
 $(document).ready(function() {
 	// Initialize datepicker
 	$('#dtNascimento').datepicker({
@@ -80,7 +83,7 @@ $(document).ready(function() {
 		setDate : new Date()
 	});
 	// Load Timepicker plugin
-	LoadTimePickerScript(DemoTimePicker);
+	//LoadTimePickerScript(DemoTimePicker);
 });
 
 // Vincular Responsável
@@ -322,7 +325,7 @@ function carregaDiasTreino() {
 // $('#progress').css("display", "none");
 // });
 //
-$("#listaHistorico").accordion();
+
 //
 // $("#objetivoConsulta").click(function(){
 // $("#exibeObjetivoConsulta").toggle();

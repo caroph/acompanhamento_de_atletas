@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Atletas</span>
+										<i class="fa  fa-male"></i> <span>Atletas</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -38,8 +38,8 @@
 												<th></th>
 												<th></th>
 												<th></th>
-												<th></th>
-												<th></th>
+<!-- 												<th></th> -->
+<!-- 												<th></th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -59,9 +59,9 @@
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->
 <!-- 													</td> -->
-													<td align="center">
-														<a class="btn btn-primary">Dieta</a>												
-													</td>
+<!-- 													<td align="center"> -->
+<!-- 														<a class="btn btn-primary">Dieta</a>												 -->
+<!-- 													</td> -->
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -86,7 +86,7 @@
 				<div class="modal-body body-atleta">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					<button type="button" class="btn" data-dismiss="modal" id="fechar">Fechar</button>
 				</div>
 			</div>
 		</div>

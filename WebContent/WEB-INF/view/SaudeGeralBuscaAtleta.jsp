@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i> <span>Atletas</span>
+										<i class="fa  fa-male"></i> <span>Atletas</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -53,7 +53,7 @@
 														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Atendimento</a>
+														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Novo Atendimento</a>
 													</td>
 													<td align="center">
 														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}">Histórico</a>												
@@ -85,7 +85,7 @@
 				<div class="modal-body body-atleta">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					<button type="button" class="btn" data-dismiss="modal" id="fechar">Fechar</button>
 				</div>
 			</div>
 		</div>

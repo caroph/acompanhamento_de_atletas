@@ -88,7 +88,7 @@
 				<div class="modal-body body-usuario">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar">Fechar</button>
+					<button type="button" class="btn" data-dismiss="modal" id="fechar">Fechar</button>
 				</div>
 			</div>
 		</div>
