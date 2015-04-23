@@ -106,8 +106,8 @@ function abrirModalVinculacao(atleta, pagina) {
 							+ data.idAtleta + " />";
 					html += "<input type='hidden' name='pagina' value="
 							+ data.pagina + " />";
-					html += "<br/><label>Grau Parentesco:</label>" +
-							"<select class='form-control' style='width: 95%;' name='grauParentesco' required>";
+					html += "<br/><label>Grau Parentesco:</label>"
+							+ "<select class='form-control' style='width: 95%;' name='grauParentesco' required>";
 					html += "<option selected>Selecione</option>";
 					$.each(data.grauParentesco, function(index, item) {
 						html += "<option value=" + index + ">" + item
@@ -133,49 +133,61 @@ function abrirModalUsuario(nome, perfil, email, telefone, celular, cref) {
 
 function abrirModalAtleta(idAtleta) {
 	$("#detalhes").modal();
-	$
-			.ajax({
-				type : "POST",
-				url : "Controller?action=buscarAtletaDetalhes&idAtleta="
-						+ idAtleta,
-				success : function(data) {
-					var html = "<b>Nome:</b> " + data.atleta.nome + "<br/>";
-					html += "<b>Equipe:</b> "
-							+ data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
-					html += "<b>Data de nascimento:</b> "
-							+ data.atleta.dtNascimentoDisplay + "<br/>";
-					html += "<br/><b>Dias de Treino:</b> " + "<br/>";
-					var diasSemana = data.diaSemana;
-					$.each(data.atleta.listaDiasTreinos, function(index, item) {
-						html += diasSemana[item.idDiaSemana - 1] + " - "
-								+ item.hrInicioDisplay + " - "
-								+ item.hrFimDisplay + "<br/>";
-					});
-					html += "<br/><b>N. Matricula:</b> "
-							+ data.atleta.nrMatricula + "<br/>";
-					html += "<b>N. Cadastro CBT:</b> " + data.atleta.nrCadCBT
-							+ "<br/>";
-					html += "<b>N. Cadastro FTP:</b> " + data.atleta.nrCadFPT
-							+ "<br/>";
-					html += "<br/><b>Responsaveis:</b> " + "<br/>";
-					var grauParentesco = data.grauParentesco;
-					$
-							.each(
-									data.atleta.listaResponsaveis,
-									function(index, item) {
-										html += grauParentesco[item.idGrauParentesco - 1]
-												+ " - "
-												+ item.nome
-												+ " - "
-												+ item.celular + "<br/>";
-									});
-					html += "<br/><b>Contato de Emergencia:</b> " + "<br/>";
-					html += data.grauParentesco[data.atleta.idGrauParentesco - 1] + " - " +
-							data.atleta.nmContatoEmergencia + " - " +
-							data.atleta.telContatoEmergencia + "<br/>";
-					$('.body-atleta').html(html);
+	$.ajax({
+		type : "POST",
+		url : "Controller?action=buscarAtletaDetalhes&idAtleta="
+				+ idAtleta,
+		success : function(data) {
+			var html = "";
+			if(data.atleta.listaDocumentos[0] != null){
+				var srcDocumento = data.atleta.listaDocumentos[0].src;
+				var explode = srcDocumento.split(".");
+				var extensao = explode[explode.length - 1];
+				if(extensao == "jpg" || extensao == "jpeg" || extensao == "png"){
+				html += "<img style='float:left; margin: 10px; max-width: 100px; max-height: 100px;' src='" 
+					+ srcDocumento + "'> </img><br/>";
 				}
+			}
+			html += "<b>Nome:</b> " + data.atleta.nome + "<br/>";
+			html += "<b>Equipe:</b> "
+					+ data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
+			html += "<b>Data de nascimento:</b> "
+					+ data.atleta.dtNascimentoDisplay + "<br/>";
+			html += "<b>Email:</b> " + data.atleta.email + "<br/>";
+			html += "<br/><b>Dias de Treino:</b> " + "<br/>";
+			var diasSemana = data.diaSemana;
+			$.each(data.atleta.listaDiasTreinos, function(index, item) {
+				html += diasSemana[item.idDiaSemana - 1] + " - "
+						+ item.hrInicioDisplay + " - "
+						+ item.hrFimDisplay + "<br/>";
 			});
+			html += "<br/><b>N. Matricula:</b> "
+					+ data.atleta.nrMatricula + "<br/>";
+			html += "<b>N. Cadastro CBT:</b> " + data.atleta.nrCadCBT
+					+ "<br/>";
+			html += "<b>N. Cadastro FTP:</b> " + data.atleta.nrCadFPT
+					+ "<br/>";
+			html += "<br/><b>Responsaveis:</b> " + "<br/>";
+			var grauParentesco = data.grauParentesco;
+			$
+					.each(
+							data.atleta.listaResponsaveis,
+							function(index, item) {
+								html += grauParentesco[item.idGrauParentesco - 1]
+										+ " - "
+										+ item.nome
+										+ " - "
+										+ item.celular + "<br/>";
+							});
+			html += "<br/><b>Contato de Emergencia:</b> " + "<br/>";
+			html += data.grauParentesco[data.atleta.idGrauParentesco - 1]
+					+ " - "
+					+ data.atleta.nmContatoEmergencia
+					+ " - "
+					+ data.atleta.telContatoEmergencia + "<br/>";
+			$('.body-atleta').html(html);
+		}
+	});
 }
 
 function abrirModalVisualizarResponsavel(nome, email, telResidencial,
@@ -277,13 +289,12 @@ function abrirModalAnexarArquivo(idTpDocumento, idPessoa) {
 			+ "<div class='col-sm-4'>"
 			+ "<label for='dtValidadeArquivo' class='text-left'>Data de validade:</label>"
 			+ "<input type='date' class='form-control data' id='dtValidade' name='dtValidade'/>"
-			+ "</div>" 
+			+ "</div>"
 			+ "</div>"
 			+ "<div class='modal-footer'>"
 			+ "<button type='submit' class='btn btn-primary' id='anexarArquivo'>Anexar Arquivo</button>"
 			+ "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Cancelar</button>"
-			+ "</div>"
-			+ "</form>";
+			+ "</div>" + "</form>";
 
 	$('.body-anexarArquivo').html(html);
 }
@@ -292,7 +303,8 @@ function visualizarDoc(srcDocumento) {
 	var explode = srcDocumento.split(".");
 	var extensao = explode[explode.length - 1];
 	var html = "";
-	if (extensao == "doc" || extensao == "docx" || extensao == "xls" || extensao == "xlsx") {
+	if (extensao == "doc" || extensao == "docx" || extensao == "xls"
+			|| extensao == "xlsx") {
 		html += "<b>Formato de arquivo '."
 				+ extensao
 				+ "' n\u00e3o suportado para visualiza\u00e7\u00e3o online. Download iniciado.</b>";

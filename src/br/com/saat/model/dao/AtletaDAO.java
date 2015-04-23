@@ -11,6 +11,7 @@ import java.util.List;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
+import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
 
@@ -336,7 +337,8 @@ public class AtletaDAO {
 		Atleta atleta = new Atleta();
 		
 		stmtScript = con.prepareStatement("SELECT nome, idTpEquipe, nrMatricula, nrCadCBT, nrCadFPT, "
-				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, dtNascimento FROM atleta WHERE idAtleta = ?");
+				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, dtNascimento, email "
+				+ "FROM atleta WHERE idAtleta = ?");
 		stmtScript.setInt(1, idAtleta);
 		
 		ResultSet rs = stmtScript.executeQuery();
@@ -352,6 +354,7 @@ public class AtletaDAO {
 			atleta.setTelContatoEmergencia(rs.getString(7));
 			atleta.setIdGrauParentesco(rs.getInt(8));
 			atleta.setDtNascimento(rs.getDate(9));
+			atleta.setEmail(rs.getString(10));
 			
 			stmtScript = con.prepareStatement("SELECT dt.idDiaSemana, dt.hrInicio, dt.hrFim "
 					+ "FROM diatreinoatleta dta JOIN diatreino dt on dt.idDiaTreino = dta.idDiaTreino "
@@ -386,6 +389,23 @@ public class AtletaDAO {
 				listaResponsaveis.add(resp);
 			}
 			atleta.setListaResponsaveis(listaResponsaveis);
+			
+			stmtScript = con.prepareStatement("SELECT idDocumento, tpDocumento, srcDocumento "
+					+ "FROM documento WHERE idAtleta = ? AND tpDocumento = 7");
+			stmtScript.setInt(1, idAtleta);
+			ResultSet rsDocumento = stmtScript.executeQuery();
+			
+			List<Documento> listaDocumento = new ArrayList<Documento>();
+			if(rsDocumento.next()){
+				Documento doc = new Documento();
+				doc.setIdDocumento(rsDocumento.getInt(1));
+				doc.setIdPessoa(idAtleta);
+				doc.setTpDocumento(rsDocumento.getInt(2));
+				doc.setSrc(rsDocumento.getString(3));
+				listaDocumento.add(doc);
+			}
+			atleta.setListaDocumentos(listaDocumento);
+			
 		}
 				
 		return atleta;
