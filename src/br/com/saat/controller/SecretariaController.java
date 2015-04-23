@@ -1313,6 +1313,9 @@ public class SecretariaController extends Controller {
 					Constants.VIEW);
 
 		} else if ("jspAnexarDocumentosAtleta".equals(action)) {
+			String nomeAtleta = request.getParameter("nome");
+			
+			request.setAttribute("nomeAtleta", nomeAtleta);
 			request.setAttribute("idPessoa", request.getParameter("idPessoa"));
 			listarDocumentosAtleta(request);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp",

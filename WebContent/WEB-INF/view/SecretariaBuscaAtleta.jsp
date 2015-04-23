@@ -41,6 +41,7 @@
 												<th></th>
 												<th></th>
 												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -64,6 +65,9 @@
 														</td>
 														<td>	
 															<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 1)">Vincular Responsável</a>
+														</td>
+														<td>
+															<a class="btn btn-primary" id="anexos" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}">Anexar Documentos</a>
 														</td>
 													</c:if>
 													<c:if test="${atleta.flCadastroAtivo == 0}">														

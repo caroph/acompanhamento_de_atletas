@@ -138,7 +138,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[0]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -173,7 +173,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[1]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -208,7 +208,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[2]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -243,7 +243,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[3]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -278,7 +278,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[4]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -313,7 +313,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[5]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -348,7 +348,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[6]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}">Anexar Documento</a></td>
+									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

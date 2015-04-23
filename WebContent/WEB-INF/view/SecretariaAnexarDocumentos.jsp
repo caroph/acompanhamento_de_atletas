@@ -16,7 +16,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-upload"></i> <span>Anexar Documento</span>
+										<i class="fa fa-upload"></i> <span>Anexar Documento <strong>(<c:out value="${nomeAtleta}"/>)</strong></span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>

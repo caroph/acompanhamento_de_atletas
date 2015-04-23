@@ -26,7 +26,7 @@
 									</div>
 									<div class="no-move"></div>
 								</div>
-								<div class="box-content">
+								<div class="box-content jspEmail">
 									<form class="form-horizontal" role="form"
 										action="SecretariaController?action=enviarEmailIndividual"
 										method="post">
@@ -46,7 +46,7 @@
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
 												<button type="submit" class="btn btn-primary">Enviar</button> 
-											</div>
+												</div>
 										</div>
 									</form>
 								</div>

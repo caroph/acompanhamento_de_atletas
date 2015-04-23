@@ -263,7 +263,7 @@
 												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
 												<c:if test="${atleta.idPessoa != null}">
 													<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 2)">Vincular Responsável</a>
-													<a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}" id="anexos">Anexar Documentos</a>
+													<a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}" id="anexos">Anexar Documentos</a>
 												</c:if>
 												<button type="submit" class="btn btn-primary" >Salvar</button>
 											</div>
