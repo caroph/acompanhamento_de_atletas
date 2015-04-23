@@ -2,6 +2,7 @@ package br.com.saat.model.negocio;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,29 +20,33 @@ public class DocumentoNegocio {
 		}else if(documento.getIdPessoa() <= 0){
 			listaValidacao.add(false);
 			listaValidacao.add("IdPessoa inválido!");
+		}else if(documento.getValidade()!= null && new Date().after(documento.getValidade())){
+			listaValidacao.add(false);
+			listaValidacao.add("A Data de validade deve ser maior que a data atual!");
+		}else{
+			listaValidacao.add(true);
 		}
-		listaValidacao.add(true);
 		
 		return listaValidacao;
 	}
 
 	public boolean inserir(Documento documento) throws Exception {
+		List<Object> listaValidacao = validar(documento);
 		try{
-			List<Object> listaValidacao = validar(documento);
 			if((boolean)listaValidacao.get(0)){
 				DocumentoDAO dao = new DocumentoDAO();
 				if(dao.inserir(documento)){
 					return true;
 				}
-			}else{
-				throw new Exception((String) listaValidacao.get(1));
 			}
 		}catch(SQLException ex){
 			throw ex;
 		}catch(Exception ex){
 			throw new Exception("Erro ao gravar documento no banco de dados!");
 		}
-		
+		if((String) listaValidacao.get(1) != null || !"".equals((String) listaValidacao.get(1))){
+			throw new Exception((String) listaValidacao.get(1));
+		}
 		return false;
 	}
 	
@@ -65,22 +70,22 @@ public class DocumentoNegocio {
 	}
 
 	public boolean alterar(Documento documento) throws Exception {
+		List<Object> listaValidacao = validar(documento);
 		try{
-			List<Object> listaValidacao = validar(documento);
 			if((boolean)listaValidacao.get(0)){
 				DocumentoDAO dao = new DocumentoDAO();
 				if(dao.alterar(documento)){
 					return true;
 				}
-			}else{
-				throw new Exception((String) listaValidacao.get(1));
 			}
 		}catch(SQLException ex){
 			throw ex;
 		}catch(Exception ex){
 			throw new Exception("Erro ao gravar documento no banco de dados!");
 		}
-		
+		if((String) listaValidacao.get(1) != null || !"".equals((String) listaValidacao.get(1))){
+			throw new Exception((String) listaValidacao.get(1));
+		}
 		return false;
 	}
 

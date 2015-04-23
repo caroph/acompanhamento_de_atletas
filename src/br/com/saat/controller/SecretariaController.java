@@ -1389,16 +1389,18 @@ public class SecretariaController extends Controller {
 						}
 					}
 				}
-
-				int idDocumentoBanco = documentoNegocio.exists(documento);
-				if (idDocumentoBanco != 0) {
-					documento.setIdDocumento(idDocumentoBanco);
-					if (!documentoNegocio.alterar(documento)) {
-						msg = "Erro ao gravar documento no banco de dados!";
-					}
-				} else {
-					if (!documentoNegocio.inserir(documento)) {
-						msg = "Erro ao gravar documento no banco de dados!";
+				
+				if("".equals(msg)){
+					int idDocumentoBanco = documentoNegocio.exists(documento);
+					if (idDocumentoBanco != 0) {
+						documento.setIdDocumento(idDocumentoBanco);
+						if (!documentoNegocio.alterar(documento)) {
+							msg = "Erro ao gravar documento no banco de dados!";
+						}
+					} else {
+						if (!documentoNegocio.inserir(documento)) {
+							msg = "Erro ao gravar documento no banco de dados!";
+						}
 					}
 				}
 
@@ -1407,9 +1409,12 @@ public class SecretariaController extends Controller {
 			}
 
 			request.setAttribute("idPessoa", documento.getIdPessoa());
+			String msgRetorno = listarDocumentosAtleta(request);
+			if(msgRetorno != null)
+				msg = msgRetorno;
 			request.setAttribute("msgErro", msg);
-			request.setAttribute("msgSucesso", msgSucesso);
-			listarDocumentosAtleta(request);
+			if("".equals(msg))
+				request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp",
 					Constants.VIEW);
 		} else {
@@ -1424,7 +1429,7 @@ public class SecretariaController extends Controller {
 		}
 	}
 
-	private void listarDocumentosAtleta(HttpServletRequest request) {
+	private String listarDocumentosAtleta(HttpServletRequest request) {
 		String msg = request.getParameter("msgErro");
 		int idPessoa = 0;
 
@@ -1504,7 +1509,7 @@ public class SecretariaController extends Controller {
 		request.setAttribute("copiaRG", copiaRG);
 		request.setAttribute("copiaCPF", copiaCPF);
 		request.setAttribute("fotoAtleta", fotoAtleta);
-		request.setAttribute("msgErro", msg);
+		return msg;
 	}
 
 	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {

@@ -3,6 +3,7 @@ package br.com.saat.model.negocio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.saat.model.Atleta;
@@ -50,6 +51,12 @@ public class AtletaNegocio {
 			}else if(!"".equals(codigoExistente)){
 				lista.add(false);
 				lista.add(codigoExistente);
+			}else if(new Date().before(atleta.getDtNascimento())){
+				lista.add(false);
+				lista.add("A Data de nascimento deve ser menor que a data atual!");
+			}else if(new Date().after(atleta.getDtValidade())){
+				lista.add(false);
+				lista.add("A Data de validade deve ser maior que a data atual!");
 			}else {
 				lista.add(true);
 			}
