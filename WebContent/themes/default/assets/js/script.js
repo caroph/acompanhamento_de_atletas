@@ -161,13 +161,12 @@ function abrirModalAtleta(idAtleta) {
 						+ item.hrInicioDisplay + " - "
 						+ item.hrFimDisplay + "<br/>";
 			});
-			html += "<br/><b>N. Matricula:</b> "
-					+ data.atleta.nrMatricula + "<br/>";
-			html += "<b>N. Cadastro CBT:</b> " + data.atleta.nrCadCBT
-					+ "<br/>";
-			html += "<b>N. Cadastro FTP:</b> " + data.atleta.nrCadFPT
-					+ "<br/>";
-			html += "<br/><b>Responsaveis:</b> " + "<br/>";
+			html += "<br/><b>RG:</b> " + data.atleta.RG + "<br/>";
+			html += "<b>CPF:</b> " + data.atleta.CPF + "<br/>";
+			html += "<b>N&#186; Matr\u00edcula:</b> " + data.atleta.nrMatricula + "<br/>";
+			html += "<b>N&#186; Cadastro CBT:</b> " + data.atleta.nrCadCBT + "<br/>";
+			html += "<b>N&#186; Cadastro FTP:</b> " + data.atleta.nrCadFPT + "<br/>";
+			html += "<br/><b>Respons\u00e1veis:</b> " + "<br/>";
 			var grauParentesco = data.grauParentesco;
 			$
 					.each(
@@ -179,7 +178,7 @@ function abrirModalAtleta(idAtleta) {
 										+ " - "
 										+ item.celular + "<br/>";
 							});
-			html += "<br/><b>Contato de Emergencia:</b> " + "<br/>";
+			html += "<br/><b>Contato de Em\u00eargencia:</b> " + "<br/>";
 			html += data.grauParentesco[data.atleta.idGrauParentesco - 1]
 					+ " - "
 					+ data.atleta.nmContatoEmergencia

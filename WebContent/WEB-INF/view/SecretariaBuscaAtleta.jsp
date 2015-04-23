@@ -77,6 +77,7 @@
 														</td>														
 														<td></td>
 														<td></td>
+														<td></td>
 													</c:if>
 												</tr>
 											</c:forEach>
