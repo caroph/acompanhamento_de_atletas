@@ -124,7 +124,11 @@ public class AtletaNegocio {
 		try {
 			AtletaDAO dao = new AtletaDAO();
 			if (dao.desativar(atleta)) {
-				return true;
+				if(dao.desativarDocs(atleta)){
+					if(dao.excluirPendencias(atleta)){
+						return true;
+					}
+				}
 			}
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao desativar o atleta!");

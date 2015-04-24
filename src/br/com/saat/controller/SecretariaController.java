@@ -727,17 +727,24 @@ public class SecretariaController extends Controller {
 
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
+			
 			try {
 				if (negocio.desativar(atleta)) {
 					msgSucesso = "Atleta desativado com sucesso!";
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
-				lista = negocio.buscarAtletas(2);
 			} catch (Exception ex) {
 				msg = ex.getMessage();
 			}
 
+			try {
+				lista = negocio.buscarAtletas(2);
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				msg = ex.getMessage();
+			}
+			
 			request.setAttribute("listaAtletas", lista);
 			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);

@@ -96,11 +96,13 @@ public class DocumentoNegocio {
 			DocumentoDAO dao = new DocumentoDAO();
 			listaPendencias = dao.buscarPendencias();
 			
-			boolean listaVazia = false;
+			boolean listaVazia = true;
 			
 			for (HashMap<Integer, String> item : listaPendencias) {
-				if(item.size() == 0){
+				if(item.size() == 0 && listaVazia){
 					listaVazia = true;
+				}else{
+					listaVazia = false;
 				}
 			}
 

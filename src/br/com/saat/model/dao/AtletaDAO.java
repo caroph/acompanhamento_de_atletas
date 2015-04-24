@@ -494,5 +494,38 @@ public class AtletaDAO {
 		}	
 		return "";
 	}
+
+	public boolean desativarDocs(Atleta atleta) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE documento "
+				+ "SET validadeDocumento = NOW() "
+				+ "WHERE idAtleta = ? "
+				+ "	AND (validadeDocumento > NOW() OR validadeDocumento IS NULL) ");
+		
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows >= 0){
+			return true;
+		}		
+		return false;
+	}
+
+	public boolean excluirPendencias(Atleta atleta) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("DELETE FROM pendencia WHERE idPessoa = ?");
+		
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows >= 0){
+			return true;
+		}		
+		return false;
+	}
 	
 }
