@@ -758,6 +758,11 @@ public class SecretariaController extends Controller {
 			try {
 				if (negocio.ativar(atleta)) {
 					msgSucesso = "Atleta ativado com sucesso!";
+					if(negocio.inserirPendenciaAtleta(atleta.getIdPessoa())){
+						msgSucesso = "Atleta ativado e pendências inseridas com sucesso!";
+					}else{
+						msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+					}
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}

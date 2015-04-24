@@ -143,6 +143,18 @@ public class AtletaNegocio {
 		}
 		return false;
 	}
+	
+	public boolean inserirPendenciaAtleta(int idAtleta) throws Exception{
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if (dao.inserirPendenciaAtleta(idAtleta)) {
+				return true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao inserir pendências para o atleta!");
+		}
+		return false;
+	}
 
 	public boolean vincularResponsavel(int idAtleta, int idResponsavel,
 			int idGrauParentesco) throws Exception {

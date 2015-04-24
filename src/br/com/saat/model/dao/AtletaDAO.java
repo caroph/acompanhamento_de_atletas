@@ -314,6 +314,19 @@ public class AtletaDAO {
 		}		
 		return false;
 	}
+	public boolean inserirPendenciaAtleta(int idAtleta) throws SQLException{
+		stmtScript = con.prepareStatement("INSERT INTO pendencia (idPessoa, tpDocumento) "
+				+ "VALUES (?,1), (?,2), (?,3), (?,4), (?,5), (?,6), (?,7)");
+		for (int i = 1; i < 8; i++) {
+			stmtScript.setInt(i, idAtleta);
+		}
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
+	}
 
 	public boolean vincularResponsavel(int idAtleta, int idResponsavel,
 			int idGrauParentesco) throws SQLException {
