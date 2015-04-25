@@ -8,7 +8,7 @@ window.onload = function() {
 	new dgCidadesEstados({
 		estado : document.getElementById('estadoCom'),
 		cidade : document.getElementById('cidadeCom')
-	});
+	});	
 }
 
 // Máscaras
@@ -23,6 +23,27 @@ var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 
 //Plugin Histórico de Atendimento
 $("#listaHistorico").accordion();
+
+//Plugins Ficha de Atendimento
+$("#objetivoConsulta").click(function(){
+	$("#exibeObjetivoConsulta").toggle();
+});
+
+$("#praticaAtividade").click(function(){
+	$("#exibePraticaAtividade").toggle();
+});
+
+$("#avaliacaoDietetica").click(function(){
+	$("#exibeAvaliacaoDietetica").toggle();
+});
+
+$("#recordatorioAlimentar").click(function(){
+	$("#exibeRecordatorio").toggle();
+});
+	
+$("#dadosAntropometricos").click(function(){
+	$("#exibeDadosAntropometricos").toggle();
+});
 
 // Alert de Confirmação
 $(document)
@@ -237,8 +258,10 @@ function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento,
 	anotacaoM.value = anotacao;
 };
 
-// Campo de mensagem
+// Campos de que usam o CKEditor
 CKEDITOR.replace('mensagemEmail');
+CKEDITOR.replace('recordatorioAlim');
+CKEDITOR.replace('condutaNutricional');
 
 function abrirModalAnexarArquivo(idTpDocumento, idPessoa) {
 	// Valor que irá aparecer na label

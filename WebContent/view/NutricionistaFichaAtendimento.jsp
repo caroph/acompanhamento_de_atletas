@@ -71,10 +71,10 @@
 								</div>
 							</div>
 							<div class="col-md-12"><hr/></div>		
-							<h4 id="dadosAntropometricos" class="text-center" style="margin: 0px 0px 0px 0px;">DADOS ANTROPOMÉTRICOS</h4>
+							<h4 id="dadosAntrop" style="margin: 0px 0px 0px 0px;" class="text-center">DADOS ANTROPOMÉTRICOS</h4>
 							<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
 							
-							<div class="col-md-12"><!--id="exideDadosAntropometricos"-->					
+							<div class="col-md-12" id="exibeDadosAntropometricos">					
 								<div class="col-md-12" style="margin:10px 0px 10px 0px;">
 									<div class="col-md-6">
 										<div class="col-md-8 text-left">

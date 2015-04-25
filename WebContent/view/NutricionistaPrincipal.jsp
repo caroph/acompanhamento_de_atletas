@@ -40,7 +40,7 @@
 										de Atendimento</a></td>
 								<td><a data-toggle="modal" href="#incluirParecer">Incluir
 										Observação</a></td>
-								<td><a href="NutricionistaFichaAtendimento.jsp">Novo
+								<td><a href="NutricionistaFichaDeAtendimento.jsp">Novo
 										Atendimento</a></td>
 								<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
 								<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>

@@ -40,7 +40,7 @@
 										<div class="form-group">
 											<div class="col-sm-12">
 												<label for="mensagem" class="control-label">Mensagem</label>
-												<textarea class="form-control" id="mensagemEmail" name="mensagemEmail"></textarea>
+												<textarea class="form-control ckeditor" id="mensagemEmail" name="mensagemEmail"></textarea>
 											</div>
 										</div>										
 										<div class="form-group">
