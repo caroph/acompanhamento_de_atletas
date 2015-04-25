@@ -120,7 +120,7 @@
 														<td><a data-toggle="modal" href="#visualizarDoc" onclick="visualizarDoc('${autorizacaoImagem.src}')">Autorização de imagem</a></td>
 														<td class="text-center"><i
 															class="fa fa-check-circle-o icon-ok"></i></td>
-														<td><a class="btn btn-primary" data-toggle="modal"
+														<td class="text-center"><a class="btn btn-primary" data-toggle="modal"
 															data-target="#anexarArquivo" id="btnAnexo"
 															onclick="abrirModalAnexarArquivo(4,${idPessoa})">Editar</a>
 														</td>

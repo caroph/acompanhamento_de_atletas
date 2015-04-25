@@ -48,7 +48,7 @@ public class Index extends Controller {
 				usuario = negocio.buscarUsuCookie(idUsuario);
 			} catch (Exception ex) {
 				usuario = null;
-				request.setAttribute("msg", ex.getMessage());
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 			super.doPost(request, response, usuario, true, true);
 		} else {

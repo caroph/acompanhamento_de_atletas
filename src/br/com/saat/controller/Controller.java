@@ -252,8 +252,8 @@ public class Controller extends HttpServlet {
 		}
 		if(request.getSession(false) != null)
 			session.setAttribute("pagina", retorno);
-		requestDispatcher = getServletContext().getRequestDispatcher(retorno);
-		requestDispatcher.forward(request, response);
+			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
+			requestDispatcher.forward(request, response);
 	}
 
 }

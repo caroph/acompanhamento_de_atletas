@@ -2,9 +2,7 @@ package br.com.saat.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
-
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
@@ -23,6 +19,8 @@ import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/NutricionistaController")
 public class NutricionistaController extends Controller {

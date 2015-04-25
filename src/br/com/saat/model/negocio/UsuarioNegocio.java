@@ -37,10 +37,8 @@ public class UsuarioNegocio {
 		else if (perfil == Perfis.Nutricionista.getValor())
 			return String.format("%s/NutricionistaPrincipal.jsp",
 					Constants.VIEW);
-		else if (perfil == Perfis.Tecnico.getValor())
-			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
-		else if (perfil == Perfis.PreparadorFisico.getValor())
-			return String.format("%s/TecnicoAtleta.jsp", Constants.VIEW);
+		else if (perfil == Perfis.Tecnico.getValor() || perfil == Perfis.PreparadorFisico.getValor())
+			return "/TecnicoController";
 		else
 			return String.format("%s/Index.jsp", Constants.VIEW);
 	}
