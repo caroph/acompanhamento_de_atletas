@@ -527,5 +527,30 @@ public class AtletaDAO {
 		}		
 		return false;
 	}
+
+	public List<Atleta> buscarAtletasVinculados(int idResponsavel) throws SQLException {
+		List<Atleta> listaAtleta = new ArrayList<Atleta>();
+		
+		stmtScript = con.prepareStatement(
+				"SELECT a.nome, ar.idGrauParentesco "
+				+ "FROM atletaresponsavel ar "
+				+ "INNER JOIN atleta a "
+				+ "		ON ar.idAtleta = a.idAtleta "
+				+ "WHERE ar.idResponsavel = ? ");
+		
+		stmtScript.setInt(1, idResponsavel);
+		
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	Atleta atleta = new Atleta();
+        	atleta.setNome(rs.getString("nome"));
+        	atleta.setIdGrauParentesco(rs.getInt("idGrauParentesco"));
+        	listaAtleta.add(atleta);
+        }
+		
+		return listaAtleta;
+		
+	}
 	
 }

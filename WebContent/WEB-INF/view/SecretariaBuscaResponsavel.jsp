@@ -48,8 +48,8 @@
 													<td class="text-center"><c:out value='${responsavel.email}' /></td>
 													<td class="text-center"><c:out value='${responsavel.celular}' /></td>
 													<td class="text-center">
-														<a class="btn btn-info" data-toggle="modal" href="#detalhes"
-														onclick="abrirModalVisualizarResponsavel('${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
+														<a class="btn btn-info" data-toggle="modal" href="#detalhesResp"
+														onclick="abrirModalVisualizarResponsavel('${responsavel.idPessoa}', '${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
 														>Visualizar</a>
 													</td>
 													<td class="text-center">
@@ -78,7 +78,7 @@
 		</div>
 	</div>
 	
-	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
+	<div class="modal fade" id="detalhesResp" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
 	class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

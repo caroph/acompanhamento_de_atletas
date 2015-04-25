@@ -1432,7 +1432,31 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp",
 					Constants.VIEW);
-		} else {
+		} else if ("buscarAtletasVinculados".equals(action)) {
+			String msg = "";
+			int idResponsavel = Integer.parseInt(request.getParameter("idResponsavel"));
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			AtletaNegocio negocio = new AtletaNegocio();
+			
+			try{
+				listaAtleta = negocio.buscarAtletasVinculados(idResponsavel);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}		
+			
+			List<String> listaGrauParentesco = new GrauParentescoNegocio().listaGrausString();
+
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("listaAtleta", listaAtleta);
+			lista.put("grauParentesco", listaGrauParentesco);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		    request.setAttribute("msgErro", msg);
+		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 		}

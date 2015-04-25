@@ -25,8 +25,8 @@
 	<script src="<%=Constants.PLUGINS%>/bootstrap/bootstrap.min.js"></script>
 	<script src="<%=Constants.PLUGINS%>/tinymce/tinymce.min.js"></script>
 	<script src="<%=Constants.PLUGINS%>/tinymce/jquery.tinymce.min.js"></script>
-	<script src="<%=Constants.PLUGINS%>/weekcalendar/jquery.weekcalendar.js"></script>
-	<script src="<%=Constants.PLUGINS%>/weekcalendar/libs/date.js"></script>
+	<%-- 	<script src="<%=Constants.PLUGINS%>/weekcalendar/jquery.weekcalendar.js"></script> --%>
+	<%-- 	<script src="<%=Constants.PLUGINS%>/weekcalendar/libs/date.js"></script> --%>
 	<script src="<%=Constants.JS%>/jquery.maskedinput.min.js" type="text/javascript" ></script>
 	<script src="<%=Constants.JS%>/cidades-estados-1.0.js" type="text/javascript" ></script>
 	<script src="<%=Constants.JS%>/devoops.js" type="text/javascript" ></script>
