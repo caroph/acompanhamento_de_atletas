@@ -71,7 +71,7 @@ public class NutricionistaController extends Controller {
 			
 			
 			try{
-				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));			
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
 				AtletaNegocio atletaNegocio = new AtletaNegocio();
@@ -107,6 +107,10 @@ public class NutricionistaController extends Controller {
 				msg = ex.getMessage();
 			}
 			
+			//Verifica se abre a página jsp em modo de edição ou inserção
+			if(request.getParameter("idFichaDeAtendimento").equals("0"))
+				ficha.setIdFichaDeAtendimento(0); // seta o id para 0 -> edição
+			
 			request.setAttribute("msgAlerta", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("fichaAtendimento", ficha);
@@ -114,6 +118,78 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("strIdade", strIdade);
 			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);
 		
+		}else if("novaFichaDeAtendimento".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			FichaDeAtendimento ficha = new FichaDeAtendimento();
+			
+			try{
+				ficha.setIdFichaDeAtendimento(Integer.parseInt(request.getParameter("idFichaDeAtendimento")));
+				ficha.setIdAtleta(Integer.parseInt(request.getParameter("idAtleta")));
+				ficha.setIdUsuario(Integer.parseInt(request.getParameter("idUsuario")));
+				ficha.setDtAtendimento(new Date(System.currentTimeMillis()));
+				ficha.setIdUsuario(Integer.parseInt(request.getParameter("idUsuario")));
+				ficha.setHMA(request.getParameter("hma"));
+				ficha.setAcompanhamentoAnterior(request.getParameter("acompanhamentoAnterior"));
+				ficha.setDuracaoAcompanhamentoAnterior(request.getParameter("duracaoAcompanhamentoAnterior"));
+				ficha.setHMF(request.getParameter("hmf"));
+				ficha.setFlObesidade(Boolean.parseBoolean(request.getParameter("flObesidade")));
+				ficha.setFlDiabetes(Boolean.parseBoolean(request.getParameter("flDiabetes")));
+				ficha.setFlHas(Boolean.parseBoolean(request.getParameter("flHas")));
+				ficha.setFlDoencaCardiaca(Boolean.parseBoolean(request.getParameter("flDoencaCardiaca")));
+				ficha.setFlColesterol(Boolean.parseBoolean(request.getParameter("flColesterol")));
+				ficha.setFlGastrite(Boolean.parseBoolean(request.getParameter("flGastrite")));
+				ficha.setFlAzia(Boolean.parseBoolean(request.getParameter("flAzia")));
+				ficha.setFlDorAbdominal(Boolean.parseBoolean(request.getParameter("flDorAbdominal")));
+				ficha.setHabitoIntestinal(request.getParameter("habitoIntestinal"));
+				ficha.setExamesRecentes(request.getParameter("examesRecentes"));
+				ficha.setMedicamentos(request.getParameter("medicamentos"));
+				ficha.setTpPraticaAtividadeFisica(request.getParameter("tpPraticaAtividadeFisica"));
+				ficha.setFrequenciaAtividadeFisica(request.getParameter("frequenciaAtividadeFisica"));
+				ficha.setIntensidadeAtividadeFisica(request.getParameter("intensidadeAtividadeFisica"));
+				ficha.setIntoleranciaAlergiaAlimentar(request.getParameter("intoleranciaAlergiaAlimentar"));
+				ficha.setAlimentosGosta(request.getParameter("alimentosGosta"));
+				ficha.setAlimentosNaoGosta(request.getParameter("alimentosNaoGosta"));
+				ficha.setApetite(request.getParameter("apetite"));
+				ficha.setHrFomeEAlimentos(request.getParameter("hrFomeEAlimentos"));
+				ficha.setLocalDeRefeicaoEQuemCozinha(request.getParameter("localDeRefeicaoEQuemCozinha"));
+				ficha.setOleoPorMes(request.getParameter("oleoPorMes"));
+				ficha.setAcucarPorMes(request.getParameter("acucarPorMes"));
+				ficha.setFsAmilacidos(request.getParameter("fsAmilacidos"));
+				ficha.setFsFritura(request.getParameter("fsFritura"));
+				ficha.setFsFrutas(request.getParameter("fsFrutas"));
+				ficha.setFsVerdSaladaLeg(request.getParameter("fsVerdSaladaLeg"));
+				ficha.setFsCarnes(request.getParameter("fsCarnes"));
+				ficha.setFsRefrigerante(request.getParameter("fsRefrigerante"));
+				ficha.setFsBolachaChocBolo(request.getParameter("fsBolachaChocBolo"));
+				ficha.setFsLeiteIogurte(request.getParameter("fsLeiteIogurte"));
+				ficha.setFsLeguminosas(request.getParameter("fsLeguminosas"));
+				ficha.setFsBebidaAlcoolica(request.getParameter("fsBebidaAlcoolica"));
+				ficha.setConsumoLiquidos(request.getParameter("consumoLiquidos"));
+				ficha.setAguaPorDia(request.getParameter("aguaPorDia"));
+				ficha.setOutrosLiquidos(request.getParameter("outrosLiquidos"));
+				ficha.setSuplementoVitaminicoAlimentar(request.getParameter("suplementoVitaminicoAlimentar"));
+				ficha.setSuplementoVitaminicoAlimentarInformacoes(request.getParameter("suplementoVitaminicoAlimentarInformacoes"));
+				ficha.setRecordatorioAlimentar(request.getParameter("recordatorioAlimentar"));
+				ficha.setCondutaNutricional(request.getParameter("condutaNutricional"));
+				
+				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
+				if(ficha.getIdFichaDeAtendimento() > 0){
+					if(fichaNegocio.alterar(ficha))
+						msgSucesso = "Edição realizada com sucesso!";
+				}else{
+					ficha.setIdFichaDeAtendimento(fichaNegocio.inserir(ficha));
+					if(ficha.getIdFichaDeAtendimento() > 0)
+						msgSucesso = "Ficha de atendimento cadastrada com sucesso!";
+				}
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("msgAlerta", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("fichaAtendimento", ficha);
+			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 			servletRetorno = retorno;

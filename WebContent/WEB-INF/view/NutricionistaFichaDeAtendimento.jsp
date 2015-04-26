@@ -53,7 +53,18 @@
 										<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
 										<h4 class="text-center" style="margin: 0px 0px 0px 0px;">IDENTIFICAÇÃO</h4>
 										<div class="col-md-12">	<hr /></div>
-										<form class="form-horizontal" role="form" action="#">
+										<form class="form-horizontal" role="form" action="NutricionistaController?action=novaFichaDeAtendimento">
+											<c:choose>
+												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
+													<input type="hidden" name="idFichaDeAtendimento" value="${fichaAtendimento.idFichaDeAtendimento}">
+												</c:when>
+												<c:otherwise>
+													<input type="hidden" name="idFichaDeAtendimento" value="0">
+												</c:otherwise>											
+											</c:choose>
+											<input type="hidden" name="idAtleta" value="${fichaAtendimento.idAtleta}">
+											<input type="hidden" name="idUsuario" value="${usuarioLogado.idPessoa}">										
+											<input type="hidden" name="idAvaliacaoAntropometrica" value="${fichaAtendimento.avaliacaoAntropometrica.idAvaliacaoAntropometrica}">
 											<div class="col-md-12" style="margin:10px 0px 10px 0px;">
 												<div class="col-md-6">
 													<div class="col-md-2 text-left">
@@ -226,72 +237,140 @@
 												<div class="form-group">
 													<label for="hma" class="col-sm-4 control-label">HMA:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="hma"/>
+														<input type="text" class="form-control" name="hma" value="${fichaAtendimento.HMA}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="acompanhamento" class="col-sm-4 control-label">Já procurou acompanhamento nutricional antes:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="acompanhamento"/>
+														<input type="text" class="form-control" name="acompanhamentoAnterior" value="${fichaAtendimento.acompanhamentoAnterior}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="qtoTempo" class="col-sm-4 control-label">Quanto tempo:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="qtoTempo"/>
+														<input type="text" class="form-control" name="duracaoAcompanhamentoAnterior" value="${fichaAtendimento.duracaoAcompanhamentoAnterior}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="hmf" class="col-sm-4 control-label">HMF:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="hmf"/>
+														<input type="text" class="form-control" name="hmf" value="${fichaAtendimento.HMF}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-sm-4 control-label"></label>
-													<div class="col-sm-8 form-inline">
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Obesidade</label>
+													<div class="col-sm-8">
+														<div class="col-sm-3">
+															<label class="col-md-12">
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flObesidade == true}">
+																		<input type="checkbox" name="flObesidade" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flObesidade"/>
+																 	</c:otherwise>
+																</c:choose>															 	
+																 Obesidade
+															</label> 
+															<label class="col-md-12"> 
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flDiabetes == true}">
+																		<input type="checkbox" name="flDiabetes" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flDiabetes"/>
+																 	</c:otherwise>
+																</c:choose>
+																Diabetes
+															</label> 
+															<label class="col-md-12"> 
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flHas == true}">
+																		<input type="checkbox" name="flHas" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flHas"/>
+																 	</c:otherwise>
+																</c:choose>
+																Has
+															</label>
+															<label class="col-md-12"> 
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flDoencaCardiaca == true}">
+																		<input type="checkbox" name="flDoencaCardiaca" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flDoencaCardiaca"/>
+																 	</c:otherwise>
+																</c:choose>
+																Doença Cardíaca
+															</label> 
 														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Diabetes</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Has</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Doença Cardíaca</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Colesterol</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Gastrite</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Azia</label>
-														</div>
-														<div class="checkbox">
-															 <label><input type="checkbox" /> Dor abdominal</label>
+														<div class="col-sm-3">
+															<label class="col-md-12">
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flColesterol == true}">
+																		<input type="checkbox" name="flColesterol" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flColesterol"/>
+																 	</c:otherwise>
+																</c:choose> 
+																Colesterol
+															</label> 
+															<label class="col-md-12">
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flGastrite == true}">
+																		<input type="checkbox" name="flGastrite" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flGastrite"/>
+																 	</c:otherwise>
+																</c:choose> 
+																Gastrite
+															</label>
+															<label class="col-md-12">
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flAzia == true}">
+																		<input type="checkbox" name="flAzia" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flAzia"/>
+																 	</c:otherwise>
+																</c:choose> 
+																Azia
+															</label>
+															<label class="col-md-12">
+																<c:choose>
+																	<c:when test="${fichaAtendimento.flDorAbdominal == true}">
+																		<input type="checkbox" name="flDorAbdominal" checked/>
+																	</c:when>
+																	<c:otherwise>
+																 		<input type="checkbox" name="flDorAbdominal"/>
+																 	</c:otherwise>
+																</c:choose> 
+																Dor abdominal
+															</label>
 														</div>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="habitoIntestinal" class="col-sm-4 control-label">Hábito Intestinal:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="habitoIntestinal"/>
+														<input type="text" class="form-control" name="habitoIntestinal" value="${fichaAtendimento.habitoIntestinal}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="examesRecentes" class="col-sm-4 control-label">Exames Recentes: (glicemia, LDL e etc):</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="examesRecentes"/>
+														<input type="text" class="form-control" name="examesRecentes" value="${fichaAtendimento.examesRecentes}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="medicamentos" class="col-sm-4 control-label">Medicamentos:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="medicamentos"/>
+														<input type="text" class="form-control" name="medicamentos" value="${fichaAtendimento.medicamentos}"/>
 													</div>
 												</div>
 											</div>
@@ -302,19 +381,19 @@
 												<div class="form-group">
 													<label for="tipo" class="col-sm-4 control-label">Tipo:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="tipo"/>
+														<input type="text" class="form-control" name="tpPraticaAtividadeFisica" value="${fichaAtendimento.tpPraticaAtividadeFisica}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="frequencia" class="col-sm-4 control-label">Frequência:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="frequencia"/>
+														<input type="text" class="form-control" name="frequenciaAtividadeFisica" value="${fichaAtendimento.frequenciaAtividadeFisica}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="intensidade" class="col-sm-4 control-label">Intensidade:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="intensidade"/>
+														<input type="text" class="form-control" name="intensidadeAtividadeFisica" value="${fichaAtendimento.intensidadeAtividadeFisica}"/>
 													</div>
 												</div>
 											</div>
@@ -325,49 +404,49 @@
 												<div class="form-group">
 													<label for="intolerancia" class="col-sm-4 control-label">Intolerância ou alergia alimentar?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="intolerancia"/>
+														<input type="text" class="form-control" name="intoleranciaAlergiaAlimentar" value="${fichaAtendimento.intoleranciaAlergiaAlimentar}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="alimentosGosta" class="col-sm-4 control-label">Alimentos que mais gosta?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="alimentosGosta"/>
+														<input type="text" class="form-control" name="alimentosGosta" value="${fichaAtendimento.alimentosGosta}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="AlimentosNaoGosta" class="col-sm-4 control-label">Alimentos que não gosta?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="AlimentosNaoGosta"/>
+														<input type="text" class="form-control" name="alimentosNaoGosta" value="${fichaAtendimento.alimentosNaoGosta}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="apetite" class="col-sm-4 control-label">Como é o seu apetite?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="apetite"/>
+														<input type="text" class="form-control" name="apetite" value="${fichaAtendimento.apetite}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="horariosFome" class="col-sm-4 control-label">Horários em que sente mais fome e quais alimentos você procura nestes momentos?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="horariosFome"/>
+														<input type="text" class="form-control" name="hrFomeEAlimentos" value="${fichaAtendimento.hrFomeEAlimentos}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="localRefeicao" class="col-sm-4 control-label">Locais que são feitas as refeições? Quem cozinha em casa?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="localRefeicao"/>
+														<input type="text" class="form-control" name="localDeRefeicaoEQuemCozinha" value="${fichaAtendimento.localDeRefeicaoEQuemCozinha}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="oleo" class="col-sm-4 control-label">Óleo por mês:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="oleo"/>
+														<input type="text" class="form-control" name="oleoPorMes" value="${fichaAtendimento.oleoPorMes}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="acucar" class="col-sm-4 control-label">Açucar por mês:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="acucar"/>
+														<input type="text" class="form-control" name="acucarPorMes" value="${fichaAtendimento.acucarPorMes}"/>
 													</div>
 												</div>
 												<table class="table">
@@ -382,73 +461,73 @@
 													<tbody>
 														<tr>
 															<td>Amilácidos</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsAmilacidos" value="${fichaAtendimento.fsAmilacidos}"></td>
 															<td>Refrigerante</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsRefrigerante" value="${fichaAtendimento.fsRefrigerante}"></td>
 														</tr>
 														<tr>
 															<td>Fritura</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsFritura" value="${fichaAtendimento.fsFritura}"></td>
 															<td>Bolac,choc, bolo</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsBolachaChocBolo" value="${fichaAtendimento.fsBolachaChocBolo}"></td>
 														</tr>
 														<tr>
 															<td>Frutas</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsFrutas" value="${fichaAtendimento.fsFrutas}"></td>
 															<td>Leite/Iogurte</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsLeiteIogurte" value="${fichaAtendimento.fsLeiteIogurte}"></td>
 														</tr>
 														<tr>
 															<td>Verd/salada/leg</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsVerdSaladaLeg" value="${fichaAtendimento.fsVerdSaladaLeg}"></td>
 															<td>Leguminosas</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsLeguminosas" value="${fichaAtendimento.fsLeguminosas}"></td>
 														</tr>
 														<tr>
 															<td>Carnes</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsCarnes" value="${fichaAtendimento.fsCarnes}"></td>
 															<td>Bebida alcoolica</td>
-															<td><input class="form-control" type="text"></td>
+															<td><input class="form-control" type="text" name="fsBebidaAlcoolica" value="${fichaAtendimento.fsBebidaAlcoolica}"></td>
 														</tr>
 													</tbody>
 												</table>
 												<div class="form-group">
 													<label for="agua" class="col-sm-4 control-label">Consumo de liquidos: quantidade de Água por dia:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="agua"/>
+														<input type="text" class="form-control" name="aguaPorDia" value="${fichaAtendimento.aguaPorDia}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="liquidos" class="col-sm-4 control-label">Outros líquidos:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="liquidos"/>
+														<input type="text" class="form-control" name="outrosLiquidos" value="${fichaAtendimento.outrosLiquidos}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="suplemento" class="col-sm-4 control-label">Uso de suplemento vitamínico/alimentar:</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="suplemento"/>
+														<input type="text" class="form-control" name="suplementoVitaminicoAlimentar" value="${fichaAtendimento.suplementoVitaminicoAlimentar}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="suplementoTempo" class="col-sm-4 control-label">Qual? Qual hoário? E quantas vezes no dia/semana?</label>
 													<div class="col-sm-8">
-														<input type="text" class="form-control" id="suplementoTempo"/>
+														<input type="text" class="form-control" name="suplementoVitaminicoAlimentarInformacoes" value="${fichaAtendimento.suplementoVitaminicoAlimentarInformacoes}"/>
 													</div>
-												</div>
+												</div>												
 											</div>
 											<hr/>
 											<h4 id="recordatorioAlimentar" style="margin: 0px 0px 0px 0px;" class="text-center">RECORDATÁRIO ALIMENTAR 24H</h4>
 											<div class="col-md-12"><hr/></div>
 											<div id="exibeRecordatorio" style="display: none;">
 												<div class="col-sm-12" style="margin: 0px 0px 20px 0px">
-													<textarea class="form-control ckeditor" id="recordatorioAlim" name="recordatorioAlim"></textarea>
+													<textarea class="form-control ckeditor" id="recordatorioAlim" name="recordatorioAlimentar">${fichaAtendimento.recordatorioAlimentar}</textarea>
 												</div>
 											</div>
 											<hr/>
 											<h4 style="margin: 0px 0px 0px 0px;" class="text-center">CONDUTA NUTRICIONAL</h4>
 											<div class="col-sm-12" style="margin: 20px 0px 20px 0px">
-												<textarea class="form-control ckeditor" id="condutaNutricional" name="condutaNutricional"></textarea>
+												<textarea class="form-control ckeditor" id="condutaNutricional" name="condutaNutricional">${fichaAtendimento.condutaNutricional}</textarea>
 											</div>
 											<br/>
 											<br/>

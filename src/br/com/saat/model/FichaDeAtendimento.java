@@ -35,6 +35,7 @@ public class FichaDeAtendimento {
 	private String oleoPorMes;
 	private String acucarPorMes;
 	private String fsAmilacidos;
+	private String fsFritura;
 	private String fsFrutas;
 	private String fsVerdSaladaLeg;
 	private String fsCarnes;
@@ -50,8 +51,13 @@ public class FichaDeAtendimento {
 	private String suplementoVitaminicoAlimentarInformacoes;
 	private String recordatorioAlimentar;
 	private String condutaNutricional;
-	
-	
+		
+	public String getFsFritura() {
+		return fsFritura;
+	}
+	public void setFsFritura(String fsFritura) {
+		this.fsFritura = fsFritura;
+	}
 	public int getIdFichaDeAtendimento() {
 		return idFichaDeAtendimento;
 	}
@@ -107,49 +113,49 @@ public class FichaDeAtendimento {
 	public void setHMF(String hMF) {
 		HMF = hMF;
 	}
-	public boolean isFlObesidade() {
+	public boolean getFlObesidade() {
 		return flObesidade;
 	}
 	public void setFlObesidade(boolean flObesidade) {
 		this.flObesidade = flObesidade;
 	}
-	public boolean isFlDiabetes() {
+	public boolean getFlDiabetes() {
 		return flDiabetes;
 	}
 	public void setFlDiabetes(boolean flDiabetes) {
 		this.flDiabetes = flDiabetes;
 	}
-	public boolean isFlHas() {
+	public boolean getFlHas() {
 		return flHas;
 	}
 	public void setFlHas(boolean flHas) {
 		this.flHas = flHas;
 	}
-	public boolean isFlDoencaCardiaca() {
+	public boolean getFlDoencaCardiaca() {
 		return flDoencaCardiaca;
 	}
 	public void setFlDoencaCardiaca(boolean flDoencaCardiaca) {
 		this.flDoencaCardiaca = flDoencaCardiaca;
 	}
-	public boolean isFlColesterol() {
+	public boolean getFlColesterol() {
 		return flColesterol;
 	}
 	public void setFlColesterol(boolean flColesterol) {
 		this.flColesterol = flColesterol;
 	}
-	public boolean isFlGastrite() {
+	public boolean getFlGastrite() {
 		return flGastrite;
 	}
 	public void setFlGastrite(boolean flGastrite) {
 		this.flGastrite = flGastrite;
 	}
-	public boolean isFlAzia() {
+	public boolean getFlAzia() {
 		return flAzia;
 	}
 	public void setFlAzia(boolean flAzia) {
 		this.flAzia = flAzia;
 	}
-	public boolean isFlDorAbdominal() {
+	public boolean getFlDorAbdominal() {
 		return flDorAbdominal;
 	}
 	public void setFlDorAbdominal(boolean flDorAbdominal) {
