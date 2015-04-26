@@ -552,5 +552,27 @@ public class AtletaDAO {
 		return listaAtleta;
 		
 	}
+
+	public List<Atleta> buscarAtletasAptos() throws SQLException {
+List<Atleta> listaAtleta = new ArrayList<Atleta>();
+		
+		stmtScript = con.prepareStatement(
+				"SELECT idAtleta, nome, idTpEquipe "
+				+ "FROM atleta "
+				+ "WHERE nrCadCBT IS NOT NULL "
+				+ "		AND nrCadFPT IS NOT NULL ");
+		
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	Atleta atleta = new Atleta();
+        	atleta.setIdPessoa(rs.getInt(1));
+        	atleta.setNome(rs.getString(2));
+        	atleta.setIdTpEquipe(rs.getInt(3));
+        	listaAtleta.add(atleta);
+        }
+		
+		return listaAtleta;
+	}
 	
 }

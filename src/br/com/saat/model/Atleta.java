@@ -37,6 +37,7 @@ public class Atleta extends Pessoa {
 	private List<Responsavel> listaResponsaveis;
 	private String dtNascimentoDisplay;
 	private List<Documento> listaDocumentos;
+	private boolean selecionado;
 	
 	public Atleta(){}
 	
@@ -321,5 +322,13 @@ public class Atleta extends Pessoa {
 
 	public void setListaDocumentos(List<Documento> listaDocumentos) {
 		this.listaDocumentos = listaDocumentos;
+	}
+
+	public boolean isSelecionado() {
+		return selecionado;
+	}
+
+	public void setSelecionado(boolean selecionado) {
+		this.selecionado = selecionado;
 	}	
 }

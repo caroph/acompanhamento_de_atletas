@@ -196,5 +196,16 @@ public class AtletaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas vinculados ao responsável.");
 		}
 	}
+
+	public List<Atleta> buscarAtletasAptos() throws Exception {
+		try {
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			AtletaDAO dao = new AtletaDAO();
+			listaAtleta = dao.buscarAtletasAptos();
+			return listaAtleta;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas aptos a participar de torneios.");
+		}
+	}
 	
 }

@@ -64,7 +64,6 @@
 											</div>
 										</div>
 										<div class="form-group col-sm-12">
-										
 											<label for="diasTreino">Dias de Treino: <small>[Disponíveis | Selecionados]</small></label>
 											 <div>
 												<select multiple="multiple" id="diasTreino" name="diasTreino">

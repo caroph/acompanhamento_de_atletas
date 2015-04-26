@@ -20,6 +20,7 @@ $(document).ready(function() {
 
 // Plugin Dual List
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
+var demo2 = $('select[name="atletasPart"]').bootstrapDualListbox();
 
 //Plugin Histórico de Atendimento
 $("#listaHistorico").accordion();
