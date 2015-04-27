@@ -1965,8 +1965,10 @@ td.beauty-hover {
   z-index: 2001;
 }
 .fc-event {
-  border: 1px solid #6AA6D6;
-  background-color: #6AA6D6;
+/*   border: 1px solid #6AA6D6; */
+/*   background-color: #6AA6D6; */
+  border: 1px solid #9ABD93;
+  background-color: #C0DDBA;
 }
 .qq-upload-drop-area {
   position: absolute;

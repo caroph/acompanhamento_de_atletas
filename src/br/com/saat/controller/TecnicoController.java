@@ -228,10 +228,78 @@ public class TecnicoController extends Controller {
 			
 		}else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspCalendario";
 		}else if("editarTorneio".equals(action)){
+			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new TorneioNegocio();
 			
+			try {
+				torneio = negocio.buscarTorneio(idTorneio);
+				request.setAttribute("torneio", torneio);
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			NaipeNegocio naipeNegocio = new NaipeNegocio();
+			List<Naipe> listaNaipe = naipeNegocio.listaNaipe();
+			
+			CatTorneioNegocio catTorneioNegocio = new CatTorneioNegocio();
+			List<CatTorneio> listaCategoria = catTorneioNegocio.listaCatTorneio();
+			
+			TpTorneioNegocio tpTorneioNegocio = new TpTorneioNegocio();
+			List<TpTorneio> listaTipo = tpTorneioNegocio.listaTpTorneio();
+			
+			GpTorneioNegocio gpTorneioNegocio = new GpTorneioNegocio();
+			List<GpTorneio> listaGrupo = gpTorneioNegocio.listaGpTorneio();
+			
+			AtletaNegocio atletaNegocio = new AtletaNegocio();
+			
+			try {
+				List<Atleta> listaAtleta = atletaNegocio.buscarAtletasAptos();
+				request.setAttribute("listaAtletasPart", listaAtleta);
+				
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			request.setAttribute("listaNaipe", listaNaipe);
+			request.setAttribute("listaCategoria", listaCategoria);
+			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaGrupo", listaGrupo);
+			
+			retorno = String.format("%s/TecnicoNovoTorneio.jsp",
+					Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspNovoTorneio";
 		}else if("excluirTorneio".equals(action)){
+			String msgErro = "";
+			String msgSucesso = "";
 			
+			Torneio torneio = new Torneio();
+			torneio.setIdTorneio(Integer.parseInt(request.getParameter("idTorneio")));
+
+			TorneioNegocio negocio = new TorneioNegocio();
+			
+			try {
+				if (negocio.desativar(torneio)) {
+					msgSucesso = "Torneio excluído com sucesso!";
+				} else {
+					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				}
+			} catch (Exception ex) {
+				msgErro = ex.getMessage();
+			}
+			
+			if(!"".equals(msgSucesso)){
+				request.setAttribute("msgSucesso", msgSucesso);
+			}else{
+				request.setAttribute("msgErro", msgErro);
+			}
+
+			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspCalendario";
 		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

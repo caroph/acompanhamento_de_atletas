@@ -38,7 +38,8 @@ var defaults = {
 	weekNumberTitle: 'W',
 	weekNumberCalculation: 'local',
 	
-	//editable: false,
+	editable: false,
+	events: "CalendarJsonServlet",
 	
 	// event ajax
 	lazyFetching: true,
@@ -100,7 +101,6 @@ var defaults = {
 	handleWindowResize: true
 	
 };
-
 
 function generateShortTimeFormat(options, langData) {
 	return langData.longDateFormat('LT')
@@ -4760,7 +4760,7 @@ function AgendaEventRenderer() {
 			classes = classes.concat(event.source.className || []);
 		}
 		if (url) {
-			html += "a href='" + htmlEscape(event.url) + "'";
+			html += "a onClick='" + htmlEscape(event.url) + "'";
 		}else{
 			html += "div";
 		}
@@ -5510,10 +5510,14 @@ function View(element, calendar, viewName) {
 	function eventElementHandlers(event, eventElement) {
 		eventElement
 			.click(function(ev) {
-				if (!eventElement.hasClass('ui-draggable-dragging') &&
-					!eventElement.hasClass('ui-resizable-resizing')) {
-						return trigger('eventClick', this, event, ev);
-					}
+				if (eventElement.url) {
+                    window.open(eventElement.url);
+                    return false;
+                }
+//				if (!eventElement.hasClass('ui-draggable-dragging') &&
+//					!eventElement.hasClass('ui-resizable-resizing')) {
+//						return trigger('eventClick', this, event, ev);
+//					}
 			})
 			.hover(
 				function(ev) {
@@ -6125,7 +6129,7 @@ function DayEventRenderer() {
 		var skinCss = getSkinCss(event, opt);
 
 		if (url) {
-			html += "<a href='" + htmlEscape(url) + "'";
+			html += "<a onClick='" + htmlEscape(url) + "'";
 		}else{
 			html += "<div";
 		}
@@ -6928,6 +6932,7 @@ function HorizontalPositionCache(getElement) {
 	};
 	
 }
+
 
 ;;
 

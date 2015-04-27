@@ -74,55 +74,40 @@ public class TorneioNegocio {
 		}
 		return retorno;
 	}
-//
-//	public List<DiaTreino> buscaDiasTreino() throws Exception{
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			List<DiaTreino> lista = dao.buscaDiasTreinos();
-//			return lista;
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
-//		}
-//	}
-//
-//	public boolean desativar(DiaTreino dia) throws Exception{
-//		boolean retorno = false;
-//
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			if (dao.desativar(dia)) {
-//				retorno = true;
-//			}
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao desativar o dia de treino.");
-//		}
-//
-//		return retorno;
-//	}
-//
-//	public List<DiaTreino> carregaDiasTreino(int idTpEquipe) throws Exception{
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			List<DiaTreino> lista = dao.carregaDiasTreino(idTpEquipe);
-//			return lista;
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
-//		}
-//	}
-//	
-//	public boolean alterar(String[] diasTreino, int idAtleta) throws Exception {
-//		try {
-//			DiaTreinoDAO dao = new DiaTreinoDAO();
-//			if(!dao.excluirDiasTreinoAtleta(idAtleta)){
-//				return false;
-//			}else{
-//				inserirDiaTreinoAtleta(diasTreino, idAtleta);
-//			}
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao alterar os dias de treino do atleta.");
-//		}
-//		return true;
-//	}
 
+	public List<Torneio> buscarTorneios() throws Exception{
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			List<Torneio> lista = dao.buscarTorneios();
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os torneios.");
+		}
+	}
+
+	public boolean desativar(Torneio torneio) throws Exception{
+		boolean retorno = false;
+
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			if (dao.desativar(torneio)) {
+				retorno = true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao excluir o torneio.");
+		}
+		return retorno;
+	}
+
+	public Torneio buscarTorneio(int idTorneio) {
+		Torneio torneio = new Torneio();
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			torneio = dao.buscaTorneio(idTorneio);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao excluir o torneio.");
+		}
+		return torneio;
+	}
 
 }

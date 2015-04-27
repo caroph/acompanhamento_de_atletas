@@ -22,7 +22,7 @@
 						        </c:if>
 								<div class="form-group">
 									<label class="control-label">Email</label>
-									<input type="email" class="form-control" name="email" id="email" required/>
+									<input type="email" class="form-control" name="email" id="email" autofocus required/>
 								</div>
 								<div class="form-group">
 									<label class="control-label">Senha</label>

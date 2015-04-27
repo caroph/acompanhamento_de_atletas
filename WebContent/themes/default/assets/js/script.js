@@ -48,27 +48,27 @@ $("#dadosAntropometricos").click(function(){
 
 // Alert de Confirmação
 $(document)
-		.ready(
-				function() {
-					$('a[data-confirm]')
-							.click(
-									function(ev) {
-										var href = $(this).attr('href');
-										if (!$('#dataConfirmModal').length) {
-											$('body')
-													.append(
-															'<div class="modal fade bs-example-modal-sm" id="dataConfirmModal" tabindex="-1" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button><h4 class="modal-title" id="myModalLabel">Por favor, confirme:</h4></div><div class="modal-body"></div><div class="modal-footer"><a class="btn btn-danger" id="dataConfirmOK">Sim</a><button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button></div></div></div></div>');
-										}
-										$('#dataConfirmModal').find(
-												'.modal-body').text(
-												$(this).attr('data-confirm'));
-										$('#dataConfirmOK').attr('href', href);
-										$('#dataConfirmModal').modal({
-											show : true
-										});
-										return false;
-									});
-				});
+	.ready(
+		function() {
+			$('a[data-confirm]')
+				.click(
+					function(ev) {
+						var href = $(this).attr('href');
+						if (!$('#dataConfirmModal').length) {
+							$('body')
+									.append(
+											'<div class="modal fade bs-example-modal-sm" id="dataConfirmModal" tabindex="-1" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button><h4 class="modal-title" id="myModalLabel">Por favor, confirme:</h4></div><div class="modal-body"></div><div class="modal-footer"><a class="btn btn-danger" id="dataConfirmOK">Sim</a><button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button></div></div></div></div>');
+						}
+						$('#dataConfirmModal').find(
+								'.modal-body').text(
+								$(this).attr('data-confirm'));
+						$('#dataConfirmOK').attr('href', href);
+						$('#dataConfirmModal').modal({
+							show : true
+						});
+						return false;
+					});
+			});
 
 // Passar email "Esqueci Senha"
 function passar() {
@@ -87,25 +87,17 @@ function LimparCampos() {
 	});
 }
 
-// Plugin de Horário e Calendario
-//function DemoTimePicker() {
-//	$('#hrInicio').timepicker({
-//		setDate : new Date()
-//	});
-//	$('#hrFim').timepicker({
-//		setDate : new Date()
-//	});
-//}
 $(document).ready(function() {
-	// Initialize datepicker
+	// Datapicker
 	$('#dtNascimento').datepicker({
 		setDate : new Date()
 	});
 	$('#dtValidade').datepicker({
 		setDate : new Date()
 	});
-	// Load Timepicker plugin
-	//LoadTimePickerScript(DemoTimePicker);
+	//Calendário
+	SetMinBlockHeight($('#calendar'));
+	DrawFullCalendar();
 });
 
 // Vincular Responsável
@@ -251,6 +243,47 @@ function abrirModalVisualizarResponsavel(idResponsavel, nome, email, telResidenc
 		}
 	});
 }
+
+//function abrirModalTorneio(idTorneio) {
+//	alert("oi");
+//	$("#detalhesTorneio").modal();	
+//	$.ajax({
+//		type : "POST",
+//		url : "SecretariaController?action=buscarAtletasVinculados&idResponsavel="
+//				+ idResponsavel,
+//		success : function(data) {
+//			
+//			var html = ""
+//				html += "<b>Nome:</b> " + nome + "<br/>";
+//			html += "<b>Email:</b> " + email + "<br/>";
+//			html += "<b>Celular:</b> " + celular + "<br/>";
+//			html += "<b>Telefone Residencial:</b> " + telResidencial + "<br/>";
+//			html += "<b>Telefone Comercial:</b> " + telComercial + "<br/>";
+//			html += "<b>Endereco Residencial:</b> " + endRes + ", " + numeroRes + ", "
+//			+ compRes + " - " + bairroRes + " - " + cidadeRes + "/" + estadoRes
+//			+ "<br/>";
+//			html += "<b>Endereco Comercial:</b> " + endCom + ", " + numeroCom + ", "
+//			+ compCom + " - " + bairroCom + " - " + cidadeCom + "/" + estadoCom
+//			+ "<br/><br/>"
+//			html += "<b>Atleta(s) vinculado(s) ao respons\u00e1vel:</b><br/>";
+//			
+//			var grauParentesco = data.grauParentesco;
+//			if (data.listaAtleta.length <= 0){
+//				html += "<small>Nenhum atleta vinculado.</small>"
+//			}else{
+//				$.each(
+//					data.listaAtleta,
+//					function(index, item) {
+//						html += grauParentesco[item.idGrauParentesco - 1]
+//								+ " do(a) atleta "
+//								+ item.nome 
+//								+ "<br/>";
+//					});
+//			}
+//			$('.body-responsavel').html(html);
+//		}
+//	});
+//}
 
 function registrarPresenca(idAtleta, nomeAtleta) {
 	$("#anunciarPresenca").modal();
