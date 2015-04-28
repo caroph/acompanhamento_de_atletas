@@ -17,7 +17,17 @@
 				<li><a class="" href="TecnicoController?action=jspNovoTorneio">Novo</a></li>
 				<li><a class="" href="TecnicoController?action=jspCalendario">Calendário</a></li>
 			</ul>
-		</li>		
+		</li>	
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle">
+				<i class="fa fa-trophy"></i>
+				<span class="hidden-xs">Chamada</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="TecnicoController?action=jspChamadaQuadra">Quadra</a></li>
+				<li><a class="" href="#">Chamada</a></li>
+			</ul>
+		</li>	
 	</ul>
 </div>
 <!-- 		<li> -->

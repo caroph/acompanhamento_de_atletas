@@ -300,6 +300,9 @@ public class TecnicoController extends Controller {
 
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspCalendario";
+		}else if("jspChamadaQuadra".equals(action)){
+			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
 		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

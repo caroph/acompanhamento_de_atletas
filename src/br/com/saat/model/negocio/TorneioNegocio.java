@@ -99,7 +99,7 @@ public class TorneioNegocio {
 		return retorno;
 	}
 
-	public Torneio buscarTorneio(int idTorneio) {
+	public Torneio buscarTorneio(int idTorneio) throws Exception {
 		Torneio torneio = new Torneio();
 		try {
 			TorneioDAO dao = new TorneioDAO();
