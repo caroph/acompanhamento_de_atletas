@@ -20,7 +20,7 @@
 		</li>	
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
-				<i class="fa fa-trophy"></i>
+				<i class="fa fa-calendar"></i>
 				<span class="hidden-xs">Chamada</span>
 			</a>
 			<ul class="dropdown-menu">
