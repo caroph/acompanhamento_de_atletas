@@ -324,6 +324,37 @@ public class Atleta extends Pessoa {
 		this.listaDocumentos = listaDocumentos;
 	}
 
+	public String getStrIdade() {
+		String strIdade = "";
+		
+		if(this.dtNascimento != null){
+			Date dataNasc = this.dtNascimento;
+			Date dataAtual = new Date(System.currentTimeMillis());
+
+			int idadeAnos = dataAtual.getYear() - dataNasc.getYear();
+			int idadeMeses = 0;
+			if(dataAtual.getMonth() > dataNasc.getMonth()){
+				idadeMeses = dataAtual.getMonth() - dataNasc.getMonth();
+			}
+			if(dataAtual.getMonth() < dataNasc.getMonth()){
+				idadeAnos--;
+				idadeMeses = (12 - dataNasc.getMonth()) + dataAtual.getMonth();
+			}else{
+				if(dataAtual.getDate() < dataNasc.getDate()){
+					idadeAnos--;
+					idadeMeses = 11;
+				}						
+			}
+			
+			strIdade = idadeAnos>0? (idadeAnos==1? "1 Ano" : idadeAnos + " Anos"):"";
+			strIdade += idadeAnos>0&&idadeMeses>0? " e ":"";
+			strIdade += idadeMeses>0? (idadeMeses==1? "1 Mês" : idadeMeses + " Meses") : "";
+			
+			return strIdade;
+		}else
+			return "Data de nascimento inválida";
+	}
+
 	public boolean isSelecionado() {
 		return selecionado;
 	}

@@ -9,7 +9,14 @@ public class FichaDeAtendimentoNegocio {
 	public FichaDeAtendimento buscarUltimaFicha(int idAtleta) throws Exception{
 		try{
 			FichaDeAtendimentoDAO dao  = new FichaDeAtendimentoDAO();
-			return dao.buscarUltimaFicha(idAtleta);		
+			FichaDeAtendimento ficha = dao.buscarUltimaFicha(idAtleta);
+			if(ficha != null)
+				return ficha;
+			else{
+				ficha = new FichaDeAtendimento();
+				ficha.setIdFichaDeAtendimento(0);
+				return ficha;
+			}
 		}catch (Exception ex) {
 			throw ex;
 		}
@@ -19,8 +26,16 @@ public class FichaDeAtendimentoNegocio {
 		try{
 			FichaDeAtendimentoDAO dao  = new FichaDeAtendimentoDAO();
 			int idFichaInserida = dao.inserir(ficha);
-			if(idFichaInserida > 0)
-				return idFichaInserida;
+			if(idFichaInserida > 0){
+				AvaliacaoAntropometricaNegocio avaliacaoNegocio = new AvaliacaoAntropometricaNegocio();
+				int idAvaliacaoInserida = avaliacaoNegocio.inserir(ficha.getAvaliacaoAntropometrica(), idFichaInserida);
+				if(idAvaliacaoInserida > 0){
+					ficha.getAvaliacaoAntropometrica().setIdAvaliacaoAntropometrica(idAvaliacaoInserida);
+					return idFichaInserida;
+				}else{
+					throw new Exception("Erro ao inserir avaliação antropométrica no banco!");
+				}				
+			}				
 			else 
 				throw new Exception("Erro ao inserir ficha de atendimento no banco!");
 		}catch (Exception ex) {

@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.FichaDeAtendimento;
@@ -145,7 +147,8 @@ public class FichaDeAtendimentoDAO {
 				+ "suplementoVitaminicoAlimentarInformacoes, "
 				+ "recordatorioAlimentar, "
 				+ "condutaNutricional) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+				, Statement.RETURN_GENERATED_KEYS);
 		
 		
 		// `idAtleta`, `idUsuario`, `dtAtendimento`, `HMA`, `acompanhamentoAnterior`, `duracaoAcompanhamentoAnterior`, `HMF`, 

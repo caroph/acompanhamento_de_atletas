@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
@@ -76,30 +77,7 @@ public class NutricionistaController extends Controller {
 				ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
 				AtletaNegocio atletaNegocio = new AtletaNegocio();
 				atleta = atletaNegocio.buscarAtleta(idAtleta);
-				
-				if(atleta != null){
-					Date dataNasc = atleta.getDtNascimento();
-					Date dataAtual = new Date(System.currentTimeMillis());
-
-					int idadeAnos = dataAtual.getYear() - dataNasc.getYear();
-					int idadeMeses = 0;
-					if(dataAtual.getMonth() > dataNasc.getMonth()){
-						idadeMeses = dataAtual.getMonth() - dataNasc.getMonth();
-					}
-					if(dataAtual.getMonth() < dataNasc.getMonth()){
-						idadeAnos--;
-						idadeMeses = (12 - dataNasc.getMonth()) + dataAtual.getMonth();
-					}else{
-						if(dataAtual.getDate() < dataNasc.getDate()){
-							idadeAnos--;
-							idadeMeses = 11;
-						}						
-					}
-					
-					strIdade = idadeAnos>0? (idadeAnos==1? "1 Ano" : idadeAnos + " Anos"):"";
-					strIdade += idadeAnos>0&&idadeMeses>0? " e ":"";
-					strIdade += idadeMeses>0? (idadeMeses==1? "1 Mês" : idadeMeses + " Meses") : "";
-				}
+				strIdade = atleta.getStrIdade();			
 					
 			}catch(ParseException ex){
 				msg = ex.getMessage();
@@ -121,8 +99,9 @@ public class NutricionistaController extends Controller {
 		}else if("novaFichaDeAtendimento".equals(action)){
 			String msg = "";
 			String msgSucesso = "";
+			String strIdade = "";
 			FichaDeAtendimento ficha = new FichaDeAtendimento();
-			
+			Atleta atleta = null;
 			try{
 				ficha.setIdFichaDeAtendimento(Integer.parseInt(request.getParameter("idFichaDeAtendimento")));
 				ficha.setIdAtleta(Integer.parseInt(request.getParameter("idAtleta")));
@@ -178,17 +157,48 @@ public class NutricionistaController extends Controller {
 					if(fichaNegocio.alterar(ficha))
 						msgSucesso = "Edição realizada com sucesso!";
 				}else{
+					AvaliacaoAntropometrica avaliacao = new AvaliacaoAntropometrica();
+					avaliacao.setPesoUsual(Float.parseFloat(request.getParameter("pesoUsual").equals("")?"0":request.getParameter("pesoUsual")));					
+					avaliacao.setPorcentagemGorduraUsual(Float.parseFloat(request.getParameter("gorduraUsual").equals("")?"0":request.getParameter("gorduraUsual")));
+					avaliacao.setPesoIdeal(Float.parseFloat(request.getParameter("pesoIdeal").equals("")?"0":request.getParameter("pesoIdeal")));
+					avaliacao.setPorcentagemGorduraIdeal(Float.parseFloat(request.getParameter("gorduraIdeal").equals("")?"0":request.getParameter("gorduraIdeal")));
+					avaliacao.setPesoAtual(Float.parseFloat(request.getParameter("pesoAtual").equals("")?"0":request.getParameter("pesoAtual")));
+					avaliacao.setPorcentagemGorduraAtual(Float.parseFloat(request.getParameter("gorduraAtual").equals("")?"0":request.getParameter("gorduraAtual")));
+					avaliacao.setAltura(Float.parseFloat(request.getParameter("altura").equals("")?"0":request.getParameter("altura")));
+					avaliacao.setCcd(Float.parseFloat(request.getParameter("ccd").equals("")?"0":request.getParameter("ccd")));
+					avaliacao.setCce(Float.parseFloat(request.getParameter("cce").equals("")?"0":request.getParameter("cce")));
+					avaliacao.setCbd(Float.parseFloat(request.getParameter("cbd").equals("")?"0":request.getParameter("cbd")));
+					avaliacao.setCbe(Float.parseFloat(request.getParameter("cbe").equals("")?"0":request.getParameter("cbe")));
+					avaliacao.setPregas(Float.parseFloat(request.getParameter("pregas").equals("")?"0":request.getParameter("pregas")));
+					avaliacao.setCintura(Float.parseFloat(request.getParameter("cintura").equals("")?"0":request.getParameter("cintura")));
+					avaliacao.setPeitoral(Float.parseFloat(request.getParameter("peitoral").equals("")?"0":request.getParameter("peitoral")));
+					
+					ficha.setAvaliacaoAntropometrica(avaliacao);					
 					ficha.setIdFichaDeAtendimento(fichaNegocio.inserir(ficha));
 					if(ficha.getIdFichaDeAtendimento() > 0)
 						msgSucesso = "Ficha de atendimento cadastrada com sucesso!";
 				}
+								
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}
 			
+			try {
+				//busca o atleta e calcula a idade
+				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				AtletaNegocio atletaNegocio = new AtletaNegocio();
+				atleta = atletaNegocio.buscarAtleta(idAtleta);
+				strIdade = atleta.getStrIdade();
+			} catch (Exception ex) {
+				msg = ex.getMessage();
+				
+			}	
+			
 			request.setAttribute("msgAlerta", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("fichaAtendimento", ficha);
+			request.setAttribute("atleta", atleta);
+			request.setAttribute("strIdade", strIdade);
 			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);

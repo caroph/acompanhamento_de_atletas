@@ -38,22 +38,45 @@
 									<!-- CONTEÚDO -->
 									<div class="row clearfix"> 
 										<div class="col-sm-12">
-											<h3>Ficha de Atendimento</h3>
+											<c:choose>
+												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
+													<h3>Ficha de Atendimento</h3>
+												</c:when>
+												<c:otherwise>
+													<h3>Nova Ficha de Atendimento</h3>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="col-sm-12">
-											<div class="col-sm-6 text-left">
-												<h6>
-													<b>Última Consulta - <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
-												</h6>
-											</div>
-											<div class="col-sm-6 text-right">
-												<a href="#"	style="margin-right: 5px;">Histórico de Atendimentos</a>|<a	href="#" style="margin-left: 5px;">Novo Atendimento</a>
-											</div>
+											<c:choose>
+												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
+													<div class="col-sm-6 text-left">
+														<h6>
+															<b>Atendimento realizado em <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
+														</h6>						
+													</div>
+													<div class="col-sm-6 text-right">
+														<a href="#"	style="margin-right: 5px;">Histórico de Atendimentos</a>|<a	href="#" style="margin-left: 5px;">Novo Atendimento</a>
+													</div>													
+												</c:when>
+												<c:otherwise>
+													<c:if test="${fichaAtendimento.dtAtendimento != null}"> 
+														<div class="col-sm-6 text-left">
+															<h6>
+																<b>Formulário preenchido com os dados do último atendimento, realizado em <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
+															</h6>
+														</div>
+														<div class="col-sm-6 text-right">
+																<a href="#"	style="margin-right: 5px;">Histórico de Atendimentos</a>
+														</div>
+													</c:if>													
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
 										<h4 class="text-center" style="margin: 0px 0px 0px 0px;">IDENTIFICAÇÃO</h4>
 										<div class="col-md-12">	<hr /></div>
-										<form class="form-horizontal" role="form" action="NutricionistaController?action=novaFichaDeAtendimento">
+										<form class="form-horizontal" role="form" action="NutricionistaController?action=novaFichaDeAtendimento" method="post">
 											<c:choose>
 												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
 													<input type="hidden" name="idFichaDeAtendimento" value="${fichaAtendimento.idFichaDeAtendimento}">
@@ -116,20 +139,20 @@
 											<div class="col-md-12"><hr/></div>		
 											<h4 id="dadosAntropometricos" class="text-center" style="margin: 0px 0px 0px 0px;">DADOS ANTROPOMÉTRICOS</h4>
 											<div class="col-md-12" style="margin: 0px 0px 0px 0px;"><hr/></div>
-											<div  id="exibeDadosAntropometricos" class="col-md-12">					
+											<div  id="exibeDadosAntropometricos" class="col-md-12">	
 												<div class="col-md-12" style="margin:10px 0px 10px 0px;">
 													<div class="col-md-5">
 														<div class="col-md-1 text-left">
 															<label for="cbd" class="control-label">CBD:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" readonly class="form-control" id="cb" value="${fichaAtendimento.avaliacaoAntropometrica.cbd}"/>
+															<input type="text" class="form-control" id="cbd" name="cbd" value="${fichaAtendimento.avaliacaoAntropometrica.cbd}"/>
 														</div>
 														<div class="col-md-1 text-left">
 															<label for="cbe" class="control-label">CBE:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" readonly class="form-control" id="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe}"/>
+															<input type="text" class="form-control" id="cbe"name="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -137,13 +160,13 @@
 															<label for="pesoUsual" class="control-label">Peso (usual/passado)</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual}"/>
+															<input type="text" class="form-control" id="pesoUsual" name="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gorduraUsual" class="control-label">Porcentagem de gordura corporal (usual/passado):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="gorduraUsual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraUsual}"/>
+															<input type="text" class="form-control" id="gorduraUsual"name="gorduraUsual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraUsual}"/>
 														</div>
 													</div>
 												</div>
@@ -153,13 +176,13 @@
 															<label for="ccd" class="control-label">CCD:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" readonly class="form-control" id="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd}"/>
+															<input type="text" class="form-control" id="ccd" name="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd}"/>
 														</div>
 														<div class="col-md-1 text-left">
 															<label for="cce" class="control-label">CCE:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" readonly class="form-control" id="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce}"/>
+															<input type="text" class="form-control" id="cce" name="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -167,13 +190,13 @@
 															<label for="pesoIdeal" class="control-label">Peso "ideal" (objetivo):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal}"/>
+															<input type="text" class="form-control" id="pesoIdeal" name="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gorduraIdeal" class="control-label">Porcentagem de gordura "ideal" (objetivo):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="gorduraIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraIdeal}"/>
+															<input type="text" class="form-control" id="gorduraIdeal" name="gorduraIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraIdeal}"/>
 														</div>
 													</div>
 												</div>
@@ -184,13 +207,13 @@
 															<label for="cintura" class="control-label">Cintura:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura}"/>
+															<input type="text" class="form-control" id="cintura" name="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura}"/>
 														</div>
 														<div class="col-md-2 text-left">
 															<label for="peitoral" class="control-label">Peitoral:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral}"/>
+															<input type="text" class="form-control" id="peitoral" name="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -198,13 +221,13 @@
 															<label for="pesoAtual" class="control-label">Peso atual:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual}"/>
+															<input type="text" class="form-control" id="pesoAtual" name="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gordura" class="control-label">Porcentagem de gordura corporal atual:</label>
 														</div>
 														<div class="col-md-2">
-															<input type="text" readonly class="form-control" id="gordura" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraAtual}"/>
+															<input type="text" class="form-control" id="gorduraAtual" name="gorduraAtual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraAtual}"/>
 														</div>
 													</div>
 												</div>
@@ -214,21 +237,23 @@
 															<label for="altura" class="control-label">Altura:</label>
 														</div>
 														<div class="col-md-2">
-															<input type="text" readonly class="form-control" id="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura}"/>
+															<input type="text" class="form-control" id="altura" name="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura}"/>
 														</div>
 														<div class="col-md-2 text-left">
 															<label for="pregas" class="control-label">Pregas:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" readonly class="form-control" id="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas}"/>
+															<input type="text" class="form-control" id="pregas" name="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas}"/>
 														</div>
 													</div>		
 													<div class="col-md-7">
 													</div>											
 												</div>
-												<div class="col-md-12 text-right" style="margin:10px 0px 0px 0px;">
-													<a href="#" style="margin-right: 5px;">Histórico de Avaliações</a>|<a href="#" style="margin-left: 5px;">Nova Avaliação Antropométrica</a>
-												</div>									
+												<c:if test="${fichaAtendimento.avaliacaoAntropometrica.idAvaliacaoAntropometrica > 0}">
+													<div class="col-md-12 text-right" style="margin:10px 0px 0px 0px;">
+														<a href="#" style="margin-right: 5px;">Histórico de Avaliações</a>
+													</div>
+												</c:if>
 											</div>
 											<div class="col-md-12"><hr/></div>	
 											<h4 id="objetivoConsulta" style="margin: 0px 0px 0px 0px;" class="text-center">OBJETIVO PRINCIPAL DA CONSULTA</h4>
@@ -533,7 +558,7 @@
 											<br/>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10 text-right">
-													<button type="submit" class="btn btn-primary">Salvar</button>
+													<button type="submit" class="btn btn-primary" >Salvar</button>
 												</div>
 											</div>											
 										</form>
