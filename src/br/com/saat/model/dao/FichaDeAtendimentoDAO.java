@@ -1,16 +1,15 @@
 package br.com.saat.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import com.mysql.jdbc.Statement;
 
 import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.negocio.AvaliacaoAntropometricaNegocio;
+
+import com.mysql.jdbc.Statement;
 
 public class FichaDeAtendimentoDAO {
 
