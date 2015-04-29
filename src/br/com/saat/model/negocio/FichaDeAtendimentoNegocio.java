@@ -1,5 +1,9 @@
 package br.com.saat.model.negocio;
 
+import java.util.Date;
+import java.util.HashMap;
+
+import jdk.nashorn.internal.runtime.ECMAException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.dao.FichaDeAtendimentoDAO;
@@ -44,6 +48,40 @@ public class FichaDeAtendimentoNegocio {
 	}
 
 	public boolean alterar(FichaDeAtendimento ficha) throws Exception{
-		throw new NotImplementedException();
+		try{
+			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
+			if(dao.alterar(ficha)){
+				AvaliacaoAntropometricaNegocio avaliacaoNegocio = new AvaliacaoAntropometricaNegocio();
+				if(avaliacaoNegocio.alterar(ficha.getAvaliacaoAntropometrica(), ficha.getIdFichaDeAtendimento()))				
+					return true;
+				else
+					throw new Exception("Erro ao alterar a avaliação antropometrica");
+			}else
+				throw new Exception("Erro ao alterar ficha de atendimento!");
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+
+	public HashMap<Integer, Date> buscarHistoricoAtendimento(int idAtleta) throws Exception{
+		try{
+			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
+			HashMap<Integer, Date> lista = dao.buscarHistoricoAtendimento(idAtleta);
+			if(lista.size() > 0){
+				return lista;
+			}else
+				return null;
+		}catch(Exception ex){
+			throw ex;
+		}		
+	}
+
+	public FichaDeAtendimento buscarPorId(int idFichaDeAtendimento) throws Exception {
+		try{
+			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
+			return dao.buscarPorId(idFichaDeAtendimento);
+		}catch(Exception ex){
+			throw ex;
+		}
 	}
 }

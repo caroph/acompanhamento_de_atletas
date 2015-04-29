@@ -95,4 +95,43 @@ public class AvaliacaoAntropometricaDAO {
 			return 0;
 	}
 
+	public boolean alterar(AvaliacaoAntropometrica avaliacaoAntropometrica, int idFichaDeAtendimento) throws Exception{
+		stmtScript = con.prepareStatement("UPDATE avaliacaoantropometrica SET "
+				+ "pesoUsual = ?, "
+				+ "porcentagemGorduraUsual = ?, "
+				+ "pesoIdeal = ?, "
+				+ "porcentagemGorduraIdeal = ?, "
+				+ "pesoAtual = ?, "
+				+ "porcentagemGorduraAtual = ?, "
+				+ "altura = ?, "
+				+ "ccd = ?, "
+				+ "cce = ?, "
+				+ "cbd = ?, "
+				+ "cbe = ?, "
+				+ "pregas = ?, "
+				+ "cintura = ?, "
+				+ "peitoral = ? WHERE idFichaDeAtendimento = ?");
+		
+		stmtScript.setFloat(1, avaliacaoAntropometrica.getPesoUsual());
+		stmtScript.setFloat(2, avaliacaoAntropometrica.getPorcentagemGorduraUsual());
+		stmtScript.setFloat(3, avaliacaoAntropometrica.getPesoIdeal());
+		stmtScript.setFloat(4, avaliacaoAntropometrica.getPorcentagemGorduraIdeal());
+		stmtScript.setFloat(5, avaliacaoAntropometrica.getPesoAtual());
+		stmtScript.setFloat(6, avaliacaoAntropometrica.getPorcentagemGorduraAtual());
+		stmtScript.setFloat(7, avaliacaoAntropometrica.getAltura());
+		stmtScript.setFloat(8, avaliacaoAntropometrica.getCcd());
+		stmtScript.setFloat(9, avaliacaoAntropometrica.getCce());
+		stmtScript.setFloat(10, avaliacaoAntropometrica.getCbd());
+		stmtScript.setFloat(11, avaliacaoAntropometrica.getCbe());
+		stmtScript.setFloat(12, avaliacaoAntropometrica.getPregas());
+		stmtScript.setFloat(13, avaliacaoAntropometrica.getCintura());
+		stmtScript.setFloat(14, avaliacaoAntropometrica.getPeitoral());
+		stmtScript.setInt(15, idFichaDeAtendimento);
+		
+		if(stmtScript.executeUpdate() > 0)
+			return true;
+		else
+			return false;
+	}
+
 }

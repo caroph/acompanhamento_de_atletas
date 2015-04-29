@@ -56,7 +56,7 @@
 														</h6>						
 													</div>
 													<div class="col-sm-6 text-right">
-														<a href="#"	style="margin-right: 5px;">Histórico de Atendimentos</a>|<a	href="#" style="margin-left: 5px;">Novo Atendimento</a>
+														<a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>|<a	href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${fichaAtendimento.idAtleta}&idFichaDeAtendimento=0" style="margin-left: 5px;">Novo Atendimento</a>
 													</div>													
 												</c:when>
 												<c:otherwise>
@@ -67,7 +67,7 @@
 															</h6>
 														</div>
 														<div class="col-sm-6 text-right">
-																<a href="#"	style="margin-right: 5px;">Histórico de Atendimentos</a>
+																<a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>
 														</div>
 													</c:if>													
 												</c:otherwise>

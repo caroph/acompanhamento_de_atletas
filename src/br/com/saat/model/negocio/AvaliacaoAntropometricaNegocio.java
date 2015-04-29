@@ -34,4 +34,13 @@ public class AvaliacaoAntropometricaNegocio {
 		}
 	}
 
+	public boolean alterar(AvaliacaoAntropometrica avaliacaoAntropometrica, int idFichaDeAtendimento) throws Exception {
+		try{
+			AvaliacaoAntropometricaDAO dao = new AvaliacaoAntropometricaDAO();
+			return dao.alterar(avaliacaoAntropometrica, idFichaDeAtendimento);
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+
 }

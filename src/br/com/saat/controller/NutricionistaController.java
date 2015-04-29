@@ -3,6 +3,7 @@ package br.com.saat.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -54,6 +55,7 @@ public class NutricionistaController extends Controller {
 			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
+					
 			try{
 				lista = negocio.buscarAtletas(1);
 			}catch(Exception ex){
@@ -74,7 +76,19 @@ public class NutricionistaController extends Controller {
 			try{
 				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));			
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
-				ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
+				
+				//Verifica se abre a página jsp em modo de edição ou inserção
+				if(request.getParameter("idFichaDeAtendimento").equals("0")){
+					// inserção
+					ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
+					ficha.setIdFichaDeAtendimento(0);
+				}else{
+					if(!request.getParameter("idFichaDeAtendimento").equals("")){
+						ficha = fichaNegocio.buscarPorId(Integer.parseInt(request.getParameter("idFichaDeAtendimento")));
+					}else
+						msg = "idFichaDeAtendimento Inválido!";
+				}
+				
 				AtletaNegocio atletaNegocio = new AtletaNegocio();
 				atleta = atletaNegocio.buscarAtleta(idAtleta);
 				strIdade = atleta.getStrIdade();			
@@ -84,11 +98,7 @@ public class NutricionistaController extends Controller {
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}
-			
-			//Verifica se abre a página jsp em modo de edição ou inserção
-			if(request.getParameter("idFichaDeAtendimento").equals("0"))
-				ficha.setIdFichaDeAtendimento(0); // seta o id para 0 -> edição
-			
+						
 			request.setAttribute("msgAlerta", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("fichaAtendimento", ficha);
@@ -152,28 +162,29 @@ public class NutricionistaController extends Controller {
 				ficha.setRecordatorioAlimentar(request.getParameter("recordatorioAlimentar"));
 				ficha.setCondutaNutricional(request.getParameter("condutaNutricional"));
 				
+				AvaliacaoAntropometrica avaliacao = new AvaliacaoAntropometrica();
+				avaliacao.setPesoUsual(Float.parseFloat(request.getParameter("pesoUsual").equals("")?"0":request.getParameter("pesoUsual")));					
+				avaliacao.setPorcentagemGorduraUsual(Float.parseFloat(request.getParameter("gorduraUsual").equals("")?"0":request.getParameter("gorduraUsual")));
+				avaliacao.setPesoIdeal(Float.parseFloat(request.getParameter("pesoIdeal").equals("")?"0":request.getParameter("pesoIdeal")));
+				avaliacao.setPorcentagemGorduraIdeal(Float.parseFloat(request.getParameter("gorduraIdeal").equals("")?"0":request.getParameter("gorduraIdeal")));
+				avaliacao.setPesoAtual(Float.parseFloat(request.getParameter("pesoAtual").equals("")?"0":request.getParameter("pesoAtual")));
+				avaliacao.setPorcentagemGorduraAtual(Float.parseFloat(request.getParameter("gorduraAtual").equals("")?"0":request.getParameter("gorduraAtual")));
+				avaliacao.setAltura(Float.parseFloat(request.getParameter("altura").equals("")?"0":request.getParameter("altura")));
+				avaliacao.setCcd(Float.parseFloat(request.getParameter("ccd").equals("")?"0":request.getParameter("ccd")));
+				avaliacao.setCce(Float.parseFloat(request.getParameter("cce").equals("")?"0":request.getParameter("cce")));
+				avaliacao.setCbd(Float.parseFloat(request.getParameter("cbd").equals("")?"0":request.getParameter("cbd")));
+				avaliacao.setCbe(Float.parseFloat(request.getParameter("cbe").equals("")?"0":request.getParameter("cbe")));
+				avaliacao.setPregas(Float.parseFloat(request.getParameter("pregas").equals("")?"0":request.getParameter("pregas")));
+				avaliacao.setCintura(Float.parseFloat(request.getParameter("cintura").equals("")?"0":request.getParameter("cintura")));
+				avaliacao.setPeitoral(Float.parseFloat(request.getParameter("peitoral").equals("")?"0":request.getParameter("peitoral")));
+				
+				ficha.setAvaliacaoAntropometrica(avaliacao);	
+				
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				if(ficha.getIdFichaDeAtendimento() > 0){
 					if(fichaNegocio.alterar(ficha))
 						msgSucesso = "Edição realizada com sucesso!";
 				}else{
-					AvaliacaoAntropometrica avaliacao = new AvaliacaoAntropometrica();
-					avaliacao.setPesoUsual(Float.parseFloat(request.getParameter("pesoUsual").equals("")?"0":request.getParameter("pesoUsual")));					
-					avaliacao.setPorcentagemGorduraUsual(Float.parseFloat(request.getParameter("gorduraUsual").equals("")?"0":request.getParameter("gorduraUsual")));
-					avaliacao.setPesoIdeal(Float.parseFloat(request.getParameter("pesoIdeal").equals("")?"0":request.getParameter("pesoIdeal")));
-					avaliacao.setPorcentagemGorduraIdeal(Float.parseFloat(request.getParameter("gorduraIdeal").equals("")?"0":request.getParameter("gorduraIdeal")));
-					avaliacao.setPesoAtual(Float.parseFloat(request.getParameter("pesoAtual").equals("")?"0":request.getParameter("pesoAtual")));
-					avaliacao.setPorcentagemGorduraAtual(Float.parseFloat(request.getParameter("gorduraAtual").equals("")?"0":request.getParameter("gorduraAtual")));
-					avaliacao.setAltura(Float.parseFloat(request.getParameter("altura").equals("")?"0":request.getParameter("altura")));
-					avaliacao.setCcd(Float.parseFloat(request.getParameter("ccd").equals("")?"0":request.getParameter("ccd")));
-					avaliacao.setCce(Float.parseFloat(request.getParameter("cce").equals("")?"0":request.getParameter("cce")));
-					avaliacao.setCbd(Float.parseFloat(request.getParameter("cbd").equals("")?"0":request.getParameter("cbd")));
-					avaliacao.setCbe(Float.parseFloat(request.getParameter("cbe").equals("")?"0":request.getParameter("cbe")));
-					avaliacao.setPregas(Float.parseFloat(request.getParameter("pregas").equals("")?"0":request.getParameter("pregas")));
-					avaliacao.setCintura(Float.parseFloat(request.getParameter("cintura").equals("")?"0":request.getParameter("cintura")));
-					avaliacao.setPeitoral(Float.parseFloat(request.getParameter("peitoral").equals("")?"0":request.getParameter("peitoral")));
-					
-					ficha.setAvaliacaoAntropometrica(avaliacao);					
 					ficha.setIdFichaDeAtendimento(fichaNegocio.inserir(ficha));
 					if(ficha.getIdFichaDeAtendimento() > 0)
 						msgSucesso = "Ficha de atendimento cadastrada com sucesso!";
@@ -200,6 +211,38 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("atleta", atleta);
 			request.setAttribute("strIdade", strIdade);
 			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);			
+		}else if("jspHistoricoAtendimento".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			int idAtleta = 0;
+			Atleta atleta = null;
+			HashMap<Integer, Date> listaAtendimentos = null;
+			
+			try{
+				String id = request.getParameter("idAtleta");
+				if(request.getParameter("idAtleta").equals("")){
+					msg = "idAtleta inválido!";
+				}else{
+					idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+					AtletaNegocio atletaNegocio = new AtletaNegocio();
+					FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
+					
+					atleta = atletaNegocio.buscarAtleta(idAtleta);
+					listaAtendimentos = fichaNegocio.buscarHistoricoAtendimento(idAtleta);
+					
+					//OBSERVAÇÕES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!! 
+				}
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}
+			
+			request.setAttribute("msgErro", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("listaAtendimentos", listaAtendimentos);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/NutricionistaHistoricoDeAtendimentos.jsp", Constants.VIEW);	
+			
+			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 			servletRetorno = retorno;
