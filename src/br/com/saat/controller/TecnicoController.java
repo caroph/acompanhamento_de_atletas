@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
@@ -339,8 +341,25 @@ public class TecnicoController extends Controller {
 		    request.setAttribute("msgErro", msg);
 		    
 		}else if("jspChamadaQuadra".equals(action)){
+
 			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
+			
+		}else if("CarregarAtletasAutoComplete".equals(action)){
+			String busca = request.getParameter("acbusca");
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletasPorNome(busca);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			String json = new Gson().toJson(listaAtleta);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
 		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

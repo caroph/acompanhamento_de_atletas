@@ -554,7 +554,7 @@ public class AtletaDAO {
 	}
 
 	public List<Atleta> buscarAtletasAptos() throws SQLException {
-List<Atleta> listaAtleta = new ArrayList<Atleta>();
+		List<Atleta> listaAtleta = new ArrayList<Atleta>();
 		
 		stmtScript = con.prepareStatement(
 				"SELECT idAtleta, nome, idTpEquipe "
@@ -569,6 +569,23 @@ List<Atleta> listaAtleta = new ArrayList<Atleta>();
         	atleta.setIdPessoa(rs.getInt(1));
         	atleta.setNome(rs.getString(2));
         	atleta.setIdTpEquipe(rs.getInt(3));
+        	listaAtleta.add(atleta);
+        }
+		
+		return listaAtleta;
+	}
+
+	public List<Atleta> buscarAtletasPorNome(String busca) throws SQLException {
+		List<Atleta> listaAtleta = new ArrayList<Atleta>();
+		
+		stmtScript = con.prepareStatement("SELECT idAtleta, nome from atleta WHERE nome like '%" + busca + "%'");
+		
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	Atleta atleta = new Atleta();
+        	atleta.setIdPessoa(rs.getInt(1));
+        	atleta.setNome(rs.getString(2));
         	listaAtleta.add(atleta);
         }
 		
