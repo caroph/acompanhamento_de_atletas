@@ -5,7 +5,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +31,8 @@ import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class TecnicoController
@@ -300,6 +304,40 @@ public class TecnicoController extends Controller {
 
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspCalendario";
+		}else if("detalhesTorneio".equals(action)){
+			String msg = "";
+			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new TorneioNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			
+			try{
+				torneio = negocio.buscarTorneio(idTorneio);
+				listaAtleta = negocio.buscaAtletasPart(idTorneio);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}		
+			
+			List<String> listaNaipe = new NaipeNegocio().listaNaipeString();
+			List<String> listaCategoria = new CatTorneioNegocio().listaCatTorneioString();
+			List<String> listaTipo = new TpTorneioNegocio().listaTpTorneioString();
+			List<String> listaGrupo = new GpTorneioNegocio().listaGpTorneioString();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("torneio", torneio);
+			lista.put("listaAtleta", listaAtleta);
+			lista.put("naipe", listaNaipe);
+			lista.put("categoria", listaCategoria);
+			lista.put("tipo", listaTipo);
+			lista.put("grupo", listaGrupo);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		    request.setAttribute("msgErro", msg);
+		    
 		}else if("jspChamadaQuadra".equals(action)){
 			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";

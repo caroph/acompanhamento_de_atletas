@@ -3,6 +3,7 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.dao.Torneio;
 
 public class TorneioNegocio {
@@ -60,7 +61,6 @@ public class TorneioNegocio {
 	
 	public boolean inserirAtletasPart(String[] atletasPart, int idNovoTorneio) throws Exception {
 		boolean retorno = true;
-		
 		try {
 			TorneioDAO dao = new TorneioDAO();
 			for (String idAtleta : atletasPart) {
@@ -87,7 +87,6 @@ public class TorneioNegocio {
 
 	public boolean desativar(Torneio torneio) throws Exception{
 		boolean retorno = false;
-
 		try {
 			TorneioDAO dao = new TorneioDAO();
 			if (dao.desativar(torneio)) {
@@ -105,9 +104,20 @@ public class TorneioNegocio {
 			TorneioDAO dao = new TorneioDAO();
 			torneio = dao.buscaTorneio(idTorneio);
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao excluir o torneio.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o torneio.");
 		}
 		return torneio;
 	}
+
+	public List<Atleta> buscaAtletasPart(int idTorneio) throws Exception {
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			List<Atleta> lista = dao.buscaAtletasPart(idTorneio);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas participantes.");
+		}
+	}
+
 
 }

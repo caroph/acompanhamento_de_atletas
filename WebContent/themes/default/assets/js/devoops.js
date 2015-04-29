@@ -6,42 +6,47 @@
 //Detalhes do Torneio
 function abrilModalTorneio(idTorneio) {
 	$("#detalhesTorneio").modal();	
-//	$.ajax({
-//	type : "POST",
-//	url : "SecretariaController?action=buscarAtletasVinculados&idResponsavel="
-//			+ idResponsavel,
-//	success : function(data) {
-//		
-//		var html = ""
-//			html += "<b>Nome:</b> " + nome + "<br/>";
-//		html += "<b>Email:</b> " + email + "<br/>";
-//		html += "<b>Celular:</b> " + celular + "<br/>";
-//		html += "<b>Telefone Residencial:</b> " + telResidencial + "<br/>";
-//		html += "<b>Telefone Comercial:</b> " + telComercial + "<br/>";
-//		html += "<b>Endereco Residencial:</b> " + endRes + ", " + numeroRes + ", "
-//		+ compRes + " - " + bairroRes + " - " + cidadeRes + "/" + estadoRes
-//		+ "<br/>";
-//		html += "<b>Endereco Comercial:</b> " + endCom + ", " + numeroCom + ", "
-//		+ compCom + " - " + bairroCom + " - " + cidadeCom + "/" + estadoCom
-//		+ "<br/><br/>"
-//		html += "<b>Atleta(s) vinculado(s) ao respons\u00e1vel:</b><br/>";
-//		
-//		var grauParentesco = data.grauParentesco;
-//		if (data.listaAtleta.length <= 0){
-//			html += "<small>Nenhum atleta vinculado.</small>"
-//		}else{
-//			$.each(
-//				data.listaAtleta,
-//				function(index, item) {
-//					html += grauParentesco[item.idGrauParentesco - 1]
-//							+ " do(a) atleta "
-//							+ item.nome 
-//							+ "<br/>";
-//				});
-//		}
-//		$('.body-torneio').html(html);
-//	}
-//});
+	$.ajax({
+	type : "POST",
+	url : "TecnicoController?action=detalhesTorneio&idTorneio="
+			+ idTorneio,
+	success : function(data) {
+		
+		var html = ""
+			html += "<b>Nome:</b> " + data.torneio.nome + "<br/>";
+		html += "<b>Local:</b> " + data.torneio.local + "<br/>";
+		html += "<b>Cidade/UF:</b> " + data.torneio.cidade + "/" + data.torneio.estado + "<br/>";
+		html += "<b>Data Inicial:</b> " + data.torneio.dtInicial + "<br/>";
+		html += "<b>Data Final:</b> " + data.torneio.dtFinal + "<br/>";
+		html += "<b>Naipe:</b> " + data.naipe[data.torneio.idNaipe - 1] + "<br/>";
+		html += "<b>Categoria:</b> " + data.categoria[data.torneio.idCatTorneio - 1] + "<br/>";
+		html += "<b>Tipo:</b> " + data.tipo[data.torneio.idTpTorneio - 1] + "<br/>";
+		html += "<b>Grupo:</b> " + data.grupo[data.torneio.idGpTorneio - 1] + "<br/>";
+		html += "<b>Descri\u00e7\u00e3o:</b> " + data.torneio.descricao + "<br/><br/>";
+		html += "<b>Atletas participantes:</b><br/>";
+		
+		if (data.listaAtleta.length <= 0){
+			html += "<small>Nenhum atleta participante.</small>"
+		}else{
+			$.each(
+				data.listaAtleta,
+				function(index, item) {
+					html += item.nome 
+							+ "<br/>";
+				});
+		}
+		
+		html += "<div class='modal-footer'>";
+		html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
+		html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
+		html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
+		html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
+		html += "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Fechar</button>";
+		html += "</div>";
+		
+		$('.body-torneio').html(html);
+	}
+});
 }
 
 /*-------------------------------------------
