@@ -1,6 +1,8 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,25 +113,25 @@ public class NutricionistaController extends Controller {
 			String msgSucesso = "";
 			String strIdade = "";
 			FichaDeAtendimento ficha = new FichaDeAtendimento();
-			Atleta atleta = null;
-			try{
+			Atleta atleta = null;		
+			
+			try{				
 				ficha.setIdFichaDeAtendimento(Integer.parseInt(request.getParameter("idFichaDeAtendimento")));
 				ficha.setIdAtleta(Integer.parseInt(request.getParameter("idAtleta")));
 				ficha.setIdUsuario(Integer.parseInt(request.getParameter("idUsuario")));
-				ficha.setDtAtendimento(new Date(System.currentTimeMillis()));
 				ficha.setIdUsuario(Integer.parseInt(request.getParameter("idUsuario")));
 				ficha.setHMA(request.getParameter("hma"));
 				ficha.setAcompanhamentoAnterior(request.getParameter("acompanhamentoAnterior"));
 				ficha.setDuracaoAcompanhamentoAnterior(request.getParameter("duracaoAcompanhamentoAnterior"));
 				ficha.setHMF(request.getParameter("hmf"));
-				ficha.setFlObesidade(Boolean.parseBoolean(request.getParameter("flObesidade")));
-				ficha.setFlDiabetes(Boolean.parseBoolean(request.getParameter("flDiabetes")));
-				ficha.setFlHas(Boolean.parseBoolean(request.getParameter("flHas")));
-				ficha.setFlDoencaCardiaca(Boolean.parseBoolean(request.getParameter("flDoencaCardiaca")));
-				ficha.setFlColesterol(Boolean.parseBoolean(request.getParameter("flColesterol")));
-				ficha.setFlGastrite(Boolean.parseBoolean(request.getParameter("flGastrite")));
-				ficha.setFlAzia(Boolean.parseBoolean(request.getParameter("flAzia")));
-				ficha.setFlDorAbdominal(Boolean.parseBoolean(request.getParameter("flDorAbdominal")));
+				ficha.setFlObesidade(request.getParameter("flObesidade") != null? true : false);
+				ficha.setFlDiabetes(request.getParameter("flDiabetes") != null? true : false);
+				ficha.setFlHas(request.getParameter("flHas") != null? true : false);
+				ficha.setFlDoencaCardiaca(request.getParameter("flDoencaCardiaca") != null? true : false);
+				ficha.setFlColesterol(request.getParameter("flColesterol") != null? true : false);
+				ficha.setFlGastrite(request.getParameter("flGastrite") != null? true : false);
+				ficha.setFlAzia(request.getParameter("flAzia") != null? true : false);
+				ficha.setFlDorAbdominal(request.getParameter("flDorAbdominal") != null? true : false);
 				ficha.setHabitoIntestinal(request.getParameter("habitoIntestinal"));
 				ficha.setExamesRecentes(request.getParameter("examesRecentes"));
 				ficha.setMedicamentos(request.getParameter("medicamentos"));
@@ -182,8 +184,10 @@ public class NutricionistaController extends Controller {
 				
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				if(ficha.getIdFichaDeAtendimento() > 0){
-					if(fichaNegocio.alterar(ficha))
+					if(fichaNegocio.alterar(ficha)){
 						msgSucesso = "Edição realizada com sucesso!";
+						ficha = fichaNegocio.buscarUltimaFicha(ficha.getIdAtleta());
+					}
 				}else{
 					ficha.setIdFichaDeAtendimento(fichaNegocio.inserir(ficha));
 					if(ficha.getIdFichaDeAtendimento() > 0)

@@ -3,6 +3,8 @@ package br.com.saat.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import br.com.saat.model.AvaliacaoAntropometrica;
@@ -36,7 +38,7 @@ public class FichaDeAtendimentoDAO {
 			ficha.setIdFichaDeAtendimento(rs.getInt("idFichaDeAtendimento"));
 			ficha.setIdAtleta(idAtleta);
 			ficha.setIdUsuario(rs.getInt("idUsuario"));
-			ficha.setDtAtendimento(rs.getDate("dtAtendimento"));
+			ficha.setDtAtendimento(rs.getTimestamp("dtAtendimento"));
 			ficha.setIdUsuario(rs.getInt("idUsuario"));
 			ficha.setHMA(rs.getString("HMA"));
 			ficha.setAcompanhamentoAnterior(rs.getString("acompanhamentoAnterior"));
@@ -154,7 +156,8 @@ public class FichaDeAtendimentoDAO {
 		// `idAtleta`, `idUsuario`, `dtAtendimento`, `HMA`, `acompanhamentoAnterior`, `duracaoAcompanhamentoAnterior`, `HMF`, 
 		stmtScript.setInt(1, ficha.getIdAtleta());
 		stmtScript.setInt(2, ficha.getIdUsuario());
-		stmtScript.setDate(3, new java.sql.Date(ficha.getDtAtendimento().getTime()));
+		//stmtScript.setDate(3, new java.sql.Date(ficha.getDtAtendimento().getTime()));
+		stmtScript.setTimestamp(3, new Timestamp(ficha.getDtAtendimento().getTime()));
 		stmtScript.setString(4, ficha.getHMA());
 		stmtScript.setString(5, ficha.getAcompanhamentoAnterior());
 		stmtScript.setString(6, ficha.getDuracaoAcompanhamentoAnterior());
@@ -219,13 +222,13 @@ public class FichaDeAtendimentoDAO {
 	public HashMap<Integer, java.util.Date> buscarHistoricoAtendimento(int idAtleta) throws Exception{
 
 		HashMap<Integer, java.util.Date> listaAtendimentos = new HashMap<Integer, java.util.Date>();
-		stmtScript = con.prepareStatement("SELECT idFichaDeAtendimento, dtAtendimento FROM fichadeatendimento WHERE idAtleta = ?");
+		stmtScript = con.prepareStatement("SELECT idFichaDeAtendimento, dtAtendimento FROM fichadeatendimento WHERE idAtleta = ? ORDER BY dtAtendimento DESC");
 		stmtScript.setInt(1, idAtleta);
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
 		while(rs.next())
-			listaAtendimentos.put(rs.getInt("idFichaDeAtendimento"), rs.getDate("dtAtendimento"));
+			listaAtendimentos.put(rs.getInt("idFichaDeAtendimento"), rs.getTimestamp("dtAtendimento"));
 		
 		return listaAtendimentos;
 	}
@@ -241,7 +244,7 @@ public class FichaDeAtendimentoDAO {
 			ficha.setIdFichaDeAtendimento(idFichaDeAtendimento);
 			ficha.setIdAtleta(rs.getInt("idAtleta"));
 			ficha.setIdUsuario(rs.getInt("idUsuario"));
-			ficha.setDtAtendimento(rs.getDate("dtAtendimento"));
+			ficha.setDtAtendimento(rs.getTimestamp("dtAtendimento"));
 			ficha.setIdUsuario(rs.getInt("idUsuario"));
 			ficha.setHMA(rs.getString("HMA"));
 			ficha.setAcompanhamentoAnterior(rs.getString("acompanhamentoAnterior"));
@@ -309,7 +312,6 @@ public class FichaDeAtendimentoDAO {
 				"UPDATE fichadeatendimento SET "
 				+ "idAtleta = ?, "
 				+ "idUsuario = ?, "
-				+ "dtAtendimento = ?, "
 				+ "HMA = ?, "
 				+ "acompanhamentoAnterior = ?, "
 				+ "duracaoAcompanhamentoAnterior = ?, "
@@ -360,60 +362,59 @@ public class FichaDeAtendimentoDAO {
 		// `idAtleta`, `idUsuario`, `dtAtendimento`, `HMA`, `acompanhamentoAnterior`, `duracaoAcompanhamentoAnterior`, `HMF`, 
 		stmtScript.setInt(1, ficha.getIdAtleta());
 		stmtScript.setInt(2, ficha.getIdUsuario());
-		stmtScript.setDate(3, new java.sql.Date(ficha.getDtAtendimento().getTime()));
-		stmtScript.setString(4, ficha.getHMA());
-		stmtScript.setString(5, ficha.getAcompanhamentoAnterior());
-		stmtScript.setString(6, ficha.getDuracaoAcompanhamentoAnterior());
-		stmtScript.setString(7, ficha.getHMF());
+		stmtScript.setString(3, ficha.getHMA());
+		stmtScript.setString(4, ficha.getAcompanhamentoAnterior());
+		stmtScript.setString(5, ficha.getDuracaoAcompanhamentoAnterior());
+		stmtScript.setString(6, ficha.getHMF());
 		// `flObesidade`, `flDiabetes`, `flHas`, `flDoencaCardiaca`, `flColesterol`, `flGastrite`, `flAzia`, `flDorAbdominal`, 
-		stmtScript.setBoolean(8, ficha.getFlObesidade());
-		stmtScript.setBoolean(9, ficha.getFlDiabetes());
-		stmtScript.setBoolean(10, ficha.getFlHas());
-		stmtScript.setBoolean(11, ficha.getFlDoencaCardiaca());
-		stmtScript.setBoolean(12, ficha.getFlColesterol());
-		stmtScript.setBoolean(13, ficha.getFlGastrite());
-		stmtScript.setBoolean(14, ficha.getFlAzia());
-		stmtScript.setBoolean(15, ficha.getFlDorAbdominal());
+		stmtScript.setBoolean(7, ficha.getFlObesidade());
+		stmtScript.setBoolean(8, ficha.getFlDiabetes());
+		stmtScript.setBoolean(9, ficha.getFlHas());
+		stmtScript.setBoolean(10, ficha.getFlDoencaCardiaca());
+		stmtScript.setBoolean(11, ficha.getFlColesterol());
+		stmtScript.setBoolean(12, ficha.getFlGastrite());
+		stmtScript.setBoolean(13, ficha.getFlAzia());
+		stmtScript.setBoolean(14, ficha.getFlDorAbdominal());
 		//`habitoIntestinal`, `examesRecentes`, `medicamentos`, `tpPraticaAtividadeFisica`,
-		stmtScript.setString(16, ficha.getHabitoIntestinal());
-		stmtScript.setString(17, ficha.getExamesRecentes());
-		stmtScript.setString(18, ficha.getMedicamentos());
-		stmtScript.setString(19, ficha.getTpPraticaAtividadeFisica());
+		stmtScript.setString(15, ficha.getHabitoIntestinal());
+		stmtScript.setString(16, ficha.getExamesRecentes());
+		stmtScript.setString(17, ficha.getMedicamentos());
+		stmtScript.setString(18, ficha.getTpPraticaAtividadeFisica());
 		//`frequenciaAtividadeFisica`, `intensidadeAtividadeFisica`,`intoleranciaAlergiaAlimentar`, `alimentosGosta`, 
-		stmtScript.setString(20, ficha.getFrequenciaAtividadeFisica());
-		stmtScript.setString(21, ficha.getIntensidadeAtividadeFisica());
-		stmtScript.setString(22, ficha.getIntoleranciaAlergiaAlimentar());
-		stmtScript.setString(23, ficha.getAlimentosGosta());
-		//`alimentosNaoGosta`, `apetite`, `hrFomeEAlimentos`, `localDeRefeicaoEQuemCozinha`,
-		stmtScript.setString(24, ficha.getAlimentosNaoGosta());
-		stmtScript.setString(25, ficha.getApetite());
-		stmtScript.setString(26, ficha.getHrFomeEAlimentos());
-		stmtScript.setString(27, ficha.getLocalDeRefeicaoEQuemCozinha());
+		stmtScript.setString(19, ficha.getFrequenciaAtividadeFisica());
+		stmtScript.setString(20, ficha.getIntensidadeAtividadeFisica());
+		stmtScript.setString(21, ficha.getIntoleranciaAlergiaAlimentar());
+		stmtScript.setString(22, ficha.getAlimentosGosta());
+		//`alimentosNaoGosta`,`apetite`, `hrFomeEAlimentos`, `localDeRefeicaoEQuemCozinha`,
+		stmtScript.setString(23, ficha.getAlimentosNaoGosta());
+		stmtScript.setString(24, ficha.getApetite());
+		stmtScript.setString(25, ficha.getHrFomeEAlimentos());
+		stmtScript.setString(26, ficha.getLocalDeRefeicaoEQuemCozinha());
 		//`oleoPorMes`, `acucarPorMes`, `fsAmilacidos`, `fsFritura`, `fsFrutas`, `fsVerdSaladaLeg`,
-		stmtScript.setString(28, ficha.getOleoPorMes());
-		stmtScript.setString(29, ficha.getAcucarPorMes());
-		stmtScript.setString(30, ficha.getFsAmilacidos());
-		stmtScript.setString(31, ficha.getFsFritura());
-		stmtScript.setString(32, ficha.getFsFrutas());
-		stmtScript.setString(33, ficha.getFsVerdSaladaLeg());
+		stmtScript.setString(27, ficha.getOleoPorMes());
+		stmtScript.setString(28, ficha.getAcucarPorMes());
+		stmtScript.setString(29, ficha.getFsAmilacidos());
+		stmtScript.setString(30, ficha.getFsFritura());
+		stmtScript.setString(31, ficha.getFsFrutas());
+		stmtScript.setString(32, ficha.getFsVerdSaladaLeg());
 		//`fsCarnes`, `fsRefrigerante`, `fsBolachaChocBolo`, `fsLeiteIogurte`, `fsLeguminosas`, `fsBebidaAlcoolica`,
-		stmtScript.setString(34, ficha.getFsCarnes());
-		stmtScript.setString(35, ficha.getFsRefrigerante());
-		stmtScript.setString(36, ficha.getFsBolachaChocBolo());
-		stmtScript.setString(37, ficha.getFsLeiteIogurte());
-		stmtScript.setString(38, ficha.getFsLeguminosas());
-		stmtScript.setString(39, ficha.getFsBebidaAlcoolica());
-		//`consumoLiquidos`, `aguaPorDia`, `outrosLiquidos`, `suplementoVitaminicoAlimentar`, `suplementoVitaminicoAlimentarInformacoes`, 
+		stmtScript.setString(33, ficha.getFsCarnes());
+		stmtScript.setString(34, ficha.getFsRefrigerante());
+		stmtScript.setString(35, ficha.getFsBolachaChocBolo());
+		stmtScript.setString(36, ficha.getFsLeiteIogurte());
+		stmtScript.setString(37, ficha.getFsLeguminosas());
+		stmtScript.setString(38, ficha.getFsBebidaAlcoolica());
+		//`consumoLiquidos`, `guaPorDia`, `outrosLiquidos`, `suplementoVitaminicoAlimentar`, `suplementoVitaminicoAlimentarInformacoes`, 
 		//`recordatorioAlimentar`, `condutaNutricional` 
-		stmtScript.setString(40, ficha.getConsumoLiquidos());
-		stmtScript.setString(41, ficha.getAguaPorDia());
-		stmtScript.setString(42, ficha.getOutrosLiquidos());
-		stmtScript.setString(43, ficha.getSuplementoVitaminicoAlimentar());
-		stmtScript.setString(44, ficha.getSuplementoVitaminicoAlimentarInformacoes());
-		stmtScript.setString(45, ficha.getRecordatorioAlimentar());
-		stmtScript.setString(46, ficha.getCondutaNutricional());
-		stmtScript.setInt(47, ficha.getIdFichaDeAtendimento());
-		
+		stmtScript.setString(39, ficha.getConsumoLiquidos());
+		stmtScript.setString(40, ficha.getAguaPorDia());
+		stmtScript.setString(41, ficha.getOutrosLiquidos());
+		stmtScript.setString(42, ficha.getSuplementoVitaminicoAlimentar());
+		stmtScript.setString(43, ficha.getSuplementoVitaminicoAlimentarInformacoes());
+		stmtScript.setString(44, ficha.getRecordatorioAlimentar());
+		stmtScript.setString(45, ficha.getCondutaNutricional());
+		stmtScript.setInt(46, ficha.getIdFichaDeAtendimento());
+	
 		if(stmtScript.executeUpdate() > 0)
 			return true;
 		else
