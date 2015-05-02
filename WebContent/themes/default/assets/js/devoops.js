@@ -39,6 +39,8 @@ function abrilModalTorneio(idTorneio) {
 		html += "<div class='modal-footer'>";
 		html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
 		html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
+		html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "' "; 
+		html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
 		html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
 		html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
 		html += "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Fechar</button>";

@@ -3,8 +3,6 @@ package br.com.saat.model.negocio;
 import java.util.Date;
 import java.util.HashMap;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.dao.FichaDeAtendimentoDAO;
 

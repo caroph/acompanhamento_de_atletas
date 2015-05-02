@@ -119,5 +119,26 @@ public class TorneioNegocio {
 		}
 	}
 
+	public boolean editarTorneio(Torneio torneio, String[] atletasPart) throws Exception {
+		boolean retorno = true;
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			if (dao.editar(torneio)) {
+				if (!"".equals(atletasPart) && atletasPart != null) {
+					for (String idAtleta : atletasPart) {
+						if (!dao.inserirAtletasPart(idAtleta, torneio.getIdTorneio())) {
+							return false;
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			retorno = false;
+			throw new Exception(
+					"Erro! Ocorreu algum erro ao inserir o torneio.");
+		}
+		return retorno;
+	}
+
 
 }

@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
@@ -115,6 +113,7 @@ public class TecnicoController extends Controller {
 			
 		}else if("novoTorneio".equals(action)){
 			boolean exception = false;
+			int idTorneio = 0;
 			String msgSucesso = "";
 			String msgErro = "";
 			String atletasPart[] = null;
@@ -129,6 +128,8 @@ public class TecnicoController extends Controller {
 				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				dtInicial = (Date) formatter.parse(dtaInicial);
 				dtFinal = (Date) formatter.parse(dtaFinal);
+				
+				idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
 			} catch (Exception ex) {
 				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				exception = true;
@@ -171,20 +172,30 @@ public class TecnicoController extends Controller {
 				
 				TorneioNegocio negocio = new TorneioNegocio();
 
+				if (!"".equals(idTorneio) && !"0".equals(idTorneio)) {
+					torneio.setIdTorneio(idTorneio);
+				}
+				
 				List<Object> listaValidacao = negocio.validaDados(torneio);
 				boolean valida = (boolean) listaValidacao.get(0);
 				if (!valida) {
 					msgErro = (String) listaValidacao.get(1);
 				} else {
 					try {
-						int idNovoTorneio = negocio.inserir(torneio);
-						if (idNovoTorneio > 0){
-							if (!"".equals(atletasPart) && atletasPart != null){
-								if (negocio.inserirAtletasPart(atletasPart, idNovoTorneio)){
+						if (torneio.getIdTorneio() == 0) {
+							int idNovoTorneio = negocio.inserir(torneio);
+							if (idNovoTorneio > 0){
+								if (!"".equals(atletasPart) && atletasPart != null){
+									if (negocio.inserirAtletasPart(atletasPart, idNovoTorneio)){
+										msgSucesso = "Torneio salvo com sucesso!";
+									}
+								}else{
 									msgSucesso = "Torneio salvo com sucesso!";
 								}
-							}else{
-								msgSucesso = "Torneio salvo com sucesso!";
+							}
+						} else {
+							if (negocio.editarTorneio(torneio, atletasPart)) {
+								msgSucesso = "Torneio editado com sucesso!";
 							}
 						}
 					} catch (Exception ex) {
@@ -230,7 +241,6 @@ public class TecnicoController extends Controller {
 
 			retorno = String.format("%s/TecnicoNovoTorneio.jsp",
 					Constants.VIEW);
-			servletRetorno = "/TecnicoController?action=jspNovoTorneio";	
 			
 		}else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
@@ -264,6 +274,14 @@ public class TecnicoController extends Controller {
 			
 			try {
 				List<Atleta> listaAtleta = atletaNegocio.buscarAtletasAptos();
+				List<Integer> atletasSelecionados = atletaNegocio.buscarAtletasSelecionados(idTorneio);
+				
+				for (Atleta atleta : listaAtleta) {
+					if (atletasSelecionados != null && atletasSelecionados.contains(atleta.getIdPessoa())) {
+						atleta.setSelecionado(true);
+					}
+				}
+				
 				request.setAttribute("listaAtletasPart", listaAtleta);
 				
 			} catch (Exception ex) {
@@ -305,7 +323,7 @@ public class TecnicoController extends Controller {
 			}
 
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
-			servletRetorno = "/TecnicoController?action=jspCalendario";
+
 		}else if("detalhesTorneio".equals(action)){
 			String msg = "";
 			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
@@ -340,6 +358,9 @@ public class TecnicoController extends Controller {
 		    response.getWriter().write(json);
 		    request.setAttribute("msgErro", msg);
 		    
+		}else if("jspFinalizarTorneio".equals(action)){
+			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio";
 		}else if("jspChamadaQuadra".equals(action)){
 
 			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);

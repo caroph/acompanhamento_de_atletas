@@ -591,5 +591,22 @@ public class AtletaDAO {
 		
 		return listaAtleta;
 	}
+
+	public List<Integer> buscarAtletasSelecionados(int idTorneio) throws SQLException {
+		List<Integer> listaAtleta = new ArrayList<Integer>();
+		
+		stmtScript = con.prepareStatement("SELECT at.idAtleta "
+				+ "FROM atletaTorneio at "
+				+ "WHERE at.idTorneio = ? ");
+		
+		stmtScript.setInt(1, idTorneio);
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	listaAtleta.add(rs.getInt(1));
+        }
+		
+		return listaAtleta;
+	}
 	
 }

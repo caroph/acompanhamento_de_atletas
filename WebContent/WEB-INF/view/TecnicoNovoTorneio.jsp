@@ -30,7 +30,7 @@
 								</div>
 								<div class="box-content">
 									<form class="form-horizontal" role="form" action="TecnicoController?action=novoTorneio" method="post">
-										<input type="hidden" name="idAtleta" value="${torneio.idTorneio}"/>
+										<input type="hidden" name="idTorneio" value="${torneio.idTorneio}"/>
 										<div class="form-group">
 											 <div class="form-group col-md-6">
 												 <label for="nome">Nome:</label>

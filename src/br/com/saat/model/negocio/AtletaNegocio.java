@@ -218,5 +218,16 @@ public class AtletaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas.");
 		}
 	}
+
+	public List<Integer> buscarAtletasSelecionados(int idTorneio) throws Exception {
+		try {
+			List<Integer> listaAtleta = new ArrayList<Integer>();
+			AtletaDAO dao = new AtletaDAO();
+			listaAtleta = dao.buscarAtletasSelecionados(idTorneio);
+			return listaAtleta;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas participantes.");
+		}
+	}
 	
 }
