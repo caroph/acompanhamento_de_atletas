@@ -21,21 +21,26 @@ import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
 import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.DiaTreino;
+import br.com.saat.model.PresencaChamada;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.CatTorneioNegocio;
+import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
+import br.com.saat.model.negocio.PresencaChamadaNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 
 import com.google.gson.Gson;
+import com.mysql.jdbc.EscapeTokenizer;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -402,9 +407,10 @@ public class TecnicoController extends Controller {
 			String msg = ""; 
 			
 			Date dt = new Date();
+			String dataChamada = request.getParameter("dataQuadra");
 			try{
 				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-				dt = formatter.parse(request.getParameter("dataQuadra"));
+				dt = formatter.parse(dataChamada);
 			}catch(Exception ex){
 				msg = "A data deve ser preenchida corretamente!";
 			}
@@ -415,10 +421,32 @@ public class TecnicoController extends Controller {
 				msg = "O dia de treino deve ser selecionado!";
 			}	
 			
+			ChamadaNegocio negocio = new ChamadaNegocio();
 			Chamada chamada = new Chamada();
+			try {
+				chamada = negocio.buscarChamadaPorDia(dataChamada, idDiaTreino);
+			} catch (Exception e) {
+				msg = e.getMessage();
+			}
+			
+			if(chamada.getIdChamada() == 0){
+				chamada.setDtChamada(dt);
+				chamada.setIdDiaTreino(idDiaTreino);
+				chamada.setIdUsuario(usuarioLogado.getIdPessoa());
+				
+				try {
+					chamada = negocio.salvarChamada(chamada);
+				} catch (Exception e) {
+					msg = e.getMessage();
+				}
+			}
+			
+			PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
 			
 			String[] objeto = request.getParameterValues("diasTreino");
 			for (String item : objeto) {
+				PresencaChamada presenca = new PresencaChamada();
+				presenca.setEstadoPresenca(Presenca.Presente.getValor());
 				
 			}
 			

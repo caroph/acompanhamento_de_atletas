@@ -10,7 +10,7 @@ public class Chamada {
 	public Usuario usuario;
 	public DiaTreino diaTreino;
 	
-	public Chamada(int idPessoa, int idDiaTreino, int nrQuadra, Date dtChamada) {
+	public Chamada(int idPessoa, int idDiaTreino, Date dtChamada) {
 		this.idUsuario = idPessoa;
 		this.idDiaTreino = idDiaTreino;
 		this.dtChamada = dtChamada;

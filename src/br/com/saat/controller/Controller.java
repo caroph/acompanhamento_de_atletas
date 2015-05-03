@@ -145,7 +145,7 @@ public class Controller extends HttpServlet {
 								DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 								dt = formatter.parse(data);
 								chamada = new Chamada(usuarioLogado.getIdPessoa(), 
-										diaTreino.getIdDiaTreino(), 0, dt);
+										diaTreino.getIdDiaTreino(), dt);
 								chamada = chamadaNegocio.salvarChamada(chamada);
 							}
 							PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
