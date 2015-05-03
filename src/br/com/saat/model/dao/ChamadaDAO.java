@@ -44,7 +44,7 @@ public class ChamadaDAO {
 		int rows = 0;
 		
 		stmtScript = con.prepareStatement("INSERT INTO chamada (idUsuario, idDiaTreino, dtChamada)"
-				+ "VALUES (?, ?, ?, ?)");
+				+ "VALUES (?, ?, ?)");
 		
 		stmtScript.setInt(1, chamada.getIdUsuario());
 		stmtScript.setInt(2, chamada.getIdDiaTreino());

@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +41,7 @@ import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 
 import com.google.gson.Gson;
-import com.mysql.jdbc.EscapeTokenizer;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Servlet implementation class TecnicoController
@@ -404,7 +402,8 @@ public class TecnicoController extends Controller {
 		    response.getWriter().write(json);
 		    
 		}else if("SalvarChamadaQuadra".equals(action)){
-			String msg = ""; 
+			String msgErro = ""; 
+			boolean exception = false;
 			
 			Date dt = new Date();
 			String dataChamada = request.getParameter("dataQuadra");
@@ -412,45 +411,80 @@ public class TecnicoController extends Controller {
 				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 				dt = formatter.parse(dataChamada);
 			}catch(Exception ex){
-				msg = "A data deve ser preenchida corretamente!";
+				msgErro = "A data deve ser preenchida corretamente!";
+				exception = true;
 			}
 			int idDiaTreino = 0;
 			try{
 				idDiaTreino = Integer.parseInt(request.getParameter("diaTreino"));
 			}catch(Exception ex){
-				msg = "O dia de treino deve ser selecionado!";
+				msgErro = "O dia de treino deve ser selecionado!";
+				exception = true;
 			}	
 			
-			ChamadaNegocio negocio = new ChamadaNegocio();
-			Chamada chamada = new Chamada();
-			try {
-				chamada = negocio.buscarChamadaPorDia(dataChamada, idDiaTreino);
-			} catch (Exception e) {
-				msg = e.getMessage();
-			}
-			
-			if(chamada.getIdChamada() == 0){
-				chamada.setDtChamada(dt);
-				chamada.setIdDiaTreino(idDiaTreino);
-				chamada.setIdUsuario(usuarioLogado.getIdPessoa());
-				
+			if(!exception){
+				ChamadaNegocio negocio = new ChamadaNegocio();
+				Chamada chamada = new Chamada();
 				try {
-					chamada = negocio.salvarChamada(chamada);
+					chamada = negocio.buscarChamadaPorDia(dataChamada, idDiaTreino);
 				} catch (Exception e) {
-					msg = e.getMessage();
+					msgErro = e.getMessage();
+				}
+				
+				if(chamada.getIdChamada() == 0){
+					chamada.setDtChamada(dt);
+					chamada.setIdDiaTreino(idDiaTreino);
+					chamada.setIdUsuario(usuarioLogado.getIdPessoa());
+					
+					try {
+						chamada = negocio.salvarChamada(chamada);
+					} catch (Exception e) {
+						msgErro = e.getMessage();
+					}
+				}
+				
+				PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
+				
+				String objeto = request.getParameter("atletasQuadras");
+				try{
+					Gson gson = new Gson();
+					ArrayList<Map<String, String>> myList = gson.fromJson(objeto,
+				            new TypeToken<ArrayList<HashMap<String, String>>>() {
+				            }.getType());
+
+				    for (Map<String, String> m : myList) {
+				    	PresencaChamada presenca = new PresencaChamada();
+				    	presenca.setEstadoPresenca(Presenca.Presente.getValor());
+				    	presenca.setIdAtleta(Integer.parseInt(m.get("idAtleta")));
+				    	presenca.setIdChamada(chamada.getIdChamada());
+				    	String quadra = m.get("idQuadra");
+				    	int nrQuadra = Character.getNumericValue(quadra.charAt(quadra.length() - 2));
+				    	presenca.setNrQuadra(nrQuadra);
+				    	try{
+				    		pcNegocio.salvarPresencaChamada(presenca);
+				    	}catch(Exception ex){
+				    		msgErro = ex.getMessage();
+				    	}
+				    }
+				   
+				}catch(Exception ex){
+					msgErro = "Erro";
 				}
 			}
 			
-			PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
-			
-			String[] objeto = request.getParameterValues("diasTreino");
-			for (String item : objeto) {
-				PresencaChamada presenca = new PresencaChamada();
-				presenca.setEstadoPresenca(Presenca.Presente.getValor());
-				
+			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
+			try {
+				lista = diaTreinoNegocio.buscaDiasTreino();
+			} catch (Exception ex) {
+				msgErro = ex.getMessage();
 			}
-			
-			
+
+			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("msgErro", msgErro);
+			request.setAttribute("listaDiasTreinos", lista);
+			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
 			
 		}else{
 			//Página Principal
