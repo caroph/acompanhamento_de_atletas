@@ -6,6 +6,7 @@ import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
 import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.TpTorneio;
+import br.com.saat.model.Atleta;
 
 public class Torneio {
 	private int idTorneio;
@@ -20,6 +21,13 @@ public class Torneio {
 	private int idTpTorneio;
 	private int idGpTorneio;
 	private String descricao;
+	private int inscritosGeral;
+	private int inscritosClube;
+	private Atleta idDestaque;
+	private String motivoDestaque;
+	private String fotografo;
+	private Date encaminhamentoMkt;
+	
 	public int getIdTorneio() {
 		return idTorneio;
 	}
@@ -92,7 +100,42 @@ public class Torneio {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+	public int getInscritosGeral() {
+		return inscritosGeral;
+	}
+	public void setInscritosGeral(int inscritosGeral) {
+		this.inscritosGeral = inscritosGeral;
+	}
+	public int getInscritosClube() {
+		return inscritosClube;
+	}
+	public void setInscritosClube(int inscritosClube) {
+		this.inscritosClube = inscritosClube;
+	}
+	public Atleta getIdDestaque() {
+		return idDestaque;
+	}
+	public void setIdDestaque(Atleta idDestaque) {
+		this.idDestaque = idDestaque;
+	}
+	public String getMotivoDestaque() {
+		return motivoDestaque;
+	}
+	public void setMotivoDestaque(String motivoDestaque) {
+		this.motivoDestaque = motivoDestaque;
+	}
+	public String getFotografo() {
+		return fotografo;
+	}
+	public void setFotografo(String fotografo) {
+		this.fotografo = fotografo;
+	}
+	public Date getEncaminhamentoMkt() {
+		return encaminhamentoMkt;
+	}
+	public void setEncaminhamentoMkt(Date encaminhamentoMkt) {
+		this.encaminhamentoMkt = encaminhamentoMkt;
+	}
 	public String getNomeNaipe(){
 		String retorno = "";
 		switch (this.idNaipe) {

@@ -254,11 +254,13 @@ function registrarPresenca(idAtleta, nomeAtleta) {
 }
 
 function novoAtendimento(idAtleta, nomeAtleta) {
-	$("#novoAtendimento").modal();
 	var label = $("#lblAtendimento");
 	label.html('Novo atendimento ao atleta ' + nomeAtleta + ':');
 	var a = $("#idAtletaAtend");
 	a.val(idAtleta);
+	var b = $("#idProntuario");
+	b.val("0");
+	$("#novoAtendimento").modal();
 }
 
 function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento,

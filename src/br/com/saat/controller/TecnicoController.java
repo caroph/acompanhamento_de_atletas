@@ -368,6 +368,26 @@ public class TecnicoController extends Controller {
 		    request.setAttribute("msgErro", msg);
 		    
 		}else if("jspFinalizarTorneio".equals(action)){
+			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			String nomeTorneio = request.getParameter("nome");
+			
+			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new  TorneioNegocio();
+			List<Atleta> listaAtletas = null;
+			
+			try {
+				listaAtletas =  negocio.buscaAtletasPart(idTorneio);
+				request.setAttribute("listaAtletas", listaAtletas);
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
+			
+			torneio.setIdTorneio(idTorneio);
+			torneio.setNome(nomeTorneio);
+			torneio.setInscritosClube(listaAtletas.size());
+			
+			request.setAttribute("torneio", torneio);
+			
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio";
 			

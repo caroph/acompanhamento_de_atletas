@@ -87,7 +87,7 @@ public class TorneioDAO {
 	public List<Torneio> buscarTorneios() throws SQLException {
 		List<Torneio> lista = new ArrayList<Torneio>();
 		
-		stmtScript = con.prepareStatement("SELECT idTorneio, nome, dtInicial, dtFinal "
+		stmtScript = con.prepareStatement("SELECT idTorneio, nome, dtInicial, dtFinal, idCatTorneio "
 				+ "FROM torneio "
 				+ "WHERE flCadastroAtivo = 1 ");
 		
@@ -99,6 +99,7 @@ public class TorneioDAO {
 			torneio.setNome(rs.getString(2));
 			torneio.setDtInicial(rs.getDate(3));
 			torneio.setDtFinal(rs.getDate(4));
+			torneio.setIdCatTorneio(rs.getInt(5));
 			lista.add(torneio);
 		}
 		return lista;
@@ -152,7 +153,7 @@ public class TorneioDAO {
 	public List<Atleta> buscaAtletasPart(int idTorneio) throws SQLException {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
-		stmtScript = con.prepareStatement("SELECT a.nome "
+		stmtScript = con.prepareStatement("SELECT at.idAtleta, a.nome "
 				+ "FROM atletatorneio at "
 				+ "		INNER JOIN atleta a "
 				+ "			ON at.idAtleta = a.idAtleta "
@@ -164,7 +165,8 @@ public class TorneioDAO {
 		
 		while(rs.next()){
 			Atleta atleta = new Atleta();
-			atleta.setNome(rs.getString(1));
+			atleta.setIdPessoa(rs.getInt(1));
+			atleta.setNome(rs.getString(2));
 			lista.add(atleta);
 		}
 		return lista;

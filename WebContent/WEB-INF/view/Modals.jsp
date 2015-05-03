@@ -63,7 +63,7 @@
 			<h4 class="modal-title" id="myModalLabel">Novo Atendimento</h4>
 		</div>
 		<div class="modal-body">
-			<form method="POST" action="Controller?action=RegistrarPresenca">
+			<form method="POST" action="SaudeGeralController?action=novoAtendimento">
 				<label id="lblAtendimento" style="padding-bottom: 16px;" class="control-label col-sm-12"></label>
 				<input type="hidden" id="idAtletaAtend" name="idAtletaAtend"/>
 				<input type="hidden" id="idProntuario" name="idProntuario"/>

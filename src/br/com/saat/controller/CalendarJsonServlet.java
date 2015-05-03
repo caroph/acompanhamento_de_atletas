@@ -84,10 +84,9 @@ public class CalendarJsonServlet extends Controller {
 			String end = formatoData.format(dtFinal);
 			
 			//CONCATENAR TITULO
-			String title = torneio.getNome();
+			String title = torneio.getNome() + " - Categoria " + torneio.getNomeCategoria();
 			
 			//CONCATENAR URL
-			//String url = "TecnicoTorneio?action=editarTorneio&idTorneio=" + torneio.getIdTorneio();
 			String url = "abrilModalTorneio(" + torneio.getIdTorneio() + ")";
 
 			//SETAR                       

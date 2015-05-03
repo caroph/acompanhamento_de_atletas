@@ -38,6 +38,8 @@ public class Atleta extends Pessoa {
 	private String dtNascimentoDisplay;
 	private List<Documento> listaDocumentos;
 	private boolean selecionado;
+	private String colocacao;
+	private String observacao;
 	
 	public Atleta(){}
 	
@@ -361,5 +363,22 @@ public class Atleta extends Pessoa {
 
 	public void setSelecionado(boolean selecionado) {
 		this.selecionado = selecionado;
+	}
+
+	public String getColocacao() {
+		return colocacao;
+	}
+
+	public void setColocacao(String colocacao) {
+		this.colocacao = colocacao;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}	
+	
 }
