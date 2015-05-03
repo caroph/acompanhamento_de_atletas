@@ -23,16 +23,22 @@ import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.Chamada;
+import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.CatTorneioNegocio;
+import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 
 import com.google.gson.Gson;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class TecnicoController
@@ -361,8 +367,18 @@ public class TecnicoController extends Controller {
 		}else if("jspFinalizarTorneio".equals(action)){
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio";
+			
 		}else if("jspChamadaQuadra".equals(action)){
+			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
+			try {
+				lista = negocio.buscaDiasTreino();
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
 
+			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("listaDiasTreinos", lista);
 			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
 			
@@ -381,6 +397,33 @@ public class TecnicoController extends Controller {
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
+		    
+		}else if("SalvarChamadaQuadra".equals(action)){
+			String msg = ""; 
+			
+			Date dt = new Date();
+			try{
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+				dt = formatter.parse(request.getParameter("dataQuadra"));
+			}catch(Exception ex){
+				msg = "A data deve ser preenchida corretamente!";
+			}
+			int idDiaTreino = 0;
+			try{
+				idDiaTreino = Integer.parseInt(request.getParameter("diaTreino"));
+			}catch(Exception ex){
+				msg = "O dia de treino deve ser selecionado!";
+			}	
+			
+			Chamada chamada = new Chamada();
+			
+			String[] objeto = request.getParameterValues("diasTreino");
+			for (String item : objeto) {
+				
+			}
+			
+			
+			
 		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

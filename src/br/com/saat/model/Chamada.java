@@ -5,8 +5,7 @@ import java.util.Date;
 public class Chamada {
 	public int idChamada;
 	public int idUsuario;
-	public int idDiaTreino;
-	public int nrQuadra;
+	public int idDiaTreino;	
 	public Date dtChamada;
 	public Usuario usuario;
 	public DiaTreino diaTreino;
@@ -14,7 +13,6 @@ public class Chamada {
 	public Chamada(int idPessoa, int idDiaTreino, int nrQuadra, Date dtChamada) {
 		this.idUsuario = idPessoa;
 		this.idDiaTreino = idDiaTreino;
-		this.nrQuadra = nrQuadra;
 		this.dtChamada = dtChamada;
 	}
 	public Chamada() { }
@@ -36,12 +34,6 @@ public class Chamada {
 	}
 	public void setIdDiaTreino(int idDiaTreino) {
 		this.idDiaTreino = idDiaTreino;
-	}
-	public int getNrQuadra() {
-		return nrQuadra;
-	}
-	public void setNrQuadra(int nrQuadra) {
-		this.nrQuadra = nrQuadra;
 	}
 	public Date getDtChamada() {
 		return dtChamada;

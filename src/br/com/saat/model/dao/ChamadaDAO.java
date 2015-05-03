@@ -22,7 +22,7 @@ public class ChamadaDAO {
     }
 	
 	public Chamada buscarChamadaPorData(Date data, int idDiaTreino) throws SQLException{
-		stmtScript = con.prepareStatement("SELECT idChamada, idUsuario, idDiaTreino, nrQuadra, dtChamada "
+		stmtScript = con.prepareStatement("SELECT idChamada, idUsuario, idDiaTreino, dtChamada "
 				+ "FROM chamada WHERE idDiaTreino = ? AND dtChamada = ?");
 		
 		stmtScript.setInt(1, idDiaTreino);
@@ -35,7 +35,6 @@ public class ChamadaDAO {
 			chamada.setIdChamada(rs.getInt("idChamada"));
 			chamada.setIdUsuario(rs.getInt("idUsuario"));
 			chamada.setIdDiaTreino(rs.getInt("idDiaTreino"));
-			chamada.setNrQuadra(rs.getInt("nrQuadra"));
 			chamada.setDtChamada(rs.getDate("dtChamada"));
 		}
 		return chamada;
@@ -44,13 +43,12 @@ public class ChamadaDAO {
 	public Chamada salvarChamada(Chamada chamada) throws SQLException {
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("INSERT INTO chamada (idUsuario, idDiaTreino, nrQuadra, dtChamada)"
+		stmtScript = con.prepareStatement("INSERT INTO chamada (idUsuario, idDiaTreino, dtChamada)"
 				+ "VALUES (?, ?, ?, ?)");
 		
 		stmtScript.setInt(1, chamada.getIdUsuario());
 		stmtScript.setInt(2, chamada.getIdDiaTreino());
-		stmtScript.setInt(3, chamada.getNrQuadra());
-		stmtScript.setDate(4, new java.sql.Date(chamada.getDtChamada().getTime()));
+		stmtScript.setDate(3, new java.sql.Date(chamada.getDtChamada().getTime()));
 		
 		rows = stmtScript.executeUpdate();
 		
