@@ -4,6 +4,7 @@
 	<body>
 	
 	<%@include file='/layout/header.jsp'%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 	
 	<div id="main" class="container-fluid">
 		<div class="row">
@@ -31,77 +32,36 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>
-													Nome
+												<th width="40%">
+													Nome do atleta
 												</th>
-												<th style="text-align: center;">
-													Data
+												<th style="text-align: center;" width="20%">
+													Data do último atendimento
 												</th>
-												<th>
+												<th width="10%">
 												</th>
-												<th>
+												<th width="10%">
 												</th>
-												<th>
+												<th width="10%">
 												</th>
-												<th>
-												</th>
-												<th>
+												<th width="10%">
 												</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td style="max-width: 200px;" class="text-center">Atleta 3</td>
-												<td class="text-center">01/01/2015</td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-														de Atendimento</a></td>
-												<td><a data-toggle="modal" href="#incluirParecer">Incluir
-														Observação</a></td>
-												<td><a href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=1&idFichaDeAtendimento=0">Novo
-														Atendimento</a></td>
-												<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-												<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-												</td>
-											</tr>
-											<tr>
-												<td style="max-width: 200px;" class="text-center">Atleta 3</td>
-												<td class="text-center">01/01/2015</td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-														de Atendimento</a></td>
-												<td><a data-toggle="modal" href="#incluirParecer">Incluir
-														Observação</a></td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-														Atendimento</a></td>
-												<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-												<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-												</td>
-											</tr>
-											<tr>
-												<td style="max-width: 200px;" class="text-center">Atleta 3</td>
-												<td class="text-center">01/01/2015</td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-														de Atendimento</a></td>
-												<td><a data-toggle="modal" href="#incluirParecer">Incluir
-														Observação</a></td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-														Atendimento</a></td>
-												<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-												<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-												</td>
-											</tr>
-											<tr>
-												<td style="max-width: 200px;" class="text-center">Atleta 3</td>
-												<td class="text-center">01/01/2015</td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Ficha
-														de Atendimento</a></td>
-												<td><a data-toggle="modal" href="#incluirParecer">Incluir
-														Observação</a></td>
-												<td><a href="NutricionistaFichaAtendimento.jsp">Novo
-														Atendimento</a></td>
-												<td><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-												<td><a href="NutricionistaHistoricoAtleta.jsp">Histórico</a>
-												</td>
-											</tr>				
+											<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
+												<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<tr>
+													<td style="max-width: 200px;">${atendimento.get(1)}</td>
+													<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
+													<td class="text-center"><a data-toggle="modal" href="#incluirParecer">Incluir
+															Observação</a></td>
+													<td class="text-center"><a href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atendimento.get(0)}&idFichaDeAtendimento=0">Novo Atendimento</a></td>
+													<td class="text-center"><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+													<td class="text-center"><a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
+													</td>
+												</tr>	
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

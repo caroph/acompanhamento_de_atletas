@@ -35,8 +35,7 @@ public class UsuarioNegocio {
 		else if (perfil == Perfis.Fisioterapeuta.getValor() || perfil == Perfis.Psicologa.getValor())
 			return "/SaudeGeralController";
 		else if (perfil == Perfis.Nutricionista.getValor())
-			return String.format("%s/NutricionistaPrincipal.jsp",
-					Constants.VIEW);
+			return "/NutricionistaController?action=jspPaginaInicialNutricionista";
 		else if (perfil == Perfis.Tecnico.getValor() || perfil == Perfis.PreparadorFisico.getValor())
 			return "/TecnicoController";
 		else

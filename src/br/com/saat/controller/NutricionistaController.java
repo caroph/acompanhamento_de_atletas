@@ -51,7 +51,24 @@ public class NutricionistaController extends Controller {
 		String retorno = null;
 		String action = request.getParameter("action");
 		
-		if("jspBuscarAtletas".equals(action)){
+		if("jspPaginaInicialNutricionista".equals(action)){
+			String msg = "";
+			String msgSucesso = "";
+			ArrayList<ArrayList<String>> listaUltimosAtendimentos = null;
+			try{
+				//busca os ultimos atendimentos
+				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
+				listaUltimosAtendimentos = fichaNegocio.buscarUltimosAtendimentos(usuarioLogado.getIdPessoa());
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}			
+			
+			request.setAttribute("msgAlerta", msg);
+			request.setAttribute("msgSucesso", msgSucesso);
+			request.setAttribute("listaUltimosAtendimentos", listaUltimosAtendimentos);
+			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
+			
+		}else if("jspBuscarAtletas".equals(action)){
 			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
@@ -188,8 +205,10 @@ public class NutricionistaController extends Controller {
 					}
 				}else{
 					ficha.setIdFichaDeAtendimento(fichaNegocio.inserir(ficha));
-					if(ficha.getIdFichaDeAtendimento() > 0)
+					if(ficha.getIdFichaDeAtendimento() > 0){
 						msgSucesso = "Ficha de atendimento cadastrada com sucesso!";
+						ficha.setDtAtendimento(new Date(System.currentTimeMillis()));
+					}
 				}
 								
 			}catch(Exception ex){

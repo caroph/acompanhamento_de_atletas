@@ -1,0 +1,21 @@
+SELECT
+        a.nome,
+        a.dtNascimento,
+        a.email,
+        e.telefone,
+        u.nome,
+        f.*,
+        av.*
+FROM fichadeatendimento f
+	JOIN avaliacaoantropometrica av ON 
+        	av.idFichaDeAtendimento = f.idFichaDeAtendimento
+	JOIN atleta a ON 
+        	a.idAtleta = f.idAtleta
+        JOIN usuario u ON
+        	u.idUsuario = f.idUsuario
+        JOIN endereco e ON
+        	e.idAtleta = f.idAtleta AND
+                e.idAtleta = a.idAtleta AND
+                e.idTpEndereco = 1
+WHERE
+	f.idFichaDeAtendimento = 11

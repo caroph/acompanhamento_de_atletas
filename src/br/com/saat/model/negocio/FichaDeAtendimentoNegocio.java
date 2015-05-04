@@ -1,5 +1,6 @@
 package br.com.saat.model.negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -78,6 +79,22 @@ public class FichaDeAtendimentoNegocio {
 		try{
 			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
 			return dao.buscarPorId(idFichaDeAtendimento);
+		}catch(Exception ex){
+			throw ex;
+		}
+	}
+
+	public ArrayList<ArrayList<String>> buscarUltimosAtendimentos(int idPessoa) throws Exception{
+		try{
+			ArrayList<ArrayList<String>> listaUltimosAtendimentos = null;
+			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
+			listaUltimosAtendimentos = dao.buscarUltimosAtendimentos(idPessoa);
+			
+			if(listaUltimosAtendimentos != null){
+				return listaUltimosAtendimentos;
+			}else
+				return null;
+			
 		}catch(Exception ex){
 			throw ex;
 		}

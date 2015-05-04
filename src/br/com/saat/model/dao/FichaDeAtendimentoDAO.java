@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.com.saat.model.AvaliacaoAntropometrica;
@@ -155,8 +156,7 @@ public class FichaDeAtendimentoDAO {
 		// `idAtleta`, `idUsuario`, `dtAtendimento`, `HMA`, `acompanhamentoAnterior`, `duracaoAcompanhamentoAnterior`, `HMF`, 
 		stmtScript.setInt(1, ficha.getIdAtleta());
 		stmtScript.setInt(2, ficha.getIdUsuario());
-		//stmtScript.setDate(3, new java.sql.Date(ficha.getDtAtendimento().getTime()));
-		stmtScript.setTimestamp(3, new Timestamp(ficha.getDtAtendimento().getTime()));
+		stmtScript.setTimestamp(3, new Timestamp(ficha.getDtAtendimento() != null ? ficha.getDtAtendimento().getTime() : System.currentTimeMillis()));
 		stmtScript.setString(4, ficha.getHMA());
 		stmtScript.setString(5, ficha.getAcompanhamentoAnterior());
 		stmtScript.setString(6, ficha.getDuracaoAcompanhamentoAnterior());
@@ -418,6 +418,41 @@ public class FichaDeAtendimentoDAO {
 			return true;
 		else
 			return false;
+	}
+
+	public ArrayList<ArrayList<String>> buscarUltimosAtendimentos(int idPessoa) throws Exception {
+		stmtScript = con.prepareStatement("SELECT "
+				+ "		f.idAtleta AS idAtleta, "
+				+ "		MAX(f.dtAtendimento) AS dtUltimoAtendimento, "
+				+ "		a.nome AS nmAtleta "
+				+ "FROM fichadeatendimento f "
+				+ "		JOIN atleta a ON "
+				+ " 	 	f.idAtleta = a.idAtleta "
+				+ "WHERE"
+				+ "		f.idUsuario = ? "
+				+ "GROUP BY "
+				+ "		f.idAtleta "
+				+ "ORDER BY "
+				+ "		f.dtAtendimento DESC " 
+				+ "LIMIT 10");
+		
+		stmtScript.setInt(1, idPessoa);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		ArrayList<ArrayList<String>> listaUltimosAtendimentos = new ArrayList<ArrayList<String>>();
+		while(rs.next()){
+			ArrayList<String> atendimento = new ArrayList<String>();
+			//MANIPULA ATENDIMENTO
+			//atendimento.add(String.valueOf(rs.getInt("idAtleta")));
+			atendimento.add(rs.getString("idAtleta"));
+			atendimento.add(rs.getString("nmAtleta"));
+			atendimento.add(rs.getString("dtUltimoAtendimento"));
+			
+			listaUltimosAtendimentos.add(atendimento);
+		}
+		
+		return listaUltimosAtendimentos;
 	}
 
 }

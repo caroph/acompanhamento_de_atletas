@@ -54,7 +54,7 @@
 														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary">Novo Atendimento</a>
+														<a class="btn btn-primary" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=0">Novo Atendimento</a>
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->

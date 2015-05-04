@@ -85,7 +85,7 @@
 													<input type="hidden" name="idFichaDeAtendimento" value="0">
 												</c:otherwise>											
 											</c:choose>
-											<input type="hidden" name="idAtleta" value="${fichaAtendimento.idAtleta}">
+											<input type="hidden" name="idAtleta" value="${atleta.idPessoa}">
 											<input type="hidden" name="idUsuario" value="${usuarioLogado.idPessoa}">										
 											<input type="hidden" name="idAvaliacaoAntropometrica" value="${fichaAtendimento.avaliacaoAntropometrica.idAvaliacaoAntropometrica}">
 											<div class="col-md-12" style="margin:10px 0px 10px 0px;">
@@ -146,13 +146,13 @@
 															<label for="cbd" class="control-label">CBD:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" class="form-control" id="cbd" name="cbd" value="${fichaAtendimento.avaliacaoAntropometrica.cbd}"/>
+															<input type="text" class="form-control text-center" id="cbd" name="cbd" value="${fichaAtendimento.avaliacaoAntropometrica.cbd > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbd : 0.00}"/>
 														</div>
 														<div class="col-md-1 text-left">
 															<label for="cbe" class="control-label">CBE:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" class="form-control" id="cbe"name="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe}"/>
+															<input type="text" class="form-control text-center" id="cbe"name="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbe : 0.00}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -160,13 +160,13 @@
 															<label for="pesoUsual" class="control-label">Peso (usual/passado)</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="pesoUsual" name="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual}"/>
+															<input type="text" class="form-control text-center" id="pesoUsual" name="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoUsual : 0.00}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gorduraUsual" class="control-label">Porcentagem de gordura corporal (usual/passado):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="gorduraUsual"name="gorduraUsual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraUsual}"/>
+															<input type="text" class="form-control text-center" id="gorduraUsual"name="gorduraUsual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraUsual > 0 ? fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraUsual : 0.00}"/>
 														</div>
 													</div>
 												</div>
@@ -176,13 +176,13 @@
 															<label for="ccd" class="control-label">CCD:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" class="form-control" id="ccd" name="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd}"/>
+															<input type="text" class="form-control text-center" id="ccd" name="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd > 0 ? fichaAtendimento.avaliacaoAntropometrica.ccd : 0.00}"/>
 														</div>
 														<div class="col-md-1 text-left">
 															<label for="cce" class="control-label">CCE:</label>
 														</div>
 														<div class="col-md-3 text-left">
-															<input type="text" class="form-control" id="cce" name="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce}"/>
+															<input type="text" class="form-control text-center" id="cce" name="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce > 0 ? fichaAtendimento.avaliacaoAntropometrica.cce : 0.00}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -190,13 +190,13 @@
 															<label for="pesoIdeal" class="control-label">Peso "ideal" (objetivo):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="pesoIdeal" name="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal}"/>
+															<input type="text" class="form-control text-center" id="pesoIdeal" name="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoIdeal : 0.00}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gorduraIdeal" class="control-label">Porcentagem de gordura "ideal" (objetivo):</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="gorduraIdeal" name="gorduraIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraIdeal}"/>
+															<input type="text" class="form-control text-center" id="gorduraIdeal" name="gorduraIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraIdeal > 0 ? fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraIdeal : 0.00}"/>
 														</div>
 													</div>
 												</div>
@@ -207,13 +207,13 @@
 															<label for="cintura" class="control-label">Cintura:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="cintura" name="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura}"/>
+															<input type="text" class="form-control text-center" id="cintura" name="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura > 0 ? fichaAtendimento.avaliacaoAntropometrica.cintura : 0.00}"/>
 														</div>
 														<div class="col-md-2 text-left">
 															<label for="peitoral" class="control-label">Peitoral:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="peitoral" name="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral}"/>
+															<input type="text" class="form-control text-center" id="peitoral" name="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral > 0 ? fichaAtendimento.avaliacaoAntropometrica.peitoral : 0.00}"/>
 														</div>
 													</div>
 													<div class="col-md-7">
@@ -221,13 +221,13 @@
 															<label for="pesoAtual" class="control-label">Peso atual:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="pesoAtual" name="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual}"/>
+															<input type="text" class="form-control text-center" id="pesoAtual" name="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoAtual : 0.00}"/>
 														</div>
 														<div class="col-md-3 text-left">
 															<label for="gordura" class="control-label">Porcentagem de gordura corporal atual:</label>
 														</div>
 														<div class="col-md-2">
-															<input type="text" class="form-control" id="gorduraAtual" name="gorduraAtual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraAtual}"/>
+															<input type="text" class="form-control text-center" id="gorduraAtual" name="gorduraAtual" value="${fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraAtual > 0 ? fichaAtendimento.avaliacaoAntropometrica.porcentagemGorduraAtual : 0.00}"/>
 														</div>
 													</div>
 												</div>
@@ -237,25 +237,20 @@
 															<label for="altura" class="control-label">Altura:</label>
 														</div>
 														<div class="col-md-2">
-															<input type="text" class="form-control" id="altura" name="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura}"/>
+															<input type="text" class="form-control text-center" id="altura" name="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura > 0 ? fichaAtendimento.avaliacaoAntropometrica.altura : 0.00}"/>
 														</div>
 														<div class="col-md-2 text-left">
 															<label for="pregas" class="control-label">Pregas:</label>
 														</div>
 														<div class="col-md-2 text-left">
-															<input type="text" class="form-control" id="pregas" name="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas}"/>
+															<input type="text" class="form-control text-center" id="pregas" name="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas > 0 ? fichaAtendimento.avaliacaoAntropometrica.pregas : 0.00}"/>
 														</div>
 													</div>		
 													<div class="col-md-7">
 													</div>											
 												</div>
-												<c:if test="${fichaAtendimento.avaliacaoAntropometrica.idAvaliacaoAntropometrica > 0}">
-													<div class="col-md-12 text-right" style="margin:10px 0px 0px 0px;">
-														<a href="#" style="margin-right: 5px;">Histórico de Avaliações</a>
-													</div>
-												</c:if>
 											</div>
-											<div class="col-md-12"><hr/></div>	
+											<hr/>	
 											<h4 id="objetivoConsulta" style="margin: 0px 0px 0px 0px;" class="text-center">OBJETIVO PRINCIPAL DA CONSULTA</h4>
 											<div class="col-md-12"><hr/></div>	
 											<div id="exibeObjetivoConsulta" style="display: none;">
