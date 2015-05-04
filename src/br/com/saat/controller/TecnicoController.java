@@ -2,6 +2,7 @@ package br.com.saat.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -464,6 +465,11 @@ public class TecnicoController extends Controller {
 				}
 				
 				PresencaChamadaNegocio pcNegocio = new PresencaChamadaNegocio();
+				try{
+					pcNegocio.excluirPresencaChamada(chamada.getIdChamada());
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
+				}
 				
 				String objeto = request.getParameter("atletasQuadras");
 				try{
@@ -477,9 +483,8 @@ public class TecnicoController extends Controller {
 				    	presenca.setEstadoPresenca(Presenca.Presente.getValor());
 				    	presenca.setIdAtleta(Integer.parseInt(m.get("idAtleta")));
 				    	presenca.setIdChamada(chamada.getIdChamada());
-				    	String quadra = m.get("idQuadra");
-				    	int nrQuadra = Character.getNumericValue(quadra.charAt(quadra.length() - 2));
-				    	presenca.setNrQuadra(nrQuadra);
+				    	String quadra = m.get("idQuadra").split("-")[1];
+				    	presenca.setNrQuadra(Integer.parseInt(quadra));
 				    	try{
 				    		pcNegocio.salvarPresencaChamada(presenca);
 				    	}catch(Exception ex){
@@ -501,6 +506,127 @@ public class TecnicoController extends Controller {
 			}
 
 			request.setAttribute("dataAtual", new Date());
+			if("".equals(msgErro))
+				request.setAttribute("msgSucesso", "Presença em quadra salva com sucesso!");
+			else
+				request.setAttribute("msgErro", msgErro);
+			request.setAttribute("listaDiasTreinos", lista);
+			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
+			
+		}else if("carregarChamada".equals(action)){
+			String msgErro = "";
+			boolean exception = false;
+			String diaTreino = request.getParameter("diaTreino");
+			String dataChamada = request.getParameter("dataQuadra");
+			int idDiaTreino = Integer.parseInt(diaTreino);
+			
+			if(!"".equals(diaTreino) && !"0".equals(diaTreino) && !"".equals(dataChamada)){
+				ChamadaNegocio negocio = new ChamadaNegocio();
+				Chamada chamada = new Chamada();
+				try {
+					chamada = negocio.buscarChamadaPorDia(dataChamada, idDiaTreino);
+				} catch (Exception e) {
+					msgErro = e.getMessage();
+				}
+				PresencaChamadaNegocio pcnegocio = new PresencaChamadaNegocio();
+				List<PresencaChamada> presenca = new ArrayList<PresencaChamada>();
+				try {
+					presenca = pcnegocio.buscarPresencasPorChamada(chamada.getIdChamada());
+				} catch (Exception e) {
+					msgErro = e.getMessage();
+				}
+				
+				List<PresencaChamada> presenca1 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca2 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca3 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca4 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca5 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca6 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca7 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca8 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca9 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca10 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca11 = new ArrayList<PresencaChamada>();
+				List<PresencaChamada> presenca12 = new ArrayList<PresencaChamada>();
+				
+				for (PresencaChamada presencaChamada : presenca) {
+					switch (presencaChamada.getNrQuadra()) {
+					case 1:
+						presenca1.add(presencaChamada);
+						break;
+					case 2:
+						presenca2.add(presencaChamada);
+						break;
+					case 3:
+						presenca3.add(presencaChamada);
+						break;
+					case 4:
+						presenca4.add(presencaChamada);
+						break;
+					case 5:
+						presenca5.add(presencaChamada);
+						break;
+					case 6:
+						presenca6.add(presencaChamada);
+						break;
+					case 7:
+						presenca7.add(presencaChamada);
+						break;
+					case 8:
+						presenca8.add(presencaChamada);
+						break;
+					case 9:
+						presenca9.add(presencaChamada);
+						break;
+					case 10:
+						presenca10.add(presencaChamada);
+						break;
+					case 11:
+						presenca11.add(presencaChamada);
+						break;
+					case 12:
+						presenca12.add(presencaChamada);
+						break;
+					default:
+						break;
+					}
+				}
+				request.setAttribute("listaPresencaChamada1", presenca1);
+				request.setAttribute("listaPresencaChamada2", presenca2);
+				request.setAttribute("listaPresencaChamada3", presenca3);
+				request.setAttribute("listaPresencaChamada4", presenca4);
+				request.setAttribute("listaPresencaChamada5", presenca5);
+				request.setAttribute("listaPresencaChamada6", presenca6);
+				request.setAttribute("listaPresencaChamada7", presenca7);
+				request.setAttribute("listaPresencaChamada8", presenca8);
+				request.setAttribute("listaPresencaChamada9", presenca9);
+				request.setAttribute("listaPresencaChamada10", presenca10);
+				request.setAttribute("listaPresencaChamada11", presenca11);
+				request.setAttribute("listaPresencaChamada12", presenca12);
+			}
+			
+			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
+			try {
+				lista = diaTreinoNegocio.buscaDiasTreino();
+				for (DiaTreino dt : lista) {
+					if(dt.getIdDiaTreino() == idDiaTreino){
+						dt.setSelecionado(true);
+					}
+				}
+			} catch (Exception ex) {
+				msgErro = ex.getMessage();
+			}
+
+			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+			Date dt = new Date();
+			try {
+				dt = formatter.parse(dataChamada);
+			} catch (ParseException e) {
+				msgErro = "Erro ao converter data";
+			}
+			request.setAttribute("dataAtual", dt);
 			request.setAttribute("msgErro", msgErro);
 			request.setAttribute("listaDiasTreinos", lista);
 			retorno = String.format("%s/TecnicoChamadaQuadras.jsp", Constants.VIEW);

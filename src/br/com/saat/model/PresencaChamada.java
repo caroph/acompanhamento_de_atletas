@@ -7,6 +7,7 @@ public class PresencaChamada {
 	private int estadoPresenca;
 	private String justificativa;
 	private int nrQuadra;
+	private Atleta atleta;
 	
 	public PresencaChamada(){}
 
@@ -65,5 +66,15 @@ public class PresencaChamada {
 
 	public void setNrQuadra(int nrQuadra) {
 		this.nrQuadra = nrQuadra;
+	}
+
+	public Atleta getAtleta() {
+		return atleta;
+	}
+
+	public void setAtleta(Atleta atleta) {
+		this.atleta = atleta;
 	}		
+	
+	
 }

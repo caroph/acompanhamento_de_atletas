@@ -11,7 +11,8 @@
 							<label for="datade" class="control-label">Data:</label>
 						</div>
 						<div class="form-group col-md-7">
-							 <input type="date" class="form-control" id="dataQuadra" style="width: 30%; margin-left: 1%"/>
+							 <input type="date" class="form-control" id="dataQuadra" onchange="BuscarChamada()"
+							 style="width: 30%; margin-left: 1%"/>
 						 </div>
 						<div class="col-md-2 column">
 							<div class="panel panel-primary">
