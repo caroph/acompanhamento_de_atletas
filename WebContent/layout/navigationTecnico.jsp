@@ -25,7 +25,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="TecnicoController?action=jspChamadaQuadra">Quadra</a></li>
-				<li><a class="" href="#">Chamada</a></li>
+				<li><a class="" href="TecnicoController?action=jspChamada">Chamada</a></li>
 			</ul>
 		</li>	
 	</ul>
