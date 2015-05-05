@@ -31,6 +31,7 @@
 								<div class="box-content">
 									<form class="form-horizontal" role="form" action="TecnicoController?action=finalizarTorneio" method="post">
 										<input type="hidden" name="idTorneio" value="${torneio.idTorneio}"/>
+										<input type="hidden" name="nome" value="${torneio.nome}"/>
 										<div class="form-group">
 											 <div class="form-group col-md-6">
 												 <label for="inscritosGeral">Total inscritos (Geral):</label>
@@ -44,7 +45,17 @@
 										<div class="form-group">
 											 <div class="form-group col-md-6">
 												 <label for="destaque">Atleta Destaque:</label>
-												 <input type="text" class="form-control" id="destaque" name="destaque" value="${torneio.idDestaque}" maxlength="255" required/>
+												 <select class="form-control" id="destaque" name="destaque" required>
+													<option value="">Selecione</option>
+													<c:forEach var="atleta" items="${listaAtletas}">
+							                            <c:if test="${atleta.idPessoa == torneio.idDestaque}">
+			                                                <option selected value="<c:out value='${atleta.idPessoa}'/>"><c:out value="${atleta.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${atleta.idPessoa != torneio.idDestaque}">
+															<option value="<c:out value='${atleta.idPessoa}'/>"><c:out value="${atleta.nome}" /></option>
+														</c:if>
+						                            </c:forEach>
+												</select>
 											 </div>
 										 	<div class="form-group col-md-6">
 												<label for="motivoDestaque">Motivo:</label>
@@ -73,11 +84,11 @@
 												</div>
 												<div class="form-group col-md-3">
 													 <label for="colocacao">Colocação:</label>
-													 <input type="text" class="form-control" id="colocacao" name="colocacao" value="<c:out value='${atleta.colocacao}'/>" maxlength="50" required/>
+													 <input type="text" class="form-control" id="colocacao" name="colocacao<c:out value='${atleta.idPessoa}'/>" value="<c:out value='${atleta.colocacao}'/>" maxlength="50" required/>
 												</div>
 											 	<div class="form-group col-md-6">
 													<label>Observação:</label>
-													<input type="text" class="form-control" id="observacao" name="observacao" value="<c:out value='${atleta.observacao}'/>" maxlength="1000"/>
+													<input type="text" class="form-control" id="observacao" name="observacao<c:out value='${atleta.idPessoa}'/>" value="<c:out value='${atleta.observacao}'/>" maxlength="1000"/>
 											 	</div>
 											</div>
 										</c:forEach>

@@ -201,4 +201,69 @@ public class TorneioDAO {
 		return retorno;
 	}
 
+	public boolean finalizar(Torneio torneio) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("UPDATE torneio "
+				+ "SET inscritosGeral = ?, inscritosClube = ?, idDestaque = ?, "
+				+ "motivoDestaque = ?, fotografo = ?, encaminhamentoMkt = ? "
+				+ "WHERE idTorneio = ?");
+			
+		stmtScript.setInt(1, torneio.getInscritosGeral());
+		stmtScript.setInt(2, torneio.getInscritosClube());
+		stmtScript.setInt(3, torneio.getIdDestaque().getIdPessoa());
+		stmtScript.setString(4, torneio.getMotivoDestaque());
+		stmtScript.setString(5, torneio.getFotografo());
+		stmtScript.setDate(6, new java.sql.Date(torneio.getEncaminhamentoMkt().getTime()));
+		stmtScript.setInt(7, torneio.getIdTorneio());
+		
+		if (stmtScript.executeUpdate() > 0){
+			retorno= true;
+		}
+		
+		return retorno;
+	}
+
+	public boolean inserirResulAtletasPart(Atleta atleta, int idTorneio) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("SELECT * "
+				+ "FROM atletaResultadoTorneio "
+				+ "WHERE idAtleta = ? AND idTorneio = ?");
+		
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		stmtScript.setInt(2, idTorneio);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if (!rs.next()) {
+			stmtScript = con.prepareStatement("INSERT INTO atletaResultadoTorneio "
+					+ "(idAtleta, idTorneio, colocacao, observacao) "
+					+ "VALUES (?, ?, ?, ?)");
+			
+			stmtScript.setInt(1, atleta.getIdPessoa());
+			stmtScript.setInt(2, idTorneio);
+			stmtScript.setString(3, atleta.getColocacao());
+			stmtScript.setString(4, atleta.getObservacao());
+			
+		} else {
+			
+			int idAtletaResTorneio = rs.getInt("idAtletaResTorneio");
+			
+			stmtScript = con.prepareStatement("UPDATE atletaResultadoTorneio "
+					+ "SET colocacao = ?, observacao = ? "
+					+ "WHERE idAtletaResTorneio = ? ");
+			
+			stmtScript.setString(1, atleta.getColocacao());
+			stmtScript.setString(2, atleta.getObservacao());
+			stmtScript.setInt(3, idAtletaResTorneio);
+		}
+		
+		if(stmtScript.executeUpdate() > 0){
+			retorno = true;
+		}
+		
+		return retorno;		
+	}
+
 }

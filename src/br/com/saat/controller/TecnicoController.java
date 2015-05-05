@@ -390,7 +390,104 @@ public class TecnicoController extends Controller {
 			request.setAttribute("torneio", torneio);
 			
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
-			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio";
+			servletRetorno = "/TecnicoController?action=jspCalendario";
+			
+		}else if ("finalizarTorneio".equals(action)){
+			boolean exception = false;
+			int idTorneio = 0;
+			int idDestaque = 0;
+			String msgSucesso = "";
+			String msgErro = "";
+			Torneio torneio = new Torneio();
+			
+			String dtaMkt = request.getParameter("encaminhamentoMkt");
+			Date dtMkt = null;
+			
+			try {
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				dtMkt = (Date) formatter.parse(dtaMkt);
+				
+				idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			} catch (Exception ex) {
+				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
+			
+			try {
+				torneio.setInscritosGeral(Integer.parseInt(request.getParameter("inscritosGeral")));
+				torneio.setInscritosClube(Integer.parseInt(request.getParameter("inscritosClube")));
+			} catch (Exception ex) {
+				msgErro = "Favor preencher o campo 'Total inscritos(geral)' e/ou 'Total inscritos(Clube Curitibano)' corretamente!";
+				exception = true;
+			}
+
+			try {
+				idDestaque = Integer.parseInt(request.getParameter("destaque"));
+			} catch (Exception ex) {
+				msgErro = "Favor preencher o campo 'Atleta destaque' corretamente!";
+				exception = true;
+			}
+			
+			if (!exception) {
+				TorneioNegocio negocio = new TorneioNegocio();
+				List<Atleta> listaAtletasPart = null;
+				
+				Atleta atleta = new Atleta();
+				atleta.setIdPessoa(idDestaque);
+
+				torneio.setIdTorneio(idTorneio);
+				torneio.setNome(request.getParameter("nome"));
+				torneio.setIdDestaque(atleta);
+				torneio.setMotivoDestaque(request.getParameter("motivoDestaque"));
+				torneio.setFotografo(request.getParameter("fotografo"));
+				torneio.setEncaminhamentoMkt(dtMkt);
+				
+				try {
+					listaAtletasPart =  negocio.buscaAtletasPart(idTorneio);
+				} catch (Exception e) {
+					request.setAttribute("msgErro", e.getMessage());
+				} 	
+				
+				List<Object> listaValidacao = negocio.validaDadosFinalizar(torneio);
+				boolean valida = (boolean) listaValidacao.get(0);
+				if (!valida) {
+					msgErro = (String) listaValidacao.get(1);
+				} else {
+					
+					for (Atleta atletaPart : listaAtletasPart) {
+						String colocao = "colocacao" + atletaPart.idPessoa;
+						String observacao = "observacao" + atletaPart.idPessoa;
+						
+						atletaPart.setColocacao(request.getParameter(colocao));
+						atletaPart.setObservacao(request.getParameter(observacao));
+					}
+					
+					listaValidacao = negocio.validaAtletasPart(listaAtletasPart);
+					valida = (boolean) listaValidacao.get(0);
+					if (!valida) {
+						msgErro = (String) listaValidacao.get(1);
+					} else {
+						try {
+							if (negocio.finalizarTorneio(torneio, listaAtletasPart)) {
+								msgSucesso = "Torneio finalizado com sucesso!";
+							}
+						} catch (Exception ex) {
+							msgErro = ex.getMessage();
+						}
+					}
+				}
+				
+				if ("".equals(msgSucesso)) {
+					request.setAttribute("msgErro", msgErro);
+					request.setAttribute("torneio", torneio);
+					request.setAttribute("listaAtletas", listaAtletasPart);
+					retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
+				} else {
+					request.setAttribute("msgSucesso", msgSucesso);
+					retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+				}
+				
+			}
 			
 		}else if("jspChamadaQuadra".equals(action)){
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();

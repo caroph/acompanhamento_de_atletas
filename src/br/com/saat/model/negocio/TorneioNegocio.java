@@ -140,5 +140,72 @@ public class TorneioNegocio {
 		return retorno;
 	}
 
+	public List<Object> validaDadosFinalizar(Torneio torneio) {
+		List<Object> lista = new ArrayList<Object>();
+
+		if ("".equals(torneio.getInscritosGeral()) || torneio.getInscritosGeral() == 0) {
+			lista.add(false);
+			lista.add("Informe corretamente o campo 'Total incritos (geral)' !");
+		} else if("".equals(torneio.getInscritosClube()) || torneio.getInscritosClube() == 0){
+			lista.add(false);
+			lista.add("Informe corretamente o campo ''Total incritos (Clube Curitibano)' !");
+		} else if(torneio.getIdDestaque() == null || torneio.getIdDestaque().getIdPessoa() == 0){
+			lista.add(false);
+			lista.add("Informe corretamente o campo 'Atleta destaque' !");
+		} else if ("".equals(torneio.getFotografo())) {
+			lista.add(false);
+			lista.add("Informe corretamente o campo 'Fotógrafo' !");
+		} else if ("".equals(torneio.getEncaminhamentoMkt())) {
+			lista.add(false);
+			lista.add("Informe corretamente o campo 'Encaminhar ao marketing em' !");
+		} else {
+			lista.add(true);
+		}
+		return lista;
+	}
+
+	public List<Object> validaAtletasPart(List<Atleta> listaAtletasPart) {
+		List<Object> lista = new ArrayList<Object>();
+		
+		for (Atleta atleta : listaAtletasPart) {
+			if (atleta.getColocacao() == null || "".equals(atleta.getColocacao())) {
+				lista.add(false);
+				lista.add("Favor informar corretamente a colocação do(a) atleta " + atleta.getNome() + "!");
+				break;
+			}
+		}
+		
+		if (lista.size() == 0) {
+			if (listaAtletasPart == null || listaAtletasPart.size() <= 0) {
+				lista.add(false);
+				lista.add("Erro ao consultar os atletas participantes do torneio!");
+			} else {
+				lista.add(true);
+			}
+		}
+		
+		return lista;
+	}
+
+	public boolean finalizarTorneio(Torneio torneio,
+			List<Atleta> listaAtletasPart) throws Exception {
+		boolean retorno = true;
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			if (dao.finalizar(torneio)) {
+				for (Atleta atleta : listaAtletasPart) {
+					if (!dao.inserirResulAtletasPart(atleta, torneio.getIdTorneio())) {
+						return false;
+					}
+				}
+			}
+		} catch (Exception e) {
+			retorno = false;
+			throw new Exception(
+					"Erro! Ocorreu algum erro ao finalizar o torneio.");
+		}
+		return retorno;
+	}
+
 
 }

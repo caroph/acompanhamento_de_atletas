@@ -1,6 +1,5 @@
 package br.com.saat.model;
 
-import java.util.Date;
 
 public class AvaliacaoAntropometrica {
 	private int idAvaliacaoAntropometrica;
