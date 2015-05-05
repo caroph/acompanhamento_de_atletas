@@ -49,19 +49,29 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
-												<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
+										<c:choose>
+											<c:when test="${listaUltimosAtendimentos != null}">
+												<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
+													<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
+													<tr>
+														<td style="max-width: 200px;">${atendimento.get(1)}</td>
+														<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
+														<td class="text-center"><a class="btn btn-primary" data-toggle="modal" href="#incluirParecer">Incluir
+																Observação</a></td>
+														<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atendimento.get(0)}&idFichaDeAtendimento=0">Novo Atendimento</a></td>
+														<td class="text-center"><a class="btn btn-primary" href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
+														<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
+														</td>
+													</tr>	
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
 												<tr>
-													<td style="max-width: 200px;">${atendimento.get(1)}</td>
-													<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
-													<td class="text-center"><a data-toggle="modal" href="#incluirParecer">Incluir
-															Observação</a></td>
-													<td class="text-center"><a href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atendimento.get(0)}&idFichaDeAtendimento=0">Novo Atendimento</a></td>
-													<td class="text-center"><a href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
-													<td class="text-center"><a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
-													</td>
-												</tr>	
-											</c:forEach>
+													<td class="text-center" colspan="6"><b>Você ainda não realizou nenhum atendimento. Seus atendimentos mais recentes aparecerão aqui.</b></td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+											
 										</tbody>
 									</table>
 								</div>

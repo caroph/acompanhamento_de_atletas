@@ -343,9 +343,15 @@ public class Atleta extends Pessoa {
 				idadeMeses = (12 - dataNasc.getMonth()) + dataAtual.getMonth();
 			}else{
 				if(dataAtual.getDate() < dataNasc.getDate()){
-					idadeAnos--;
-					idadeMeses = 11;
-				}						
+					if(dataAtual.getYear() != dataAtual.getYear()){
+						idadeAnos--;
+						idadeMeses = 11;
+					}else{
+						idadeAnos = 0;
+						idadeMeses = 0;
+					}
+					
+				}	
 			}
 			
 			strIdade = idadeAnos>0? (idadeAnos==1? "1 Ano" : idadeAnos + " Anos"):"";

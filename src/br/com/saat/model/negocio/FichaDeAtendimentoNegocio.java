@@ -90,7 +90,7 @@ public class FichaDeAtendimentoNegocio {
 			FichaDeAtendimentoDAO dao = new FichaDeAtendimentoDAO();
 			listaUltimosAtendimentos = dao.buscarUltimosAtendimentos(idPessoa);
 			
-			if(listaUltimosAtendimentos != null){
+			if(listaUltimosAtendimentos.size() > 0){
 				return listaUltimosAtendimentos;
 			}else
 				return null;
