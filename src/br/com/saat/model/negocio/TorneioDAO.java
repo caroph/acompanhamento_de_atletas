@@ -87,7 +87,7 @@ public class TorneioDAO {
 	public List<Torneio> buscarTorneios() throws SQLException {
 		List<Torneio> lista = new ArrayList<Torneio>();
 		
-		stmtScript = con.prepareStatement("SELECT idTorneio, nome, dtInicial, dtFinal, idCatTorneio "
+		stmtScript = con.prepareStatement("SELECT idTorneio, nome, dtInicial, dtFinal, idCatTorneio, flFinalizado "
 				+ "FROM torneio "
 				+ "WHERE flCadastroAtivo = 1 ");
 		
@@ -100,6 +100,7 @@ public class TorneioDAO {
 			torneio.setDtInicial(rs.getDate(3));
 			torneio.setDtFinal(rs.getDate(4));
 			torneio.setIdCatTorneio(rs.getInt(5));
+			torneio.setFlFinalizado(rs.getBoolean(6));
 			lista.add(torneio);
 		}
 		return lista;
@@ -123,11 +124,15 @@ public class TorneioDAO {
 	public Torneio buscaTorneio(int idTorneio) throws SQLException {
 		Torneio torneio = new Torneio();
 		
-		stmtScript = con.prepareStatement("SELECT idTorneio, nome, local, estado, cidade, "
+		stmtScript = con.prepareStatement("SELECT idTorneio, t.nome, local, estado, cidade, "
 				+ "dtInicial, dtFinal, idNaipe, idCatTorneio, idTpTorneio, idGpTorneio, "
-				+ "descricao "
-				+ "FROM torneio "
-				+ "WHERE idTorneio = ? ");
+				+ "descricao, inscritosGeral, inscritosClube, idDestaque, a.nome as nomeAtleta, "
+				+ "motivoDestaque, fotografo, encaminhamentoMkt  "
+				+ "FROM torneio t "
+				+ "		INNER JOIN atleta a "
+				+ "			ON t.idDestaque = a.idAtleta "
+				+ "WHERE idTorneio = ? "
+				+ "	AND t.flCadastroAtivo = 1 ");
 		
 		stmtScript.setInt(1, idTorneio);
 		
@@ -146,6 +151,17 @@ public class TorneioDAO {
 			torneio.setIdTpTorneio(rs.getInt("idTpTorneio"));
 			torneio.setIdGpTorneio(rs.getInt("idGpTorneio"));
 			torneio.setDescricao(rs.getString("descricao"));
+			torneio.setInscritosGeral(rs.getInt("inscritosGeral"));
+			torneio.setInscritosClube(rs.getInt("inscritosClube"));
+			torneio.setMotivoDestaque(rs.getString("motivoDestaque"));
+			torneio.setFotografo(rs.getString("fotografo"));
+			torneio.setEncaminhamentoMkt(rs.getDate("encaminhamentoMkt"));
+			
+			Atleta atleta = new Atleta();
+			atleta.setIdPessoa(rs.getInt("idDestaque"));
+			atleta.setNome(rs.getString("nomeAtleta"));
+			
+			torneio.setIdDestaque(atleta);
 		}
 		return torneio;
 	}
@@ -153,10 +169,13 @@ public class TorneioDAO {
 	public List<Atleta> buscaAtletasPart(int idTorneio) throws SQLException {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
-		stmtScript = con.prepareStatement("SELECT at.idAtleta, a.nome "
+		stmtScript = con.prepareStatement("SELECT at.idAtleta, a.nome, art.colocacao "
 				+ "FROM atletatorneio at "
 				+ "		INNER JOIN atleta a "
 				+ "			ON at.idAtleta = a.idAtleta "
+				+ "		LEFT JOIN atletaResultadoTorneio art "
+				+ "			ON a.idAtleta = art.idAtleta "
+				+ "				AND at.idTorneio = art.idTorneio "
 				+ "WHERE at.idTorneio = ? "
 				+ "ORDER BY a.nome ");
 		
@@ -167,6 +186,7 @@ public class TorneioDAO {
 			Atleta atleta = new Atleta();
 			atleta.setIdPessoa(rs.getInt(1));
 			atleta.setNome(rs.getString(2));
+			atleta.setColocacao(rs.getString(3));
 			lista.add(atleta);
 		}
 		return lista;
@@ -206,7 +226,8 @@ public class TorneioDAO {
 		
 		stmtScript = con.prepareStatement("UPDATE torneio "
 				+ "SET inscritosGeral = ?, inscritosClube = ?, idDestaque = ?, "
-				+ "motivoDestaque = ?, fotografo = ?, encaminhamentoMkt = ? "
+				+ "motivoDestaque = ?, fotografo = ?, encaminhamentoMkt = ?,"
+				+ "flFinalizado = 1 "
 				+ "WHERE idTorneio = ?");
 			
 		stmtScript.setInt(1, torneio.getInscritosGeral());

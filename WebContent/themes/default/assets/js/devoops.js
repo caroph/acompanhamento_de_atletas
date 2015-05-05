@@ -4,7 +4,7 @@
 "use strict";
 
 //Detalhes do Torneio
-function abrilModalTorneio(idTorneio) {
+function abrilModalTorneio(idTorneio, finalizado) {
 	$("#detalhesTorneio").modal();	
 	$.ajax({
 	type : "POST",
@@ -16,33 +16,58 @@ function abrilModalTorneio(idTorneio) {
 			html += "<b>Nome:</b> " + data.torneio.nome + "<br/>";
 		html += "<b>Local:</b> " + data.torneio.local + "<br/>";
 		html += "<b>Cidade/UF:</b> " + data.torneio.cidade + "/" + data.torneio.estado + "<br/>";
-		html += "<b>Data Inicial:</b> " + data.torneio.dtInicial + "<br/>";
-		html += "<b>Data Final:</b> " + data.torneio.dtFinal + "<br/>";
+		html += "<b>Data inicial:</b> " + data.torneio.dtInicial + "<br/>";
+		html += "<b>Data final:</b> " + data.torneio.dtFinal + "<br/>";
 		html += "<b>Naipe:</b> " + data.naipe[data.torneio.idNaipe - 1] + "<br/>";
 		html += "<b>Categoria:</b> " + data.categoria[data.torneio.idCatTorneio - 1] + "<br/>";
 		html += "<b>Tipo:</b> " + data.tipo[data.torneio.idTpTorneio - 1] + "<br/>";
 		html += "<b>Grupo:</b> " + data.grupo[data.torneio.idGpTorneio - 1] + "<br/>";
 		html += "<b>Descri\u00e7\u00e3o:</b> " + data.torneio.descricao + "<br/><br/>";
-		html += "<b>Atletas participantes:</b><br/>";
 		
-		if (data.listaAtleta.length <= 0){
-			html += "<small>Nenhum atleta participante.</small>"
-		}else{
-			$.each(
-				data.listaAtleta,
-				function(index, item) {
-					html += item.nome 
-							+ "<br/>";
-				});
+		if (finalizado == 1) {
+			html += "<b>Inscritos (geral):</b> " + data.torneio.inscritosGeral + "<br/>";
+			html += "<b>Inscritos (Clube Curitibano):</b> " + data.torneio.inscritosClube + "<br/>";
+			html += "<b>Atleta destaque:</b> " + data.torneio.idDestaque.nome + "<br/>";
+			html += "<b>Fotografo:</b> " + data.torneio.fotografo + "<br/><br/>";
+		}
+		
+		if (finalizado == 0) {
+			html += "<b>Atletas participantes:</b><br/>";
+			if (data.listaAtleta.length <= 0){
+				html += "<small>Nenhum atleta participante.</small>"
+			}else{
+				$.each(
+					data.listaAtleta,
+					function(index, item) {
+						html += item.nome + "<br/>";
+					});
+			}
+		} else {
+			html += "<b>Resultado dos atletas participantes:</b><br/>";
+			if (data.listaAtleta.length <= 0){
+				html += "<small>Nenhum atleta participante.</small>"
+			}else{
+				$.each(
+					data.listaAtleta,
+					function(index, item) {
+						html += item.nome + " - ";
+						html += "Coloca\u00e7\u00e3o: " + item.colocacao + "<br/>";
+					});
+			}
 		}
 		
 		html += "<div class='modal-footer'>";
-		html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
-		html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
-		html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "&nome=" + data.torneio.nome + "' "; 
-		html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
-		html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
-		html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
+		if (finalizado == 0) {
+			html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
+			html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
+			html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "&nome=" + data.torneio.nome + "' "; 
+			html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
+			html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
+			html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
+		} else {
+			html += "<a class='btn btn-primary' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 
+			html += "data-confirm='Deseja realmente editar o resultado do torneio selecionado?'>Editar Resultado</a>";
+		}
 		html += "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Fechar</button>";
 		html += "</div>";
 		

@@ -27,6 +27,7 @@ public class Torneio {
 	private String motivoDestaque;
 	private String fotografo;
 	private Date encaminhamentoMkt;
+	private boolean flFinalizado;
 	
 	public int getIdTorneio() {
 		return idTorneio;
@@ -210,5 +211,11 @@ public class Torneio {
 			break;
 		}
 		return retorno;
+	}
+	public boolean isFlFinalizado() {
+		return flFinalizado;
+	}
+	public void setFlFinalizado(boolean flFinalizado) {
+		this.flFinalizado = flFinalizado;
 	}
 }

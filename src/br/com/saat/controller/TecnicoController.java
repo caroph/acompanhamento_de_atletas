@@ -489,7 +489,10 @@ public class TecnicoController extends Controller {
 				
 			}
 			
-		}else if("jspChamadaQuadra".equals(action)){
+		} else if ("editarResultadoTorneio".equals(action)) {
+			
+		}
+		else if("jspChamadaQuadra".equals(action)){
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			try {

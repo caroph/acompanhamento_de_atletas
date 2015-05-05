@@ -87,7 +87,11 @@ public class CalendarJsonServlet extends Controller {
 			String title = torneio.getNome() + " - Categoria " + torneio.getNomeCategoria();
 			
 			//CONCATENAR URL
-			String url = "abrilModalTorneio(" + torneio.getIdTorneio() + ")";
+			int finalizado = 1; //Fechado
+			if (!torneio.isFlFinalizado()) {
+				finalizado = 0; //Aberto
+			}
+			String url = "abrilModalTorneio(" + torneio.getIdTorneio() + "," + finalizado + ")";
 
 			//SETAR                       
             calendar.setId(torneio.getIdTorneio());  
