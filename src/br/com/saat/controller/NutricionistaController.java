@@ -1,6 +1,8 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,15 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoAntropometrica;
+import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
 
+import java.sql.Connection;
+
+import com.mysql.fabric.Response;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/NutricionistaController")
@@ -263,6 +270,50 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("atleta", atleta);
 			retorno = String.format("%s/NutricionistaHistoricoDeAtendimentos.jsp", Constants.VIEW);	
 			
+			
+		}else if("imprimirFichaDeAtendimento".equals(action)){
+			int idFicha = 0;
+			FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
+			AtletaNegocio atletaNegocio = new AtletaNegocio();
+			FichaDeAtendimento ficha = null;
+			Atleta atleta = null;
+			try{				
+				idFicha = Integer.parseInt(request.getParameter("idFichaDeAtendimento"));
+				
+				ficha = fichaNegocio.buscarPorId(idFicha);
+				atleta = atletaNegocio.buscarAtleta(ficha.getIdAtleta());
+				
+				Connection con = ConnectionFactory.getConnection();
+				
+				//URL jasperURL = new URL(host+jasper);
+				URL jasperURL = getServletContext().getResource("/relatorios/relatorioImprimirFichaDeAtendimento.jasper");
+				HashMap parms = new HashMap();
+				
+				parms.put("idFichaDeAtendimento", idFicha);
+				parms.put("idadeAnosMeses", atleta.getStrIdade());
+				
+				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
+				
+				if(bytes != null){
+					response.setContentType("application/pdf");
+					OutputStream ops = response.getOutputStream();
+					ops.write(bytes);
+				}				
+				
+			}catch(Exception ex){
+				HashMap<Integer, Date> listaAtendimentos = null;
+				String msg = "";
+				try{
+					listaAtendimentos = fichaNegocio.buscarHistoricoAtendimento(atleta.getIdPessoa());
+				}catch(Exception ex2){
+					msg = "Erro: " + ex2.getMessage();
+				}
+				msg = "Erro ao gerar relatório! ";
+				request.setAttribute("msgErro", msg);
+				request.setAttribute("listaAtendimentos", listaAtendimentos);
+				request.setAttribute("atleta", atleta);
+				retorno = String.format("%s/NutricionistaHistoricoDeAtendimentos.jsp", Constants.VIEW);
+			}
 			
 		}else{
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);

@@ -48,7 +48,7 @@
 																<tr>
 																	<td class="text-center"><fmt:formatDate value="${atendimento.value}" pattern="dd/MM/yyyy - HH:mm"/></td>
 																	<td class="text-center"><a href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=${atendimento.key}">Visualizar</a></td>
-																	<td class="text-center"><a id="btnImprimir" data-toggle="modal" href="#">Imprimir</a></td>
+																	<td class="text-center"><a id="btnImprimir" data-toggle="modal" href="NutricionistaController?action=imprimirFichaDeAtendimento&idFichaDeAtendimento=${atendimento.key}">Imprimir</a></td>
 																</tr>												
 															</c:forEach>
 														</tbody>

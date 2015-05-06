@@ -2,7 +2,13 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioImprimirFichaDeAtendimento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6b0b44a6-5469-4560-a317-d67f203cf3e2">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1783"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idFichaDeAtendimento" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idadeAnosMeses" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
         a.nome as nomeAtleta,
@@ -24,7 +30,7 @@ FROM fichadeatendimento f
                 e.idAtleta = a.idAtleta AND
                 e.idTpEndereco = 1
 WHERE
-	f.idFichaDeAtendimento = 11]]>
+	f.idFichaDeAtendimento = $P{idFichaDeAtendimento}]]>
 	</queryString>
 	<field name="nomeAtleta" class="java.lang.String"/>
 	<field name="dtNascimento" class="java.sql.Date">
@@ -241,7 +247,7 @@ WHERE
 			</textField>
 			<textField>
 				<reportElement x="218" y="58" width="117" height="15" uuid="e8d81ff0-8fe6-4da0-8bfa-914a8c24ba4e"/>
-				<textFieldExpression><![CDATA[$F{dtNascimento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dtNascimento})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="392" y="59" width="149" height="14" uuid="9fb369f2-0990-4475-9587-c763ff12c276"/>
@@ -253,16 +259,16 @@ WHERE
 			</textField>
 			<textField>
 				<reportElement x="123" y="117" width="100" height="15" uuid="b47a4eba-f1b5-4f8d-8c18-1c0664b907ef"/>
-				<textFieldExpression><![CDATA[$F{dtAtendimento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy - HH:mm").format($F{dtAtendimento})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="152" y="138" width="389" height="15" uuid="44229e64-e737-4391-8c94-de8ac008ea99"/>
 				<textFieldExpression><![CDATA[$F{nomeUsuario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="117" y="39" width="76" height="14" uuid="98c340fa-fadd-4288-b6a5-2e6e67681a62"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="117" y="39" width="84" height="14" uuid="98c340fa-fadd-4288-b6a5-2e6e67681a62"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nome do atleta:]]></text>
 			</staticText>
@@ -315,6 +321,10 @@ WHERE
 				</textElement>
 				<text><![CDATA[Ficha de atendimento]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="226" y="79" width="109" height="15" uuid="3c76745e-3028-4074-9b44-271a9171d0cd"/>
+				<textFieldExpression><![CDATA[$P{idadeAnosMeses}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
@@ -324,7 +334,7 @@ WHERE
 			</line>
 			<staticText>
 				<reportElement x="10" y="11" width="183" height="18" uuid="6c779c9c-740e-45f4-ad5b-fa08dad692c0"/>
-				<textElement>
+				<textElement markup="none">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Avaliação Antropométrica]]></text>
@@ -635,6 +645,38 @@ WHERE
 			<line>
 				<reportElement x="10" y="164" width="531" height="1" uuid="c1020239-581d-41e3-9ac5-1e92ca43c6b9"/>
 			</line>
+			<textField>
+				<reportElement x="79" y="364" width="38" height="13" uuid="4c67bac5-b716-4da4-869a-442402639d92"/>
+				<textFieldExpression><![CDATA[$F{flObesidade} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="364" width="32" height="15" uuid="8ecfde9d-bdab-4c75-8ae5-1c67da23af7f"/>
+				<textFieldExpression><![CDATA[$F{flDiabetes} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="364" width="40" height="15" uuid="8fbc6e77-854e-409a-921b-49e2134f70c7"/>
+				<textFieldExpression><![CDATA[$F{flHas} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="364" width="48" height="15" uuid="79613525-761a-4b3a-abe5-f4174e39db1b"/>
+				<textFieldExpression><![CDATA[$F{flDoencaCardiaca} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="390" width="38" height="13" uuid="b6762455-a676-4535-b725-a0f25cdb0d43"/>
+				<textFieldExpression><![CDATA[$F{flColesterol} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="388" width="32" height="15" uuid="110192fc-eec1-4014-af84-6d639ad79ae7"/>
+				<textFieldExpression><![CDATA[$F{flGastrite} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="388" width="48" height="15" uuid="e252f279-50cb-4548-89f3-9207cdec4243"/>
+				<textFieldExpression><![CDATA[$F{flDorAbdominal} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="388" width="40" height="15" uuid="54743f92-3a3f-450a-952c-e88bc10ffdb8"/>
+				<textFieldExpression><![CDATA[$F{flAzia} == true? "SIM":"NÃO"]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="802">
 			<line>
@@ -956,11 +998,11 @@ WHERE
 				<text><![CDATA[Uso de suplemento vitamínico/alimentar:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="723" width="255" height="14" uuid="8380df85-ddee-45cb-a84c-042d016731df"/>
+				<reportElement x="10" y="723" width="283" height="14" uuid="8380df85-ddee-45cb-a84c-042d016731df"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Qual? Qual hoário? E quantas vezes no dia/semana?]]></text>
+				<text><![CDATA[Qual? Qual horário? E quantas vezes no dia/semana?]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="161" y="644" width="380" height="14" uuid="342c1668-09dc-4b60-a1a8-fbf1dbba6545"/>
@@ -982,7 +1024,7 @@ WHERE
 				<reportElement x="0" y="780" width="100" height="1" uuid="9a1deeae-78d7-441b-ad0d-6cdd35de065f"/>
 			</break>
 		</band>
-		<band height="364">
+		<band height="755">
 			<line>
 				<reportElement x="15" y="18" width="531" height="1" uuid="66c91626-70fc-4fff-8d49-e0ccaeef9628"/>
 			</line>
@@ -996,19 +1038,34 @@ WHERE
 				</textElement>
 				<text><![CDATA[Recordatário Alimentar 24H]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="15" y="66" width="531" height="652" uuid="bea43eb9-e415-49ab-b92a-cb970d8c65cc"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA[$F{recordatorioAlimentar}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="732" width="100" height="1" uuid="1ff66323-9e14-4c71-ba10-61e9f16acbc3"/>
+			</break>
+		</band>
+		<band height="756">
 			<line>
-				<reportElement x="15" y="217" width="531" height="1" uuid="4d02e1c3-20cf-4a9c-b7fa-9b82fc7836da"/>
+				<reportElement x="15" y="45" width="531" height="1" uuid="4d02e1c3-20cf-4a9c-b7fa-9b82fc7836da"/>
 			</line>
 			<staticText>
-				<reportElement x="15" y="190" width="303" height="18" uuid="01ff2db6-317f-4cec-aaf3-645bd1724aad"/>
+				<reportElement x="15" y="18" width="303" height="18" uuid="01ff2db6-317f-4cec-aaf3-645bd1724aad"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Conduta Nutricional]]></text>
 			</staticText>
 			<line>
-				<reportElement x="15" y="181" width="531" height="1" uuid="b0276622-da78-44d8-85c9-d173ebc25b6a"/>
+				<reportElement x="15" y="9" width="531" height="1" uuid="b0276622-da78-44d8-85c9-d173ebc25b6a"/>
 			</line>
+			<textField>
+				<reportElement x="15" y="56" width="531" height="658" uuid="68c01a2d-f017-4ea9-8eb3-10ec5c26e13f"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA[$F{condutaNutricional}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<lastPageFooter>
