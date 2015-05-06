@@ -371,6 +371,11 @@ function BuscarChamada(){
 	document.forms[0].submit();
 }
 
+function BuscarPresenca(){
+	document.forms[0].action = "TecnicoController?action=CarregarChamadaPresenca";
+	document.forms[0].submit();
+}
+
 // $('#selectInicio').on('change', function () {
 // var url = this.value.toString();
 // $(window.document.location).attr('href',url);

@@ -1,8 +1,9 @@
 package br.com.saat.model.negocio;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.PresencaChamada;
 import br.com.saat.model.dao.PresencaChamadaDAO;
 
@@ -30,7 +31,6 @@ public class PresencaChamadaNegocio {
 
 	public List<PresencaChamada> buscarPresencasPorChamada(int idChamada) throws Exception {
 		PresencaChamadaDAO dao = new PresencaChamadaDAO();
-		List<PresencaChamada> listaPresenca = new ArrayList<PresencaChamada>();
 		try{
 			return dao.buscarPresencasPorChamada(idChamada);
 		}catch(Exception ex){
@@ -44,6 +44,15 @@ public class PresencaChamadaNegocio {
 			return dao.excluirPresencaChamada(idChamada);
 		}catch(Exception ex){
 			throw new Exception("Erro ao alterar presença chamada");
+		}
+	}
+
+	public List<Atleta> buscarPresencasPorData(Date dt, int idDiaTreino) throws Exception {
+		PresencaChamadaDAO dao = new PresencaChamadaDAO();
+		try{
+			return dao.buscarPresencasPorData(dt, idDiaTreino);
+		}catch(Exception ex){
+			throw new Exception("Erro ao buscar chamada");
 		}
 	}
 	

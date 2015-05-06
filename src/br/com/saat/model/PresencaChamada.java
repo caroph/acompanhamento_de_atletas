@@ -4,20 +4,25 @@ public class PresencaChamada {
 	private int idPresencaChamada;
 	private int idChamada;
 	private int idAtleta;
-	private int estadoPresenca;
-	private String justificativa;
+	private int estadoPresencaT;
+	private String justificativaT;
 	private int nrQuadra;
+	private int estadoPresencaF;
+	private String justificativaF;
 	private Atleta atleta;
+	private Chamada chamada;
 	
 	public PresencaChamada(){}
 
 	public PresencaChamada(int idPresencaChamada, int idChamada, int idAtleta,
-			int estadoPresenca, String justificativa) {
+			int estadoPresencaT, String justificativaT, int estadoPresencaF, String justificativaF) {
 		this.idPresencaChamada = idPresencaChamada;
 		this.idChamada = idChamada;
 		this.idAtleta = idAtleta;
-		this.estadoPresenca = estadoPresenca;
-		this.justificativa = justificativa;
+		this.estadoPresencaT = estadoPresencaT;
+		this.justificativaT = justificativaT;
+		this.estadoPresencaF = estadoPresencaF;
+		this.justificativaF = justificativaF;
 	}
 
 	public int getIdPresencaChamada() {
@@ -44,22 +49,6 @@ public class PresencaChamada {
 		this.idAtleta = idAtleta;
 	}
 
-	public int getEstadoPresenca() {
-		return estadoPresenca;
-	}
-
-	public void setEstadoPresenca(int estadoPresenca) {
-		this.estadoPresenca = estadoPresenca;
-	}
-
-	public String getJustificativa() {
-		return justificativa;
-	}
-
-	public void setJustificativa(String justificativa) {
-		this.justificativa = justificativa;
-	}
-
 	public int getNrQuadra() {
 		return nrQuadra;
 	}
@@ -74,7 +63,45 @@ public class PresencaChamada {
 
 	public void setAtleta(Atleta atleta) {
 		this.atleta = atleta;
-	}		
-	
-	
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
+	}
+
+	public int getEstadoPresencaT() {
+		return estadoPresencaT;
+	}
+
+	public void setEstadoPresencaT(int estadoPresencaT) {
+		this.estadoPresencaT = estadoPresencaT;
+	}
+
+	public String getJustificativaT() {
+		return justificativaT;
+	}
+
+	public void setJustificativaT(String justificativaT) {
+		this.justificativaT = justificativaT;
+	}
+
+	public int getEstadoPresencaF() {
+		return estadoPresencaF;
+	}
+
+	public void setEstadoPresencaF(int estadoPresencaF) {
+		this.estadoPresencaF = estadoPresencaF;
+	}
+
+	public String getJustificativaF() {
+		return justificativaF;
+	}
+
+	public void setJustificativaF(String justificativaF) {
+		this.justificativaF = justificativaF;
+	}
 }

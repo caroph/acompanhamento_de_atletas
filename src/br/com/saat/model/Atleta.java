@@ -40,6 +40,7 @@ public class Atleta extends Pessoa {
 	private boolean selecionado;
 	private String colocacao;
 	private String observacao;
+	private PresencaChamada presenca;
 	
 	public Atleta(){}
 	
@@ -385,6 +386,14 @@ public class Atleta extends Pessoa {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}	
+	}
+
+	public PresencaChamada getPresenca() {
+		return presenca;
+	}
+
+	public void setPresenca(PresencaChamada presenca) {
+		this.presenca = presenca;
+	}
 	
 }
