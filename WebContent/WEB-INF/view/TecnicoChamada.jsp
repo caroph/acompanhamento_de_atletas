@@ -103,7 +103,7 @@
 																		<i class="fa fa-ambulance" style="color: yellow;"></i>
 																	</c:when>
 																	<c:when test="${atleta.presenca.estadoPresencaF == 5}">
-																		<i class="fa fa-question" style="color: black;"></i>
+																		<i class="fa fa-cutlery" style="color: black;"></i>
 																	</c:when>
 																	<c:when test="${atleta.presenca.estadoPresencaF == 6}">
 																		<i class="fa fa-question" style="color: black;"></i>
