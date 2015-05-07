@@ -88,7 +88,8 @@
 													<tr>
 														<td><c:out value="${atleta.nome}" /></td>
 														<td align="center">
-															<a href="#modalPresenca" class="btn btn-default" data-toggle="modal">
+															<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaF}', 
+															'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaF}')">
 																<c:choose> 
 																	<c:when test="${atleta.presenca.estadoPresencaF == 1}">
 																		<i class="fa fa-check" style="color: green;"></i>
@@ -97,7 +98,7 @@
 																		<i class="fa fa-ban" style="color: red;"></i>
 																	</c:when>
 																	<c:when test="${atleta.presenca.estadoPresencaF == 3}">
-																		<i class="fa fa-trophy" style="color: yellow;"></i>
+																		<i class="fa fa-trophy" style="color: rgb(97, 97, 7);"></i>
 																	</c:when>
 																	<c:when test="${atleta.presenca.estadoPresencaF == 4}">																		
 																		<i class="fa fa-ambulance" style="color: yellow;"></i>
@@ -121,11 +122,11 @@
 																		<i class="fa fa-plus" style="color: black;"></i>
 																	</c:otherwise>
 																</c:choose>
-															</a> 
-<%-- 															<c:out value="${atleta.presenca.estadoPresencaF}" /> --%>
+															</button>
 														</td>
 														<td align="center">
-															<a href="#modalPresenca" class="btn btn-default" data-toggle="modal">
+															<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaT}', 
+															'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaT}')">
 																<c:choose> 
 																	<c:when test="${atleta.presenca.estadoPresencaT == 1}">
 																		<i class="fa fa-check" style="color: green;"></i>
@@ -158,7 +159,7 @@
 																		<i class="fa fa-plus" style="color: black;"></i>
 																	</c:otherwise>
 																</c:choose>
-															</a> 
+															</button> 
 														</td>
 													</tr>
 												</c:forEach>
@@ -175,6 +176,6 @@
 		</div>
 	</div>
 	<%@include file="/layout/footer.jsp"%>
-
+	<%@include file="Modals.jsp" %>
 </body>
 </html>

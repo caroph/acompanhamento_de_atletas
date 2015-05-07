@@ -363,6 +363,21 @@ function visualizarDoc(srcDocumento) {
 	$('.body-imgVisualizarDoc').html(html);
 }
 
+//Abrir modal editar chamada
+function abriModalEditarChamada(estado, id, just){
+	$("#modalPresenca").modal();
+	var radio = document.getElementsByName("optradio");
+	for(i = 0; i< radio.length; i++){
+		if(radio[i].value == estado){
+			radio[i].checked = true;
+		}
+	}
+	var justificativa = $("#justificativaChamada");
+	justificativa.text = just;
+	var a = $("#idPresencaJutificativa")
+	a.val(id);
+}
+
 // Combo Dinamico - Dias de Treino Atleta
 function carregaDiasTreino() {
 	// document.forms[0].action.value="carregaDiasTreino";
