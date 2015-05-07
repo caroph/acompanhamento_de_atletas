@@ -313,15 +313,15 @@
 											<div id="exibePraticaAtividade" style="display: none;">
 												<div class="form-group">
 													<div class="col-sm-4">
-														<label for="tipo" class="col-sm-4 control-label">Tipo:</label>
+														<label for="tipo" class=>Tipo:</label>
 														<input type="text" class="form-control" name="tpPraticaAtividadeFisica" value="${fichaAtendimento.tpPraticaAtividadeFisica}"/>
 													</div>
 													<div class="col-sm-4" >
-														<label for="frequencia" class="col-sm-4 control-label">Frequência:</label>
+														<label for="frequencia" class=" ">Frequência:</label>
 														<input type="text" class="form-control" name="frequenciaAtividadeFisica" value="${fichaAtendimento.frequenciaAtividadeFisica}"/>
 													</div>
 													<div class="col-sm-4" >
-														<label for="intensidade" class="col-sm-4 control-label">Intensidade:</label>
+														<label for="intensidade" class=" ">Intensidade:</label>
 														<input type="text" class="form-control" name="intensidadeAtividadeFisica" value="${fichaAtendimento.intensidadeAtividadeFisica}"/>
 													</div>
 												</div>
@@ -422,7 +422,7 @@
 														<input type="text" class="form-control" name="suplementoVitaminicoAlimentar" value="${fichaAtendimento.suplementoVitaminicoAlimentar}"/>
 													</div>
 													<div class="col-sm-6" >
-														<label for="suplementoTempo" class=" ">Qual? Qual hoário? Quantas vezes no dia/semana?</label>
+														<label for="suplementoTempo" class=" ">Horário e frequência dia/semana: </label>
 														<input type="text" class="form-control" name="suplementoVitaminicoAlimentarInformacoes" value="${fichaAtendimento.suplementoVitaminicoAlimentarInformacoes}"/>
 													</div>
 												</div>
