@@ -128,6 +128,7 @@ public class TecnicoController extends Controller {
 			String msgErro = "";
 			String atletasPart[] = null;
 			Torneio torneio = new Torneio();
+			Usuario usuario = new Usuario();
 
 			String dtaInicial = request.getParameter("dtInicial");
 			String dtaFinal = request.getParameter("dtFinal");
@@ -139,7 +140,12 @@ public class TecnicoController extends Controller {
 				dtInicial = (Date) formatter.parse(dtaInicial);
 				dtFinal = (Date) formatter.parse(dtaFinal);
 				
-				idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+				if ("".equals(request.getParameter("idTorneio")) || request.getParameter("idTorneio") == null) {
+					idTorneio = 0;
+				} else{
+					idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+				}
+				usuario = (Usuario) session.getAttribute("usuarioLogado");
 			} catch (Exception ex) {
 				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				exception = true;
@@ -193,7 +199,7 @@ public class TecnicoController extends Controller {
 				} else {
 					try {
 						if (torneio.getIdTorneio() == 0) {
-							int idNovoTorneio = negocio.inserir(torneio);
+							int idNovoTorneio = negocio.inserir(torneio, usuario);
 							if (idNovoTorneio > 0){
 								if (!"".equals(atletasPart) && atletasPart != null){
 									if (negocio.inserirAtletasPart(atletasPart, idNovoTorneio)){
@@ -204,7 +210,7 @@ public class TecnicoController extends Controller {
 								}
 							}
 						} else {
-							if (negocio.editarTorneio(torneio, atletasPart)) {
+							if (negocio.editarTorneio(torneio, atletasPart, usuario)) {
 								msgSucesso = "Torneio editado com sucesso!";
 							}
 						}
@@ -245,12 +251,14 @@ public class TecnicoController extends Controller {
 			if (("").equals(msgSucesso)) {
 				request.setAttribute("msgErro", msgErro);
 				request.setAttribute("torneio", torneio);
+				retorno = String.format("%s/TecnicoNovoTorneio.jsp",
+						Constants.VIEW);
+
 			} else {
 				request.setAttribute("msgSucesso", msgSucesso);
+				retorno = String.format("%s/TecnicoCalendarioTorneio.jsp",
+						Constants.VIEW);
 			}
-
-			retorno = String.format("%s/TecnicoNovoTorneio.jsp",
-					Constants.VIEW);
 			
 		}else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
@@ -313,11 +321,14 @@ public class TecnicoController extends Controller {
 			
 			Torneio torneio = new Torneio();
 			torneio.setIdTorneio(Integer.parseInt(request.getParameter("idTorneio")));
+			
+			Usuario usuario = new Usuario();
+			usuario = (Usuario) session.getAttribute("usuarioLogado");
 
 			TorneioNegocio negocio = new TorneioNegocio();
 			
 			try {
-				if (negocio.desativar(torneio)) {
+				if (negocio.desativar(torneio, usuario)) {
 					msgSucesso = "Torneio excluído com sucesso!";
 				} else {
 					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
@@ -399,6 +410,8 @@ public class TecnicoController extends Controller {
 			String msgSucesso = "";
 			String msgErro = "";
 			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new TorneioNegocio();
+			List<Atleta> listaAtletasPart = null;
 			
 			String dtaMkt = request.getParameter("encaminhamentoMkt");
 			Date dtMkt = null;
@@ -428,9 +441,15 @@ public class TecnicoController extends Controller {
 				exception = true;
 			}
 			
+			try {
+				listaAtletasPart =  negocio.buscaAtletasPart(idTorneio);
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			} 	
+			
 			if (!exception) {
-				TorneioNegocio negocio = new TorneioNegocio();
-				List<Atleta> listaAtletasPart = null;
+				Usuario usuario = new Usuario();
+				usuario = (Usuario) session.getAttribute("usuarioLogado");
 				
 				Atleta atleta = new Atleta();
 				atleta.setIdPessoa(idDestaque);
@@ -441,12 +460,6 @@ public class TecnicoController extends Controller {
 				torneio.setMotivoDestaque(request.getParameter("motivoDestaque"));
 				torneio.setFotografo(request.getParameter("fotografo"));
 				torneio.setEncaminhamentoMkt(dtMkt);
-				
-				try {
-					listaAtletasPart =  negocio.buscaAtletasPart(idTorneio);
-				} catch (Exception e) {
-					request.setAttribute("msgErro", e.getMessage());
-				} 	
 				
 				List<Object> listaValidacao = negocio.validaDadosFinalizar(torneio);
 				boolean valida = (boolean) listaValidacao.get(0);
@@ -468,7 +481,7 @@ public class TecnicoController extends Controller {
 						msgErro = (String) listaValidacao.get(1);
 					} else {
 						try {
-							if (negocio.finalizarTorneio(torneio, listaAtletasPart)) {
+							if (negocio.finalizarTorneio(torneio, listaAtletasPart, usuario)) {
 								msgSucesso = "Torneio finalizado com sucesso!";
 							}
 						} catch (Exception ex) {
@@ -476,21 +489,36 @@ public class TecnicoController extends Controller {
 						}
 					}
 				}
-				
-				if ("".equals(msgSucesso)) {
-					request.setAttribute("msgErro", msgErro);
-					request.setAttribute("torneio", torneio);
-					request.setAttribute("listaAtletas", listaAtletasPart);
-					retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
-				} else {
-					request.setAttribute("msgSucesso", msgSucesso);
-					retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
-				}
-				
+			}
+
+			if ("".equals(msgSucesso)) {
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("torneio", torneio);
+				request.setAttribute("listaAtletas", listaAtletasPart);
+				retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
+			} else {
+				request.setAttribute("msgSucesso", msgSucesso);
+				retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 			}
 			
 		} else if ("editarResultadoTorneio".equals(action)) {
+			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new TorneioNegocio();
 			
+			try {
+				torneio = negocio.buscarTorneio(idTorneio);
+				request.setAttribute("torneio", torneio);
+				
+				List<Atleta> listaAtleta = negocio.buscaAtletasPart(idTorneio);
+				request.setAttribute("listaAtletas", listaAtleta);
+			} catch (Exception ex) {
+				// TODO Auto-generated catch block
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp",
+					Constants.VIEW);
 		}
 		else if("jspChamadaQuadra".equals(action)){
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
@@ -616,8 +644,8 @@ public class TecnicoController extends Controller {
 			servletRetorno = "/TecnicoController?action=jspChamadaQuadra";
 			
 		}else if("carregarChamada".equals(action)){
-			String msgErro = "";
 			boolean exception = false;
+			String msgErro = "";
 			String diaTreino = request.getParameter("diaTreino");
 			String dataChamada = request.getParameter("dataQuadra");
 			int idDiaTreino = Integer.parseInt(diaTreino);

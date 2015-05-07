@@ -247,7 +247,6 @@ public class NutricionistaController extends Controller {
 			HashMap<Integer, Date> listaAtendimentos = null;
 			
 			try{
-				String id = request.getParameter("idAtleta");
 				if(request.getParameter("idAtleta").equals("")){
 					msg = "idAtleta inválido!";
 				}else{

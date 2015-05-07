@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.saat.model.Atleta;
+import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.Torneio;
 
 public class TorneioNegocio {
@@ -47,11 +48,11 @@ public class TorneioNegocio {
 		return lista;
 	}
 
-	public int inserir(Torneio torneio) throws Exception {
+	public int inserir(Torneio torneio, Usuario usuario) throws Exception {
 		int idNovoTorneio = 0;
 		try {
 			TorneioDAO dao = new TorneioDAO();
-			idNovoTorneio = dao.inserir(torneio);
+			idNovoTorneio = dao.inserir(torneio, usuario);
 		} catch (Exception e) {
 			throw new Exception(
 					"Erro! Ocorreu algum erro ao inserir o torneio.");
@@ -85,11 +86,11 @@ public class TorneioNegocio {
 		}
 	}
 
-	public boolean desativar(Torneio torneio) throws Exception{
+	public boolean desativar(Torneio torneio, Usuario usuario) throws Exception{
 		boolean retorno = false;
 		try {
 			TorneioDAO dao = new TorneioDAO();
-			if (dao.desativar(torneio)) {
+			if (dao.desativar(torneio, usuario)) {
 				retorno = true;
 			}
 		} catch (Exception e) {
@@ -119,23 +120,38 @@ public class TorneioNegocio {
 		}
 	}
 
-	public boolean editarTorneio(Torneio torneio, String[] atletasPart) throws Exception {
+	public boolean editarTorneio(Torneio torneio, String[] atletasPart, Usuario usuario) throws Exception {
 		boolean retorno = true;
 		try {
 			TorneioDAO dao = new TorneioDAO();
-			if (dao.editar(torneio)) {
+			String idAtletas = "";
+			int i = 0;
+			if (dao.editar(torneio, usuario)) {
 				if (!"".equals(atletasPart) && atletasPart != null) {
 					for (String idAtleta : atletasPart) {
-						if (!dao.inserirAtletasPart(idAtleta, torneio.getIdTorneio())) {
-							return false;
+						idAtletas += idAtleta;
+						i++;
+						if (i < atletasPart.length) {
+							idAtletas += ", ";
 						}
+					}
+					if (dao.reciclarAtletasPart(idAtletas, torneio.getIdTorneio())) {
+						for (String idAtleta : atletasPart) {
+							if (!dao.inserirAtletasPart(idAtleta, torneio.getIdTorneio())) {
+								return false;
+							}
+						}
+					}
+				} else {
+					if (!dao.reciclarAtletasPart(idAtletas, torneio.getIdTorneio())) {
+						return false;
 					}
 				}
 			}
 		} catch (Exception e) {
 			retorno = false;
 			throw new Exception(
-					"Erro! Ocorreu algum erro ao inserir o torneio.");
+					"Erro! Ocorreu algum erro ao editar o torneio.");
 		}
 		return retorno;
 	}
@@ -188,11 +204,11 @@ public class TorneioNegocio {
 	}
 
 	public boolean finalizarTorneio(Torneio torneio,
-			List<Atleta> listaAtletasPart) throws Exception {
+			List<Atleta> listaAtletasPart, Usuario usuario) throws Exception {
 		boolean retorno = true;
 		try {
 			TorneioDAO dao = new TorneioDAO();
-			if (dao.finalizar(torneio)) {
+			if (dao.finalizar(torneio, usuario)) {
 				for (Atleta atleta : listaAtletasPart) {
 					if (!dao.inserirResulAtletasPart(atleta, torneio.getIdTorneio())) {
 						return false;

@@ -228,6 +228,9 @@ public class Controller extends HttpServlet {
 			
 			if(login){
 				//Criar sessão de usuário logado
+				if (session == null) {
+					session = request.getSession();
+				}
     			session.setAttribute("usuarioLogado", usuario);
     			
 				Cookie novoCookie;

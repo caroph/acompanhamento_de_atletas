@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
+import br.com.saat.model.Usuario;
 import br.com.saat.model.dao.Torneio;
 
 import com.mysql.jdbc.Statement;
@@ -25,13 +26,14 @@ public class TorneioDAO {
         this.con = con;        
     }
 
-	public int inserir(Torneio torneio) throws SQLException {
+	public int inserir(Torneio torneio, Usuario usuario) throws SQLException {
 		int idNovoTorneio = 0;
 		
 		stmtScript = con.prepareStatement("INSERT INTO torneio "
 				+ "(nome, local, estado, cidade, dtInicial, dtFinal, "
-				+ " idNaipe, idCatTorneio, idTpTorneio, idGpTorneio, descricao) "
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+				+ " idNaipe, idCatTorneio, idTpTorneio, idGpTorneio, "
+				+ " descricao, idUsuCriacao) "
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)", Statement.RETURN_GENERATED_KEYS);
 		
 		stmtScript.setString(1, torneio.getNome());
 		stmtScript.setString(2, torneio.getLocal());
@@ -44,6 +46,7 @@ public class TorneioDAO {
 		stmtScript.setInt(9, torneio.getIdTpTorneio());
 		stmtScript.setInt(10, torneio.getIdGpTorneio());
 		stmtScript.setString(11, torneio.getDescricao());
+		stmtScript.setInt(12, usuario.getIdPessoa());
 		
 		stmtScript.executeUpdate();
 		ResultSet rs = stmtScript.getGeneratedKeys();
@@ -106,14 +109,16 @@ public class TorneioDAO {
 		return lista;
 	}
 
-	public boolean desativar(Torneio torneio) throws SQLException {
+	public boolean desativar(Torneio torneio, Usuario usuario) throws SQLException {
 		boolean retorno = false;
 		
 		stmtScript = con.prepareStatement("UPDATE torneio "
-				+ "SET flCadastroAtivo = 0 "
+				+ "SET flCadastroAtivo = 0, "
+				+ "idUsuEdicao = ? "
 				+ "WHERE idTorneio = ? ");
 		
-		stmtScript.setInt(1, torneio.getIdTorneio());
+		stmtScript.setInt(1, usuario.getIdPessoa());
+		stmtScript.setInt(2, torneio.getIdTorneio());
 		
 		if(stmtScript.executeUpdate() > 0){
 			retorno = true;
@@ -129,7 +134,7 @@ public class TorneioDAO {
 				+ "descricao, inscritosGeral, inscritosClube, idDestaque, a.nome as nomeAtleta, "
 				+ "motivoDestaque, fotografo, encaminhamentoMkt  "
 				+ "FROM torneio t "
-				+ "		INNER JOIN atleta a "
+				+ "		LEFT JOIN atleta a "
 				+ "			ON t.idDestaque = a.idAtleta "
 				+ "WHERE idTorneio = ? "
 				+ "	AND t.flCadastroAtivo = 1 ");
@@ -169,7 +174,7 @@ public class TorneioDAO {
 	public List<Atleta> buscaAtletasPart(int idTorneio) throws SQLException {
 		List<Atleta> lista = new ArrayList<Atleta>();
 		
-		stmtScript = con.prepareStatement("SELECT at.idAtleta, a.nome, art.colocacao "
+		stmtScript = con.prepareStatement("SELECT at.idAtleta, a.nome, art.colocacao, art.observacao "
 				+ "FROM atletatorneio at "
 				+ "		INNER JOIN atleta a "
 				+ "			ON at.idAtleta = a.idAtleta "
@@ -187,18 +192,20 @@ public class TorneioDAO {
 			atleta.setIdPessoa(rs.getInt(1));
 			atleta.setNome(rs.getString(2));
 			atleta.setColocacao(rs.getString(3));
+			atleta.setObservacao(rs.getString(4));
 			lista.add(atleta);
 		}
 		return lista;
 	}
 
-	public boolean editar(Torneio torneio) throws SQLException {
+	public boolean editar(Torneio torneio, Usuario usuario) throws SQLException {
 		boolean retorno = false;
 		
 		stmtScript = con.prepareStatement("UPDATE torneio "
 				+ "SET nome = ?, local = ?, estado = ?, cidade = ?, "
 				+ "dtInicial = ?, dtFinal = ?, idNaipe = ?, idCatTorneio = ?, "
-				+ "idTpTorneio = ?, idGpTorneio = ?, descricao = ? "
+				+ "idTpTorneio = ?, idGpTorneio = ?, descricao = ?, "
+				+ "idUsuEdicao = ? "
 				+ "WHERE idTorneio = ?");
 			
 		stmtScript.setString(1, torneio.getNome());
@@ -212,7 +219,8 @@ public class TorneioDAO {
 		stmtScript.setInt(9, torneio.getIdTpTorneio());
 		stmtScript.setInt(10, torneio.getIdGpTorneio());
 		stmtScript.setString(11, torneio.getDescricao());
-		stmtScript.setInt(12, torneio.getIdTorneio());
+		stmtScript.setInt(12, usuario.getIdPessoa());
+		stmtScript.setInt(13, torneio.getIdTorneio());
 		
 		if (stmtScript.executeUpdate() > 0){
 			retorno= true;
@@ -221,13 +229,13 @@ public class TorneioDAO {
 		return retorno;
 	}
 
-	public boolean finalizar(Torneio torneio) throws SQLException {
+	public boolean finalizar(Torneio torneio, Usuario usuario) throws SQLException {
 		boolean retorno = false;
 		
 		stmtScript = con.prepareStatement("UPDATE torneio "
 				+ "SET inscritosGeral = ?, inscritosClube = ?, idDestaque = ?, "
 				+ "motivoDestaque = ?, fotografo = ?, encaminhamentoMkt = ?,"
-				+ "flFinalizado = 1 "
+				+ "idUsuEdicao = ?, flFinalizado = 1 "
 				+ "WHERE idTorneio = ?");
 			
 		stmtScript.setInt(1, torneio.getInscritosGeral());
@@ -236,7 +244,8 @@ public class TorneioDAO {
 		stmtScript.setString(4, torneio.getMotivoDestaque());
 		stmtScript.setString(5, torneio.getFotografo());
 		stmtScript.setDate(6, new java.sql.Date(torneio.getEncaminhamentoMkt().getTime()));
-		stmtScript.setInt(7, torneio.getIdTorneio());
+		stmtScript.setInt(7, usuario.getIdPessoa());
+		stmtScript.setInt(8, torneio.getIdTorneio());
 		
 		if (stmtScript.executeUpdate() > 0){
 			retorno= true;
@@ -285,6 +294,27 @@ public class TorneioDAO {
 		}
 		
 		return retorno;		
+	}
+
+	public boolean reciclarAtletasPart(String idAtletas, int idNovoTorneio) throws SQLException {
+		boolean retorno = false;
+		String condicao = "";
+		
+		if (!"".equals(idAtletas)) {
+			condicao = "AND idAtleta NOT IN (" + idAtletas + ")";
+		} 
+		
+		stmtScript = con.prepareStatement("DELETE "
+				+ "FROM atletaTorneio "
+				+ "WHERE idTorneio = ? "
+				+ condicao);
+		
+		stmtScript.setInt(1, idNovoTorneio);
+		
+		if(stmtScript.executeUpdate() >= 0){
+			retorno = true;
+		}
+		return retorno;	
 	}
 
 }
