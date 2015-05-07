@@ -18,18 +18,19 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-info-circle"></i>
-										<span>Ficha de atendimento</span>
+										<i class="fa  fa-list-alt"></i>
+										<c:choose>
+											<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
+												<span>Ficha de atendimento</span>
+											</c:when>
+											<c:otherwise>
+												<span>Nova ficha de atendimento</span>
+											</c:otherwise>
+										</c:choose>
 									</div>
 									<div class="box-icons">
-										<a class="collapse-link">
-											<i class="fa fa-chevron-up"></i>
-										</a>
 										<a class="expand-link">
 											<i class="fa fa-expand"></i>
-										</a>
-										<a class="close-link">
-											<i class="fa fa-times"></i>
 										</a>
 									</div>
 									<div class="no-move"></div>
@@ -40,33 +41,23 @@
 										<div class="col-sm-12">
 											<c:choose>
 												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
-													<h3>Ficha de Atendimento</h3>
-												</c:when>
-												<c:otherwise>
-													<h3>Nova Ficha de Atendimento</h3>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="col-sm-12">
-											<c:choose>
-												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
-													<div class="col-sm-6 text-left">
+													<div class="col-sm-8 text-left">
 														<h6>
 															<b>Atendimento realizado em <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
 														</h6>						
 													</div>
-													<div class="col-sm-6 text-right">
+													<div class="col-sm-4 text-right">
 														<a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>|<a	href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${fichaAtendimento.idAtleta}&idFichaDeAtendimento=0" style="margin-left: 5px;">Novo Atendimento</a>
 													</div>													
 												</c:when>
 												<c:otherwise>
 													<c:if test="${fichaAtendimento.dtAtendimento != null}"> 
-														<div class="col-sm-6 text-left">
+														<div class="col-sm-8 text-left">
 															<h6>
 																<b>Formulário preenchido com os dados do último atendimento, realizado em <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
 															</h6>
 														</div>
-														<div class="col-sm-6 text-right">
+														<div class="col-sm-4 text-right">
 																<a href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>
 														</div>
 													</c:if>													
@@ -545,9 +536,11 @@
 												</div>
 											</div>
 											<hr/>
-											<h4 style="margin: 0px 0px 0px 0px;" class="text-center">CONDUTA NUTRICIONAL</h4>
-											<div class="col-sm-12" style="margin: 20px 0px 20px 0px">
-												<textarea class="form-control ckeditor" id="condutaNutricional" name="condutaNutricional">${fichaAtendimento.condutaNutricional}</textarea>
+											<h4  id="condutaNutri" style="margin: 0px 0px 0px 0px;" class="text-center">CONDUTA NUTRICIONAL</h4>
+											<div id="condutaNutric" style="display: none;">
+												<div class="col-sm-12" style="margin: 20px 0px 20px 0px">
+													<textarea class="form-control ckeditor" id="condutaNutricional" name="condutaNutricional">${fichaAtendimento.condutaNutricional}</textarea>
+												</div>
 											</div>
 											<br/>
 											<br/>

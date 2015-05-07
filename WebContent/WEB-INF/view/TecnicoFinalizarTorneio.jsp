@@ -34,12 +34,12 @@
 										<input type="hidden" name="nome" value="${torneio.nome}"/>
 										<div class="form-group">
 											 <div class="form-group col-md-6">
-												 <label for="inscritosGeral">Total inscritos (Geral):</label>
+												 <label for="inscritosGeral">Total inscritos (geral):</label>
 												 <input type="number" class="form-control" id="inscritosGeral" name="inscritosGeral" value="${torneio.inscritosGeral}" maxlength="5" required/>
 											 </div>
 										 	<div class="form-group col-md-6">
 												<label for="inscritosClube">Total inscritos (Clube Curitibano):</label>
-												<input type="number" class="form-control" id="inscritosClube" name="inscritosClube" value="${torneio.inscritosClube}" maxlength="5" required/>
+												<input type="number" class="form-control" id="inscritosClube" name="inscritosClube" value="${torneio.inscritosClube}" maxlength="5" required />
 										 	</div>
 										</div>
 										<div class="form-group">
@@ -48,10 +48,10 @@
 												 <select class="form-control" id="destaque" name="destaque" required>
 													<option value="">Selecione</option>
 													<c:forEach var="atleta" items="${listaAtletas}">
-							                            <c:if test="${atleta.idPessoa == torneio.idDestaque}">
+							                            <c:if test="${atleta.idPessoa == torneio.idDestaque.idPessoa}">
 			                                                <option selected value="<c:out value='${atleta.idPessoa}'/>"><c:out value="${atleta.nome}" /></option>
 			                                            </c:if>
-			                                            <c:if test="${atleta.idPessoa != torneio.idDestaque}">
+			                                            <c:if test="${atleta.idPessoa != torneio.idDestaque.idPessoa}">
 															<option value="<c:out value='${atleta.idPessoa}'/>"><c:out value="${atleta.nome}" /></option>
 														</c:if>
 						                            </c:forEach>
@@ -69,7 +69,8 @@
 											 </div>
 										 	<div class="form-group col-md-6">
 												<label for="encaminhamentoMkt">Encaminhar ao marketing em:</label>
-												<input type="date" class="form-control" id="encaminhamentoMkt" name="encaminhamentoMkt" value="${torneio.encaminhamentoMkt}" required/>
+												<fmt:formatDate value="${torneio.encaminhamentoMkt}" pattern="dd/MM/yyyy" var="dtEncaminhamento" />
+												<input type="date" class="form-control" id="encaminhamentoMkt" name="encaminhamentoMkt" value="${dtEncaminhamento}" required/>
 										 	</div>
 										</div>
 										</hr>

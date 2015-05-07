@@ -1,11 +1,7 @@
-
-	<%@include file='/layout/head.jsp'%>
-	
-	<body>
-	
-	<%@include file='/layout/header.jsp'%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-	
+	<%@include file='/layout/head.jsp'%>
+	<body>
+	<%@include file='/layout/header.jsp'%>
 	<div id="main" class="container-fluid">
 		<div class="row">
 			<%@include file='/layout/navigationNutricionista.jsp'%>
@@ -28,24 +24,14 @@
 									</div>
 									<div class="no-move"></div>
 								</div>
-								<div class="box-content">
-									<table class="table">
+								<div class="box-content no-padding">
+									<table class="table table-bordered table-striped table-hover table-heading table-datatable"
+										id="datatable">
 										<thead>
 											<tr>
-												<th width="40%">
-													Nome do atleta
-												</th>
-												<th style="text-align: center;" width="20%">
-													Data do último atendimento
-												</th>
-												<th width="10%">
-												</th>
-												<th width="10%">
-												</th>
-												<th width="10%">
-												</th>
-												<th width="10%">
-												</th>
+												<th>Nome</th>
+												<th style="text-align: center;">Data Atendimento</th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -54,12 +40,8 @@
 												<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
 													<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
 													<tr>
-														<td style="max-width: 200px;">${atendimento.get(1)}</td>
+														<td>${atendimento.get(1)}</td>
 														<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
-														<td class="text-center"><a class="btn btn-primary" data-toggle="modal" href="#incluirParecer">Incluir
-																Observação</a></td>
-														<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atendimento.get(0)}&idFichaDeAtendimento=0">Novo Atendimento</a></td>
-														<td class="text-center"><a class="btn btn-primary" href="NutricionistaDietaAtleta.jsp">Dieta</a></td>
 														<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
 														</td>
 													</tr>	
@@ -71,7 +53,6 @@
 												</tr>
 											</c:otherwise>
 										</c:choose>
-											
 										</tbody>
 									</table>
 								</div>
@@ -85,6 +66,7 @@
 	</div>
 	
 	<%@include file="/layout/footer.jsp"%>
+	<script src="<%=Constants.JS%>/scriptTables.js"></script>
 
   </body>
 </html>

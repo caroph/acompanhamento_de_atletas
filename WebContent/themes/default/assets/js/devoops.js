@@ -65,7 +65,7 @@ function abrilModalTorneio(idTorneio, finalizado) {
 			html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
 			html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
 		} else {
-			html += "<a class='btn btn-primary' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 
+			html += "<a class='btn btn-info' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 
 			html += "data-confirm='Deseja realmente editar o resultado do torneio selecionado?'>Editar Resultado</a>";
 		}
 		html += "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Fechar</button>";

@@ -19,7 +19,8 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa  fa-group"></i> <span>Histórico de atendimentos de ${atleta.nome}</span>
+										<i class="fa fa-folder-open"></i> 
+										<span>Histórico de atendimentos de ${atleta.nome}</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -29,26 +30,23 @@
 								</div>
 								<div class="box-content no-padding">
 									<div class="row clear-fix">
-										<div class="col-md-12" style="margin: 10px 0px 10px 10px;">
-											<h3><b>Histórico de atendimentos</b></h3>
-										</div>			
 										<div class="col-md-12">
 											<c:choose>
 												<c:when test="${listaAtendimentos != null}">
 													<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable">
 														<thead>
 															<tr>
-																<th class="text-center" width="90%">Data do atendimento</th>
-																<th class="text-center" width="5%"></th>
-																<th class="text-center" width="5%"></th>
+																<th class="text-center">Data do atendimento</th>
+																<th class="text-center"></th>
+																<th class="text-center" ></th>
 															</tr>
 														</thead>
 														<tbody>
 															<c:forEach var="atendimento" items="${listaAtendimentos}">
 																<tr>
 																	<td class="text-center"><fmt:formatDate value="${atendimento.value}" pattern="dd/MM/yyyy - HH:mm"/></td>
-																	<td class="text-center"><a href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=${atendimento.key}">Visualizar</a></td>
-																	<td class="text-center"><a id="btnImprimir" data-toggle="modal" href="NutricionistaController?action=imprimirFichaDeAtendimento&idFichaDeAtendimento=${atendimento.key}">Imprimir</a></td>
+																	<td class="text-center"><a class="btn btn-info" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=${atendimento.key}">Visualizar</a></td>
+																	<td class="text-center"><a class="btn btn-primary" id="btnImprimir" data-toggle="modal" href="NutricionistaController?action=imprimirFichaDeAtendimento&idFichaDeAtendimento=${atendimento.key}">Imprimir</a></td>
 																</tr>												
 															</c:forEach>
 														</tbody>
@@ -58,7 +56,7 @@
 													<table class="table table-bordered table-striped table-hover table-heading">
 														<thead>
 															<tr>
-																<th class="text-center" width="90%">Data do atendimento</th>
+																<th class="text-center">Data do atendimento</th>
 															</tr>
 														</thead>
 														<tbody>

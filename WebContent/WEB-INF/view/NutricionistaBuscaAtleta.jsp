@@ -38,6 +38,7 @@
 												<th></th>
 												<th></th>
 												<th></th>
+												<th></th>
 <!-- 												<th></th> -->
 <!-- 												<th></th> -->
 											</tr>
@@ -55,6 +56,9 @@
 													</td>
 													<td align="center">
 														<a class="btn btn-primary" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=0">Novo Atendimento</a>
+													</td>
+													<td class="text-center">
+														<a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atleta.idPessoa}">Histórico</a>
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->

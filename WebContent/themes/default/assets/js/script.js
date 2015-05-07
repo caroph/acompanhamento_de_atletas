@@ -41,6 +41,10 @@ $("#avaliacaoDietetica").click(function(){
 $("#recordatorioAlimentar").click(function(){
 	$("#exibeRecordatorio").toggle();
 });
+
+$("#condutaNutri").click(function(){
+	$("#condutaNutric").toggle();
+});
 	
 $("#dadosAntropometricos").click(function(){
 	$("#exibeDadosAntropometricos").toggle();

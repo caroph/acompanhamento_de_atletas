@@ -3,6 +3,7 @@ package br.com.saat.controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,9 +27,6 @@ import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
 
-import java.sql.Connection;
-
-import com.mysql.fabric.Response;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/NutricionistaController")
