@@ -144,7 +144,8 @@
 							<label>Justificativa: </label>
 							<textarea id="justificativaChamada" name="txtJustificativa" class="form-control"></textarea>
 						</div>
-						<input type="hidden" id="idPresencaJutificativa"/>
+						<input type="hidden" name="idPresencaJutificativa" id="idPresencaJutificativa"/>
+						<input type="hidden" id="tipoChamada" name="tipoChamada"/>
 					</div>
 					<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">Salvar</button>

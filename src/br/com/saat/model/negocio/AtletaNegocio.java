@@ -208,11 +208,12 @@ public class AtletaNegocio {
 		}
 	}
 
-	public List<Atleta> buscarAtletasPorNome(String busca) throws Exception {
+	public List<Atleta> buscarAtletasPorNome(String busca, String diaTreino) throws Exception {
 		try {
 			List<Atleta> listaAtleta = new ArrayList<Atleta>();
 			AtletaDAO dao = new AtletaDAO();
-			listaAtleta = dao.buscarAtletasPorNome(busca);
+			int idDiaTreino = Integer.parseInt(diaTreino);
+			listaAtleta = dao.buscarAtletasPorNome(busca, idDiaTreino);
 			return listaAtleta;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas.");

@@ -575,10 +575,13 @@ public class AtletaDAO {
 		return listaAtleta;
 	}
 
-	public List<Atleta> buscarAtletasPorNome(String busca) throws SQLException {
+	public List<Atleta> buscarAtletasPorNome(String busca, int idDiaTreino) throws SQLException {
 		List<Atleta> listaAtleta = new ArrayList<Atleta>();
 		
-		stmtScript = con.prepareStatement("SELECT idAtleta, nome from atleta WHERE nome like '%" + busca + "%'");
+		stmtScript = con.prepareStatement("SELECT DISTINCT a.idAtleta, a.nome "
+				+ "FROM atleta a "
+				+ "JOIN diatreinoatleta da on a.idAtleta = da.idAtleta "
+				+ "WHERE a.nome LIKE '%" + busca + "%' AND da.idDiaTreino = " + idDiaTreino);
 		
         ResultSet rs = stmtScript.executeQuery();
         

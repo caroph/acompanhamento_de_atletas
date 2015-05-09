@@ -165,4 +165,27 @@ public class DiaTreinoDAO {
 		}
 		return dia;
 	}
+
+	public List<DiaTreino> buscarDiaTreino(int semana) throws SQLException {
+		List<DiaTreino> lista = new ArrayList<DiaTreino>();
+		
+		stmtScript = con.prepareStatement("SELECT idDiaTreino, idTpEquipe, idDiaSemana, hrInicio, hrFim "
+				+ "FROM diaTreino t "
+				+ "WHERE t.flCadastroAtivo = 1 AND idDiaSemana = ? "
+				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
+		
+		stmtScript.setInt(1, semana);
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			DiaTreino dia = new DiaTreino();
+			dia.setIdDiaTreino(rs.getInt("idDiaTreino"));
+			dia.setIdDiaDaSemana(rs.getInt("idDiaSemana"));
+			dia.setIdTpEquipe(rs.getInt("idTpEquipe"));
+			dia.setHrInicio(rs.getTime("hrInicio"));
+			dia.setHrFim(rs.getTime("hrFim"));
+			lista.add(dia);
+		}
+		return lista;
+	}
 }

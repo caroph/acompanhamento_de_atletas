@@ -148,6 +148,19 @@ public class DiaTreinoNegocio {
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
 		}
+	}
+
+	public List<DiaTreino> buscaDiasTreino(Date date) throws Exception {
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		int semana = c.get(Calendar.DAY_OF_WEEK);
+		
+		try {
+			DiaTreinoDAO dao = new DiaTreinoDAO();
+			return dao.buscarDiaTreino(semana);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dias de treinos.");
+		}
 	} 
 
 }

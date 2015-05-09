@@ -55,5 +55,16 @@ public class PresencaChamadaNegocio {
 			throw new Exception("Erro ao buscar chamada");
 		}
 	}
+
+	public boolean alterarPresencaChamada(int idPresencaChamada,
+			int estadoPresenca, String justificativa, String tpPresenca) throws Exception{
+		PresencaChamadaDAO dao = new PresencaChamadaDAO();
+		try{
+			return dao.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca);
+		}catch(Exception ex){
+			throw new Exception("Erro ao editar chamada");
+		}
+		
+	}
 	
 }

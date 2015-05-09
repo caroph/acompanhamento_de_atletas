@@ -364,7 +364,7 @@ function visualizarDoc(srcDocumento) {
 }
 
 //Abrir modal editar chamada
-function abriModalEditarChamada(estado, id, just){
+function abriModalEditarChamada(estado, id, just, tpChamada){
 	$("#modalPresenca").modal();
 	var radio = document.getElementsByName("optradio");
 	for(i = 0; i< radio.length; i++){
@@ -373,9 +373,11 @@ function abriModalEditarChamada(estado, id, just){
 		}
 	}
 	var justificativa = $("#justificativaChamada");
-	justificativa.text = just;
-	var a = $("#idPresencaJutificativa")
-	a.val(id);
+	justificativa.val(just);
+	var idPresenca = $("#idPresencaJutificativa")
+	idPresenca.val(id);
+	var tipo = $("#tipoChamada");
+	tipo.val(tpChamada);
 }
 
 // Combo Dinamico - Dias de Treino Atleta

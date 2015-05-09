@@ -148,4 +148,26 @@ public class PresencaChamadaDAO {
 		}
 		return lista;
 	}
+
+	public boolean alterarPresencaChamada(int idPresencaChamada,
+			int estadoPresenca, String justificativa, String tpPresenca) throws SQLException {
+		int rows = 0;		
+		if("T".equals(tpPresenca)){
+			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaT = ?, justificativaT = ?"
+					+ " WHERE idPresencaChamada = ?");
+		}else{
+			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaF = ?, justificativaF = ?"
+					+ " WHERE idPresencaChamada = ?");
+		}	
+		stmtScript.setInt(1, estadoPresenca);
+		stmtScript.setString(2, justificativa);
+		stmtScript.setInt(3, idPresencaChamada);
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			return true;
+		}			
+		return false;
+	}
 }

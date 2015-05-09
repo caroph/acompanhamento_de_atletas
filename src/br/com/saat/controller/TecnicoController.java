@@ -524,7 +524,7 @@ public class TecnicoController extends Controller {
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			try {
-				lista = negocio.buscaDiasTreino();
+				lista = negocio.buscaDiasTreino(new Date());
 			} catch (Exception ex) {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
@@ -536,10 +536,11 @@ public class TecnicoController extends Controller {
 			
 		}else if("CarregarAtletasAutoComplete".equals(action)){
 			String busca = request.getParameter("acbusca");
+			String diaTreino = request.getParameter("idDiaTreino");
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> listaAtleta = new ArrayList<Atleta>();
 			try{
-				listaAtleta = negocio.buscarAtletasPorNome(busca);
+				listaAtleta = negocio.buscarAtletasPorNome(busca, diaTreino);
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
 			}
@@ -629,7 +630,7 @@ public class TecnicoController extends Controller {
 			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			try {
-				lista = diaTreinoNegocio.buscaDiasTreino();
+				lista = diaTreinoNegocio.buscaDiasTreino(new Date());
 			} catch (Exception ex) {
 				msgErro = ex.getMessage();
 			}
@@ -736,19 +737,6 @@ public class TecnicoController extends Controller {
 				}
 			}			
 			
-			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
-			List<DiaTreino> lista = new ArrayList<DiaTreino>();
-			try {
-				lista = diaTreinoNegocio.buscaDiasTreino();
-				for (DiaTreino dt : lista) {
-					if(dt.getIdDiaTreino() == idDiaTreino){
-						dt.setSelecionado(true);
-					}
-				}
-			} catch (Exception ex) {
-				msgErro = ex.getMessage();
-			}
-
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 			Date dt = new Date();
 			try {
@@ -756,6 +744,20 @@ public class TecnicoController extends Controller {
 			} catch (ParseException e) {
 				msgErro = "Erro ao converter data";
 			}
+			
+			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
+			List<DiaTreino> lista = new ArrayList<DiaTreino>();
+			try {
+				lista = diaTreinoNegocio.buscaDiasTreino(dt);
+				for (DiaTreino diat : lista) {
+					if(diat.getIdDiaTreino() == idDiaTreino){
+						diat.setSelecionado(true);
+					}
+				}
+			} catch (Exception ex) {
+				msgErro = ex.getMessage();
+			}
+			
 			request.setAttribute("dataAtual", dt);
 			request.setAttribute("msgErro", msgErro);
 			request.setAttribute("listaDiasTreinos", lista);
@@ -766,7 +768,7 @@ public class TecnicoController extends Controller {
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			try {
-				lista = negocio.buscaDiasTreino();
+				lista = negocio.buscaDiasTreino(new Date());
 			} catch (Exception ex) {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
@@ -803,7 +805,7 @@ public class TecnicoController extends Controller {
 			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
 			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
 			try {
-				listaDiaTreino = diaTreinoNegocio.buscaDiasTreino();
+				listaDiaTreino = diaTreinoNegocio.buscaDiasTreino(dt);
 				for (DiaTreino diat : listaDiaTreino) {
 					if(diat.getIdDiaTreino() == idDiaTreino){
 						diat.setSelecionado(true);
@@ -819,6 +821,55 @@ public class TecnicoController extends Controller {
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/TecnicoChamada.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamada";
+			
+		}else if("editarChamada".equals(action)){
+			String msgErro = "";
+			String msgSucesso = "";
+			boolean exception = false;
+			String presencaChamada = request.getParameter("idPresencaJutificativa");
+			String estado = request.getParameter("optradio");
+			String tpPresenca = request.getParameter("tipoChamada");
+			String justificativa = request.getParameter("txtJustificativa");
+			int idPresencaChamada = 0;
+			int estadoPresenca = 0;
+			
+			try{
+				estadoPresenca = Integer.parseInt(estado);
+			}catch(Exception ex){
+				msgErro = "Ocorreu algum erro no sistema!";
+				exception = true;
+			}			
+			
+			if(!exception){
+				PresencaChamadaNegocio negocio = new PresencaChamadaNegocio();
+				try{
+					if("".equals(presencaChamada)){
+						//negocio.salvarPresencaChamada(estadoPresenca, justificativa, tpPresenca);
+					}else{
+						idPresencaChamada = Integer.parseInt(presencaChamada);
+						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca))
+							msgSucesso = "Presença salva com sucesso!";
+					}
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
+				}
+			}
+			
+			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
+			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
+			try {
+				listaDiaTreino = diaTreinoNegocio.buscaDiasTreino(new Date());
+			} catch (Exception ex) {
+				msgErro = ex.getMessage();
+			}
+			
+			request.setAttribute("listaDiasTreinos", listaDiaTreino);
+			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("msgErro", msgErro);
+			request.setAttribute("msgSucesso", msgSucesso);
+			retorno = String.format("%s/TecnicoChamada.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspChamada";
+					
 		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
