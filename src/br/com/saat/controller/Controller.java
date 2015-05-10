@@ -155,12 +155,16 @@ public class Controller extends HttpServlet {
 							else if(perfil == Perfis.Fisioterapeuta.getValor());
 								presenca = Presenca.Fisioterapeuta.getValor();
 							
-							
-							if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
-									presenca, null)){
-								msgSucesso = "Presença registrada com sucesso!";
+							int idPresencaChamada = pcNegocio.verificarPresenca(chamada.getIdChamada(), idAtleta);
+							if(idPresencaChamada == 0){
+								if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
+										presenca, null)){
+									msgSucesso = "Presença registrada com sucesso!";
+								}else{
+									msg = "Ocorreu algum erro ao salvar a presença do atleta!";
+								}
 							}else{
-								msg = "Ocorreu algum erro ao salvar a presença do atleta!";
+								msg = "Já existe presença registrada para o atleta neste horário!";
 							}
 						}else{
 							msg = "O atleta não está em treino neste horário!";

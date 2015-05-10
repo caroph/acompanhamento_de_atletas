@@ -95,7 +95,8 @@ public class PresencaChamadaDAO {
 
 	public boolean excluirPresencaChamada(int idChamada) throws SQLException {
 		int rows = 0;		
-		stmtScript = con.prepareStatement("DELETE FROM presencachamada WHERE idChamada = ?");
+		stmtScript = con.prepareStatement("DELETE FROM presencachamada WHERE idChamada = ? "
+				+ "AND estadoPresencaT = 1");
 		stmtScript.setInt(1, idChamada);
 		
 		rows = stmtScript.executeUpdate();
@@ -150,18 +151,19 @@ public class PresencaChamadaDAO {
 	}
 
 	public boolean alterarPresencaChamada(int idPresencaChamada,
-			int estadoPresenca, String justificativa, String tpPresenca) throws SQLException {
+			int estadoPresenca, String justificativa, String tpPresenca, int nrQuadra) throws SQLException {
 		int rows = 0;		
 		if("T".equals(tpPresenca)){
-			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaT = ?, justificativaT = ?"
-					+ " WHERE idPresencaChamada = ?");
+			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaT = ?, justificativaT = ?,"
+					+ " nrQuadra = ? WHERE idPresencaChamada = ?");
 		}else{
-			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaF = ?, justificativaF = ?"
-					+ " WHERE idPresencaChamada = ?");
+			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaF = ?, justificativaF = ?,"
+					+ " nrQuadra = ? WHERE idPresencaChamada = ?");
 		}	
 		stmtScript.setInt(1, estadoPresenca);
 		stmtScript.setString(2, justificativa);
-		stmtScript.setInt(3, idPresencaChamada);
+		stmtScript.setInt(3, nrQuadra);
+		stmtScript.setInt(4, idPresencaChamada);
 		
 		rows = stmtScript.executeUpdate();
 		
@@ -169,5 +171,19 @@ public class PresencaChamadaDAO {
 			return true;
 		}			
 		return false;
+	}
+
+	public int verificarPresenca(int idChamada, int idAtleta) throws SQLException {
+		stmtScript = con.prepareStatement("SELECT idPresencaChamada FROM presencachamada "
+				+ "WHERE idAtleta = ? AND idChamada = ?");
+		stmtScript.setInt(1, idAtleta);
+		stmtScript.setInt(2, idChamada);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			return rs.getInt(1);
+		}
+		return 0;
 	}
 }

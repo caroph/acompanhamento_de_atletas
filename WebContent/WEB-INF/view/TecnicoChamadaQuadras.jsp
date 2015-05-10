@@ -339,7 +339,7 @@
 											<div class="form-group col-md-12">
 												<div class="col-sm-12 text-right">
 													<a type="button" class="btn btn-info"
-														href="TecnicoChamada.jsp">Visualizar Chamada</a>
+														href="TecnicoController?action=jspChamada">Visualizar Chamada</a>
 													<button type="submit" class="btn btn-primary">Salvar</button>
 												</div>
 											</div>
@@ -400,11 +400,20 @@
 					});
 				},
 				select : function(event, ui) {
-					atletas = jQuery.grep(atletas, function( n, i ) {
+					var id = ui.item.id;
+					atletas = $.grep(atletas, function( n, i ) {
 						  return ( n.idQuadra != event.target.id );
+					});				
+					var a = $.grep(atletas, function(n,i){
+						return n.idAtleta == id;
 					});
-					atletas.push({idQuadra: event.target.id, idAtleta: ui.item.id});
-					$("#atletasQuadras").val(JSON.stringify(atletas));
+					if(a.length > 0){
+						 alert('O(a) atleta ' + ui.item.value + ' já foi selecionado.');
+						 event.target.value = "";
+					}else{
+						atletas.push({idQuadra: event.target.id, idAtleta: id});
+						$("#atletasQuadras").val(JSON.stringify(atletas));
+					}					
 				}
 			});
 		});

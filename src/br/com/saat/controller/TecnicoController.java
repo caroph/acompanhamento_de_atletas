@@ -616,7 +616,12 @@ public class TecnicoController extends Controller {
 				    	String quadra = m.get("idQuadra").split("-")[1];
 				    	presenca.setNrQuadra(Integer.parseInt(quadra));
 				    	try{
-				    		pcNegocio.salvarPresencaChamada(presenca);
+				    		int idPresencaChamada = pcNegocio.verificarPresenca(chamada.getIdChamada(), presenca.getIdAtleta());
+				    		if(idPresencaChamada == 0){
+				    			pcNegocio.salvarPresencaChamada(presenca);
+				    		}else{
+				    			pcNegocio.alterarPresencaChamada(idPresencaChamada, presenca.getEstadoPresencaT(), "", "T", presenca.getNrQuadra());
+				    		}
 				    	}catch(Exception ex){
 				    		msgErro = ex.getMessage();
 				    	}
@@ -847,7 +852,7 @@ public class TecnicoController extends Controller {
 						//negocio.salvarPresencaChamada(estadoPresenca, justificativa, tpPresenca);
 					}else{
 						idPresencaChamada = Integer.parseInt(presencaChamada);
-						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca))
+						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca, 0))
 							msgSucesso = "Presença salva com sucesso!";
 					}
 				}catch(Exception ex){

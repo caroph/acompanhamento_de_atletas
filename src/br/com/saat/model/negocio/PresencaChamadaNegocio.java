@@ -57,14 +57,23 @@ public class PresencaChamadaNegocio {
 	}
 
 	public boolean alterarPresencaChamada(int idPresencaChamada,
-			int estadoPresenca, String justificativa, String tpPresenca) throws Exception{
+			int estadoPresenca, String justificativa, String tpPresenca, int nrQuadra) throws Exception{
 		PresencaChamadaDAO dao = new PresencaChamadaDAO();
 		try{
-			return dao.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca);
+			return dao.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca, nrQuadra);
 		}catch(Exception ex){
 			throw new Exception("Erro ao editar chamada");
 		}
 		
+	}
+
+	public int verificarPresenca(int idChamada, int idAtleta) throws Exception {
+		PresencaChamadaDAO dao = new PresencaChamadaDAO();
+		try{
+			return dao.verificarPresenca(idChamada, idAtleta);
+		}catch(Exception ex){
+			throw new Exception("Erro ao verificar se já existe presença para o atleta chamada");
+		}
 	}
 	
 }
