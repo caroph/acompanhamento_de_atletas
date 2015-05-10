@@ -27,6 +27,15 @@
 				<li><a class="" href="TecnicoController?action=jspChamadaQuadra">Quadra</a></li>
 				<li><a class="" href="TecnicoController?action=jspChamada">Chamada</a></li>
 			</ul>
+		</li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle">
+				<i class="fa fa-sort-numeric-asc"></i>
+				<span class="hidden-xs">Relatórios</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="TecnicoController?action=jspResulTorneio">Resultados de Torneios</a></li>
+			</ul>
 		</li>	
 	</ul>
 </div>
@@ -61,17 +70,6 @@
 <!-- 				<li><a class="ajax-link" href="TecnicoTorneio.jsp">Buscar</a></li> -->
 <!-- 			</ul> -->
 <!-- 		</li> -->
-<!-- 		<li class="dropdown"> -->
-<!-- 			<a href="#" class="dropdown-toggle"> -->
-<!-- 				<i class="fa fa-sort-numeric-asc"></i> -->
-<!-- 				<span class="hidden-xs">Relatórios</span> -->
-<!-- 			</a> -->
-<!-- 			<ul class="dropdown-menu"> -->
-<!-- 				<li><a class="ajax-link" href="">Atletas</a></li> -->
-<!-- 				<li><a class="ajax-link" href="">Chamada</a></li> -->
-<!-- 				<li><a class="ajax-link" href="">Avaliação Física</a></li> -->
-<!-- 				<li><a class="ajax-link" href="">Torneios</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</li> -->
+
 
 		

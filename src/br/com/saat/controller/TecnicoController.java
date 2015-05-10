@@ -891,7 +891,12 @@ public class TecnicoController extends Controller {
 			retorno = String.format("%s/TecnicoChamada.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamada";
 					
-		}else{
+		} else if ("jspResulTorneio".equals(action)) {
+			
+			retorno = String.format("%s/TecnicoRelResultTorneio.jsp", Constants.VIEW);
+		} else if ("relResulTorneio".equals(action)) {
+			
+		} else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
 		}
