@@ -835,6 +835,9 @@ public class TecnicoController extends Controller {
 			String estado = request.getParameter("optradio");
 			String tpPresenca = request.getParameter("tipoChamada");
 			String justificativa = request.getParameter("txtJustificativa");
+			String diaChamada = request.getParameter("dtChamada");
+			String diaTreino = request.getParameter("idDiaTreino");
+			String atleta = request.getParameter("idAtleta");
 			int idPresencaChamada = 0;
 			int estadoPresenca = 0;
 			
@@ -847,9 +850,22 @@ public class TecnicoController extends Controller {
 			
 			if(!exception){
 				PresencaChamadaNegocio negocio = new PresencaChamadaNegocio();
+				ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
 				try{
 					if("".equals(presencaChamada)){
-						//negocio.salvarPresencaChamada(estadoPresenca, justificativa, tpPresenca);
+						int idDiaTreino = Integer.parseInt(diaTreino);
+						Chamada chamada = chamadaNegocio.buscarChamadaPorDia(diaChamada, idDiaTreino);
+						if(chamada.getIdChamada() == 0){
+							Date dt = new Date();
+							DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+							dt = formatter.parse(diaChamada);
+							chamada = new Chamada(usuarioLogado.getIdPessoa(), idDiaTreino, dt);
+							chamada = chamadaNegocio.salvarChamada(chamada);
+						}
+						int idAtleta = Integer.parseInt(atleta);
+						if(negocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, estadoPresenca, justificativa, tpPresenca)){
+							msgSucesso = "Presença salva com sucesso!";
+						}
 					}else{
 						idPresencaChamada = Integer.parseInt(presencaChamada);
 						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca, 0))

@@ -186,4 +186,29 @@ public class PresencaChamadaDAO {
 		}
 		return 0;
 	}
+
+	public boolean salvarPresencaChamada(int idChamada, int idAtleta,
+			int estadoPresenca, String justificativa, String tpPresenca) throws SQLException {
+		int rows = 0;
+		
+		if("T".equals(tpPresenca)){
+			stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaT, "
+				+ "justificativaT, estadoPresencaF) VALUES (?, ?, ?, ?, 0)");
+		}else{
+			stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaF, "
+				+ "justificativaF, estadoPresencaT) VALUES (?, ?, ?, ?, 0)");
+		}
+		
+		stmtScript.setInt(1, idChamada);
+		stmtScript.setInt(2, idAtleta);
+		stmtScript.setInt(3, estadoPresenca);
+		stmtScript.setString(4, justificativa);
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows>0){
+			return true;
+		}
+		return false;
+	}
 }

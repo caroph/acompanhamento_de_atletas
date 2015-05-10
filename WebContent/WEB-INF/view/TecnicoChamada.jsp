@@ -50,7 +50,7 @@
 													</div>
 													<div class="col-md-8">
 														<select name="diaTreino" class="form-control"
-															onchange="BuscarPresenca()" required>
+															onchange="BuscarPresenca()" required id="diaTreino">
 															<option value="0" selected>Selecione</option>
 															<c:forEach var="diaTreino" items="${listaDiasTreinos}">
 																<fmt:formatDate value="${diaTreino.hrInicio}"
@@ -90,7 +90,7 @@
 															<td><c:out value="${atleta.nome}" /></td>
 															<td align="center">
 																<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaF}', 
-																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaF}', 'F')">
+																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaF}', 'F', '${atleta.idPessoa}')">
 																	<c:choose> 
 																		<c:when test="${atleta.presenca.estadoPresencaF == 1}">
 																			<i class="fa fa-check" style="color: green;"></i>
@@ -102,7 +102,7 @@
 																			<i class="fa fa-trophy" style="color: rgb(97, 97, 7);"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaF == 4}">																		
-																			<i class="fa fa-ambulance" style="color: yellow;"></i>
+																			<i class="fa fa-ambulance" style="color: red;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaF == 5}">
 																			<i class="fa fa-cutlery" style="color: black;"></i>
@@ -127,7 +127,7 @@
 															</td>
 															<td align="center">
 																<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaT}', 
-																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaT}', 'T')">
+																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaT}', 'T', '${atleta.idPessoa}')">
 																	<c:choose> 
 																		<c:when test="${atleta.presenca.estadoPresencaT == 1}">
 																			<i class="fa fa-check" style="color: green;"></i>
@@ -136,10 +136,10 @@
 																			<i class="fa fa-ban" style="color: red;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 3}">
-																			<i class="fa fa-trophy" style="color: yellow;"></i>
+																			<i class="fa fa-trophy" style="color: rgb(97, 97, 7);"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 4}">																		
-																			<i class="fa fa-ambulance" style="color: yellow;"></i>
+																			<i class="fa fa-ambulance" style="color: red;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 5}">
 																			<i class="fa fa-question" style="color: black;"></i>

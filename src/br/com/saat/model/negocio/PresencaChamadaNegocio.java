@@ -75,5 +75,15 @@ public class PresencaChamadaNegocio {
 			throw new Exception("Erro ao verificar se já existe presença para o atleta chamada");
 		}
 	}
+
+	public boolean salvarPresencaChamada(int idChamada, int idAtleta, int estadoPresenca,
+			String justificativa, String tpPresenca) throws Exception {
+		PresencaChamadaDAO dao = new PresencaChamadaDAO();
+		try{
+			return dao.salvarPresencaChamada(idChamada, idAtleta, estadoPresenca, justificativa, tpPresenca);
+		}catch(Exception ex){
+			throw new Exception("Erro ao salvar presença");
+		}
+	}
 	
 }

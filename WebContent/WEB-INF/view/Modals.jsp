@@ -146,6 +146,9 @@
 						</div>
 						<input type="hidden" name="idPresencaJutificativa" id="idPresencaJutificativa"/>
 						<input type="hidden" id="tipoChamada" name="tipoChamada"/>
+						<input type="hidden" id="dtChamada" name="dtChamada"/>
+						<input type="hidden" id="idDiaTreino" name="idDiaTreino"/>
+						<input type="hidden" id="idAtletaModal" name="idAtleta"/>
 					</div>
 					<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">Salvar</button>
