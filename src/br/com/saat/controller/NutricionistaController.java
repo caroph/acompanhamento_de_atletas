@@ -288,6 +288,7 @@ public class NutricionistaController extends Controller {
 				
 				parms.put("idFichaDeAtendimento", idFicha);
 				parms.put("idadeAnosMeses", atleta.getStrIdade());
+				parms.put("telefone", atleta.getEndereco().getTelefone());
 				
 				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
 				
@@ -305,7 +306,7 @@ public class NutricionistaController extends Controller {
 				}catch(Exception ex2){
 					msg = "Erro: " + ex2.getMessage();
 				}
-				msg = "Erro ao gerar relatório! ";
+				msg = "Erro ao gerar relatório! " + ex.getMessage();
 				request.setAttribute("msgErro", msg);
 				request.setAttribute("listaAtendimentos", listaAtendimentos);
 				request.setAttribute("atleta", atleta);
