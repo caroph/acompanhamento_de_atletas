@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioPresencaTreinos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aac42d38-7814-4067-9082-83d85e2d0c44">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#008000">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFFFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="c5ea9ff4-ecf9-497d-b616-3f3842fe290b">
+		<parameter name="dtInicio" class="java.sql.Time">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="dtFim" class="java.sql.Time">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT c.dtChamada AS DATA_CHAMADA, a.nome AS NOME_ATLETA, tp2.dsTpPresenca AS PRESENCA_TECNICO,  pc.justificativaT
+AS JUST_TECNICO, tp.dsTpPresenca AS PRESENCA_FISICO, pc.justificativaF AS JUST_FISICO,
+CONCAT(te.dsTpEquipe, ' - ', ds.dsDiaSemana, ' - ', d.hrInicio, ' às ', d.hrFim) AS DIA_TREINO, d.idDiaTreino AS ID_DIA_TREINO
+FROM atleta a
+JOIN presencachamada pc ON a.idAtleta = pc.idAtleta
+JOIN chamada c ON pc.idChamada = c.idChamada
+JOIN tppresenca tp ON pc.estadoPresencaF = tp.idTpPresenca
+JOIN tppresenca tp2 ON pc.estadoPresencaT = tp2.idTpPresenca
+JOIN diatreino d on c.idDiaTreino = d.idDiaTreino
+JOIN diasemana ds on d.idDiaSemana = ds.idDiaSemana
+JOIN tpequipe te on d.idTpEquipe = te.idTpEquipe
+WHERE $P{dtInicio} <= c.dtChamada <= $P{dtFim}
+ORDER BY DATA_CHAMADA, ID_DIA_TREINO]]>
+		</queryString>
+		<field name="DATA_CHAMADA" class="java.sql.Timestamp"/>
+		<field name="NOME_ATLETA" class="java.lang.String"/>
+		<field name="PRESENCA_TECNICO" class="java.lang.String"/>
+		<field name="JUST_TECNICO" class="java.lang.String"/>
+		<field name="PRESENCA_FISICO" class="java.lang.String"/>
+		<field name="JUST_FISICO" class="java.lang.String"/>
+		<field name="DIA_TREINO" class="java.lang.String"/>
+		<field name="ID_DIA_TREINO" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="dtInicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFim" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT c.dtChamada AS DATA_CHAMADA, a.nome AS NOME_ATLETA, tp2.dsTpPresenca AS PRESENCA_TECNICO,  pc.justificativaT
+AS JUST_TECNICO, tp.dsTpPresenca AS PRESENCA_FISICO, pc.justificativaF AS JUST_FISICO,
+CONCAT(te.dsTpEquipe, ' - ', ds.dsDiaSemana, ' - ', d.hrInicio, ' às ', d.hrFim) AS DIA_TREINO, d.idDiaTreino AS ID_DIA_TREINO
+FROM atleta a
+JOIN presencachamada pc ON a.idAtleta = pc.idAtleta
+JOIN chamada c ON pc.idChamada = c.idChamada
+JOIN tppresenca tp ON pc.estadoPresencaF = tp.idTpPresenca
+JOIN tppresenca tp2 ON pc.estadoPresencaT = tp2.idTpPresenca
+JOIN diatreino d on c.idDiaTreino = d.idDiaTreino
+JOIN diasemana ds on d.idDiaSemana = ds.idDiaSemana
+JOIN tpequipe te on d.idTpEquipe = te.idTpEquipe
+WHERE dtChamada BETWEEN $P{dtInicio} AND $P{dtFim}
+ORDER BY DATA_CHAMADA, ID_DIA_TREINO, NOME_ATLETA]]>
+	</queryString>
+	<field name="DATA_CHAMADA" class="java.sql.Timestamp"/>
+	<field name="NOME_ATLETA" class="java.lang.String"/>
+	<field name="PRESENCA_TECNICO" class="java.lang.String"/>
+	<field name="JUST_TECNICO" class="java.lang.String"/>
+	<field name="PRESENCA_FISICO" class="java.lang.String"/>
+	<field name="JUST_FISICO" class="java.lang.String"/>
+	<field name="DIA_TREINO" class="java.lang.String"/>
+	<field name="ID_DIA_TREINO" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="138" y="31" width="343" height="32" uuid="7b7f22d7-db8d-47cb-8932-83e88276fa51"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Presença em Treinos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="96" height="99" uuid="c1112278-c3dc-4908-b4e0-99543a8a46cf"/>
+				<imageExpression><![CDATA["C:\\Users\\Carol\\Documents\\EclipseJava\\TCC-git\\Relatorios\\brasao_cc.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="81" height="20" uuid="e8430256-a878-4fb5-9ffb-09ba000b4961"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtInicio})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="181" y="0" width="23" height="20" uuid="0eb9faeb-161f-4543-973c-ef30dd69c1cd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[até]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="204" y="0" width="100" height="20" uuid="4cd51214-5a27-4196-9274-d60de80b49a2"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtFim})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="99" height="20" uuid="e68072cb-70bd-4502-aa7b-2e919a4e4cee"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presenças de ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="139" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="29" y="0" width="100" height="20" uuid="b85ba646-33f6-48e7-b4e0-c5a980662f84"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{DATA_CHAMADA})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="29" height="20" uuid="aa7a24d5-5897-4df9-909d-414ebb0d9198"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="1" width="69" height="20" uuid="5fd682be-d8ec-40b0-920a-aace9e7ba57c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dia de treino: ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="239" y="1" width="316" height="20" uuid="fbbc4a3b-a68b-4fe4-bd6e-e2092e24f723"/>
+				<textFieldExpression><![CDATA[$F{DIA_TREINO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="80" height="20" uuid="16b8ee7d-9e26-4e73-bb6e-d50cef85cbe1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Atleta:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="20" width="475" height="20" uuid="f2d83c28-84ac-4247-8311-1d4a7076b2d0"/>
+				<textFieldExpression><![CDATA[$F{NOME_ATLETA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="20" uuid="f9606949-803a-4e4c-be6f-408df69f89e1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TREINO TÉCNICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="57" height="20" uuid="d0c34e6b-adbe-4c98-9fb7-bcae7578a62a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presença:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="60" width="69" height="20" uuid="8a4690df-3d9b-4a1f-8167-6207f0c0209a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Justificativa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="100" height="20" uuid="7ed64a97-0a02-42ef-9a1d-c1d1eb7cc48b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TREINO FÍSICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="57" height="20" uuid="71b97a91-29ca-40b2-adcf-c5283a788b5a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presença:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="100" width="69" height="20" uuid="1d8cd687-a905-4fa7-b506-a5035b74e8fd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Justificativa:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="60" width="100" height="20" uuid="dfd35cac-5acc-4289-8cc9-91850e312678"/>
+				<textFieldExpression><![CDATA[$F{PRESENCA_TECNICO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="239" y="60" width="100" height="20" uuid="dabcf9a7-5318-4215-8d6e-2fd2dd354ece"/>
+				<textFieldExpression><![CDATA[( $F{JUST_TECNICO} == null ? "" : $F{JUST_TECNICO} )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="100" width="100" height="20" uuid="0dbc6cd8-851c-4942-87af-dcf245936330"/>
+				<textFieldExpression><![CDATA[$F{PRESENCA_FISICO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="239" y="100" width="100" height="20" uuid="9cfcd852-38bb-4ba9-9dd4-930f9ec50d8c"/>
+				<textFieldExpression><![CDATA[( $F{JUST_FISICO} == null ? "" : $F{JUST_FISICO} )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="134" width="553" height="1" uuid="5b731c09-2af5-4f2a-befc-4293e1b65f47"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="4" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="4" splitType="Stretch"/>
+	</summary>
+</jasperReport>

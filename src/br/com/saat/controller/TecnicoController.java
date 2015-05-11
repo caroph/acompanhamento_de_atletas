@@ -1,6 +1,9 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
@@ -27,6 +31,7 @@ import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
+import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.PresencaChamada;
 import br.com.saat.model.Usuario;
@@ -896,7 +901,11 @@ public class TecnicoController extends Controller {
 			retorno = String.format("%s/TecnicoRelResultTorneio.jsp", Constants.VIEW);
 		} else if ("relResulTorneio".equals(action)) {
 			
-		} else{
+		}else if("jspRelatorioTreinos".equals(action)){
+			
+			request.setAttribute("dataAtual", new Date());
+			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
+		}else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
 		}

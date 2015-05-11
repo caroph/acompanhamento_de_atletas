@@ -35,6 +35,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="" href="TecnicoController?action=jspResulTorneio">Resultados de Torneios</a></li>
+				<li><a class="" href="TecnicoController?action=jspRelatorioTreinos">Presença em Treinos</a></li>
 			</ul>
 		</li>	
 	</ul>

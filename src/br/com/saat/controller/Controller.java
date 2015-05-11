@@ -1,10 +1,14 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.JasperRunManager;
+
 import com.google.gson.Gson;
 
 import br.com.saat.core.Constants;
@@ -26,6 +32,7 @@ import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
+import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
@@ -201,6 +208,44 @@ public class Controller extends HttpServlet {
 			
 			retorno = usuarioNegocio.retornoLogin(usuario);
 			
+		}else if("gerarRelatorioTreino".equals(action)){
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 
+					perfil == Perfis.PreparadorFisico.getValor()){
+				String dtInicial = request.getParameter("dataInicio");
+				String dtFinal = request.getParameter("dataFim");
+				
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaTreinos.jasper");
+					HashMap params = new HashMap();
+					
+					Date dt = new Date();
+					Date dt2 = new Date();
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+					dt = formatter.parse(dtInicial);
+					dt2 = formatter.parse(dtFinal);
+					params.put("dtInicio", new java.util.Date(dt.getTime()));				
+					params.put("dtFim", new java.util.Date(dt2.getTime()));
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+					request.setAttribute("dataAtual", new Date());
+					retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
+				}
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
 		}
 		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);

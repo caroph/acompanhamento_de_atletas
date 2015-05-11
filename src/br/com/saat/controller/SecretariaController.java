@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.JasperRunManager;
+
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 
@@ -36,6 +41,7 @@ import br.com.saat.enumeradores.TpEndereco;
 import br.com.saat.enumeradores.TpPessoa;
 import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
@@ -1456,6 +1462,10 @@ public class SecretariaController extends Controller {
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
 		    request.setAttribute("msgErro", msg);
+		}else if("jspRelatorioTreinos".equals(action)){
+			
+			request.setAttribute("dataAtual", new Date());
+			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";

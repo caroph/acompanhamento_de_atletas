@@ -41,6 +41,16 @@
 				<li><a class="" href="SecretariaController?action=jspBuscaDiaTreino">Buscar</a></li>
 			</ul>
 		</li>
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle">
+				<i class="fa fa-sort-numeric-asc"></i>
+				<span class="hidden-xs">Relatórios</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="#">Resultados de Torneios</a></li>
+				<li><a class="" href="SecretariaController?action=jspRelatorioTreinos">Presença em Treinos</a></li>
+			</ul>
+		</li>	
 <!-- 		<li class="dropdown"> -->
 <!-- 			<a href="#" class="dropdown-toggle"> -->
 <!-- 				<i class="fa fa-sort-numeric-asc"></i> -->
