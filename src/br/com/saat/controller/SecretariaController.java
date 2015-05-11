@@ -47,6 +47,7 @@ import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
@@ -56,6 +57,7 @@ import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
+import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TurnoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -1462,11 +1464,32 @@ public class SecretariaController extends Controller {
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
 		    request.setAttribute("msgErro", msg);
-		}else if("jspRelatorioTreinos".equals(action)){
+		    
+		} else if("jspRelatorioTreinos".equals(action)){
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
-		}else {
+		} else if ("jspResulTorneio".equals(action)) {
+			TorneioNegocio negocio = new TorneioNegocio();
+			List<Torneio> lista = new ArrayList<Torneio>();
+			
+			try {
+				lista = negocio.buscaTorneiosFinalizados();
+				if (lista.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
+				} else {
+					request.setAttribute("listaTorneios", lista);
+				}
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+			
+		} else if("jspCalendario".equals(action)){
+			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspCalendario";
+		
+		} else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 		}

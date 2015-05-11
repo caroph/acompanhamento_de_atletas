@@ -35,14 +35,20 @@ import br.com.saat.model.Chamada;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.CatTorneioNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.CookieNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
+import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
+import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
+import br.com.saat.model.negocio.TorneioNegocio;
+import br.com.saat.model.negocio.TpTorneioNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 @WebServlet("/Controller")
@@ -246,7 +252,85 @@ public class Controller extends HttpServlet {
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		} else if ("relResulTorneio".equals(action)) {
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 
+					perfil == Perfis.PreparadorFisico.getValor()){
+				int idTorneio = 0;
+				Connection con = ConnectionFactory.getConnection();
+				try{				
+					idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+					
+					//URL jasperURL = new URL(host+jasper);
+					URL jasperURL = getServletContext().getResource("/relatorios/resultadoTorneio.jasper");
+					HashMap parms = new HashMap();
+					
+					parms.put("idTorneio", idTorneio);
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}				
+				}catch(Exception ex){
+					try {
+						TorneioNegocio negocio = new TorneioNegocio();
+						List<Torneio> lista = new ArrayList<Torneio>();
+						lista = negocio.buscaTorneiosFinalizados();
+						if (lista.isEmpty()) {
+							request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
+						} else {
+							request.setAttribute("listaTorneios", lista);
+						}
+					} catch (Exception e) {
+						request.setAttribute("msgAlerta", e.getMessage());
+					}
+					request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
+					retorno = String.format("%s/RelatorioRelResultTorneio.jsp", Constants.VIEW);
+				}
+			} else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
+		} else if("detalhesTorneio".equals(action)){
+			String msg = "";
+			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
+			Torneio torneio = new Torneio();
+			TorneioNegocio negocio = new TorneioNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			
+			try{
+				torneio = negocio.buscarTorneio(idTorneio);
+				listaAtleta = negocio.buscaAtletasPart(idTorneio);
+			}catch(Exception ex){
+				msg = ex.getMessage();
+			}		
+			
+			List<String> listaNaipe = new NaipeNegocio().listaNaipeString();
+			List<String> listaCategoria = new CatTorneioNegocio().listaCatTorneioString();
+			List<String> listaTipo = new TpTorneioNegocio().listaTpTorneioString();
+			List<String> listaGrupo = new GpTorneioNegocio().listaGpTorneioString();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("torneio", torneio);
+			lista.put("listaAtleta", listaAtleta);
+			lista.put("naipe", listaNaipe);
+			lista.put("categoria", listaCategoria);
+			lista.put("tipo", listaTipo);
+			lista.put("grupo", listaGrupo);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		    request.setAttribute("msgErro", msg);
+		    
 		}
+		
+		
 		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 			requestDispatcher.forward(request, response);

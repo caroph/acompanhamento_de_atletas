@@ -54,7 +54,7 @@ public class CalendarJsonServlet extends Controller {
 		
 		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Tecnico.getValor() && usuarioLogado.getPerfil() != Perfis.PreparadorFisico.getValor())){
+		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Secretaria.getValor() && usuarioLogado.getPerfil() != Perfis.Tecnico.getValor() && usuarioLogado.getPerfil() != Perfis.PreparadorFisico.getValor())){
 			super.doPost(request, response, usuarioLogado, false, false);
 			return;
 		}
@@ -91,7 +91,7 @@ public class CalendarJsonServlet extends Controller {
 			if (!torneio.isFlFinalizado()) {
 				finalizado = 0; //Aberto
 			}
-			String url = "abrilModalTorneio(" + torneio.getIdTorneio() + "," + finalizado + ")";
+			String url = "abrilModalTorneio(" + torneio.getIdTorneio() + "," + finalizado + "," + usuarioLogado.getPerfil() + ")";
 
 			//SETAR                       
             calendar.setId(torneio.getIdTorneio());  

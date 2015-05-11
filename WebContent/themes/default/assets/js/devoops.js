@@ -4,11 +4,11 @@
 "use strict";
 
 //Detalhes do Torneio
-function abrilModalTorneio(idTorneio, finalizado) {
+function abrilModalTorneio(idTorneio, finalizado, perfil) {
 	$("#detalhesTorneio").modal();	
 	$.ajax({
 	type : "POST",
-	url : "TecnicoController?action=detalhesTorneio&idTorneio="
+	url : "Controller?action=detalhesTorneio&idTorneio="
 			+ idTorneio,
 	success : function(data) {
 		
@@ -57,16 +57,18 @@ function abrilModalTorneio(idTorneio, finalizado) {
 		}
 		
 		html += "<div class='modal-footer'>";
-		if (finalizado == 0) {
-			html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
-			html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
-			html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "&nome=" + data.torneio.nome + "' "; 
-			html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
-			html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
-			html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
-		} else {
-			html += "<a class='btn btn-info' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 
-			html += "data-confirm='Deseja realmente editar o resultado do torneio selecionado?'>Editar Resultado</a>";
+		if (perfil != 1) {
+			if (finalizado == 0) {
+				html += "<a class='btn btn-primary' href='TecnicoController?action=editarTorneio&idTorneio=" + idTorneio + "' "; 
+				html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
+				html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "&nome=" + data.torneio.nome + "' "; 
+				html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
+				html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
+				html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
+			} else {
+				html += "<a class='btn btn-info' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 
+				html += "data-confirm='Deseja realmente editar o resultado do torneio selecionado?'>Editar Resultado</a>";
+			}
 		}
 		html += "<button type='button' class='btn' data-dismiss='modal' id='fechar'>Fechar</button>";
 		html += "</div>";

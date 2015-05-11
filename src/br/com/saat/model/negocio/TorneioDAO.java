@@ -317,4 +317,28 @@ public class TorneioDAO {
 		return retorno;	
 	}
 
+	public List<Torneio> buscaTorneiosFinalizados() throws SQLException {
+		List<Torneio> lista = new ArrayList<Torneio>();
+		
+		stmtScript = con.prepareStatement("SELECT idTorneio, nome, dtInicial, dtFinal, idCatTorneio, cidade, estado "
+				+ "FROM torneio "
+				+ "WHERE flCadastroAtivo = 1 "
+				+ "		AND flFinalizado = 1 ");
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Torneio torneio = new Torneio();
+			torneio.setIdTorneio(rs.getInt(1));
+			torneio.setNome(rs.getString(2));
+			torneio.setDtInicial(rs.getDate(3));
+			torneio.setDtFinal(rs.getDate(4));
+			torneio.setIdCatTorneio(rs.getInt(5));
+			torneio.setCidade(rs.getString(6));
+			torneio.setEstado(rs.getString(7));
+			lista.add(torneio);
+		}
+		return lista;
+	}
+
 }

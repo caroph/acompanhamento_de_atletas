@@ -5,7 +5,12 @@
 	<%@include file='/layout/header.jsp'%>
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<%@include file='/layout/navigationTecnico.jsp'%>
+			<c:if test="${sessionScope.usuarioLogado.perfil == 1}">
+				<%@include file='/layout/navigationSecretaria.jsp'%>
+			</c:if>
+			<c:if test="${sessionScope.usuarioLogado.perfil == 5}">
+				<%@include file='/layout/navigationTecnico.jsp'%>
+			</c:if>
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">

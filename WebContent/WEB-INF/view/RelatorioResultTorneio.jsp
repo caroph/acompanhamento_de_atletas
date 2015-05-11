@@ -9,7 +9,12 @@
 
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<%@include file='/layout/navigationTecnico.jsp'%>
+			<c:if test="${sessionScope.usuarioLogado.perfil == 1}">
+				<%@include file='/layout/navigationSecretaria.jsp'%>
+			</c:if>
+			<c:if test="${sessionScope.usuarioLogado.perfil == 5}">
+				<%@include file='/layout/navigationTecnico.jsp'%>
+			</c:if>
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="ajax-content">
@@ -34,7 +39,8 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th style="text-align: center;">Categoria</th>
+												<th>Categoria</th>
+												<th>Cidade/UF</th>
 												<th style="text-align: center;">Data realização</th>
 												<th></th>
 											</tr>
@@ -43,14 +49,15 @@
 											<c:forEach var="torneio" items="${listaTorneios}">
 												<tr>
 													<td><c:out value='${torneio.nome}' /></td>
-													<td align="center"><c:out value='${torneio.getNomeCategoria()}' /></td>
+													<td><c:out value='${torneio.getNomeCategoria()}' /></td>
+													<td><c:out value='${torneio.cidade}'/>/<c:out value='${torneio.estado}'/></td>
 													<fmt:formatDate value="${torneio.dtInicial}" pattern="dd/MM/yyyy"
 														var="dataI" />
 													<fmt:formatDate value="${torneio.dtFinal}" pattern="dd/MM/yyyy"
 														var="dataF" />
 													<td align="center"><c:out value='${dataI}'/> à <c:out value='${dataF}'/></td>
 													<td align="center">
-														<a class="btn btn-primary" href="TecnicoController?action=relResulTorneio">Resultado</a>
+														<a class="btn btn-primary" href="Controller?action=relResulTorneio&idTorneio=${torneio.idTorneio}" target="_blank">Resultado</a>
 													</td>
 												</tr>
 											</c:forEach>

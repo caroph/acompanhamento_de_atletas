@@ -350,41 +350,7 @@ public class TecnicoController extends Controller {
 
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 
-		}else if("detalhesTorneio".equals(action)){
-			String msg = "";
-			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
-			Torneio torneio = new Torneio();
-			TorneioNegocio negocio = new TorneioNegocio();
-			List<Atleta> listaAtleta = new ArrayList<Atleta>();
-			
-			try{
-				torneio = negocio.buscarTorneio(idTorneio);
-				listaAtleta = negocio.buscaAtletasPart(idTorneio);
-			}catch(Exception ex){
-				msg = ex.getMessage();
-			}		
-			
-			List<String> listaNaipe = new NaipeNegocio().listaNaipeString();
-			List<String> listaCategoria = new CatTorneioNegocio().listaCatTorneioString();
-			List<String> listaTipo = new TpTorneioNegocio().listaTpTorneioString();
-			List<String> listaGrupo = new GpTorneioNegocio().listaGpTorneioString();
-			
-			Map<String, Object> lista = new LinkedHashMap<String, Object>();
-			lista.put("torneio", torneio);
-			lista.put("listaAtleta", listaAtleta);
-			lista.put("naipe", listaNaipe);
-			lista.put("categoria", listaCategoria);
-			lista.put("tipo", listaTipo);
-			lista.put("grupo", listaGrupo);
-			
-			String json = new Gson().toJson(lista);
-
-		    response.setContentType("application/json");
-		    response.setCharacterEncoding("UTF-8");
-		    response.getWriter().write(json);
-		    request.setAttribute("msgErro", msg);
-		    
-		}else if("jspFinalizarTorneio".equals(action)){
+		} else if("jspFinalizarTorneio".equals(action)){
 			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
 			String nomeTorneio = request.getParameter("nome");
 			
@@ -897,15 +863,27 @@ public class TecnicoController extends Controller {
 			servletRetorno = "/TecnicoController?action=jspChamada";
 					
 		} else if ("jspResulTorneio".equals(action)) {
+			TorneioNegocio negocio = new TorneioNegocio();
+			List<Torneio> lista = new ArrayList<Torneio>();
 			
-			retorno = String.format("%s/TecnicoRelResultTorneio.jsp", Constants.VIEW);
-		} else if ("relResulTorneio".equals(action)) {
+			try {
+				lista = negocio.buscaTorneiosFinalizados();
+				if (lista.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
+				} else {
+					request.setAttribute("listaTorneios", lista);
+				}
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
 			
-		}else if("jspRelatorioTreinos".equals(action)){
+		} else if("jspRelatorioTreinos".equals(action)){
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
-		}else{
+			
+		} else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
 		}

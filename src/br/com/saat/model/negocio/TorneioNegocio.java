@@ -223,5 +223,15 @@ public class TorneioNegocio {
 		return retorno;
 	}
 
+	public List<Torneio> buscaTorneiosFinalizados() throws Exception {
+		try {
+			TorneioDAO dao = new TorneioDAO();
+			List<Torneio> lista = dao.buscaTorneiosFinalizados();
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os torneios finalizados.");
+		}
+	}
+
 
 }
