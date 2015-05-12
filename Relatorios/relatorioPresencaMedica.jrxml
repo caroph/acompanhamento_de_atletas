@@ -9,6 +9,9 @@
 	<parameter name="dtFinal" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT a.nome AS ATLETA, p.dtAtendimento AS DATA_ATENDIMENTO, p.hrAtendimento AS HORA_ATENDIMENTO, UPPER(pe.dsPerfil) AS PERFIL, u.nome AS PROFISSIONAL
 FROM prontuario p
@@ -100,7 +103,7 @@ ORDER BY PERFIL, ATLETA, DATA_ATENDIMENTO, HORA_ATENDIMENTO]]>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="111" height="115" uuid="5af99234-58d4-499d-b71d-f316f73cb62f"/>
-				<imageExpression><![CDATA["C:\\Users\\Carol\\Documents\\EclipseJava\\TCC-git\\Relatorios\\brasao_cc.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -235,8 +235,11 @@ public class Controller extends HttpServlet {
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(dtInicial);
 					dt2 = formatter.parse(dtFinal);
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+					
 					params.put("dtInicio", new java.util.Date(dt.getTime()));				
 					params.put("dtFim", new java.util.Date(dt2.getTime()));
+					params.put("caminhoLogo", caminhoImg);
 					
 					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
 					
@@ -353,8 +356,11 @@ public class Controller extends HttpServlet {
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(dtInicial);
 					dt2 = formatter.parse(dtFinal);
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+					
 					params.put("dtInicial", new java.util.Date(dt.getTime()));				
 					params.put("dtFinal", new java.util.Date(dt2.getTime()));
+					params.put("caminhoLogo", caminhoImg);
 					
 					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
 					

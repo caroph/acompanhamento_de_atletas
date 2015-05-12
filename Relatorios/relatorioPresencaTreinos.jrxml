@@ -50,6 +50,7 @@
 		<parameter name="dtFim" class="java.sql.Time">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
+		<parameter name="caminhoLogo" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[SELECT c.dtChamada AS DATA_CHAMADA, a.nome AS NOME_ATLETA, tp2.dsTpPresenca AS PRESENCA_TECNICO,  pc.justificativaT
 AS JUST_TECNICO, tp.dsTpPresenca AS PRESENCA_FISICO, pc.justificativaF AS JUST_FISICO,
@@ -80,6 +81,7 @@ ORDER BY DATA_CHAMADA, ID_DIA_TREINO]]>
 	<parameter name="dtFim" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT c.dtChamada AS DATA_CHAMADA, a.nome AS NOME_ATLETA, tp2.dsTpPresenca AS PRESENCA_TECNICO,  pc.justificativaT
 AS JUST_TECNICO, tp.dsTpPresenca AS PRESENCA_FISICO, pc.justificativaF AS JUST_FISICO,
@@ -159,7 +161,7 @@ ORDER BY DATA_CHAMADA, ID_DIA_TREINO, NOME_ATLETA]]>
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="96" height="99" uuid="c1112278-c3dc-4908-b4e0-99543a8a46cf"/>
-				<imageExpression><![CDATA["C:\\Users\\Carol\\Documents\\EclipseJava\\TCC-git\\Relatorios\\brasao_cc.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

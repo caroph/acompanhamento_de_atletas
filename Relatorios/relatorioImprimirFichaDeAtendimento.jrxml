@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioImprimirFichaDeAtendimento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6b0b44a6-5469-4560-a317-d67f203cf3e2">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="39"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="54"/>
 	<parameter name="idFichaDeAtendimento" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
@@ -10,6 +10,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="telefone" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -235,7 +238,7 @@ WHERE
 		<band height="158" splitType="Immediate">
 			<image>
 				<reportElement x="0" y="0" width="100" height="101" uuid="592509e3-d79f-43b4-87dc-1e6a38bf1d9a"/>
-				<imageExpression><![CDATA["brasao_cc.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 			<line>
 				<reportElement x="10" y="108" width="531" height="1" uuid="aa96b2b9-9e84-41f1-bb50-4184b20c6206"/>

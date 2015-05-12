@@ -281,14 +281,16 @@ public class NutricionistaController extends Controller {
 				atleta = atletaNegocio.buscarAtleta(ficha.getIdAtleta());
 				
 				Connection con = ConnectionFactory.getConnection();
-				
-				//URL jasperURL = new URL(host+jasper);
-				URL jasperURL = getServletContext().getResource("/relatorios/relatorioImprimirFichaDeAtendimento.jasper");
+			
 				HashMap parms = new HashMap();
+				URL jasperURL = getServletContext().getResource("/relatorios/relatorioImprimirFichaDeAtendimento.jasper");
+				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 				
 				parms.put("idFichaDeAtendimento", idFicha);
 				parms.put("idadeAnosMeses", atleta.getStrIdade());
 				parms.put("telefone", atleta.getEndereco().getTelefone());
+				parms.put("caminhoLogo", caminhoImg);
+				
 				
 				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
 				
