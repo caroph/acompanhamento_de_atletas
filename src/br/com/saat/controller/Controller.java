@@ -386,6 +386,8 @@ public class Controller extends HttpServlet {
 				int idTorneio = 0;
 				Connection con = ConnectionFactory.getConnection();
 				try{				
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString(); 
+					
 					String dtInicial = request.getParameter("dtInicial");
 					String dtFinal = request.getParameter("dtFinal");
 					Date dtI = new Date();
@@ -399,13 +401,13 @@ public class Controller extends HttpServlet {
 					
 					switch (classificacao) {
 					case 1:
-						relatorio = "/relatorios/frequenciaTorneioGeral.jasper";
-						break;
-					case 2:
 						relatorio = "/relatorios/frequenciaTorneioAtleta.jasper";
 						break;
-					case 3:
+					case 2:
 						relatorio = "/relatorios/frequenciaTorneioTipo.jasper";
+						break;
+					case 3:
+						relatorio = "/relatorios/frequenciaTorneio.jasper";
 						break;
 					}
 
@@ -414,6 +416,7 @@ public class Controller extends HttpServlet {
 					
 					params.put("dtInicial", new java.util.Date(dtI.getTime()));				
 					params.put("dtFinal", new java.util.Date(dtF.getTime()));
+					params.put("caminhoLogo", caminhoImg);
 					
 					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
 					

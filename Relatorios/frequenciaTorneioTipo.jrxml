@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="frequenciaTorneioTipo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37762b1e-9f4b-4885-92ec-3e8cef34b2b2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="16"/>
+	<parameter name="dtInicial" class="java.util.Date"/>
+	<parameter name="dtFinal" class="java.util.Date"/>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.nome as atleta, t.nome as torneio, colocacao, dtInicial, dtFinal, dscTpTorneio
+FROM atletaTorneio at
+INNER JOIN atleta a ON at.idAtleta = a.idAtleta
+INNER JOIN torneio t ON at.idTorneio = t.idTorneio
+INNER JOIN tpTorneio tt ON t.idTpTorneio = tt.idTpTorneio
+INNER JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
+WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}
+ORDER BY dscTpTorneio, a.nome, dtInicial, dtFinal]]>
+	</queryString>
+	<field name="atleta" class="java.lang.String"/>
+	<field name="torneio" class="java.lang.String"/>
+	<field name="colocacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtInicial" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtFinal" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dscTpTorneio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="dscTpTorneio_1" class="java.lang.Integer" resetType="Group" resetGroup="Tipo" calculation="Count">
+		<variableExpression><![CDATA[$F{dscTpTorneio}]]></variableExpression>
+	</variable>
+	<variable name="atleta_1" class="java.lang.Integer" resetType="Group" resetGroup="Atleta" calculation="Count">
+		<variableExpression><![CDATA[$F{atleta}]]></variableExpression>
+	</variable>
+	<group name="Tipo">
+		<groupExpression><![CDATA[$F{dscTpTorneio}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<textField>
+					<reportElement x="10" y="0" width="174" height="22" uuid="11d1ab5c-9841-4e78-8fc4-f26eef3fd506"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dscTpTorneio}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="34">
+				<textField evaluationTime="Group" evaluationGroup="Tipo">
+					<reportElement x="84" y="2" width="56" height="20" uuid="22fd76c0-efa5-4abd-8d1e-c33adfcc5f19"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{dscTpTorneio_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="2" width="74" height="20" uuid="f3e0ee5c-a085-4152-ace9-641ca89897bb"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Total Tipo:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="28" width="553" height="1" uuid="79ae8412-f6dc-437f-a940-51939a41375e"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Atleta">
+		<groupExpression><![CDATA[$F{atleta}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement x="48" y="0" width="301" height="19" uuid="d7c21e9f-a589-4d5b-9b5f-368ba55d7522"/>
+					<textElement>
+						<font size="14" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{atleta}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="26">
+				<textField evaluationTime="Group" evaluationGroup="Atleta">
+					<reportElement x="132" y="5" width="56" height="19" uuid="f17c2e1b-1b73-4071-ba5c-7f4242dac958"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{atleta_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="48" y="4" width="84" height="20" uuid="8617386e-a62d-4f62-a5de-7ffe3b9c2932"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Total Atleta:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="128" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="116" uuid="54dbbc98-9fae-4164-acd5-cbe29715ee72"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="132" y="33" width="384" height="76" uuid="57239866-99d4-4263-9831-1c0d0fd3c618"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Frequência em Torneios por Tipo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="84" height="20" uuid="55cbffc5-6efc-4142-82c3-936c890eab9a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Torneios de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="0" width="100" height="20" uuid="0ef203d0-f6f8-4476-88d2-2930acf3e0f6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtFinal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="0" width="28" height="20" uuid="ade3d7f7-b328-461e-ac2b-9f74009a9821"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[até]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="0" width="81" height="20" uuid="515c45f9-bc74-4d73-bf1d-ed9d36899d73"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtInicial})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="2" width="65" height="20" uuid="7dd3322b-1312-4610-ad08-b2ba1b268cbc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Torneio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="0" width="100" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Colocação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="2" width="72" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dt Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="2" width="56" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dt Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="2" width="34" height="18" uuid="d32b19e1-d67b-4686-8615-9c157d73418a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="2" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atleta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="408" y="4" width="72" height="20" uuid="15dd378d-b49b-4408-9b97-976401dc759e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtInicial})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="4" width="75" height="20" uuid="e331c914-0c60-44cf-b0aa-d6cbe0f7a37d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtFinal})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="4" width="121" height="20" uuid="70619e72-d071-49c6-8c48-060baeefdcfd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{colocacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="4" width="184" height="20" uuid="5c5c7d89-092d-4d7d-b81f-6abdec94d257"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{torneio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="536" y="3" width="19" height="20" uuid="0fd78672-629c-4853-b6fe-d1716d25c3e3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

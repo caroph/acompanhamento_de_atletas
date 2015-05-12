@@ -35,7 +35,7 @@
 								<div class="box-content">
 									<div class="row clearfix"> 
 										<div class="col-md-12">
-											<form action="Controller?action=relFrequenciaTorneio" method="post">
+											<form action="Controller?action=relFrequenciaTorneio" method="post" target="_blank">
 												<fmt:formatDate value="${dataAtual}" pattern="yyyy-MM-dd"
 													var="dataAtual" />
 												<div class="form-group">
@@ -53,9 +53,9 @@
 														 <label for="classificacao">Classificação:</label>
 														 <select class="form-control" id="classificacao" name="classificacao" required>
 															<option value="">Selecione</option>
-															<option value="1">Geral</option>
-															<option value="2">Por Atleta</option>
-															<option value="3">Por Tipo</option>
+															<option value="1">Por Atleta</option>
+															<option value="2">Por Tipo</option>
+															<option value="3">Por Torneio</option>
 														 </select>
 													</div>
 													<div class="col-md-2" style="padding-top: 2%;">

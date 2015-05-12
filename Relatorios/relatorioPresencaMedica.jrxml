@@ -93,7 +93,7 @@ ORDER BY PERFIL, ATLETA, DATA_ATENDIMENTO, HORA_ATENDIMENTO]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="115" splitType="Stretch">
+		<band height="116" splitType="Stretch">
 			<staticText>
 				<reportElement x="122" y="23" width="384" height="76" uuid="010dd7a6-9a9f-49ec-a5c3-ca6d142c375b"/>
 				<textElement textAlignment="Center">
