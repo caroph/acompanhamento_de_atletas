@@ -56,6 +56,7 @@
 				<li><a class="" href="SecretariaController?action=jspResulTorneio">Resultados de Torneios</a></li>
 				<li><a class="" href="SecretariaController?action=jspFrequenciaTorneio">Frequência em Torneios</a></li>
 				<li><a class="" href="SecretariaController?action=jspRelatorioTreinos">Presença em Treinos</a></li>
+				<li><a class="" href="SecretariaController?action=jspRelatorioConsultaMedica">Presença Consulta Médica</a></li>
 			</ul>
 		</li>	
 

@@ -330,6 +330,44 @@ public class Controller extends HttpServlet {
 		    response.getWriter().write(json);
 		    request.setAttribute("msgErro", msg);
 		    
+		}else if("gerarRelatorioConsultaMedica".equals(action)){
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 
+					perfil == Perfis.PreparadorFisico.getValor()){
+				String dtInicial = request.getParameter("dataInicio");
+				String dtFinal = request.getParameter("dataFim");
+				
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaMedica.jasper");
+					HashMap params = new HashMap();
+					
+					Date dt = new Date();
+					Date dt2 = new Date();
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+					dt = formatter.parse(dtInicial);
+					dt2 = formatter.parse(dtFinal);
+					params.put("dtInicial", new java.util.Date(dt.getTime()));				
+					params.put("dtFinal", new java.util.Date(dt2.getTime()));
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+					request.setAttribute("dataAtual", new Date());
+					retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
+				}
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
 		} else if ("relFrequenciaTorneio".equals(action)) {
 			int perfil = usuarioLogado.getPerfil();
 			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 

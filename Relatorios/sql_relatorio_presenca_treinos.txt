@@ -1,0 +1,13 @@
+SELECT c.dtChamada AS DATA_CHAMADA, a.nome AS NOME_ATLETA, tp2.dsTpPresenca AS PRESENCA_TECNICO,  pc.justificativaT
+AS JUST_TECNICO, tp.dsTpPresenca AS PRESENCA_FISICO, pc.justificativaF AS JUST_FISICO,
+CONCAT(te.dsTpEquipe, ' - ', ds.dsDiaSemana, ' - ', d.hrInicio, ' às ', d.hrFim) AS DIA_TREINO, d.idDiaTreino AS ID_DIA_TREINO
+FROM atleta a
+JOIN presencachamada pc ON a.idAtleta = pc.idAtleta
+JOIN chamada c ON pc.idChamada = c.idChamada
+JOIN tppresenca tp ON pc.estadoPresencaF = tp.idTpPresenca
+JOIN tppresenca tp2 ON pc.estadoPresencaT = tp2.idTpPresenca
+JOIN diatreino d on c.idDiaTreino = d.idDiaTreino
+JOIN diasemana ds on d.idDiaSemana = ds.idDiaSemana
+JOIN tpequipe te on d.idTpEquipe = te.idTpEquipe
+WHERE dtChamada BETWEEN $P{dtInicio} AND $P{dtFim}
+ORDER BY DATA_CHAMADA, ID_DIA_TREINO, NOME_ATLETA

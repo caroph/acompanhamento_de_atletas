@@ -37,6 +37,7 @@
 				<li><a class="" href="TecnicoController?action=jspResulTorneio">Resultados de Torneios</a></li>
 				<li><a class="" href="SecretariaController?action=jspFrequenciaTorneio">Frequência em Torneios</a></li>
 				<li><a class="" href="TecnicoController?action=jspRelatorioTreinos">Presença em Treinos</a></li>
+				<li><a class="" href="TecnicoController?action=jspRelatorioConsultaMedica">Presença Consulta Médica</a></li>
 			</ul>
 		</li>	
 	</ul>

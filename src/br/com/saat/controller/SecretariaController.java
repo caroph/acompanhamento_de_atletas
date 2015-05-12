@@ -1471,7 +1471,12 @@ public class SecretariaController extends Controller {
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
-		} else if ("jspResulTorneio".equals(action)) {
+		} else if("jspRelatorioConsultaMedica".equals(action)){
+			
+			request.setAttribute("dataAtual", new Date());
+			retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
+		}else if ("jspResulTorneio".equals(action)) {
+			
 			TorneioNegocio negocio = new TorneioNegocio();
 			List<Torneio> lista = new ArrayList<Torneio>();
 			

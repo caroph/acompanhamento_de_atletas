@@ -1,0 +1,13 @@
+SELECT a.nome AS ATLETA, p.dtAtendimento AS DATA_ATENDIMENTO, p.hrAtendimento AS HORA_ATENDIMENTO, UPPER(pe.dsPerfil) AS PERFIL, u.nome AS PROFISSIONAL
+FROM prontuario p
+JOIN usuario u ON p.idUsuario = u.idUsuario
+JOIN perfil pe ON u.perfil = pe.idPerfil
+JOIN atleta a ON p.idAtleta = a.idAtleta
+WHERE p.dtAtendimento BETWEEN $P{dtInicial} AND $P{dtFinal}
+UNION
+SELECT a.nome, DATE(f.dtAtendimento), CONCAT(HOUR(f.dtAtendimento), ':', MINUTE(f.dtAtendimento)), 'NUTRICIONISTA', u.nome
+FROM fichadeatendimento f
+JOIN atleta a ON f.idAtleta = a.idAtleta
+JOIN usuario u ON f.idUsuario = u.idUsuario
+WHERE f.dtAtendimento BETWEEN $P{dtInicial} AND $P{dtFinal}
+ORDER BY PERFIL, ATLETA, DATA_ATENDIMENTO, HORA_ATENDIMENTO

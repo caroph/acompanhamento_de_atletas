@@ -883,10 +883,14 @@ public class TecnicoController extends Controller {
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
 			
+		}else if("jspRelatorioConsultaMedica".equals(action)){
+			
+			request.setAttribute("dataAtual", new Date());
+			retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
 		} else if("jspFrequenciaTorneio".equals(action)){
+			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
-			
 		} else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

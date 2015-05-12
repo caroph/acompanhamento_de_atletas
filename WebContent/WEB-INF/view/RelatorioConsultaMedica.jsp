@@ -35,13 +35,13 @@
 								<div class="box-content">
 									<div class="row clearfix"> 
 										<div class="col-md-12">
-											<form action="Controller?action=gerarRelatorioTreino" method="post"
+											<form action="Controller?action=gerarRelatorioConsultaMedica" method="post"
 												target="_blank">
 												<fmt:formatDate value="${dataAtual}" pattern="yyyy-MM-dd"
 													var="dataAtual" />
 												<div class="col-md-12 form-group">
 													<div class="col-md-2">
-														<label for="dataInicio" class="control-label">Data Inicial:</label>
+														<label for="dataInicio" class="control-label">Data Incial:</label>
 													</div>
 													<div class="col-md-3">
 														<input type="date" class="form-control" required name="dataInicio"

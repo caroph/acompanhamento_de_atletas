@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioPresencaMedica" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ed054b5-82b2-463c-abd7-49aeba7ca16f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dtInicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dtFinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT a.nome AS ATLETA, p.dtAtendimento AS DATA_ATENDIMENTO, p.hrAtendimento AS HORA_ATENDIMENTO, UPPER(pe.dsPerfil) AS PERFIL, u.nome AS PROFISSIONAL
+FROM prontuario p
+JOIN usuario u ON p.idUsuario = u.idUsuario
+JOIN perfil pe ON u.perfil = pe.idPerfil
+JOIN atleta a ON p.idAtleta = a.idAtleta
+WHERE p.dtAtendimento BETWEEN $P{dtInicial} AND $P{dtFinal}
+UNION
+SELECT a.nome, DATE(f.dtAtendimento), CONCAT(HOUR(f.dtAtendimento), ':', MINUTE(f.dtAtendimento)), 'NUTRICIONISTA', u.nome
+FROM fichadeatendimento f
+JOIN atleta a ON f.idAtleta = a.idAtleta
+JOIN usuario u ON f.idUsuario = u.idUsuario
+WHERE f.dtAtendimento BETWEEN $P{dtInicial} AND $P{dtFinal}
+ORDER BY PERFIL, ATLETA, DATA_ATENDIMENTO, HORA_ATENDIMENTO]]>
+	</queryString>
+	<field name="ATLETA" class="java.lang.String"/>
+	<field name="DATA_ATENDIMENTO" class="java.sql.Date"/>
+	<field name="HORA_ATENDIMENTO" class="java.lang.String"/>
+	<field name="PERFIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROFISSIONAL" class="java.lang.String"/>
+	<variable name="ATLETA_1" class="java.lang.Integer" resetType="Group" resetGroup="atleta" calculation="Count">
+		<variableExpression><![CDATA[$F{ATLETA}]]></variableExpression>
+	</variable>
+	<group name="perfil">
+		<groupExpression><![CDATA[$F{PERFIL}]]></groupExpression>
+		<groupHeader>
+			<band height="43">
+				<textField>
+					<reportElement x="0" y="0" width="555" height="20" uuid="26200b0d-a3ed-4f6b-971f-3195ab48a7be"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PERFIL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="64" y="20" width="492" height="20" uuid="21f44af7-5cf4-495c-b81b-91d8d94343f9"/>
+					<textFieldExpression><![CDATA[$F{PROFISSIONAL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="20" width="63" height="20" uuid="ede6aea1-378d-497d-af18-7685d043e3d9"/>
+					<text><![CDATA[Profissional:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="atleta">
+		<groupExpression><![CDATA[$F{ATLETA}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<textField>
+					<reportElement x="49" y="1" width="375" height="20" uuid="164ff38c-6acd-4949-9d8b-c09673f036a6"/>
+					<textFieldExpression><![CDATA[$F{ATLETA}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="15" y="1" width="34" height="20" uuid="8fd2401b-daf8-4b0d-a7e3-1c24d8accb73"/>
+					<text><![CDATA[Atleta:]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="atleta">
+					<reportElement x="523" y="1" width="32" height="20" uuid="dfe2b433-6df3-41c8-be32-50c48586611f"/>
+					<textFieldExpression><![CDATA[$V{ATLETA_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="491" y="1" width="32" height="20" uuid="268a4e5d-9450-41eb-bfdc-6ddd7043d69f"/>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="24">
+				<line>
+					<reportElement x="0" y="13" width="555" height="1" uuid="2f197dd5-6a9d-4793-ab5f-67cfdfe491f7"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="122" y="23" width="384" height="76" uuid="010dd7a6-9a9f-49ec-a5c3-ca6d142c375b"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Presença em Consultas Médicas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="111" height="115" uuid="5af99234-58d4-499d-b71d-f316f73cb62f"/>
+				<imageExpression><![CDATA["C:\\Users\\Carol\\Documents\\EclipseJava\\TCC-git\\Relatorios\\brasao_cc.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="c2effc90-c4b1-48f0-aa4a-78e20e214f5a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Presenças de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="84" height="20" uuid="936af10a-ff31-4b4c-87cb-7a7cf44d65e9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtInicial})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="185" y="0" width="28" height="20" uuid="c6dbdad2-a907-457f-8e38-5848c8d042db"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[até]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="0" width="100" height="20" uuid="e84a908a-5d60-4370-8eb5-d0503205035b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($P{dtFinal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="0" width="34" height="20" uuid="d4c76472-3859-4961-af30-233f56dc5c58"/>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="0" width="32" height="20" uuid="0882e38c-28e7-48c0-8557-8684e0e47e65"/>
+				<text><![CDATA[Hora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="49" y="0" width="87" height="20" uuid="7f320742-532f-4873-8b4b-a9946e9956d9"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{DATA_ATENDIMENTO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="0" width="100" height="20" uuid="fd2b8eee-17ef-46aa-ba11-03a56d300ca5"/>
+				<textFieldExpression><![CDATA[$F{HORA_ATENDIMENTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
