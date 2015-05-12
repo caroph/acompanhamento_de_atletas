@@ -39,6 +39,7 @@ import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.enumeradores.TpEndereco;
 import br.com.saat.enumeradores.TpPessoa;
+import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
@@ -58,6 +59,7 @@ import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
+import br.com.saat.model.negocio.TpTorneioNegocio;
 import br.com.saat.model.negocio.TurnoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -1484,6 +1486,10 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+			
+		} else if("jspFrequenciaTorneio".equals(action)){
+			request.setAttribute("dataAtual", new Date());
+			retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
 			
 		} else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);

@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-male"></i> <span>Chamada</span>
+										<i class="fa fa-trophy"></i><span>Torneios</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -35,25 +35,30 @@
 								<div class="box-content">
 									<div class="row clearfix"> 
 										<div class="col-md-12">
-											<form action="Controller?action=gerarRelatorioTreino" method="post">
+											<form action="Controller?action=relFrequenciaTorneio" method="post">
 												<fmt:formatDate value="${dataAtual}" pattern="yyyy-MM-dd"
 													var="dataAtual" />
-												<div class="col-md-12 form-group">
-													<div class="col-md-2">
-														<label for="dataInicio" class="control-label">Data Inicial:</label>
+												<div class="form-group">
+													<div class="col-md-3">
+														<label for="dtInicial" class="control-label">Data Inicial:</label>
+														<input type="date" class="form-control" required name="dtInicial"
+															value="<c:out value="${dataAtual}"/>" id="dtInicial" />
 													</div>
 													<div class="col-md-3">
-														<input type="date" class="form-control" required name="dataInicio"
-															value="<c:out value="${dataAtual}"/>" id="dataInicio" />
+														<label for="dtFinal" class="control-label">Data Final:</label>
+														<input type="date" class="form-control" required name="dtFinal"
+															value="<c:out value="${dataAtual}"/>" id="dtFinal" />
 													</div>
-													<div class="col-md-2">
-														<label for="dataFim" class="control-label">Data Final:</label>
+													<div class="col-md-4">
+														 <label for="classificacao">Classificação:</label>
+														 <select class="form-control" id="classificacao" name="classificacao" required>
+															<option value="">Selecione</option>
+															<option value="1">Geral</option>
+															<option value="2">Por Atleta</option>
+															<option value="3">Por Tipo</option>
+														 </select>
 													</div>
-													<div class="col-md-3">
-														<input type="date" class="form-control" required name="dataFim"
-															value="<c:out value="${dataAtual}"/>" id="dataFim" />
-													</div>
-													<div class="col-md-2">
+													<div class="col-md-2" style="padding-top: 2%;">
 														<button type="submit" class="btn btn-primary">Gerar</button>
 													</div>
 												</div>
