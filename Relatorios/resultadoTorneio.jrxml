@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultadoTorneio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d9e8d99-4bec-48a2-9bae-5260e330dba6">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="114"/>
+	<property name="ireport.y" value="227"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Juliane Chaerki\\workspace_jee\\tcc-saat\\Relatorios\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="idTorneio" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT t.nome, local, estado, cidade, dtInicial, dtFinal,
@@ -80,7 +83,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 		<band height="99" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="555" height="99" uuid="9f357d72-c5be-4f57-bddc-9980ebf0b642"/>
-				<imageExpression><![CDATA["C:\\Users\\Juliane Chaerki\\workspace_jee\\tcc-saat\\Relatorios\\brasao_cc.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="154" y="26" width="343" height="32" uuid="4d505b0e-0d53-4e8a-bb69-852f73b47f0c"/>
@@ -286,7 +289,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 					<subreportParameterExpression><![CDATA[$P{idTorneio}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "resultadoAtletaTorneio.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

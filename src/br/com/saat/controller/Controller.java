@@ -1,5 +1,6 @@
 package br.com.saat.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -266,8 +267,12 @@ public class Controller extends HttpServlet {
 					//URL jasperURL = new URL(host+jasper);
 					URL jasperURL = getServletContext().getResource("/relatorios/resultadoTorneio.jasper");
 					HashMap parms = new HashMap();
+					String strSubReport = getServletContext().getRealPath("/relatorios/resultadoAtletaTorneio.jasper").toString();
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 					
 					parms.put("idTorneio", idTorneio);
+					parms.put("SUBREPORT_DIR", strSubReport);
+					parms.put("caminhoLogo", caminhoImg);
 					
 					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
 					
