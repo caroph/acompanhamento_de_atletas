@@ -36,9 +36,9 @@
 												<th>Nome</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>
-<%-- 												<c:if test="${sessionScope.usuarioLogado.perfil == 6}"> --%>
-<!-- 													<th></th> -->
-<%-- 												</c:if> --%>
+												<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
+													<th></th>
+												</c:if>
 <!-- 												<th></th> -->
 <!-- 												<th></th> -->
 											</tr>
@@ -49,13 +49,13 @@
 													<td><c:out value='${atleta.nome}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="center">
-														<a class="btn btn-primary" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
+														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 													</td>
-<%-- 													<c:if test="${sessionScope.usuarioLogado.perfil == 6}"> --%>
-<!-- 														<td align="center"> -->
-<!-- 															<a class="btn btn-primary">Avaliação Física</a> -->
-<!-- 														</td>														 -->
-<%-- 													</c:if> --%>
+													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
+														<td align="center">
+															<a class="btn btn-primary" href="">Avaliação Física</a>
+														</td>														
+													</c:if>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->
 <!-- 													</td> -->

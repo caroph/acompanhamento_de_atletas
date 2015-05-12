@@ -28,6 +28,18 @@
 				<li><a class="" href="TecnicoController?action=jspChamada">Chamada</a></li>
 			</ul>
 		</li>
+		<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle">
+					<i class="fa fa-user"></i>
+					<span class="hidden-xs">Avaliação Física</span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="" href="">Categoria</a></li>
+					<li><a class="" href="">Atividade</a></li>
+				</ul>
+			</li>
+		</c:if>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-sort-numeric-asc"></i>
@@ -42,37 +54,6 @@
 		</li>	
 	</ul>
 </div>
-<!-- 		<li> -->
-<!-- 			<a href="TecnicoQuadra.jsp"> -->
-<!-- 				<i class="fa fa-group"></i> -->
-<!-- 				<span class="hidden-xs">Chamada</span> -->
-<!-- 			</a> -->
-<!-- 			<ul class="dropdown-menu"> -->
-<!-- 				<li><a class="ajax-link" href="SecretariaNovoResponsavel.jsp">Novo</a></li> -->
-<!-- 				<li><a class="ajax-link" href="SecretariaResponsavel.jsp">Buscar</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</li>				 -->
-<%-- 			<c:if test="${sessionScope.usuarioLogado.perfil == 6"> --%>
-<!-- 		<li class="dropdown"> -->
-<!-- 			<a href="#" class="dropdown-toggle"> -->
-<!-- 				<i class="fa fa-user"></i> -->
-<!-- 				<span class="hidden-xs">Avaliação Física</span> -->
-<!-- 			</a> -->
-<!-- 			<ul class="dropdown-menu"> -->
-<!-- 				<li><a class="ajax-link" href="TecnicoAvaListaCategoria.jsp">Categoria</a></li> -->
-<!-- 				<li><a class="ajax-link" href="TecnicoAvaListaAtividade.jsp">Atividade</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</li> -->
-<!-- 		<li class="dropdown"> -->
-<!-- 			<a href="#" class="dropdown-toggle"> -->
-<!-- 				<i class="fa fa-user"></i> -->
-<!-- 				<span class="hidden-xs">Torneios</span> -->
-<!-- 			</a> -->
-<!-- 			<ul class="dropdown-menu"> -->
-<!-- 				<li><a class="ajax-link" href="TecnicoNovoTorneio.jsp">Novo</a></li> -->
-<!-- 				<li><a class="ajax-link" href="TecnicoTorneio.jsp">Buscar</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</li> -->
 
 
 		
