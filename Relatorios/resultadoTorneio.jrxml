@@ -18,12 +18,12 @@ dscNaipe, dscCatTorneio, dscTpTorneio, dscGpTorneio,
 descricao, inscritosGeral, inscritosClube, a.nome as atletaDestaque, motivoDestaque,
 fotografo, encaminhamentoMkt, u.nome as usuCriacao
 FROM torneio t
-INNER JOIN naipe n ON t.idNaipe = n.idNaipe
-INNER JOIN catTorneio c ON t.idCatTorneio = c.idCatTorneio
-INNER JOIN tpTorneio tp ON t.idTpTorneio = tp.idTpTorneio
-INNER JOIN gpTorneio g ON t.idGpTorneio = g.idGpTorneio
-INNER JOIN atleta a ON t.idDestaque = a.idAtleta
-INNER JOIN usuario u ON t.idUsuCriacao = u.idUsuario
+LEFT JOIN naipe n ON t.idNaipe = n.idNaipe
+LEFT JOIN catTorneio c ON t.idCatTorneio = c.idCatTorneio
+LEFT JOIN tpTorneio tp ON t.idTpTorneio = tp.idTpTorneio
+LEFT JOIN gpTorneio g ON t.idGpTorneio = g.idGpTorneio
+LEFT JOIN atleta a ON t.idDestaque = a.idAtleta
+LEFT JOIN usuario u ON t.idUsuCriacao = u.idUsuario
 WHERE idTorneio = $P{idTorneio}]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">

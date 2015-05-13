@@ -9,8 +9,8 @@ import java.util.List;
 
 import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
+import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.Torneio;
 
 import com.mysql.jdbc.Statement;
 

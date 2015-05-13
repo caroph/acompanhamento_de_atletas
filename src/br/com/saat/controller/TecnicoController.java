@@ -1,16 +1,12 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
@@ -31,11 +26,10 @@ import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
-import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.PresencaChamada;
+import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.CatTorneioNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;

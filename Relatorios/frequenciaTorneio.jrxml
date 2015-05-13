@@ -9,9 +9,9 @@
 	<queryString>
 		<![CDATA[SELECT t.idTorneio as idTorneio, a.nome as atleta, t.nome as torneio, colocacao, dtInicial, dtFinal
 FROM atletaTorneio at
-INNER JOIN atleta a ON at.idAtleta = a.idAtleta
-INNER JOIN torneio t ON at.idTorneio = t.idTorneio
-INNER JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
+LEFT JOIN atleta a ON at.idAtleta = a.idAtleta
+LEFT JOIN torneio t ON at.idTorneio = t.idTorneio
+LEFT JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
 WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}]]>
 	</queryString>
 	<field name="idTorneio" class="java.lang.Integer">

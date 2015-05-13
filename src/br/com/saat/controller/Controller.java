@@ -1,6 +1,5 @@
 package br.com.saat.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -25,20 +24,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.jasperreports.engine.JasperRunManager;
-
-import com.google.gson.Gson;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
-import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
+import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.CatTorneioNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;
@@ -53,6 +47,8 @@ import br.com.saat.model.negocio.PresencaChamadaNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
+
+import com.google.gson.Gson;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {

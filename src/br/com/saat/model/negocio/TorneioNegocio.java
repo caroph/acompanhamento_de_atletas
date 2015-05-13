@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.saat.model.Atleta;
+import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.Torneio;
 
 public class TorneioNegocio {
 	

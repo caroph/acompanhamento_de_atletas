@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.CalendarDTO;
+import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.Torneio;
 import br.com.saat.model.negocio.TorneioNegocio;
 
 import com.google.gson.Gson;

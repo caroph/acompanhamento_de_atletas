@@ -1,4 +1,4 @@
-package br.com.saat.model.dao;
+package br.com.saat.model;
 
 import java.util.Date;
 
@@ -6,7 +6,6 @@ import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
 import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.TpTorneio;
-import br.com.saat.model.Atleta;
 
 public class Torneio {
 	private int idTorneio;

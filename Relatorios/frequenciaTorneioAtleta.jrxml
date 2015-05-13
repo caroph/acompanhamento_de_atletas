@@ -9,12 +9,12 @@
 	<queryString>
 		<![CDATA[SELECT a.nome as atleta, t.nome as torneio, cidade, estado, colocacao, dtInicial, dtFinal, dscGpTorneio, dscCatTorneio, dscTpTorneio
 FROM atletaTorneio at
-INNER JOIN atleta a ON at.idAtleta = a.idAtleta
-INNER JOIN torneio t ON at.idTorneio = t.idTorneio
-INNER JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
-INNER JOIN tpTorneio tt ON t.idTpTorneio = tt.idTpTorneio
-INNER JOIN gpTorneio g ON t.idGpTorneio = g.idGpTorneio
-INNER JOIN catTorneio c ON t.idCatTorneio = c.idCatTorneio
+LEFT JOIN atleta a ON at.idAtleta = a.idAtleta
+LEFT JOIN torneio t ON at.idTorneio = t.idTorneio
+LEFT JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
+LEFT JOIN tpTorneio tt ON t.idTpTorneio = tt.idTpTorneio
+LEFT JOIN gpTorneio g ON t.idGpTorneio = g.idGpTorneio
+LEFT JOIN catTorneio c ON t.idCatTorneio = c.idCatTorneio
 WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}
 ORDER BY a.nome, dtInicial, dtFinal]]>
 	</queryString>
