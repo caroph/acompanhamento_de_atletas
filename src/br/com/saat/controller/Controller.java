@@ -298,7 +298,7 @@ public class Controller extends HttpServlet {
 						request.setAttribute("msgAlerta", e.getMessage());
 					}
 					request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
-					retorno = String.format("%s/RelatorioRelResultTorneio.jsp", Constants.VIEW);
+					retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
 				}
 			} else{
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
