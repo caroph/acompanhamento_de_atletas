@@ -170,18 +170,18 @@ ORDER BY dscTpTorneio, a.nome, dtInicial, dtFinal]]>
 				<text><![CDATA[Colocação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="408" y="2" width="72" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
+				<reportElement x="397" y="2" width="83" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dt Inicial]]></text>
+				<text><![CDATA[Data Inicial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="2" width="56" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
+				<reportElement x="480" y="2" width="75" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dt Final]]></text>
+				<text><![CDATA[Data Final]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="6" y="2" width="34" height="18" uuid="d32b19e1-d67b-4686-8615-9c157d73418a"/>

@@ -88,11 +88,11 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 	<title>
 		<band height="128" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="116" uuid="54dbbc98-9fae-4164-acd5-cbe29715ee72"/>
+				<reportElement x="0" y="0" width="802" height="116" uuid="54dbbc98-9fae-4164-acd5-cbe29715ee72"/>
 				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="132" y="33" width="384" height="76" uuid="57239866-99d4-4263-9831-1c0d0fd3c618"/>
+				<reportElement x="132" y="33" width="638" height="76" uuid="57239866-99d4-4263-9831-1c0d0fd3c618"/>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
@@ -149,18 +149,18 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 				<text><![CDATA[Colocação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="674" y="2" width="72" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
+				<reportElement x="662" y="2" width="84" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dt Inicial]]></text>
+				<text><![CDATA[Data Inicial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="746" y="2" width="56" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
+				<reportElement x="746" y="2" width="74" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dt Final]]></text>
+				<text><![CDATA[Data Final]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="2" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
