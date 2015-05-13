@@ -31,12 +31,11 @@
 		<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle">
-					<i class="fa fa-user"></i>
+					<i class="fa fa-exchange"></i>
 					<span class="hidden-xs">Avaliação Física</span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a class="" href="">Categoria</a></li>
-					<li><a class="" href="">Atividade</a></li>
+					<li><a class="" href="AvaliacaoFisController?action=jspAtividade">Atividades</a></li>
 				</ul>
 			</li>
 		</c:if>
