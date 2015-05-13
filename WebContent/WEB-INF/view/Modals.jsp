@@ -159,4 +159,45 @@
 		</div>
 	</div>
 </div>
+<!-- Incluir Observação -->
+<div class="modal fade bs-example-modal-sm" id="incluirObservacao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h4 class="modal-title" id="myModalLabel">Incluir Observação</h4>
+		</div>
+    	<div class="modal-body">
+	        <form action="Controller?action=salvarObservacao" method="POST">
+	        	<div class="form-group">
+	        		<label for="message-text" class="control-label">Data de Validade:</label>
+	        		<label class="radio-inline">
+	        			<input type="date" class="form-control" name="dtValidade" id="dtValidade"/>
+        			</label>	        		
+	        	</div>
+	        	<div>    
+		        	<label for="message-text" class="control-label" style="padding-right:15px;">Gravidade da situação:</label>
+					<label><input type="radio" value="1" name="optGravidade"><span style="padding: 0 10px 0 5px;">Baixa</span></label>
+					<label><input type="radio" value="2" name="optGravidade"><span style="padding: 0 10px 0 5px;">Moderada</span></label>
+					<label><input type="radio" value="3" name="optGravidade"><span style="padding: 0 10px 0 5px;">Alta</span></label>
+				</div>
+	        	<div class="form-group">    
+		        	<label for="message-text" class="control-label" style="padding-right:15px;">Compartilhar com:</label>
+					<label><input type="radio" value="1" name="optCompartilhar"><span style="padding: 0 10px 0 5px;">Técnico</span></label>
+					<label><input type="radio" value="2" name="optCompartilhar"><span style="padding: 0 10px 0 5px;">Todos</span></label>
+				</div>
+		        <div class="form-group">
+			        <label for="message-text" class="control-label">Observação:</label>
+			        <textarea class="form-control" style="max-width: 568px; height: 325px;" name="observacao" id="message-text"></textarea>
+				</div>   
+				<input type="hidden" name="idAtleta" id="idAtletaObs" />
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Incluir</button>
+					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+	        </form>
+	    </div>
+	  </div>
+	</div>
+</div>
 

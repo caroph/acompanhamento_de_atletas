@@ -31,6 +31,7 @@ import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
+import br.com.saat.model.Observacao;
 import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
@@ -43,6 +44,7 @@ import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
+import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
@@ -430,9 +432,34 @@ public class Controller extends HttpServlet {
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}else if("salvarObservacao".equals(action)){
+			String msgErro = "";
+			String atleta = request.getParameter("idAtleta");
+			String dtValidade = request.getParameter("dtValidade");
+			String optGravidade = request.getParameter("optGravidade");
+			String optCompartilhar = request.getParameter("optCompartilhar");
+			String obs = request.getParameter("observacao");
+			
+			try{
+				int idAtleta = Integer.parseInt(atleta);
+				int gravidade = Integer.parseInt(optGravidade);
+				int compartilhar = Integer.parseInt(optCompartilhar);
+				Date dt = new Date();
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+				dt = formatter.parse(dtValidade);
+				Atleta a = new Atleta();
+				a.setIdPessoa(idAtleta);
+				
+				Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
+				ObservacaoNegocio negocio = new ObservacaoNegocio();
+				int idObservacao = negocio.salvarObservacao(observacao);
+			}catch(Exception ex){
+				msgErro = ex.getMessage();
+			}
+			
+			request.setAttribute("msgErro", msgErro);
 		}
-		
-		
+				
 		if(retorno != null){
 			requestDispatcher = getServletContext().getRequestDispatcher(retorno);
 			requestDispatcher.forward(request, response);

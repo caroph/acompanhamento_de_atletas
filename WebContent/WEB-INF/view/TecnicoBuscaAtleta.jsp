@@ -36,10 +36,11 @@
 												<th>Nome</th>
 												<th style="text-align: center;">Equipe</th>
 												<th></th>
+												<th></th>
 												<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 													<th></th>
 												</c:if>
-<!-- 												<th></th> -->
+
 <!-- 												<th></th> -->
 											</tr>
 										</thead>
@@ -51,14 +52,15 @@
 													<td align="center">
 														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
 													</td>
+													<td align="center">
+														<a class="btn btn-primary" onClick="abrirModalObservacao('${atleta.idPessoa}')">Observação</a>
+													</td>
 													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 														<td align="center">
 															<a class="btn btn-primary" href="">Avaliação Física</a>
 														</td>														
 													</c:if>
-<!-- 													<td align="center"> -->
-<!-- 														<a class="btn btn-primary">Observação</a> -->
-<!-- 													</td> -->
+
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Desempenho em Torneios</a> -->
 <!-- 													</td> -->

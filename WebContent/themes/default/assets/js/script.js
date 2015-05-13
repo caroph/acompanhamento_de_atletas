@@ -403,6 +403,12 @@ function BuscarPresenca(){
 	document.forms[0].submit();
 }
 
+function abrirModalObservacao(idAtleta){
+	$("#incluirObservacao").modal();
+	var atleta = $("#idAtletaObs");
+	atleta.val(idAtleta);
+}
+
 // $('#selectInicio').on('change', function () {
 // var url = this.value.toString();
 // $(window.document.location).attr('href',url);
