@@ -8,12 +8,12 @@ import br.com.saat.model.dao.CategoriaAvaliacaoDAO;
 
 public class CategoriaAvaliacaoNegocio {
 	
-	public List<Object> validaDados(CategoriaAvaliacao categoria) {
+	public List<Object> validaDados(CategoriaAvaliacao categoria, List<Integer> tiposSelecionados) {
 		List<Object> lista = new ArrayList<Object>();
 
-		if (categoria.getIdTipoCat() == 0) {
+		if (tiposSelecionados.isEmpty()) {
 			lista.add(false);
-			lista.add("Selecione corretamente o campo 'Tipo' !");
+			lista.add("Selecione ao menor um 'Tipo' de categoria !");
 		} else if(categoria.getNmCategoria() == null || categoria.getNmCategoria() == ""){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Nome' !");
@@ -35,12 +35,16 @@ public class CategoriaAvaliacaoNegocio {
 		return lista;
 	}
 
-	public boolean inserir(CategoriaAvaliacao categoria) throws Exception {
-		boolean retorno = false;
+	public boolean inserir(CategoriaAvaliacao categoria, List<Integer> tiposSelecionados) throws Exception {
+		boolean retorno = true;
 		try {
 			CategoriaAvaliacaoDAO dao = new CategoriaAvaliacaoDAO();
-			if (dao.inserir(categoria)) {
-				retorno = true;
+			for (Integer tipo : tiposSelecionados) {
+				categoria.setIdTipoCat(tipo);
+				if (!dao.inserir(categoria)) {
+					retorno = false;
+					break;
+				}
 			}
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao inserir a categoria.");

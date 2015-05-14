@@ -45,7 +45,7 @@
 										<tbody>
 											<c:forEach var="categoria" items="${listaCategorias}">
 												<tr>
-													<td><c:out value='${categoria.nome}' /></td>
+													<td><c:out value='${categoria.nmCategoria}' /></td>
 													<td><c:out value='${categoria.getNomeTipo()}' /></td>
 													<td><c:out value='${categoria.idadeMinima}' /></td>
 													<td align="center"><c:out value='${categoria.idadeMaxima}' /></td>
@@ -81,25 +81,35 @@
 				
 					<div  class="form-group">
 						<div class="col-sm-12">
-							<label for="capacidade" class=" control-label">Capacidade:</label>
-							<input type="text" class="form-control" id="capacidade" name="capacidade" required/>
+							<label for="nome" class=" control-label">Nome:</label>
+							<input type="text" class="form-control" id="nome" name="nome" required/>
+						</div>
+					</div>
+					<div  class="form-group">
+						<div class="col-md-12">
+							<label for="tipo" class=" control-label">Tipo:</label></br>
+							<c:forEach var="tipo" items="${listaTipo}">
+								<label style="padding: 5px 22px 5px 0;"><input type="checkbox" name="<c:out value='${tipo.valor}'/>" value="true"> <c:out value="${tipo.nome}" /></label>
+                            </c:forEach>
 						</div>
 					</div>
 					<div  class="form-group">
 						<div class="col-sm-12">
-							<label for="teste" class=" control-label">Teste:</label>
-							<input type="text" class="form-control" id="teste" name="teste" required/>
+							<label for="idadeMin" class=" control-label">Idade mínima:</label>
+							<input type="number" class="form-control" id="idadeMin" name="idadeMin" required/>
 						</div>
 					</div>
-					<div  class="form-group" style="padding-bottom: 28%;">
+					<div  class="form-group">
+						<div class="col-sm-12">
+							<label for="idadeMax" class=" control-label">Idade máxima:</label>
+							<input type="number" class="form-control" id="idadeMax" name="idadeMax" required/>
+						</div>
+					</div>
+					<div  class="form-group" style="padding-bottom: 46%;">
 						<div class="col-md-12">
-							<label for="unidade">Unidade de medida:</label>
-						 	<select id="unidade" name="unidade" required>
-								<option value="">Selecione</option>
-								<c:forEach var="tipo" items="${listaTipo}">
-									<option value="<c:out value='${tipo.valor}'/>"><c:out value="${tipo.nome}" /></option>
-	                            </c:forEach>
-							</select>
+							<label for="sexo" class=" control-label">Sexo:</label></br>
+						 	<label><input type="radio" value="Feminino" name="sexo" checked="checked"><span style="padding: 0 20px 0 5px; margin-left: 3px;">Feminino</span></label>
+							<label><input type="radio" value="Masculino" name="sexo"><span style="padding: 0 10px 0 5px; margin-left: 3px;">Masculino</span></label>
 						</div>
 					</div>
 					<div class="modal-footer">

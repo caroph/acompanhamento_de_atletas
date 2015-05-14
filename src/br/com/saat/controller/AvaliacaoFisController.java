@@ -192,33 +192,52 @@ public class AvaliacaoFisController extends Controller {
 			
 		} else if ("novaCategoria".equals(action)) {
 			boolean exception = false;
-			int idTipo = 0;
+			int idadeMin = 0;
+			int idadeMax = 0;
 			
 			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
 			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
 			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
-
+			List<Integer> tiposSelecionados = new ArrayList<Integer>();
+			
+			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
+			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
+			
 			try {
-				idTipo = Integer.parseInt(request.getParameter("tipo"));
+				idadeMin = Integer.parseInt(request.getParameter("idadeMin"));
 			} catch (Exception ex) {
-				request.setAttribute("msgErro", "Favor selecionar corretamente a 'Tipo'!");
+				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade mínima' !");
+				exception = true;
+			}
+			
+			try {
+				idadeMax = Integer.parseInt(request.getParameter("idadeMax"));
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade máxima' !");
 				exception = true;
 			}
 
 			if (!exception) {
-				categoria.setIdTipoCat(idTipo);
 				categoria.setNmCategoria(request.getParameter("nome"));
-				categoria.setIdadeMinima(Float.parseFloat(request.getParameter("idadeMinima")));
-				categoria.setIdadeMaxima(Float.parseFloat(request.getParameter("idadeMaxima")));
+				categoria.setIdadeMinima(idadeMin);
+				categoria.setIdadeMaxima(idadeMax);
 				categoria.setSexo(request.getParameter("sexo"));
+				
+				boolean tipo;
+				for (TipoCat tipoCat : listaTipo) {
+					tipo = Boolean.parseBoolean(request.getParameter(String.valueOf(tipoCat.getValor())));
+					if (tipo) {
+						tiposSelecionados.add(tipoCat.getValor());
+					}
+				}
 					
-				List<Object> listaValidacao = negocio.validaDados(categoria);
+				List<Object> listaValidacao = negocio.validaDados(categoria, tiposSelecionados);
 				boolean valida = (boolean) listaValidacao.get(0);
 				if (!valida) {
 					request.setAttribute("msgErro", (String) listaValidacao.get(1));
 				} else {
 					try {
-						if (negocio.inserir(categoria)) {
+						if (negocio.inserir(categoria, tiposSelecionados)) {
 							request.setAttribute("msgSucesso", "Categoria salva com sucesso!");
 						} else {
 							request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
@@ -237,9 +256,6 @@ public class AvaliacaoFisController extends Controller {
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
 			}
-			
-			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
-			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
 			
 			request.setAttribute("listaTipo", listaTipo);
 			request.setAttribute("listaCategorias", lista);

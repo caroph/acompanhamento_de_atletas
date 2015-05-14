@@ -36,8 +36,8 @@ public class CategoriaAvaliacaoDAO {
 			categoria.setIdCategoriaAvaliacao(rs.getInt(1));
 			categoria.setIdTipoCat(rs.getInt(2));
 			categoria.setNmCategoria(rs.getString(3));
-			categoria.setIdadeMinima(rs.getFloat(4));
-			categoria.setIdadeMaxima(rs.getFloat(5));
+			categoria.setIdadeMinima(rs.getInt(4));
+			categoria.setIdadeMaxima(rs.getInt(5));
 			categoria.setSexo(rs.getString(6));
 			lista.add(categoria);
 		}
@@ -68,8 +68,8 @@ public class CategoriaAvaliacaoDAO {
 		
 		stmtScript.setInt(1, categoria.getIdTipoCat());
 		stmtScript.setString(2, categoria.getNmCategoria());
-		stmtScript.setFloat(3, categoria.getIdadeMinima());
-		stmtScript.setFloat(4, categoria.getIdadeMaxima());
+		stmtScript.setInt(3, categoria.getIdadeMinima());
+		stmtScript.setInt(4, categoria.getIdadeMaxima());
 		stmtScript.setString(5, categoria.getSexo());
 		
 		if(stmtScript.executeUpdate() > 0){

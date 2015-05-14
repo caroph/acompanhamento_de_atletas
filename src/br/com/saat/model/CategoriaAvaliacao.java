@@ -1,14 +1,13 @@
 package br.com.saat.model;
 
 import br.com.saat.enumeradores.TipoCat;
-import br.com.saat.enumeradores.UnidadeDeMedida;
 
 public class CategoriaAvaliacao {
 	private int idCategoriaAvaliacao;
 	private int idTipoCat;
 	private String nmCategoria;
-	private float idadeMinima;
-	private float idadeMaxima;
+	private int idadeMinima;
+	private int idadeMaxima;
 	private String sexo;
 	public int getIdCategoriaAvaliacao() {
 		return idCategoriaAvaliacao;
@@ -28,16 +27,16 @@ public class CategoriaAvaliacao {
 	public void setNmCategoria(String nmCategoria) {
 		this.nmCategoria = nmCategoria;
 	}
-	public float getIdadeMinima() {
+	public int getIdadeMinima() {
 		return idadeMinima;
 	}
-	public void setIdadeMinima(float idadeMinima) {
+	public void setIdadeMinima(int idadeMinima) {
 		this.idadeMinima = idadeMinima;
 	}
-	public float getIdadeMaxima() {
+	public int getIdadeMaxima() {
 		return idadeMaxima;
 	}
-	public void setIdadeMaxima(float idadeMaxima) {
+	public void setIdadeMaxima(int idadeMaxima) {
 		this.idadeMaxima = idadeMaxima;
 	}
 	public String getSexo() {
