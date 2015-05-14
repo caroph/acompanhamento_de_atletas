@@ -14,10 +14,14 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.TipoCat;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
+import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
+import br.com.saat.model.negocio.CategoriaAvaliacaoNegocio;
+import br.com.saat.model.negocio.TipoCatNegocio;
 import br.com.saat.model.negocio.UnidadeDeMedidaNegocio;
 
 /**
@@ -165,6 +169,114 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaUnidades", listaUnidades);
 			request.setAttribute("listaAtividades", lista);
 			retorno = String.format("%s/TecnicoBuscaAtividade.jsp", Constants.VIEW);
+
+		} else if ("jspCategoria".equals(action)) {
+			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
+			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
+			try{
+				lista = negocio.buscarCategorias();
+				if (lista.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
+			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
+			
+			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaCategorias", lista);
+			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
+			servletRetorno = retorno;
+			
+		} else if ("novaCategoria".equals(action)) {
+			boolean exception = false;
+			int idTipo = 0;
+			
+			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
+			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
+
+			try {
+				idTipo = Integer.parseInt(request.getParameter("tipo"));
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", "Favor selecionar corretamente a 'Tipo'!");
+				exception = true;
+			}
+
+			if (!exception) {
+				categoria.setIdTipoCat(idTipo);
+				categoria.setNmCategoria(request.getParameter("nome"));
+				categoria.setIdadeMinima(Float.parseFloat(request.getParameter("idadeMinima")));
+				categoria.setIdadeMaxima(Float.parseFloat(request.getParameter("idadeMaxima")));
+				categoria.setSexo(request.getParameter("sexo"));
+					
+				List<Object> listaValidacao = negocio.validaDados(categoria);
+				boolean valida = (boolean) listaValidacao.get(0);
+				if (!valida) {
+					request.setAttribute("msgErro", (String) listaValidacao.get(1));
+				} else {
+					try {
+						if (negocio.inserir(categoria)) {
+							request.setAttribute("msgSucesso", "Categoria salva com sucesso!");
+						} else {
+							request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+						}
+					} catch (Exception ex) {
+						request.setAttribute("msgErro", ex.getMessage());
+					}
+				}
+			}
+
+			try{
+				lista = negocio.buscarCategorias();
+				if (lista.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
+			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
+			
+			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaCategorias", lista);
+			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
+			
+		} else if ("desativarCategoria".equals(action)) {
+			
+			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
+			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
+			
+			try {
+				categoria.setIdCategoriaAvaliacao(Integer.parseInt(request.getParameter("idCategoria")));
+				if (negocio.desativar(categoria)) {
+					request.setAttribute("msgSucesso", "Categoria excluída com sucesso!");
+				} else {
+					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+				}
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			try{
+				lista = negocio.buscarCategorias();
+				if (lista.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
+			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
+			
+			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaCategorias", lista);
+			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 
 		} else{
 		//Página Principal

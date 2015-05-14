@@ -62,6 +62,4 @@ public class AtividadeAvaliacaoNegocio {
 		return retorno;
 	}
 	
-	
-
 }
