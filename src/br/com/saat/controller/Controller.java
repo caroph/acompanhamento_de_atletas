@@ -476,7 +476,20 @@ public class Controller extends HttpServlet {
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
 		}else if("jspObservacoes".equals(action)){
+			String msgErro = "";
+			ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+			List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
+			List<Observacao> listaMinhasObs = new ArrayList<Observacao>();
+			try {
+				listaObsAtivas = obsNegocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
+				listaMinhasObs = obsNegocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
+			} catch (Exception e) {
+				msgErro = e.getMessage();
+			}
 			
+			request.setAttribute("msgErro", msgErro);
+			request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
+			request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
 			retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
 		}
 				

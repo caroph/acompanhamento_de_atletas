@@ -1,6 +1,10 @@
 package br.com.saat.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import br.com.saat.enumeradores.Gravidade;
 
 public class Observacao {
 	public int idObservacao;
@@ -10,6 +14,7 @@ public class Observacao {
 	public int gravidade;
 	public Date dtValidade;
 	public Date dtGeracao;
+	public int flCadastroAtivo;
 	
 	public Observacao(){}
 	
@@ -63,5 +68,32 @@ public class Observacao {
 	}
 	public void setDtGeracao(Date dtGeracao) {
 		this.dtGeracao = dtGeracao;
-	}	
+	}		
+	public int getFlCadastroAtivo() {
+		return flCadastroAtivo;
+	}
+	public void setFlCadastroAtivo(int flCadastroAtivo) {
+		this.flCadastroAtivo = flCadastroAtivo;
+	}
+
+	public String getNomeGravidade(){
+		switch(this.gravidade){
+			case 1: return Gravidade.Baixa.getNome();
+			case 2: return Gravidade.Moderada.getNome();
+			case 3: return Gravidade.Alta.getNome();
+			default: return "";
+		}
+	}
+	
+	public String getDisplayDataValidade(){
+		DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
+		String dt = formatter.format(this.dtValidade);
+		return dt;
+	}
+	
+	public String getDisplayDataGeracao(){
+		DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
+		String dt = formatter.format(this.dtGeracao);
+		return dt;
+	}
 }

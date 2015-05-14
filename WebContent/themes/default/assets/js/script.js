@@ -409,6 +409,20 @@ function abrirModalObservacao(idAtleta){
 	atleta.val(idAtleta);
 }
 
+function visualizarObservacao(atleta, grav, obs, val, usu, usuPerfil){
+	$("#visualizarObservacao").modal();
+	var html = "";
+	html += "<b>Atleta: </b>" + atleta;
+	html += "<br/><br/><b>Gravidade: </b>" + grav;
+	html += "<br/><b>Observa\u00e7\u00e3o: </b>" + obs;
+	html += "<br/><b>Data validade: </b>" + val;
+	if(usu != null && usu !== ""){
+		html += "<br/><br/><b>Registrado por:</b> <br/>";
+		html += usu + " - " + usuPerfil;
+	}
+	$("#conteudoModalObs").html(html);
+}
+
 // $('#selectInicio').on('change', function () {
 // var url = this.value.toString();
 // $(window.document.location).attr('href',url);

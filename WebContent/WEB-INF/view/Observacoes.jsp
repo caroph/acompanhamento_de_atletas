@@ -28,7 +28,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-bell"></i> <span>Observações</span>
+										<i class="fa fa-bell"></i> <span>Observações ativas</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -38,8 +38,84 @@
 								</div>
 								<div class="box-content">
 									<div class="row clearfix"> 
-										<div class="col-md-12">
-										</div>
+										<table
+											class="table table-bordered table-striped table-hover table-heading table-datatable"
+											id="datatable">
+											<thead>
+												<tr>
+													<th>Atleta</th>
+													<th style="text-align: center;">Gravidade</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="observacao" items="${listaObservacoesAtivas}">
+													<tr>
+														<td><c:out value='${observacao.atleta.nome}' /></td>
+														<td><c:out value='${observacao.getNomeGravidade()}' /></td>
+														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(
+														'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
+														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div> 
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header">
+									<div class="box-name">
+										<i class="fa fa-bell"></i> <span>Minhas observações</span>
+									</div>
+									<div class="box-icons">
+										<a class="expand-link"> <i class="fa fa-expand"></i>
+										</a>
+									</div>
+									<div class="no-move"></div>
+								</div>
+								<div class="box-content">
+									<div class="row clearfix"> 
+										<table
+											class="table table-bordered table-striped table-hover table-heading table-datatable"
+											id="datatable">
+											<thead>
+												<tr>
+													<th>Atleta</th>
+													<th style="text-align: center;">Gravidade</th>
+													<th>Data Inserção</th>
+													<th></th>
+													<th></th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="observacao" items="${listaObservacoesMinhas}">
+													<tr>
+														<td><c:out value='${observacao.atleta.nome}' /></td>
+														<td align="center"><c:out value='${observacao.getNomeGravidade()}' /></td>
+														<td><c:out value='${observacao.getDisplayDataGeracao()}' /></td>
+														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(
+														'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
+														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+														<td align="center">
+															<c:if test="${observacao.flCadastroAtivo == 1}">
+																<a class="btn btn-primary" href="#">Editar</a>
+															</c:if>
+														</td>
+														<td align="center">
+															<c:if test="${observacao.flCadastroAtivo == 1}">
+																<a class="btn btn-danger" href="#">Desativar</a>
+															</c:if>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
 								</div> 
 							</div>
