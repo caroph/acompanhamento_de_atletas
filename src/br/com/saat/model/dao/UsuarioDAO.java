@@ -237,4 +237,21 @@ public class UsuarioDAO {
 		}		
 		return false;
 	}
+	
+	public List<Integer> buscarIdUsuarios(int compartilhar) throws SQLException {
+		List<Integer> lista = new ArrayList<Integer>();
+		if(compartilhar == 1){
+			stmtScript = con.prepareStatement("SELECT idUsuario FROM usuario WHERE (perfil = 5 OR perfil = 6) "
+				+ "AND flCadastroAtivo = 1");
+		}else{
+			stmtScript = con.prepareStatement("SELECT idUsuario FROM usuario WHERE perfil != 1 "
+					+ "AND flCadastroAtivo = 1");
+		}
+			
+		ResultSet rs = stmtScript.executeQuery();
+		while(rs.next()){
+			lista.add(rs.getInt(1));
+		}
+		return lista;
+	}
 }

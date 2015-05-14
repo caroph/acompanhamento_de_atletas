@@ -14,4 +14,13 @@ public class ObservacaoNegocio {
 			throw new Exception("Erro ao salvar observação!");
 		}
 	}
+
+	public boolean salvarVisualizacaoObservacao(int idObservacao, int idUsuario) throws Exception{
+		try{
+			ObservacaoDAO dao = new ObservacaoDAO();
+			return dao.salvarVisualizacaoObservacao(idObservacao, idUsuario);
+		}catch(Exception ex){
+			throw new Exception("Erro ao salvar observação!");
+		}
+	}
 }

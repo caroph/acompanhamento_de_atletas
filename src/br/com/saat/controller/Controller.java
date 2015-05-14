@@ -433,31 +433,51 @@ public class Controller extends HttpServlet {
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
 		}else if("salvarObservacao".equals(action)){
-			String msgErro = "";
-			String atleta = request.getParameter("idAtleta");
-			String dtValidade = request.getParameter("dtValidade");
-			String optGravidade = request.getParameter("optGravidade");
-			String optCompartilhar = request.getParameter("optCompartilhar");
-			String obs = request.getParameter("observacao");
-			
-			try{
-				int idAtleta = Integer.parseInt(atleta);
-				int gravidade = Integer.parseInt(optGravidade);
-				int compartilhar = Integer.parseInt(optCompartilhar);
-				Date dt = new Date();
-				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-				dt = formatter.parse(dtValidade);
-				Atleta a = new Atleta();
-				a.setIdPessoa(idAtleta);
+			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+				String msgErro = "";
+				String msgSucesso = "";
+				String atleta = request.getParameter("idAtleta");
+				String dtValidade = request.getParameter("dtValidade");
+				String optGravidade = request.getParameter("optGravidade");
+				String optCompartilhar = request.getParameter("optCompartilhar");
+				String obs = request.getParameter("observacao");
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				
-				Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
-				ObservacaoNegocio negocio = new ObservacaoNegocio();
-				int idObservacao = negocio.salvarObservacao(observacao);
-			}catch(Exception ex){
-				msgErro = ex.getMessage();
+				try{
+					int idAtleta = Integer.parseInt(atleta);
+					int gravidade = Integer.parseInt(optGravidade);
+					int compartilhar = Integer.parseInt(optCompartilhar);
+					Date dt = new Date();
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+					dt = formatter.parse(dtValidade);
+					Atleta a = new Atleta();
+					a.setIdPessoa(idAtleta);
+					
+					Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
+					ObservacaoNegocio negocio = new ObservacaoNegocio();
+					int idObservacao = negocio.salvarObservacao(observacao);
+					
+					List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(compartilhar);
+					for (int idUsuario : usuarios) {
+						if(negocio.salvarVisualizacaoObservacao(idObservacao, idUsuario)){
+							msgSucesso = "Observação salva com sucesso!";
+						}
+					}
+					
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
+				}
+				
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("msgSucesso", msgSucesso);
+				retorno = session.getAttribute("pagina").toString();
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}else if("jspObservacoes".equals(action)){
 			
-			request.setAttribute("msgErro", msgErro);
+			retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
 		}
 				
 		if(retorno != null){

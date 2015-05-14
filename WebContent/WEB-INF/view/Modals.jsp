@@ -83,7 +83,6 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-<!-- 				<button type="button" class="btn btn-info">Incluir Observação</button> -->
 					<button type="submit" class="btn btn-primary">Salvar</button>
 					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 				</div>
@@ -172,7 +171,7 @@
 	        	<div class="form-group">
 	        		<label for="message-text" class="control-label">Data de Validade:</label>
 	        		<label class="radio-inline">
-	        			<input type="date" class="form-control" name="dtValidade" id="dtValidade"/>
+	        			<input type="date" required class="form-control" name="dtValidade" id="dtValidade"/>
         			</label>	        		
 	        	</div>
 	        	<div>    
@@ -188,7 +187,7 @@
 				</div>
 		        <div class="form-group">
 			        <label for="message-text" class="control-label">Observação:</label>
-			        <textarea class="form-control" style="max-width: 568px; height: 325px;" name="observacao" id="message-text"></textarea>
+			        <textarea class="form-control" required style="max-width: 568px; height: 325px;" name="observacao" id="message-text"></textarea>
 				</div>   
 				<input type="hidden" name="idAtleta" id="idAtletaObs" />
 				<div class="modal-footer">

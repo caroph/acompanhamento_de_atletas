@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
-import br.com.saat.model.Chamada;
+import com.mysql.jdbc.Statement;
+
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Observacao;
 
@@ -26,8 +26,7 @@ public class ObservacaoDAO {
 		int rows = 0;
 		
 		stmtScript = con.prepareStatement("INSERT INTO observacao (idAtleta, idUsuario, dsObservacao, gravidade, "
-				+ "dtValidade)"
-				+ "VALUES (?, ?, ?, ?, ?)");
+				+ "dtValidade) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		
 		stmtScript.setInt(1, observacao.getAtleta().getIdPessoa());
 		stmtScript.setInt(2, observacao.getUsuario().getIdPessoa());
@@ -38,32 +37,25 @@ public class ObservacaoDAO {
 		rows = stmtScript.executeUpdate();
 		
 		if(rows>0){
-			observacao = buscarObservacaoPorDataAtletaUsuario(new Date(), observacao.getAtleta().getIdPessoa(), 
-					observacao.getUsuario().getIdPessoa());
-			return observacao.getIdObservacao();
-		}	
-		
-		return 0;
+			ResultSet generatedKeys = stmtScript.getGeneratedKeys();
+			 if (generatedKeys.next()) {
+				 observacao.setIdObservacao(generatedKeys.getInt(1));
+			 }			
+		}			
+		return observacao.getIdObservacao();
 	}
 
-	private Observacao buscarObservacaoPorDataAtletaUsuario(Date date,
-			int idPessoa, int idPessoa2) {
-//		stmtScript = con.prepareStatement("SELECT idChamada, idUsuario, idDiaTreino, dtChamada "
-//				+ "FROM chamada WHERE idDiaTreino = ? AND dtChamada = ?");
-//		
-//		stmtScript.setInt(1, idDiaTreino);
-//		stmtScript.setDate(2, new java.sql.Date(data.getTime()));
-//		
-//		ResultSet rs = stmtScript.executeQuery();
-//		
-//		Chamada chamada = new Chamada();
-//		if(rs.next()){		
-//			chamada.setIdChamada(rs.getInt("idChamada"));
-//			chamada.setIdUsuario(rs.getInt("idUsuario"));
-//			chamada.setIdDiaTreino(rs.getInt("idDiaTreino"));
-//			chamada.setDtChamada(rs.getDate("dtChamada"));
-//		}
-//		return chamada;
-		return null;
+	public boolean salvarVisualizacaoObservacao(int idObservacao, int idUsuario) throws SQLException {
+		stmtScript = con.prepareStatement("INSERT INTO visualizacaoobservacao (idObservacao, idUsuario) "
+				+ "VALUES (?, ?)");
+		stmtScript.setInt(1, idObservacao);
+		stmtScript.setInt(2, idUsuario);
+		
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
 	}
 }

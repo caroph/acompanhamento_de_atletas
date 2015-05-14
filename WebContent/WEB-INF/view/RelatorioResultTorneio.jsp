@@ -12,7 +12,7 @@
 			<c:if test="${sessionScope.usuarioLogado.perfil == 1}">
 				<%@include file='/layout/navigationSecretaria.jsp'%>
 			</c:if>
-			<c:if test="${sessionScope.usuarioLogado.perfil == 5}">
+			<c:if test="${sessionScope.usuarioLogado.perfil == 5 || sessionScope.usuarioLogado.perfil == 6}">
 				<%@include file='/layout/navigationTecnico.jsp'%>
 			</c:if>
 			<!--Start Content-->

@@ -221,4 +221,13 @@ public class UsuarioNegocio {
 		}
 		return false;
 	}
+
+	public List<Integer> buscarIdUsuarios(int compartilhar) throws Exception {
+		try {
+			UsuarioDAO dao = new UsuarioDAO();
+			return dao.buscarIdUsuarios(compartilhar);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os usuario para compartilhamento!");
+		}
+	}
 }

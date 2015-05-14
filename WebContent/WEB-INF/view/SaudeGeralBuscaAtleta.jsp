@@ -39,6 +39,7 @@
 												<th></th>
 												<th></th>
 												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -58,9 +59,9 @@
 													<td align="center">
 														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}">Histórico</a>												
 													</td>
-<!-- 													<td align="center"> -->
-<!-- 														<a class="btn btn-primary">Observação</a> -->
-<!-- 													</td> -->
+													<td align="center">
+														<a class="btn btn-primary" onClick="abrirModalObservacao('${atleta.idPessoa}')">Observação</a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

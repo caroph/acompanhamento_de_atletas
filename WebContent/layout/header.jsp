@@ -14,12 +14,14 @@
 					</div>
 					<div class="col-xs-4 col-sm-8 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
-<!-- 							<li> -->
-<!-- 								<a href="#" class="modal-link"> -->
-<!-- 									<i class="fa fa-bell"></i> -->
-<!-- 									<span class="badge">7</span> --> 
-<!-- 								</a> -->
-<!-- 							</li> -->
+							<c:if test="${sessionScope.usuarioLogado.perfil != 1}">
+								<li>
+									<a href="Controller?action=jspObservacoes" class="modal-link">
+										<i class="fa fa-bell"></i>
+	<!-- 									<span class="badge">7</span>  -->
+									</a>
+								</li>
+							</c:if>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 									<i class="fa fa-angle-down pull-right"></i>
