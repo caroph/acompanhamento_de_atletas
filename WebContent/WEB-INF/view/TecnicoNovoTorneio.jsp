@@ -149,7 +149,7 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
-												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
+												<a href="TecnicoController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
 												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
 												<button type="submit" class="btn btn-primary" >Salvar</button>
 											</div>

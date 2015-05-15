@@ -294,6 +294,37 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 
+		} else if ("jspDadosRef".equals(action)) {
+			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			
+		} else if ("jspNovoDadosRef".equals(action)) {
+			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
+			AtividadeAvaliacaoNegocio negocioAti = new AtividadeAvaliacaoNegocio();
+
+			List<CategoriaAvaliacao> listaCategorias = new ArrayList<CategoriaAvaliacao>();
+			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
+			
+			try{
+				listaCategorias = negocioCat.buscarCategorias();
+				if (listaCategorias.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+				} else {
+					try{
+						listaAtividades = negocioAti.buscarAtividades();
+						if (listaAtividades.isEmpty()) {
+							request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
+						}
+					}catch(Exception ex){
+						request.setAttribute("msgErro", ex.getMessage());
+					}
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			request.setAttribute("listaCategorias", listaCategorias);
+			request.setAttribute("listaAtividades", listaAtividades);
+			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

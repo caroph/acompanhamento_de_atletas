@@ -82,7 +82,7 @@
 									<div class="row clearfix"> 
 										<table
 											class="table table-bordered table-striped table-hover table-heading table-datatable"
-											id="datatable">
+											id="datatable2">
 											<thead>
 												<tr>
 													<th>Atleta</th>
@@ -126,7 +126,8 @@
 			<!--End Content-->
 		</div>
 	</div>
-	<%@include file="/layout/footer.jsp"%>
 	<%@include file="Modals.jsp" %>
+	<%@include file="/layout/footer.jsp"%>
+	<script src="<%=Constants.JS%>/scriptTables.js"></script> 
 </body>
 </html>

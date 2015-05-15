@@ -3,6 +3,7 @@
 // Run Datables plugin and create 3 variants of settings
 function AllTables() {
 	TestTable1();
+	TestTable2();
 	LoadSelect2Script(MakeSelect2);
 }
 function MakeSelect2() {

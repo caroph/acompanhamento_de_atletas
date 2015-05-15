@@ -37,6 +37,7 @@
 				<ul class="dropdown-menu">
 					<li><a class="" href="AvaliacaoFisController?action=jspAtividade">Atividades</a></li>
 					<li><a class="" href="AvaliacaoFisController?action=jspCategoria">Categorias</a></li>
+					<li><a class="" href="AvaliacaoFisController?action=jspDadosRef">Dados de referência</a></li>
 				</ul>
 			</li>
 		</c:if>
