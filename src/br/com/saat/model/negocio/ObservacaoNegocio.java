@@ -43,4 +43,13 @@ public class ObservacaoNegocio {
 			throw new Exception("Erro ao buscar minhas observações!");
 		}
 	}
+
+	public boolean desativarObservacao(int idObservacao) throws Exception {
+		try{
+			ObservacaoDAO dao = new ObservacaoDAO();
+			return dao.desativarObservacao(idObservacao);
+		}catch(Exception ex){
+			throw new Exception("Erro ao desativar observação!");
+		}
+	}
 }

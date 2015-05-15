@@ -109,7 +109,8 @@
 														</td>
 														<td align="center">
 															<c:if test="${observacao.flCadastroAtivo == 1}">
-																<a class="btn btn-danger" href="#">Desativar</a>
+																<a class="btn btn-danger" data-confirm="Deseja realmente desativar esta observação?" 
+																href="Controller?action=desativarObservacao&idObservacao=${observacao.idObservacao}">Desativar</a>
 															</c:if>
 														</td>
 													</tr>

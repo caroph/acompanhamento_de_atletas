@@ -132,4 +132,16 @@ public class ObservacaoDAO {
 		}
 		return lista;
 	}
+
+	public boolean desativarObservacao(int idObservacao) throws SQLException {
+		stmtScript = con.prepareStatement("UPDATE observacao SET flCadastroAtivo = 0 WHERE idObservacao = ? ");
+		stmtScript.setInt(1, idObservacao);
+		
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
+	}
 }

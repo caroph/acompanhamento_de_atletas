@@ -442,28 +442,59 @@ public class Controller extends HttpServlet {
 				String optCompartilhar = request.getParameter("optCompartilhar");
 				String obs = request.getParameter("observacao");
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				boolean exception = false;
+				int idAtleta = 0;
+				int gravidade = 0;
+				int compartilhar = 0;
+				Date dt = new Date();
 				
 				try{
-					int idAtleta = Integer.parseInt(atleta);
-					int gravidade = Integer.parseInt(optGravidade);
-					int compartilhar = Integer.parseInt(optCompartilhar);
-					Date dt = new Date();
+					idAtleta = Integer.parseInt(atleta);
+				}catch(Exception ex){
+					msgErro = "Erro ao identificar atleta!";
+					exception = true;
+				}
+				try{
+					gravidade = Integer.parseInt(optGravidade);
+				}catch(Exception ex){
+					msgErro = "Favor preencher a gravidade!";
+					exception = true;
+				}
+				try{
+					compartilhar = Integer.parseInt(optCompartilhar);
+				}catch(Exception ex){
+					msgErro = "Favor preencher com quem será compartilhado!";
+					exception = true;
+				}
+				try{
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(dtValidade);
-					Atleta a = new Atleta();
-					a.setIdPessoa(idAtleta);
-					
-					Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
-					ObservacaoNegocio negocio = new ObservacaoNegocio();
-					int idObservacao = negocio.salvarObservacao(observacao);
-					
-					List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(compartilhar);
-					for (int idUsuario : usuarios) {
-						if(negocio.salvarVisualizacaoObservacao(idObservacao, idUsuario)){
-							msgSucesso = "Observação salva com sucesso!";
+				}catch(Exception ex){
+					msgErro = "Favor preencher a Data de Validade!";
+					exception = true;
+				}
+				
+				if(dt.before(new Date())){
+					msgErro = "A Data de Validade deve ser maior que a data atual!";
+					exception = true;
+				}
+				
+				try{
+					if(!exception){
+						Atleta a = new Atleta();
+						a.setIdPessoa(idAtleta);
+						
+						Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
+						ObservacaoNegocio negocio = new ObservacaoNegocio();
+						int idObservacao = negocio.salvarObservacao(observacao);
+						
+						List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(compartilhar);
+						for (int idUsuario : usuarios) {
+							if(negocio.salvarVisualizacaoObservacao(idObservacao, idUsuario)){
+								msgSucesso = "Observação salva com sucesso!";
+							}
 						}
-					}
-					
+					}					
 				}catch(Exception ex){
 					msgErro = ex.getMessage();
 				}
@@ -476,21 +507,70 @@ public class Controller extends HttpServlet {
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
 		}else if("jspObservacoes".equals(action)){
-			String msgErro = "";
-			ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
-			List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
-			List<Observacao> listaMinhasObs = new ArrayList<Observacao>();
-			try {
-				listaObsAtivas = obsNegocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
-				listaMinhasObs = obsNegocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
-			} catch (Exception e) {
-				msgErro = e.getMessage();
+			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+				String msgErro = "";
+				ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+				List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
+				List<Observacao> listaMinhasObs = new ArrayList<Observacao>();
+				try {
+					listaObsAtivas = obsNegocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
+					listaMinhasObs = obsNegocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
+				} catch (Exception e) {
+					msgErro = e.getMessage();
+				}
+				
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
+				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
+				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
-			
-			request.setAttribute("msgErro", msgErro);
-			request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
-			request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
-			retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+		}else if("editarObservacao".equals(action)){
+			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+				
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
+		}else if("desativarObservacao".equals(action)){
+			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+				String msgErro = "";
+				String msgSucesso = "";
+				String observacao = request.getParameter("idObservacao");
+				int idObservacao = 0;
+				boolean exception = false;
+				try{
+					idObservacao = Integer.parseInt(observacao);
+				}catch(Exception ex){
+					msgErro = "Erro! Observação não encontrada!";
+					exception = true;
+				}
+				ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+				List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
+				List<Observacao> listaMinhasObs = new ArrayList<Observacao>();
+				try {
+					if(!exception){
+						if(obsNegocio.desativarObservacao(idObservacao)){
+							msgSucesso = "Observação desativada com sucesso!";
+						}
+					}
+					listaObsAtivas = obsNegocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
+					listaMinhasObs = obsNegocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
+				} catch (Exception e) {
+					msgErro = e.getMessage();
+				}
+				
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("msgSucesso", msgSucesso);
+				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
+				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
+				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
 		}
 				
 		if(retorno != null){
