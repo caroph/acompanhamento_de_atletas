@@ -15,6 +15,7 @@ public class Observacao {
 	public Date dtValidade;
 	public Date dtGeracao;
 	public int flCadastroAtivo;
+	public Date dtVisualizacao;
 	
 	public Observacao(){}
 	
@@ -96,4 +97,12 @@ public class Observacao {
 		String dt = formatter.format(this.dtGeracao);
 		return dt;
 	}
+
+	public Date getDtVisualizacao() {
+		return dtVisualizacao;
+	}
+
+	public void setDtVisualizacao(Date dtVisualizacao) {
+		this.dtVisualizacao = dtVisualizacao;
+	}	
 }

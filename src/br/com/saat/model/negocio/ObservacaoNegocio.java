@@ -79,4 +79,13 @@ public class ObservacaoNegocio {
 			throw new Exception("Erro ao buscar notificações de observação!");
 		}
 	}
+
+	public boolean salvarObservacaoVisualizada(int idObservacao, int idUsuario) throws Exception {
+		try{
+			ObservacaoDAO dao = new ObservacaoDAO();
+			return dao.salvarObservacaoVisualizada(idObservacao, idUsuario);
+		}catch(Exception ex){
+			throw new Exception("Erro ao buscar salvar visualização da observação!");
+		}
+	}
 }

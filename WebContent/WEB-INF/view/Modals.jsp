@@ -212,7 +212,7 @@
     	<div class="modal-body" id="conteudoModalObs">
 	    </div>
 	    <div class="modal-footer">
-			<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+			<a type="button" class="btn" id="fecharModalObservacao" aria-hidden="true">Fechar</a>
 		</div>
 	  </div>
 	</div>

@@ -427,7 +427,17 @@ function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
 	idObservacao.val(idObs);
 }
 
-function visualizarObservacao(atleta, grav, obs, val, usu, usuPerfil){
+function visualizarObservacaoNova(idObs, atleta, grav, obs, val, usu, usuPerfil){
+	$.ajax({
+		type : "POST",
+		url : "Controller?action=salvarVisualizacaoObservacao&idObservacao=" + idObs,
+		success : function(data) {
+			visualizarObservacao(atleta, grav, obs, val, usu, usuPerfil);
+		}
+	});
+}
+
+function visualizarObservacao(idObs, atleta, grav, obs, val, usu, usuPerfil){
 	$("#visualizarObservacao").modal();
 	var html = "";
 	html += "<b>Atleta: </b>" + atleta;
@@ -437,6 +447,14 @@ function visualizarObservacao(atleta, grav, obs, val, usu, usuPerfil){
 	if(usu != null && usu !== ""){
 		html += "<br/><br/><b>Registrado por:</b> <br/>";
 		html += usu + " - " + usuPerfil;
+	}
+	
+	var buttonFechar = $("#fecharModalObservacao")[0];
+	if(idObs != 0){
+		buttonFechar.href = "Controller?action=salvarVisualizacaoObservacao&idObservacao=" + idObs; 
+	}else{
+		//data-dismiss="modal"
+		buttonFechar.onclick = function(){ $("#visualizarObservacao").modal('hide'); }
 	}
 	$("#conteudoModalObs").html(html);
 }

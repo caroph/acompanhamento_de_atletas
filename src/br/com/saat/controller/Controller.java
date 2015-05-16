@@ -573,6 +573,41 @@ public class Controller extends HttpServlet {
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}else if("salvarVisualizacaoObservacao".equals(action)){
+			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+				String obs = request.getParameter("idObservacao");
+				int idObservacao = 0;
+				String msgErro = "";
+				try{
+					idObservacao = Integer.parseInt(obs);
+				}catch(Exception ex){
+					msgErro = "Erro ao identificar a observação!";
+				}
+				
+				List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
+				List<Observacao> listaMinhasObs = new ArrayList<Observacao>();
+				if("".equals(msgErro)){					
+					ObservacaoNegocio negocio = new ObservacaoNegocio();
+					try {
+						if(!negocio.salvarObservacaoVisualizada(idObservacao, usuarioLogado.getIdPessoa())){
+							msgErro = "Erro ao salvar visualização!";
+						}
+						listaMinhasObs = negocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
+						listaObsAtivas = negocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
+					} catch (Exception e) {
+						msgErro = e.getMessage();
+					}
+				}
+				
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
+				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
+				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+				
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
 		}
 		
 		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){

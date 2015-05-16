@@ -50,13 +50,24 @@
 											</thead>
 											<tbody>
 												<c:forEach var="observacao" items="${listaObservacoesAtivas}">
-													<tr>
-														<td><c:out value='${observacao.atleta.nome}' /></td>
-														<td><c:out value='${observacao.getNomeGravidade()}' /></td>
-														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(
-														'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
-														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
-													</tr>
+													<c:if test="${observacao.dtVisualizacao == null}">
+														<tr style="color: red;">
+															<td><c:out value='${observacao.atleta.nome}' /></td>
+															<td><c:out value='${observacao.getNomeGravidade()}' /></td>
+															<td align="center"><a class="btn btn-info" onClick="visualizarObservacao('${observacao.idObservacao}',
+															'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
+															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+														</tr>
+													</c:if>
+													<c:if test="${observacao.dtVisualizacao != null}">
+														<tr>
+															<td><c:out value='${observacao.atleta.nome}' /></td>
+															<td><c:out value='${observacao.getNomeGravidade()}' /></td>
+															<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(0,
+															'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
+															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+														</tr>
+													</c:if>
 												</c:forEach>
 											</tbody>
 										</table>

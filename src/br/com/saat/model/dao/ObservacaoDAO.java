@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
@@ -67,12 +68,12 @@ public class ObservacaoDAO {
 		List<Observacao> lista = new ArrayList<Observacao>();
 		
 		stmtScript = con.prepareStatement("SELECT o.idObservacao, o.idAtleta, a.nome, o.idUsuario, u.perfil, u.nome, "
-				+ "o.dsObservacao, o.gravidade, o.dtValidade, o.flCadastroAtivo "
+				+ "o.dsObservacao, o.gravidade, o.dtValidade, o.flCadastroAtivo, v.dtVisualizacao "
 				+ "FROM observacao o "
 				+ "JOIN visualizacaoobservacao v on o.idObservacao = v.idObservacao "
 				+ "JOIN atleta a ON o.idAtleta = a.idAtleta "
 				+ "JOIN usuario u ON o.idUsuario = u.idUsuario "
-				+ "WHERE o.flCadastroAtivo = 1 AND o.idUsuario != ? AND dtVisualizacao IS NULL AND v.idUsuario = ?");
+				+ "WHERE o.flCadastroAtivo = 1 AND o.idUsuario != ? AND v.idUsuario = ?");
 		stmtScript.setInt(1, idUsuario);
 		stmtScript.setInt(2, idUsuario);
 		
@@ -96,6 +97,7 @@ public class ObservacaoDAO {
 			o.setGravidade(rs.getInt(8));
 			o.setDtValidade(rs.getDate(9));
 			o.setFlCadastroAtivo(rs.getInt(10));
+			o.setDtVisualizacao(rs.getDate(11));
 			
 			lista.add(o);
 		}
@@ -185,5 +187,20 @@ public class ObservacaoDAO {
 			return rs.getInt(1);
 		}
 		return 0;
+	}
+
+	public boolean salvarObservacaoVisualizada(int idObservacao, int idUsuario) throws SQLException {
+		stmtScript = con.prepareStatement("UPDATE visualizacaoobservacao SET dtVisualizacao = ? "
+				+ "WHERE idObservacao = ? AND idUsuario = ?");
+		stmtScript.setDate(1, new java.sql.Date(new Date().getTime()));
+		stmtScript.setInt(2, idObservacao);
+		stmtScript.setInt(3, idUsuario);
+		
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
 	}
 }
