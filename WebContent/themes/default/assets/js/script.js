@@ -409,6 +409,24 @@ function abrirModalObservacao(idAtleta){
 	atleta.val(idAtleta);
 }
 
+function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
+	$("#incluirObservacao").modal();
+	var atleta = $("#idAtletaObs");
+	atleta.val(idAtleta);
+	var validade = $("#dtValidade");
+	validade.val(dtValidade);
+	var radio = document.getElementsByName("optGravidade");
+	for(i = 0; i< radio.length; i++){
+		if(radio[i].value == gravidade){
+			radio[i].checked = true;
+		}
+	}
+	var observacao = $("#message-text");
+	observacao.val(obs);
+	var idObservacao = $("#idObservacaoModal");
+	idObservacao.val(idObs);
+}
+
 function visualizarObservacao(atleta, grav, obs, val, usu, usuPerfil){
 	$("#visualizarObservacao").modal();
 	var html = "";

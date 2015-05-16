@@ -441,6 +441,7 @@ public class Controller extends HttpServlet {
 				String optGravidade = request.getParameter("optGravidade");
 				String optCompartilhar = request.getParameter("optCompartilhar");
 				String obs = request.getParameter("observacao");
+				String idObs = request.getParameter("idObservacao");
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				boolean exception = false;
 				int idAtleta = 0;
@@ -486,11 +487,18 @@ public class Controller extends HttpServlet {
 						
 						Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
 						ObservacaoNegocio negocio = new ObservacaoNegocio();
-						int idObservacao = negocio.salvarObservacao(observacao);
-						
+						if("".equals(idObs)){
+							int idObservacao = negocio.salvarObservacao(observacao);
+							observacao.setIdObservacao(idObservacao);
+						}else{
+							observacao.setIdObservacao(Integer.parseInt(idObs));
+							if(negocio.alterarObservacao(observacao)){
+								negocio.excluirVisualizacaoObservacao(observacao.getIdObservacao());
+							}
+						}
 						List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(compartilhar);
 						for (int idUsuario : usuarios) {
-							if(negocio.salvarVisualizacaoObservacao(idObservacao, idUsuario)){
+							if(negocio.salvarVisualizacaoObservacao(observacao.getIdObservacao(), idUsuario)){
 								msgSucesso = "Observação salva com sucesso!";
 							}
 						}
@@ -523,13 +531,7 @@ public class Controller extends HttpServlet {
 				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
 				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
 				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
-			}else{
-				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
-			}
-		}else if("editarObservacao".equals(action)){
-			if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
-				
+				session.setAttribute("pagina", "/Controller?action=jspObservacoes");
 			}else{
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
@@ -570,6 +572,16 @@ public class Controller extends HttpServlet {
 			}else{
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
+		}
+		
+		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){
+			ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+			try{
+				int notificacao = obsNegocio.buscarObservacoesNotificacao(usuarioLogado.getIdPessoa());
+				request.setAttribute("notificacaoObs", notificacao);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
 			}
 		}
 				

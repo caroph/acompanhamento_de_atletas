@@ -191,8 +191,9 @@
 			        <textarea class="form-control" required style="max-width: 568px; height: 325px;" name="observacao" id="message-text"></textarea>
 				</div>   
 				<input type="hidden" name="idAtleta" id="idAtletaObs" />
+				<input type="hidden" name="idObservacao" id="idObservacaoModal" />
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">Incluir</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
 					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 				</div>
 	        </form>

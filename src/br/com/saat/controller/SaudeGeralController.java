@@ -6,18 +6,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Prontuario;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.ProntuarioNegocio;
 
 @WebServlet("/SaudeGeralController")
@@ -42,6 +45,14 @@ public class SaudeGeralController extends Controller {
 		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Fisioterapeuta.getValor() && usuarioLogado.getPerfil() != Perfis.Psicologa.getValor())){
 			super.doPost(request, response, usuarioLogado, false, false);
 			return;
+		}
+		
+		ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+		try{
+			int notificacao = obsNegocio.buscarObservacoesNotificacao(usuarioLogado.getIdPessoa());
+			request.setAttribute("notificacaoObs", notificacao);
+		}catch(Exception ex){
+			request.setAttribute("msgErro", ex.getMessage());
 		}
 		
 		String retorno = null;

@@ -36,6 +36,7 @@ import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
+import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
@@ -68,6 +69,14 @@ public class TecnicoController extends Controller {
 		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Tecnico.getValor() && usuarioLogado.getPerfil() != Perfis.PreparadorFisico.getValor())){
 			super.doPost(request, response, usuarioLogado, false, false);
 			return;
+		}		
+		
+		ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+		try{
+			int notificacao = obsNegocio.buscarObservacoesNotificacao(usuarioLogado.getIdPessoa());
+			request.setAttribute("notificacaoObs", notificacao);
+		}catch(Exception ex){
+			request.setAttribute("msgErro", ex.getMessage());
 		}
 		
 		String retorno = null;

@@ -144,4 +144,46 @@ public class ObservacaoDAO {
 		}
 		return false;
 	}
+
+	public boolean alterarObservacao(Observacao observacao) throws SQLException {
+		stmtScript = con.prepareStatement("UPDATE observacao SET dsObservacao = ?, gravidade = ?, "
+				+ "dtValidade = ? WHERE idObservacao = ? ");
+		stmtScript.setString(1, observacao.getDsObservacao());
+		stmtScript.setInt(2, observacao.getGravidade());
+		stmtScript.setDate(3, new java.sql.Date(observacao.getDtValidade().getTime()));
+		stmtScript.setInt(4, observacao.getIdObservacao());
+		
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean excluirVisualizacaoObservacao(int idObservacao) throws SQLException {
+		stmtScript = con.prepareStatement("DELETE FROM visualizacaoobservacao WHERE idObservacao = ?");
+		stmtScript.setInt(1, idObservacao);
+		
+		int rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
+	}
+	
+	public int buscarObservacoesNotificacao(int idUsuario) throws SQLException{
+		stmtScript = con.prepareStatement("SELECT COUNT(*) "
+				+ "FROM observacao o JOIN visualizacaoobservacao v on o.idObservacao = v.idObservacao "
+				+ "JOIN atleta a ON o.idAtleta = a.idAtleta JOIN usuario u ON o.idUsuario = u.idUsuario "
+				+ "WHERE o.flCadastroAtivo = 1 AND o.idUsuario != ? AND dtVisualizacao IS NULL AND v.idUsuario = ?");
+		stmtScript.setInt(1, idUsuario);
+		stmtScript.setInt(2, idUsuario);
+		ResultSet rs = stmtScript.executeQuery();
+		if(rs.next()){
+			return rs.getInt(1);
+		}
+		return 0;
+	}
 }

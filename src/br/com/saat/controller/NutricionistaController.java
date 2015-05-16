@@ -26,6 +26,7 @@ import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
+import br.com.saat.model.negocio.ObservacaoNegocio;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -51,6 +52,14 @@ public class NutricionistaController extends Controller {
 		if(usuarioLogado == null || usuarioLogado.getPerfil() != Perfis.Nutricionista.getValor()){
 			super.doPost(request, response, usuarioLogado, false, false);
 			return;
+		}
+		
+		ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
+		try{
+			int notificacao = obsNegocio.buscarObservacoesNotificacao(usuarioLogado.getIdPessoa());
+			request.setAttribute("notificacaoObs", notificacao);
+		}catch(Exception ex){
+			request.setAttribute("msgErro", ex.getMessage());
 		}
 		
 		String retorno = null;

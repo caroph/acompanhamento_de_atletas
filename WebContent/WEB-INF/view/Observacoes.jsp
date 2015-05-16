@@ -104,7 +104,8 @@
 														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
 														<td align="center">
 															<c:if test="${observacao.flCadastroAtivo == 1}">
-																<a class="btn btn-primary" href="#">Editar</a>
+																<a class="btn btn-primary" onClick="modalEditarObservacao('${observacao.atleta.idPessoa}', 
+																'${observacao.dtValidade}', '${observacao.gravidade}', '${observacao.dsObservacao}', '${observacao.idObservacao}')">Editar</a>
 															</c:if>
 														</td>
 														<td align="center">
