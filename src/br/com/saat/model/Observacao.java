@@ -87,15 +87,23 @@ public class Observacao {
 	}
 	
 	public String getDisplayDataValidade(){
-		DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
-		String dt = formatter.format(this.dtValidade);
-		return dt;
+		try{
+			DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
+			String dt = formatter.format(this.dtValidade);
+			return dt;
+		}catch(Exception e){
+			return "";
+		}
 	}
 	
 	public String getDisplayDataGeracao(){
-		DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
-		String dt = formatter.format(this.dtGeracao);
-		return dt;
+		try{
+			DateFormat formatter = new SimpleDateFormat("dd/MM/YYYY"); 
+			String dt = formatter.format(this.dtGeracao);
+			return dt;
+		}catch(Exception e){
+			return "";
+	}
 	}
 
 	public Date getDtVisualizacao() {

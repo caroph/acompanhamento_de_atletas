@@ -18,15 +18,18 @@ import javax.servlet.http.HttpSession;
 
 import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
+import br.com.saat.enumeradores.Gravidade;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.FichaDeAtendimento;
+import br.com.saat.model.Observacao;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
+import br.com.saat.model.negocio.UsuarioNegocio;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -223,6 +226,21 @@ public class NutricionistaController extends Controller {
 						msgSucesso = "Ficha de atendimento cadastrada com sucesso!";
 						ficha.setDtAtendimento(new Date(System.currentTimeMillis()));
 					}
+				}
+				
+				Atleta a = new Atleta();
+				a.setIdPessoa(ficha.getIdAtleta());
+				String obs = ficha.getCondutaNutricional().replaceAll("\\<.*?>","").replaceAll("\r\n", "");//Jsoup.parse(ficha.getCondutaNutricional()).text();
+				Observacao observacao = new Observacao(a, usuarioLogado, obs, 
+						Gravidade.Baixa.getValor(), null);
+				ObservacaoNegocio negocio = new ObservacaoNegocio();
+				int idObservacao = negocio.salvarObservacao(observacao);
+				observacao.setIdObservacao(idObservacao);
+				
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(1);
+				for (int idUsuario : usuarios) {
+					negocio.salvarVisualizacaoObservacao(observacao.getIdObservacao(), idUsuario);
 				}
 								
 			}catch(Exception ex){

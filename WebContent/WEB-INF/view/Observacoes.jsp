@@ -110,7 +110,7 @@
 														<td><c:out value='${observacao.atleta.nome}' /></td>
 														<td align="center"><c:out value='${observacao.getNomeGravidade()}' /></td>
 														<td><c:out value='${observacao.getDisplayDataGeracao()}' /></td>
-														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(
+														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(0,
 														'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
 														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
 														<td align="center">

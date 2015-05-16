@@ -37,7 +37,11 @@ public class ObservacaoDAO {
 		stmtScript.setInt(2, observacao.getUsuario().getIdPessoa());
 		stmtScript.setString(3, observacao.getDsObservacao());
 		stmtScript.setInt(4, observacao.getGravidade());
-		stmtScript.setDate(5, new java.sql.Date(observacao.getDtValidade().getTime()));
+		if(observacao.getDtValidade() == null){
+			stmtScript.setDate(5, null);
+		}else{
+			stmtScript.setDate(5, new java.sql.Date(observacao.getDtValidade().getTime()));
+		}
 		
 		rows = stmtScript.executeUpdate();
 		
