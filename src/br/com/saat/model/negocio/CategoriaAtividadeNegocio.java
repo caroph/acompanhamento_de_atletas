@@ -45,41 +45,28 @@ public class CategoriaAtividadeNegocio {
 		}
 		return retorno;
 	}
-	
-//	public boolean inserir(AtividadeAvaliacao atividade) throws Exception {
-//		boolean retorno = false;
-//		try {
-//			AtividadeAvaliacaoDAO dao = new AtividadeAvaliacaoDAO();
-//			if (dao.inserir(atividade)) {
-//				retorno = true;
-//			}
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao inserir a atividade.");
-//		}
-//		return retorno;
-//	}
-//
-//	public List<AtividadeAvaliacao> buscarAtividades() throws Exception {
-//		try {
-//			AtividadeAvaliacaoDAO dao = new AtividadeAvaliacaoDAO();
-//			List<AtividadeAvaliacao> lista = dao.buscarAtividades();
-//			return lista;
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades.");
-//		}
-//	}
-//
-//	public boolean desativar(AtividadeAvaliacao atividade) throws Exception {
-//		boolean retorno = false;
-//		try {
-//			AtividadeAvaliacaoDAO dao = new AtividadeAvaliacaoDAO();
-//			if (dao.desativar(atividade)) {
-//				retorno = true;
-//			}
-//		} catch (Exception e) {
-//			throw new Exception("Erro! Ocorreu algum erro ao excluir a atividade.");
-//		}
-//		return retorno;
-//	}
+
+	public List<CategoriaAtividade> buscaCategoriasAtividades() throws Exception {
+		try {
+			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
+			List<CategoriaAtividade> lista = dao.buscaCategoriaAtividade();
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dados de referência.");
+		}
+	}
+
+	public boolean desativar(CategoriaAtividade catAtiv) throws Exception {
+		boolean retorno = false;
+		try {
+			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
+			if (dao.desativar(catAtiv)) {
+				retorno = true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao o dados de referência.");
+		}
+		return retorno;
+	}
 
 }

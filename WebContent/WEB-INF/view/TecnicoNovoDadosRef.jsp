@@ -55,7 +55,7 @@
 											<div class=" col-sm-12"> 
 												<table class=" col-sm-12">
 													<tr>
-														<th></th>
+														<th>Selecionar</th>
 														<th>Descrição atividade</th>
 														<th>Melhorar</th>
 														<th>Média</th>

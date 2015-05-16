@@ -2,9 +2,13 @@ package br.com.saat.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.saat.model.CategoriaAtividade;
+import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.ConnectionFactory;
 
 public class CategoriaAtividadeDAO {
@@ -39,45 +43,48 @@ public class CategoriaAtividadeDAO {
 		}
 		return retorno;
 	}
-	
-//	public List<CategoriaAvaliacao> buscarCategorias() throws SQLException {
-//		List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
-//		
-//		stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
-//				+ "idadeMinima, idadeMaxima, sexo "
-//				+ "FROM categoriaAvaliacao "
-//				+ "WHERE flCadastroAtivo = 1");
-//		
-//		ResultSet rs = stmtScript.executeQuery();
-//		
-//		while(rs.next()){
-//			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
-//			categoria.setIdCategoriaAvaliacao(rs.getInt(1));
-//			categoria.setIdTipoCat(rs.getInt(2));
-//			categoria.setNmCategoria(rs.getString(3));
-//			categoria.setIdadeMinima(rs.getInt(4));
-//			categoria.setIdadeMaxima(rs.getInt(5));
-//			categoria.setSexo(rs.getString(6));
-//			lista.add(categoria);
-//		}
-//		return lista;
-//	}
-//
-//	public boolean desativar(CategoriaAvaliacao categoria) throws SQLException {
-//		boolean retorno = false;
-//		
-//		stmtScript = con.prepareStatement("UPDATE categoriaAvaliacao "
-//				+ "SET flCadastroAtivo = 0 "
-//				+ "WHERE idCategoriaAvaliacao = ? ");
-//		
-//		stmtScript.setInt(1, categoria.getIdCategoriaAvaliacao());
-//		
-//		if(stmtScript.executeUpdate() > 0){
-//			retorno = true;
-//		}
-//		return retorno;	
-//	}
-//
+
+	public List<CategoriaAtividade> buscaCategoriaAtividade() throws SQLException {
+		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
+		
+		stmtScript = con.prepareStatement("SELECT idCategoriaAtividade, c.idCategoriaAvaliacao, nmCategoria "
+				+ "FROM categoriaAtividade ca "
+				+ "INNER JOIN categoriaAvaliacao c "
+				+ "ON ca.idCategoriaAvaliacao = c.idCategoriaAvaliacao "
+				+ "WHERE ca.flCadastroAtivo = 1 ");
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			
+			categoria.setIdCategoriaAvaliacao(rs.getInt("idCategoriaAvaliacao"));
+			categoria.setNmCategoria(rs.getString("nmCategoria"));
+			
+			catAtiv.setIdCategoriaAtividade(rs.getInt("idCategoriaAtividade"));
+			catAtiv.setCategoriaAvaliacao(categoria);
+			
+			lista.add(catAtiv);
+		}
+		return lista;
+	}
+
+	public boolean desativar(CategoriaAtividade catAtiv) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("UPDATE categoriaAtividade "
+				+ "SET flCadastroAtivo = 0 "
+				+ "WHERE idCategoriaAtividade = ? ");
+		
+		stmtScript.setInt(1, catAtiv.getIdCategoriaAtividade());
+		
+		if(stmtScript.executeUpdate() > 0){
+			retorno = true;
+		}
+		return retorno;	
+	}
+
 //	public boolean inserir(CategoriaAvaliacao categoria) throws SQLException {
 //		boolean retorno = false;
 //		

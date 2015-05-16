@@ -185,7 +185,7 @@ public class AvaliacaoFisController extends Controller {
 			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
 			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
 			try{
-				lista = negocio.buscarCategorias();
+				lista = negocio.buscarCategorias(0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
@@ -260,7 +260,7 @@ public class AvaliacaoFisController extends Controller {
 			}
 
 			try{
-				lista = negocio.buscarCategorias();
+				lista = negocio.buscarCategorias(0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
@@ -290,7 +290,7 @@ public class AvaliacaoFisController extends Controller {
 			}
 			
 			try{
-				lista = negocio.buscarCategorias();
+				lista = negocio.buscarCategorias(0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
@@ -306,6 +306,19 @@ public class AvaliacaoFisController extends Controller {
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 
 		} else if ("jspDadosRef".equals(action)) {
+			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
+			List<CategoriaAtividade> categoriasAtividades = null;
+			
+			try {
+				categoriasAtividades = negocio.buscaCategoriasAtividades();
+				if (categoriasAtividades.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhum dado de referência cadastrado!");
+				}
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
+			
+			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
 			
 		} else if ("jspNovoDadosRef".equals(action)) {
@@ -316,7 +329,7 @@ public class AvaliacaoFisController extends Controller {
 			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
 			
 			try{
-				listaCategorias = negocioCat.buscarCategorias();
+				listaCategorias = negocioCat.buscarCategorias(1);
 				if (listaCategorias.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				} else {
@@ -336,6 +349,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaAtividades", listaAtividades);
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			
 		} else if ("inserirDadosRef".equals(action)) {
 			boolean exception = false;
 			boolean atividadeSelecionada;
@@ -345,6 +359,7 @@ public class AvaliacaoFisController extends Controller {
 			int idAtividade = 0;
 			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
 			List<CategoriaAtividade> categoriaAtividades = new ArrayList<CategoriaAtividade>();
+			List<CategoriaAtividade> categoriasAtividades = null;
 			
 			AtividadeAvaliacaoNegocio negocioAti = new AtividadeAvaliacaoNegocio();
 			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
@@ -442,8 +457,54 @@ public class AvaliacaoFisController extends Controller {
 			else {
 				request.setAttribute("msgErro", msgErro);
 			}
+			
+			try {
+				categoriasAtividades = negocio.buscaCategoriasAtividades();
+			} catch (Exception e) {
+				msgAlerta = msgAlerta + "<br/>Nenhum dado de referência cadastrado!";
+			}
+
 			request.setAttribute("msgAlerta", msgAlerta);
+			
+			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			
+		} else if ("desativarDadoRef".equals(action)) {
+			String msgSucesso = "";
+			String msgErro ="";
+			String msgAlerta = "";
+			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
+			
+			try {
+				catAtiv.setIdCategoriaAtividade(Integer.parseInt(request.getParameter("idCategoriaAtividade")));
+				if (negocio.desativar(catAtiv)) {
+					msgSucesso ="Dado de referência excluído com sucesso!";
+				} else {
+					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				}
+			} catch (Exception e) {
+				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+			}
+			
+			// SUCESSO
+			if (!"".equals(msgSucesso)) {
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+			// ERRO
+			else {
+				request.setAttribute("msgErro", msgErro);
+			}
+			request.setAttribute("msgAlerta", msgAlerta);
+			
+			List<CategoriaAtividade> categoriasAtividades = null;
+			
+			try {
+				categoriasAtividades = negocio.buscaCategoriasAtividades();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			
 		} else{
 		//Página Principal

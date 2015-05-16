@@ -34,24 +34,32 @@
 										<a class="btn btn-primary" id="novoDadosRef" href="AvaliacaoFisController?action=jspNovoDadosRef">Novos dados de referência</a>
 										<thead>
 											<tr>
-<!-- 												<th>Capacidade</th> -->
-<!-- 												<th>Teste</th> -->
-<!-- 												<th>Unidade de medida</th> -->
-<!-- 												<th></th> -->
+												<th>Categoria</th>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
-<%-- 											<c:forEach var="atividade" items="${listaAtividades}"> --%>
-<!-- 												<tr> -->
-<%-- 													<td><c:out value='${atividade.capacidade}' /></td> --%>
-<%-- 													<td><c:out value='${atividade.teste}' /></td> --%>
-<%-- 													<td><c:out value='${atividade.getNomeUnidade()}' /></td> --%>
-<!-- 													<td align="center"> -->
-<%-- 														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarAtividade&idAtividade=${atividade.idAtividadeAvaliacao}" --%>
-<!-- 														data-confirm="Deseja realmente excluir a atividade selecionada?">Excluir</a> -->
-<!-- 													</td> -->
-<!-- 												</tr> -->
-<%-- 											</c:forEach> --%>
+											<c:forEach var="catAtiv" items="${categoriasAtividades}">
+												<tr>
+													<td><c:out value='${catAtiv.categoriaAvaliacao.nmCategoria}' /></td>
+													<td align="center">
+														<a class="btn btn-info" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.idCategoriaAtividade}')">Visualizar</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary" href="AvaliacaoFisController?action=maisDadosRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}">Incluir atividades</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-primary" href="AvaliacaoFisController?action=editarDadoRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}">Editar</a>
+													</td>
+													<td align="center">
+														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarDadoRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}"
+														data-confirm="Deseja realmente excluir o dado de referência selecionado?">Excluir</a>
+													</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
