@@ -64,12 +64,12 @@
 													</tr>
 													<c:forEach var="atividade" items="${listaAtividades}">
 														<tr>
-															<td><label style="padding: 6px 8px 0 0;"><input type="checkbox" name="<c:out value='${atividade.idAtividadeAvaliacao}'/>"></label></td>
+															<td><label style="padding: 6px 8px 0 0;"><input type="checkbox" name="<c:out value='${atividade.idAtividadeAvaliacao}'/>" value="true"></label></td>
 															<td><c:out value='${atividade.capacidade}'/> / <c:out value='${atividade.teste}'/> (<c:out value='${atividade.getNomeUnidade()}'/>)</td>
-															<td><input type="number" class="control-label " id="melhorar" name="melhorar<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" class="control-label " id="media" name="media<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" class="control-label " id="bom" name="bom<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" class="control-label " id="excelente" name="excelente<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															<td><input type="number" step="any" class="control-label " id="melhorar" name="melhorar<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															<td><input type="number" step="any" class="control-label " id="media" name="media<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															<td><input type="number" step="any" class="control-label " id="bom" name="bom<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															<td><input type="number" step="any" class="control-label " id="excelente" name="excelente<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
 														</tr>
 													</c:forEach>
 												</table>

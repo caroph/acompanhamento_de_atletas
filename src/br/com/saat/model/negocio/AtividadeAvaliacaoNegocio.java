@@ -14,7 +14,7 @@ public class AtividadeAvaliacaoNegocio {
 		if ("".equals(atividade.getCapacidade()) || atividade.getCapacidade() == null) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Capacidade' !");
-		} else if(atividade.getTeste() == null || atividade.getTeste() == ""){
+		} else if(atividade.getTeste() == null || "".equals(atividade.getTeste())){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Teste' !");
 		}else if(atividade.getIdUnidadeDeMedida() == 0){

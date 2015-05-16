@@ -14,7 +14,7 @@ public class CategoriaAvaliacaoNegocio {
 		if (tiposSelecionados.isEmpty()) {
 			lista.add(false);
 			lista.add("Selecione ao menor um 'Tipo' de categoria !");
-		} else if(categoria.getNmCategoria() == null || categoria.getNmCategoria() == ""){
+		} else if(categoria.getNmCategoria() == null || "".equals(categoria.getNmCategoria())) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Nome' !");
 		} else if(categoria.getIdadeMinima() <= 0){

@@ -17,9 +17,11 @@ import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.TipoCat;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
+import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
+import br.com.saat.model.negocio.CategoriaAtividadeNegocio;
 import br.com.saat.model.negocio.CategoriaAvaliacaoNegocio;
 import br.com.saat.model.negocio.TipoCatNegocio;
 import br.com.saat.model.negocio.UnidadeDeMedidaNegocio;
@@ -325,6 +327,115 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaAtividades", listaAtividades);
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+		} else if ("inserirDadosRef".equals(action)) {
+			boolean exception = false;
+			boolean atividadeSelecionada;
+			String msgSucesso = "";
+			String msgErro ="";
+			String msgAlerta = "";
+			int idAtividade = 0;
+			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
+			List<CategoriaAtividade> categoriaAtividades = new ArrayList<CategoriaAtividade>();
+			
+			AtividadeAvaliacaoNegocio negocioAti = new AtividadeAvaliacaoNegocio();
+			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
+			
+			//Busca atividades para poder buscar as selecionadas
+			try{
+				listaAtividades = negocioAti.buscarAtividades();
+				if (listaAtividades.isEmpty()) {
+					msgAlerta = "Nenhuma atividade de avaliação física cadastrada!";
+					exception = true;
+				}
+			}catch(Exception ex){
+				exception = true;
+				msgErro = ex.getMessage();
+			}
+			
+			//Se não ocorreu nenhum erro, continua
+			if (!exception) {
+				//Busca categorias selecionadas
+				String[] categoriasSelecionadas = request.getParameterValues("categoria");
+				
+				//Preencher valores de atividades selecionadas
+				for (AtividadeAvaliacao atividade : listaAtividades) {
+					idAtividade = atividade.getIdAtividadeAvaliacao();
+					atividadeSelecionada = Boolean.parseBoolean(request.getParameter(String.valueOf(idAtividade)));
+					if (atividadeSelecionada) {
+						CategoriaAtividade catAtiv = new CategoriaAtividade();
+						AtividadeAvaliacao ativAva = new AtividadeAvaliacao();
+						
+						
+						//ID Atividade
+						ativAva.setIdAtividadeAvaliacao(idAtividade);
+						catAtiv.setAtividadeAvaliacao(ativAva);
+						
+						//Melhorar
+						try {
+							catAtiv.setMelhorar(Float.parseFloat(request.getParameter("melhorar" + idAtividade)));
+						} catch (Exception e) {
+							catAtiv.setMelhorar(0);
+						}
+						
+						//Média
+						try {
+							catAtiv.setMedia(Float.parseFloat(request.getParameter("media" + idAtividade)));
+						} catch (Exception e) {
+							catAtiv.setMedia(0);
+						}
+						
+						//Bom
+						try {
+							catAtiv.setBom(Float.parseFloat(request.getParameter("bom" + idAtividade)));
+						} catch (Exception e) {
+							catAtiv.setBom(0);
+						}
+						
+						//Excelente
+						try {
+							catAtiv.setExcelente(Float.parseFloat(request.getParameter("excelente" + idAtividade)));
+						} catch (Exception e) {
+							catAtiv.setExcelente(0);
+						}
+						
+						//Adiciona na lista
+						categoriaAtividades.add(catAtiv);
+					}
+				}
+				
+				//Validar
+				List<Object> listaValidacao = negocio.validaDados(categoriaAtividades, categoriasSelecionadas);
+				boolean valida = (boolean) listaValidacao.get(0);
+				
+				//ERRO
+				if (!valida) {
+					msgErro = (String) listaValidacao.get(1);
+				} 
+				//INSERIR
+				else {
+					try {
+						if (negocio.inserir(categoriaAtividades, categoriasSelecionadas)) {
+							msgSucesso = "Dados de referência salvos com sucesso!";
+						} else {
+							msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+						}
+					} catch (Exception ex) {
+						msgErro =  ex.getMessage();
+					}
+				}
+			}
+			
+			// SUCESSO
+			if (!"".equals(msgSucesso)) {
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+			// ERRO
+			else {
+				request.setAttribute("msgErro", msgErro);
+			}
+			request.setAttribute("msgAlerta", msgAlerta);
+			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
