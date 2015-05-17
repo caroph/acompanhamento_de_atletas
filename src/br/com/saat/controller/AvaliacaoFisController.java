@@ -474,12 +474,14 @@ public class AvaliacaoFisController extends Controller {
 			String msgErro ="";
 			String msgAlerta = "";
 			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
 			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
 			
 			try {
-				catAtiv.setIdCategoriaAtividade(Integer.parseInt(request.getParameter("idCategoriaAtividade")));
+				categoria.setIdCategoriaAvaliacao(Integer.parseInt(request.getParameter("idCategoriaAvaliacao")));
+				catAtiv.setCategoriaAvaliacao(categoria);
 				if (negocio.desativar(catAtiv)) {
-					msgSucesso ="Dado de referência excluído com sucesso!";
+					msgSucesso ="Dados de referência excluídos com sucesso!";
 				} else {
 					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -505,6 +507,7 @@ public class AvaliacaoFisController extends Controller {
 				e.printStackTrace();
 			}
 			request.setAttribute("categoriasAtividades", categoriasAtividades);
+			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
 			
 		} else{
 		//Página Principal

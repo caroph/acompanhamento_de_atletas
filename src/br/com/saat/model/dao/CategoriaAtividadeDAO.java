@@ -47,7 +47,7 @@ public class CategoriaAtividadeDAO {
 	public List<CategoriaAtividade> buscaCategoriaAtividade() throws SQLException {
 		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
 		
-		stmtScript = con.prepareStatement("SELECT idCategoriaAtividade, c.idCategoriaAvaliacao, nmCategoria "
+		stmtScript = con.prepareStatement("SELECT distinct c.idCategoriaAvaliacao, nmCategoria "
 				+ "FROM categoriaAtividade ca "
 				+ "INNER JOIN categoriaAvaliacao c "
 				+ "ON ca.idCategoriaAvaliacao = c.idCategoriaAvaliacao "
@@ -62,7 +62,6 @@ public class CategoriaAtividadeDAO {
 			categoria.setIdCategoriaAvaliacao(rs.getInt("idCategoriaAvaliacao"));
 			categoria.setNmCategoria(rs.getString("nmCategoria"));
 			
-			catAtiv.setIdCategoriaAtividade(rs.getInt("idCategoriaAtividade"));
 			catAtiv.setCategoriaAvaliacao(categoria);
 			
 			lista.add(catAtiv);
@@ -75,9 +74,9 @@ public class CategoriaAtividadeDAO {
 		
 		stmtScript = con.prepareStatement("UPDATE categoriaAtividade "
 				+ "SET flCadastroAtivo = 0 "
-				+ "WHERE idCategoriaAtividade = ? ");
+				+ "WHERE idCategoriaAvaliacao = ? AND flCadastroAtivo = 1");
 		
-		stmtScript.setInt(1, catAtiv.getIdCategoriaAtividade());
+		stmtScript.setInt(1, catAtiv.getCategoriaAvaliacao().getIdCategoriaAvaliacao());
 		
 		if(stmtScript.executeUpdate() > 0){
 			retorno = true;

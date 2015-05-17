@@ -46,17 +46,17 @@
 												<tr>
 													<td><c:out value='${catAtiv.categoriaAvaliacao.nmCategoria}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.idCategoriaAtividade}')">Visualizar</a>
+														<a class="btn btn-info" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}')">Visualizar</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="AvaliacaoFisController?action=maisDadosRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}">Incluir atividades</a>
+														<a class="btn btn-primary" href="AvaliacaoFisController?action=maisDadosRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}">Incluir atividades</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="AvaliacaoFisController?action=editarDadoRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}">Editar</a>
+														<a class="btn btn-primary" href="AvaliacaoFisController?action=editarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}">Editar</a>
 													</td>
 													<td align="center">
-														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarDadoRef&idCategoriaAtividade=${catAtiv.idCategoriaAtividade}"
-														data-confirm="Deseja realmente excluir o dado de referência selecionado?">Excluir</a>
+														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}"
+														data-confirm="Deseja realmente excluir todos os dados de referência da categoria selecionada?">Excluir</a>
 													</td>
 												</tr>
 											</c:forEach>
