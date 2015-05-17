@@ -69,4 +69,14 @@ public class CategoriaAtividadeNegocio {
 		return retorno;
 	}
 
+	public List<CategoriaAtividade> buscarAtividades(CategoriaAvaliacao categoria) throws Exception {
+		try {
+			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
+			List<CategoriaAtividade> lista = dao.buscarAtividades(categoria);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referência.");
+		}
+	}
+
 }

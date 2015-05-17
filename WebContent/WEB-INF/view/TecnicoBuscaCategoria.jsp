@@ -49,7 +49,7 @@
 													<td><c:out value='${categoria.getNomeTipo()}' /></td>
 													<td><c:out value='${categoria.idadeMinima}' /></td>
 													<td align="center"><c:out value='${categoria.idadeMaxima}' /></td>
-													<td align="center"><c:out value='${categoria.sexo}' /></td>
+													<td align="center"><c:out value='${categoria.getNomeSexo()}' /></td>
 													<td align="center">
 														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarCategoria&idCategoria=${categoria.idCategoriaAvaliacao}"
 														data-confirm="Deseja realmente excluir a categoria selecionada?">Excluir</a>
@@ -108,8 +108,9 @@
 					<div  class="form-group" style="padding-bottom: 46%;">
 						<div class="col-md-12">
 							<label for="sexo" class=" control-label">Sexo:</label></br>
-						 	<label><input type="radio" value="Feminino" name="sexo" checked="checked"><span style="padding: 0 20px 0 5px; margin-left: 3px;">Feminino</span></label>
-							<label><input type="radio" value="Masculino" name="sexo"><span style="padding: 0 10px 0 5px; margin-left: 3px;">Masculino</span></label>
+							<c:forEach var="sexo" items="${listaSexo}">
+								<label style="padding: 5px 22px 5px 0;"><input type="checkbox" name="<c:out value='${sexo.valor}'/>" value="true"> <c:out value="${sexo.nome}" /></label>
+                            </c:forEach>
 						</div>
 					</div>
 					<div class="modal-footer">

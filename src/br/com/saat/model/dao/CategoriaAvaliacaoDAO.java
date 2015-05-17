@@ -22,7 +22,7 @@ public class CategoriaAvaliacaoDAO {
         this.con = con;        
     }
 	public List<CategoriaAvaliacao> buscarCategorias(int tipoConsulta, int idCategoria) throws SQLException {
-		// tipoCOnulta -> 0 = Geral / 1 = Sem dados de referência cadastrado / 2 = Buscar categoria específica
+		// tipoConsulta -> 0 = Geral / 1 = Sem dados de referência cadastrado / 2 = Buscar categoria específica
 		List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
 		
 		if (tipoConsulta == 0) {
@@ -38,13 +38,14 @@ public class CategoriaAvaliacaoDAO {
 					+ "FROM categoriaAvaliacao c "
 					+ "LEFT JOIN categoriaAtividade ca "
 					+ "ON c.idCategoriaAvaliacao = ca.idCategoriaAvaliacao "
+					+ "AND ca.flCadastroAtivo = 1 "
 					+ "WHERE c.flCadastroAtivo = 1 AND ca.idCategoriaAtividade IS NULL ");
 
 		} else {
-			stmtScript = con.prepareStatement("SELECT c.idCategoriaAvaliacao, idTipoCat, nmCategoria, "
+			stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 					+ "idadeMinima, idadeMaxima, sexo "
 					+ "FROM categoriaAvaliacao c "
-					+ "WHERE c.flCadastroAtivo = 1 AND c.idCategoriaAvaliacao = ? ");
+					+ "WHERE flCadastroAtivo = 1 AND idCategoriaAvaliacao = ? ");
 			
 			stmtScript.setInt(1, idCategoria);
 
@@ -59,7 +60,7 @@ public class CategoriaAvaliacaoDAO {
 			categoria.setNmCategoria(rs.getString(3));
 			categoria.setIdadeMinima(rs.getInt(4));
 			categoria.setIdadeMaxima(rs.getInt(5));
-			categoria.setSexo(rs.getString(6));
+			categoria.setSexo(rs.getInt(6));
 			lista.add(categoria);
 		}
 		return lista;
@@ -91,11 +92,34 @@ public class CategoriaAvaliacaoDAO {
 		stmtScript.setString(2, categoria.getNmCategoria());
 		stmtScript.setInt(3, categoria.getIdadeMinima());
 		stmtScript.setInt(4, categoria.getIdadeMaxima());
-		stmtScript.setString(5, categoria.getSexo());
+		stmtScript.setInt(5, categoria.getSexo());
 		
 		if(stmtScript.executeUpdate() > 0){
 			retorno = true;
 		}
 		return retorno;
+	}
+
+	public CategoriaAvaliacao buscarCategoria(CategoriaAvaliacao categoriaBase) throws SQLException {
+		CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+		
+		stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
+				+ "idadeMinima, idadeMaxima, sexo "
+				+ "FROM categoriaAvaliacao "
+				+ "WHERE flCadastroAtivo = 1 AND idCategoriaAvaliacao = ? ");
+		
+		stmtScript.setInt(1, categoriaBase.getIdCategoriaAvaliacao());
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			categoria.setIdCategoriaAvaliacao(rs.getInt(1));
+			categoria.setIdTipoCat(rs.getInt(2));
+			categoria.setNmCategoria(rs.getString(3));
+			categoria.setIdadeMinima(rs.getInt(4));
+			categoria.setIdadeMaxima(rs.getInt(5));
+			categoria.setSexo(rs.getInt(6));
+		}
+		return categoria;
 	}
 }

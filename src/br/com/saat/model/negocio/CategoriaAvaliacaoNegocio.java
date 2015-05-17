@@ -26,7 +26,7 @@ public class CategoriaAvaliacaoNegocio {
 		} else if(categoria.getIdadeMinima() > categoria.getIdadeMaxima()){
 			lista.add(false);
 			lista.add("'Idade mínima' deve ser menos ou igual a 'Idade máxima' !");
-		} else if("".equals(categoria.getSexo()) || categoria.getSexo() == null){
+		} else if(categoria.getSexo() == 0){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Sexo' !");
 		} else {
@@ -73,5 +73,15 @@ public class CategoriaAvaliacaoNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao excluir a categoria.");
 		}
 		return retorno;
+	}
+
+	public CategoriaAvaliacao buscarCategoria(CategoriaAvaliacao categoriaBase) throws Exception {
+		try {
+			CategoriaAvaliacaoDAO dao = new CategoriaAvaliacaoDAO();
+			CategoriaAvaliacao categoria = dao.buscarCategoria(categoriaBase);
+			return categoria;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar a categoria.");
+		}
 	}
 }

@@ -248,6 +248,54 @@ function abrirModalVisualizarResponsavel(idResponsavel, nome, email, telResidenc
 	});
 }
 
+function abrirModalDadosRef(idCategoria) {
+	$("#detalhesDadosRef").modal();	
+	$.ajax({
+		type : "POST",
+		url : "AvaliacaoFisController?action=buscarDadoRef&idCategoria="
+				+ idCategoria,
+		success : function(data) {
+			var sexo = data.listaSexo;
+			
+			var html = ""
+				html += "<b>Categoria:</b> " + data.categoria.nmCategoria + "<br/>";
+			html += "<b>Idade m\u00ednima:</b> " + data.categoria.idadeMinima + "<br/>";
+			html += "<b>Idade m\u00e1xima:</b> " + data.categoria.idadeMaxima + "<br/>";
+			html += "<b>Sexo:</b> " + sexo[data.categoria.sexo - 1] + "<br/><br/>";
+			html += "<b>Atividades:</b><br/>";
+			if (data.listaCatAtiv.length <= 0){
+				html += "<small>Nenhuma atividade física vinculada.</small>"
+			}else{
+				var unidade = data.listaUnidades;
+				html += "<table>" +
+						"<tr>" +
+						"<th style='padding:5px'>Capacidade</th>" +
+						"<th style='padding:5px'>Teste</th>" +
+						"<th style='padding:5px'>Medida</th>" +
+						"<th style='padding:5px'>Melhorar</th>" +
+						"<th style='padding:5px'>M\u00e9dia</th>" +
+						"<th style='padding:5px'>Bom</th>" +
+						"<th style='padding:5px'>Excelente</th>" +
+						"</tr>";
+				$.each(
+					data.listaCatAtiv,
+					function(index, item) {
+						html += "<tr>" +
+								"<td style='padding:5px'>" + item.AtividadeAvaliacao.capacidade + "</td>";
+						html += "<td style='padding:5px'>" + item.AtividadeAvaliacao.teste  + "</td>";
+						html += "<td style='padding:5px'>" + unidade[item.AtividadeAvaliacao.idUnidadeDeMedida - 1] + "</td>";
+						html += "<td style='padding:5px;text-align: right;'>" + item.melhorar + "</td>";
+						html += "<td style='padding:5px;text-align: right;'>" + item.media  + "</td>";
+						html += "<td style='padding:5px;text-align: right;'>" + item.bom + "</td>";
+						html += "<td style='padding:5px;text-align: right;'>" + item.excelente + "</td>";
+						html += "</tr>"
+					});
+				html += "</table>";
+			}
+			$('.body-dadosRef').html(html);
+		}
+	});
+}
 
 function registrarPresenca(idAtleta, nomeAtleta) {
 	$("#anunciarPresenca").modal();

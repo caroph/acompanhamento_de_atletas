@@ -1,5 +1,6 @@
 package br.com.saat.model;
 
+import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TipoCat;
 
 public class CategoriaAvaliacao {
@@ -8,7 +9,7 @@ public class CategoriaAvaliacao {
 	private String nmCategoria;
 	private int idadeMinima;
 	private int idadeMaxima;
-	private String sexo;
+	private int sexo;
 	public int getIdCategoriaAvaliacao() {
 		return idCategoriaAvaliacao;
 	}
@@ -39,10 +40,10 @@ public class CategoriaAvaliacao {
 	public void setIdadeMaxima(int idadeMaxima) {
 		this.idadeMaxima = idadeMaxima;
 	}
-	public String getSexo() {
+	public int getSexo() {
 		return sexo;
 	}
-	public void setSexo(String sexo) {
+	public void setSexo(int sexo) {
 		this.sexo = sexo;
 	}
 	
@@ -54,6 +55,19 @@ public class CategoriaAvaliacao {
 			break;
 		case 2:
 			retorno = TipoCat.Idade_Cronologica.getNome();
+			break;
+		}
+		return retorno;
+	}
+	
+	public String getNomeSexo(){
+		String retorno = "";
+		switch (this.sexo) {
+		case 1:
+			retorno = Sexo.Feminino.getNome();
+			break;
+		case 2:
+			retorno = Sexo.Masculino.getNome();
 			break;
 		}
 		return retorno;

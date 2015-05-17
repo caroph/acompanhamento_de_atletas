@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.model.AtividadeAvaliacao;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.ConnectionFactory;
@@ -84,22 +85,38 @@ public class CategoriaAtividadeDAO {
 		return retorno;	
 	}
 
-//	public boolean inserir(CategoriaAvaliacao categoria) throws SQLException {
-//		boolean retorno = false;
-//		
-//		stmtScript = con.prepareStatement("INSERT INTO categoriaAvaliacao "
-//				+ "(idTipoCat, nmCategoria, idadeMinima, idadeMaxima, sexo) "
-//				+ " VALUES (?, ?, ?, ?, ?)");
-//		
-//		stmtScript.setInt(1, categoria.getIdTipoCat());
-//		stmtScript.setString(2, categoria.getNmCategoria());
-//		stmtScript.setInt(3, categoria.getIdadeMinima());
-//		stmtScript.setInt(4, categoria.getIdadeMaxima());
-//		stmtScript.setString(5, categoria.getSexo());
-//		
-//		if(stmtScript.executeUpdate() > 0){
-//			retorno = true;
-//		}
-//		return retorno;
-//	}
+	public List<CategoriaAtividade> buscarAtividades(
+			CategoriaAvaliacao categoriaBase) throws SQLException {
+		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
+		
+		stmtScript = con.prepareStatement("SELECT capacidade, teste, idUnidadeDeMedida, melhorar, media, bom, excelente "
+				+ "FROM categoriaAtividade ca "
+				+ "INNER JOIN atividadeAvaliacao aa "
+				+ "ON ca.idAtividadeAvaliacao = aa.idAtividadeAvaliacao "
+				+ "WHERE ca.idCategoriaAvaliacao = ? "
+				+ "ORDER BY capacidade, teste ");
+		
+		stmtScript.setInt(1, categoriaBase.getIdCategoriaAvaliacao());
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			AtividadeAvaliacao atividade = new AtividadeAvaliacao();
+			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			
+			atividade.setCapacidade(rs.getString("capacidade"));
+			atividade.setTeste(rs.getString("teste"));
+			atividade.setIdUnidadeDeMedida(rs.getInt("idUnidadeDeMedida"));
+			
+			catAtiv.setAtividadeAvaliacao(atividade);
+			catAtiv.setMelhorar(rs.getFloat("melhorar"));
+			catAtiv.setMedia(rs.getFloat("media"));
+			catAtiv.setBom(rs.getFloat("bom"));
+			catAtiv.setExcelente(rs.getFloat("excelente"));
+			
+			lista.add(catAtiv);
+		}
+		return lista;
+	}
+
 }

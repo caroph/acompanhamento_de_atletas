@@ -2,7 +2,9 @@ package br.com.saat.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TipoCat;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
@@ -24,8 +27,11 @@ import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
 import br.com.saat.model.negocio.CategoriaAtividadeNegocio;
 import br.com.saat.model.negocio.CategoriaAvaliacaoNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
+import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TipoCatNegocio;
 import br.com.saat.model.negocio.UnidadeDeMedidaNegocio;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class AvaliacaoController
@@ -196,7 +202,11 @@ public class AvaliacaoFisController extends Controller {
 			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
 			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
 			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
+			
 			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 			servletRetorno = retorno;
@@ -232,7 +242,7 @@ public class AvaliacaoFisController extends Controller {
 				categoria.setNmCategoria(request.getParameter("nome"));
 				categoria.setIdadeMinima(idadeMin);
 				categoria.setIdadeMaxima(idadeMax);
-				categoria.setSexo(request.getParameter("sexo"));
+				categoria.setSexo(Integer.parseInt(request.getParameter("sexo")));
 				
 				boolean tipo;
 				for (TipoCat tipoCat : listaTipo) {
@@ -268,7 +278,11 @@ public class AvaliacaoFisController extends Controller {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
+			
 			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 			
@@ -301,7 +315,11 @@ public class AvaliacaoFisController extends Controller {
 			TipoCatNegocio tipoCatNegocio = new TipoCatNegocio();
 			List<TipoCat> listaTipo = tipoCatNegocio.listaTipoCat();
 			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
+			
 			request.setAttribute("listaTipo", listaTipo);
+			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
 
@@ -540,6 +558,42 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaAtividades", listaAtividades);
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			
+		} else if ("buscarDadoRef".equals(action)) {
+		
+			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
+			CategoriaAtividadeNegocio catAtivNegocio = new CategoriaAtividadeNegocio();
+
+			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+			List<CategoriaAtividade> listaCatAtiv = new ArrayList<CategoriaAtividade>();
+			
+			try{
+				categoria.setIdCategoriaAvaliacao(Integer.parseInt(request.getParameter("idCategoria")));
+				
+				categoria = negocioCat.buscarCategoria(categoria);
+				listaCatAtiv = catAtivNegocio.buscarAtividades(categoria);
+				
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
+			
+			UnidadeDeMedidaNegocio unidadeNegocio = new UnidadeDeMedidaNegocio();
+			List<UnidadeDeMedida> listaUnidades = unidadeNegocio.listaUnidadeDeMedida();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("categoria", categoria);
+			lista.put("listaSexo", listaSexo);
+			lista.put("listaUnidades", listaUnidades);
+			lista.put("listaCatAtiv", listaCatAtiv);
+		
+			String json = new Gson().toJson(lista);
+		
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
 			
 		} else{
 		//Página Principal
