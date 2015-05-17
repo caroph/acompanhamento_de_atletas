@@ -52,10 +52,10 @@ public class CategoriaAvaliacaoNegocio {
 		return retorno;
 	}
 
-	public List<CategoriaAvaliacao> buscarCategorias(int tipoConsulta) throws Exception {
+	public List<CategoriaAvaliacao> buscarCategorias(int tipoConsulta, int idCategoria) throws Exception {
 		try {
 			CategoriaAvaliacaoDAO dao = new CategoriaAvaliacaoDAO();
-			List<CategoriaAvaliacao> lista = dao.buscarCategorias(tipoConsulta);
+			List<CategoriaAvaliacao> lista = dao.buscarCategorias(tipoConsulta, idCategoria);
 			return lista;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar as categorias.");

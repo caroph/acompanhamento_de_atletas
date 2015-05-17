@@ -79,7 +79,7 @@ public class AvaliacaoFisController extends Controller {
 			AtividadeAvaliacaoNegocio negocio = new AtividadeAvaliacaoNegocio();
 			List<AtividadeAvaliacao> lista = new ArrayList<AtividadeAvaliacao>();
 			try{
-				lista = negocio.buscarAtividades();
+				lista = negocio.buscarAtividades(0, 0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
@@ -133,7 +133,7 @@ public class AvaliacaoFisController extends Controller {
 			}
 
 			try{
-				lista = negocio.buscarAtividades();
+				lista = negocio.buscarAtividades(0, 0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
@@ -166,7 +166,7 @@ public class AvaliacaoFisController extends Controller {
 			}
 			
 			try{
-				lista = negocio.buscarAtividades();
+				lista = negocio.buscarAtividades(0 ,0);
 				if (lista.isEmpty()) {
 					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
@@ -185,9 +185,9 @@ public class AvaliacaoFisController extends Controller {
 			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
 			List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
 			try{
-				lista = negocio.buscarCategorias(0);
+				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -260,9 +260,9 @@ public class AvaliacaoFisController extends Controller {
 			}
 
 			try{
-				lista = negocio.buscarCategorias(0);
+				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -290,9 +290,9 @@ public class AvaliacaoFisController extends Controller {
 			}
 			
 			try{
-				lista = negocio.buscarCategorias(0);
+				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -329,12 +329,12 @@ public class AvaliacaoFisController extends Controller {
 			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
 			
 			try{
-				listaCategorias = negocioCat.buscarCategorias(1);
+				listaCategorias = negocioCat.buscarCategorias(1, 0);
 				if (listaCategorias.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				} else {
 					try{
-						listaAtividades = negocioAti.buscarAtividades();
+						listaAtividades = negocioAti.buscarAtividades(0, 0);
 						if (listaAtividades.isEmpty()) {
 							request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 						}
@@ -366,7 +366,7 @@ public class AvaliacaoFisController extends Controller {
 			
 			//Busca atividades para poder buscar as selecionadas
 			try{
-				listaAtividades = negocioAti.buscarAtividades();
+				listaAtividades = negocioAti.buscarAtividades(0, 0);
 				if (listaAtividades.isEmpty()) {
 					msgAlerta = "Nenhuma atividade de avaliação física cadastrada!";
 					exception = true;
@@ -508,6 +508,38 @@ public class AvaliacaoFisController extends Controller {
 			}
 			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			
+		} else if ("jspMaisDadosRef".equals(action)) {
+			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
+			AtividadeAvaliacaoNegocio negocioAti = new AtividadeAvaliacaoNegocio();
+
+			List<CategoriaAvaliacao> listaCategorias = new ArrayList<CategoriaAvaliacao>();
+			List<AtividadeAvaliacao> listaAtividades = new ArrayList<AtividadeAvaliacao>();
+			
+			int idCategoria = 0;
+			try{
+				idCategoria = Integer.parseInt(request.getParameter("idCategoriaAvaliacao"));
+				
+				listaCategorias = negocioCat.buscarCategorias(2, idCategoria);
+				if (listaCategorias.isEmpty()) {
+					request.setAttribute("msgAlerta", "Categoria de avaliação não localizada!");
+				} else {
+					try{
+						listaAtividades = negocioAti.buscarAtividades(1, idCategoria);
+						if (listaAtividades.isEmpty()) {
+							request.setAttribute("msgAlerta", "Todas as atividades de avaliação física cadastradas já estão vinculadas a essa categoria!");
+						}
+					}catch(Exception ex){
+						request.setAttribute("msgErro", ex.getMessage());
+					}
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			request.setAttribute("listaCategorias", listaCategorias);
+			request.setAttribute("listaAtividades", listaAtividades);
+			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
 			
 		} else{
 		//Página Principal

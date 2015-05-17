@@ -39,10 +39,10 @@ public class AtividadeAvaliacaoNegocio {
 		return retorno;
 	}
 
-	public List<AtividadeAvaliacao> buscarAtividades() throws Exception {
+	public List<AtividadeAvaliacao> buscarAtividades(int tipoConsulta, int idCategoria) throws Exception {
 		try {
 			AtividadeAvaliacaoDAO dao = new AtividadeAvaliacaoDAO();
-			List<AtividadeAvaliacao> lista = dao.buscarAtividades();
+			List<AtividadeAvaliacao> lista = dao.buscarAtividades(tipoConsulta, idCategoria);
 			return lista;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades.");

@@ -21,12 +21,30 @@ public class AtividadeAvaliacaoDAO {
 	public AtividadeAvaliacaoDAO(Connection con) throws Exception{
         this.con = con;        
     }
-	public List<AtividadeAvaliacao> buscarAtividades() throws SQLException {
+	public List<AtividadeAvaliacao> buscarAtividades(int tipoConsulta, int idCategoria) throws SQLException {
+		// tipoConsulta: 0 = Geral/ 1 = LEFT JOIN Com base na categoria
 		List<AtividadeAvaliacao> lista = new ArrayList<AtividadeAvaliacao>();
 		
-		stmtScript = con.prepareStatement("SELECT idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste "
-				+ "FROM atividadeAvaliacao "
-				+ "WHERE flCadastroAtivo = 1");
+		if (tipoConsulta == 0) {
+			
+			stmtScript = con.prepareStatement("SELECT idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste "
+					+ "FROM atividadeAvaliacao "
+					+ "WHERE flCadastroAtivo = 1");
+			
+		} else {
+			
+			stmtScript = con.prepareStatement("SELECT aa.idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste "
+					+ "FROM atividadeAvaliacao aa "
+					+ "LEFT JOIN categoriaAtividade ca "
+					+ "ON ca.idAtividadeAvaliacao = aa.idAtividadeAvaliacao "
+					+ "AND ca.idCategoriaAvaliacao = ? "
+					+ "AND ca.flCadastroAtivo = 1 "
+					+ "WHERE aa.flCadastroAtivo = 1 "
+					+ "AND idCategoriaAtividade IS NULL ");
+			
+			stmtScript.setInt(1, idCategoria);
+			
+		}
 		
 		ResultSet rs = stmtScript.executeQuery();
 		

@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@include file='/layout/head.jsp'%>
 
 <body>
@@ -33,12 +34,19 @@
 											<div class="col-md-12">
 												<label for="categoria">
 													Categoria:</br>
-													<small>[Selecione uma ou mais categorias, que terão as mesmas atividades e valores de referência]</small></br>
+													<c:if test="${fn:length(listaCategorias) gt 1}">
+														<small>[Selecione uma ou mais categorias, que terão as mesmas atividades e valores de referência]</small></br>
+													</c:if>
 												</label>
 											 	<select id="categoria" name="categoria" multiple="multiple" required>
 													<option value="">Selecione</option>
 													<c:forEach var="categoria" items="${listaCategorias}">
-														<option value="<c:out value='${categoria.idCategoriaAvaliacao}'/>">
+														<c:if test="${fn:length(listaCategorias) eq 1}">
+															<option selected value="<c:out value='${categoria.idCategoriaAvaliacao}'/>">
+														</c:if>
+														<c:if test="${fn:length(listaCategorias) gt 1}">
+															<option value="<c:out value='${categoria.idCategoriaAvaliacao}'/>">
+														</c:if>
 															<c:out value="${categoria.nmCategoria}"/> / 
 															De <c:out value="${categoria.idadeMinima}"/> à <c:out value="${categoria.idadeMaxima}"/> anos /
 															<c:out value="${categoria.getNomeTipo()}"/>
@@ -55,7 +63,7 @@
 											<div class=" col-sm-12"> 
 												<table class=" col-sm-12">
 													<tr>
-														<th>Selecionar</th>
+														<th></th>
 														<th>Descrição atividade</th>
 														<th>Melhorar</th>
 														<th>Média</th>

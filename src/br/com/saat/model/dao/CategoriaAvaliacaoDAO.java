@@ -21,8 +21,8 @@ public class CategoriaAvaliacaoDAO {
 	public CategoriaAvaliacaoDAO(Connection con) throws Exception{
         this.con = con;        
     }
-	public List<CategoriaAvaliacao> buscarCategorias(int tipoConsulta) throws SQLException {
-		// tipoCOnulta -> 0 = Geral / 1 = Sem dados de referência cadastrado
+	public List<CategoriaAvaliacao> buscarCategorias(int tipoConsulta, int idCategoria) throws SQLException {
+		// tipoCOnulta -> 0 = Geral / 1 = Sem dados de referência cadastrado / 2 = Buscar categoria específica
 		List<CategoriaAvaliacao> lista = new ArrayList<CategoriaAvaliacao>();
 		
 		if (tipoConsulta == 0) {
@@ -32,13 +32,21 @@ public class CategoriaAvaliacaoDAO {
 					+ "FROM categoriaAvaliacao "
 					+ "WHERE flCadastroAtivo = 1 ");
 			
-		} else {
+		} else if (tipoConsulta == 1) {
 			stmtScript = con.prepareStatement("SELECT c.idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 					+ "idadeMinima, idadeMaxima, sexo "
 					+ "FROM categoriaAvaliacao c "
 					+ "LEFT JOIN categoriaAtividade ca "
 					+ "ON c.idCategoriaAvaliacao = ca.idCategoriaAvaliacao "
 					+ "WHERE c.flCadastroAtivo = 1 AND ca.idCategoriaAtividade IS NULL ");
+
+		} else {
+			stmtScript = con.prepareStatement("SELECT c.idCategoriaAvaliacao, idTipoCat, nmCategoria, "
+					+ "idadeMinima, idadeMaxima, sexo "
+					+ "FROM categoriaAvaliacao c "
+					+ "WHERE c.flCadastroAtivo = 1 AND c.idCategoriaAvaliacao = ? ");
+			
+			stmtScript.setInt(1, idCategoria);
 
 		}
 		
