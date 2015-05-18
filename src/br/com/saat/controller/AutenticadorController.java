@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.saat.core.BCrypt;
 import br.com.saat.core.Constants;
-import br.com.saat.core.Criptografia;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.CookieNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
@@ -39,11 +39,11 @@ public class AutenticadorController extends Controller {
 		
 		///Login
 		if("login".equals(action)){
-			Criptografia crip = new Criptografia();
 			
 			//Pegar parâmetros
 			String email = request.getParameter("email");
-            String senha = crip.criptografa(request.getParameter("senha"));
+			//Criptografar senha
+			String senha = request.getParameter("senha") + Constants.PASS_KEY;
             boolean lembrar = "true".equals(request.getParameter("lembrar"));
             
             Usuario usuario = new Usuario();
@@ -76,20 +76,22 @@ public class AutenticadorController extends Controller {
             
 		}else{
 			//Esqueci minha senha
-			String msg;
+			String msgErro = "";
+			String msgAlerta = "";
 			String emailSenha = request.getParameter("emailSenha");
 			UsuarioNegocio negocio = new UsuarioNegocio();
 			
 			if(emailSenha != null && !"".equals(emailSenha)){
 				try {
-					msg = negocio.esqueciSenha(emailSenha);
+					msgAlerta = negocio.esqueciSenha(emailSenha);
 				} catch (Exception e) {
-					msg = e.getMessage();
+					msgErro = e.getMessage();
 				}
 			}else{
-				msg = "Por favor, informe o seu email corretamente!";
+				msgErro = "Por favor, informe o seu email corretamente!";
 			}
-			request.setAttribute("msgErro", msg);
+			request.setAttribute("msgErro", msgErro);
+			request.setAttribute("msgAlerta", msgAlerta);
 			RequestDispatcher rs = getServletContext().getRequestDispatcher(String.format("%s/Index.jsp", Constants.VIEW));
             rs.forward(request, response);
 		}

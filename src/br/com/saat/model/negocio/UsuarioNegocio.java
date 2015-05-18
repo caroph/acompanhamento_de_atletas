@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import br.com.saat.core.BCrypt;
 import br.com.saat.core.Constants;
-import br.com.saat.core.Criptografia;
 import br.com.saat.core.JavaMailApp;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.model.Usuario;
@@ -21,7 +21,16 @@ public class UsuarioNegocio {
 			UsuarioDAO dao = new UsuarioDAO();
 			Usuario usuario = new Usuario();
 
-			usuario = dao.autenticar(email, senha);
+			List<Usuario> lista = dao.autenticar(email);
+			boolean achou = false;
+
+			for (Usuario usu : lista) {
+			   if (BCrypt.checkpw(senha, usu.getSenha()) && !achou) {
+			   	achou = true;
+				usuario = usu;
+			   }
+			}
+
 			return usuario;
 		} catch (Exception ex) {
 			throw new Exception("Erro! Ocorreu algum erro ao tentar autenticar o usuário.");
@@ -57,10 +66,13 @@ public class UsuarioNegocio {
 
 	public String esqueciSenha(String emailSenha) throws Exception {
 		UsuarioDAO dao = new UsuarioDAO();
-		Criptografia crip = new Criptografia();
 		Random gerador = new Random();
-		String novaSenha = Integer.toString(gerador.nextInt());
-		String novaSenhaCrip = crip.criptografa(novaSenha);
+		int senhaRandom = gerador.nextInt();
+		while (senhaRandom < 0) {
+			senhaRandom = gerador.nextInt();
+		}
+		String novaSenha = Integer.toString(senhaRandom);
+		String novaSenhaCrip = BCrypt.hashpw(novaSenha + Constants.PASS_KEY, BCrypt.gensalt());
 		String retorno = "";
 
 		try {
@@ -116,10 +128,13 @@ public class UsuarioNegocio {
 	}
 	
 	public boolean inserir(Usuario usuario) throws Exception{
-		Criptografia crip = new Criptografia();
 		Random gerador = new Random();
-		String novaSenha = Integer.toString(gerador.nextInt());
-		String novaSenhaCrip = crip.criptografa(novaSenha);
+		int senhaRandom = gerador.nextInt();
+		while (senhaRandom < 0) {
+			senhaRandom = gerador.nextInt();
+		}
+		String novaSenha = Integer.toString(senhaRandom);
+		String novaSenhaCrip = BCrypt.hashpw(novaSenha + Constants.PASS_KEY, BCrypt.gensalt());
 		
 		usuario.setSenha(novaSenhaCrip);
 		
@@ -127,12 +142,12 @@ public class UsuarioNegocio {
 			UsuarioDAO dao = new UsuarioDAO();
 			if (dao.inserir(usuario)) {
 				//Comentado para não ficar enviando email sempre que salvar um usuário.
-//				try {
-//					JavaMailApp email = new JavaMailApp();
-//					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
-//				} catch (Exception e) {
-//					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usuario");
-//				}
+				try {
+					JavaMailApp email = new JavaMailApp();
+					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
+				} catch (Exception e) {
+					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usuario");
+				}
 				return true;
 			}
 		} catch (Exception e) {
@@ -188,7 +203,6 @@ public class UsuarioNegocio {
 
 	public String verificarSenha(String senhaAtual, String novaSenha,
 			String confirmacaoSenha, int idUsuario) throws Exception {
-		Criptografia crip = new Criptografia();
 		if("".equals(senhaAtual)){
 			return "Preencha a senha atual!";
 		}else if("".equals(novaSenha)){
@@ -200,7 +214,8 @@ public class UsuarioNegocio {
 		}else{
 			try{
 				UsuarioDAO dao = new UsuarioDAO();
-				if(!dao.buscarSenha(crip.criptografa(senhaAtual), idUsuario))
+				String senhaBanco = dao.buscarSenha(idUsuario);
+				if(!BCrypt.checkpw(senhaAtual + Constants.PASS_KEY, senhaBanco))
 					return "A senha atual não confere!";
 			}catch(Exception ex){
 				throw new Exception("Ocorreu algum erro ao comparar a senha atual!");
@@ -209,11 +224,10 @@ public class UsuarioNegocio {
 		return null;
 	}
 
-	public boolean alterarSenha(Usuario usuario, String senhaNova, String senhaAtual) throws Exception {
-		Criptografia crip = new Criptografia();
+	public boolean alterarSenha(Usuario usuario, String senhaNova) throws Exception {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
-			if (dao.alterarSenha(usuario, crip.criptografa(senhaAtual), crip.criptografa(senhaNova))) {
+			if (dao.alterarSenha(usuario, BCrypt.hashpw(senhaNova + Constants.PASS_KEY, BCrypt.gensalt()))) {
 				return true;
 			}
 		} catch (Exception e) {

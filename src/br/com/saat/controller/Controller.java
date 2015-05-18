@@ -90,7 +90,7 @@ public class Controller extends HttpServlet {
 			try {
 				msg = negocio.verificarSenha(senhaAtual, novaSenha, confirmacaoSenha, usuarioLogado.getIdPessoa());
 				if(msg == null || "".equals(msg)){
-					if(negocio.alterarSenha(usuarioLogado, novaSenha, senhaAtual)){
+					if(negocio.alterarSenha(usuarioLogado, novaSenha)){
 						msgSucesso = "Senha alterada com sucesso!";
 					}
 				}

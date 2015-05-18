@@ -23,25 +23,26 @@ public class UsuarioDAO {
         this.con = con;        
     }
 	
-	public Usuario autenticar(String email, String senha) throws SQLException{
-		stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, perfil "
-				+ "FROM usuario WHERE email LIKE ? AND senha LIKE ? AND flCadastroAtivo = 1");
-        Usuario usuario = new Usuario();
-        
-        stmtScript.setString(1, email);
-        stmtScript.setString(2, senha);
-        
-        ResultSet rs = stmtScript.executeQuery();
-        if(rs.next()){
-            usuario.setIdPessoa(rs.getInt("idUsuario"));
-            usuario.setNome(rs.getString("nome"));
-            usuario.setEmail(rs.getString("email"));
-            usuario.setPerfil(rs.getInt("perfil"));
-        }else{
-            return null;
-        }
-        return usuario;
-    }
+	public List<Usuario> autenticar(String email) throws SQLException{
+		List<Usuario> lista = new ArrayList<Usuario>();
+
+			stmtScript = con.prepareStatement("SELECT idUsuario, nome, email, perfil, senha "
+					+ "FROM usuario WHERE email LIKE ? AND flCadastroAtivo = 1");
+	        
+	        stmtScript.setString(1, email);
+	        
+	        ResultSet rs = stmtScript.executeQuery();
+	        while(rs.next()){
+	        	Usuario usuario = new Usuario();
+	            usuario.setIdPessoa(rs.getInt("idUsuario"));
+	            usuario.setNome(rs.getString("nome"));
+	            usuario.setEmail(rs.getString("email"));
+	            usuario.setPerfil(rs.getInt("perfil"));
+	            usuario.setSenha(rs.getString("senha"));
+	            lista.add(usuario);
+	        }
+	        return lista;
+	    }
 
 	public Usuario buscarUsuCookie(int idUsuario) throws SQLException {
 		stmtScript = con.prepareStatement("SELECT idUsuario, nome, perfil "
@@ -61,15 +62,14 @@ public class UsuarioDAO {
         return usuario;
 	}
 	
-	public boolean alterarSenha(Usuario usuario, String senhaAtual, String senhaNova) throws SQLException{
+	public boolean alterarSenha(Usuario usuario, String senhaNova) throws SQLException{
 		boolean retorno = false;
 		int rows;
 		
-		stmtScript = con.prepareStatement("UPDATE usuario SET senha = ? WHERE idUsuario = ? AND senha = ?");
+		stmtScript = con.prepareStatement("UPDATE usuario SET senha = ? WHERE idUsuario = ?");
 		
 		stmtScript.setString(1, senhaNova);
 		stmtScript.setInt(2, usuario.getIdPessoa());
-		stmtScript.setString(3, senhaAtual);
 		
 		rows = stmtScript.executeUpdate();
 		
@@ -223,20 +223,20 @@ public class UsuarioDAO {
 		return false;
 	}
 
-	public boolean buscarSenha(String senhaAtual, int idUsuario) throws SQLException {
-		stmtScript = con.prepareStatement("SELECT senha FROM usuario WHERE idUsuario = ?");
-		stmtScript.setInt(1, idUsuario);
-			
-		ResultSet rs = stmtScript.executeQuery();
-		
-		if(rs.next()){
-			if(rs.getString("senha").equals(senhaAtual)){
-				return true;
-			}
-			return false;
-		}		
-		return false;
-	}
+//	public boolean buscarSenha(String senhaAtual, int idUsuario) throws SQLException {
+//		stmtScript = con.prepareStatement("SELECT senha FROM usuario WHERE idUsuario = ?");
+//		stmtScript.setInt(1, idUsuario);
+//			
+//		ResultSet rs = stmtScript.executeQuery();
+//		
+//		if(rs.next()){
+//			if(rs.getString("senha").equals(senhaAtual)){
+//				return true;
+//			}
+//			return false;
+//		}		
+//		return false;
+//	}
 	
 	public List<Integer> buscarIdUsuarios(int compartilhar) throws SQLException {
 		List<Integer> lista = new ArrayList<Integer>();
@@ -253,5 +253,19 @@ public class UsuarioDAO {
 			lista.add(rs.getInt(1));
 		}
 		return lista;
+	}
+
+	public String buscarSenha(int idUsuario) throws SQLException {
+		String retorno = "";
+		
+		stmtScript = con.prepareStatement("SELECT senha FROM usuario WHERE idUsuario = ?");
+		stmtScript.setInt(1, idUsuario);
+			
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			retorno = rs.getString("senha");
+		}		
+		return retorno;
 	}
 }

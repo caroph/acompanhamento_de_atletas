@@ -14,12 +14,7 @@
 								<h3 class="page-header">Sistema de Acompanhamento de Atletas de Tênis</h3>
 							</div>
 							<form role="form" method="post" action="Autenticador?action=login">
-								<c:if test="${ msgErro != null }">
-									<div class="alert alert-danger">
-								        <a href="#" class="close" data-dismiss="alert">&times;</a>
-								            <c:out value="${msgErro}"></c:out>       
-							    	</div>
-						        </c:if>
+								<%@include file="Mensagem.jsp"%>
 								<div class="form-group">
 									<label class="control-label">Email</label>
 									<input type="email" class="form-control" name="email" id="email" autofocus required/>

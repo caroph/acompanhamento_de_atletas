@@ -11,5 +11,6 @@ public class Constants {
 	public static final String IMG = String.format("%s/img", PATH);
 	public static final String COOKIE_NAME = "usuarioLogado";
 	public static final int COOKIE_AGE = (60*60*24*365);
+	public static final String PASS_KEY = "s@@t 2015";  //NUNCA MUDAR O VALOR DESSA CONSTANTE
 	
 }
