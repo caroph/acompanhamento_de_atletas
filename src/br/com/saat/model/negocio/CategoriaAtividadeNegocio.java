@@ -3,8 +3,10 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.model.AtividadeAvaliacao;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
+import br.com.saat.model.dao.AtividadeAvaliacaoDAO;
 import br.com.saat.model.dao.CategoriaAtividadeDAO;
 
 public class CategoriaAtividadeNegocio {
@@ -73,6 +75,55 @@ public class CategoriaAtividadeNegocio {
 		try {
 			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
 			List<CategoriaAtividade> lista = dao.buscarAtividades(categoria);
+			return lista;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referência.");
+		}
+	}
+
+	public boolean editar(List<CategoriaAtividade> categoriaAtividades,
+			String[] categoriasSelecionadas) throws Exception {
+		boolean retorno = true;
+		try {
+			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
+			
+			for (String idCategoria : categoriasSelecionadas) {
+				CategoriaAvaliacao categoria = new CategoriaAvaliacao();
+				categoria.setIdCategoriaAvaliacao(Integer.parseInt(idCategoria));
+				for (CategoriaAtividade catAtiv : categoriaAtividades) {
+					catAtiv.setCategoriaAvaliacao(categoria);
+					if (!dao.editar(catAtiv)) {
+						retorno = false;
+						break;
+					}
+				} 
+			}
+			
+			String idAtividades = "";
+			int i = 0;
+			for (CategoriaAtividade atividade : categoriaAtividades) {
+				idAtividades += atividade.getAtividadeAvaliacao().getIdAtividadeAvaliacao();
+				i++;
+				if (i < categoriaAtividades.size()) {
+					idAtividades += ", ";
+				}
+			}
+			
+			for (String idCategoria : categoriasSelecionadas) {
+				if (!dao.reciclarCatAtiv(idCategoria, idAtividades)) {
+					retorno = false;
+				}
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao inserir a atividade.");
+		}
+		return retorno;
+	}
+
+	public List<CategoriaAtividade> buscarAtividadesCat(int idCategoria) throws Exception {
+		try {
+			CategoriaAtividadeDAO dao = new CategoriaAtividadeDAO();
+			List<CategoriaAtividade> lista = dao.buscarAtividadesCat(idCategoria);
 			return lista;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referência.");

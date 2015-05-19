@@ -22,7 +22,7 @@ public class AtividadeAvaliacaoDAO {
         this.con = con;        
     }
 	public List<AtividadeAvaliacao> buscarAtividades(int tipoConsulta, int idCategoria) throws SQLException {
-		// tipoConsulta: 0 = Geral/ 1 = LEFT JOIN Com base na categoria
+		// tipoConsulta: 0 = Geral/ 1 = LEFT JOIN Com base na categoria/ 
 		List<AtividadeAvaliacao> lista = new ArrayList<AtividadeAvaliacao>();
 		
 		if (tipoConsulta == 0) {
@@ -44,16 +44,16 @@ public class AtividadeAvaliacaoDAO {
 			
 			stmtScript.setInt(1, idCategoria);
 			
-		}
+		} 
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
 		while(rs.next()){
 			AtividadeAvaliacao atividade = new AtividadeAvaliacao();
-			atividade.setIdAtividadeAvaliacao(rs.getInt(1));
-			atividade.setIdUnidadeDeMedida(rs.getInt(2));
-			atividade.setCapacidade(rs.getString(3));
-			atividade.setTeste(rs.getString(4));
+			atividade.setIdAtividadeAvaliacao(rs.getInt("idAtividadeAvaliacao"));
+			atividade.setIdUnidadeDeMedida(rs.getInt("idUnidadeDeMedida"));
+			atividade.setCapacidade(rs.getString("capacidade"));
+			atividade.setTeste(rs.getString("teste"));
 			lista.add(atividade);
 		}
 		return lista;

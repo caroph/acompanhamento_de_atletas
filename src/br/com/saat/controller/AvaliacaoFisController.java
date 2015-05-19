@@ -366,6 +366,7 @@ public class AvaliacaoFisController extends Controller {
 			
 			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaAtividades", listaAtividades);
+			request.setAttribute("tipoAcao", 1); //1 Novo
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
 			
 		} else if ("inserirDadosRef".equals(action)) {
@@ -396,6 +397,9 @@ public class AvaliacaoFisController extends Controller {
 			
 			//Se não ocorreu nenhum erro, continua
 			if (!exception) {
+				//TipoAcao
+				String tipoAcao = request.getParameter("tipoAcao");
+				
 				//Busca categorias selecionadas
 				String[] categoriasSelecionadas = request.getParameterValues("categoria");
 				
@@ -406,7 +410,6 @@ public class AvaliacaoFisController extends Controller {
 					if (atividadeSelecionada) {
 						CategoriaAtividade catAtiv = new CategoriaAtividade();
 						AtividadeAvaliacao ativAva = new AtividadeAvaliacao();
-						
 						
 						//ID Atividade
 						ativAva.setIdAtividadeAvaliacao(idAtividade);
@@ -456,10 +459,18 @@ public class AvaliacaoFisController extends Controller {
 				//INSERIR
 				else {
 					try {
-						if (negocio.inserir(categoriaAtividades, categoriasSelecionadas)) {
-							msgSucesso = "Dados de referência salvos com sucesso!";
+						if ("1".equals(tipoAcao)) {
+							if (negocio.inserir(categoriaAtividades, categoriasSelecionadas)) {
+								msgSucesso = "Dados de referência salvos com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+							}
 						} else {
-							msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+							if (negocio.editar(categoriaAtividades, categoriasSelecionadas)) {
+								msgSucesso = "Dados de referência salvos com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+							}
 						}
 					} catch (Exception ex) {
 						msgErro =  ex.getMessage();
@@ -557,6 +568,7 @@ public class AvaliacaoFisController extends Controller {
 			
 			request.setAttribute("listaCategorias", listaCategorias);
 			request.setAttribute("listaAtividades", listaAtividades);
+			request.setAttribute("tipoAcao", 1); //1 Novo
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
 			
 		} else if ("buscarDadoRef".equals(action)) {
@@ -595,6 +607,35 @@ public class AvaliacaoFisController extends Controller {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(json);
 			
+		} else if ("editarDadoRef".equals(action)) {
+			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
+			CategoriaAtividadeNegocio negocioAti = new CategoriaAtividadeNegocio();
+
+			List<CategoriaAvaliacao> listaCategorias = new ArrayList<CategoriaAvaliacao>();
+			List<CategoriaAtividade> listaAtividades = new ArrayList<CategoriaAtividade>();
+			
+			int idCategoria = 0;
+			try{
+				idCategoria = Integer.parseInt(request.getParameter("idCategoriaAvaliacao"));
+				
+				listaCategorias = negocioCat.buscarCategorias(2, idCategoria);
+				if (listaCategorias.isEmpty()) {
+					request.setAttribute("msgAlerta", "Categoria de avaliação não localizada!");
+				} else {
+					try{
+						listaAtividades = negocioAti.buscarAtividadesCat(idCategoria);
+					}catch(Exception ex){
+						request.setAttribute("msgErro", ex.getMessage());
+					}
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			request.setAttribute("listaCategorias", listaCategorias);
+			request.setAttribute("listaAtividades", listaAtividades);
+			request.setAttribute("tipoAcao", 2); //2 Editar
+			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

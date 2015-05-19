@@ -82,6 +82,9 @@
 				</div>
 				<div class="modal-body body-dadosRef">
 				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+				</div>
 			</div>
 		</div>
 	</div>

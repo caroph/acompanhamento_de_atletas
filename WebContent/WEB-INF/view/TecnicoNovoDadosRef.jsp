@@ -30,6 +30,7 @@
 								</div>
 								<div class="box-content">
 									<form class="form-horizontal" role="form" action="AvaliacaoFisController?action=inserirDadosRef" method="post">
+										<input type="hidden" name="tipoAcao" value="${tipoAcao}"/>
 										<div class="form-group">
 											<div class="col-md-12">
 												<label for="categoria">
@@ -72,12 +73,22 @@
 													</tr>
 													<c:forEach var="atividade" items="${listaAtividades}">
 														<tr>
-															<td><label style="padding: 6px 8px 0 0;"><input type="checkbox" name="<c:out value='${atividade.idAtividadeAvaliacao}'/>" value="true"></label></td>
-															<td><c:out value='${atividade.capacidade}'/> / <c:out value='${atividade.teste}'/> (<c:out value='${atividade.getNomeUnidade()}'/>)</td>
-															<td><input type="number" step="any" class="control-label " id="melhorar" name="melhorar<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" step="any" class="control-label " id="media" name="media<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" step="any" class="control-label " id="bom" name="bom<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
-															<td><input type="number" step="any" class="control-label " id="excelente" name="excelente<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															<c:if test="${tipoAcao eq '1'}">
+																<td><label style="padding: 6px 8px 0 0;"><input type="checkbox" name="<c:out value='${atividade.idAtividadeAvaliacao}'/>" value="true"></label></td>
+																<td><c:out value='${atividade.capacidade}'/> / <c:out value='${atividade.teste}'/> (<c:out value='${atividade.getNomeUnidade()}'/>)</td>
+																<td><input type="number" step="any" class="control-label " id="melhorar" name="melhorar<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="media" name="media<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="bom" name="bom<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="excelente" name="excelente<c:out value='${atividade.idAtividadeAvaliacao}'/>" /></td>
+															</c:if>
+															<c:if test="${tipoAcao eq '2'}">
+																<td><label style="padding: 6px 8px 0 0;"><input type="checkbox" name="<c:out value='${atividade.getAtividadeAvaliacao().idAtividadeAvaliacao}'/>" value="true" checked="checked"></label></td>
+																<td><c:out value='${atividade.getAtividadeAvaliacao().capacidade}'/> / <c:out value='${atividade.getAtividadeAvaliacao().teste}'/> (<c:out value='${atividade.getAtividadeAvaliacao().getNomeUnidade()}'/>)</td>
+																<td><input type="number" step="any" class="control-label " id="melhorar" name="melhorar<c:out value='${atividade.getAtividadeAvaliacao().idAtividadeAvaliacao}'/>" value="<c:out value='${atividade.melhorar}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="media" name="media<c:out value='${atividade.getAtividadeAvaliacao().idAtividadeAvaliacao}'/>" value="<c:out value='${atividade.media}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="bom" name="bom<c:out value='${atividade.getAtividadeAvaliacao().idAtividadeAvaliacao}'/>" value="<c:out value='${atividade.bom}'/>" /></td>
+																<td><input type="number" step="any" class="control-label " id="excelente" name="excelente<c:out value='${atividade.getAtividadeAvaliacao().idAtividadeAvaliacao}'/>" value="<c:out value='${atividade.excelente}'/>" /></td>
+															</c:if>
 														</tr>
 													</c:forEach>
 												</table>
