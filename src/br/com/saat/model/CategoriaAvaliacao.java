@@ -10,6 +10,7 @@ public class CategoriaAvaliacao {
 	private int idadeMinima;
 	private int idadeMaxima;
 	private int sexo;
+	
 	public int getIdCategoriaAvaliacao() {
 		return idCategoriaAvaliacao;
 	}

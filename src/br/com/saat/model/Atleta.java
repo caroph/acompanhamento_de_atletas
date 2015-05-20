@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.saat.enumeradores.Equipes;
 import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.Turno;
 
 public class Atleta extends Pessoa {
@@ -13,6 +14,7 @@ public class Atleta extends Pessoa {
 	private String nrCadFPT;
 	private String nrCadCBT;
 	private Date dtNascimento;
+	private int sexo;
 	private String RG;
 	private String CPF;
 	private String escola;
@@ -226,6 +228,14 @@ public class Atleta extends Pessoa {
 		this.endereco = endereco;
 	}
 	
+	public int getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(int sexo) {
+		this.sexo = sexo;
+	}
+
 	public String getNomeEquipe(){
 		String retorno = "";
 		switch(this.idTpEquipe){
@@ -394,6 +404,19 @@ public class Atleta extends Pessoa {
 
 	public void setPresenca(PresencaChamada presenca) {
 		this.presenca = presenca;
+	}
+	
+	public String getNomeSexo(){
+		String retorno = "";
+		switch (this.sexo) {
+		case 1:
+			retorno = Sexo.Feminino.getNome();
+			break;
+		case 2:
+			retorno = Sexo.Masculino.getNome();
+			break;
+		}
+		return retorno;
 	}
 	
 }

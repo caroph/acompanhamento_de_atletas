@@ -36,8 +36,8 @@ public class AtletaDAO {
 				+ "nrMatricula, nrCadFPT, nrCadCBT, dtNascimento, RG, CPF, escola, serie, idTurno, "
 				+ "acompPsicologico, nmMedicoResponsavel, telMedicoResponsavel, convenio, medicacaoAutorizada, "
 				+ "flAlergias, dsAlergias, flMedicacao, dsMedicacao, nmContatoEmergencia, telContatoEmergencia, "
-				+ "idGrauParentesco, dtValidade) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+				+ "idGrauParentesco, dtValidade, sexo) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
 		stmtScript.setInt(1, atleta.getIdTpEquipe());
 		stmtScript.setString(2, atleta.getNome());
@@ -65,6 +65,7 @@ public class AtletaDAO {
 		stmtScript.setString(24, atleta.getTelContatoEmergencia());
 		stmtScript.setInt(25, atleta.getIdGrauParentesco());
 		stmtScript.setDate(26, new java.sql.Date(atleta.getDtValidade().getTime()));
+		stmtScript.setInt(27, atleta.getSexo());
 		
 		stmtScript.executeUpdate();
 		ResultSet rs = stmtScript.getGeneratedKeys();
@@ -85,7 +86,7 @@ public class AtletaDAO {
 					+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
 					+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
 					+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
-					+ "bairro, estado, cidade, telefone, flCadastroAtivo "
+					+ "bairro, estado, cidade, telefone, flCadastroAtivo, sexo "
 					+ "FROM atleta a "
 					+ "LEFT JOIN endereco e "
 					+ "ON a.idAtleta = e.idEndereco "
@@ -98,7 +99,7 @@ public class AtletaDAO {
 					+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
 					+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
 					+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
-					+ "bairro, estado, cidade, telefone, flCadastroAtivo "
+					+ "bairro, estado, cidade, telefone, flCadastroAtivo, sexo "
 					+ "FROM atleta a "
 					+ "LEFT JOIN endereco e "
 					+ "ON a.idAtleta = e.idEndereco "
@@ -150,6 +151,7 @@ public class AtletaDAO {
 			endereco.setCidade(rs.getString(34));
 			endereco.setTelefone(rs.getString(35));
 			
+			atleta.setSexo(rs.getInt(36));
 			lista.add(atleta);
 		}
 
@@ -163,7 +165,7 @@ public class AtletaDAO {
 				+ "medicacaoAutorizada, flAlergias, dsAlergias, flMedicacao, dsMedicacao, "
 				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, "
 				+ "dtValidade, e.idEndereco, endereco, numero, complemento,"
-				+ "bairro, estado, cidade, telefone "
+				+ "bairro, estado, cidade, telefone, sexo "
 				+ "FROM atleta a "
 				+ "LEFT JOIN endereco e "
 				+ "ON a.idAtleta = e.idEndereco "
@@ -215,6 +217,8 @@ public class AtletaDAO {
 			endereco.setCidade(rs.getString(34));
 			endereco.setTelefone(rs.getString(35));
 			
+			atleta.setSexo(rs.getInt(36));
+			
 			return atleta;
 		}
 		
@@ -229,7 +233,7 @@ public class AtletaDAO {
 				+ "nrCadCBT = ?, dtNascimento = ?, RG = ?, CPF = ?, escola = ?, serie = ?, idTurno = ?, "
 				+ "acompPsicologico = ?, nmMedicoResponsavel = ?, telMedicoResponsavel = ?, convenio = ?, "
 				+ "medicacaoAutorizada = ?, flAlergias = ?, dsAlergias = ?, flMedicacao = ?, dsMedicacao = ?, "
-				+ "nmContatoEmergencia = ?, telContatoEmergencia = ?, idGrauParentesco = ?, dtValidade = ? "
+				+ "nmContatoEmergencia = ?, telContatoEmergencia = ?, idGrauParentesco = ?, dtValidade = ?, sexo = ? "
 				+ "WHERE idAtleta = ? ");
 
 		stmtScript.setInt(1, atleta.getIdTpEquipe());
@@ -259,6 +263,7 @@ public class AtletaDAO {
 		stmtScript.setInt(25, atleta.getIdGrauParentesco());
 		stmtScript.setDate(26, new java.sql.Date(atleta.getDtValidade().getTime()));
 		stmtScript.setInt(27, atleta.getIdPessoa());
+		stmtScript.setInt(28, atleta.getSexo());
 		
 		rows = stmtScript.executeUpdate();
 		
@@ -351,7 +356,7 @@ public class AtletaDAO {
 		
 		stmtScript = con.prepareStatement("SELECT nome, idTpEquipe, nrMatricula, nrCadCBT, nrCadFPT, "
 				+ "nmContatoEmergencia, telContatoEmergencia, idGrauParentesco, dtNascimento, email, "
-				+ "RG, CPF FROM atleta WHERE idAtleta = ?");
+				+ "RG, CPF, sexo FROM atleta WHERE idAtleta = ?");
 		stmtScript.setInt(1, idAtleta);
 		
 		ResultSet rs = stmtScript.executeQuery();
@@ -370,6 +375,7 @@ public class AtletaDAO {
 			atleta.setEmail(rs.getString(10));
 			atleta.setRG(rs.getString(11));
 			atleta.setCPF(rs.getString(12));
+			atleta.setSexo(rs.getInt(13));
 			
 			stmtScript = con.prepareStatement("SELECT dt.idDiaSemana, dt.hrInicio, dt.hrFim "
 					+ "FROM diatreinoatleta dta JOIN diatreino dt on dt.idDiaTreino = dta.idDiaTreino "

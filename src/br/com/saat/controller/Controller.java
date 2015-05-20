@@ -27,6 +27,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
+import br.com.saat.enumeradores.Sexo;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.ConnectionFactory;
@@ -46,6 +47,7 @@ import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
+import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
@@ -114,6 +116,9 @@ public class Controller extends HttpServlet {
 				msg = ex.getMessage();
 			}		
 			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
+			
 			List<String> listaGrauParentesco = new GrauParentescoNegocio().listaGrausString();
 			List<String> listaDiaSemana = new DiasSemanaNegocio().listaSemanaString();
 			List<String> listaEquipe = new EquipesNegocio().listaEquipeString();
@@ -123,6 +128,7 @@ public class Controller extends HttpServlet {
 			lista.put("grauParentesco", listaGrauParentesco);
 			lista.put("diaSemana", listaDiaSemana);
 			lista.put("equipe", listaEquipe);
+			lista.put("listaSexo", listaSexo);
 			
 			String json = new Gson().toJson(lista);
 

@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.sf.jasperreports.engine.JasperRunManager;
-
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 
@@ -36,13 +31,12 @@ import br.com.saat.enumeradores.DiasSemana;
 import br.com.saat.enumeradores.Equipes;
 import br.com.saat.enumeradores.GrauParentesco;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.enumeradores.TpEndereco;
 import br.com.saat.enumeradores.TpPessoa;
-import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
-import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
@@ -58,8 +52,8 @@ import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
+import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
-import br.com.saat.model.negocio.TpTorneioNegocio;
 import br.com.saat.model.negocio.TurnoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
@@ -135,10 +129,14 @@ public class SecretariaController extends Controller {
 
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
 
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("listaSexo", listaSexo);
 
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
@@ -168,6 +166,7 @@ public class SecretariaController extends Controller {
 					int numero = 0;
 					int idTurno = 0;
 					int idGrauParentesco = 0;
+					int sexo = 0;
 					String escolha;
 					int idEndereco;
 					int idAtleta = 0;
@@ -202,6 +201,13 @@ public class SecretariaController extends Controller {
 						msg = "Favor selecionar corretamente o campo 'Grau de Parentesco'.";
 						exception = true;
 					}
+					try {
+						sexo = Integer.parseInt(request
+								.getParameter("sexo"));
+					} catch (Exception ex) {
+						msg = "Favor selecionar corretamente o campo 'Sexo'.";
+						exception = true;
+					}
 					if (!exception) {
 						Endereco endereco = new Endereco();
 						AtletaNegocio atletaNegocio = new AtletaNegocio();
@@ -212,6 +218,7 @@ public class SecretariaController extends Controller {
 						atleta.setIdPessoa(idAtleta);
 						atleta.setNome(request.getParameter("nome"));
 						atleta.setEmail(request.getParameter("email"));
+						atleta.setSexo(sexo);
 						atleta.setCelular(request.getParameter("celular"));
 						atleta.setNrMatricula(request
 								.getParameter("nrMatricula"));
@@ -298,11 +305,15 @@ public class SecretariaController extends Controller {
 
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
 
 			request.setAttribute("msgErro", msg);
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("listaSexo", listaSexo);
 
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
@@ -317,6 +328,7 @@ public class SecretariaController extends Controller {
 			int idTpEquipe = 0;
 			int idGrauParentesco = 0;
 			int idTurno = 0;
+			int sexo = 0;
 			String[] diasTreino = null;
 
 			Atleta atleta = new Atleta();
@@ -359,6 +371,13 @@ public class SecretariaController extends Controller {
 				msg = "Favor selecionar corretamente o campo 'Grau de Parentesco'.";
 				exception = true;
 			}
+			try {
+				sexo = Integer.parseInt(request
+						.getParameter("sexo"));
+			} catch (Exception ex) {
+				msg = "Favor selecionar corretamente o campo 'Sexo'.";
+				exception = true;
+			}
 			if (!exception) {
 				Endereco endereco = new Endereco();
 				AtletaNegocio negocio = new AtletaNegocio();
@@ -369,6 +388,7 @@ public class SecretariaController extends Controller {
 				idAtleta = request.getParameter("idAtleta");
 				atleta.setNome(request.getParameter("nome"));
 				atleta.setEmail(request.getParameter("email"));
+				atleta.setSexo(sexo);
 				atleta.setCelular(request.getParameter("celular"));
 				atleta.setIdTpEquipe(idTpEquipe);
 				atleta.setNrMatricula(request.getParameter("nrMatricula"));
@@ -523,10 +543,15 @@ public class SecretariaController extends Controller {
 
 			TurnoNegocio turnoNegocio = new TurnoNegocio();
 			List<Turno> listaTurnos = turnoNegocio.listaTurnos();
+			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
 
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("listaSexo", listaSexo);
+			
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspNovoAtleta";
@@ -636,10 +661,14 @@ public class SecretariaController extends Controller {
 				} catch (Exception ex) {
 					msg = ex.getMessage();
 				}
+				
+				SexoNegocio sexoNegocio = new SexoNegocio();
+				List<Sexo> listaSexo = sexoNegocio.listaSexo();
 
 				request.setAttribute("listaEquipes", listaEquipes);
 				request.setAttribute("listaGrauParentesco", listaGraus);
 				request.setAttribute("listaTurnos", listaTurnos);
+				request.setAttribute("listaSexo", listaSexo);
 				request.setAttribute("atleta", atleta);
 
 				retorno = String.format("%s/SecretariaNovoAtleta.jsp",
@@ -718,11 +747,16 @@ public class SecretariaController extends Controller {
 			} catch (Exception ex) {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
+			
+			SexoNegocio sexoNegocio = new SexoNegocio();
+			List<Sexo> listaSexo = sexoNegocio.listaSexo();
 
 			request.setAttribute("listaEquipes", listaEquipes);
 			request.setAttribute("listaGrauParentesco", listaGraus);
 			request.setAttribute("listaTurnos", listaTurnos);
+			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("atleta", atleta);
+			
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=editarAtleta&idAtleta="

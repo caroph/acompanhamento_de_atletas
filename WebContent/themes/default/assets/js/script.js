@@ -156,6 +156,7 @@ function abrirModalAtleta(idAtleta) {
 		url : "Controller?action=buscarAtletaDetalhes&idAtleta="
 				+ idAtleta,
 		success : function(data) {
+			var sexo = data.listaSexo;
 			var html = "";
 			if(data.atleta.listaDocumentos[0] != null){
 				var srcDocumento = data.atleta.listaDocumentos[0].src;
@@ -171,6 +172,8 @@ function abrirModalAtleta(idAtleta) {
 					+ data.equipe[data.atleta.idTpEquipe - 1] + "<br/>";
 			html += "<b>Data de nascimento:</b> "
 					+ data.atleta.dtNascimentoDisplay + "<br/>";
+			html += "<b>Sexo:</b> "
+				+ sexo[data.atleta.sexo - 1] + "<br/>";
 			html += "<b>Email:</b> " + data.atleta.email + "<br/>";
 			html += "<br/><b>Dias de Treino:</b> " + "<br/>";
 			var diasSemana = data.diaSemana;

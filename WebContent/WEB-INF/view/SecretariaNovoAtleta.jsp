@@ -89,12 +89,26 @@
 												<label for="nome" class=" control-label">Nome:</label>
 												<input type="text" value="${atleta.nome}" class="form-control" id="nome" name="nome" maxlength="255" required/>
 											</div>
-											<div class="col-sm-4" >
+											<div class="col-sm-3" >
 												<label for="dtNascimento" class="control-label">Data de Nascimento:</label>
 												<fmt:formatDate value="${atleta.dtNascimento}" pattern="dd/MM/yyyy" var="dtNascimento" />
 												<input type="text" value="${dtNascimento}" class="form-control data" id="dtNascimento" name="dtNascimento" required/>
 											</div>
-											<div class="col-sm-4">
+											<div class="col-md-2">
+												<label for="sexo" class=" control-label">Sexo:</label></br>
+												<select class="form-control" id="sexo" name="sexo" required>
+													<option value="">Selecione</option>
+													<c:forEach var="sexo" items="${listaSexo}">
+							                            <c:if test="${sexo.valor == atleta.sexo}">
+															<option selected value="<c:out value='${sexo.valor}'/>"><c:out value="${sexo.nome}" /></option>
+			                                            </c:if>
+			                                            <c:if test="${sexo.valor != atleta.sexo}">
+			                                                <option value="<c:out value='${sexo.valor}'/>"><c:out value="${sexo.nome}" /></option>
+														</c:if>
+						                            </c:forEach>
+												</select>
+											</div>
+											<div class="col-sm-3">
 												<label for="email" class=" control-label">Email:</label>
 												<input type="email"  value="${atleta.email}" class="form-control" id="email" name="email" maxlength="70" required/>
 											</div>
