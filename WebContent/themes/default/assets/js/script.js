@@ -300,6 +300,77 @@ function abrirModalDadosRef(idCategoria) {
 	});
 }
 
+function abrirModalAvaliacaoFis(idAtleta) {
+	$("#avaliacaoFis").modal();	
+	$.ajax({
+		type : "POST",
+		url : "AvaliacaoFisController?action=jspNovaAvaliacao&idAtleta="
+				+ idAtleta,
+		success : function(data) {
+			var caract = data.tpCaracteristica;
+			
+			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + idAtleta + "' enctype='multipart/form-data' method='post'>"
+			+ "<div class='form-group'>"
+			+ "<div class='col-sm-4'>"
+			+ "<label for='data' class='text-left'>Data:</label>"
+			+ "<input type='date' class='form-control data' id='data' name='data' value='" + data.dataAtual +  "' required/>"
+			+ "</div>"
+			+ "<div class='col-sm-8'>"
+			+ "<label for='caracteristica' class='text-left'>Caracter\u00edstica:</label>"
+			+ "<select class='form-control' id='caracteristica' name='caracteristica' required>"
+			+ "<option value=''>Selecione</option>";
+			$.each(
+					caract,
+					function(index, item) {
+						html += "<option value='" + (index + 1) + "'>" + caract[index] + "</option>";
+					});
+            html += "</select>"
+			+ "</div>"
+			+ "</div><br/>";
+			
+			html += "<b>Atividades:</b><br/>";
+			
+		if (data.listaAvaResul.length <= 0){
+			html += "<small>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</small>"
+		}else{
+			html += "<small>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</small>"
+				
+			var unidade = data.listaUnidades;
+			html += 
+					"<div class='form-group'>" + 
+					"<table>" +
+					"<tr>" +
+					"<th style='padding:5px'>Capacidade</th>" +
+					"<th style='padding:5px'>Teste</th>" +
+					"<th style='padding:5px'>Medida</th>" +
+					"<th style='padding:5px'>Desempenho</th>" +
+					"</tr>";
+
+			$.each(
+				data.listaAvaResul,
+				function(index, item) {
+					html += "<tr>" +
+							"<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.capacidade + "</td>";
+					html += "<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.teste  + "</td>";
+					html += "<td style='padding:5px'>" + unidade[item.categoriaAtividade.AtividadeAvaliacao.idUnidadeDeMedida - 1] + "</td>";
+					html += "<td style='padding:5px;text-align: right;'><input type='number' step='any' class='control-label' name='desempenho<c:out value='" + item.categoriaAtividade.idCategoriaAtividade + "'/></td>";
+					html += "<input type='hidden' name='idCategoriaAtividade' value='" + item.categoriaAtividade.idCategoriaAtividade + "'/>"
+					html += "</tr>"
+				});
+			html += "</table>" + 
+					"</div>";
+
+			html += "<div class='modal-footer'>"
+				+ "<button type='submit' class='btn btn-primary'>Salvar</button>"
+				+ "<button type='button' class='btn btn-danger' data-dismiss='modal' id='fechar'>Cancelar</button>"
+				+ "</div>" + "</form>";
+				html += "<b>Atividades:</b><br/>";	
+			$('.body-avaliacao').html(html);
+			}
+		}
+	});
+}
+
 function registrarPresenca(idAtleta, nomeAtleta) {
 	$("#anunciarPresenca").modal();
 	var label = $("#lblNomeAtleta");

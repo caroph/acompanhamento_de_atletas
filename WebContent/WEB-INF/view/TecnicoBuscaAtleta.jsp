@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file='/layout/head.jsp'%>
@@ -40,8 +39,6 @@
 												<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 													<th></th>
 												</c:if>
-
-<!-- 												<th></th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -57,13 +54,9 @@
 													</td>
 													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 														<td align="center">
-															<a class="btn btn-primary" href="">Avaliação Física</a>
+															<a class="btn btn-primary" onClick="abrirModalAvaliacaoFis('${atleta.idPessoa}')">Avaliação Física</a>
 														</td>														
 													</c:if>
-
-<!-- 													<td align="center"> -->
-<!-- 														<a class="btn btn-primary">Desempenho em Torneios</a> -->
-<!-- 													</td> -->
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -77,6 +70,8 @@
 			<!--End Content-->
 		</div>
 	</div>
+	
+	<!-- Detalhes Atleta -->
 	<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
 		class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -93,6 +88,22 @@
 			</div>
 		</div>
 	</div>	
+	
+	<!-- Avaliação -->
+	<div class="modal fade" id="avaliacaoFis" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
+		class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Avaliação física</h4>
+				</div>
+				<div class="modal-body body-avaliacao">
+				</div>
+			</div>
+		</div>
+	</div>	
+	
 	<%@include file="/layout/footer.jsp"%>
 	<%@include file="Modals.jsp"%>
 	<script src="<%=Constants.JS%>/scriptTables.js"></script>

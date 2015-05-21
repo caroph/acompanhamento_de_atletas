@@ -2,6 +2,7 @@ package br.com.saat.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,17 +19,21 @@ import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TipoCat;
+import br.com.saat.enumeradores.TpCaracteristica;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
+import br.com.saat.model.AvaliacaoResultado;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
+import br.com.saat.model.negocio.AvaliacaoResultadoNegocio;
 import br.com.saat.model.negocio.CategoriaAtividadeNegocio;
 import br.com.saat.model.negocio.CategoriaAvaliacaoNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TipoCatNegocio;
+import br.com.saat.model.negocio.TpCaracteristicaNegocio;
 import br.com.saat.model.negocio.UnidadeDeMedidaNegocio;
 
 import com.google.gson.Gson;
@@ -636,6 +641,36 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtividades", listaAtividades);
 			request.setAttribute("tipoAcao", 2); //2 Editar
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+		} else if ("jspNovaAvaliacao".equals(action)) {
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			
+			AvaliacaoResultadoNegocio avaResulNegocio = new AvaliacaoResultadoNegocio();
+			List<AvaliacaoResultado> listaAvaResul = new ArrayList<AvaliacaoResultado>();
+			
+			try {
+				listaAvaResul = avaResulNegocio.buscarAtividades(idAtleta);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			TpCaracteristicaNegocio caractNegocio = new TpCaracteristicaNegocio();
+			List<TpCaracteristica> tpCaracteristica = caractNegocio.listaTpCaracteristica();
+			
+			UnidadeDeMedidaNegocio unidadeNegocio = new UnidadeDeMedidaNegocio();
+			List<UnidadeDeMedida> listaUnidades = unidadeNegocio.listaUnidadeDeMedida();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("dataAtual", new Date());
+			lista.put("tpCaracteristica", tpCaracteristica);
+			lista.put("listaUnidades", listaUnidades);
+			lista.put("listaAvaResul", listaAvaResul);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+			
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
