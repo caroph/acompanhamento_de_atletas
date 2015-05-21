@@ -581,6 +581,19 @@ function visualizarObservacao(idObs, atleta, grav, obs, val, usu, usuPerfil){
 	$("#conteudoModalObs").html(html);
 }
 
+function cadastrarBonificacao(idAtleta){
+	$("#bonificacaoModal").modal();
+	
+	var mes = $("#mesBonificacao");
+	mes.val($("#mes").val());
+	
+	var ano = $("#anoBonificacao");
+	ano.val($("#ano").val());
+	
+	var atleta = $("#idAtletaBonificacao");
+	atleta.val(idAtleta);
+}
+
 // $('#selectInicio').on('change', function () {
 // var url = this.value.toString();
 // $(window.document.location).attr('href',url);

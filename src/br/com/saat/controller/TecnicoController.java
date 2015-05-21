@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +21,13 @@ import javax.servlet.http.HttpSession;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.CatTorneio;
 import br.com.saat.enumeradores.GpTorneio;
+import br.com.saat.enumeradores.Mes;
 import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.AvaliacaoDesempenho;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.PresencaChamada;
@@ -35,6 +38,7 @@ import br.com.saat.model.negocio.CatTorneioNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
+import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
@@ -116,7 +120,6 @@ public class TecnicoController extends Controller {
 				request.setAttribute("listaAtletasPart", listaAtleta);
 				
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
@@ -247,7 +250,6 @@ public class TecnicoController extends Controller {
 				request.setAttribute("listaAtletasPart", listaAtleta);
 				
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				msgErro = ex.getMessage();
 			}
 			
@@ -280,7 +282,6 @@ public class TecnicoController extends Controller {
 				torneio = negocio.buscarTorneio(idTorneio);
 				request.setAttribute("torneio", torneio);
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
@@ -311,7 +312,6 @@ public class TecnicoController extends Controller {
 				request.setAttribute("listaAtletasPart", listaAtleta);
 				
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
@@ -487,7 +487,6 @@ public class TecnicoController extends Controller {
 				List<Atleta> listaAtleta = negocio.buscaAtletasPart(idTorneio);
 				request.setAttribute("listaAtletas", listaAtleta);
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			
@@ -886,14 +885,176 @@ public class TecnicoController extends Controller {
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
 			
-		}else if("jspRelatorioConsultaMedica".equals(action)){
-			
+		}else if("jspRelatorioConsultaMedica".equals(action)){			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
+			
 		} else if("jspFrequenciaTorneio".equals(action)){
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
+			
+		}else if("jspAtletaBonificacao".equals(action)){			
+			Date date = new Date();
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(date);
+		    int ano = cal.get(Calendar.YEAR);
+			MesNegocio mesNegocio = new MesNegocio();
+			List<Mes> listaMes = mesNegocio.listarMes();
+											
+			request.setAttribute("listaMes", listaMes);
+			request.setAttribute("ano", ano);
+			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			
+		}else if("carregarAtletasBonificacao".equals(action)){			
+			
+			int ano = Integer.parseInt(request.getParameter("ano"));
+			int mes = Integer.parseInt(request.getParameter("mes"));
+			
+			MesNegocio mesNegocio = new MesNegocio();
+			List<Mes> listaMes = mesNegocio.listarMes();
+			
+			AtletaNegocio atletaNegocio = new AtletaNegocio();
+			List<Atleta> listaAtletas = new ArrayList<Atleta>();
+			
+			if(mes != 0){
+				try{
+					listaAtletas = atletaNegocio.buscarAtletaBonificacao(mes, ano);
+				}catch(Exception ex){
+					request.setAttribute("msgErro", ex.getMessage());
+				}
+			}else{
+				request.setAttribute("msgErro", "O mês deve ser selecionado!");
+			}
+						
+			request.setAttribute("listaMes", listaMes);
+			request.setAttribute("listaAtletas", listaAtletas);
+			request.setAttribute("mesSelecionado", mes);
+			request.setAttribute("ano", ano);
+			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			
+		}else if("salvarBonificacaoAtleta".equals(action)){
+			String msgErro = "";
+			boolean exception = false;
+			String idAtleta = request.getParameter("idAtleta");
+			String mes = request.getParameter("mesBonificacao");
+			Integer nrMes = null;
+			int nrAno = 0;
+			String ano = request.getParameter("anoBonificacao");
+			String torneios = request.getParameter("torneios");
+			String treinos = request.getParameter("treinos");
+			String avaliacoes = request.getParameter("avaliacoes");
+			String cbt = request.getParameter("rankCBT");
+			String fpt = request.getParameter("rankFPT");
+			String itf = request.getParameter("rankITF");
+			String observacoes = request.getParameter("observacoes");
+			String bonificado = request.getParameter("optBonificado");
+			
+			AvaliacaoDesempenho bonificacao = new AvaliacaoDesempenho();
+			AtletaNegocio negocio = new AtletaNegocio();
+			try{
+				Atleta atleta = new Atleta();
+				atleta.setIdPessoa(Integer.parseInt(idAtleta));
+				bonificacao.setAtleta(atleta);
+			}catch(Exception ex){
+				msgErro = "Ocorreu algum erro ao identificar o atleta!";
+				exception = true;
+			}
+			try{	
+				bonificacao.setMes(Integer.parseInt(mes));
+				nrMes = Integer.parseInt(mes);
+			}catch(Exception ex){
+				msgErro = "O mês deve ser selecionado previamente!";
+				exception = true;
+			}
+			try{
+				bonificacao.setAno(Integer.parseInt(ano));
+				nrAno = Integer.parseInt(ano);
+			}catch(Exception ex){
+				msgErro = "O ano deve ser selecionado previamente!";
+				exception = true;
+			}
+			if(!"".equals(cbt)){
+				try{
+					bonificacao.setRankCBT(Integer.parseInt(cbt));
+				}catch(Exception ex){
+					msgErro = "Erro ao identificar rank CBT!";
+					exception = true;
+				}
+			}
+			if(!"".equals(fpt)){
+				try{
+					bonificacao.setRankFTP(Integer.parseInt(fpt));
+				}catch(Exception ex){
+					msgErro = "Erro ao identificar rank FPT!";
+					exception = true;
+				}
+			}
+			if(!"".equals(itf)){
+				try{
+					bonificacao.setRankITF(Integer.parseInt(itf));
+				}catch(Exception ex){
+					msgErro = "Erro ao identificar rank ITF!";
+					exception = true;
+				}
+			}
+			if(!exception){
+				bonificacao.setObservacoes(observacoes);
+				if("on".equals(avaliacoes)){
+					bonificacao.setAvaliacoes(true);
+				}else{
+					bonificacao.setAvaliacoes(false);
+				}
+				if("on".equals(treinos)){
+					bonificacao.setTreinos(true);
+				}else{
+					bonificacao.setTreinos(false);
+				}
+				if("on".equals(torneios)){
+					bonificacao.setTorneios(true);
+				}else{
+					bonificacao.setTorneios(false);
+				}
+				if("1".equals(bonificado)){
+					bonificacao.setBonificado(true);
+				}else{
+					bonificacao.setBonificado(false);
+				}
+				bonificacao.setUsuario(usuarioLogado);
+				
+				try{
+					if(negocio.salvarBonificacaoAtleta(bonificacao)){
+						request.setAttribute("msgSucesso", "Bonificação salva com sucesso!");
+					}
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
+				}
+			}
+			
+			MesNegocio mesNegocio = new MesNegocio();
+			List<Mes> listaMes = mesNegocio.listarMes();
+			
+			List<Atleta> listaAtletas = new ArrayList<Atleta>();
+			
+			try{
+				if(nrAno == 0){
+					Date date = new Date();
+				    Calendar cal = Calendar.getInstance();
+				    cal.setTime(date);
+				    nrAno = cal.get(Calendar.YEAR);
+				}
+				listaAtletas = negocio.buscarAtletaBonificacao(nrMes, nrAno);
+			}catch(Exception ex){
+				msgErro = ex.getMessage();
+			}
+						
+			request.setAttribute("listaMes", listaMes);
+			request.setAttribute("listaAtletas", listaAtletas);
+			request.setAttribute("ano", nrAno);
+			request.setAttribute("mesSelecionado", nrMes);
+			request.setAttribute("msgErro", msgErro);
+			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			
 		} else{
 			//Página Principal
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

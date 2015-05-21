@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.saat.model.Atleta;
+import br.com.saat.model.AvaliacaoDesempenho;
 import br.com.saat.model.dao.AtletaDAO;
 
 public class AtletaNegocio {
@@ -228,6 +229,32 @@ public class AtletaNegocio {
 			return listaAtleta;
 		} catch (Exception e) {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas participantes.");
+		}
+	}
+
+	public List<Atleta> buscarAtletaBonificacao(Integer mes, int ano) throws Exception{
+		try {
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			AtletaDAO dao = new AtletaDAO();
+			listaAtleta = dao.buscarAtletaBonificacao(mes, ano);
+			return listaAtleta;
+		} catch (Exception e) {
+			throw new Exception("Ocorreu algum erro ao buscar o os atletas.");
+		}
+	}
+
+	public boolean salvarBonificacaoAtleta(AvaliacaoDesempenho bonificacao) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if(bonificacao.getMes() == 0){
+				throw new Exception("O mês deve ser pré selecionado");
+			}
+			if(bonificacao.getAno() == 0){
+				throw new Exception("O ano deve ser pré selecionado");
+			}
+			return dao.salvarBonificacaoAtleta(bonificacao);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao salvar a bonificação do atleta!");
 		}
 	}
 	

@@ -18,7 +18,9 @@
 								<li>
 									<a href="Controller?action=jspObservacoes" class="modal-link">
 										<i class="fa fa-bell"></i>
-	 									<span class="badge">${notificacaoObs}</span>  
+										<c:if test="${notificacaoObs > 0}">
+	 										<span class="badge">${notificacaoObs}</span> 
+	 									</c:if> 
 									</a>
 								</li>
 							</c:if>

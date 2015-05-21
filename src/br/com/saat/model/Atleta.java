@@ -43,6 +43,7 @@ public class Atleta extends Pessoa {
 	private String colocacao;
 	private String observacao;
 	private PresencaChamada presenca;
+	private List<AvaliacaoDesempenho> avaliacaoDesempenho;
 	
 	public Atleta(){}
 	
@@ -418,5 +419,12 @@ public class Atleta extends Pessoa {
 		}
 		return retorno;
 	}
-	
+
+	public List<AvaliacaoDesempenho> getAvaliacaoDesempenho() {
+		return avaliacaoDesempenho;
+	}
+
+	public void setAvaliacaoDesempenho(List<AvaliacaoDesempenho> avaliacaoDesempenho) {
+		this.avaliacaoDesempenho = avaliacaoDesempenho;
+	}	
 }

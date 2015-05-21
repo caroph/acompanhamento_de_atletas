@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.saat.model.Atleta;
+import br.com.saat.model.AvaliacaoDesempenho;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
@@ -616,6 +617,92 @@ public class AtletaDAO {
         }
 		
 		return listaAtleta;
+	}
+
+	public List<Atleta> buscarAtletaBonificacao(Integer mes, int ano) throws SQLException {
+		List<Atleta> listaAtleta = new ArrayList<Atleta>();
+		
+		if(mes == null){
+			stmtScript = con.prepareStatement("SELECT a.idAtleta, a.nome, ad.idAvaliacaoDesempenho, ad.avaliacoes, "
+					+ "ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes "
+					+ "FROM atleta a "
+					+ "LEFT JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta "
+					+ "WHERE a.flCadastroAtivo = 1");
+		}else{
+			stmtScript = con.prepareStatement("SELECT a.idAtleta, a.nome, ad.idAvaliacaoDesempenho, ad.avaliacoes, "
+					+ "ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes "
+					+ "FROM atleta a "
+					+ "LEFT JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta AND ad.mes = ? AND ad.ano = ? "
+					+ "WHERE a.flCadastroAtivo = 1");
+			stmtScript.setInt(1, mes);
+			stmtScript.setInt(2, ano);
+		}
+		
+        ResultSet rs = stmtScript.executeQuery();
+        
+        while(rs.next()){
+        	Atleta a = new Atleta();
+        	a.setIdPessoa(rs.getInt(1));
+        	a.setNome(rs.getString(2));
+        	
+        	AvaliacaoDesempenho ad = new AvaliacaoDesempenho();
+        	ad.setIdAvaliacaoDesempenho(rs.getInt(3));
+        	ad.setAvaliacoes(rs.getBoolean(4));
+        	ad.setTorneios(rs.getBoolean(5));
+        	ad.setTreinos(rs.getBoolean(6));
+        	ad.setRankCBT(rs.getInt(7));
+        	ad.setRankFTP(rs.getInt(8));
+        	ad.setRankITF(9);
+        	ad.setBonificado(rs.getBoolean(10));
+        	ad.setObservacoes(rs.getString(11));
+        	
+        	List<AvaliacaoDesempenho> lista = new ArrayList<AvaliacaoDesempenho>();
+        	lista.add(ad);
+        	a.setAvaliacaoDesempenho(lista);
+        	
+        	listaAtleta.add(a);
+        }
+		
+		return listaAtleta;	
+	}
+
+	public boolean salvarBonificacaoAtleta(AvaliacaoDesempenho bonificacao) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("INSERT INTO avaliacaodesempenho (idAtleta, idUsuario, mes, ano, "
+				+ "torneios, treinos, avaliacoes, rankCBT, rankFPT, rankITF, bonificado, observacoes) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+		stmtScript.setInt(1, bonificacao.getAtleta().getIdPessoa());
+		stmtScript.setInt(2, bonificacao.getUsuario().getIdPessoa());
+		stmtScript.setInt(3, bonificacao.getMes());
+		stmtScript.setInt(4, bonificacao.getAno());
+		stmtScript.setBoolean(5, bonificacao.getTorneios());
+		stmtScript.setBoolean(6, bonificacao.getTreinos());
+		stmtScript.setBoolean(7, bonificacao.getAvaliacoes());
+		if(bonificacao.getRankCBT() == 0){
+			stmtScript.setNull(8, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(8, bonificacao.getRankCBT());
+		}
+		if(bonificacao.getRankFTP() == 0){
+			stmtScript.setNull(9, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(9, bonificacao.getRankFTP());
+		}
+		if(bonificacao.getRankITF() == 0){
+			stmtScript.setNull(10, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(10, bonificacao.getRankITF());
+		}
+		stmtScript.setBoolean(11, bonificacao.getBonificado());
+		stmtScript.setString(12, bonificacao.getObservacoes());		
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}		
+		return false;
 	}
 	
 }

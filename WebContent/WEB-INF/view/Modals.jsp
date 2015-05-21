@@ -207,7 +207,6 @@
   <div class="modal-dialog">
     <div class="modal-content">
 	    <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 			<h4 class="modal-title" id="myModalLabel">Observação</h4>
 		</div>
     	<div class="modal-body" id="conteudoModalObs">
@@ -215,6 +214,68 @@
 	    <div class="modal-footer">
 			<a type="button" class="btn" id="fecharModalObservacao" aria-hidden="true">Fechar</a>
 		</div>
+	  </div>
+	</div>
+</div>
+
+<!-- Bonificação-->
+<div class="modal fade bs-example-modal-sm" id="bonificacaoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h4 class="modal-title">Bonificação</h4>
+		</div>
+    	<div class="modal-body">
+    	<form action="TecnicoController?action=salvarBonificacaoAtleta" method="POST">
+    		<div class="form-group">
+        		<label>
+        			<input type="checkbox" name="torneios" id="torneios"><span style="padding: 0 10px 0 5px;">Torneios</span></input>
+       			</label>
+        		<label>
+        			<input type="checkbox" name="treinos" id="treinos"><span style="padding: 0 10px 0 5px;">Treinos</span></input>
+				</label>
+        		<label>
+        			<input type="checkbox" name="avaliacoes" id="avaliacoes"><span style="padding: 0 10px 0 5px;">Avaliações</span></input>
+       			</label>	        		
+        	</div>
+    		<div class="form-group">
+    			<label for="rankCBT" class="control-label">Rank CBT:</label>
+        		<label>
+        			<input type="number" class="form-control" name="rankCBT" id="rankCBT"/>
+       			</label>	
+    		</div>
+    		<div class="form-group">
+    			<label for="rankFPT" class="control-label">Rank FPT:</label>
+        		<label>
+        			<input type="number" class="form-control" name="rankFPT" id="rankFPT"/>
+       			</label>	
+    		</div>
+    		<div class="form-group">
+    			<label for="rankITF" class="control-label">Rank ITF:</label>
+        		<label>
+        			<input type="number" class="form-control" name="rankITF" id="rankITF"/>
+       			</label>	
+    		</div>
+    		<div class="form-group">
+    			<label for="observacoes" class="control-label">Observações:</label>
+		        <textarea class="form-control" required style="max-width: 568px; max-height: 325px;" name="observacoes" id="observacoes"></textarea>	
+    		</div>
+    		<div class="form-group">
+    			<label for="optBonificado" class="control-label" style="padding-right:15px;">Atleta bonificado:</label>
+				<label><input type="radio" value="1" name="optBonificado"><span style="padding: 0 10px 0 5px;">Sim</span></label>
+				<label><input type="radio" value="2" name="optBonificado"><span style="padding: 0 10px 0 5px;">Não</span></label>	
+    		</div>
+    		<input type="hidden" id="mesBonificacao" name="mesBonificacao"/>
+    		<input type="hidden" id="anoBonificacao" name="anoBonificacao"/>
+    		<input type="hidden" id="idAtletaBonificacao" name="idAtleta"/>
+    		<div class="modal-footer">
+    			<button type="submit" class="btn btn-primary">Salvar</button>
+				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+			</div>
+    	</form>
+	    </div>
+	    
 	  </div>
 	</div>
 </div>

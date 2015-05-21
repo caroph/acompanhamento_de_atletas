@@ -28,6 +28,12 @@
 				<li><a class="" href="TecnicoController?action=jspChamada">Chamada</a></li>
 			</ul>
 		</li>
+		<li class="dropdown">
+			<a href="TecnicoController?action=jspAtletaBonificacao" class="dropdown-toggle">
+				<i class="fa fa-sort-amount-asc"></i>
+				<span class="hidden-xs">Bonificação</span>
+			</a>
+		</li>
 		<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle">
