@@ -331,13 +331,13 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			html += "<b>Atividades:</b><br/>";
 			
 		if (data.listaAvaResul.length <= 0){
-			html += "<small>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</small>"
+			html += "<small>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</small><br/><br/>"
 		}else{
-			html += "<small>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</small>"
+			html += "<small>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</small><br/><br/>"
 				
 			var unidade = data.listaUnidades;
 			html += 
-					"<div class='form-group'>" + 
+					"<div class='form-group col-sm-12'>" + 
 					"<table>" +
 					"<tr>" +
 					"<th style='padding:5px'>Capacidade</th>" +
@@ -353,7 +353,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 							"<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.capacidade + "</td>";
 					html += "<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.teste  + "</td>";
 					html += "<td style='padding:5px'>" + unidade[item.categoriaAtividade.AtividadeAvaliacao.idUnidadeDeMedida - 1] + "</td>";
-					html += "<td style='padding:5px;text-align: right;'><input type='number' step='any' class='control-label' name='desempenho<c:out value='" + item.categoriaAtividade.idCategoriaAtividade + "'/></td>";
+					html += "<td style='padding:5px'><input type='number' step='any' class='control-label' name='desempenho<c:out value='" + item.categoriaAtividade.idCategoriaAtividade + "'/></td>";
 					html += "<input type='hidden' name='idCategoriaAtividade' value='" + item.categoriaAtividade.idCategoriaAtividade + "'/>"
 					html += "</tr>"
 				});

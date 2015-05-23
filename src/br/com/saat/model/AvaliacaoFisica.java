@@ -7,7 +7,6 @@ import br.com.saat.enumeradores.TpCaracteristica;
 public class AvaliacaoFisica {
 
 	private int idAvaliacaoFisica;
-	private CategoriaAvaliacao categoriaAvaliacao;
 	private Atleta atleta;
 	private int idUsuResp;
 	private int idTpCaracteristica;
@@ -18,12 +17,6 @@ public class AvaliacaoFisica {
 	}
 	public void setIdAvaliacaoFisica(int idAvaliacaoFisica) {
 		this.idAvaliacaoFisica = idAvaliacaoFisica;
-	}
-	public CategoriaAvaliacao getCategoriaAvaliacao() {
-		return categoriaAvaliacao;
-	}
-	public void setCategoriaAvaliacao(CategoriaAvaliacao categoriaAvaliacao) {
-		this.categoriaAvaliacao = categoriaAvaliacao;
 	}
 	public Atleta getAtleta() {
 		return atleta;

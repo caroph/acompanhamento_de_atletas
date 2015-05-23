@@ -22,6 +22,8 @@ import br.com.saat.enumeradores.TipoCat;
 import br.com.saat.enumeradores.TpCaracteristica;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
+import br.com.saat.model.Atleta;
+import br.com.saat.model.AvaliacaoFisica;
 import br.com.saat.model.AvaliacaoResultado;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
@@ -641,6 +643,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtividades", listaAtividades);
 			request.setAttribute("tipoAcao", 2); //2 Editar
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			
 		} else if ("jspNovaAvaliacao".equals(action)) {
 			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
 			
@@ -671,6 +674,38 @@ public class AvaliacaoFisController extends Controller {
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);
 			
+		} else if ("novaAvaliacao".equals(action)) {
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			float desempenho = 0;
+			
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+			Atleta atleta = new Atleta();
+			AvaliacaoFisica avalFis = new AvaliacaoFisica();
+			AvaliacaoResultadoNegocio avaResulNegocio = new AvaliacaoResultadoNegocio();
+			List<AvaliacaoResultado> listaAvaResul = new ArrayList<AvaliacaoResultado>();
+			
+			try {
+				listaAvaResul = avaResulNegocio.buscarAtividades(idAtleta);
+				
+				for (AvaliacaoResultado avaResult : listaAvaResul) {
+					desempenho = Float.parseFloat(request.getParameter("desempenho" + avaResult.getCategoriaAtividade().getIdCategoriaAtividade()));
+					avaResult.setDesempenho(desempenho);
+				}
+				
+				try {
+					atleta.setIdPessoa(idAtleta);
+					
+					avalFis.setAtleta(atleta);
+					avalFis.setIdUsuResp(usuario.getIdPessoa());
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
