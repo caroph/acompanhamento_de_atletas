@@ -301,11 +301,11 @@ function abrirModalAvaliacaoFis(idAtleta) {
 		success : function(data) {
 			var caract = data.tpCaracteristica;
 			
-			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + idAtleta + "' enctype='multipart/form-data' method='post'>"
+			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + idAtleta + "' method='post'>"
 			+ "<div class='form-group'>"
 			+ "<div class='col-sm-4'>"
-			+ "<label for='data' class='text-left'>Data:</label>"
-			+ "<input type='date' class='form-control data' id='data' name='data' value='" + data.dataAtual +  "' required/>"
+			+ "<label for='dtAvaliacao' class='text-left'>Data:</label>"
+			+ "<input type='date' class='form-control' id='dtAvaliacao' name='dtAvaliacao' value='" + new Date().toISOString().split('T')[0] +  "' required/>"
 			+ "</div>"
 			+ "<div class='col-sm-8'>"
 			+ "<label for='caracteristica' class='text-left'>Caracter\u00edstica:</label>"
@@ -314,18 +314,16 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			$.each(
 					caract,
 					function(index, item) {
-						html += "<option value='" + (index + 1) + "'>" + caract[index] + "</option>";
+						html += "<option value='" + (index + 1) + "'>" + item + "</option>";
 					});
             html += "</select>"
 			+ "</div>"
 			+ "</div><br/>";
 			
-			html += "<b>Atividades:</b><br/>";
-			
 		if (data.listaAvaResul.length <= 0){
-			html += "<small>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</small><br/><br/>"
+			html += "<small><b>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
 		}else{
-			html += "<small>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</small><br/><br/>"
+			html += "<small><b>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
 				
 			var unidade = data.listaUnidades;
 			html += 
@@ -356,9 +354,8 @@ function abrirModalAvaliacaoFis(idAtleta) {
 				+ "<button type='submit' class='btn btn-primary'>Salvar</button>"
 				+ "<button type='button' class='btn btn-danger' data-dismiss='modal' id='fechar'>Cancelar</button>"
 				+ "</div>" + "</form>";
-				html += "<b>Atividades:</b><br/>";	
-			$('.body-avaliacao').html(html);
 			}
+		$('.body-avaliacao').html(html);
 		}
 	});
 }

@@ -1,6 +1,8 @@
 package br.com.saat.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -667,13 +669,12 @@ public class AvaliacaoFisController extends Controller {
 			}
 			
 			TpCaracteristicaNegocio caractNegocio = new TpCaracteristicaNegocio();
-			List<TpCaracteristica> tpCaracteristica = caractNegocio.listaTpCaracteristica();
+			List<String> tpCaracteristica = caractNegocio.listaTpCaracteristicaString();
 			
 			UnidadeDeMedidaNegocio unidadeNegocio = new UnidadeDeMedidaNegocio();
-			List<UnidadeDeMedida> listaUnidades = unidadeNegocio.listaUnidadeDeMedida();
+			List<String> listaUnidades = unidadeNegocio.listaUnidadeDeMedidaString();
 			
 			Map<String, Object> lista = new LinkedHashMap<String, Object>();
-			lista.put("dataAtual", new Date());
 			lista.put("tpCaracteristica", tpCaracteristica);
 			lista.put("listaUnidades", listaUnidades);
 			lista.put("listaAvaResul", listaAvaResul);
@@ -685,36 +686,87 @@ public class AvaliacaoFisController extends Controller {
 		    response.getWriter().write(json);
 			
 		} else if ("novaAvaliacao".equals(action)) {
-			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			int idAtleta = 0;
+			String idCategoriaAtividade = "";
+			int idCaracteristica = 0 ;
 			float desempenho = 0;
+			boolean exception = false;
+			String msgErro = "";
+			String msgSucesso = "";
+			String msgAlerta = "";
+			String dataAva = "";
+			Date dtAvaliacao = null;
 			
 			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 			Atleta atleta = new Atleta();
 			AvaliacaoFisica avalFis = new AvaliacaoFisica();
 			AvaliacaoResultadoNegocio avaResulNegocio = new AvaliacaoResultadoNegocio();
 			List<AvaliacaoResultado> listaAvaResul = new ArrayList<AvaliacaoResultado>();
+			List<AvaliacaoResultado> avaliacaoResul = new ArrayList<AvaliacaoResultado>();
 			
 			try {
-				listaAvaResul = avaResulNegocio.buscarAtividades(idAtleta);
+				idCaracteristica = Integer.parseInt(request.getParameter("caracteristica"));
+			} catch (Exception ex) {
+				msgErro = "Favor selecionar corretamente o campo 'Característica'.";
+				exception = true;
+			}
+			
+			try {
+				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
 				
+				DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				dataAva = request.getParameter("dtAvaliacao");
+				dtAvaliacao = (Date) formatter.parse(dataAva);
+				
+				listaAvaResul = avaResulNegocio.buscarAtividades(idAtleta);
+			} catch (Exception ex) {
+				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
+			
+			if (!exception) {
 				for (AvaliacaoResultado avaResult : listaAvaResul) {
-					desempenho = Float.parseFloat(request.getParameter("desempenho" + avaResult.getCategoriaAtividade().getIdCategoriaAtividade()));
-					avaResult.setDesempenho(desempenho);
+					idCategoriaAtividade = request.getParameter("desempenho" + avaResult.getCategoriaAtividade().getIdCategoriaAtividade());
+					if (!idCategoriaAtividade.equals("")) {
+						desempenho = Float.parseFloat(idCategoriaAtividade);
+						avaResult.setDesempenho(desempenho);
+						avaliacaoResul.add(avaResult);
+					}
 				}
 				
-				try {
+				if (!avaliacaoResul.isEmpty()) {
+					
 					atleta.setIdPessoa(idAtleta);
 					
 					avalFis.setAtleta(atleta);
 					avalFis.setIdUsuResp(usuario.getIdPessoa());
+					avalFis.setIdTpCaracteristica(idCaracteristica);
+					avalFis.setDtAvaliacao(dtAvaliacao);
+					avalFis.setObservacaoGeral(request.getParameter("observacaoGeral"));
 					
-				} catch (Exception e) {
-					// TODO: handle exception
+					//Inserir
+					try {
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}else {
+					msgErro = "lista vaziaaaaaaaaaaaa";
 				}
-				
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+			
+			if (!msgErro.equals("")) {
+				request.setAttribute("msgErro", msgErro);
+			} else {
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+			
+			if (!msgAlerta.equals("")) {
+				request.setAttribute("msgAlerta", msgAlerta);
+			}
+			
+//			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+//			servletRetorno = "/AvaliacaoFisController?action=jspNovoDadosRef";
 		
 		} else{
 		//Página Principal

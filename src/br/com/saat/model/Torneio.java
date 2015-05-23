@@ -1,5 +1,7 @@
 package br.com.saat.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.saat.enumeradores.CatTorneio;
@@ -27,116 +29,154 @@ public class Torneio {
 	private String fotografo;
 	private Date encaminhamentoMkt;
 	private boolean flFinalizado;
-	
+	private String dtInicialDisplay;
+	private String dtFinalDisplay;	
+
 	public int getIdTorneio() {
 		return idTorneio;
 	}
+
 	public void setIdTorneio(int idTorneio) {
 		this.idTorneio = idTorneio;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getLocal() {
 		return local;
 	}
+
 	public void setLocal(String local) {
 		this.local = local;
 	}
+
 	public String getEstado() {
 		return estado;
 	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
 	public String getCidade() {
 		return cidade;
 	}
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
 	public Date getDtInicial() {
 		return dtInicial;
 	}
+
 	public void setDtInicial(Date dtInicial) {
 		this.dtInicial = dtInicial;
 	}
+
 	public Date getDtFinal() {
 		return dtFinal;
 	}
+
 	public void setDtFinal(Date dtFinal) {
 		this.dtFinal = dtFinal;
 	}
+
 	public int getIdNaipe() {
 		return idNaipe;
 	}
+
 	public void setIdNaipe(int idNaipe) {
 		this.idNaipe = idNaipe;
 	}
+
 	public int getIdCatTorneio() {
 		return idCatTorneio;
 	}
+
 	public void setIdCatTorneio(int idCatTorneio) {
 		this.idCatTorneio = idCatTorneio;
 	}
+
 	public int getIdTpTorneio() {
 		return idTpTorneio;
 	}
+
 	public void setIdTpTorneio(int idTpTorneio) {
 		this.idTpTorneio = idTpTorneio;
 	}
+
 	public int getIdGpTorneio() {
 		return idGpTorneio;
 	}
+
 	public void setIdGpTorneio(int idGpTorneio) {
 		this.idGpTorneio = idGpTorneio;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public int getInscritosGeral() {
 		return inscritosGeral;
 	}
+
 	public void setInscritosGeral(int inscritosGeral) {
 		this.inscritosGeral = inscritosGeral;
 	}
+
 	public int getInscritosClube() {
 		return inscritosClube;
 	}
+
 	public void setInscritosClube(int inscritosClube) {
 		this.inscritosClube = inscritosClube;
 	}
+
 	public Atleta getIdDestaque() {
 		return idDestaque;
 	}
+
 	public void setIdDestaque(Atleta idDestaque) {
 		this.idDestaque = idDestaque;
 	}
+
 	public String getMotivoDestaque() {
 		return motivoDestaque;
 	}
+
 	public void setMotivoDestaque(String motivoDestaque) {
 		this.motivoDestaque = motivoDestaque;
 	}
+
 	public String getFotografo() {
 		return fotografo;
 	}
+
 	public void setFotografo(String fotografo) {
 		this.fotografo = fotografo;
 	}
+
 	public Date getEncaminhamentoMkt() {
 		return encaminhamentoMkt;
 	}
+
 	public void setEncaminhamentoMkt(Date encaminhamentoMkt) {
 		this.encaminhamentoMkt = encaminhamentoMkt;
 	}
-	public String getNomeNaipe(){
+
+	public String getNomeNaipe() {
 		String retorno = "";
 		switch (this.idNaipe) {
 		case 1:
@@ -151,8 +191,8 @@ public class Torneio {
 		}
 		return retorno;
 	}
-	
-	public String getNomeCategoria(){
+
+	public String getNomeCategoria() {
 		String retorno = "";
 		switch (this.idCatTorneio) {
 		case 1:
@@ -170,8 +210,8 @@ public class Torneio {
 		}
 		return retorno;
 	}
-	
-	public String getNomeTipo(){
+
+	public String getNomeTipo() {
 		String retorno = "";
 		switch (this.idTpTorneio) {
 		case 1:
@@ -186,8 +226,8 @@ public class Torneio {
 		}
 		return retorno;
 	}
-	
-	public String getNomeGrupo(){
+
+	public String getNomeGrupo() {
 		String retorno = "";
 		switch (this.idGpTorneio) {
 		case 1:
@@ -211,10 +251,29 @@ public class Torneio {
 		}
 		return retorno;
 	}
+
 	public boolean isFlFinalizado() {
 		return flFinalizado;
 	}
+
 	public void setFlFinalizado(boolean flFinalizado) {
 		this.flFinalizado = flFinalizado;
 	}
+
+	public String getDtInicialDisplay() {
+		return dtInicialDisplay;
+	}
+
+	public void setDtInicialDisplay(String dtInicialDisplay) {
+		this.dtInicialDisplay = dtInicialDisplay;
+	}
+
+	public String getDtFinalDisplay() {
+		return dtFinalDisplay;
+	}
+
+	public void setDtFinalDisplay(String dtFinalDisplay) {
+		this.dtFinalDisplay = dtFinalDisplay;
+	}
+	
 }

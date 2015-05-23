@@ -321,6 +321,10 @@ public class Controller extends HttpServlet {
 			}catch(Exception ex){
 				msg = ex.getMessage();
 			}		
+
+			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			torneio.setDtInicialDisplay(formatter.format(torneio.getDtInicial()));
+			torneio.setDtFinalDisplay(formatter.format(torneio.getDtFinal()));
 			
 			List<String> listaNaipe = new NaipeNegocio().listaNaipeString();
 			List<String> listaCategoria = new CatTorneioNegocio().listaCatTorneioString();
