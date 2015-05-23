@@ -830,19 +830,21 @@ public class TecnicoController extends Controller {
 			}catch(Exception ex){
 				msgErro = "Ocorreu algum erro no sistema!";
 				exception = true;
-			}			
+			}	
+			Date dt = new Date();
+			int idDiaTreino = 0;
 			
 			if(!exception){
 				PresencaChamadaNegocio negocio = new PresencaChamadaNegocio();
 				ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
 				try{
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+					dt = formatter.parse(diaChamada);
+					idDiaTreino = Integer.parseInt(diaTreino);
 					if("".equals(presencaChamada)){
-						int idDiaTreino = Integer.parseInt(diaTreino);
 						Chamada chamada = chamadaNegocio.buscarChamadaPorDia(diaChamada, idDiaTreino);
 						if(chamada.getIdChamada() == 0){
-							Date dt = new Date();
-							DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-							dt = formatter.parse(diaChamada);
+							
 							chamada = new Chamada(usuarioLogado.getIdPessoa(), idDiaTreino, dt);
 							chamada = chamadaNegocio.salvarChamada(chamada);
 						}
@@ -863,14 +865,29 @@ public class TecnicoController extends Controller {
 			DiaTreinoNegocio diaTreinoNegocio = new DiaTreinoNegocio();
 			List<DiaTreino> listaDiaTreino = new ArrayList<DiaTreino>();
 			try {
-				listaDiaTreino = diaTreinoNegocio.buscaDiasTreino(new Date());
+				listaDiaTreino = diaTreinoNegocio.buscaDiasTreino(dt);
+				for (DiaTreino diat : listaDiaTreino) {
+					if(diat.getIdDiaTreino() == idDiaTreino){
+						diat.setSelecionado(true);
+					}
+				}
 			} catch (Exception ex) {
 				msgErro = ex.getMessage();
 			}
+			List<Atleta> lista = new ArrayList<Atleta>();
+			if(!"".equals(diaTreino) && !"0".equals(diaTreino) && !"".equals(diaChamada)){
+				PresencaChamadaNegocio negocio = new PresencaChamadaNegocio();				
+				try{
+					lista = negocio.buscarPresencasPorData(dt, idDiaTreino);
+				}catch(Exception e){
+					msgErro = e.getMessage();
+				}
+			}
 			
 			request.setAttribute("listaDiasTreinos", listaDiaTreino);
-			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("dataAtual", dt);
 			request.setAttribute("msgErro", msgErro);
+			request.setAttribute("listaAtletas", lista);
 			request.setAttribute("msgSucesso", msgSucesso);
 			retorno = String.format("%s/TecnicoChamada.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspChamada";

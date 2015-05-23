@@ -109,7 +109,7 @@
 																			<i class="fa fa-cutlery" style="color: black;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaF == 6}">
-																			<i class="fa fa-question" style="color: black;"></i>
+																			<i class="fa fa-stethoscope" style="color: black;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaF == 7}">
 																			<i class="fa fa-comment" style="color: black;"></i>
@@ -143,10 +143,10 @@
 																			<i class="fa fa-ambulance" style="color: red;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 5}">
-																			<i class="fa fa-question" style="color: black;"></i>
+																			<i class="fa fa-cutlery" style="color: black;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 6}">
-																			<i class="fa fa-question" style="color: black;"></i>
+																			<i class="fa fa-stethoscope" style="color: black;"></i>
 																		</c:when>
 																		<c:when test="${atleta.presenca.estadoPresencaT == 7}">
 																			<i class="fa fa-comment" style="color: black;"></i>
