@@ -382,6 +382,8 @@ function novoAtendimento(idAtleta, nomeAtleta) {
 	var b = $("#idProntuario");
 	b.val("0");
 	$("#novoAtendimento").modal();
+	var data = new Date().toISOString().split('T');
+	$("#dtAtendimento").val(data[0])
 }
 
 function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento,
