@@ -76,11 +76,14 @@ public class NutricionistaController extends Controller {
 				//busca os ultimos atendimentos
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				listaUltimosAtendimentos = fichaNegocio.buscarUltimosAtendimentos(usuarioLogado.getIdPessoa());
+				if(listaUltimosAtendimentos == null || listaUltimosAtendimentos.isEmpty()){
+					request.setAttribute("msgAlerta", "Nenhum atendimento registrado.");
+				}
 			}catch(Exception ex){
 				msg = ex.getMessage();
-			}			
+			}				
 			
-			request.setAttribute("msgAlerta", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("listaUltimosAtendimentos", listaUltimosAtendimentos);
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
@@ -133,7 +136,7 @@ public class NutricionistaController extends Controller {
 				msg = ex.getMessage();
 			}
 						
-			request.setAttribute("msgAlerta", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("fichaAtendimento", ficha);
 			request.setAttribute("atleta", atleta);
@@ -258,7 +261,7 @@ public class NutricionistaController extends Controller {
 				
 			}	
 			
-			request.setAttribute("msgAlerta", msg);
+			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
 			request.setAttribute("fichaAtendimento", ficha);
 			request.setAttribute("atleta", atleta);
@@ -282,11 +285,15 @@ public class NutricionistaController extends Controller {
 					atleta = atletaNegocio.buscarAtleta(idAtleta);
 					listaAtendimentos = fichaNegocio.buscarHistoricoAtendimento(idAtleta);
 					
-					//OBSERVAÇÕES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!! 
+					//OBSERVAÇÕES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!!
+					
+					if(listaAtendimentos == null || listaAtendimentos.isEmpty()){
+						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
+					}
 				}
 			}catch(Exception ex){
 				msg = ex.getMessage();
-			}
+			}			
 			
 			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);

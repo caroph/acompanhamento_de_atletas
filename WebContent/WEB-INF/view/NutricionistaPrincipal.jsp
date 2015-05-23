@@ -35,24 +35,15 @@
 											</tr>
 										</thead>
 										<tbody>
-										<c:choose>
-											<c:when test="${listaUltimosAtendimentos != null}">
-												<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
-													<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
-													<tr>
-														<td>${atendimento.get(1)}</td>
-														<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
-														<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
-														</td>
-													</tr>	
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
+											<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
+												<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
 												<tr>
-													<td class="text-center" colspan="6"><b>Você ainda não realizou nenhum atendimento. Seus atendimentos mais recentes aparecerão aqui.</b></td>
-												</tr>
-											</c:otherwise>
-										</c:choose>
+													<td>${atendimento.get(1)}</td>
+													<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
+													<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
+													</td>
+												</tr>	
+											</c:forEach>											
 										</tbody>
 									</table>
 								</div>
