@@ -9,8 +9,8 @@
     
  	<link href="<%=Constants.PLUGINS%>/bootstrap/bootstrap.css" rel="stylesheet">
  	<link href="<%=Constants.PLUGINS%>/jquery-ui/jquery-ui.min.css" rel="stylesheet">
- 	<link href="<%=Constants.CSS%>/icon.css" rel="stylesheet">
 	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+ 	<link href="<%=Constants.CSS%>/font.css" rel="stylesheet">
 	<link href="<%=Constants.PLUGINS%>/fullcalendar/fullcalendar.css" rel="stylesheet">
 	<link href="<%=Constants.PLUGINS%>/select2/select2.css" rel="stylesheet">
 	<link href="<%=Constants.CSS%>/style.css" rel="stylesheet">
