@@ -621,23 +621,16 @@ public class AtletaDAO {
 
 	public List<Atleta> buscarAtletaBonificacao(Integer mes, int ano) throws SQLException {
 		List<Atleta> listaAtleta = new ArrayList<Atleta>();
-		
-		if(mes == null){
-			stmtScript = con.prepareStatement("SELECT a.idAtleta, a.nome, ad.idAvaliacaoDesempenho, ad.avaliacoes, "
-					+ "ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes "
-					+ "FROM atleta a "
-					+ "LEFT JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta "
-					+ "WHERE a.flCadastroAtivo = 1");
-		}else{
-			stmtScript = con.prepareStatement("SELECT a.idAtleta, a.nome, ad.idAvaliacaoDesempenho, ad.avaliacoes, "
-					+ "ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes "
-					+ "FROM atleta a "
-					+ "LEFT JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta AND ad.mes = ? AND ad.ano = ? "
-					+ "WHERE a.flCadastroAtivo = 1");
-			stmtScript.setInt(1, mes);
-			stmtScript.setInt(2, ano);
-		}
-		
+				
+		stmtScript = con.prepareStatement("SELECT a.idAtleta, a.nome, ad.idAvaliacaoDesempenho, ad.avaliacoes, "
+				+ "ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes "
+				+ "FROM atleta a "
+				+ "LEFT JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta AND ad.mes = ? AND ad.ano = ? "
+				+ "WHERE a.flCadastroAtivo = 1 "
+				+ "ORDER BY a.nome");
+		stmtScript.setInt(1, mes);
+		stmtScript.setInt(2, ano);
+				
         ResultSet rs = stmtScript.executeQuery();
         
         while(rs.next()){

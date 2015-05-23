@@ -373,6 +373,9 @@ function abrirModalAvaliacaoFis(idAtleta) {
 
 function registrarPresenca(idAtleta, nomeAtleta) {
 	$("#anunciarPresenca").modal();
+	var data = new Date().toISOString().split('T');
+	$("#dataPresenca").val(data[0]);
+	$("#hrPresenca").val("");
 	var label = $("#lblNomeAtleta");
 	label.html('Confirma que o(a) atleta ' + nomeAtleta + ' esta em consulta?');
 	var a = $("#idAtleta")
@@ -492,6 +495,8 @@ function abriModalEditarChamada(estado, id, just, tpChamada, idAtleta){
 	for(i = 0; i< radio.length; i++){
 		if(radio[i].value == estado){
 			radio[i].checked = true;
+		}else{
+			radio[i].checked = false;
 		}
 	}
 	var justificativa = $("#justificativaChamada");
@@ -527,8 +532,23 @@ function BuscarPresenca(){
 
 function abrirModalObservacao(idAtleta){
 	$("#incluirObservacao").modal();
-	var atleta = $("#idAtletaObs");
+	
+	$("#dtValidade").val("");
+	$("#message-text").val("");
+	$("#idObservacaoModal").val("");
+	
+	var atleta = $("#idAtletaObs");	
 	atleta.val(idAtleta);
+	
+	var radioGravidade = document.getElementsByName("optGravidade");
+	for(i = 0; i< radioGravidade.length; i++){
+		radioGravidade[i].checked = false;
+	}
+	
+	var radioCompartilhar = document.getElementsByName("optCompartilhar");
+	for(i = 0; i< radioCompartilhar.length; i++){
+		radioCompartilhar[i].checked = false;
+	}
 }
 
 function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
@@ -542,6 +562,10 @@ function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
 		if(radio[i].value == gravidade){
 			radio[i].checked = true;
 		}
+	}
+	var radioCompartilhar = document.getElementsByName("optCompartilhar");
+	for(i = 0; i< radioCompartilhar.length; i++){
+		radioCompartilhar[i].checked = false;
 	}
 	var observacao = $("#message-text");
 	observacao.val(obs);
