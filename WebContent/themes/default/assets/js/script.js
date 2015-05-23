@@ -11,6 +11,12 @@ window.onload = function() {
 	});	
 }
 
+$(document).ready(function() {
+	//Calendário
+	SetMinBlockHeight($('#calendar'));
+	DrawFullCalendar();
+});
+
 // Máscaras
 $(document).ready(function() {
 	$(".phone").mask("(999) 9999-9999");
