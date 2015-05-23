@@ -51,8 +51,8 @@
 													<td align="center"><c:out value='${categoria.idadeMaxima}' /></td>
 													<td align="center"><c:out value='${categoria.getNomeSexo()}' /></td>
 													<td align="center">
-														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarCategoria&idCategoria=${categoria.idCategoriaAvaliacao}"
-														data-confirm="Deseja realmente excluir a categoria selecionada?">Excluir</a>
+														<a class="link-red" href="AvaliacaoFisController?action=desativarCategoria&idCategoria=${categoria.idCategoriaAvaliacao}"
+														data-confirm="Deseja realmente excluir a categoria selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

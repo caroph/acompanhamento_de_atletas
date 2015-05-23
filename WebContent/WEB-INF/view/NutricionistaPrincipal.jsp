@@ -40,10 +40,10 @@
 												<tr>
 													<td>${atendimento.get(1)}</td>
 													<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
-													<td class="text-center"><a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}">Histórico</a>
+													<td class="text-center"><a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>
 													</td>
 												</tr>	
-											</c:forEach>											
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

@@ -56,16 +56,16 @@
 															<td><c:out value='${observacao.getNomeGravidade()}' /></td>
 															<td align="center"><a class="btn btn-info" onClick="visualizarObservacao('${observacao.idObservacao}',
 															'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
-															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
 														</tr>
 													</c:if>
 													<c:if test="${observacao.dtVisualizacao != null}">
 														<tr>
 															<td><c:out value='${observacao.atleta.nome}' /></td>
 															<td><c:out value='${observacao.getNomeGravidade()}' /></td>
-															<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(0,
+															<td align="center"><a class="link-blue" onClick="visualizarObservacao(0,
 															'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
-															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
 														</tr>
 													</c:if>
 												</c:forEach>
@@ -110,19 +110,19 @@
 														<td><c:out value='${observacao.atleta.nome}' /></td>
 														<td align="center"><c:out value='${observacao.getNomeGravidade()}' /></td>
 														<td><c:out value='${observacao.getDisplayDataGeracao()}' /></td>
-														<td align="center"><a class="btn btn-info" onClick="visualizarObservacao(0,
+														<td align="center"><a class="link-blue" onClick="visualizarObservacao(0,
 														'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
-														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')">Visualizar</a></td>
+														'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
 														<td align="center">
 															<c:if test="${observacao.flCadastroAtivo == 1}">
-																<a class="btn btn-primary" onClick="modalEditarObservacao('${observacao.atleta.idPessoa}', 
-																'${observacao.dtValidade}', '${observacao.gravidade}', '${observacao.dsObservacao}', '${observacao.idObservacao}')">Editar</a>
+																<a class="link-green" onClick="modalEditarObservacao('${observacao.atleta.idPessoa}', 
+																'${observacao.dtValidade}', '${observacao.gravidade}', '${observacao.dsObservacao}', '${observacao.idObservacao}')"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 															</c:if>
 														</td>
 														<td align="center">
 															<c:if test="${observacao.flCadastroAtivo == 1}">
-																<a class="btn btn-danger" data-confirm="Deseja realmente desativar esta observação?" 
-																href="Controller?action=desativarObservacao&idObservacao=${observacao.idObservacao}">Desativar</a>
+																<a class="link-red" data-confirm="Deseja realmente desativar esta observação?" 
+																href="Controller?action=desativarObservacao&idObservacao=${observacao.idObservacao}"><abbr title="Desativar"><i class="fa fa-large fa-minus-square"></i></abbr></a>
 															</c:if>
 														</td>
 													</tr>

@@ -46,17 +46,17 @@
 												<tr>
 													<td><c:out value='${catAtiv.categoriaAvaliacao.nmCategoria}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}')">Visualizar</a>
+														<a class="link-blue" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="AvaliacaoFisController?action=jspMaisDadosRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}">Incluir atividades</a>
+														<a class="link-green" href="AvaliacaoFisController?action=jspMaisDadosRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}"><abbr title="Incluir mais atividades"><i class="fa fa-large fa-plus-square"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="AvaliacaoFisController?action=editarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}">Editar</a>
+														<a class="link-green" href="AvaliacaoFisController?action=editarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}"
-														data-confirm="Deseja realmente excluir todos os dados de referência da categoria selecionada?">Excluir</a>
+														<a class="link-red" href="AvaliacaoFisController?action=desativarDadoRef&idCategoriaAvaliacao=${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}"
+														data-confirm="Deseja realmente excluir todos os dados de referência da categoria selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

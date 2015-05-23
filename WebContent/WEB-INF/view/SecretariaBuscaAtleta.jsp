@@ -52,22 +52,22 @@
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
+														<a class="link-blue" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<c:if test="${atleta.flCadastroAtivo == 1}">
-														<td>
-															<a class="btn btn-primary" href='SecretariaController?action=editarAtleta&idAtleta=${atleta.idPessoa}' 
-															data-confirm="Deseja realmente editar o atleta selecionado?">Editar</a>
+														<td align="center">
+															<a class="link-green" href='SecretariaController?action=editarAtleta&idAtleta=${atleta.idPessoa}' 
+															data-confirm="Deseja realmente editar o atleta selecionado?"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 														</td>
-														<td>	
-															<a class="btn btn-danger" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 
-																data-confirm="Deseja realmente desativar o atleta selecionado?">Desativar</a>
+														<td align="center">	
+															<a class="link-green" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 1)"><abbr title="Vincular responsável"><i class="fa fa-large fa-link"></i></abbr></a>
 														</td>
-														<td>	
-															<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 1)">Vincular Responsável</a>
+														<td align="center">
+															<a class="link-green" id="anexos" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a>
 														</td>
-														<td>
-															<a class="btn btn-primary" id="anexos" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}">Anexar Documentos</a>
+														<td align="center">	
+															<a class="link-red" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 
+																data-confirm="Deseja realmente desativar o atleta selecionado?"><abbr title="Desativar"><i class="fa fa-large fa-minus-square"></i></abbr></a>
 														</td>
 													</c:if>
 													<c:if test="${atleta.flCadastroAtivo == 0}">														

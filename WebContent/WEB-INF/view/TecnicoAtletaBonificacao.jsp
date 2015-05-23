@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-male"></i> <span>Bonificação</span>
+										<i class="fa fa-star"></i> <span>Bonificação</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -87,15 +87,15 @@
 															</td>
 															<td align="center"><a onclick="visualizarBonificacao('${atleta.nome}', '${bonificacao.bonificado}', 
 															'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
-															'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="btn btn-info">Visualizar</a></td>
+															'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="link-blue"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
 															<td align="center">
 																<c:if test="${bonificacao.idAvaliacaoDesempenho != 0}">
 																	<a onclick="editarBonificacao('${atleta.idPessoa}', '${bonificacao.idAvaliacaoDesempenho}', '${bonificacao.bonificado}', 
 																		'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
-																		'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="btn btn-primary">Editar</a>
+																		'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="link-green"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 																</c:if>
 																<c:if test="${bonificacao.idAvaliacaoDesempenho == 0}">
-																	<a onclick="cadastrarBonificacao('${atleta.idPessoa}')" class="btn btn-primary">Cadastrar</a>
+																	<a onclick="cadastrarBonificacao('${atleta.idPessoa}')" class="link-green"><abbr title="Cadastrar bonificação"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
 																</c:if>
 															</td>
 														</tr>

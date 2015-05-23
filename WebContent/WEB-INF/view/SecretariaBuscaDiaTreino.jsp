@@ -51,9 +51,9 @@
 													<fmt:formatDate value="${treino.hrFim}" pattern="HH:mm"
 														var="horaFFormatada" />
 													<td align="center"><c:out value='${horaFFormatada}' /></td>
-													<td align="center"><a class="btn btn-danger"
+													<td align="center"><a class="link-red"
 														href='SecretariaController?action=desativarDiaTreino&idDiaTreino=${treino.idDiaTreino}'
-														data-confirm="Deseja realmente excluir o dia de treino selecionado?">Excluir</a></td>
+														data-confirm="Deseja realmente excluir o dia de treino selecionado?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

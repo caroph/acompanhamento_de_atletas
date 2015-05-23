@@ -41,15 +41,14 @@
 										<div class="col-sm-12">
 											<c:choose>
 												<c:when test="${fichaAtendimento.idFichaDeAtendimento > 0}">
-													<div class="col-sm-7 text-left">
+													<div class="col-sm-8 text-left">
 														<h6>
 															<b>Atendimento realizado em <fmt:formatDate value="${fichaAtendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></b>
 														</h6>						
 													</div>
-													<div class="col-sm-5 text-right">
-														<a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>
-														|
-														<a class="btn btn-info" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${fichaAtendimento.idAtleta}&idFichaDeAtendimento=0" style="margin-left: 5px;">Novo Atendimento</a>
+													<div class="col-sm-4 text-right">
+														<a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;"><abbr title="Histórico de atendimentos"><i class="fa fa-large fa-folder-open"></i></abbr></a>
+														<a class="link-green" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${fichaAtendimento.idAtleta}&idFichaDeAtendimento=0" style="margin-left: 5px;"><abbr title="Novo atendimento"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
 													</div>													
 												</c:when>
 												<c:otherwise>
@@ -60,7 +59,7 @@
 															</h6>
 														</div>
 														<div class="col-sm-5 text-right">
-																<a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;">Histórico de Atendimentos</a>
+																<a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${fichaAtendimento.idAtleta}"	style="margin-right: 5px;"><abbr title="Histórico de atendimentos"><i class="fa fa-large fa-folder-open"></i></abbr></a>
 														</div>
 													</c:if>													
 												</c:otherwise>

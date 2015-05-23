@@ -49,16 +49,16 @@
 													<td><c:out value='${atleta.nome}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
+														<a class="link-blue" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
+														<a class="link-green" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')"><abbr title="Presença"><i class="fa fa-large fa-check-square-o"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=0">Novo Atendimento</a>
+														<a class="link-green" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=0"><abbr title="Novo atendimento"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
 													</td>
 													<td class="text-center">
-														<a class="btn btn-primary" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atleta.idPessoa}">Histórico</a>
+														<a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atleta.idPessoa}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>
 													</td>
 <!-- 													<td align="center"> -->
 <!-- 														<a class="btn btn-primary">Observação</a> -->

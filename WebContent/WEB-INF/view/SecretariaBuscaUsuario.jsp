@@ -51,16 +51,16 @@
 													<td id="telefone"><c:out value='${usuario.telefone}' /></td>
 													<td id="celular"><c:out value='${usuario.celular}' /></td>
 													<td align="center">
-														<a class="btn btn-info" data-toggle="modal" onClick="abrirModalUsuario('${usuario.nome}', '${usuario.getNomePerfil()}', '${usuario.email}',
-														'${usuario.telefone}', '${usuario.celular}', '${usuario.CREF}')" data-target="#detalhes">Visualizar</a>
+														<a class="link-blue" data-toggle="modal" onClick="abrirModalUsuario('${usuario.nome}', '${usuario.getNomePerfil()}', '${usuario.email}',
+														'${usuario.telefone}', '${usuario.celular}', '${usuario.CREF}')" data-target="#detalhes"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													<td align="center">
-														<a class="btn btn-primary" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
-														data-confirm="Deseja realmente editar o usuário selecionado?">Editar</a>
+														<a class="link-green" href='SecretariaController?action=editarUsuario&idUsuario=${usuario.idPessoa}' 
+														data-confirm="Deseja realmente editar o usuário selecionado?"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 													</td>
 													<td align="center">
 														<c:if test="${sessionScope.usuarioLogado.idPessoa != usuario.idPessoa}">
-															<a class="btn btn-danger" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
-															data-confirm="Deseja realmente excluir o usuário selecionado?">Excluir</a>
+															<a class="link-red" href='SecretariaController?action=desativarUsuario&idUsuario=${usuario.idPessoa}' 
+															data-confirm="Deseja realmente excluir o usuário selecionado?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 														</c:if>
 													</td>
 												</tr>

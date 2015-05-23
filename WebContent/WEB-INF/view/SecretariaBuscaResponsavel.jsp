@@ -48,21 +48,21 @@
 													<td class="text-center"><c:out value='${responsavel.email}' /></td>
 													<td class="text-center"><c:out value='${responsavel.celular}' /></td>
 													<td class="text-center">
-														<a class="btn btn-info" data-toggle="modal" href="#detalhesResp"
+														<a class="link-blue" data-toggle="modal" href="#detalhesResp"
 														onclick="abrirModalVisualizarResponsavel('${responsavel.idPessoa}', '${responsavel.nome}', '${responsavel.email}', '${responsavel.enderecos[0].telefone}', '${responsavel.enderecos[1].telefone}', '${responsavel.celular}', '${responsavel.enderecos[0].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[0].complemento}', '${responsavel.enderecos[0].bairro}', '${responsavel.enderecos[0].estado}', '${responsavel.enderecos[0].cidade}', '${responsavel.enderecos[1].endereco}', '${responsavel.enderecos[0].numero}', '${responsavel.enderecos[1].complemento}', '${responsavel.enderecos[1].bairro}', '${responsavel.enderecos[1].estado}', '${responsavel.enderecos[1].cidade}')"
-														>Visualizar</a>
+														><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<td class="text-center">
-														<a class="btn btn-primary" href='SecretariaController?action=editarResponsavel&idResponsavel=${responsavel.idPessoa}' 
-														data-confirm="Deseja realmente editar o responsável selecionado?">Editar</a>
+														<a class="link-green" href='SecretariaController?action=editarResponsavel&idResponsavel=${responsavel.idPessoa}' 
+														data-confirm="Deseja realmente editar o responsável selecionado?"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 													</td>
 													<td class="text-center">
-														<a class="btn btn-danger"  
+														<a class="link-green" data-toggle="modal" href="SecretariaController?action=enviarEmailResponsavel&emailResponsavel=${responsavel.email}"><abbr title="Enviar email"><i class="fa fa-large fa-envelope"></i></abbr></a>
+													</td>
+													<td class="text-center">
+														<a class="link-red"  
 														href='SecretariaController?action=desativarResponsavel&idResponsavel=${responsavel.idPessoa}'
-														data-confirm="Deseja realmente excluir o responsável selecionado?">Excluir</a>
-													</td>
-													<td class="text-center">
-														<a class="btn btn-primary" data-toggle="modal" href="SecretariaController?action=enviarEmailResponsavel&emailResponsavel=${responsavel.email}">Enviar Email</a>
+														data-confirm="Deseja realmente excluir o responsável selecionado?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

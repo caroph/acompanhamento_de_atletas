@@ -43,7 +43,7 @@
 		</li>
 		<li class="dropdown">
 			<a href="SecretariaController?action=jspCalendario">
-				<i class="fa fa-male"></i>
+				<i class="fa fa-trophy"></i>
 				<span class="hidden-xs">Torneios</span>
 			</a>
 		</li>

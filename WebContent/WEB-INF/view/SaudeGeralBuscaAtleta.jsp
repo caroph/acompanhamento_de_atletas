@@ -48,19 +48,19 @@
 													<td><c:out value='${atleta.nome}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
+														<a class="link-blue" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')">Presença</a>
+														<a class="link-green" onClick="registrarPresenca('${atleta.idPessoa}', '${atleta.nome}')"><abbr title="Presença"><i class="fa fa-large fa-check-square-o"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')">Novo Atendimento</a>
+														<a class="link-green" onClick="novoAtendimento('${atleta.idPessoa}', '${atleta.nome}')"><abbr title="Novo atendimento"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}">Histórico</a>												
+														<a class="link-green" href="SaudeGeralController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>												
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="abrirModalObservacao('${atleta.idPessoa}')">Observação</a>
+														<a class="link-green" onClick="abrirModalObservacao('${atleta.idPessoa}')"><abbr title="Observação"><i class="fa fa-large fa-bell-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

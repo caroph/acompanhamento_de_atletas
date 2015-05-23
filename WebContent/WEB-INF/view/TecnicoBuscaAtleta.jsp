@@ -47,14 +47,14 @@
 													<td><c:out value='${atleta.nome}' /></td>
 													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="center">
-														<a class="btn btn-info" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')">Visualizar</a>
+														<a class="link-blue" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
 													<td align="center">
-														<a class="btn btn-primary" onClick="abrirModalObservacao('${atleta.idPessoa}')">Observação</a>
+														<a class="link-green" onClick="abrirModalObservacao('${atleta.idPessoa}')"><abbr title="Observação"><i class="fa fa-large fa-bell-o"></i></abbr></a>
 													</td>
 													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 														<td align="center">
-															<a class="btn btn-primary" onClick="abrirModalAvaliacaoFis('${atleta.idPessoa}')">Avaliação Física</a>
+															<a class="link-green" onClick="abrirModalAvaliacaoFis('${atleta.idPessoa}')"><abbr title="Avaliação física"><i class="fa fa-large fa-line-chart"></i></abbr></a>
 														</td>														
 													</c:if>
 												</tr>

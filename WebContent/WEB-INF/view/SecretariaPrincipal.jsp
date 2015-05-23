@@ -48,7 +48,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[0])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias0Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias0Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[1].size() > 0}">
@@ -57,7 +57,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[1])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias1Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias1Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[2].size() > 0}">
@@ -66,7 +66,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[2])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias2Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias2Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[3].size() > 0}">
@@ -75,7 +75,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[3])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias3Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias3Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[4].size() > 0}">
@@ -84,7 +84,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[4])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias4Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias4Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[5].size() > 0}">
@@ -93,7 +93,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[5])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias5Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias5Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>
 												</c:if>
 												<c:if test="${listaPendencias[6].size() > 0}">
@@ -102,7 +102,7 @@
 														<td align="center">
 															${fn:length(listaPendencias[6])}
 														</td>
-														<td align="center"><a class="btn btn-primary" data-toggle="modal" data-target="#pendencias6Modal" id="btnListarAlunos">Listar Atletas</a></td>
+														<td align="center"><a class="link-green" data-toggle="modal" data-target="#pendencias6Modal" id="btnListarAlunos"><abbr title="Listar atletas"><i class="fa fa-large fa-list-ul"></i></abbr></a></td>
 													</tr>												
 												</c:if>
 											</tbody>
@@ -130,7 +130,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -138,7 +138,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[0]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -165,7 +165,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -173,7 +173,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[1]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -200,7 +200,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -208,7 +208,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[2]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -235,7 +235,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -243,7 +243,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[3]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -270,7 +270,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -278,7 +278,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[4]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -305,7 +305,7 @@
 						<table class="table tbModal">
 						<thead>
 							<tr>
-								<th>Nome do Atleta</th>
+								<th>Atleta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -313,7 +313,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[5]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -348,7 +348,7 @@
 							<c:forEach var="pendencia" items="${listaPendencias[6]}">
 								<tr>
 									<td class="text-left">${pendencia.value}</td>
-									<td class="text-right"><a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}">Anexar Documento</a></td>
+									<td class="text-right"><a class="link-green" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${pendencia.key}&nome=${pendencia.value}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

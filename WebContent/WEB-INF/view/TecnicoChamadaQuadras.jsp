@@ -71,6 +71,7 @@
 													</select>
 												</div>
 											</div>
+											<p class="col-md-12"><small><strong>Dias de treino disponíveis conforme a data selecionada. Só será permitida a inclusão de atletas que estejam corretamente relacionados ao dia de treino selecionado.</strong></small></p>
 											<div class="col-md-2 form-group">
 												<div class="panel panel-primary">
 													<div class="panel-heading">
@@ -339,7 +340,7 @@
 											<div class="form-group col-md-12">
 												<div class="col-sm-12 text-right">
 													<a type="button" class="btn btn-info"
-														href="TecnicoController?action=jspChamada">Visualizar Chamada</a>
+														href="TecnicoController?action=jspChamada">Visualizar chamada</a>
 													<button type="submit" class="btn btn-primary">Salvar</button>
 												</div>
 											</div>

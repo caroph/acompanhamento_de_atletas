@@ -30,15 +30,15 @@
 		</li>
 		<li class="dropdown">
 			<a href="TecnicoController?action=jspAtletaBonificacao" class="dropdown-toggle">
-				<i class="fa fa-sort-amount-asc"></i>
+				<i class="fa fa-star"></i>
 				<span class="hidden-xs">Bonificação</span>
 			</a>
 		</li>
 		<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle">
-					<i class="fa fa-exchange"></i>
-					<span class="hidden-xs">Avaliação Física</span>
+					<i class="fa fa-line-chart"></i>
+					<span class="hidden-xs">Avaliação física</span>
 				</a>
 				<ul class="dropdown-menu">
 					<li><a class="" href="AvaliacaoFisController?action=jspAtividade">Atividades</a></li>

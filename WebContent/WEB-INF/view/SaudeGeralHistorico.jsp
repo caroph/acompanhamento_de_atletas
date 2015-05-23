@@ -39,8 +39,8 @@
 														<h4><c:out value='${dtFormatada}'/> - <c:out value='${hrFormatada}'/></h4>
 													</div>
 													<div class="col-md-1 column" style="padding-top: 8px;">
-														<a data-toggle="modal" href="#novoAtendimento" onclick="passarDadosPront('${idAtleta}','${prontuario.idProntuario}','${prontuario.dtAtendimento}','${hrFormatada}','${prontuario.anotacao}')" style="padding-left: 20px;"><abbr title="Editar"><i class="fa fa-pencil"></i></abbr></a>
-														<a href="SaudeGeralController?action=excluirAtendimento&idProntuario=${prontuario.idProntuario}&idAtleta=${idAtleta}&nome=${nomeAtleta}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir o atendimento selecionado?"><abbr title="Excluir"><i class="fa fa-trash-o"></i></abbr></a>
+														<a class="link-green" data-toggle="modal" href="#novoAtendimento" onclick="passarDadosPront('${idAtleta}','${prontuario.idProntuario}','${prontuario.dtAtendimento}','${hrFormatada}','${prontuario.anotacao}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+														<a class="link-red" href="SaudeGeralController?action=excluirAtendimento&idProntuario=${prontuario.idProntuario}&idAtleta=${idAtleta}&nome=${nomeAtleta}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir o atendimento selecionado?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</div>
 												</div>
 												<div class="row clearfix">

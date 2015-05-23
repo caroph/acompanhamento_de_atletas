@@ -75,6 +75,7 @@
 														</select>
 													</div>
 												</div>
+												<p class="col-md-12"><small><strong>Dias de treino disponíveis conforme a data selecionada. Os atletas que serão exibidos estão relacionados ao dia de treino selecionado.</strong></small></p>
 											</form>
 											<table class="table">
 												<thead>

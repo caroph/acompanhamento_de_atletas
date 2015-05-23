@@ -17,7 +17,7 @@
 							<c:if test="${sessionScope.usuarioLogado.perfil != 1}">
 								<li>
 									<a href="Controller?action=jspObservacoes" class="modal-link">
-										<i class="fa fa-bell"></i>
+										<i class="fa fa-large fa-bell"></i>
 										<c:if test="${notificacaoObs > 0}">
 	 										<span class="badge">${notificacaoObs}</span> 
 	 									</c:if> 
@@ -26,7 +26,7 @@
 							</c:if>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-									<i class="fa fa-angle-down pull-right"></i>
+									<i class="fa fa-large fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right account">
 										<span class="welcome">Bem vindo(a),</span>
 										<span>${ sessionScope.usuarioLogado.nome }</span>

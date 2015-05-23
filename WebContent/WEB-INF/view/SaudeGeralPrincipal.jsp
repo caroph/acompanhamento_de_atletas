@@ -44,7 +44,7 @@
 													<fmt:formatDate value="${atendimento.hrAtendimento}" pattern="HH:mm" var="hrFormatada" />
 													<td style="text-align: center;"><c:out value='${dtFormatada}'/> - <c:out value='${hrFormatada}'/></td>
 													<td align="center">
-														<a class="btn btn-primary" href="SaudeGeralController?action=jspHistorico&idAtleta=${atendimento.atleta.idPessoa}&nome=${atendimento.atleta.nome}">Histórico</a>												
+														<a class="link-green" href="SaudeGeralController?action=jspHistorico&idAtleta=${atendimento.atleta.idPessoa}&nome=${atendimento.atleta.nome}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>												
 													</td>
 												</tr>
 											</c:forEach>

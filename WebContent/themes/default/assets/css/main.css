@@ -34,7 +34,25 @@
   margin-left: 29px;
 }
 
+.fa {
+	font-size: large !important;
+}
 
+.fa-large {
+	font-size: x-large !important;
+}
+
+.link-red {
+	color: #EF6D6D !important;
+}
+
+.link-green{
+	color: #2CA113 !important;
+}
+
+.link-blue{
+	color: #428bca !important;
+}
 
 /* DEMO ONLY - REMOVES UNWANTED MARGIN */
 .well .list-group {

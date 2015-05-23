@@ -47,8 +47,8 @@
 													<td><c:out value='${atividade.teste}' /></td>
 													<td><c:out value='${atividade.getNomeUnidade()}' /></td>
 													<td align="center">
-														<a class="btn btn-danger" href="AvaliacaoFisController?action=desativarAtividade&idAtividade=${atividade.idAtividadeAvaliacao}"
-														data-confirm="Deseja realmente excluir a atividade selecionada?">Excluir</a>
+														<a class="link-red" href="AvaliacaoFisController?action=desativarAtividade&idAtividade=${atividade.idAtividadeAvaliacao}"
+														data-confirm="Deseja realmente excluir a atividade selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

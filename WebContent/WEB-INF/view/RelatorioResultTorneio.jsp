@@ -57,7 +57,7 @@
 														var="dataF" />
 													<td align="center"><c:out value='${dataI}'/> à <c:out value='${dataF}'/></td>
 													<td align="center">
-														<a class="btn btn-primary" href="Controller?action=relResulTorneio&idTorneio=${torneio.idTorneio}" target="_blank">Resultado</a>
+														<a class="link-green" href="Controller?action=relResulTorneio&idTorneio=${torneio.idTorneio}" target="_blank"><abbr title=Gerar relatório"><i class="fa fa-large fa-spinner"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

@@ -43,8 +43,8 @@
 													<c:forEach var="atendimento" items="${listaAtendimentos}">
 														<tr>
 															<td class="text-center"><fmt:formatDate value="${atendimento.value}" pattern="dd/MM/yyyy - HH:mm"/></td>
-															<td class="text-center"><a class="btn btn-info" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=${atendimento.key}">Visualizar</a></td>
-															<td class="text-center"><a class="btn btn-primary" id="btnImprimir" target="_blank" data-toggle="modal" href="NutricionistaController?action=imprimirFichaDeAtendimento&idFichaDeAtendimento=${atendimento.key}">Imprimir</a></td>
+															<td class="text-center"><a class="link-blue" href="NutricionistaController?action=jspFichaDeAtendimento&idAtleta=${atleta.idPessoa}&idFichaDeAtendimento=${atendimento.key}"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
+															<td class="text-center"><a class="link-green" id="btnImprimir" target="_blank" data-toggle="modal" href="NutricionistaController?action=imprimirFichaDeAtendimento&idFichaDeAtendimento=${atendimento.key}"><abbr title="Imprimir"><i class="fa fa-large fa-print"></i></abbr></a></td>
 														</tr>												
 													</c:forEach>
 												</tbody>

@@ -125,7 +125,7 @@
 						</div>
 						<div class="col-md-6">
 							<label><input type="radio" name="optradio" value="6"/>
-							<span class="fa fa-question" aria-hidden="true" style="color: black"></span> Fisioterapeuta</label>
+							<span class="fa fa-stethoscope" aria-hidden="true" style="color: black"></span> Fisioterapeuta</label>
 						</div>
 						<div class="col-md-6">
 							<label><input type="radio" name="optradio" value="7"/>
