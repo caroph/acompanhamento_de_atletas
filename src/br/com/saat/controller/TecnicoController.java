@@ -949,6 +949,7 @@ public class TecnicoController extends Controller {
 			String itf = request.getParameter("rankITF");
 			String observacoes = request.getParameter("observacoes");
 			String bonificado = request.getParameter("optBonificado");
+			String avaliacaoDesempenho = request.getParameter("idAvaliacaoDesempenho");
 			
 			AvaliacaoDesempenho bonificacao = new AvaliacaoDesempenho();
 			AtletaNegocio negocio = new AtletaNegocio();
@@ -984,7 +985,7 @@ public class TecnicoController extends Controller {
 			}
 			if(!"".equals(fpt)){
 				try{
-					bonificacao.setRankFTP(Integer.parseInt(fpt));
+					bonificacao.setRankFPT(Integer.parseInt(fpt));
 				}catch(Exception ex){
 					msgErro = "Erro ao identificar rank FPT!";
 					exception = true;
@@ -1023,8 +1024,16 @@ public class TecnicoController extends Controller {
 				bonificacao.setUsuario(usuarioLogado);
 				
 				try{
-					if(negocio.salvarBonificacaoAtleta(bonificacao)){
-						request.setAttribute("msgSucesso", "Bonificação salva com sucesso!");
+					if("".equals(avaliacaoDesempenho)){
+						if(negocio.salvarBonificacaoAtleta(bonificacao)){
+							request.setAttribute("msgSucesso", "Bonificação cadastrada com sucesso!");
+						}
+					}else{
+						int idBonificacao = Integer.parseInt(avaliacaoDesempenho);
+						bonificacao.setIdAvaliacaoDesempenho(idBonificacao);
+						if(negocio.editarBonificacaoAtleta(bonificacao)){
+							request.setAttribute("msgSucesso", "Bonificação editada com sucesso!");
+						}
 					}
 				}catch(Exception ex){
 					msgErro = ex.getMessage();

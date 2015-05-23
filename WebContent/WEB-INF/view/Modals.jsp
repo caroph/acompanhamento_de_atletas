@@ -269,6 +269,7 @@
     		<input type="hidden" id="mesBonificacao" name="mesBonificacao"/>
     		<input type="hidden" id="anoBonificacao" name="anoBonificacao"/>
     		<input type="hidden" id="idAtletaBonificacao" name="idAtleta"/>
+    		<input type="hidden" id="idAvaliacaoBonificacao" name="idAvaliacaoDesempenho"/>
     		<div class="modal-footer">
     			<button type="submit" class="btn btn-primary">Salvar</button>
 				<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
@@ -276,6 +277,23 @@
     	</form>
 	    </div>
 	    
+	  </div>
+	</div>
+</div>
+
+<!-- Visualizar Observação -->
+<div class="modal fade bs-example-modal-sm" id="visualizarBonificacao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	    <div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h4 class="modal-title" id="tituloModalBonificacao"></h4>
+		</div>
+    	<div class="modal-body" id="conteudoModalBonificacao">
+	    </div>
+	    <div class="modal-footer">
+			<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">Fechar</a>
+		</div>
 	  </div>
 	</div>
 </div>

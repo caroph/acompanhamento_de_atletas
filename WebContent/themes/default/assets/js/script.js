@@ -592,7 +592,97 @@ function cadastrarBonificacao(idAtleta){
 	
 	var atleta = $("#idAtletaBonificacao");
 	atleta.val(idAtleta);
+	
+	$("#idAvaliacaoBonificacao").val("");
+	$("#observacoes").val("");
+	$("#torneios").prop("checked", false);
+	$("#treinos").prop("checked", false);
+	$("#avaliacoes").prop("checked", false);
+	$("#rankFPT").val("");
+	$("#rankCBT").val("");
+	$("#rankITF").val("");
+	var radio = document.getElementsByName("optBonificado");
+	for(i = 0; i< radio.length; i++){
+		if(radio[i].value == 2){
+			radio[i].checked = true;
+		}
+	}
 }
+
+function editarBonificacao(idAtleta, idAvaliacao, bonificado, torneios, treinos, avaliacoes, fpt, cbt, itf, obs){
+	$("#bonificacaoModal").modal();
+	
+	var mes = $("#mesBonificacao");
+	mes.val($("#mes").val());
+	
+	var ano = $("#anoBonificacao");
+	ano.val($("#ano").val());
+	
+	var atleta = $("#idAtletaBonificacao");
+	atleta.val(idAtleta);
+	
+	var bonificacao = $("#idAvaliacaoBonificacao");
+	bonificacao.val(idAvaliacao);
+	
+	if(torneios == "true")
+		$("#torneios").prop("checked", true);
+	else
+		$("#torneios").prop("checked", false);
+	if(treinos == "true")
+		$("#treinos").prop("checked", true);
+	else
+		$("#treinos").prop("checked", false);
+	if(avaliacoes == "true")
+		$("#avaliacoes").prop("checked", true);
+	else
+		$("#avaliacoes").prop("checked", false);
+	
+	if(fpt != "0")
+		$("#rankFPT").val(fpt);
+	else
+		$("#rankFPT").val("");
+	if(cbt != "0")
+		$("#rankCBT").val(cbt);
+	else
+		$("#rankCBT").val("");
+	if(itf != "0")
+		$("#rankITF").val(itf);
+	else
+		$("#rankITF").val("");
+	
+	$("#observacoes").val(obs);
+	
+	var radio = document.getElementsByName("optBonificado");
+	var boni = bonificado == "true" ? 1 : 2; 
+	for(i = 0; i< radio.length; i++){
+		if(radio[i].value == boni){
+			radio[i].checked = true;
+		}
+	}
+}
+
+function desabilitaBotoesTabela(){
+	$(".table").find("a").attr("disabled", "disabled");
+}
+
+function habilitaBotoesTabela(){
+	$(".table").find("a").removeAttr("disabled");
+}
+
+function visualizarBonificacao(atleta, bonificado, torneios, treinos, avaliacoes, fpt, cbt, itf, obs){
+	$("#visualizarBonificacao").modal();
+	$("#tituloModalBonificacao").html(atleta);
+	var html = "<b>" + (bonificado == "true" ? "ATLETA BONIFICADO" : "ATLETA N\u00c3O BONIFICADO") + "</b><br/><br/>";
+	html += "<b>Torneios:</b> " + (torneios == "true" ? "Sim" : "N\u00e3o") + "<br/>";
+	html += "<b>Treinos:</b> " + (treinos == "true" ? "Sim" : "N\u00e3o") + "<br/>";
+	html += "<b>Avalia\u00e7\u00f5es:</b> " + (avaliacoes == "true" ? "Sim" : "N\u00e3o") + "<br/>";
+	html += "<br/><b>Ranking FPT:</b> " + (fpt == "0" ? "N\u00e3o informado": fpt + "&#186;") + "<br/>";
+	html += "<b>Ranking CBT: </b>" + (cbt == "0" ? "N\u00e3o informado": cbt + "&#186;") + "<br/>";
+	html += "<b>Ranking ITF: </b>" + (itf == "0" ? "N\u00e3o informado": itf + "&#186;") + "<br/>";
+	html += "<br/><b>Observa\u00e7\u00f5es: </b>" + obs;
+	$("#conteudoModalBonificacao").html(html);
+}
+
 
 // $('#selectInicio').on('change', function () {
 // var url = this.value.toString();

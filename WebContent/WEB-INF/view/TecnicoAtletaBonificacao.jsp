@@ -36,7 +36,7 @@
 														<label for="mes" class="control-label">Mês:</label>
 													</div>
 													<div class="col-md-8">
-														<select name="mes" class="form-control" id="mes">
+														<select name="mes" onchange="desabilitaBotoesTabela()" class="form-control" id="mes">
 															<option value="0" selected>Selecione</option>
 															<c:forEach var="mes" items="${listaMes}">
 																<c:if test="${mesSelecionado == mes.valor}">
@@ -54,10 +54,10 @@
 														<label for="ano" class="control-label">Ano:</label>
 													</div>
 													<div class="col-md-6">
-														<input type="number" class="form-control" name="ano" id="ano" value="${ano}"/>
+														<input type="number" onchange="desabilitaBotoesTabela()" class="form-control" name="ano" id="ano" value="${ano}"/>
 													</div>
 													<div class="col-md-4">
-														<button type="submit" class="btn btn-primary">Buscar Atletas</button>
+														<button type="submit" onclick="habilitaBotoesTabela()" class="btn btn-primary">Buscar Atletas</button>
 													</div>
 												</div>
 											</form>
@@ -85,10 +85,14 @@
 																	</c:if>
 																</c:if>
 															</td>
-															<td align="center"><a href="#" class="btn btn-info">Visualizar</a></td>
+															<td align="center"><a onclick="visualizarBonificacao('${atleta.nome}', '${bonificacao.bonificado}', 
+															'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
+															'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="btn btn-info">Visualizar</a></td>
 															<td align="center">
 																<c:if test="${bonificacao.idAvaliacaoDesempenho != 0}">
-																	<a onclick="editarBonificacao()" class="btn btn-primary">Editar</a>
+																	<a onclick="editarBonificacao('${atleta.idPessoa}', '${bonificacao.idAvaliacaoDesempenho}', '${bonificacao.bonificado}', 
+																		'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
+																		'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="btn btn-primary">Editar</a>
 																</c:if>
 																<c:if test="${bonificacao.idAvaliacaoDesempenho == 0}">
 																	<a onclick="cadastrarBonificacao('${atleta.idPessoa}')" class="btn btn-primary">Cadastrar</a>

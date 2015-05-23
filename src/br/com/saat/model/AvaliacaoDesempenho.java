@@ -9,7 +9,7 @@ public class AvaliacaoDesempenho {
 	public boolean torneios;
 	public boolean treinos;
 	public boolean avaliacoes;
-	public int rankFTP;
+	public int rankFPT;
 	public int rankCBT;
 	public int rankITF;
 	public boolean bonificado;
@@ -81,12 +81,12 @@ public class AvaliacaoDesempenho {
 		this.avaliacoes = avaliacoes;
 	}
 
-	public int getRankFTP() {
-		return rankFTP;
+	public int getRankFPT() {
+		return rankFPT;
 	}
 
-	public void setRankFTP(int rankFTP) {
-		this.rankFTP = rankFTP;
+	public void setRankFPT(int rankFPT) {
+		this.rankFPT = rankFPT;
 	}
 
 	public int getRankCBT() {

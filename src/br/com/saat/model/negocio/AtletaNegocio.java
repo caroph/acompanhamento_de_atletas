@@ -254,7 +254,22 @@ public class AtletaNegocio {
 			}
 			return dao.salvarBonificacaoAtleta(bonificacao);
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao salvar a bonificação do atleta!");
+			throw new Exception("Erro! Ocorreu algum erro ao cadastrar a bonificação do atleta!");
+		}
+	}
+
+	public boolean editarBonificacaoAtleta(AvaliacaoDesempenho bonificacao) throws Exception {
+		try {
+			AtletaDAO dao = new AtletaDAO();
+			if(bonificacao.getMes() == 0){
+				throw new Exception("O mês deve ser pré selecionado");
+			}
+			if(bonificacao.getAno() == 0){
+				throw new Exception("O ano deve ser pré selecionado");
+			}
+			return dao.editarBonificacaoAtleta(bonificacao);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao editar a bonificação do atleta!");
 		}
 	}
 	

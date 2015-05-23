@@ -651,8 +651,8 @@ public class AtletaDAO {
         	ad.setTorneios(rs.getBoolean(5));
         	ad.setTreinos(rs.getBoolean(6));
         	ad.setRankCBT(rs.getInt(7));
-        	ad.setRankFTP(rs.getInt(8));
-        	ad.setRankITF(9);
+        	ad.setRankFPT(rs.getInt(8));
+        	ad.setRankITF(rs.getInt(9));
         	ad.setBonificado(rs.getBoolean(10));
         	ad.setObservacoes(rs.getString(11));
         	
@@ -684,10 +684,10 @@ public class AtletaDAO {
 		}else{
 			stmtScript.setInt(8, bonificacao.getRankCBT());
 		}
-		if(bonificacao.getRankFTP() == 0){
+		if(bonificacao.getRankFPT() == 0){
 			stmtScript.setNull(9, java.sql.Types.INTEGER);
 		}else{
-			stmtScript.setInt(9, bonificacao.getRankFTP());
+			stmtScript.setInt(9, bonificacao.getRankFPT());
 		}
 		if(bonificacao.getRankITF() == 0){
 			stmtScript.setNull(10, java.sql.Types.INTEGER);
@@ -700,6 +700,44 @@ public class AtletaDAO {
 		rows = stmtScript.executeUpdate();
 		
 		if(rows > 0){
+			return true;
+		}		
+		return false;
+	}
+
+	public boolean editarBonificacaoAtleta(AvaliacaoDesempenho bonificacao) throws SQLException {
+		int rows = 0;
+		
+		stmtScript = con.prepareStatement("UPDATE avaliacaodesempenho SET idUsuario = ?, torneios = ?, treinos = ?, "
+				+ "avaliacoes = ?, rankCBT = ?, rankFPT = ?, rankITF = ?, bonificado = ?, observacoes = ? "
+				+ "WHERE idAvaliacaoDesempenho = ?");
+		
+		stmtScript.setInt(1, bonificacao.getUsuario().getIdPessoa());
+		stmtScript.setBoolean(2, bonificacao.getTorneios());
+		stmtScript.setBoolean(3, bonificacao.getTreinos());
+		stmtScript.setBoolean(4, bonificacao.getAvaliacoes());
+		if(bonificacao.getRankCBT() == 0){
+			stmtScript.setNull(5, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(5, bonificacao.getRankCBT());
+		}
+		if(bonificacao.getRankFPT() == 0){
+			stmtScript.setNull(6, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(6, bonificacao.getRankFPT());
+		}
+		if(bonificacao.getRankITF() == 0){
+			stmtScript.setNull(7, java.sql.Types.INTEGER);
+		}else{
+			stmtScript.setInt(7, bonificacao.getRankITF());
+		}
+		stmtScript.setBoolean(8, bonificacao.getBonificado());
+		stmtScript.setString(9, bonificacao.getObservacoes());
+		stmtScript.setInt(10, bonificacao.getIdAvaliacaoDesempenho());	
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows >= 0){
 			return true;
 		}		
 		return false;
