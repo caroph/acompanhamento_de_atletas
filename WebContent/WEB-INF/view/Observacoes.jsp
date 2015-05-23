@@ -54,7 +54,7 @@
 														<tr style="color: red;">
 															<td><c:out value='${observacao.atleta.nome}' /></td>
 															<td><c:out value='${observacao.getNomeGravidade()}' /></td>
-															<td align="center"><a class="btn btn-info" onClick="visualizarObservacao('${observacao.idObservacao}',
+															<td align="center"><a class="link-red" onClick="visualizarObservacao('${observacao.idObservacao}',
 															'${observacao.atleta.nome}', '${observacao.getNomeGravidade()}', '${observacao.dsObservacao}',
 															'${observacao.getDisplayDataValidade()}', '${observacao.usuario.nome}', '${observacao.usuario.getNomePerfil()}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
 														</tr>

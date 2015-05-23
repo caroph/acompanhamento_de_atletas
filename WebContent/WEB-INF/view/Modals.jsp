@@ -194,7 +194,7 @@
 				<input type="hidden" name="idObservacao" id="idObservacaoModal" />
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">Salvar</button>
-					<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 				</div>
 	        </form>
 	    </div>
@@ -212,7 +212,7 @@
     	<div class="modal-body" id="conteudoModalObs">
 	    </div>
 	    <div class="modal-footer">
-			<a type="button" class="btn" id="fecharModalObservacao" aria-hidden="true">Fechar</a>
+			<a type="button" class="btn" id="fecharModalObservacao" aria-hidden="true" style="color: black;">Fechar</a>
 		</div>
 	  </div>
 	</div>

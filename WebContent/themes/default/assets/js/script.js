@@ -13,7 +13,6 @@ window.onload = function() {
 
 // Máscaras
 $(document).ready(function() {
-	$(".data").mask("99/99/9999");
 	$(".phone").mask("(999) 9999-9999");
 	$("#cpf").mask("999.999.999-99");
 });
@@ -90,19 +89,6 @@ function LimparCampos() {
 		$(this).val("Selecione");
 	});
 }
-
-$(document).ready(function() {
-	// Datapicker
-	$('#dtNascimento').datepicker({
-		setDate : new Date()
-	});
-	$('#dtValidade').datepicker({
-		setDate : new Date()
-	});
-	//Calendário
-	SetMinBlockHeight($('#calendar'));
-	DrawFullCalendar();
-});
 
 // Vincular Responsável
 function abrirModalVinculacao(atleta, pagina) {

@@ -92,7 +92,7 @@
 											<div class="col-sm-3" >
 												<label for="dtNascimento" class="control-label">Data de Nascimento:</label>
 												<fmt:formatDate value="${atleta.dtNascimento}" pattern="dd/MM/yyyy" var="dtNascimento" />
-												<input type="text" value="${dtNascimento}" class="form-control data" id="dtNascimento" name="dtNascimento" required/>
+												<input type="date" value="${dtNascimento}" class="form-control" id="dtNascimento" name="dtNascimento" required/>
 											</div>
 											<div class="col-md-2">
 												<label for="sexo" class=" control-label">Sexo:</label></br>
@@ -268,7 +268,7 @@
 										<div class="form-group col-sm-4" >
 											<label for="dtValidade" class="control-label">Data Validade Cadastro:</label>
 											<fmt:formatDate value="${atleta.dtValidade}" pattern="dd/MM/yyyy" var="dtValidade" />
-											<input type="text"  value="${dtValidade}" class="form-control data" id="dtValidade" name="dtValidade" required />
+											<input type="date"  value="${dtValidade}" class="form-control" id="dtValidade" name="dtValidade" required />
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10 text-right">
