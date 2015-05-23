@@ -229,6 +229,7 @@
     	<div class="modal-body">
     	<form action="TecnicoController?action=salvarBonificacaoAtleta" method="POST">
     		<div class="form-group">
+    			<label>Obteve bom desempenho em:</label><br/>
         		<label>
         			<input type="checkbox" name="torneios" id="torneios"><span style="padding: 0 10px 0 5px;">Torneios</span></input>
        			</label>
@@ -240,19 +241,19 @@
        			</label>	        		
         	</div>
     		<div class="form-group">
-    			<label for="rankCBT" class="control-label">Rank CBT:</label>
+    			<label for="rankCBT" class="control-label">Ranking CBT:</label>
         		<label>
         			<input type="number" class="form-control" name="rankCBT" id="rankCBT"/>
        			</label>	
     		</div>
     		<div class="form-group">
-    			<label for="rankFPT" class="control-label">Rank FPT:</label>
+    			<label for="rankFPT" class="control-label">Ranking FPT:</label>
         		<label>
         			<input type="number" class="form-control" name="rankFPT" id="rankFPT"/>
        			</label>	
     		</div>
     		<div class="form-group">
-    			<label for="rankITF" class="control-label">Rank ITF:</label>
+    			<label for="rankITF" class="control-label">Ranking ITF:</label>
         		<label>
         			<input type="number" class="form-control" name="rankITF" id="rankITF"/>
        			</label>	

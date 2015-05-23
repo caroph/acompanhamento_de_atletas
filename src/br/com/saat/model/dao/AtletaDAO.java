@@ -263,8 +263,8 @@ public class AtletaDAO {
 		stmtScript.setString(24, atleta.getTelContatoEmergencia());
 		stmtScript.setInt(25, atleta.getIdGrauParentesco());
 		stmtScript.setDate(26, new java.sql.Date(atleta.getDtValidade().getTime()));
-		stmtScript.setInt(27, atleta.getIdPessoa());
-		stmtScript.setInt(28, atleta.getSexo());
+		stmtScript.setInt(27, atleta.getSexo());
+		stmtScript.setInt(28, atleta.getIdPessoa());
 		
 		rows = stmtScript.executeUpdate();
 		
