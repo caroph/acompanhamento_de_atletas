@@ -263,16 +263,18 @@ public class TecnicoController extends Controller {
 				request.setAttribute("torneio", torneio);
 				retorno = String.format("%s/TecnicoNovoTorneio.jsp",
 						Constants.VIEW);
-
+				servletRetorno = "/TecnicoController?action=jspNovoTorneio";
 			} else {
 				request.setAttribute("msgSucesso", msgSucesso);
 				retorno = String.format("%s/TecnicoCalendarioTorneio.jsp",
 						Constants.VIEW);
+				servletRetorno = "/TecnicoController?action=jspCalendario";
 			}
 			
 		}else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspCalendario";
+			
 		}else if("editarTorneio".equals(action)){
 			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
 			Torneio torneio = new Torneio();
@@ -323,6 +325,8 @@ public class TecnicoController extends Controller {
 			retorno = String.format("%s/TecnicoNovoTorneio.jsp",
 					Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspNovoTorneio";
+			servletRetorno = "/TecnicoController?action=jspNovoTorneio";
+			
 		}else if("excluirTorneio".equals(action)){
 			String msgErro = "";
 			String msgSucesso = "";
@@ -352,6 +356,7 @@ public class TecnicoController extends Controller {
 			}
 
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspCalendario";
 
 		} else if("jspFinalizarTorneio".equals(action)){
 			int idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
@@ -375,7 +380,8 @@ public class TecnicoController extends Controller {
 			request.setAttribute("torneio", torneio);
 			
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
-			servletRetorno = "/TecnicoController?action=jspCalendario";
+			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio&idTorneio=" +
+				request.getParameter("idTorneio") + "&nome=" + request.getParameter("nome");
 			
 		}else if ("finalizarTorneio".equals(action)){
 			boolean exception = false;
@@ -470,9 +476,12 @@ public class TecnicoController extends Controller {
 				request.setAttribute("torneio", torneio);
 				request.setAttribute("listaAtletas", listaAtletasPart);
 				retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
+				servletRetorno = "/TecnicoController?action=jspFinalizarTorneio&idTorneio=" +
+					request.getParameter("idTorneio") + "&nome=" + request.getParameter("nome");
 			} else {
 				request.setAttribute("msgSucesso", msgSucesso);
 				retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
+				servletRetorno = "/TecnicoController?action=jspCalendario";
 			}
 			
 		} else if ("editarResultadoTorneio".equals(action)) {
@@ -492,6 +501,8 @@ public class TecnicoController extends Controller {
 			
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp",
 					Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio&idTorneio=" +
+				request.getParameter("idTorneio") + "&nome=" + request.getParameter("nome");
 		}
 		else if("jspChamadaQuadra".equals(action)){
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
@@ -879,20 +890,24 @@ public class TecnicoController extends Controller {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspResulTorneio";
 			
 		} else if("jspRelatorioTreinos".equals(action)){
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspRelatorioTreinos";
 			
 		}else if("jspRelatorioConsultaMedica".equals(action)){			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspRelatorioConsultaMedica";
 			
 		} else if("jspFrequenciaTorneio".equals(action)){
 			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspFrequenciaTorneio";
 			
 		}else if("jspAtletaBonificacao".equals(action)){			
 			Date date = new Date();
@@ -905,6 +920,7 @@ public class TecnicoController extends Controller {
 			request.setAttribute("listaMes", listaMes);
 			request.setAttribute("ano", ano);
 			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspAtletaBonificacao";
 			
 		}else if("carregarAtletasBonificacao".equals(action)){			
 			
@@ -932,6 +948,7 @@ public class TecnicoController extends Controller {
 			request.setAttribute("mesSelecionado", mes);
 			request.setAttribute("ano", ano);
 			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspAtletaBonificacao";
 			
 		}else if("salvarBonificacaoAtleta".equals(action)){
 			String msgErro = "";
@@ -1063,6 +1080,7 @@ public class TecnicoController extends Controller {
 			request.setAttribute("mesSelecionado", nrMes);
 			request.setAttribute("msgErro", msgErro);
 			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspAtletaBonificacao";
 			
 		} else{
 			//Página Principal

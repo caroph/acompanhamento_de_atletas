@@ -575,6 +575,7 @@ public class Controller extends HttpServlet {
 				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
 				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
 				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+				session.setAttribute("pagina", "/Controller?action=jspObservacoes");
 			}else{
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
@@ -609,6 +610,7 @@ public class Controller extends HttpServlet {
 				request.setAttribute("listaObservacoesAtivas", listaObsAtivas);
 				request.setAttribute("listaObservacoesMinhas", listaMinhasObs);
 				retorno = String.format("%s/Observacoes.jsp", Constants.VIEW);
+				session.setAttribute("pagina", "/Controller?action=jspObservacoes");
 				
 			}else{
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();

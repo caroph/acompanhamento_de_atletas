@@ -317,6 +317,7 @@ public class SecretariaController extends Controller {
 
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspNovoAtleta";
 		} else if ("inserirAtleta".equals(action)) {
 			boolean exception = false;
 			String escolha;
@@ -913,6 +914,7 @@ public class SecretariaController extends Controller {
 
 			retorno = String.format("%s/SecretariaNovoDiaTreino.jsp",
 					Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspBuscaDiaTreino";
 
 		} else if ("jspBuscaDiaTreino".equals(action)) {
 			// Carregar página Buscar Dias de Treinos
@@ -1030,6 +1032,7 @@ public class SecretariaController extends Controller {
 			}
 			retorno = String.format("%s/SecretariaNovoUsuario.jsp",
 					Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspBuscaUsuario";
 
 		} else if ("jspBuscaUsuario".equals(action)) {
 			// Carregar página Buscar Usuario
@@ -1242,6 +1245,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaNovoResponsavel.jsp",
 					Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspBuscaResponsavel";
 
 		} else if ("jspBuscaResponsavel".equals(action)) {
 			ResponsavelNegocio responsavelNegocio = new ResponsavelNegocio();
@@ -1330,11 +1334,14 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msgErro", msg);
 				retorno = String.format("%s/SecretariaBuscaResponsavel.jsp",
 						Constants.VIEW);
+				servletRetorno = "/SecretariaController?action=jspBuscaResponsavel";
 			} else {
 				request.setAttribute("emailResponsavel", email);
 				retorno = String.format(
 						"%s/SecretariaEnviarEmailResponsavel.jsp",
 						Constants.VIEW);
+				servletRetorno = "/SecretariaController?action=enviarEmailResponsavel&emailResponsavel="
+						+ email;
 			}
 
 		} else if ("enviarEmailIndividual".equals(action)) {
@@ -1367,6 +1374,8 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgErro", msg);
 			retorno = String.format("%s/SecretariaEnviarEmailResponsavel.jsp",
 					Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=enviarEmailResponsavel&emailResponsavel="
+					+ destinatario;
 
 		} else if ("jspAnexarDocumentosAtleta".equals(action)) {
 			String nomeAtleta = request.getParameter("nome");
@@ -1376,7 +1385,8 @@ public class SecretariaController extends Controller {
 			listarDocumentosAtleta(request);
 			retorno = String.format("%s/SecretariaAnexarDocumentos.jsp",
 					Constants.VIEW);
-			servletRetorno = "/SecretariaController?action=jspAnexarDocumentosAtleta";
+			servletRetorno = "/SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=" 
+					+ request.getParameter("idPessoa") + "&nome=" + request.getParameter("nome");;
 
 		} else if ("anexarDocumento".equals(action)) {
 			String msgSucesso = "";
@@ -1501,16 +1511,17 @@ public class SecretariaController extends Controller {
 		    response.getWriter().write(json);
 		    request.setAttribute("msgErro", msg);
 		    
-		} else if("jspRelatorioTreinos".equals(action)){
-			
+		} else if("jspRelatorioTreinos".equals(action)){			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
-		} else if("jspRelatorioConsultaMedica".equals(action)){
+			servletRetorno = "/SecretariaController?action=jspRelatorioTreinos";
 			
+		} else if("jspRelatorioConsultaMedica".equals(action)){			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
-		}else if ("jspResulTorneio".equals(action)) {
+			servletRetorno = "/SecretariaController?action=jspRelatorioConsultaMedica";
 			
+		}else if ("jspResulTorneio".equals(action)) {			
 			TorneioNegocio negocio = new TorneioNegocio();
 			List<Torneio> lista = new ArrayList<Torneio>();
 			
@@ -1525,14 +1536,17 @@ public class SecretariaController extends Controller {
 				request.setAttribute("msgErro", ex.getMessage());
 			}
 			retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspResulTorneio";
 			
-		} else if("jspFrequenciaTorneio".equals(action)){
+		} else if("jspFrequenciaTorneio".equals(action)){			
 			request.setAttribute("dataAtual", new Date());
 			retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspFrequenciaTorneio";
 			
 		} else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspCalendario";
+			servletRetorno = "/SecretariaController?action=jspCalendario";
 		
 		} else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";

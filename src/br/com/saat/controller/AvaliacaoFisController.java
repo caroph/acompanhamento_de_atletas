@@ -68,7 +68,7 @@ public class AvaliacaoFisController extends Controller {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
-		String servletRetorno = "/AvaliacaoFisController";
+		String servletRetorno = "/TecnicoController";
 		
 		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -106,7 +106,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaUnidades", listaUnidades);
 			request.setAttribute("listaAtividades", lista);
 			retorno = String.format("%s/TecnicoBuscaAtividade.jsp", Constants.VIEW);
-			servletRetorno = retorno;
+			servletRetorno = "/AvaliacaoFisController?action=jspAtividade";
 			
 		} else if ("novaAtividade".equals(action)) {
 			boolean exception = false;
@@ -160,6 +160,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaUnidades", listaUnidades);
 			request.setAttribute("listaAtividades", lista);
 			retorno = String.format("%s/TecnicoBuscaAtividade.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspAtividade";
 			
 		} else if ("desativarAtividade".equals(action)) {
 			
@@ -193,6 +194,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaUnidades", listaUnidades);
 			request.setAttribute("listaAtividades", lista);
 			retorno = String.format("%s/TecnicoBuscaAtividade.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspAtividade";
 
 		} else if ("jspCategoria".equals(action)) {
 			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
@@ -216,7 +218,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
-			servletRetorno = retorno;
+			servletRetorno = "/AvaliacaoFisController?action=jspCategoria";
 			
 		} else if ("novaCategoria".equals(action)) {
 			boolean exception = false;
@@ -292,6 +294,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspCategoria";
 			
 		} else if ("desativarCategoria".equals(action)) {
 			
@@ -329,6 +332,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaSexo", listaSexo);
 			request.setAttribute("listaCategorias", lista);
 			retorno = String.format("%s/TecnicoBuscaCategoria.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspCategoria";
 
 		} else if ("jspDadosRef".equals(action)) {
 			CategoriaAtividadeNegocio negocio = new CategoriaAtividadeNegocio();
@@ -345,6 +349,7 @@ public class AvaliacaoFisController extends Controller {
 			
 			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspDadosRef";
 			
 		} else if ("jspNovoDadosRef".equals(action)) {
 			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
@@ -375,6 +380,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtividades", listaAtividades);
 			request.setAttribute("tipoAcao", 1); //1 Novo
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspNovoDadosRef";
 			
 		} else if ("inserirDadosRef".equals(action)) {
 			boolean exception = false;
@@ -504,6 +510,7 @@ public class AvaliacaoFisController extends Controller {
 			
 			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspDadosRef";
 			
 		} else if ("desativarDadoRef".equals(action)) {
 			String msgSucesso = "";
@@ -544,6 +551,7 @@ public class AvaliacaoFisController extends Controller {
 			}
 			request.setAttribute("categoriasAtividades", categoriasAtividades);
 			retorno = String.format("%s/TecnicoBuscaDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspDadosRef";
 			
 		} else if ("jspMaisDadosRef".equals(action)) {
 			CategoriaAvaliacaoNegocio negocioCat = new CategoriaAvaliacaoNegocio();
@@ -577,6 +585,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtividades", listaAtividades);
 			request.setAttribute("tipoAcao", 1); //1 Novo
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspMaisDadosRef";
 			
 		} else if ("buscarDadoRef".equals(action)) {
 		
@@ -643,6 +652,7 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtividades", listaAtividades);
 			request.setAttribute("tipoAcao", 2); //2 Editar
 			retorno = String.format("%s/TecnicoNovoDadosRef.jsp", Constants.VIEW);
+			servletRetorno = "/AvaliacaoFisController?action=jspNovoDadosRef";
 			
 		} else if ("jspNovaAvaliacao".equals(action)) {
 			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));

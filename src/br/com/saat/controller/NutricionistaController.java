@@ -48,7 +48,7 @@ public class NutricionistaController extends Controller {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
-		String servletRetorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
+		String servletRetorno = "/SecretariaController?action=jspPaginaInicialNutricionista";
 		
 		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
@@ -102,6 +102,7 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
 			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
+			
 		}else if("jspFichaDeAtendimento".equals(action)){
 			String msg = "";
 			String msgSucesso = "";
@@ -142,6 +143,8 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("atleta", atleta);
 			request.setAttribute("strIdade", strIdade);
 			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspFichaDeAtendimento&idAtleta=" + 
+				request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
 		
 		}else if("novaFichaDeAtendimento".equals(action)){
 			String msg = "";
@@ -266,7 +269,10 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("fichaAtendimento", ficha);
 			request.setAttribute("atleta", atleta);
 			request.setAttribute("strIdade", strIdade);
-			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);			
+			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);		
+			servletRetorno = "/NutricionistaController?action=jspFichaDeAtendimento&idAtleta=" + 
+				request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
+			
 		}else if("jspHistoricoAtendimento".equals(action)){
 			String msg = "";
 			String msgSucesso = "";
@@ -300,7 +306,7 @@ public class NutricionistaController extends Controller {
 			request.setAttribute("listaAtendimentos", listaAtendimentos);
 			request.setAttribute("atleta", atleta);
 			retorno = String.format("%s/NutricionistaHistoricoDeAtendimentos.jsp", Constants.VIEW);	
-			
+			servletRetorno = "/NutricionistaController?action=jspHistoricoAtendimento&idAtleta=" + request.getParameter("idAtleta");
 			
 		}else if("imprimirFichaDeAtendimento".equals(action)){
 			int idFicha = 0;
@@ -347,6 +353,7 @@ public class NutricionistaController extends Controller {
 				request.setAttribute("listaAtendimentos", listaAtendimentos);
 				request.setAttribute("atleta", atleta);
 				retorno = String.format("%s/NutricionistaHistoricoDeAtendimentos.jsp", Constants.VIEW);
+				servletRetorno = "/NutricionistaController?action=jspHistoricoAtendimento";
 			}
 			
 		}else{
