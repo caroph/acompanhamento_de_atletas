@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.saat.model.AtividadeAvaliacao;
+import br.com.saat.model.AvaliacaoFisica;
 import br.com.saat.model.AvaliacaoResultado;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.ConnectionFactory;
@@ -62,5 +63,23 @@ public class AvaliacaoResultadoDAO {
 		}
 		
 		return listaAvaResul;
+	}
+
+	public boolean inserir(AvaliacaoResultado resultado, AvaliacaoFisica avalFis) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("INSERT INTO avaliacaoFisicaResultado "
+				+ "(idCategoriaAtividade, idAvaliacaoFisica, desempenho) "
+				+ "VALUES (?, ?, ?)");
+		
+		stmtScript.setInt(1, resultado.getCategoriaAtividade().getIdCategoriaAtividade());
+		stmtScript.setInt(2, avalFis.getIdAvaliacaoFisica());
+		stmtScript.setFloat(3, resultado.getDesempenho());
+		
+		if (stmtScript.executeUpdate() > 0) {
+			retorno = true;
+		}
+		
+		return retorno;
 	}
 }

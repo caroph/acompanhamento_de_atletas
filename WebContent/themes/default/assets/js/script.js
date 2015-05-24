@@ -318,12 +318,18 @@ function abrirModalAvaliacaoFis(idAtleta) {
 					});
             html += "</select>"
 			+ "</div>"
+			+ "</div>"
+			+ "<div class='form-group'>"
+			+ "<div class='col-sm-12'>"
+			+ "<label class='text-left'>Observa\u00e7\u00e3o geral:</label>"
+			+ "<input type='text' class='form-control' name='observacaoGeral' maxlength='255'/>"
+			+ "</div>"
 			+ "</div><br/>";
 			
 		if (data.listaAvaResul.length <= 0){
-			html += "<small><b>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
+			html += "<small class='col-sm-12'><b>Nenhuma atividade para avalia\u00e7\u00e3o f\u00edsica equivalente ao sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
 		}else{
-			html += "<small><b>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
+			html += "<small class='col-sm-12'><b>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
 				
 			var unidade = data.listaUnidades;
 			html += 
@@ -343,7 +349,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 							"<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.capacidade + "</td>";
 					html += "<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.teste  + "</td>";
 					html += "<td style='padding:5px'>" + unidade[item.categoriaAtividade.AtividadeAvaliacao.idUnidadeDeMedida - 1] + "</td>";
-					html += "<td style='padding:5px'><input type='number' step='any' class='control-label' name='desempenho<c:out value='" + item.categoriaAtividade.idCategoriaAtividade + "'/></td>";
+					html += "<td style='padding:5px'><input type='number' step='any' class='control-label' name='desempenho" + item.categoriaAtividade.idCategoriaAtividade + "'/></td>";
 					html += "<input type='hidden' name='idCategoriaAtividade' value='" + item.categoriaAtividade.idCategoriaAtividade + "'/>"
 					html += "</tr>"
 				});
