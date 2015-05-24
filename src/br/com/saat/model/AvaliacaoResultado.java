@@ -5,6 +5,7 @@ public class AvaliacaoResultado {
 	private int idAvaliacaoFisicaResultado;
 	private CategoriaAtividade categoriaAtividade;
 	private float desempenho;
+	private String resultado;
 	
 	public int getIdAvaliacaoFisicaResultado() {
 		return idAvaliacaoFisicaResultado;
@@ -23,6 +24,12 @@ public class AvaliacaoResultado {
 	}
 	public void setDesempenho(float desempenho) {
 		this.desempenho = desempenho;
+	}
+	public String getResultado() {
+		return resultado;
+	}
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
 	}
 	
 }

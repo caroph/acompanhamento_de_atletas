@@ -21,9 +21,8 @@ public class AvaliacaoResultadoNegocio {
 		return listaAvaResul;
 	}
 
-	public boolean inserirResultado(List<AvaliacaoResultado> avaliacaoResul,
+	public int inserirResultado(List<AvaliacaoResultado> avaliacaoResul,
 			AvaliacaoFisica avalFis) throws Exception {
-		boolean retorno = true;
 		int idAvaliacaoFisica = 0;
 		
 		try {
@@ -35,16 +34,26 @@ public class AvaliacaoResultadoNegocio {
 				avalFis.setIdAvaliacaoFisica(idAvaliacaoFisica);
 				for (AvaliacaoResultado resultado : avaliacaoResul) {
 					if (!avalResulDAO.inserir(resultado, avalFis)) {
-						retorno = false;
+						idAvaliacaoFisica = 0;
 						break;
 					}
 				}
 			} 
 		} catch (Exception e) {
-			retorno = false;
 			throw new Exception("Erro! Ocorreu algum erro ao inserir a avaliação física.");
 		}
-		return retorno;
+		return idAvaliacaoFisica;
+	}
+
+	public List<AvaliacaoResultado> buscarResulDesempenho(int idAvaliacaoFisica) throws Exception {
+		List<AvaliacaoResultado> resultDesempenho = new ArrayList<AvaliacaoResultado>();
+		AvaliacaoResultadoDAO avalResulDAO = new AvaliacaoResultadoDAO();
+		try {
+			resultDesempenho = avalResulDAO.buscarResultDesempenho(idAvaliacaoFisica);
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
+		}
+		return resultDesempenho;
 	}
 
 }

@@ -82,4 +82,42 @@ public class AvaliacaoResultadoDAO {
 		
 		return retorno;
 	}
+
+	public List<AvaliacaoResultado> buscarResultDesempenho(int idAvaliacaoFisica) throws SQLException {
+		List<AvaliacaoResultado> resultDesempenho = new ArrayList<AvaliacaoResultado>();
+		
+		stmtScript = con.prepareStatement("SELECT teste, "
+				+ "CASE "
+				+ "WHEN desempenho < melhorar THEN 'Nenhuma referência atingida' "
+				+ "WHEN desempenho >= melhorar AND desempenho < media THEN 'Melhorar' "
+				+ "WHEN desempenho >= media AND  desempenho < bom THEN 'Média' "
+				+ "WHEN desempenho >= bom AND desempenho < excelente THEN 'Bom' "
+				+ "WHEN desempenho >= excelente THEN 'Excelente' "
+				+ "END as resultado "
+				+ "FROM avaliacaoFisicaResultado afr "
+				+ "INNER JOIN categoriaAtividade ca "
+				+ "ON ca.idCategoriaAtividade = afr.idCategoriaAtividade "
+				+ "INNER JOIN atividadeAvaliacao atAv "
+				+ "ON ca.idAtividadeAvaliacao = atAv.idAtividadeAvaliacao "
+				+ "WHERE idAvaliacaoFisica = ? ");
+		
+		stmtScript.setInt(1, idAvaliacaoFisica);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while (rs.next()) {
+			AtividadeAvaliacao atividade = new AtividadeAvaliacao();
+			atividade.setTeste(rs.getString("teste"));
+			
+			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			catAtiv.setAtividadeAvaliacao(atividade);
+			
+			AvaliacaoResultado resultado = new AvaliacaoResultado();
+			resultado.setCategoriaAtividade(catAtiv);
+			resultado.setResultado(rs.getString("resultado"));
+			
+			resultDesempenho.add(resultado);
+		}
+		return resultDesempenho;
+	}
 }

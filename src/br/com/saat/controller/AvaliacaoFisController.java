@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,6 @@ import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TipoCat;
-import br.com.saat.enumeradores.TpCaracteristica;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 import br.com.saat.model.AtividadeAvaliacao;
 import br.com.saat.model.Atleta;
@@ -31,6 +29,8 @@ import br.com.saat.model.AvaliacaoResultado;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.dao.AvaliacaoFisicaDAO;
+import br.com.saat.model.dao.AvaliacaoResultadoDAO;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.AvaliacaoResultadoNegocio;
@@ -228,6 +228,7 @@ public class AvaliacaoFisController extends Controller {
 			boolean exception = false;
 			int idadeMin = 0;
 			int idadeMax = 0;
+			int sexo = 0;
 			
 			CategoriaAvaliacao categoria = new CategoriaAvaliacao();
 			CategoriaAvaliacaoNegocio negocio = new CategoriaAvaliacaoNegocio();
@@ -250,12 +251,19 @@ public class AvaliacaoFisController extends Controller {
 				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade máxima' !");
 				exception = true;
 			}
+			
+			try {
+				sexo = Integer.parseInt(request.getParameter("sexo"));
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", "Favor selecionar corretamente o campo 'Sexo' !");
+				exception = true;
+			}
 
 			if (!exception) {
 				categoria.setNmCategoria(request.getParameter("nome"));
 				categoria.setIdadeMinima(idadeMin);
 				categoria.setIdadeMaxima(idadeMax);
-				categoria.setSexo(Integer.parseInt(request.getParameter("sexo")));
+				categoria.setSexo(sexo);
 				
 				boolean tipo;
 				for (TipoCat tipoCat : listaTipo) {
@@ -691,6 +699,7 @@ public class AvaliacaoFisController extends Controller {
 			int idAtleta = 0;
 			String idCategoriaAtividade = "";
 			int idCaracteristica = 0 ;
+			int idAvaliacaoFisica = 0;
 			float desempenho = 0;
 			boolean exception = false;
 			String msgErro = "";
@@ -754,17 +763,19 @@ public class AvaliacaoFisController extends Controller {
 					
 					//Inserir
 					try {
-						if (avaResulNegocio.inserirResultado(avaliacaoResul, avalFis)) {
+						idAvaliacaoFisica = avaResulNegocio.inserirResultado(avaliacaoResul, avalFis);
+						if (idAvaliacaoFisica > 0) {
 							msgSucesso = "Avaliação física inserida com sucesso!";
 							
 							//Buscar resultado
-							Map<String, String> resulDesempenho = new HashMap<String, String>();
-							//resulDesempenho = avaResulNegocio.buscarResulDesempenho(avaliacaoResul);
-							if (!"".equals(resulDesempenho) || resulDesempenho == null) {
+							List<AvaliacaoResultado> resulDesempenho = avaResulNegocio.buscarResulDesempenho(idAvaliacaoFisica);
+							if (resulDesempenho.size() <= 0 || resulDesempenho == null) {
 								msgAlerta = "Falha ao buscar resultado(s) do(s) desempenho(s) na avaliação física.";
 							} else {
-								msgAlerta = "Resultado do(s) desempenho(s) na avaliação física:</br>";
-								//montar resultado
+								msgAlerta = "Resultado do(s) desempenho(s) na avaliação física.<br/>";
+								for (AvaliacaoResultado result : resulDesempenho) {
+									msgAlerta += result.getCategoriaAtividade().getAtividadeAvaliacao().getTeste() + " - <b>" + result.getResultado() + "</b></br>";
+								}
 							}
 						} else {
 							msgErro = "Ocorreu algum erro ao inserir a avaliação física! Favor tentar novamente.";
@@ -772,7 +783,8 @@ public class AvaliacaoFisController extends Controller {
 					} catch (Exception e) {
 						msgErro = e.getMessage();
 					}
-				}else {
+					
+				} else {
 					msgAlerta = "Nenhum valor de desempenho na avaliação física foi informado! Favor tentar novamente.";
 				}
 			}
@@ -799,6 +811,38 @@ public class AvaliacaoFisController extends Controller {
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/TecnicoBuscaAtleta.jsp", Constants.VIEW);
 		
+		} else if ("excluirAvaliacao".equals(action)) {
+			int idAvaliacaoFisica = Integer.parseInt(request.getParameter("idAvaliacaoFisica"));
+			
+			try {
+				AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
+				AvaliacaoResultadoDAO avalResulDAO = new AvaliacaoResultadoDAO();
+				
+//				if (avalResulDAO.excluir(idAvaliacaoFisica)) {
+//					if (avalFisDAO.excluir(idAvaliacaoFisica)) {
+//						request.setAttribute("msgSucesso", "Avaliaçãon ");
+//					} else {
+//						request.setAttribute("msgErro", e.getMessage());
+//					}
+//				} else {
+//					request.setAttribute("msgErro", e.getMessage());
+//				}
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
+			
+			//Carregar página Buscar Atleta
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> lista = new ArrayList<Atleta>();
+			try{
+				lista = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				request.setAttribute("msgAlerta", ex.getMessage());
+			}
+			
+			request.setAttribute("listaAtletas", lista);
+			retorno = String.format("%s/TecnicoBuscaAtleta.jsp", Constants.VIEW);
+			
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

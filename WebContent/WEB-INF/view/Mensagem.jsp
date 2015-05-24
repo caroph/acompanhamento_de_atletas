@@ -7,7 +7,7 @@
 <c:if test="${ msgAlerta != null && msgAlerta != ''}">
 	<div class="alert alert-info">
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
-		<c:out value="${msgAlerta}"></c:out>
+		<c:out value="${msgAlerta}" escapeXml="false"></c:out>
 	</div>
 </c:if>
 <c:if test="${ msgErro != null && msgErro != ''}">

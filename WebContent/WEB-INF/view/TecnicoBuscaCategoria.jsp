@@ -107,10 +107,13 @@
 					</div>
 					<div  class="form-group" style="padding-bottom: 46%;">
 						<div class="col-md-12">
-							<label for="sexo" class=" control-label">Sexo:</label></br>
-							<c:forEach var="sexo" items="${listaSexo}">
-								<label style="padding: 5px 22px 5px 0;"><input type="checkbox" name="<c:out value='${sexo.valor}'/>" value="true"> <c:out value="${sexo.nome}" /></label>
-                            </c:forEach>
+							<label for="sexo" class=" control-label">Sexo:</label>
+						 	<select id="sexo" name="sexo" required>
+								<option value="">Selecione</option>
+								<c:forEach var="sexo" items="${listaSexo}">
+									<option value="<c:out value='${sexo.valor}'/>"><c:out value="${sexo.nome}" /></option>
+	                            </c:forEach>
+							</select>
 						</div>
 					</div>
 					<div class="modal-footer">
