@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.saat.model.AvaliacaoFisica;
 import br.com.saat.model.ConnectionFactory;
+
+import com.mysql.jdbc.Statement;
 
 public class AvaliacaoFisicaDAO {
 	private Connection con;
@@ -44,5 +45,31 @@ public class AvaliacaoFisicaDAO {
 		}
 				
 		return idAvaliacaoFisica;
+	}
+
+	public List<AvaliacaoFisica> buscaHistorico(int idAtleta) throws SQLException {
+		List<AvaliacaoFisica> listaAvaliacaoFis = new ArrayList<AvaliacaoFisica>();
+		
+		stmtScript = con.prepareStatement("SELECT idAvaliacaoFisica, idTpCaracteristica, dtAvaliacao, observacaoGeral "
+				+ "FROM avaliacaofisica "
+				+ "WHERE idAtleta = ? "
+				+ "ORDER BY dtAvaliacao");
+		
+		stmtScript.setInt(1, idAtleta);
+
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while (rs.next()) {
+			AvaliacaoFisica avaliacaoFis = new AvaliacaoFisica();
+			
+			avaliacaoFis.setIdAvaliacaoFisica(rs.getInt(1));
+			avaliacaoFis.setIdTpCaracteristica(rs.getInt(2));
+			avaliacaoFis.setDtAvaliacao(rs.getDate(3));
+			avaliacaoFis.setObservacaoGeral(rs.getString(4));
+			
+			listaAvaliacaoFis.add(avaliacaoFis);
+		}
+		
+		return listaAvaliacaoFis;
 	}
 }

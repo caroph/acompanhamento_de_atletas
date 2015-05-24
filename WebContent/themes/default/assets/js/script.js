@@ -27,7 +27,7 @@ $(document).ready(function() {
 var demo1 = $('select[name="diasTreino"]').bootstrapDualListbox();
 var demo2 = $('select[name="atletasPart"]').bootstrapDualListbox();
 
-//Plugin Histórico de Atendimento
+//Plugin Histórico de Atendimento e Avaliações
 $("#listaHistorico").accordion();
 
 //Plugins Ficha de Atendimento
@@ -257,12 +257,12 @@ function abrirModalDadosRef(idCategoria) {
 			html += "<b>Idade m\u00ednima:</b> " + data.categoria.idadeMinima + "<br/>";
 			html += "<b>Idade m\u00e1xima:</b> " + data.categoria.idadeMaxima + "<br/>";
 			html += "<b>Sexo:</b> " + sexo[data.categoria.sexo - 1] + "<br/><br/>";
-			html += "<b>Atividades:</b><br/>";
 			if (data.listaCatAtiv.length <= 0){
 				html += "<small>Nenhuma atividade física vinculada.</small>"
 			}else{
 				var unidade = data.listaUnidades;
-				html += "<table>" +
+				html += "<table class='table'>" +
+						"<thead>" +
 						"<tr>" +
 						"<th style='padding:5px'>Capacidade</th>" +
 						"<th style='padding:5px'>Teste</th>" +
@@ -271,7 +271,8 @@ function abrirModalDadosRef(idCategoria) {
 						"<th style='padding:5px'>M\u00e9dia</th>" +
 						"<th style='padding:5px'>Bom</th>" +
 						"<th style='padding:5px'>Excelente</th>" +
-						"</tr>";
+						"</tr>" + 
+						"</thead><tbody>";
 				$.each(
 					data.listaCatAtiv,
 					function(index, item) {
@@ -285,7 +286,7 @@ function abrirModalDadosRef(idCategoria) {
 						html += "<td style='padding:5px;text-align: right;'>" + item.excelente + "</td>";
 						html += "</tr>"
 					});
-				html += "</table>";
+				html += "</tbody></table>";
 			}
 			$('.body-dadosRef').html(html);
 		}
@@ -334,13 +335,13 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			var unidade = data.listaUnidades;
 			html += 
 					"<div class='form-group col-sm-12'>" + 
-					"<table>" +
-					"<tr>" +
+					"<table class='table'>" +
+					"<thead><tr>" +
 					"<th style='padding:5px'>Capacidade</th>" +
 					"<th style='padding:5px'>Teste</th>" +
 					"<th style='padding:5px'>Medida</th>" +
 					"<th style='padding:5px'>Desempenho</th>" +
-					"</tr>";
+					"</tr></thead><tbody>";
 
 			$.each(
 				data.listaAvaResul,
@@ -353,7 +354,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 					html += "<input type='hidden' name='idCategoriaAtividade' value='" + item.categoriaAtividade.idCategoriaAtividade + "'/>"
 					html += "</tr>"
 				});
-			html += "</table>" + 
+			html += "</tbody></table>" + 
 					"</div>";
 
 			html += "<div class='modal-footer'>"

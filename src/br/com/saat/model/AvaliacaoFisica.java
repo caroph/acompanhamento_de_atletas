@@ -1,6 +1,7 @@
 package br.com.saat.model;
 
 import java.util.Date;
+import java.util.List;
 
 import br.com.saat.enumeradores.TpCaracteristica;
 
@@ -12,6 +13,8 @@ public class AvaliacaoFisica {
 	private int idTpCaracteristica;
 	private Date dtAvaliacao;
 	private String observacaoGeral;
+	private List<AvaliacaoResultado> avaliacaoResultado;
+	
 	public int getIdAvaliacaoFisica() {
 		return idAvaliacaoFisica;
 	}
@@ -47,6 +50,12 @@ public class AvaliacaoFisica {
 	}
 	public void setObservacaoGeral(String observacaoGeral) {
 		this.observacaoGeral = observacaoGeral;
+	}
+	public List<AvaliacaoResultado> getAvaliacaoResultado() {
+		return avaliacaoResultado;
+	}
+	public void setAvaliacaoResultado(List<AvaliacaoResultado> avaliacaoResultado) {
+		this.avaliacaoResultado = avaliacaoResultado;
 	}
 	
 	public String getNomeCaracteristica(){

@@ -56,16 +56,15 @@
 												</select>
 											</div>
 										</div>
-										<hr/>
 										<div class="form-group">
 											<h4 class="text-center">Atividades</h4>
 										</div>
 										<div class="form-group">
 											<div class=" col-sm-12"> 
-												<table class=" col-sm-12">
+												<table class="table col-sm-12">
 													<tr>
 														<th></th>
-														<th>Descrição atividade</th>
+														<th>Descrição</th>
 														<th>Melhorar</th>
 														<th>Média</th>
 														<th>Bom</th>

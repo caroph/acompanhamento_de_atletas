@@ -33,6 +33,7 @@ import br.com.saat.model.dao.AvaliacaoFisicaDAO;
 import br.com.saat.model.dao.AvaliacaoResultadoDAO;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.AvaliacaoFisicaNegocio;
 import br.com.saat.model.negocio.AvaliacaoResultadoNegocio;
 import br.com.saat.model.negocio.CategoriaAtividadeNegocio;
 import br.com.saat.model.negocio.CategoriaAvaliacaoNegocio;
@@ -772,7 +773,7 @@ public class AvaliacaoFisController extends Controller {
 							if (resulDesempenho.size() <= 0 || resulDesempenho == null) {
 								msgAlerta = "Falha ao buscar resultado(s) do(s) desempenho(s) na avaliação física.";
 							} else {
-								msgAlerta = "Resultado do(s) desempenho(s) na avaliação física.<br/>";
+								msgAlerta = "Resultado do(s) desempenho(s) na avaliação física:<br/>";
 								for (AvaliacaoResultado result : resulDesempenho) {
 									msgAlerta += result.getCategoriaAtividade().getAtividadeAvaliacao().getTeste() + " - <b>" + result.getResultado() + "</b></br>";
 								}
@@ -842,6 +843,27 @@ public class AvaliacaoFisController extends Controller {
 			
 			request.setAttribute("listaAtletas", lista);
 			retorno = String.format("%s/TecnicoBuscaAtleta.jsp", Constants.VIEW);
+			
+		} else if ("jspHistorico".equals(action)) {
+			int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+			String nomeAtleta = request.getParameter("nome");
+			
+			List<AvaliacaoFisica> listaAvaliacaoFis = new ArrayList<AvaliacaoFisica>();
+			AvaliacaoFisicaNegocio negocio = new AvaliacaoFisicaNegocio();
+			
+			try {
+				listaAvaliacaoFis = negocio.buscaHistorico(idAtleta);
+				if (!listaAvaliacaoFis.isEmpty()) {
+					request.setAttribute("listaAvaliacaoFis", listaAvaliacaoFis);
+					request.setAttribute("nomeAtleta", nomeAtleta);
+				} else {
+					request.setAttribute("msgAlerta", "Nenhuma avaliação física cadastrada para o atleta" + nomeAtleta + ".");
+				}
+			} catch (Exception e) {
+				request.setAttribute("msgErro", e.getMessage());
+			}
+			
+			retorno = String.format("%s/TecnicoHistoricoAvaliacao.jsp", Constants.VIEW);
 			
 		} else{
 		//Página Principal

@@ -40,7 +40,8 @@ public class AvaliacaoResultadoDAO {
 				+ "				AND cativ.flCadastroAtivo = 1 "
 				+ "		INNER JOIN atividadeAvaliacao ativ "
 				+ "			ON cativ.idAtividadeAvaliacao = ativ.idAtividadeAvaliacao "
-				+ "WHERE atle.idAtleta = ?");
+				+ "WHERE atle.idAtleta = ? "
+				+ "ORDER BY capacidade, teste ");
 		
 		stmtScript.setInt(1, idAtleta);
 
@@ -86,7 +87,7 @@ public class AvaliacaoResultadoDAO {
 	public List<AvaliacaoResultado> buscarResultDesempenho(int idAvaliacaoFisica) throws SQLException {
 		List<AvaliacaoResultado> resultDesempenho = new ArrayList<AvaliacaoResultado>();
 		
-		stmtScript = con.prepareStatement("SELECT teste, "
+		stmtScript = con.prepareStatement("SELECT capacidade, teste, desempenho, "
 				+ "CASE "
 				+ "WHEN desempenho < melhorar THEN 'Nenhuma referência atingida' "
 				+ "WHEN desempenho >= melhorar AND desempenho < media THEN 'Melhorar' "
@@ -99,7 +100,8 @@ public class AvaliacaoResultadoDAO {
 				+ "ON ca.idCategoriaAtividade = afr.idCategoriaAtividade "
 				+ "INNER JOIN atividadeAvaliacao atAv "
 				+ "ON ca.idAtividadeAvaliacao = atAv.idAtividadeAvaliacao "
-				+ "WHERE idAvaliacaoFisica = ? ");
+				+ "WHERE idAvaliacaoFisica = ? "
+				+ "ORDER BY capacidade, teste ");
 		
 		stmtScript.setInt(1, idAvaliacaoFisica);
 		
@@ -107,6 +109,7 @@ public class AvaliacaoResultadoDAO {
 		
 		while (rs.next()) {
 			AtividadeAvaliacao atividade = new AtividadeAvaliacao();
+			atividade.setCapacidade(rs.getString("capacidade"));
 			atividade.setTeste(rs.getString("teste"));
 			
 			CategoriaAtividade catAtiv = new CategoriaAtividade();
@@ -114,6 +117,7 @@ public class AvaliacaoResultadoDAO {
 			
 			AvaliacaoResultado resultado = new AvaliacaoResultado();
 			resultado.setCategoriaAtividade(catAtiv);
+			resultado.setDesempenho(rs.getFloat("desempenho"));
 			resultado.setResultado(rs.getString("resultado"));
 			
 			resultDesempenho.add(resultado);
