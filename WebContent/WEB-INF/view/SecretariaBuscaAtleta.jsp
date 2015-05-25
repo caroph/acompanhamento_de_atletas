@@ -36,7 +36,7 @@
 												<th>Nome</th>
 												<th>Nº Matrícula</th>
 												<th style="text-align: center;">Telefone</th>
-												<th style="text-align: center;">Equipe</th>
+												<th>Equipe</th>
 												<th></th>
 												<th></th>
 												<th></th>
@@ -50,7 +50,7 @@
 													<td><c:out value='${atleta.nome}' /></td>
 													<td><c:out value='${atleta.nrMatricula}' /></td>
 													<td align="center"><c:out value='${atleta.endereco.telefone}' /></td>
-													<td align="center"><c:out value='${atleta.getNomeEquipe()}' /></td>
+													<td><c:out value='${atleta.getNomeEquipe()}' /></td>
 													<td align="center">
 														<a class="link-blue" id="visualizarAtleta" onClick="abrirModalAtleta('${atleta.idPessoa}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>
@@ -71,9 +71,9 @@
 														</td>
 													</c:if>
 													<c:if test="${atleta.flCadastroAtivo == 0}">														
-														<td>
-															<a class="btn btn-primary" href='SecretariaController?action=ativarAtleta&idAtleta=${atleta.idPessoa}' 
-															data-confirm="Deseja realmente ativar o atleta selecionado?">Ativar</a>
+														<td align="center">
+															<a class="link-green" href='SecretariaController?action=ativarAtleta&idAtleta=${atleta.idPessoa}' 
+															data-confirm="Deseja realmente ativar o atleta selecionado?"><abbr title="Ativar"><i class="fa fa-large fa-plus-square"></i></abbr></a>
 														</td>														
 														<td></td>
 														<td></td>

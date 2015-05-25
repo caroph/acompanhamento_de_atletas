@@ -124,4 +124,18 @@ public class AvaliacaoResultadoDAO {
 		}
 		return resultDesempenho;
 	}
+
+	public boolean excluir(int idAvaliacaoFisica) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("DELETE FROM avaliacaoFisicaResultado WHERE idAvaliacaoFisica = ?");
+		
+		stmtScript.setInt(1, idAvaliacaoFisica);
+		
+		if (stmtScript.executeUpdate() >= 0) {
+			retorno = true;
+		}
+		
+		return retorno;
+	}
 }

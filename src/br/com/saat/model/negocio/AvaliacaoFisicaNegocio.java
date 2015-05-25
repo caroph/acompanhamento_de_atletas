@@ -30,4 +30,17 @@ public class AvaliacaoFisicaNegocio {
 		return listaAvaliacaoFis;
 	}
 
+	public boolean excluir(int idAvaliacaoFisica) throws Exception {
+		boolean retorno = false;
+		AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
+		try {
+			if(avalFisDAO.excluir(idAvaliacaoFisica)) {
+				retorno = true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
+		}
+		return retorno;
+	}
+
 }

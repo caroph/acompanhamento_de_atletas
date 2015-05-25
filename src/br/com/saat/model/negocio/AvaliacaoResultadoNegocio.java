@@ -56,4 +56,17 @@ public class AvaliacaoResultadoNegocio {
 		return resultDesempenho;
 	}
 
+	public boolean excluir(int idAvaliacaoFisica) throws Exception {
+		boolean retorno = false;
+		AvaliacaoResultadoDAO avalResulDAO = new AvaliacaoResultadoDAO();
+		try {
+			if(avalResulDAO.excluir(idAvaliacaoFisica)) {
+				retorno = true;
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
+		}
+		return retorno;
+	}
+
 }

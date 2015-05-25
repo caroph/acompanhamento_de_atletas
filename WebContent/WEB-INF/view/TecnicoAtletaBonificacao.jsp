@@ -64,7 +64,7 @@
 											<table class="table">
 												<thead>
 													<tr>
-														<th class="text-center">Atletas</th>
+														<th>Atletas</th>
 														<th class="text-center">Bonificação</th>
 														<th class="text-center"></th>
 														<th class="text-center"></th>

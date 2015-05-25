@@ -29,8 +29,6 @@ import br.com.saat.model.AvaliacaoResultado;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
 import br.com.saat.model.Usuario;
-import br.com.saat.model.dao.AvaliacaoFisicaDAO;
-import br.com.saat.model.dao.AvaliacaoResultadoDAO;
 import br.com.saat.model.negocio.AtividadeAvaliacaoNegocio;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.AvaliacaoFisicaNegocio;
@@ -816,18 +814,18 @@ public class AvaliacaoFisController extends Controller {
 			int idAvaliacaoFisica = Integer.parseInt(request.getParameter("idAvaliacaoFisica"));
 			
 			try {
-				AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
-				AvaliacaoResultadoDAO avalResulDAO = new AvaliacaoResultadoDAO();
+				AvaliacaoResultadoNegocio avalResulNegocio = new AvaliacaoResultadoNegocio();
+				AvaliacaoFisicaNegocio avalFisNegocio = new AvaliacaoFisicaNegocio();
 				
-//				if (avalResulDAO.excluir(idAvaliacaoFisica)) {
-//					if (avalFisDAO.excluir(idAvaliacaoFisica)) {
-//						request.setAttribute("msgSucesso", "Avaliaçãon ");
-//					} else {
-//						request.setAttribute("msgErro", e.getMessage());
-//					}
-//				} else {
-//					request.setAttribute("msgErro", e.getMessage());
-//				}
+				if (avalResulNegocio.excluir(idAvaliacaoFisica)) {
+					if (avalFisNegocio.excluir(idAvaliacaoFisica)) {
+						request.setAttribute("msgSucesso", "Avaliação física excluída com sucesso!");
+					} else {
+						request.setAttribute("msgErro", "Ocorreu algum erro ao excluir a avalição física! Favor tentar novamente.");
+					}
+				} else {
+					request.setAttribute("msgErro", "Ocorreu algum erro ao excluir os resultados da avalição física! Favor tentar novamente.");
+				}
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());
 			}
