@@ -43,4 +43,17 @@ public class AvaliacaoFisicaNegocio {
 		return retorno;
 	}
 
+	public List<AvaliacaoFisica> buscaAvaliacoes() throws Exception {
+		List<AvaliacaoFisica> listaAvaliacao = new ArrayList<AvaliacaoFisica>();
+		AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
+		
+		try {
+			listaAvaliacao = avalFisDAO.buscaAvaliacoes();
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as últimas avaliações físicas.");
+		}
+		
+		return listaAvaliacao;
+	}
+
 }

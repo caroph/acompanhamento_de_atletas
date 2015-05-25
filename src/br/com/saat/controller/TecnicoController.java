@@ -28,12 +28,14 @@ import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoDesempenho;
+import br.com.saat.model.AvaliacaoFisica;
 import br.com.saat.model.Chamada;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.PresencaChamada;
 import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.AvaliacaoFisicaNegocio;
 import br.com.saat.model.negocio.CatTorneioNegocio;
 import br.com.saat.model.negocio.ChamadaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
@@ -1101,6 +1103,19 @@ public class TecnicoController extends Controller {
 			
 		} else{
 			//Página Principal
+			AvaliacaoFisicaNegocio negocio = new AvaliacaoFisicaNegocio();
+			
+			try{
+				List<AvaliacaoFisica> listaAvaliacao = negocio.buscaAvaliacoes();
+				if(!listaAvaliacao.isEmpty()){
+					request.setAttribute("listaAvaliacao", listaAvaliacao);
+				}else{
+					request.setAttribute("msgAlerta", "Nenhuma avaliação física registrada.");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
 			retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
 		}
 		

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoFisica;
 import br.com.saat.model.ConnectionFactory;
 
@@ -85,5 +86,33 @@ public class AvaliacaoFisicaDAO {
 		}
 		
 		return retorno;
+	}
+	
+	public List<AvaliacaoFisica> buscaAvaliacoes() throws SQLException {
+		List<AvaliacaoFisica> listaAvaliacaoFis = new ArrayList<AvaliacaoFisica>();
+		
+		stmtScript = con.prepareStatement("SELECT af.idAtleta, a.nome, idAvaliacaoFisica, dtAvaliacao "
+				+ "FROM avaliacaoFisica af "
+				+ "INNER JOIN atleta a "
+				+ "ON af.idAtleta = a.idAtleta "
+				+ "WHERE dtAvaliacao = (SELECT MAX(dtAvaliacao) FROM avaliacaoFisica WHERE idAtleta = af.idAtleta) "
+				+ "ORDER BY dtAvaliacao, a.nome ");
+
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while (rs.next()) {
+			Atleta atleta = new Atleta();
+			atleta.setIdPessoa(rs.getInt("idAtleta"));
+			atleta.setNome(rs.getString("nome"));
+			
+			AvaliacaoFisica avaliacaoFis = new AvaliacaoFisica();			
+			avaliacaoFis.setIdAvaliacaoFisica(rs.getInt("idAvaliacaoFisica"));
+			avaliacaoFis.setDtAvaliacao(rs.getDate("dtAvaliacao"));
+			avaliacaoFis.setAtleta(atleta);
+			
+			listaAvaliacaoFis.add(avaliacaoFis);
+		}
+		
+		return listaAvaliacaoFis;
 	}
 }

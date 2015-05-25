@@ -38,8 +38,8 @@
 												<th></th>
 												<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 													<th></th>
-													<th></th>
 												</c:if>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -57,10 +57,10 @@
 														<td align="center">
 															<a class="link-green" onClick="abrirModalAvaliacaoFis('${atleta.idPessoa}')"><abbr title="Avaliação física"><i class="fa fa-large fa-line-chart"></i></abbr></a>
 														</td>	
-														<td align="center">
-															<a class="link-green" href="AvaliacaoFisController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Histórico de avaliações físicas"><i class="fa fa-large fa-folder-open"></i></abbr></a>		
-														</td>													
 													</c:if>
+													<td align="center">
+														<a class="link-green" href="AvaliacaoFisController?action=jspHistorico&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Histórico de avaliações físicas"><i class="fa fa-large fa-folder-open"></i></abbr></a>		
+													</td>													
 												</tr>
 											</c:forEach>
 										</tbody>

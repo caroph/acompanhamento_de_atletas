@@ -35,10 +35,12 @@
 													<div class="col-md-11 column" style="padding-left: 0;">
 														<h4><c:out value='${dtFormatada}'/></h4>
 													</div>
-													<div class="col-md-1 column" style="padding-top: 8px;">
-														<a class="link-green" data-toggle="modal" href="#novaAvaliacao" onclick="passarDadosAvaliacao('${avaliacao.idAvaliacaoFisica}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
-														<a class="link-red" href="AvaliacaoFisController?action=excluirAvaliacao&idAvaliacaoFisica=${avaliacao.idAvaliacaoFisica}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir a avaliação física selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
-													</div>
+													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
+														<div class="col-md-1 column" style="padding-top: 8px;">
+															<a class="link-green" data-toggle="modal" href="#novaAvaliacao" onclick="passarDadosAvaliacao('${avaliacao.idAvaliacaoFisica}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+															<a class="link-red" href="AvaliacaoFisController?action=excluirAvaliacao&idAvaliacaoFisica=${avaliacao.idAvaliacaoFisica}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir a avaliação física selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
+														</div>
+													</c:if>
 												</div>
 												<div class="row clearfix">
 													<div class="col-md-12 column">
