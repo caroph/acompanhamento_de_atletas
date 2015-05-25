@@ -157,7 +157,7 @@ public class ResponsavelDAO {
 		
 		stmtScript = con.prepareStatement("SELECT idResponsavel, nome, email, celular FROM responsavel "
 				+ "WHERE idResponsavel NOT IN(SELECT idResponsavel FROM atletaresponsavel "
-				+ "WHERE idAtleta = " + idAtleta + ")");
+				+ "WHERE idAtleta = " + idAtleta + ") AND flCadastroAtivo = 1 ");
 		ResultSet rs = stmtScript.executeQuery();
 		
 		while(rs.next()){
