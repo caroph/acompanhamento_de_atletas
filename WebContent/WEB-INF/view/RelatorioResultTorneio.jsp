@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-trophy"></i><span>Torneios Finalizados</span>
+										<i class="fa fa-trophy"></i><span>Resultados de torneios</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -57,7 +57,7 @@
 														var="dataF" />
 													<td align="center"><c:out value='${dataI}'/> à <c:out value='${dataF}'/></td>
 													<td align="center">
-														<a class="link-green" href="Controller?action=relResulTorneio&idTorneio=${torneio.idTorneio}" target="_blank"><abbr title=Gerar relatório"><i class="fa fa-large fa-spinner"></i></abbr></a>
+														<a class="link-green" href="Controller?action=relResulTorneio&idTorneio=${torneio.idTorneio}" target="_blank"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></a>
 													</td>
 												</tr>
 											</c:forEach>

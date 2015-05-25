@@ -19,7 +19,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-calendar"></i> <span>Chamada</span>
+										<i class="fa fa-male"></i> <span>Presença em quadra</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>

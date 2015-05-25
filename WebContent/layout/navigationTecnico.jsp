@@ -53,10 +53,10 @@
 				<span class="hidden-xs">Relatórios</span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a class="" href="TecnicoController?action=jspResulTorneio">Resultados de Torneios</a></li>
-				<li><a class="" href="SecretariaController?action=jspFrequenciaTorneio">Frequência em Torneios</a></li>
-				<li><a class="" href="TecnicoController?action=jspRelatorioTreinos">Presença em Treinos</a></li>
-				<li><a class="" href="TecnicoController?action=jspRelatorioConsultaMedica">Presença Consulta Médica</a></li>
+				<li><a class="" href="TecnicoController?action=jspResulTorneio">Resultados de torneios</a></li>
+				<li><a class="" href="SecretariaController?action=jspFrequenciaTorneio">Frequência em torneios</a></li>
+				<li><a class="" href="TecnicoController?action=jspRelatorioTreinos">Presença em treinos</a></li>
+				<li><a class="" href="TecnicoController?action=jspRelatorioConsultaMedica">Presença consultas médicas</a></li>
 			</ul>
 		</li>	
 	</ul>

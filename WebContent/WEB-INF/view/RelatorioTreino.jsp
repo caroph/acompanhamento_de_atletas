@@ -12,7 +12,7 @@
 		<c:if test="${sessionScope.usuarioLogado.perfil == 1}">
 			<%@include file='/layout/navigationSecretaria.jsp'%>
 		</c:if>
-		<c:if test="${sessionScope.usuarioLogado.perfil == 5}">
+		<c:if test="${sessionScope.usuarioLogado.perfil == 5 || sessionScope.usuarioLogado.perfil == 6}">
 			<%@include file='/layout/navigationTecnico.jsp'%>
 		</c:if>
 			<!--Start Content-->
@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-male"></i> <span>Chamada</span>
+										<i class="fa fa-male"></i> <span>Presença em treinos</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -41,21 +41,21 @@
 													var="dataAtual" />
 												<div class="col-md-12 form-group">
 													<div class="col-md-2">
-														<label for="dataInicio" class="control-label">Data Inicial:</label>
+														<label for="dataInicio" class="control-label">Data inicial:</label>
 													</div>
 													<div class="col-md-3">
 														<input type="date" class="form-control" required name="dataInicio"
 															value="<c:out value="${dataAtual}"/>" id="dataInicio" />
 													</div>
 													<div class="col-md-2">
-														<label for="dataFim" class="control-label">Data Final:</label>
+														<label for="dataFim" class="control-label">Data final:</label>
 													</div>
 													<div class="col-md-3">
 														<input type="date" class="form-control" required name="dataFim"
 															value="<c:out value="${dataAtual}"/>" id="dataFim" />
 													</div>
 													<div class="col-md-2">
-														<button type="submit" class="btn btn-primary">Gerar</button>
+														<button type="submit" class="btn btn-primary" style="margin: -5%;padding: 3%;"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</form>

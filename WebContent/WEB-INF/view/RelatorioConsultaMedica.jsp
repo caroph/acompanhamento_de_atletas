@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-male"></i> <span>Chamada</span>
+										<i class="fa fa-stethoscope"></i> <span>Presença em consultas médicas</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -41,21 +41,21 @@
 													var="dataAtual" />
 												<div class="col-md-12 form-group">
 													<div class="col-md-2">
-														<label for="dataInicio" class="control-label">Data Incial:</label>
+														<label for="dataInicio" class="control-label">Data inicial:</label>
 													</div>
 													<div class="col-md-3">
 														<input type="date" class="form-control" required name="dataInicio"
 															value="<c:out value="${dataAtual}"/>" id="dataInicio" />
 													</div>
 													<div class="col-md-2">
-														<label for="dataFim" class="control-label">Data Final:</label>
+														<label for="dataFim" class="control-label">Data final:</label>
 													</div>
 													<div class="col-md-3">
 														<input type="date" class="form-control" required name="dataFim"
 															value="<c:out value="${dataAtual}"/>" id="dataFim" />
 													</div>
 													<div class="col-md-2">
-														<button type="submit" class="btn btn-primary">Gerar</button>
+														<button type="submit" class="btn btn-primary" style="margin: -5%;padding: 3%;"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</form>

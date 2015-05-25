@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-trophy"></i><span>Torneios</span>
+										<i class="fa fa-trophy"></i><span>Frequência em torneios</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>
@@ -40,12 +40,12 @@
 													var="dataAtual" />
 												<div class="form-group">
 													<div class="col-md-3">
-														<label for="dtInicial" class="control-label">Data Inicial:</label>
+														<label for="dtInicial" class="control-label">Data inicial:</label>
 														<input type="date" class="form-control" required name="dtInicial"
 															value="<c:out value="${dataAtual}"/>" id="dtInicial" />
 													</div>
 													<div class="col-md-3">
-														<label for="dtFinal" class="control-label">Data Final:</label>
+														<label for="dtFinal" class="control-label">Data final:</label>
 														<input type="date" class="form-control" required name="dtFinal"
 															value="<c:out value="${dataAtual}"/>" id="dtFinal" />
 													</div>
@@ -59,7 +59,7 @@
 														 </select>
 													</div>
 													<div class="col-md-2" style="padding-top: 2%;">
-														<button type="submit" class="btn btn-primary">Gerar</button>
+														<button type="submit" class="btn btn-primary" style="margin: -5%;padding: 3%;"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</form>
