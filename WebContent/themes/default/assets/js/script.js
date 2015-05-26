@@ -86,6 +86,14 @@ function passar() {
 	email.value = valorA.value;
 };
 
+function formartarDataInput(){
+	var data = new Date().toLocaleString().split(' ')[0].split('/');
+	var dia = data[0];
+	var mes = data[1];
+	var ano = data[2];
+	return ano + '-' + mes + '-' + dia;
+}
+
 // Limpar Campos
 function LimparCampos() {
 	$(":time").each(function() {
@@ -313,7 +321,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			+ "<div class='form-group'>"
 			+ "<div class='col-sm-4'>"
 			+ "<label for='dtAvaliacao' class='text-left'>Data:</label>"
-			+ "<input type='date' class='form-control' id='dtAvaliacao' name='dtAvaliacao' value='" + new Date().toISOString().split('T')[0] +  "' required/>"
+			+ "<input type='date' class='form-control' id='dtAvaliacao' name='dtAvaliacao' value='" + formartarDataInput() +  "' required/>"
 			+ "</div>"
 			+ "<div class='col-sm-8'>"
 			+ "<label for='caracteristica' class='text-left'>Caracter\u00edstica:</label>"
@@ -452,8 +460,8 @@ function editarAvaliacaoFis(idAvaliacaoFis) {
 
 function registrarPresenca(idAtleta, nomeAtleta) {
 	$("#anunciarPresenca").modal();
-	var data = new Date().toISOString().split('T');
-	$("#dataPresenca").val(data[0]);
+	var data = formartarDataInput();
+	$("#dataPresenca").val(data);
 	$("#hrPresenca").val("");
 	var label = $("#lblNomeAtleta");
 	label.html('Confirma que o(a) atleta ' + nomeAtleta + ' esta em consulta?');
@@ -469,8 +477,8 @@ function novoAtendimento(idAtleta, nomeAtleta) {
 	var b = $("#idProntuario");
 	b.val("0");
 	$("#novoAtendimento").modal();
-	var data = new Date().toISOString().split('T');
-	$("#dtAtendimento").val(data[0])
+	var data = formartarDataInput();
+	$("#dtAtendimento").val(data);
 }
 
 function passarDadosPront(idAtleta, idProntuario, dtAtendimento, hrAtendimento,

@@ -8,6 +8,7 @@ public class ConnectionFactory {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection("jdbc:mysql://localhost/saat", "usuario", "usuario");
+            //return DriverManager.getConnection("jdbc:mysql://191.252.0.97:3306/saatHomolog", "saatHomolog", "SAATabc2015");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
