@@ -495,7 +495,9 @@ public class Controller extends HttpServlet {
 						Atleta a = new Atleta();
 						a.setIdPessoa(idAtleta);
 						
-						Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt);
+						boolean compart = compartilhar == 1 ? false : true;
+						obs = obs.replace("\r\n", " ");
+						Observacao observacao = new Observacao(a, usuarioLogado, obs, gravidade, dt, compart);
 						ObservacaoNegocio negocio = new ObservacaoNegocio();
 						if("".equals(idObs)){
 							int idObservacao = negocio.salvarObservacao(observacao);

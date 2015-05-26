@@ -238,7 +238,7 @@ public class NutricionistaController extends Controller {
 				a.setIdPessoa(ficha.getIdAtleta());
 				String obs = ficha.getCondutaNutricional().replaceAll("\\<.*?>","").replaceAll("\r\n", "");//Jsoup.parse(ficha.getCondutaNutricional()).text();
 				Observacao observacao = new Observacao(a, usuarioLogado, obs, 
-						Gravidade.Baixa.getValor(), null);
+						Gravidade.Baixa.getValor(), null, false);
 				ObservacaoNegocio negocio = new ObservacaoNegocio();
 				int idObservacao = negocio.salvarObservacao(observacao);
 				observacao.setIdObservacao(idObservacao);

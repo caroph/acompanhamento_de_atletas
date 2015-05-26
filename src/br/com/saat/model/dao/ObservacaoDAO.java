@@ -31,7 +31,7 @@ public class ObservacaoDAO {
 		int rows = 0;
 		
 		stmtScript = con.prepareStatement("INSERT INTO observacao (idAtleta, idUsuario, dsObservacao, gravidade, "
-				+ "dtValidade) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+				+ "dtValidade, compartilhamento) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		
 		stmtScript.setInt(1, observacao.getAtleta().getIdPessoa());
 		stmtScript.setInt(2, observacao.getUsuario().getIdPessoa());
@@ -42,6 +42,7 @@ public class ObservacaoDAO {
 		}else{
 			stmtScript.setDate(5, new java.sql.Date(observacao.getDtValidade().getTime()));
 		}
+		stmtScript.setBoolean(6, observacao.getCompartilhamento());
 		
 		rows = stmtScript.executeUpdate();
 		
@@ -72,7 +73,7 @@ public class ObservacaoDAO {
 		List<Observacao> lista = new ArrayList<Observacao>();
 		
 		stmtScript = con.prepareStatement("SELECT o.idObservacao, o.idAtleta, a.nome, o.idUsuario, u.perfil, u.nome, "
-				+ "o.dsObservacao, o.gravidade, o.dtValidade, o.flCadastroAtivo, v.dtVisualizacao "
+				+ "o.dsObservacao, o.gravidade, o.dtValidade, o.flCadastroAtivo, v.dtVisualizacao, o.compartilhamento "
 				+ "FROM observacao o "
 				+ "JOIN visualizacaoobservacao v on o.idObservacao = v.idObservacao "
 				+ "JOIN atleta a ON o.idAtleta = a.idAtleta "
@@ -102,6 +103,7 @@ public class ObservacaoDAO {
 			o.setDtValidade(rs.getDate(9));
 			o.setFlCadastroAtivo(rs.getInt(10));
 			o.setDtVisualizacao(rs.getDate(11));
+			o.setCompartilhamento(rs.getBoolean(12));
 			
 			lista.add(o);
 		}
@@ -112,7 +114,7 @@ public class ObservacaoDAO {
 		List<Observacao> lista = new ArrayList<Observacao>();
 		
 		stmtScript = con.prepareStatement("SELECT o.idObservacao, o.idAtleta, a.nome, o.dsObservacao, o.gravidade, "
-				+ "o.dtValidade, o.dtGeracao, o.flCadastroAtivo "
+				+ "o.dtValidade, o.dtGeracao, o.flCadastroAtivo, o.compartilhamento "
 				+ "FROM observacao o "
 				+ "JOIN atleta a ON o.idAtleta = a.idAtleta "
 				+ "WHERE idUsuario = ?");
@@ -133,6 +135,7 @@ public class ObservacaoDAO {
 			o.setDtValidade(rs.getDate(6));
 			o.setDtGeracao(rs.getDate(7));
 			o.setFlCadastroAtivo(rs.getInt(8));
+			o.setCompartilhamento(rs.getBoolean(9));
 			
 			lista.add(o);
 		}
@@ -153,11 +156,13 @@ public class ObservacaoDAO {
 
 	public boolean alterarObservacao(Observacao observacao) throws SQLException {
 		stmtScript = con.prepareStatement("UPDATE observacao SET dsObservacao = ?, gravidade = ?, "
-				+ "dtValidade = ? WHERE idObservacao = ? ");
+				+ "dtValidade = ?, compartilhamento = ? WHERE idObservacao = ? ");
 		stmtScript.setString(1, observacao.getDsObservacao());
 		stmtScript.setInt(2, observacao.getGravidade());
 		stmtScript.setDate(3, new java.sql.Date(observacao.getDtValidade().getTime()));
-		stmtScript.setInt(4, observacao.getIdObservacao());
+		stmtScript.setBoolean(4, observacao.getCompartilhamento());
+		stmtScript.setInt(5, observacao.getIdObservacao());
+		
 		
 		int rows = stmtScript.executeUpdate();
 		

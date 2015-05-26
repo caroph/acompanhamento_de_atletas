@@ -116,7 +116,8 @@
 														<td align="center">
 															<c:if test="${observacao.flCadastroAtivo == 1}">
 																<a class="link-green" onClick="modalEditarObservacao('${observacao.atleta.idPessoa}', 
-																'${observacao.dtValidade}', '${observacao.gravidade}', '${observacao.dsObservacao}', '${observacao.idObservacao}')"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+																'${observacao.dtValidade}', '${observacao.gravidade}', '${observacao.dsObservacao}', 
+																'${observacao.idObservacao}', '${observacao.compartilhamento}')"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 															</c:if>
 														</td>
 														<td align="center">

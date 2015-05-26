@@ -549,7 +549,7 @@ function abrirModalObservacao(idAtleta){
 	}
 }
 
-function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
+function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs, comp){
 	$("#incluirObservacao").modal();
 	var atleta = $("#idAtletaObs");
 	atleta.val(idAtleta);
@@ -561,9 +561,13 @@ function modalEditarObservacao(idAtleta, dtValidade, gravidade, obs, idObs){
 			radio[i].checked = true;
 		}
 	}
+	
+	var compartilhamento = comp == "false" ? 1 : 2
 	var radioCompartilhar = document.getElementsByName("optCompartilhar");
 	for(i = 0; i< radioCompartilhar.length; i++){
-		radioCompartilhar[i].checked = false;
+		if(radioCompartilhar[i].value == compartilhamento){
+			radioCompartilhar[i].checked = true;
+		}
 	}
 	var observacao = $("#message-text");
 	observacao.val(obs);

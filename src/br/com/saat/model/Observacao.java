@@ -16,17 +16,19 @@ public class Observacao {
 	public Date dtGeracao;
 	public int flCadastroAtivo;
 	public Date dtVisualizacao;
+	public boolean compartilhamento;
 	
 	public Observacao(){}
 	
 	public Observacao(Atleta atleta, Usuario usuario,
-			String dsObservacao, int gravidade, Date dtValidade) {
+			String dsObservacao, int gravidade, Date dtValidade, boolean compartilhamento) {
 		super();
 		this.atleta = atleta;
 		this.usuario = usuario;
 		this.dsObservacao = dsObservacao;
 		this.gravidade = gravidade;
 		this.dtValidade = dtValidade;
+		this.compartilhamento = compartilhamento;
 	}
 	public int getIdObservacao() {
 		return idObservacao;
@@ -76,6 +78,13 @@ public class Observacao {
 	public void setFlCadastroAtivo(int flCadastroAtivo) {
 		this.flCadastroAtivo = flCadastroAtivo;
 	}
+	public boolean getCompartilhamento() {
+		return compartilhamento;
+	}
+
+	public void setCompartilhamento(boolean compartilhamento) {
+		this.compartilhamento = compartilhamento;
+	}
 
 	public String getNomeGravidade(){
 		switch(this.gravidade){
@@ -103,7 +112,7 @@ public class Observacao {
 			return dt;
 		}catch(Exception e){
 			return "";
-	}
+		}
 	}
 
 	public Date getDtVisualizacao() {
