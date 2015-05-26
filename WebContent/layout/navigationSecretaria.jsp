@@ -60,13 +60,12 @@
 				<li><a class="" href="SecretariaController?action=jspRelatorioDesempenhoAvalFis">Desempenho em avaliação física</a></li>
 			</ul>
 		</li>	
-
-<!-- 		<li> -->
-<!-- 			<a href=""> -->
-<!-- 				<i class="fa fa-envelope"></i> -->
-<!-- 				<span class="hidden-xs">Enviar email</span> -->
-<!-- 			</a> -->
-<!-- 		</li> -->
+		<li>
+			<a href="SecretariaController?action=jspEnviarComunicado">
+				<i class="fa fa-envelope"></i>
+				<span class="hidden-xs">Enviar Comunicado</span>
+			</a>
+		</li>
 	</ul>
 </div>
 		

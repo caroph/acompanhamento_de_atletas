@@ -3,6 +3,10 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
+import br.com.saat.core.JavaMailApp;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.dao.ResponsavelDAO;
 
@@ -96,5 +100,38 @@ public class ResponsavelNegocio {
 		}
 		
 		return lista;
+	}
+
+
+	public boolean enviarEmailResponsaveis(int envio, String assunto,
+			String mensagem) throws Exception {
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			List<String> emails = dao.buscarEmailResponsaveis(envio);
+			
+			if(emails.isEmpty()){
+				throw new Exception("Mensagem não enviada. Não foram encontrados responsáveis para a equipe selecionada!");
+			}else{
+				for (String string : emails) {
+					enviarEmail(string, assunto, mensagem);
+				}
+			}
+			return true;
+		}catch(Exception e){
+			throw new Exception(e.getMessage());
+		}
+	}
+
+
+	private void enviarEmail(String destinatario, String assunto, String mensagem) throws Exception {
+		JavaMailApp email = new JavaMailApp();
+		try {
+			email.enviarEmailResponsavel(destinatario, assunto,
+					mensagem);
+		} catch (AddressException e) {
+			throw new Exception("Erro ao identificar email de responsável!");
+		} catch (MessagingException e) {
+			throw new Exception("Erro ao enviar email ao responsável!");
+		}
 	}
 }

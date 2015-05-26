@@ -153,7 +153,7 @@ public class ResponsavelDAO {
 	}
 
 	public List<Responsavel> buscarRespNaoVinculado(int idAtleta) throws SQLException {
-	 List<Responsavel> lista = new ArrayList<Responsavel>();
+		List<Responsavel> lista = new ArrayList<Responsavel>();
 		
 		stmtScript = con.prepareStatement("SELECT idResponsavel, nome, email, celular FROM responsavel "
 				+ "WHERE idResponsavel NOT IN(SELECT idResponsavel FROM atletaresponsavel "
@@ -175,6 +175,31 @@ public class ResponsavelDAO {
 			}
 			
 			lista.add(responsavel);
+		}
+		
+		return lista;
+	}
+
+	public List<String> buscarEmailResponsaveis(int envio) throws Exception {
+		List<String> lista = new ArrayList<String>();
+		
+		String sql = "SELECT DISTINCT r.email FROM responsavel r "
+				+ "JOIN atletaresponsavel ar ON r.idResponsavel = ar.idResponsavel "
+				+ "JOIN atleta a ON ar.idAtleta = a.idAtleta ";
+		
+		if(envio != 3)
+			sql += "WHERE a.idTpEquipe = " + envio;
+		
+		try {
+			stmtScript = con.prepareStatement(sql);
+		
+			ResultSet rs = stmtScript.executeQuery();
+			
+			while(rs.next()){			
+				lista.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro ao consultar emails!");
 		}
 		
 		return lista;

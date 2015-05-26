@@ -1545,10 +1545,40 @@ public class SecretariaController extends Controller {
 			
 		} else if("jspCalendario".equals(action)){
 			retorno = String.format("%s/TecnicoCalendarioTorneio.jsp", Constants.VIEW);
-			servletRetorno = "/TecnicoController?action=jspCalendario";
 			servletRetorno = "/SecretariaController?action=jspCalendario";
 		
-		} else {
+		} else if("jspEnviarComunicado".equals(action)){
+			retorno = String.format("%s/SecretariaEnviarComunicado.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspEnviarComunicado";
+			
+		}else if("enviarComunicado".equals(action)){
+			String msgErro = "";
+			String optEnvio = request.getParameter("optradio");
+			String assunto = request.getParameter("assunto");
+			String mensagem = request.getParameter("mensagemEmail");
+			int envio = 0;
+			
+			try{
+				envio = Integer.parseInt(optEnvio);
+			}catch(Exception ex){
+				msgErro = "Erro ao identificar os destinatários do email!";
+			}
+			
+			if(msgErro.equals("") && envio != 0){
+				ResponsavelNegocio negocio = new ResponsavelNegocio();
+				try{
+					if(negocio.enviarEmailResponsaveis(envio, assunto, mensagem)){
+						request.setAttribute("msgSucesso", "Comunicado enviado com sucesso!");
+					}
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
+				}
+			}
+			request.setAttribute("msgErro", msgErro);
+			retorno = String.format("%s/SecretariaEnviarComunicado.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspEnviarComunicado";
+			
+		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 		}
