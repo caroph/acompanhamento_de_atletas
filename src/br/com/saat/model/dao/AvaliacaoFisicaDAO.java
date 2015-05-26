@@ -95,7 +95,7 @@ public class AvaliacaoFisicaDAO {
 				+ "FROM avaliacaofisica af "
 				+ "INNER JOIN atleta a "
 				+ "ON af.idAtleta = a.idAtleta "
-				+ "WHERE dtAvaliacao = (SELECT MAX(dtAvaliacao) FROM avaliacaoFisica WHERE idAtleta = af.idAtleta) "
+				+ "WHERE dtAvaliacao = (SELECT MAX(dtAvaliacao) FROM avaliacaofisica WHERE idAtleta = af.idAtleta) "
 				+ "ORDER BY dtAvaliacao, a.nome ");
 
 		ResultSet rs = stmtScript.executeQuery();

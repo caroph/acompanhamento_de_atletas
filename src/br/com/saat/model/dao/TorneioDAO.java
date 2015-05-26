@@ -178,7 +178,7 @@ public class TorneioDAO {
 				+ "FROM atletatorneio at "
 				+ "		INNER JOIN atleta a "
 				+ "			ON at.idAtleta = a.idAtleta "
-				+ "		LEFT JOIN atletaResultadoTorneio art "
+				+ "		LEFT JOIN atletaresultadotorneio art "
 				+ "			ON a.idAtleta = art.idAtleta "
 				+ "				AND at.idTorneio = art.idTorneio "
 				+ "WHERE at.idTorneio = ? "
