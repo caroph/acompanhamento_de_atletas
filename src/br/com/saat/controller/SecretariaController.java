@@ -1444,7 +1444,7 @@ public class SecretariaController extends Controller {
 								out.write(c);
 							out.close();
 
-							documento.setSrc("..\\saatDocumentacaoAtleta"
+							documento.setSrc("..\\saatDocumentacaoAtletas"
 									+ "\\"
 									+ String.valueOf(documento.getIdPessoa()
 											+ "\\" + nmDocumento));
