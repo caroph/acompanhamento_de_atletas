@@ -786,7 +786,6 @@ public class SecretariaController extends Controller {
 			try {
 				lista = negocio.buscarAtletas(2);
 			} catch (Exception ex) {
-				// TODO Auto-generated catch block
 				msg = ex.getMessage();
 			}
 			
@@ -1577,6 +1576,10 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgErro", msgErro);
 			retorno = String.format("%s/SecretariaEnviarComunicado.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspEnviarComunicado";
+			
+		} else if("jspRelatorioBonificacao".equals(action)){
+			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspRelatorioBonificacao";
 			
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
