@@ -16,22 +16,22 @@ public class EnderecoNegocio {
 		
 		if(endereco.getEndereco() == null || endereco.getEndereco().equals("")){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'EndereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial'" : "Residencial'")  + "!");
+			lista.add("Informe corretamente o campo 'Endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial'" : "Residencial'")  + "!");
 		}else if(endereco.getNumero() == 0){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Numero' do endereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
+			lista.add("Informe corretamente o campo 'Numero' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 //		}else if(endereco.getComplemento() == null || endereco.getComplemento() == ""){
 //			lista.add(false);
-//			lista.add("Informe corretamente o campo 'Complemento' do endereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
+//			lista.add("Informe corretamente o campo 'Complemento' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 		}else if(endereco.getBairro() == null || endereco.getBairro() == ""){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Bairro' do endereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
+			lista.add("Informe corretamente o campo 'Bairro' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 		}else if(endereco.getEstado() == null || endereco.getEstado() == ""){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Estado' do endereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
+			lista.add("Informe corretamente o campo 'Estado' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 		}else if(endereco.getCidade() == null || endereco.getCidade() == ""){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Cidade' do endereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
+			lista.add("Informe corretamente o campo 'Cidade' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 		}else if(endereco.getTelefone() == null || endereco.getTelefone() == ""){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Telefone " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial'" : "Residencial'")  + "!");
@@ -54,7 +54,7 @@ public class EnderecoNegocio {
 			dao.inserir(endereco, idPessoa, tpPessoa);	
 			return true;
 		}catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao inserir o EndereÃ§o " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial"));
+			throw new Exception("Erro! Ocorreu algum erro ao inserir o Endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial"));
 		}			
 	}
 
@@ -65,7 +65,7 @@ public class EnderecoNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao alterar o endereÃ§o do atleta.");
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o endereço do atleta.");
 		}
 		return false;
 	}

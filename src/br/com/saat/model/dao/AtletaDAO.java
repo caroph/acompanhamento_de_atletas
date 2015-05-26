@@ -606,7 +606,7 @@ public class AtletaDAO {
 		List<Integer> listaAtleta = new ArrayList<Integer>();
 		
 		stmtScript = con.prepareStatement("SELECT at.idAtleta "
-				+ "FROM atletaTorneio at "
+				+ "FROM atletatorneio at "
 				+ "WHERE at.idTorneio = ? ");
 		
 		stmtScript.setInt(1, idTorneio);

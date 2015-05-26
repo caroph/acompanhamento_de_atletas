@@ -27,7 +27,7 @@ public class AtletaNegocio {
 				lista.add("Selecione corretamente o campo 'Equipe' !");
 			}else if ("".equals(atleta.getNrMatricula()) || atleta.getNrMatricula() == null) {
 				lista.add(false);
-				lista.add("Informe corretamente o campo 'NÂº MatrÃ­cula Clube Curitibano' !");
+				lista.add("Informe corretamente o campo 'Nº Matrícula Clube Curitibano' !");
 			} else if ("".equals(atleta.getNome()) || atleta.getNome() == null) {
 				lista.add(false);
 				lista.add("Informe corretamente o campo 'Nome' !");
@@ -42,10 +42,10 @@ public class AtletaNegocio {
 				lista.add("Informe corretamente o campo 'CPF' !");
 			} else if ("".equals(atleta.getNmContatoEmergencia()) || atleta.getNmContatoEmergencia() == null) {
 				lista.add(false);
-				lista.add("Informe corretamente o campo 'Nome Contato EmergÃªncia' !");
+				lista.add("Informe corretamente o campo 'Nome Contato Emergência' !");
 			} else if ("".equals(atleta.getTelContatoEmergencia()) || atleta.getTelContatoEmergencia() == null) {
 				lista.add(false);
-				lista.add("Informe corretamente o campo 'Telefone Contato de EmergÃªncia' !");
+				lista.add("Informe corretamente o campo 'Telefone Contato de Emergência' !");
 			} else if ("".equals(atleta.getDtValidade()) || atleta.getDtValidade() == null) {
 				lista.add(false);
 				lista.add("Informe corretamente o campo 'Data de Validade' !");
@@ -156,7 +156,7 @@ public class AtletaNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao inserir pendÃªncias para o atleta!");
+			throw new Exception("Erro! Ocorreu algum erro ao inserir pendêcias para o atleta!");
 		}
 		return false;
 	}
@@ -169,7 +169,7 @@ public class AtletaNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao vincular o responsÃ¡vel!");
+			throw new Exception("Erro! Ocorreu algum erro ao vincular o responsável!");
 		}
 		return false;
 	}
@@ -194,7 +194,7 @@ public class AtletaNegocio {
 			listaAtleta = dao.buscarAtletasVinculados(idResponsavel);
 			return listaAtleta;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas vinculados ao responsÃ¡vel.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os atletas vinculados ao responsável.");
 		}
 	}
 
@@ -247,14 +247,14 @@ public class AtletaNegocio {
 		try {
 			AtletaDAO dao = new AtletaDAO();
 			if(bonificacao.getMes() == 0){
-				throw new Exception("O mÃªs deve ser prÃ© selecionado");
+				throw new Exception("O mês deve ser pré selecionado");
 			}
 			if(bonificacao.getAno() == 0){
-				throw new Exception("O ano deve ser prÃ© selecionado");
+				throw new Exception("O ano deve ser pré selecionado");
 			}
 			return dao.salvarBonificacaoAtleta(bonificacao);
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao cadastrar a bonificaÃ§Ã£o do atleta!");
+			throw new Exception("Erro! Ocorreu algum erro ao cadastrar a bonificação do atleta!");
 		}
 	}
 
@@ -262,14 +262,14 @@ public class AtletaNegocio {
 		try {
 			AtletaDAO dao = new AtletaDAO();
 			if(bonificacao.getMes() == 0){
-				throw new Exception("O mÃªs deve ser prÃ© selecionado");
+				throw new Exception("O mês deve ser pré selecionado");
 			}
 			if(bonificacao.getAno() == 0){
-				throw new Exception("O ano deve ser prÃ© selecionado");
+				throw new Exception("O ano deve ser pré selecionado");
 			}
 			return dao.editarBonificacaoAtleta(bonificacao);
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao editar a bonificaÃ§Ã£o do atleta!");
+			throw new Exception("Erro! Ocorreu algum erro ao editar a bonificação do atleta!");
 		}
 	}
 	

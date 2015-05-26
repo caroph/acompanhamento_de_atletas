@@ -4,7 +4,7 @@ public enum UnidadeDeMedida {
 	Minutos (1, "Minutos"), 
 	Segundos (2, "Segundos"),
 	Metros (3, "Metros"),
-	Repeticoes (4, "RepetiÃ§Ãµes");
+	Repeticoes (4, "Repetições");
 	
 	
 	private final int valor; 

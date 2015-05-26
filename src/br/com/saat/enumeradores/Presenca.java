@@ -1,13 +1,13 @@
 package br.com.saat.enumeradores;
 
 public enum Presenca {
-	Presente (1, "PresenÃ§a em treino"),
+	Presente (1, "Presença em treino"),
 	Falta (2, "Falta"),
-	Torneio (3, "PresenÃ§a em torneio"),
-	Medico (4, "Falta mÃ©dica"),
+	Torneio (3, "Presença em torneio"),
+	Medico (4, "Falta médica"),
 	Nutricionista (5, "Nutricionista"),
 	Fisioterapeuta (6, "Fisioterapeuta"),
-	Psicologo (7, "PsicÃ³logo"),
+	Psicologo (7, "Psicólogo"),
 	Escola(8, "Escola"),
 	Outros (9, "Outro");
 	

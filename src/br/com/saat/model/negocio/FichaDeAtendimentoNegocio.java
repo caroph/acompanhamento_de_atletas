@@ -36,7 +36,7 @@ public class FichaDeAtendimentoNegocio {
 					ficha.getAvaliacaoAntropometrica().setIdAvaliacaoAntropometrica(idAvaliacaoInserida);
 					return idFichaInserida;
 				}else{
-					throw new Exception("Erro ao inserir avaliaÃ§Ã£o antropomÃ©trica no banco!");
+					throw new Exception("Erro ao inserir avaliao antropométrica no banco!");
 				}				
 			}				
 			else 
@@ -54,7 +54,7 @@ public class FichaDeAtendimentoNegocio {
 				if(avaliacaoNegocio.alterar(ficha.getAvaliacaoAntropometrica(), ficha.getIdFichaDeAtendimento()))				
 					return true;
 				else
-					throw new Exception("Erro ao alterar a avaliaÃ§Ã£o antropometrica");
+					throw new Exception("Erro ao alterar a avaliação antropométrica");
 			}else
 				throw new Exception("Erro ao alterar ficha de atendimento!");
 		}catch(Exception ex){

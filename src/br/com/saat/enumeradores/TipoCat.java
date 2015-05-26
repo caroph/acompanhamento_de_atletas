@@ -1,8 +1,8 @@
 package br.com.saat.enumeradores;
 
 public enum TipoCat {
-	Idade_Biologica (1, "Idade biolÃ³gica"), 
-	Idade_Cronologica (2, "Idade cronolÃ³gica");
+	Idade_Biologica (1, "Idade biológica"), 
+	Idade_Cronologica (2, "Idade cronológica");
 	
 	
 	private final int valor; 

@@ -3,10 +3,8 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.saat.model.AtividadeAvaliacao;
 import br.com.saat.model.CategoriaAtividade;
 import br.com.saat.model.CategoriaAvaliacao;
-import br.com.saat.model.dao.AtividadeAvaliacaoDAO;
 import br.com.saat.model.dao.CategoriaAtividadeDAO;
 
 public class CategoriaAtividadeNegocio {
@@ -16,7 +14,7 @@ public class CategoriaAtividadeNegocio {
 
 		if (categoriasSelecionadas == null || "".equals(categoriasSelecionadas)) {
 			lista.add(false);
-			lista.add("Selecione ao menos uma 'Çategoria' !");
+			lista.add("Selecione ao menos uma 'Categoria' !");
 		} else if(categoriaAtividades == null || categoriaAtividades.isEmpty()){
 			lista.add(false);
 			lista.add("Selecione ao menos uma 'Atividade' !");

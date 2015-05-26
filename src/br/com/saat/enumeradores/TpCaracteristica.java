@@ -1,9 +1,9 @@
 package br.com.saat.enumeradores;
 
 public enum TpCaracteristica {
-	Inicio_ano (1, "InÃ­cio ano"), 
-	Inicio_temporada (2, "InÃ­cio temporada"),
-	Pre_interclubes (3, "PrÃ© interclubes");
+	Inicio_ano (1, "Início ano"), 
+	Inicio_temporada (2, "Início temporada"),
+	Pre_interclubes (3, "Pré interclubes");
 	
 	private final int valor; 
 	private final String nome;

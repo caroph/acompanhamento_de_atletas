@@ -73,7 +73,7 @@ public class AvaliacaoFisController extends Controller {
 		RequestDispatcher rd;
 		String servletRetorno = "/TecnicoController";
 		
-		//Verifica autenticaÃ§Ã£o usuÃ¡rio
+		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Tecnico.getValor() && usuarioLogado.getPerfil() != Perfis.PreparadorFisico.getValor())){
 			super.doPost(request, response, usuarioLogado, false, false);
@@ -97,7 +97,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarAtividades(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliaÃ§Ã£o fÃ­sica cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -151,7 +151,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarAtividades(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliaÃ§Ã£o fÃ­sica cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgAlerta", ex.getMessage());
@@ -174,7 +174,7 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				atividade.setIdAtividadeAvaliacao(Integer.parseInt(request.getParameter("idAtividade")));
 				if (negocio.desativar(atividade)) {
-					request.setAttribute("msgSucesso", "Atividade excluÃ­da com sucesso!");
+					request.setAttribute("msgSucesso", "Atividade excluída com sucesso!");
 				} else {
 					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
 				}
@@ -185,7 +185,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarAtividades(0 ,0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliaÃ§Ã£o fÃ­sica cadastrada!");
+					request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgAlerta", ex.getMessage());
@@ -205,7 +205,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliaÃ§Ã£o fÃ­sica cadastrada ou sem dados de referÃªncia!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -240,14 +240,14 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				idadeMin = Integer.parseInt(request.getParameter("idadeMin"));
 			} catch (Exception ex) {
-				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade mÃ­nima' !");
+				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade mínima' !");
 				exception = true;
 			}
 			
 			try {
 				idadeMax = Integer.parseInt(request.getParameter("idadeMax"));
 			} catch (Exception ex) {
-				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade mÃ¡xima' !");
+				request.setAttribute("msgErro", "Favor informar corretamente o campo 'Idade máxima' !");
 				exception = true;
 			}
 			
@@ -292,7 +292,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliaÃ§Ã£o fÃ­sica cadastrada ou sem dados de referÃªncia!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -316,7 +316,7 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				categoria.setIdCategoriaAvaliacao(Integer.parseInt(request.getParameter("idCategoria")));
 				if (negocio.desativar(categoria)) {
-					request.setAttribute("msgSucesso", "Categoria excluÃ­da com sucesso!");
+					request.setAttribute("msgSucesso", "Categoria excluída com sucesso!");
 				} else {
 					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
 				}
@@ -327,7 +327,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliaÃ§Ã£o fÃ­sica cadastrada ou sem dados de referÃªncia!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -352,7 +352,7 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				categoriasAtividades = negocio.buscaCategoriasAtividades();
 				if (categoriasAtividades.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhum dado de referÃªncia cadastrado!");
+					request.setAttribute("msgAlerta", "Nenhum dado de referência cadastrado!");
 				}
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());
@@ -372,12 +372,12 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				listaCategorias = negocioCat.buscarCategorias(1, 0);
 				if (listaCategorias.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliaÃ§Ã£o fÃ­sica cadastrada ou sem dados de referÃªncia!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
 				} else {
 					try{
 						listaAtividades = negocioAti.buscarAtividades(0, 0);
 						if (listaAtividades.isEmpty()) {
-							request.setAttribute("msgAlerta", "Nenhuma atividade de avaliaÃ§Ã£o fÃ­sica cadastrada!");
+							request.setAttribute("msgAlerta", "Nenhuma atividade de avaliação física cadastrada!");
 						}
 					}catch(Exception ex){
 						request.setAttribute("msgErro", ex.getMessage());
@@ -411,7 +411,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				listaAtividades = negocioAti.buscarAtividades(0, 0);
 				if (listaAtividades.isEmpty()) {
-					msgAlerta = "Nenhuma atividade de avaliaÃ§Ã£o fÃ­sica cadastrada!";
+					msgAlerta = "Nenhuma atividade de avaliação física cadastrada!";
 					exception = true;
 				}
 			}catch(Exception ex){
@@ -419,7 +419,7 @@ public class AvaliacaoFisController extends Controller {
 				msgErro = ex.getMessage();
 			}
 			
-			//Se nÃ£o ocorreu nenhum erro, continua
+			//Se não ocorreu nenhum erro, continua
 			if (!exception) {
 				//TipoAcao
 				String tipoAcao = request.getParameter("tipoAcao");
@@ -485,13 +485,13 @@ public class AvaliacaoFisController extends Controller {
 					try {
 						if ("1".equals(tipoAcao)) {
 							if (negocio.inserir(categoriaAtividades, categoriasSelecionadas)) {
-								msgSucesso = "Dados de referÃªncia salvos com sucesso!";
+								msgSucesso = "Dados de referência salvos com sucesso!";
 							} else {
 								msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
 						} else {
 							if (negocio.editar(categoriaAtividades, categoriasSelecionadas)) {
-								msgSucesso = "Dados de referÃªncia salvos com sucesso!";
+								msgSucesso = "Dados de referência salvos com sucesso!";
 							} else {
 								msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
@@ -514,7 +514,7 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				categoriasAtividades = negocio.buscaCategoriasAtividades();
 			} catch (Exception e) {
-				msgAlerta = msgAlerta + "<br/>Nenhum dado de referÃªncia cadastrado!";
+				msgAlerta = msgAlerta + "<br/>Nenhum dado de referência cadastrado!";
 			}
 
 			request.setAttribute("msgAlerta", msgAlerta);
@@ -535,7 +535,7 @@ public class AvaliacaoFisController extends Controller {
 				categoria.setIdCategoriaAvaliacao(Integer.parseInt(request.getParameter("idCategoriaAvaliacao")));
 				catAtiv.setCategoriaAvaliacao(categoria);
 				if (negocio.desativar(catAtiv)) {
-					msgSucesso ="Dados de referÃªncia excluÃ­dos com sucesso!";
+					msgSucesso ="Dados de referência excluídos com sucesso!";
 				} else {
 					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -577,12 +577,12 @@ public class AvaliacaoFisController extends Controller {
 				
 				listaCategorias = negocioCat.buscarCategorias(2, idCategoria);
 				if (listaCategorias.isEmpty()) {
-					request.setAttribute("msgAlerta", "Categoria de avaliaÃ§Ã£o nÃ£o localizada!");
+					request.setAttribute("msgAlerta", "Categoria de avaliação não localizada!");
 				} else {
 					try{
 						listaAtividades = negocioAti.buscarAtividades(1, idCategoria);
 						if (listaAtividades.isEmpty()) {
-							request.setAttribute("msgAlerta", "Todas as atividades de avaliaÃ§Ã£o fÃ­sica cadastradas jÃ¡ estÃ£o vinculadas a essa categoria!");
+							request.setAttribute("msgAlerta", "Todas as atividades de avaliação física cadastradas já estão vinculadas a essa categoria!");
 						}
 					}catch(Exception ex){
 						request.setAttribute("msgErro", ex.getMessage());
@@ -647,7 +647,7 @@ public class AvaliacaoFisController extends Controller {
 				
 				listaCategorias = negocioCat.buscarCategorias(2, idCategoria);
 				if (listaCategorias.isEmpty()) {
-					request.setAttribute("msgAlerta", "Categoria de avaliaÃ§Ã£o nÃ£o localizada!");
+					request.setAttribute("msgAlerta", "Categoria de avaliação não localizada!");
 				} else {
 					try{
 						listaAtividades = negocioAti.buscarAtividadesCat(idCategoria);
@@ -725,7 +725,7 @@ public class AvaliacaoFisController extends Controller {
 			try {
 				idCaracteristica = Integer.parseInt(request.getParameter("caracteristica"));
 			} catch (Exception ex) {
-				msgErro = "Favor selecionar corretamente o campo 'CaracterÃ­stica'.";
+				msgErro = "Favor selecionar corretamente o campo 'Característica'.";
 				exception = true;
 			}
 			
@@ -773,17 +773,17 @@ public class AvaliacaoFisController extends Controller {
 							//Inserir
 							idAvaliacaoFisica = avaResulNegocio.inserirResultado(avaliacaoResul, avalFis);
 							if (idAvaliacaoFisica > 0) {
-								msgSucesso = "AvaliaÃ§Ã£o fÃ­sica inserida com sucesso!";
+								msgSucesso = "Avaliação física inserida com sucesso!";
 							} else {
-								msgErro = "Ocorreu algum erro ao inserir a avaliaÃ§Ã£o fÃ­sica! Favor tentar novamente.";
+								msgErro = "Ocorreu algum erro ao inserir a avaliação física! Favor tentar novamente.";
 							}
 						} else{
 							//Alterar
 							avalFis.setIdAvaliacaoFisica(idAvaliacaoFisica);
 							if (avaResulNegocio.editar(avaliacaoResul, avalFis)) {
-								msgSucesso = "AvaliaÃ§Ã£o fÃ­sica editada com sucesso!";
+								msgSucesso = "Avaliação física editada com sucesso!";
 							} else {
-								msgErro = "Ocorreu algum erro ao editar a avaliaÃ§Ã£o fÃ­sica! Favor tentar novamente.";
+								msgErro = "Ocorreu algum erro ao editar a avaliação física! Favor tentar novamente.";
 							}
 						}
 						
@@ -791,9 +791,9 @@ public class AvaliacaoFisController extends Controller {
 						if (!"".equals("msgSucesso")) {
 							List<AvaliacaoResultado> resulDesempenho = avaResulNegocio.buscarResulDesempenho(idAvaliacaoFisica);
 							if (resulDesempenho.size() <= 0 || resulDesempenho == null) {
-								msgAlerta = "Falha ao buscar resultado(s) do(s) desempenho(s) na avaliaÃ§Ã£o fÃ­sica.";
+								msgAlerta = "Falha ao buscar resultado(s) do(s) desempenho(s) na avaliação física.";
 							} else {
-								msgAlerta = "Resultado do(s) desempenho(s) na avaliaÃ§Ã£o fÃ­sica:<br/>";
+								msgAlerta = "Resultado do(s) desempenho(s) na avaliação física:<br/>";
 								for (AvaliacaoResultado result : resulDesempenho) {
 									msgAlerta += result.getCategoriaAtividade().getAtividadeAvaliacao().getTeste() + " - <b>" + result.getResultado() + "</b></br>";
 								}
@@ -805,7 +805,7 @@ public class AvaliacaoFisController extends Controller {
 					}
 					
 				} else {
-					msgAlerta = "Nenhum valor de desempenho na avaliaÃ§Ã£o fÃ­sica foi informado! Favor tentar novamente.";
+					msgAlerta = "Nenhum valor de desempenho na avaliação física foi informado! Favor tentar novamente.";
 				}
 			}
 			
@@ -819,7 +819,7 @@ public class AvaliacaoFisController extends Controller {
 				request.setAttribute("msgAlerta", msgAlerta);
 			}
 			
-			//Carregar pÃ¡gina Buscar Atleta
+			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
 			try{
@@ -840,18 +840,18 @@ public class AvaliacaoFisController extends Controller {
 				
 				if (avalResulNegocio.excluir(idAvaliacaoFisica)) {
 					if (avalFisNegocio.excluir(idAvaliacaoFisica)) {
-						request.setAttribute("msgSucesso", "AvaliaÃ§Ã£o fÃ­sica excluÃ­da com sucesso!");
+						request.setAttribute("msgSucesso", "Avaliação física excluída com sucesso!");
 					} else {
-						request.setAttribute("msgErro", "Ocorreu algum erro ao excluir a avaliÃ§Ã£o fÃ­sica! Favor tentar novamente.");
+						request.setAttribute("msgErro", "Ocorreu algum erro ao excluir a avalição física! Favor tentar novamente.");
 					}
 				} else {
-					request.setAttribute("msgErro", "Ocorreu algum erro ao excluir os resultados da avaliÃ§Ã£o fÃ­sica! Favor tentar novamente.");
+					request.setAttribute("msgErro", "Ocorreu algum erro ao excluir os resultados da avalição física! Favor tentar novamente.");
 				}
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());
 			}
 			
-			//Carregar pÃ¡gina Buscar Atleta
+			//Carregar página Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
 			try{
@@ -876,7 +876,7 @@ public class AvaliacaoFisController extends Controller {
 					request.setAttribute("listaAvaliacaoFis", listaAvaliacaoFis);
 					request.setAttribute("nomeAtleta", nomeAtleta);
 				} else {
-					request.setAttribute("msgAlerta", "Nenhuma avaliaÃ§Ã£o fÃ­sica cadastrada para o atleta" + nomeAtleta + ".");
+					request.setAttribute("msgAlerta", "Nenhuma avaliação física cadastrada para o atleta " + nomeAtleta + ".");
 				}
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());
@@ -919,7 +919,7 @@ public class AvaliacaoFisController extends Controller {
 		    response.getWriter().write(json);
 		
 		} else{
-		//PÃ¡gina Principal
+		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);
 		
 		}

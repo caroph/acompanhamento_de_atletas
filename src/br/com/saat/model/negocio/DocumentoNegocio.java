@@ -16,10 +16,10 @@ public class DocumentoNegocio {
 		
 		if(documento.getTpDocumento() > 7 || documento.getTpDocumento() < 0){
 			listaValidacao.add(false);
-			listaValidacao.add("Tipo de documento invÃ¡lido!");
+			listaValidacao.add("Tipo de documento inválido!");
 		}else if(documento.getIdPessoa() <= 0){
 			listaValidacao.add(false);
-			listaValidacao.add("IdPessoa invÃ¡lido!");
+			listaValidacao.add("IdPessoa inválido!");
 		}else if(documento.getValidade()!= null && new Date().after(documento.getValidade())){
 			listaValidacao.add(false);
 			listaValidacao.add("A Data de validade deve ser maior que a data atual!");

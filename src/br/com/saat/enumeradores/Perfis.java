@@ -1,12 +1,12 @@
 package br.com.saat.enumeradores;
 
 public enum Perfis {
-	Secretaria (1, "Secret√°rio(a)"), 
+	Secretaria (1, "Secret·rio(a)"), 
 	Nutricionista (2, "Nutricionista"),
-	Psicologa (3, "Psic√≥logo(a)"),
+	Psicologa (3, "PsicÛlogo(a)"),
 	Fisioterapeuta (4, "Fisioterapeuta"),
-	Tecnico (5, "T√©cnico"),
-	PreparadorFisico (6, "Preparador F√≠sico");
+	Tecnico (5, "TÈcnico"),
+	PreparadorFisico (6, "Preparador FÌsico");
 	
 	private final int valor; 
 	private final String nome;

@@ -1,7 +1,7 @@
 package br.com.saat.enumeradores;
 
 public enum Turno {
-	Manha (1, "ManhÃ£"), 
+	Manha (1, "Manhã"), 
 	Tarde (2, "Tarde"),
 	Noite (3, "Noite"),
 	Integral (4, "Integral");

@@ -27,7 +27,7 @@ public class DiaTreinoDAO {
 		boolean retorno = false;
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("INSERT INTO diaTreino (idTpEquipe, idDiaSemana, hrInicio, hrFim)"
+		stmtScript = con.prepareStatement("INSERT INTO diatreino (idTpEquipe, idDiaSemana, hrInicio, hrFim)"
 				+ "VALUES (?, ?, ?, ?)");
 		
 		stmtScript.setInt(1, dia.getIdTpEquipe());
@@ -48,7 +48,7 @@ public class DiaTreinoDAO {
 		List<DiaTreino> lista = new ArrayList<DiaTreino>();
 		
 		stmtScript = con.prepareStatement("SELECT idDiaTreino, idTpEquipe, idDiaSemana, hrInicio, hrFim "
-				+ "FROM diaTreino t "
+				+ "FROM diatreino t "
 				+ "WHERE t.flCadastroAtivo = 1 "
 				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
 		
@@ -70,7 +70,7 @@ public class DiaTreinoDAO {
 		boolean retorno = false;
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("UPDATE diaTreino SET flCadastroAtivo = 0 WHERE idDiaTreino = ?");
+		stmtScript = con.prepareStatement("UPDATE diatreino SET flCadastroAtivo = 0 WHERE idDiaTreino = ?");
 		
 		stmtScript.setInt(1, dia.getIdDiaTreino());
 		
@@ -87,7 +87,7 @@ public class DiaTreinoDAO {
 		List<DiaTreino> lista = new ArrayList<DiaTreino>();
 		
 		stmtScript = con.prepareStatement("SELECT idDiaTreino, idDiaSemana, hrInicio, hrFim "
-				+ "FROM diaTreino t "
+				+ "FROM diatreino t "
 				+ "WHERE t.flCadastroAtivo = 1 AND idTpEquipe = ? "
 				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
 		
@@ -109,7 +109,7 @@ public class DiaTreinoDAO {
 		boolean retorno = false;
 		int rows = 0;
 		
-		stmtScript = con.prepareStatement("INSERT INTO diaTreinoAtleta (idDiaTreino, idAtleta)"
+		stmtScript = con.prepareStatement("INSERT INTO diatreinoatleta (idDiaTreino, idAtleta)"
 				+ "VALUES (?, ?)");
 		
 		stmtScript.setInt(1, Integer.parseInt(idDia));

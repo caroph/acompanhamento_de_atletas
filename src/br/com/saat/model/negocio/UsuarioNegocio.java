@@ -33,7 +33,7 @@ public class UsuarioNegocio {
 
 			return usuario;
 		} catch (Exception ex) {
-			throw new Exception("Erro! Ocorreu algum erro ao tentar autenticar o usu√°rio.");
+			throw new Exception("Erro! Ocorreu algum erro ao tentar autenticar o usu·rio.");
 		}
 	}
 
@@ -60,7 +60,7 @@ public class UsuarioNegocio {
 			return usuario;
 
 		} catch (Exception ex) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar cookie de usu√°rio!");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar cookie de usu·rio!");
 		}
 	}
 
@@ -80,12 +80,12 @@ public class UsuarioNegocio {
 				try {
 					JavaMailApp email = new JavaMailApp();
 					email.enviaEmail(emailSenha, novaSenha, 1);
-					retorno = "Em instantes voc√™ receber√° um email com sua nova senha!";
+					retorno = "Em instantes voc√™ receber· um email com sua nova senha!";
 				} catch (Exception e) {
 					retorno = "Ocorreu algum erro ao enviar o email! Favor tentar novamente.";
 				}
 			} else {
-				retorno = "Email inv√°lido! Favor informe novamente.";
+				retorno = "Email inv·lido! Favor informe novamente.";
 			}
 		} catch (SQLException e) {
 			throw new Exception("Ocorreu algum erro no banco de dados! Favor tentar novamente.");
@@ -103,21 +103,21 @@ public class UsuarioNegocio {
 			if((usuario.getPerfil() == Perfis.PreparadorFisico.getValor() || usuario.getPerfil() == Perfis.Tecnico.getValor())
 					&& "".equals(usuario.getCREF())){
 				lista.add(false);
-				lista.add("O campo 'CREF' √© obrigat√≥rio!");
+				lista.add("O campo 'CREF' È obrigatÛrio!");
 			}else if("".equals(usuario.getEmail())){
 				lista.add(false);
-				lista.add("O campo 'Email' √© obrigat√≥rio!");
+				lista.add("O campo 'Email' È obrigatÛrio!");
 			}else if("".equals(usuario.getNome())){
 				lista.add(false);
-				lista.add("O campo 'Nome' √© obrigat√≥rio!");
+				lista.add("O campo 'Nome' È obrigatÛrio!");
 			}else if(email){
 				lista.add(false);
-				lista.add("Erro! Existe um usu√°rio com o mesmo email no sistema!");
+				lista.add("Erro! Existe um usu·rio com o mesmo email no sistema!");
 			}else {
 				lista.add(true);
 			}
 		}catch(Exception ex){
-			throw new Exception("Ocorreu algum erro ao buscar usu√°rios com o mesmo email");
+			throw new Exception("Ocorreu algum erro ao buscar usu·rios com o mesmo email");
 		}
 		
 		if((usuario.getPerfil() != Perfis.PreparadorFisico.getValor() && usuario.getPerfil() != Perfis.Tecnico.getValor())
@@ -141,17 +141,17 @@ public class UsuarioNegocio {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 			if (dao.inserir(usuario)) {
-				//Comentado para n√£o ficar enviando email sempre que salvar um usu√°rio.
+				//Comentado para n„o ficar enviando email sempre que salvar um usu·rio.
 				try {
 					JavaMailApp email = new JavaMailApp();
 					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
 				} catch (Exception e) {
-					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usuario");
+					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usu·rio");
 				}
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao inserir o usuario");
+			throw new Exception("Erro! Ocorreu algum erro ao inserir o usu·rio");
 		}
 
 		return false;
@@ -163,7 +163,7 @@ public class UsuarioNegocio {
 			List<Usuario> lista = dao.buscarUsuarios();
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os usuarios");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os usu·rios");
 		}
 	}
 
@@ -174,7 +174,7 @@ public class UsuarioNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao excluir o usu√°rio!");
+			throw new Exception("Erro! Ocorreu algum erro ao excluir o usu·rio!");
 		}
 		return false;
 	}
@@ -185,7 +185,7 @@ public class UsuarioNegocio {
 			Usuario usuario = dao.buscarUsuario(idUsuario);
 			return usuario;
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o usu√°rio!");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o usu·rio!");
 		}
 	}
 
@@ -196,7 +196,7 @@ public class UsuarioNegocio {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao alterar o usuario");
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o usu·rio");
 		}
 		return false;
 	}
@@ -216,7 +216,7 @@ public class UsuarioNegocio {
 				UsuarioDAO dao = new UsuarioDAO();
 				String senhaBanco = dao.buscarSenha(idUsuario);
 				if(!BCrypt.checkpw(senhaAtual + Constants.PASS_KEY, senhaBanco))
-					return "A senha atual n√£o confere!";
+					return "A senha atual n„o confere!";
 			}catch(Exception ex){
 				throw new Exception("Ocorreu algum erro ao comparar a senha atual!");
 			}
@@ -241,7 +241,7 @@ public class UsuarioNegocio {
 			UsuarioDAO dao = new UsuarioDAO();
 			return dao.buscarIdUsuarios(compartilhar);
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os usuario para compartilhamento!");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os usu·rio para compartilhamento!");
 		}
 	}
 }

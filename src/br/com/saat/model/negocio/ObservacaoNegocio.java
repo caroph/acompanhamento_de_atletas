@@ -13,7 +13,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.salvarObservacao(observacao);
 		}catch(Exception ex){
-			throw new Exception("Erro ao salvar observaÃ§Ã£o!");
+			throw new Exception("Erro ao salvar observação!");
 		}
 	}
 
@@ -22,7 +22,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.salvarVisualizacaoObservacao(idObservacao, idUsuario);
 		}catch(Exception ex){
-			throw new Exception("Erro ao compartilhar observaÃ§Ã£o!");
+			throw new Exception("Erro ao compartilhar observação!");
 		}
 	}
 
@@ -31,7 +31,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.buscarObservacoesAtivas(idUsuario);
 		}catch(Exception ex){
-			throw new Exception("Erro ao buscar observaÃ§Ãµes ativas!");
+			throw new Exception("Erro ao buscar observações ativas!");
 		}
 	}
 
@@ -40,7 +40,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.buscarMinhasObservacoes(idUsuario);
 		}catch(Exception ex){
-			throw new Exception("Erro ao buscar minhas observaÃ§Ãµes!");
+			throw new Exception("Erro ao buscar minhas observações!");
 		}
 	}
 
@@ -49,7 +49,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.desativarObservacao(idObservacao);
 		}catch(Exception ex){
-			throw new Exception("Erro ao desativar observaÃ§Ã£o!");
+			throw new Exception("Erro ao desativar observação!");
 		}
 	}
 
@@ -58,7 +58,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.alterarObservacao(observacao);
 		}catch(Exception ex){
-			throw new Exception("Erro ao editar observaÃ§Ã£o!");
+			throw new Exception("Erro ao editar observação!");
 		}
 	}
 
@@ -67,7 +67,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.excluirVisualizacaoObservacao(idObservacao);
 		}catch(Exception ex){
-			throw new Exception("Erro ao editar a compartilhaÃ§Ã£o da observaÃ§Ã£o!");
+			throw new Exception("Erro ao editar a compartilhação da observação!");
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.buscarObservacoesNotificacao(idUsuario);
 		}catch(Exception ex){
-			throw new Exception("Erro ao buscar notificaÃ§Ãµes de observaÃ§Ã£o!");
+			throw new Exception("Erro ao buscar notificações de observação!");
 		}
 	}
 
@@ -85,7 +85,7 @@ public class ObservacaoNegocio {
 			ObservacaoDAO dao = new ObservacaoDAO();
 			return dao.salvarObservacaoVisualizada(idObservacao, idUsuario);
 		}catch(Exception ex){
-			throw new Exception("Erro ao buscar salvar visualizaÃ§Ã£o da observaÃ§Ã£o!");
+			throw new Exception("Erro ao buscar salvar visualização da observação!");
 		}
 	}
 }

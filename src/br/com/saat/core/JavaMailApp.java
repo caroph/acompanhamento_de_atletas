@@ -21,7 +21,7 @@ public class JavaMailApp {
     	  
           Properties props = new Properties();
           
-          /** Par√¢metros de conex√£o com servidor Gmail */
+          /** Parametros de conex„o com servidor Gmail */
           props.put("mail.smtp.host", "smtp.gmail.com");
           props.put("mail.smtp.socketFactory.port", "465");
           props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -37,7 +37,7 @@ public class JavaMailApp {
                    }
               });
 
-          /** Ativa Debug para sess√£o */
+          /** Ativa Debug para sess„o */
           session.setDebug(true);
 
         
@@ -46,14 +46,14 @@ public class JavaMailApp {
         
         if(tipo == 1){
             
-            message.setSubject("SAAT - Senha do Usu√°rio");//Assunto
-            message.setText("Ol√°!\n\n"
-            		+ "Sua nova senha √©: " + novaSenha + "\n\n"
-    				+ "Favor alter√°-la o mais breve poss√≠vel!\n\n"
-    				+ "SAAT - Sistema de Acompanhamento de Atleta de T√™nis");
+            message.setSubject("SAAT - Senha do Usu·rio");//Assunto
+            message.setText("Ol·!\n\n"
+            		+ "Sua nova senha È: " + novaSenha + "\n\n"
+    				+ "Favor alter·-la o mais breve possÌvel!\n\n"
+    				+ "SAAT - Sistema de Acompanhamento de Atleta de TÍnis");
         }
         
-        /**M√©todo para enviar a mensagem criada*/
+        /**MÈtodo para enviar a mensagem criada*/
         Address[] toUser = InternetAddress.parse(email);  //Destinat√°rio(s)                  	
         message.setRecipients(Message.RecipientType.TO, toUser);
         
@@ -64,7 +64,7 @@ public class JavaMailApp {
     public void enviarEmailResponsavel(String destinatario, String assunto, String mensagem) throws AddressException, MessagingException{
     	Properties props = new Properties();
         
-        /** Par√¢metros de conex√£o com servidor Gmail */
+        /** Parametros de conexao com servidor Gmail */
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");

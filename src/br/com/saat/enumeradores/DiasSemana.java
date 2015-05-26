@@ -3,11 +3,11 @@ package br.com.saat.enumeradores;
 public enum DiasSemana {
 	Domingo (1, "Domingo"),
 	Segunda (2, "Segunda-Feira"),
-	Terca (3, "TerÃ§a-Feira"),
+	Terca (3, "Terça-Feira"),
 	Quarta (4, "Quarta-Feira"),
 	Quinta (5, "Quinta-Feira"),
 	Sexta (6, "Sexta-Feira"),
-	Sabado (7, "SÃ¡bado");
+	Sabado (7, "Sábado");
 	
 	private int valor;
 	private String nome;

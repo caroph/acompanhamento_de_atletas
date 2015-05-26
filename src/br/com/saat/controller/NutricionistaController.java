@@ -50,7 +50,7 @@ public class NutricionistaController extends Controller {
 		RequestDispatcher rd;
 		String servletRetorno = "/SecretariaController?action=jspPaginaInicialNutricionista";
 		
-		//Verifica autenticação usuário
+		//Verifica autenticação usu�rio
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || usuarioLogado.getPerfil() != Perfis.Nutricionista.getValor()){
 			super.doPost(request, response, usuarioLogado, false, false);
@@ -89,7 +89,7 @@ public class NutricionistaController extends Controller {
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 			
 		}else if("jspBuscarAtletas".equals(action)){
-			//Carregar página Buscar Atleta
+			//Carregar p�gina Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
 					
@@ -115,7 +115,7 @@ public class NutricionistaController extends Controller {
 				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));			
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				
-				//Verifica se abre a página jsp em modo de edição ou inserção
+				//Verifica se abre a p�gina jsp em modo de edição ou inserção
 				if(request.getParameter("idFichaDeAtendimento").equals("0")){
 					// inserção
 					ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
@@ -124,7 +124,7 @@ public class NutricionistaController extends Controller {
 					if(!request.getParameter("idFichaDeAtendimento").equals("")){
 						ficha = fichaNegocio.buscarPorId(Integer.parseInt(request.getParameter("idFichaDeAtendimento")));
 					}else
-						msg = "idFichaDeAtendimento Inválido!";
+						msg = "idFichaDeAtendimento Inv�lido!";
 				}
 				
 				AtletaNegocio atletaNegocio = new AtletaNegocio();
@@ -282,7 +282,7 @@ public class NutricionistaController extends Controller {
 			
 			try{
 				if(request.getParameter("idAtleta").equals("")){
-					msg = "idAtleta inválido!";
+					msg = "idAtleta inv�lido!";
 				}else{
 					idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
 					AtletaNegocio atletaNegocio = new AtletaNegocio();
@@ -294,7 +294,7 @@ public class NutricionistaController extends Controller {
 					//OBSERVAÇÕES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!!
 					
 					if(listaAtendimentos == null || listaAtendimentos.isEmpty()){
-						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
+						request.setAttribute("msgAlerta", "Nenhum hist�rico dispon�vel para esse atleta.");
 					}
 				}
 			}catch(Exception ex){
@@ -348,7 +348,7 @@ public class NutricionistaController extends Controller {
 				}catch(Exception ex2){
 					msg = "Erro: " + ex2.getMessage();
 				}
-				msg = "Erro ao gerar relatório! " + ex.getMessage();
+				msg = "Erro ao gerar relat�rio! " + ex.getMessage();
 				request.setAttribute("msgErro", msg);
 				request.setAttribute("listaAtendimentos", listaAtendimentos);
 				request.setAttribute("atleta", atleta);

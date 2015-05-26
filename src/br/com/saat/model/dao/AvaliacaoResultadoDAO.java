@@ -30,15 +30,15 @@ public class AvaliacaoResultadoDAO {
 		
 		stmtScript = con.prepareStatement("SELECT cativ.idCategoriaAtividade, capacidade, teste, idUnidadeDeMedida "
 				+ "FROM atleta atle "
-				+ "		INNER JOIN categoriaAvaliacao caval "
+				+ "		INNER JOIN categoriaavaliacao caval "
 				+ "			ON atle.sexo = caval.sexo "
 				+ "				AND TIMESTAMPDIFF(YEAR, atle.dtNascimento, NOW()) >= caval.idadeMinima "
 				+ "				AND TIMESTAMPDIFF(YEAR, atle.dtNascimento, NOW()) <= caval.idadeMaxima "
 				+ "				AND caval.idTipoCat = 2 "
-				+ "		INNER JOIN categoriaAtividade cativ "
+				+ "		INNER JOIN categoriaatividade cativ "
 				+ "			ON caval.idCategoriaAvaliacao = cativ.idCategoriaAvaliacao "
 				+ "				AND cativ.flCadastroAtivo = 1 "
-				+ "		INNER JOIN atividadeAvaliacao ativ "
+				+ "		INNER JOIN atividadeavaliacao ativ "
 				+ "			ON cativ.idAtividadeAvaliacao = ativ.idAtividadeAvaliacao "
 				+ "WHERE atle.idAtleta = ? "
 				+ "ORDER BY capacidade, teste ");
@@ -69,7 +69,7 @@ public class AvaliacaoResultadoDAO {
 	public boolean inserir(AvaliacaoResultado resultado, AvaliacaoFisica avalFis) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("INSERT INTO avaliacaoFisicaResultado "
+		stmtScript = con.prepareStatement("INSERT INTO avaliacaofisicaresultado "
 				+ "(idCategoriaAtividade, idAvaliacaoFisica, desempenho) "
 				+ "VALUES (?, ?, ?)");
 		
@@ -95,10 +95,10 @@ public class AvaliacaoResultadoDAO {
 				+ "WHEN desempenho >= bom AND desempenho < excelente THEN 'Bom' "
 				+ "WHEN desempenho >= excelente THEN 'Excelente' "
 				+ "END as resultado "
-				+ "FROM avaliacaoFisicaResultado afr "
-				+ "INNER JOIN categoriaAtividade ca "
+				+ "FROM avaliacaofisicaresultado afr "
+				+ "INNER JOIN categoriaatividade ca "
 				+ "ON ca.idCategoriaAtividade = afr.idCategoriaAtividade "
-				+ "INNER JOIN atividadeAvaliacao atAv "
+				+ "INNER JOIN atividadeavaliacao atAv "
 				+ "ON ca.idAtividadeAvaliacao = atAv.idAtividadeAvaliacao "
 				+ "WHERE idAvaliacaoFisica = ? "
 				+ "ORDER BY capacidade, teste ");
@@ -130,7 +130,7 @@ public class AvaliacaoResultadoDAO {
 	public boolean excluir(int idAvaliacaoFisica) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("DELETE FROM avaliacaoFisicaResultado WHERE idAvaliacaoFisica = ?");
+		stmtScript = con.prepareStatement("DELETE FROM avaliacaofisicaresultado WHERE idAvaliacaoFisica = ?");
 		
 		stmtScript.setInt(1, idAvaliacaoFisica);
 		
@@ -144,7 +144,7 @@ public class AvaliacaoResultadoDAO {
 	public boolean editar(AvaliacaoResultado resultado, AvaliacaoFisica avalFis) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE  avaliacaoFisicaResultado "
+		stmtScript = con.prepareStatement("UPDATE  avaliacaofisicaresultado "
 				+ "SET desempenho = ? "
 				+ "WHERE idCategoriaAtividade = ? AND idAvaliacaoFisica = ? ");
 		

@@ -28,7 +28,7 @@ public class AvaliacaoFisicaDAO {
 	public int inserir(AvaliacaoFisica avalFis) throws SQLException {
 		int idAvaliacaoFisica = 0;
 		
-		stmtScript = con.prepareStatement("INSERT INTO avaliacaoFisica "
+		stmtScript = con.prepareStatement("INSERT INTO avaliacaofisica "
 				+ "(idAtleta, idUsuResp, idTpCaracteristica, dtAvaliacao, observacaoGeral) "
 				+ "VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		
@@ -77,7 +77,7 @@ public class AvaliacaoFisicaDAO {
 	public boolean excluir(int idAvaliacaoFisica) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("DELETE FROM avaliacaoFisica WHERE idAvaliacaoFisica = ?");
+		stmtScript = con.prepareStatement("DELETE FROM avaliacaofisica WHERE idAvaliacaoFisica = ?");
 		
 		stmtScript.setInt(1, idAvaliacaoFisica);
 		
@@ -92,7 +92,7 @@ public class AvaliacaoFisicaDAO {
 		List<AvaliacaoFisica> listaAvaliacaoFis = new ArrayList<AvaliacaoFisica>();
 		
 		stmtScript = con.prepareStatement("SELECT af.idAtleta, a.nome, idAvaliacaoFisica, dtAvaliacao "
-				+ "FROM avaliacaoFisica af "
+				+ "FROM avaliacaofisica af "
 				+ "INNER JOIN atleta a "
 				+ "ON af.idAtleta = a.idAtleta "
 				+ "WHERE dtAvaliacao = (SELECT MAX(dtAvaliacao) FROM avaliacaoFisica WHERE idAtleta = af.idAtleta) "
@@ -120,7 +120,7 @@ public class AvaliacaoFisicaDAO {
 		AvaliacaoFisica avaliacao = new AvaliacaoFisica();
 		
 		stmtScript = con.prepareStatement("SELECT idAvaliacaoFisica, idTpCaracteristica, dtAvaliacao, observacaoGeral, idAtleta "
-				+ "FROM avaliacaoFisica "
+				+ "FROM avaliacaofisica "
 				+ "WHERE idAvaliacaoFisica = ?");
 		
 		stmtScript.setInt(1, idAvaliacaoFis);
@@ -144,7 +144,7 @@ public class AvaliacaoFisicaDAO {
 	public boolean editar(AvaliacaoFisica avalFis) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE avaliacaoFisica "
+		stmtScript = con.prepareStatement("UPDATE avaliacaofisica "
 				+ "SET idTpCaracteristica = ?, dtAvaliacao = ?, observacaoGeral = ? "
 				+ "WHERE idAvaliacaoFisica = ? ");
 		

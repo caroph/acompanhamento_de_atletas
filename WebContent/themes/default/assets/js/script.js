@@ -94,6 +94,12 @@ function LimparCampos() {
 	$("select").each(function() {
 		$(this).val("Selecione");
 	});
+	$(":textarea").each(function() {
+		$(this).val("");
+	});
+	$(":input").each(function() {
+		$(this).val("");
+	});
 }
 
 // Vincular Responsável

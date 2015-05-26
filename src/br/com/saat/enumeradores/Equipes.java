@@ -2,7 +2,7 @@ package br.com.saat.enumeradores;
 
 public enum Equipes {
 	Equipe (1, "Equipe"),
-	PreEquipe (2, "PrÃ©-Equipe");
+	PreEquipe (2, "Pré-Equipe");
 	
 	private final int valor;
 	private final String nome;

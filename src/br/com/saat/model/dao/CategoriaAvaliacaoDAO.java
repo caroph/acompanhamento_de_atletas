@@ -29,14 +29,14 @@ public class CategoriaAvaliacaoDAO {
 			
 			stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 					+ "idadeMinima, idadeMaxima, sexo "
-					+ "FROM categoriaAvaliacao "
+					+ "FROM categoriaavaliacao "
 					+ "WHERE flCadastroAtivo = 1 ");
 			
 		} else if (tipoConsulta == 1) {
 			stmtScript = con.prepareStatement("SELECT c.idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 					+ "idadeMinima, idadeMaxima, sexo "
-					+ "FROM categoriaAvaliacao c "
-					+ "LEFT JOIN categoriaAtividade ca "
+					+ "FROM categoriaavaliacao c "
+					+ "LEFT JOIN categoriaatividade ca "
 					+ "ON c.idCategoriaAvaliacao = ca.idCategoriaAvaliacao "
 					+ "AND ca.flCadastroAtivo = 1 "
 					+ "WHERE c.flCadastroAtivo = 1 AND ca.idCategoriaAtividade IS NULL ");
@@ -44,7 +44,7 @@ public class CategoriaAvaliacaoDAO {
 		} else {
 			stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 					+ "idadeMinima, idadeMaxima, sexo "
-					+ "FROM categoriaAvaliacao c "
+					+ "FROM categoriaavaliacao c "
 					+ "WHERE flCadastroAtivo = 1 AND idCategoriaAvaliacao = ? ");
 			
 			stmtScript.setInt(1, idCategoria);
@@ -69,7 +69,7 @@ public class CategoriaAvaliacaoDAO {
 	public boolean desativar(CategoriaAvaliacao categoria) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE categoriaAvaliacao "
+		stmtScript = con.prepareStatement("UPDATE categoriaavaliacao "
 				+ "SET flCadastroAtivo = 0 "
 				+ "WHERE idCategoriaAvaliacao = ? ");
 		
@@ -84,7 +84,7 @@ public class CategoriaAvaliacaoDAO {
 	public boolean inserir(CategoriaAvaliacao categoria) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("INSERT INTO categoriaAvaliacao "
+		stmtScript = con.prepareStatement("INSERT INTO categoriaavaliacao "
 				+ "(idTipoCat, nmCategoria, idadeMinima, idadeMaxima, sexo) "
 				+ " VALUES (?, ?, ?, ?, ?)");
 		
@@ -105,7 +105,7 @@ public class CategoriaAvaliacaoDAO {
 		
 		stmtScript = con.prepareStatement("SELECT idCategoriaAvaliacao, idTipoCat, nmCategoria, "
 				+ "idadeMinima, idadeMaxima, sexo "
-				+ "FROM categoriaAvaliacao "
+				+ "FROM categoriaavaliacao "
 				+ "WHERE flCadastroAtivo = 1 AND idCategoriaAvaliacao = ? ");
 		
 		stmtScript.setInt(1, categoriaBase.getIdCategoriaAvaliacao());

@@ -27,7 +27,7 @@ public class CategoriaAtividadeDAO {
 	public boolean inserir(CategoriaAtividade catAtiv) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("INSERT INTO categoriaAtividade "
+		stmtScript = con.prepareStatement("INSERT INTO categoriaatividade "
 				+ "(idCategoriaAvaliacao, idAtividadeAvaliacao, melhorar, "
 				+ "media, bom, excelente) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)");
@@ -49,8 +49,8 @@ public class CategoriaAtividadeDAO {
 		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
 		
 		stmtScript = con.prepareStatement("SELECT distinct c.idCategoriaAvaliacao, nmCategoria "
-				+ "FROM categoriaAtividade ca "
-				+ "INNER JOIN categoriaAvaliacao c "
+				+ "FROM categoriaatividade ca "
+				+ "INNER JOIN categoriaavaliacao c "
 				+ "ON ca.idCategoriaAvaliacao = c.idCategoriaAvaliacao "
 				+ "WHERE ca.flCadastroAtivo = 1 ");
 		
@@ -73,7 +73,7 @@ public class CategoriaAtividadeDAO {
 	public boolean desativar(CategoriaAtividade catAtiv) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE categoriaAtividade "
+		stmtScript = con.prepareStatement("UPDATE categoriaatividade "
 				+ "SET flCadastroAtivo = 0 "
 				+ "WHERE idCategoriaAvaliacao = ? AND flCadastroAtivo = 1");
 		
@@ -90,8 +90,8 @@ public class CategoriaAtividadeDAO {
 		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
 		
 		stmtScript = con.prepareStatement("SELECT capacidade, teste, idUnidadeDeMedida, melhorar, media, bom, excelente "
-				+ "FROM categoriaAtividade ca "
-				+ "INNER JOIN atividadeAvaliacao aa "
+				+ "FROM categoriaatividade ca "
+				+ "INNER JOIN atividadeavaliacao aa "
 				+ "ON ca.idAtividadeAvaliacao = aa.idAtividadeAvaliacao "
 				+ "WHERE ca.idCategoriaAvaliacao = ? AND ca.flCadastroAtivo = 1 "
 				+ "ORDER BY capacidade, teste ");
@@ -122,7 +122,7 @@ public class CategoriaAtividadeDAO {
 	public boolean editar(CategoriaAtividade catAtiv) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE categoriaAtividade "
+		stmtScript = con.prepareStatement("UPDATE categoriaatividade "
 				+ "SET melhorar = ?, media = ?, bom = ?, excelente = ? "
 				+ "WHERE idCategoriaAvaliacao = ? AND idAtividadeAvaliacao = ? "
 				+ "AND flCadastroAtivo = 1");
@@ -148,7 +148,7 @@ public class CategoriaAtividadeDAO {
 			condicao = "AND idAtividadeAvaliacao NOT IN (" + idAtividades + ")";
 		} 
 		
-		stmtScript = con.prepareStatement("UPDATE categoriaAtividade "
+		stmtScript = con.prepareStatement("UPDATE categoriaatividade "
 				+ "SET flCadastroAtivo = 0 "
 				+ "WHERE idCategoriaAvaliacao = ? "
 				+ condicao);
@@ -167,8 +167,8 @@ public class CategoriaAtividadeDAO {
 		
 		stmtScript = con.prepareStatement("SELECT aa.idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste, "
 				+ "melhorar, media, bom, excelente "
-				+ "FROM atividadeAvaliacao aa "
-				+ "INNER JOIN categoriaAtividade ca "
+				+ "FROM atividadeavaliacao aa "
+				+ "INNER JOIN categoriaatividade ca "
 				+ "ON ca.idAtividadeAvaliacao = aa.idAtividadeAvaliacao "
 				+ "AND ca.idCategoriaAvaliacao = ? "
 				+ "AND ca.flCadastroAtivo = 1 "

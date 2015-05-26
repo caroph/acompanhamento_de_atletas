@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
+import br.com.saat.model.dao.TorneioDAO;
 
 public class TorneioNegocio {
 	
@@ -170,7 +171,7 @@ public class TorneioNegocio {
 			lista.add("Informe corretamente o campo 'Atleta destaque' !");
 		} else if ("".equals(torneio.getFotografo())) {
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'FotÃ³grafo' !");
+			lista.add("Informe corretamente o campo 'Fotógrafo' !");
 		} else if ("".equals(torneio.getEncaminhamentoMkt())) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Encaminhar ao marketing em' !");
@@ -186,7 +187,7 @@ public class TorneioNegocio {
 		for (Atleta atleta : listaAtletasPart) {
 			if (atleta.getColocacao() == null || "".equals(atleta.getColocacao())) {
 				lista.add(false);
-				lista.add("Favor informar corretamente a colocaÃ§Ã£o do(a) atleta " + atleta.getNome() + "!");
+				lista.add("Favor informar corretamente a colocação do(a) atleta " + atleta.getNome() + "!");
 				break;
 			}
 		}

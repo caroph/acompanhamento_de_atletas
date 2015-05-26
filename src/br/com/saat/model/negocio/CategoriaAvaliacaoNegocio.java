@@ -19,13 +19,13 @@ public class CategoriaAvaliacaoNegocio {
 			lista.add("Informe corretamente o campo 'Nome' !");
 		} else if(categoria.getIdadeMinima() <= 0){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Idade m√≠nima' !");
+			lista.add("Informe corretamente o campo 'Idade mÌnima' !");
 		} else if(categoria.getIdadeMaxima() <= 0){
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Idade m√°xima' !");
+			lista.add("Informe corretamente o campo 'Idade m·xima' !");
 		} else if(categoria.getIdadeMinima() > categoria.getIdadeMaxima()){
 			lista.add(false);
-			lista.add("'Idade m√≠nima' deve ser menos ou igual a 'Idade m√°xima' !");
+			lista.add("'Idade mÌnima' deve ser menos ou igual a 'Idade m·xima' !");
 		} else if(categoria.getSexo() == 0){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Sexo' !");

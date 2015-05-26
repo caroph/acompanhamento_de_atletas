@@ -16,7 +16,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.salvarPresencaChamada(idChamada, idAtleta, estadoPresenca, justificativa);
 		}catch(Exception ex){
-			throw new Exception("Erro ao registrar presen√ßa");
+			throw new Exception("Erro ao registrar presenÁa");
 		}
 	}
 
@@ -25,7 +25,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.salvarPresencaChamada(presenca);
 		}catch(Exception ex){
-			throw new Exception("Erro ao registrar presen√ßa");
+			throw new Exception("Erro ao registrar presenÁa");
 		}
 	}
 
@@ -34,7 +34,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.buscarPresencasPorChamada(idChamada);
 		}catch(Exception ex){
-			throw new Exception("Erro ao registrar presen√ßa");
+			throw new Exception("Erro ao registrar presenÁa");
 		}
 	}
 
@@ -43,7 +43,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.excluirPresencaChamada(idChamada);
 		}catch(Exception ex){
-			throw new Exception("Erro ao alterar presen√ßa chamada");
+			throw new Exception("Erro ao alterar presenÁa chamada");
 		}
 	}
 
@@ -72,7 +72,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.verificarPresenca(idChamada, idAtleta);
 		}catch(Exception ex){
-			throw new Exception("Erro ao verificar se j√° existe presen√ßa para o atleta chamada");
+			throw new Exception("Erro ao verificar se j· existe presenÁa para o atleta chamada");
 		}
 	}
 
@@ -82,7 +82,7 @@ public class PresencaChamadaNegocio {
 		try{
 			return dao.salvarPresencaChamada(idChamada, idAtleta, estadoPresenca, justificativa, tpPresenca);
 		}catch(Exception ex){
-			throw new Exception("Erro ao salvar presen√ßa");
+			throw new Exception("Erro ao salvar presenÁa");
 		}
 	}
 	

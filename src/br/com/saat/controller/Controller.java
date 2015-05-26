@@ -75,10 +75,10 @@ public class Controller extends HttpServlet {
 		
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || usuarioLogado.getIdPessoa() == 0){
-			//Destroir sess√£o
+			//Destroir sess„o
 			session.invalidate();
 			//Setar mensagem de erro
-			request.setAttribute("msgErro", "Voc√™ n√£o possui permiss√£o de acesso ao sistema!"); 
+			request.setAttribute("msgErro", "VocÍ n„o possui permiss„o de acesso ao sistema!"); 
 			retorno = String.format("%s/Index.jsp", Constants.VIEW);
 			
 		}else if("alterarSenhaUsuario".equals(action)){
@@ -179,15 +179,15 @@ public class Controller extends HttpServlet {
 							if(idPresencaChamada == 0){
 								if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
 										presenca, null)){
-									msgSucesso = "Presen√ßa registrada com sucesso!";
+									msgSucesso = "PresenÁa registrada com sucesso!";
 								}else{
-									msg = "Ocorreu algum erro ao salvar a presen√ßa do atleta!";
+									msg = "Ocorreu algum erro ao salvar a presenÁa do atleta!";
 								}
 							}else{
-								msg = "J√° existe presen√ßa registrada para o atleta neste hor√°rio!";
+								msg = "J· existe presenÁa registrada para o atleta neste hor·rio!";
 							}
 						}else{
-							msg = "O atleta n√£o est√° em treino neste hor√°rio!";
+							msg = "O atleta n„o est· em treino neste hor·rio!";
 						}
 						
 					} catch (Exception e) {
@@ -254,7 +254,7 @@ public class Controller extends HttpServlet {
 					}		
 				}
 				catch(Exception ex){
-					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relat√≥rio!");
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatÛrio!");
 					request.setAttribute("dataAtual", new Date());
 					retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
 				}
@@ -301,7 +301,7 @@ public class Controller extends HttpServlet {
 					} catch (Exception e) {
 						request.setAttribute("msgAlerta", e.getMessage());
 					}
-					request.setAttribute("msgErro", "Erro ao gerar relat√≥rio! Favor tente novamente.");
+					request.setAttribute("msgErro", "Erro ao gerar relatÛrio! Favor tente novamente.");
 					retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
 				}
 			} else{
@@ -379,7 +379,7 @@ public class Controller extends HttpServlet {
 					}		
 				}
 				catch(Exception ex){
-					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relat√≥rio!");
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatÛrio!");
 					request.setAttribute("dataAtual", new Date());
 					retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
 				}
@@ -434,7 +434,7 @@ public class Controller extends HttpServlet {
 						ops.write(bytes);
 					}				
 				}catch(Exception ex){
-					request.setAttribute("msgErro", "Erro ao gerar relat√≥rio! Favor tente novamente.");
+					request.setAttribute("msgErro", "Erro ao gerar relatÛrio! Favor tente novamente.");
 					request.setAttribute("dataAtual", new Date());
 					retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
 				}
@@ -474,7 +474,7 @@ public class Controller extends HttpServlet {
 				try{
 					compartilhar = Integer.parseInt(optCompartilhar);
 				}catch(Exception ex){
-					msgErro = "Favor preencher com quem ser√° compartilhado!";
+					msgErro = "Favor preencher com quem ser· compartilhado!";
 					exception = true;
 				}
 				try{
@@ -511,7 +511,7 @@ public class Controller extends HttpServlet {
 						List<Integer> usuarios = usuarioNegocio.buscarIdUsuarios(compartilhar);
 						for (int idUsuario : usuarios) {
 							if(negocio.salvarVisualizacaoObservacao(observacao.getIdObservacao(), idUsuario)){
-								msgSucesso = "Observa√ß√£o salva com sucesso!";
+								msgSucesso = "ObservaÁ„o salva com sucesso!";
 							}
 						}
 					}					
@@ -558,7 +558,7 @@ public class Controller extends HttpServlet {
 				try{
 					idObservacao = Integer.parseInt(observacao);
 				}catch(Exception ex){
-					msgErro = "Erro! Observa√ß√£o n√£o encontrada!";
+					msgErro = "Erro! ObservaÁ„o n„o encontrada!";
 					exception = true;
 				}
 				ObservacaoNegocio obsNegocio = new ObservacaoNegocio();
@@ -567,7 +567,7 @@ public class Controller extends HttpServlet {
 				try {
 					if(!exception){
 						if(obsNegocio.desativarObservacao(idObservacao)){
-							msgSucesso = "Observa√ß√£o desativada com sucesso!";
+							msgSucesso = "ObservaÁ„o desativada com sucesso!";
 						}
 					}
 					listaObsAtivas = obsNegocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
@@ -594,7 +594,7 @@ public class Controller extends HttpServlet {
 				try{
 					idObservacao = Integer.parseInt(obs);
 				}catch(Exception ex){
-					msgErro = "Erro ao identificar a observa√ß√£o!";
+					msgErro = "Erro ao identificar a observaÁ„o!";
 				}
 				
 				List<Observacao> listaObsAtivas = new ArrayList<Observacao>();
@@ -603,7 +603,7 @@ public class Controller extends HttpServlet {
 					ObservacaoNegocio negocio = new ObservacaoNegocio();
 					try {
 						if(!negocio.salvarObservacaoVisualizada(idObservacao, usuarioLogado.getIdPessoa())){
-							msgErro = "Erro ao salvar visualiza√ß√£o!";
+							msgErro = "Erro ao salvar visualizaÁ„o!";
 						}
 						listaMinhasObs = negocio.buscarMinhasObservacoes(usuarioLogado.getIdPessoa());
 						listaObsAtivas = negocio.buscarObservacoesAtivas(usuarioLogado.getIdPessoa());
@@ -647,23 +647,23 @@ public class Controller extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String retorno = String.format("%s/Index.jsp", Constants.VIEW);
 		
-		//Usu√°rio inv√°lido
+		//Usu·rio inv·lido
 		if(usuario == null || usuario.getIdPessoa() == 0){
-			//Destroir sess√£o
+			//Destroir sess„o
 			session.invalidate();
 			//Setar mensagem de erro
 			if(login)
-				request.setAttribute("msgErro", "Email ou senha inv√°lidos!"); 
+				request.setAttribute("msgErro", "Email ou senha inv·lidos!"); 
 			else
-				request.setAttribute("msgErro", "Voc√™ n√£o possui permiss√£o de acesso ao sistema!"); 
-		//Usu√°rio v√°lido
+				request.setAttribute("msgErro", "VocÍ n„o possui permiss„o de acesso ao sistema!"); 
+		//Usu·rio v·lido
 		}else{
-			//Pegar p√°gina para redirecionamento
+			//Pegar p·gina para redirecionamento
 			usuarioNegocio = new UsuarioNegocio();
 			retorno = usuarioNegocio.retornoLogin(usuario);
 			
 			if(login){
-				//Criar sess√£o de usu√°rio logado
+				//Criar sess„o de usu·rio logado
 				if (session == null) {
 					session = request.getSession();
 				}
@@ -671,9 +671,9 @@ public class Controller extends HttpServlet {
     			
 				Cookie novoCookie;
 				
-				//Criar cookie se a op√ß√£o "Lembrar" estiver habilitada
+				//Criar cookie se a opÁ„o "Lembrar" estiver habilitada
 				if(lembrar){
-					//Criar c√≥digo de cookie
+					//Criar cÛdigo de cookie
 	        		String uuid = UUID.randomUUID().toString();
 	        		//Adicionar cookie
 	        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, uuid, Constants.COOKIE_AGE, usuario); 
@@ -682,9 +682,9 @@ public class Controller extends HttpServlet {
 	        		novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, usuario);
 	        	}
 				
-				//Cookie v√°lido
+				//Cookie v·lido
 				if(novoCookie.getValue() != null){
-					//Adicionar cookie √† navega√ß√£o
+					//Adicionar cookie √† navegaÁ„o
 					response.addCookie(novoCookie);
 				}
 			}

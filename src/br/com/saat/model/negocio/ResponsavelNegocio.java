@@ -39,7 +39,7 @@ public class ResponsavelNegocio {
 			if(dao.inserir(responsavel))
 				return true;
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao inserir o ResponsÃ¡vel");
+			throw new Exception("Erro! Ocorreu algum erro ao inserir o responsável");
 		}
 		return false;
 	}
@@ -50,7 +50,7 @@ public class ResponsavelNegocio {
 			if(dao.alterar(responsavel))
 				return true;
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao alterar o ResponsÃ¡vel");
+			throw new Exception("Erro! Ocorreu algum erro ao alterar o responsável");
 		}
 		return false;
 	}
@@ -61,7 +61,7 @@ public class ResponsavelNegocio {
 			ResponsavelDAO dao = new ResponsavelDAO();
 			lista = dao.buscarTodos();
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsÃ¡veis cadastrados");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis cadastrados");
 		}
 		
 		return lista;
@@ -73,7 +73,7 @@ public class ResponsavelNegocio {
 			ResponsavelDAO dao = new ResponsavelDAO();
 			responsavel = dao.buscarPorId(idResponsavel);
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o responsÃ¡vel selecionado");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o responsável selecionado");
 		}	
 		return responsavel;
 	}
@@ -84,7 +84,7 @@ public class ResponsavelNegocio {
 			if(dao.desativar(idResponsavel))
 				return true;
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao desativar o responsÃ¡vel selecionado");
+			throw new Exception("Erro! Ocorreu algum erro ao desativar o responsável selecionado");
 		}
 		
 		return false;
@@ -96,7 +96,7 @@ public class ResponsavelNegocio {
 			ResponsavelDAO dao = new ResponsavelDAO();
 			lista = dao.buscarRespNaoVinculado(idAtleta);
 		}catch(Exception ex){
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsÃ¡veis");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os responsáveis");
 		}
 		
 		return lista;
@@ -110,7 +110,7 @@ public class ResponsavelNegocio {
 			List<String> emails = dao.buscarEmailResponsaveis(envio);
 			
 			if(emails.isEmpty()){
-				throw new Exception("Mensagem nÃ£o enviada. NÃ£o foram encontrados responsÃ¡veis para a equipe selecionada!");
+				throw new Exception("Mensagem não enviada. Não foram encontrados responsáveis para a equipe selecionada!");
 			}else{
 				for (String string : emails) {
 					enviarEmail(string, assunto, mensagem);
@@ -129,9 +129,9 @@ public class ResponsavelNegocio {
 			email.enviarEmailResponsavel(destinatario, assunto,
 					mensagem);
 		} catch (AddressException e) {
-			throw new Exception("Erro ao identificar email de responsÃ¡vel!");
+			throw new Exception("Erro ao identificar email de responsável!");
 		} catch (MessagingException e) {
-			throw new Exception("Erro ao enviar email ao responsÃ¡vel!");
+			throw new Exception("Erro ao enviar email ao responsável!");
 		}
 	}
 }

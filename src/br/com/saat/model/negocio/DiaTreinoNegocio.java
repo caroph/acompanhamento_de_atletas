@@ -23,7 +23,7 @@ public class DiaTreinoNegocio {
 			lista.add("Selecione corretamente o campo 'Dia da Semana' !");
 		} else if ("".equals(dia.getHrInicio())) {
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'Hora In√≠cio' !");
+			lista.add("Informe corretamente o campo 'Hora InÌcio' !");
 		} else if ("".equals(dia.getHrFim())) {
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Hora Fim' !");
@@ -133,7 +133,7 @@ public class DiaTreinoNegocio {
 			try {
 				hora = (Date)formatter.parse(hr);
 			} catch (Exception e) {
-				throw new Exception("Erro ao formatar o hor√°rio de treino");
+				throw new Exception("Erro ao formatar o hor·rio de treino");
 			}
 		}
 		

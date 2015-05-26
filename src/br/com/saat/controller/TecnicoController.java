@@ -70,7 +70,7 @@ public class TecnicoController extends Controller {
 		RequestDispatcher rd;
 		String servletRetorno = "/TecnicoController";
 		
-		//Verifica autenticaÃ§Ã£o usuÃ¡rio
+		//Verifica autenticação usuÃ¡rio
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || (usuarioLogado.getPerfil() != Perfis.Tecnico.getValor() && usuarioLogado.getPerfil() != Perfis.PreparadorFisico.getValor())){
 			super.doPost(request, response, usuarioLogado, false, false);
@@ -343,7 +343,7 @@ public class TecnicoController extends Controller {
 			
 			try {
 				if (negocio.desativar(torneio, usuario)) {
-					msgSucesso = "Torneio excluÃ­do com sucesso!";
+					msgSucesso = "Torneio excluído com sucesso!";
 				} else {
 					msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -628,7 +628,7 @@ public class TecnicoController extends Controller {
 
 			request.setAttribute("dataAtual", new Date());
 			if("".equals(msgErro))
-				request.setAttribute("msgSucesso", "PresenÃ§a em quadra salva com sucesso!");
+				request.setAttribute("msgSucesso", "Presença em quadra salva com sucesso!");
 			else
 				request.setAttribute("msgErro", msgErro);
 			request.setAttribute("listaDiasTreinos", lista);
@@ -852,12 +852,12 @@ public class TecnicoController extends Controller {
 						}
 						int idAtleta = Integer.parseInt(atleta);
 						if(negocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, estadoPresenca, justificativa, tpPresenca)){
-							msgSucesso = "PresenÃ§a salva com sucesso!";
+							msgSucesso = "Presença salva com sucesso!";
 						}
 					}else{
 						idPresencaChamada = Integer.parseInt(presencaChamada);
 						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca, 0))
-							msgSucesso = "PresenÃ§a salva com sucesso!";
+							msgSucesso = "Presença salva com sucesso!";
 					}
 				}catch(Exception ex){
 					msgErro = ex.getMessage();
@@ -901,7 +901,7 @@ public class TecnicoController extends Controller {
 			try {
 				lista = negocio.buscaTorneiosFinalizados();
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponÃ­vel!");
+					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
 				} else {
 					request.setAttribute("listaTorneios", lista);
 				}
@@ -959,7 +959,7 @@ public class TecnicoController extends Controller {
 					request.setAttribute("msgErro", ex.getMessage());
 				}
 			}else{
-				request.setAttribute("msgErro", "O mÃªs deve ser selecionado!");
+				request.setAttribute("msgErro", "O mês deve ser selecionado!");
 			}
 						
 			request.setAttribute("listaMes", listaMes);
@@ -1001,7 +1001,7 @@ public class TecnicoController extends Controller {
 				bonificacao.setMes(Integer.parseInt(mes));
 				nrMes = Integer.parseInt(mes);
 			}catch(Exception ex){
-				msgErro = "O mÃªs deve ser selecionado previamente!";
+				msgErro = "O mês deve ser selecionado previamente!";
 				exception = true;
 			}
 			try{
@@ -1015,7 +1015,7 @@ public class TecnicoController extends Controller {
 				try{
 					bonificacao.setRankCBT(Integer.parseInt(cbt));
 				}catch(Exception ex){
-					msgErro = "Erro ao identificar rank CBT!";
+					msgErro = "Erro ao identificar ranking CBT!";
 					exception = true;
 				}
 			}
@@ -1023,7 +1023,7 @@ public class TecnicoController extends Controller {
 				try{
 					bonificacao.setRankFPT(Integer.parseInt(fpt));
 				}catch(Exception ex){
-					msgErro = "Erro ao identificar rank FPT!";
+					msgErro = "Erro ao identificar ranking FPT!";
 					exception = true;
 				}
 			}
@@ -1062,13 +1062,13 @@ public class TecnicoController extends Controller {
 				try{
 					if("".equals(avaliacaoDesempenho)){
 						if(negocio.salvarBonificacaoAtleta(bonificacao)){
-							request.setAttribute("msgSucesso", "BonificaÃ§Ã£o cadastrada com sucesso!");
+							request.setAttribute("msgSucesso", "Bonificação cadastrada com sucesso!");
 						}
 					}else{
 						int idBonificacao = Integer.parseInt(avaliacaoDesempenho);
 						bonificacao.setIdAvaliacaoDesempenho(idBonificacao);
 						if(negocio.editarBonificacaoAtleta(bonificacao)){
-							request.setAttribute("msgSucesso", "BonificaÃ§Ã£o editada com sucesso!");
+							request.setAttribute("msgSucesso", "Bonificação editada com sucesso!");
 						}
 					}
 				}catch(Exception ex){
@@ -1110,7 +1110,7 @@ public class TecnicoController extends Controller {
 				if(!listaAvaliacao.isEmpty()){
 					request.setAttribute("listaAvaliacao", listaAvaliacao);
 				}else{
-					request.setAttribute("msgAlerta", "Nenhuma avaliaÃ§Ã£o fÃ­sica registrada.");
+					request.setAttribute("msgAlerta", "Nenhuma avaliação física registrada.");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());

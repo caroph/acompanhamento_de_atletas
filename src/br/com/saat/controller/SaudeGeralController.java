@@ -182,7 +182,7 @@ public class SaudeGeralController extends Controller {
 					if(!lista.isEmpty()){
 						request.setAttribute("listaProntuario", lista);
 					}else{
-						request.setAttribute("msgAlerta", "Nenhum histÃ³rico disponÃ­vel para esse atleta.");
+						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
 					}
 				}catch(Exception ex){
 					request.setAttribute("msgErro", ex.getMessage());
@@ -216,13 +216,13 @@ public class SaudeGeralController extends Controller {
 				ProntuarioNegocio negocio = new ProntuarioNegocio();
 				try{
 	                if(negocio.excluir(idProntuario)){
-	                	request.setAttribute("msgSucesso", "Atendimento excluido com sucesso!");  
+	                	request.setAttribute("msgSucesso", "Atendimento excluído com sucesso!");  
 	                	try{
 	    					List<Prontuario> lista = negocio.buscaHistorico(idAtleta, idUsuario);
 	    					if(!lista.isEmpty()){
 	    						request.setAttribute("listaProntuario", lista);
 	    					}else{
-	    						request.setAttribute("msgAlerta", "Nenhum histÃ³rico disponÃ­vel para esse atleta.");
+	    						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
 	    					}
 	    				}catch(Exception ex){
 	    					request.setAttribute("msgErro", ex.getMessage());

@@ -25,7 +25,7 @@ public class AvaliacaoFisicaNegocio {
 				avaliacaoFisica.setAvaliacaoResultado(avalResult);
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliaÃ§Ã£o fÃ­sica.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
 		}
 		return listaAvaliacaoFis;
 	}
@@ -38,7 +38,7 @@ public class AvaliacaoFisicaNegocio {
 				retorno = true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliaÃ§Ã£o fÃ­sica.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
 		}
 		return retorno;
 	}
@@ -50,7 +50,7 @@ public class AvaliacaoFisicaNegocio {
 		try {
 			listaAvaliacao = avalFisDAO.buscaAvaliacoes();
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar as Ãºltimas avaliaÃ§Ãµes fÃ­sicas.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as últimas avaliações físicas.");
 		}
 		
 		return listaAvaliacao;
@@ -70,7 +70,7 @@ public class AvaliacaoFisicaNegocio {
 				} 
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliaÃ§Ã£o fÃ­sica.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
 		}
 		return avaliacao;
 	}

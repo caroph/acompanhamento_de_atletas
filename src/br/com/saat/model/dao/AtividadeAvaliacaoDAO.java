@@ -28,14 +28,14 @@ public class AtividadeAvaliacaoDAO {
 		if (tipoConsulta == 0) {
 			
 			stmtScript = con.prepareStatement("SELECT idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste "
-					+ "FROM atividadeAvaliacao "
+					+ "FROM atividadeavaliacao "
 					+ "WHERE flCadastroAtivo = 1");
 			
 		} else {
 			
 			stmtScript = con.prepareStatement("SELECT aa.idAtividadeAvaliacao, idUnidadeDeMedida, capacidade, teste "
-					+ "FROM atividadeAvaliacao aa "
-					+ "LEFT JOIN categoriaAtividade ca "
+					+ "FROM atividadeavaliacao aa "
+					+ "LEFT JOIN categoriaatividade ca "
 					+ "ON ca.idAtividadeAvaliacao = aa.idAtividadeAvaliacao "
 					+ "AND ca.idCategoriaAvaliacao = ? "
 					+ "AND ca.flCadastroAtivo = 1 "
@@ -62,7 +62,7 @@ public class AtividadeAvaliacaoDAO {
 	public boolean desativar(AtividadeAvaliacao atividade) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("UPDATE atividadeAvaliacao "
+		stmtScript = con.prepareStatement("UPDATE atividadeavaliacao "
 				+ "SET flCadastroAtivo = 0 "
 				+ "WHERE idAtividadeAvaliacao = ? ");
 		
@@ -77,7 +77,7 @@ public class AtividadeAvaliacaoDAO {
 	public boolean inserir(AtividadeAvaliacao atividade) throws SQLException {
 		boolean retorno = false;
 		
-		stmtScript = con.prepareStatement("INSERT INTO atividadeAvaliacao "
+		stmtScript = con.prepareStatement("INSERT INTO atividadeavaliacao "
 				+ "(idUnidadeDeMedida, capacidade, teste) "
 				+ " VALUES (?, ?, ?)");
 		

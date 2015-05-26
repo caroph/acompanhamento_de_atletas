@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.saat.core.BCrypt;
 import br.com.saat.core.Constants;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.CookieNegocio;
@@ -32,15 +31,15 @@ public class AutenticadorController extends Controller {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session;
 		
-		//Descobrindo a√ß√£o desejada
+		//Descobrindo aÁ„o desejada
 		String action = request.getParameter("action");
-		//Criando sess√£o
+		//Criando sess„o
 		session = request.getSession();
 		
 		///Login
 		if("login".equals(action)){
 			
-			//Pegar par√¢metros
+			//Pegar parametros
 			String email = request.getParameter("email");
 			//Criptografar senha
 			String senha = request.getParameter("senha") + Constants.PASS_KEY;
@@ -50,10 +49,10 @@ public class AutenticadorController extends Controller {
             UsuarioNegocio negocio = new UsuarioNegocio();
             
             try {
-            	//Autenticar usu√°rio
+            	//Autenticar usu·rio
 				usuario = negocio.autenticar(email, senha);
 				
-				//Chamar a classe pai para verificar o usu√°rio autenticado
+				//Chamar a classe pai para verificar o usu·rio autenticado
 	        	super.doPost(request, response, usuario, lembrar, true);
 			} catch (Exception e) {
 				request.setAttribute("msgErro", e.getMessage());  
@@ -67,7 +66,7 @@ public class AutenticadorController extends Controller {
             //Destruir cookie
             Cookie novoCookie = CookieNegocio.addCookie(Constants.COOKIE_NAME, null, 0, null);
             if(novoCookie != null){
-				//Adicionar cookie √† navega√ß√£o
+				//Adicionar cookie √† navegaÁ„o
 				response.addCookie(novoCookie);
 			}
             

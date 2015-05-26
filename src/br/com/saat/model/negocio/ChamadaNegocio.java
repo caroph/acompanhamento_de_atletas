@@ -42,10 +42,10 @@ public class ChamadaNegocio {
 	
 		if("".equals(data)){
 			lista.add(false);
-			lista.add("O campo 'Data' Ã© obrigatÃ³rio!");
+			lista.add("O campo 'Data' é obrigatório!");
 		}else if("".equals(hora)){
 			lista.add(false);
-			lista.add("O campo 'Hora' Ã© obrigatÃ³rio!");
+			lista.add("O campo 'Hora' é obrigatório!");
 		}else{
 			lista.add(true);
 		}

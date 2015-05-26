@@ -1,11 +1,11 @@
 package br.com.saat.enumeradores;
 
 public enum GrauParentesco {
-	Mae (1, "M√£e"),
+	Mae (1, "M„e"),
 	Pai (2, "Pai"),
 	Tio (3, "Tio(a)"),
-	Irmao (4, "Irm√£o(√£)"),
-	Avo (5, "Av√¥(√≥)"),
+	Irmao (4, "Irm„o(„)"),
+	Avo (5, "AvÛ(Ù)"),
 	Outros (6, "Outros");
 	
 	private int valor;

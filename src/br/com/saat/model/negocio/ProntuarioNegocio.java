@@ -19,7 +19,7 @@ public class ProntuarioNegocio {
 			lista.add("Selecione corretamente o campo 'Hora' !");
 		} else if ("".equals(prontuario.getAnotacao())) {
 			lista.add(false);
-			lista.add("Informe corretamente o campo 'AnotaÃ§Ã£o' !");
+			lista.add("Informe corretamente o campo 'Anotação' !");
 		} else {
 			lista.add(true);
 		}
@@ -49,7 +49,7 @@ public class ProntuarioNegocio {
 			List<Prontuario> lista = dao.buscaHistorico(idAtleta, idUsuario);
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar o histÃ³rico de atendimentos.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o histórico de atendimentos.");
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class ProntuarioNegocio {
 			List<Prontuario> lista = dao.buscaUltimosAtend(idUsuario);
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os Ãºltimos atendimentos.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os últimos atendimentos.");
 		}
 	}
 
