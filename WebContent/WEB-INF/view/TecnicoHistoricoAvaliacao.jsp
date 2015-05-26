@@ -37,7 +37,7 @@
 													</div>
 													<c:if test="${sessionScope.usuarioLogado.perfil == 6}">
 														<div class="col-md-1 column" style="padding-top: 8px;">
-															<a class="link-green" data-toggle="modal" href="#novaAvaliacao" onclick="passarDadosAvaliacao('${avaliacao.idAvaliacaoFisica}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+															<a class="link-green" data-toggle="modal" onclick="editarAvaliacaoFis('${avaliacao.idAvaliacaoFisica}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 															<a class="link-red" href="AvaliacaoFisController?action=excluirAvaliacao&idAvaliacaoFisica=${avaliacao.idAvaliacaoFisica}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir a avaliação física selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 														</div>
 													</c:if>
@@ -66,6 +66,7 @@
 														</table>
 													</div>
 													<div class="col-md-12 column">
+														<p><b>Característica: </b><c:out value='${avaliacao.getNomeCaracteristica()}'/></p>
 														<p><b>Observação geral: </b><c:out value='${avaliacao.observacaoGeral}'/></p>
 													</div>
 												</div>
@@ -80,6 +81,22 @@
 			<!--End Content-->
 		</div>
 	</div>
+	
+	<!-- Avaliação -->
+	<div class="modal fade" id="avaliacaoFis" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"
+		class="modal hide fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+					<h4 class="modal-title" id="myModalLabel">Avaliação física</h4>
+				</div>
+				<div class="modal-body body-avaliacao">
+				</div>
+			</div>
+		</div>
+	</div>	
+	
 	<%@include file="/layout/footer.jsp"%>
 	<%@include file="Modals.jsp"%>
 

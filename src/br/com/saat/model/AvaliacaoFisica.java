@@ -12,6 +12,7 @@ public class AvaliacaoFisica {
 	private int idUsuResp;
 	private int idTpCaracteristica;
 	private Date dtAvaliacao;
+	private String dtAvaliacaoDisplay;
 	private String observacaoGeral;
 	private List<AvaliacaoResultado> avaliacaoResultado;
 	
@@ -57,7 +58,12 @@ public class AvaliacaoFisica {
 	public void setAvaliacaoResultado(List<AvaliacaoResultado> avaliacaoResultado) {
 		this.avaliacaoResultado = avaliacaoResultado;
 	}
-	
+	public String getDtAvaliacaoDisplay() {
+		return dtAvaliacaoDisplay;
+	}
+	public void setDtAvaliacaoDisplay(String dtAvaliacaoDisplay) {
+		this.dtAvaliacaoDisplay = dtAvaliacaoDisplay;
+	}
 	public String getNomeCaracteristica(){
 		String retorno = "";
 		switch (this.idTpCaracteristica) {

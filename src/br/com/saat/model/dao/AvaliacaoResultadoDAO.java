@@ -87,7 +87,7 @@ public class AvaliacaoResultadoDAO {
 	public List<AvaliacaoResultado> buscarResultDesempenho(int idAvaliacaoFisica) throws SQLException {
 		List<AvaliacaoResultado> resultDesempenho = new ArrayList<AvaliacaoResultado>();
 		
-		stmtScript = con.prepareStatement("SELECT capacidade, teste, desempenho, "
+		stmtScript = con.prepareStatement("SELECT ca.idCategoriaAtividade, capacidade, teste, idUnidadeDeMedida, desempenho, "
 				+ "CASE "
 				+ "WHEN desempenho < melhorar THEN 'Nenhuma referência atingida' "
 				+ "WHEN desempenho >= melhorar AND desempenho < media THEN 'Melhorar' "
@@ -111,8 +111,10 @@ public class AvaliacaoResultadoDAO {
 			AtividadeAvaliacao atividade = new AtividadeAvaliacao();
 			atividade.setCapacidade(rs.getString("capacidade"));
 			atividade.setTeste(rs.getString("teste"));
+			atividade.setIdUnidadeDeMedida(rs.getInt("idUnidadeDeMedida"));
 			
 			CategoriaAtividade catAtiv = new CategoriaAtividade();
+			catAtiv.setIdCategoriaAtividade(rs.getInt("idCategoriaAtividade"));
 			catAtiv.setAtividadeAvaliacao(atividade);
 			
 			AvaliacaoResultado resultado = new AvaliacaoResultado();
@@ -133,6 +135,24 @@ public class AvaliacaoResultadoDAO {
 		stmtScript.setInt(1, idAvaliacaoFisica);
 		
 		if (stmtScript.executeUpdate() >= 0) {
+			retorno = true;
+		}
+		
+		return retorno;
+	}
+
+	public boolean editar(AvaliacaoResultado resultado, AvaliacaoFisica avalFis) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("UPDATE  avaliacaoFisicaResultado "
+				+ "SET desempenho = ? "
+				+ "WHERE idCategoriaAtividade = ? AND idAvaliacaoFisica = ? ");
+		
+		stmtScript.setFloat(1, resultado.getDesempenho());
+		stmtScript.setInt(2, resultado.getCategoriaAtividade().getIdCategoriaAtividade());
+		stmtScript.setInt(3, avalFis.getIdAvaliacaoFisica());
+		
+		if (stmtScript.executeUpdate() > 0) {
 			retorno = true;
 		}
 		

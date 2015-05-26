@@ -56,4 +56,23 @@ public class AvaliacaoFisicaNegocio {
 		return listaAvaliacao;
 	}
 
+	public AvaliacaoFisica buscaAvaliacao(int idAvaliacaoFis) throws Exception {
+		AvaliacaoFisica avaliacao = new AvaliacaoFisica();
+		AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
+		
+		try {
+			avaliacao = avalFisDAO.buscaAvaliacao(idAvaliacaoFis);
+			if(avaliacao != null) {
+				AvaliacaoResultadoNegocio negocioResul = new AvaliacaoResultadoNegocio();
+				List<AvaliacaoResultado> listaResult = negocioResul.buscarResulDesempenho(idAvaliacaoFis);
+				if (!listaResult.isEmpty()) {
+					avaliacao.setAvaliacaoResultado(listaResult);
+				} 
+			}
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o(s) resultado(s) do(s) desempenho(s) na avaliação física.");
+		}
+		return avaliacao;
+	}
+
 }

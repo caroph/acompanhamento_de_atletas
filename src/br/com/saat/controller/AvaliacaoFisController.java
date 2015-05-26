@@ -687,6 +687,7 @@ public class AvaliacaoFisController extends Controller {
 			lista.put("tpCaracteristica", tpCaracteristica);
 			lista.put("listaUnidades", listaUnidades);
 			lista.put("listaAvaResul", listaAvaResul);
+			lista.put("idAvaliacaoFisica", 0);
 			
 			String json = new Gson().toJson(lista);
 
@@ -713,6 +714,13 @@ public class AvaliacaoFisController extends Controller {
 			AvaliacaoResultadoNegocio avaResulNegocio = new AvaliacaoResultadoNegocio();
 			List<AvaliacaoResultado> listaAvaResul = new ArrayList<AvaliacaoResultado>();
 			List<AvaliacaoResultado> avaliacaoResul = new ArrayList<AvaliacaoResultado>();
+			
+			try {
+				idAvaliacaoFisica = Integer.parseInt(request.getParameter("idAvaliacaoFisica"));
+			} catch (Exception ex) {
+				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
 			
 			try {
 				idCaracteristica = Integer.parseInt(request.getParameter("caracteristica"));
@@ -760,13 +768,27 @@ public class AvaliacaoFisController extends Controller {
 					avalFis.setDtAvaliacao(dtAvaliacao);
 					avalFis.setObservacaoGeral(request.getParameter("observacaoGeral"));
 					
-					//Inserir
 					try {
-						idAvaliacaoFisica = avaResulNegocio.inserirResultado(avaliacaoResul, avalFis);
-						if (idAvaliacaoFisica > 0) {
-							msgSucesso = "Avaliação física inserida com sucesso!";
-							
-							//Buscar resultado
+						if (idAvaliacaoFisica == 0) {
+							//Inserir
+							idAvaliacaoFisica = avaResulNegocio.inserirResultado(avaliacaoResul, avalFis);
+							if (idAvaliacaoFisica > 0) {
+								msgSucesso = "Avaliação física inserida com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro ao inserir a avaliação física! Favor tentar novamente.";
+							}
+						} else{
+							//Alterar
+							avalFis.setIdAvaliacaoFisica(idAvaliacaoFisica);
+							if (avaResulNegocio.editar(avaliacaoResul, avalFis)) {
+								msgSucesso = "Avaliação física editada com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro ao editar a avaliação física! Favor tentar novamente.";
+							}
+						}
+						
+						//Buscar resultado
+						if (!"".equals("msgSucesso")) {
 							List<AvaliacaoResultado> resulDesempenho = avaResulNegocio.buscarResulDesempenho(idAvaliacaoFisica);
 							if (resulDesempenho.size() <= 0 || resulDesempenho == null) {
 								msgAlerta = "Falha ao buscar resultado(s) do(s) desempenho(s) na avaliação física.";
@@ -776,9 +798,8 @@ public class AvaliacaoFisController extends Controller {
 									msgAlerta += result.getCategoriaAtividade().getAtividadeAvaliacao().getTeste() + " - <b>" + result.getResultado() + "</b></br>";
 								}
 							}
-						} else {
-							msgErro = "Ocorreu algum erro ao inserir a avaliação física! Favor tentar novamente.";
 						}
+						
 					} catch (Exception e) {
 						msgErro = e.getMessage();
 					}
@@ -863,6 +884,40 @@ public class AvaliacaoFisController extends Controller {
 			
 			retorno = String.format("%s/TecnicoHistoricoAvaliacao.jsp", Constants.VIEW);
 			
+		} else if ("jspEditarAvaliacaoFis".equals(action)) {
+			int idAvaliacaoFis = Integer.parseInt(request.getParameter("idAvaliacaoFis"));
+			
+			AvaliacaoFisicaNegocio negocio = new AvaliacaoFisicaNegocio();
+			AvaliacaoFisica avaliacao = new AvaliacaoFisica();
+			
+			try {
+				avaliacao = negocio.buscaAvaliacao(idAvaliacaoFis);
+				
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				avaliacao.setDtAvaliacaoDisplay(formatter.format(avaliacao.getDtAvaliacao()));
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			TpCaracteristicaNegocio caractNegocio = new TpCaracteristicaNegocio();
+			List<String> tpCaracteristica = caractNegocio.listaTpCaracteristicaString();
+			
+			UnidadeDeMedidaNegocio unidadeNegocio = new UnidadeDeMedidaNegocio();
+			List<String> listaUnidades = unidadeNegocio.listaUnidadeDeMedidaString();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("tpCaracteristica", tpCaracteristica);
+			lista.put("listaUnidades", listaUnidades);
+			lista.put("avaliacao", avaliacao);
+			lista.put("idAvaliacaoFisica", idAvaliacaoFis);
+			
+			String json = new Gson().toJson(lista);
+
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    response.getWriter().write(json);
+		
 		} else{
 		//Página Principal
 		retorno = String.format("%s/TecnicoPrincipal.jsp", Constants.VIEW);

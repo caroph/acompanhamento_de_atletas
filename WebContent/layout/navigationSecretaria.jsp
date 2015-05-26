@@ -57,6 +57,7 @@
 				<li><a class="" href="SecretariaController?action=jspFrequenciaTorneio">Frequência em torneios</a></li>
 				<li><a class="" href="SecretariaController?action=jspRelatorioTreinos">Presença em treinos</a></li>
 				<li><a class="" href="SecretariaController?action=jspRelatorioConsultaMedica">Presença consultas médicas</a></li>
+				<li><a class="" href="SecretariaController?action=jspRelatorioDesempenhoAvalFis">Desempenho em avaliação física</a></li>
 			</ul>
 		</li>	
 

@@ -115,4 +115,50 @@ public class AvaliacaoFisicaDAO {
 		
 		return listaAvaliacaoFis;
 	}
+
+	public AvaliacaoFisica buscaAvaliacao(int idAvaliacaoFis) throws SQLException {
+		AvaliacaoFisica avaliacao = new AvaliacaoFisica();
+		
+		stmtScript = con.prepareStatement("SELECT idAvaliacaoFisica, idTpCaracteristica, dtAvaliacao, observacaoGeral, idAtleta "
+				+ "FROM avaliacaoFisica "
+				+ "WHERE idAvaliacaoFisica = ?");
+		
+		stmtScript.setInt(1, idAvaliacaoFis);
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if (rs.next()) {
+			avaliacao.setIdAvaliacaoFisica(rs.getInt(1));
+			avaliacao.setIdTpCaracteristica(rs.getInt(2));
+			avaliacao.setDtAvaliacao(rs.getDate(3));
+			avaliacao.setObservacaoGeral(rs.getString(4));
+			
+			Atleta atleta = new Atleta();
+			atleta.setIdPessoa(rs.getInt(5));
+			avaliacao.setAtleta(atleta);
+		}
+		
+		return avaliacao;
+	}
+
+	public boolean editar(AvaliacaoFisica avalFis) throws SQLException {
+		boolean retorno = false;
+		
+		stmtScript = con.prepareStatement("UPDATE avaliacaoFisica "
+				+ "SET idTpCaracteristica = ?, dtAvaliacao = ?, observacaoGeral = ? "
+				+ "WHERE idAvaliacaoFisica = ? ");
+		
+		stmtScript.setInt(1, avalFis.getIdTpCaracteristica());
+		stmtScript.setDate(2, new java.sql.Date(avalFis.getDtAvaliacao().getTime()));
+		stmtScript.setString(3, avalFis.getObservacaoGeral());
+		stmtScript.setInt(4, avalFis.getIdAvaliacaoFisica());
+		
+		stmtScript.executeUpdate();
+		
+		if(stmtScript.executeUpdate() > 0){
+			retorno = true;
+		}
+				
+		return retorno;
+	}
 }

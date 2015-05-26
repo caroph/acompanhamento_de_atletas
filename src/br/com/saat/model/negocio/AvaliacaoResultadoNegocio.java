@@ -69,4 +69,27 @@ public class AvaliacaoResultadoNegocio {
 		return retorno;
 	}
 
+	public boolean editar(List<AvaliacaoResultado> avaliacaoResul,
+			AvaliacaoFisica avalFis) throws Exception {
+		boolean retorno = true;
+		
+		try {
+			AvaliacaoResultadoDAO avalResulDAO = new AvaliacaoResultadoDAO();
+			AvaliacaoFisicaDAO avalFisDAO = new AvaliacaoFisicaDAO();
+			
+			if (avalFisDAO.editar(avalFis)) {
+				for (AvaliacaoResultado resultado : avaliacaoResul) {
+					if (!avalResulDAO.editar(resultado, avalFis)) {
+						retorno = false;
+						break;
+					}
+				}
+			} 
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao inserir a avaliação física.");
+		}
+		
+		return retorno;
+	}
+
 }

@@ -303,6 +303,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			var caract = data.tpCaracteristica;
 			
 			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + idAtleta + "' method='post'>"
+			+ "<input type='hidden' name='idAvaliacaoFisica' value='" + item.idAvaliacaoFisica + "'/>"
 			+ "<div class='form-group'>"
 			+ "<div class='col-sm-4'>"
 			+ "<label for='dtAvaliacao' class='text-left'>Data:</label>"
@@ -363,6 +364,82 @@ function abrirModalAvaliacaoFis(idAtleta) {
 				+ "</div>" + "</form>";
 			}
 		$('.body-avaliacao').html(html);
+		}
+	});
+}
+
+function editarAvaliacaoFis(idAvaliacaoFis) {
+	$("#avaliacaoFis").modal();	
+	$.ajax({
+		type : "POST",
+		url : "AvaliacaoFisController?action=jspEditarAvaliacaoFis&idAvaliacaoFis="
+				+ idAvaliacaoFis,
+		success : function(data) {
+			var caract = data.tpCaracteristica;
+			var unidade = data.listaUnidades;
+			
+			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + data.avaliacao.atleta.idPessoa + "' method='post'>"
+			+ "<input type='hidden' name='idAvaliacaoFisica' value='" + data.avaliacao.idAvaliacaoFisica + "'/>"
+			+ "<div class='form-group'>"
+			+ "<div class='col-sm-4'>"
+			+ "<label for='dtAvaliacao' class='text-left'>Data:</label>"
+			+ "<input type='date' class='form-control' id='dtAvaliacao' name='dtAvaliacao' value='" + data.avaliacao.dtAvaliacaoDisplay +  "' required/>"
+			+ "</div>"
+			+ "<div class='col-sm-8'>"
+			+ "<label for='caracteristica' class='text-left'>Caracter\u00edstica:</label>"
+			+ "<select class='form-control' id='caracteristica' name='caracteristica' required>"
+			+ "<option value=''>Selecione</option>";
+			$.each(
+					caract,
+					function(index, item) {
+						if (index + 1 == data.avaliacao.idTpCaracteristica) {
+							html += "<option selected value='" + (index + 1) + "'>" + item + "</option>";
+						} else{
+							html += "<option value='" + (index + 1) + "'>" + item + "</option>";
+						}
+					});
+            html += "</select>"
+			+ "</div>"
+			+ "</div>"
+			+ "<div class='form-group'>"
+			+ "<div class='col-sm-12'>"
+			+ "<label class='text-left'>Observa\u00e7\u00e3o geral:</label>"
+			+ "<input type='text' class='form-control' name='observacaoGeral' maxlength='255' value='" + data.avaliacao.observacaoGeral + "'/>"
+			+ "</div>"
+			+ "</div><br/>";
+
+            html += "<small class='col-sm-12'><b>Atividades para avalia\u00e7\u00e3o f\u00edsica baseadas no sexo e idade cronol\u00f3gica do atleta selecionado.</b></small><br/><br/>"
+				
+			html += 
+					"<div class='form-group col-sm-12'>" + 
+					"<table class='table'>" +
+					"<thead><tr>" +
+					"<th style='padding:5px'>Capacidade</th>" +
+					"<th style='padding:5px'>Teste</th>" +
+					"<th style='padding:5px'>Medida</th>" +
+					"<th style='padding:5px'>Desempenho</th>" +
+					"</tr></thead><tbody>";
+
+			$.each(
+				data.avaliacao.avaliacaoResultado,
+				function(index, item) {
+					html += "<tr>" +
+							"<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.capacidade + "</td>";
+					html += "<td style='padding:5px'>" + item.categoriaAtividade.AtividadeAvaliacao.teste  + "</td>";
+					html += "<td style='padding:5px'>" + unidade[item.categoriaAtividade.AtividadeAvaliacao.idUnidadeDeMedida - 1] + "</td>";
+					html += "<td style='padding:5px'><input type='number' step='any' class='control-label' name='desempenho" + item.categoriaAtividade.idCategoriaAtividade + "' value='" + item.desempenho + "'/></td>";
+					html += "<input type='hidden' name='idCategoriaAtividade' value='" + item.categoriaAtividade.idCategoriaAtividade + "'/>"
+					html += "</tr>"
+				});
+			html += "</tbody></table>" + 
+					"</div>";
+
+			html += "<div class='modal-footer'>"
+				+ "<button type='submit' class='btn btn-primary'>Salvar</button>"
+				+ "<button type='button' class='btn btn-danger' data-dismiss='modal' id='fechar'>Cancelar</button>"
+				+ "</div>" + "</form>";
+
+			$('.body-avaliacao').html(html);
 		}
 	});
 }
