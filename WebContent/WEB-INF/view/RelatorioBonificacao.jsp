@@ -63,7 +63,7 @@
 														<input type="number" class="form-control" name="ano" id="ano" value="${ano}"/>
 													</div>
 													<div class="col-md-4" align="right">
-														<button type="submit" class="btn btn-primary"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
+														<button type="submit" class="link-green btn-vazio"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</form>
@@ -104,7 +104,7 @@
 														</select>
 													</div>
 													<div class="col-md-3" align="right">
-														<button type="submit" class="btn btn-primary"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
+														<button type="submit" class="link-green btn-vazio"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</div>												

@@ -55,7 +55,7 @@
 															value="<c:out value="${dataAtual}"/>" id="dataFim" />
 													</div>
 													<div class="col-md-2">
-														<button type="submit" class="btn btn-primary" style="margin: -5%;padding: 3%;"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
+														<button type="submit" class="link-green btn-vazio" style="margin: -5%;padding: 3%;"><abbr title="Gerar relatório"><i class="fa fa-large fa-file-pdf-o"></i></abbr></button>
 													</div>
 												</div>
 											</form>
