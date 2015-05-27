@@ -79,7 +79,7 @@ public class SecretariaController extends Controller {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
 
-		// Verifica autenticação usuário
+		// Verifica autenticaï¿½ï¿½o usuï¿½rio
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if (usuarioLogado == null
 				|| usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()) {
@@ -110,7 +110,7 @@ public class SecretariaController extends Controller {
 			}
 			if (listaPendencias == null) {
 				request.setAttribute("msgAlerta",
-						"Nenhum atleta possui pendência!");
+						"Nenhum atleta possui pendï¿½ncia!");
 			}
 
 			request.setAttribute("listaPendencias", listaPendencias);
@@ -120,7 +120,7 @@ public class SecretariaController extends Controller {
 					Constants.VIEW);
 
 		} else if ("jspNovoAtleta".equals(action)) {
-			// Carregar página Novo Atleta
+			// Carregar pï¿½gina Novo Atleta
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 
@@ -184,7 +184,7 @@ public class SecretariaController extends Controller {
 						numero = Integer.parseInt(request
 								.getParameter("numero"));
 					} catch (Exception ex) {
-						msg = "Favor informar corretamente o campo 'Número' do endereço";
+						msg = "Favor informar corretamente o campo 'Nï¿½mero' do endereï¿½o";
 						exception = true;
 					}
 					try {
@@ -357,7 +357,7 @@ public class SecretariaController extends Controller {
 			try {
 				numero = Integer.parseInt(request.getParameter("numero"));
 			} catch (Exception ex) {
-				msg = "Favor informar corretamente o campo 'Número' do endereço";
+				msg = "Favor informar corretamente o campo 'Nï¿½mero' do endereï¿½o";
 				exception = true;
 			}
 			try {
@@ -449,18 +449,18 @@ public class SecretariaController extends Controller {
 					boolean valida = (boolean) listaValidacao.get(0);
 
 					if (valida) {
-						// Valida dados endereço
+						// Valida dados endereï¿½o
 						listaValidacao = endNegocio.validar(endereco);
 						valida = (boolean) listaValidacao.get(0);
 
 						if (valida) {
-							// Valida seleção de dias de treino
+							// Valida seleï¿½ï¿½o de dias de treino
 							if (!"".equals(diasTreino) && diasTreino != null) {
 								if (atleta.getIdPessoa() == 0) {
 									// Inserindo Atleta
 									int idNovoAtleta = negocio.inserir(atleta);
 									if (idNovoAtleta > 0) {
-										// Inserindo endereço
+										// Inserindo endereï¿½o
 										if (endNegocio.inserir(endereco,
 												idNovoAtleta,
 												TpPessoa.Atleta.getValor())) {
@@ -605,7 +605,7 @@ public class SecretariaController extends Controller {
 				idResponsavel = Integer.parseInt(request
 						.getParameter("responsavel"));
 			} catch (Exception ex) {
-				msg = "Favor selecionar um responsável";
+				msg = "Favor selecionar um responsï¿½vel";
 				exception = true;
 			}
 			try {
@@ -625,7 +625,7 @@ public class SecretariaController extends Controller {
 				if (!exception) {
 					if (negocio.vincularResponsavel(idAtleta, idResponsavel,
 							idGrauParentesco)) {
-						msgSucesso = "Responsável vinculado com sucesso!";
+						msgSucesso = "Responsï¿½vel vinculado com sucesso!";
 					}
 				}
 				atleta = negocio.buscarAtleta(idAtleta);
@@ -694,7 +694,7 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgSucesso", msgSucesso);
 
 		} else if ("jspBuscaAtleta".equals(action)) {
-			// Carregar página Buscar Atleta
+			// Carregar pï¿½gina Buscar Atleta
 			AtletaNegocio negocio = new AtletaNegocio();
 			List<Atleta> lista = new ArrayList<Atleta>();
 			try {
@@ -811,7 +811,7 @@ public class SecretariaController extends Controller {
 				if (negocio.ativar(atleta)) {
 					msgSucesso = "Atleta ativado com sucesso!";
 					if(negocio.inserirPendenciaAtleta(atleta.getIdPessoa())){
-						msgSucesso = "Atleta ativado e pendências inseridas com sucesso!";
+						msgSucesso = "Atleta ativado e pendï¿½ncias inseridas com sucesso!";
 					}else{
 						msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 					}
@@ -831,7 +831,7 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspBuscaAtleta";
 
 		} else if ("jspNovoDiaTreino".equals(action)) {
-			// Carregar página Novo Dia de Treino
+			// Carregar pï¿½gina Novo Dia de Treino
 			EquipesNegocio negocioEquipe = new EquipesNegocio();
 			List<Equipes> listaEquipes = negocioEquipe.listaEquipes();
 
@@ -917,7 +917,7 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspBuscaDiaTreino";
 
 		} else if ("jspBuscaDiaTreino".equals(action)) {
-			// Carregar página Buscar Dias de Treinos
+			// Carregar pï¿½gina Buscar Dias de Treinos
 			DiaTreinoNegocio negocio = new DiaTreinoNegocio();
 			List<DiaTreino> lista = new ArrayList<DiaTreino>();
 			try {
@@ -958,7 +958,7 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspBuscaDiaTreino";
 
 		} else if ("jspNovoUsuario".equals(action)) {
-			// Carregar página Novo Usuario
+			// Carregar pï¿½gina Novo Usuario
 			PerfisNegocio negocio = new PerfisNegocio();
 			List<Perfis> lista = negocio.listaPerfis();
 
@@ -968,7 +968,7 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspNovoUsuario";
 
 		} else if ("inserirUsuario".equals(action)) {
-			// Inserir novo usuário
+			// Inserir novo usuï¿½rio
 			boolean exception = false;
 			String msg = "";
 			String msgSucesso = "";
@@ -979,11 +979,11 @@ public class SecretariaController extends Controller {
 				String perfil = request.getParameter("perfil");
 				usuario.setPerfil(Integer.parseInt(perfil));
 			} catch (Exception ex) {
-				msg = "Favor selecionar corretamente o Perfil do Usuário!";
+				msg = "Favor selecionar corretamente o Perfil do Usuï¿½rio!";
 				exception = true;
 			}
 			if (!exception) {
-				// Dados do usuário
+				// Dados do usuï¿½rio
 				String idUsuario = request.getParameter("idUsuario");
 				usuario.setNome(request.getParameter("nome"));
 				usuario.setCREF(request.getParameter("cref"));
@@ -995,20 +995,20 @@ public class SecretariaController extends Controller {
 					if (!"".equals(idUsuario) && !"0".equals(idUsuario)) {
 						usuario.setIdPessoa(Integer.parseInt(idUsuario));
 					}
-					// Valida dados do usuário
+					// Valida dados do usuï¿½rio
 					List<Object> listaValidacao = negocio.validaDados(usuario);
 					boolean valida = (boolean) listaValidacao.get(0);
 
 					if (valida) {
 						if (usuario.getIdPessoa() == 0) {
 							if (negocio.inserir(usuario)) {
-								msgSucesso = "Usuário cadastrado com sucesso!";
+								msgSucesso = "Usuï¿½rio cadastrado com sucesso!";
 							} else {
 								msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
 						} else {
 							if (negocio.alterar(usuario)) {
-								msgSucesso = "Usuário alterado com sucesso!";
+								msgSucesso = "Usuï¿½rio alterado com sucesso!";
 							} else {
 								msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
@@ -1035,7 +1035,7 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspBuscaUsuario";
 
 		} else if ("jspBuscaUsuario".equals(action)) {
-			// Carregar página Buscar Usuario
+			// Carregar pï¿½gina Buscar Usuario
 			UsuarioNegocio negocio = new UsuarioNegocio();
 			List<Usuario> lista = new ArrayList<Usuario>();
 			try {
@@ -1083,7 +1083,7 @@ public class SecretariaController extends Controller {
 
 			try {
 				if (negocio.desativar(usuario)) {
-					msgSucesso = "Usuário excluido com sucesso!";
+					msgSucesso = "Usuï¿½rio excluido com sucesso!";
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -1167,7 +1167,7 @@ public class SecretariaController extends Controller {
 							msg = (String) listaValidacaoResponsavel.get(1);
 						} else {
 							try {
-								// verifica se Ã© uma inserção ou alteração
+								// verifica se Ã© uma inserï¿½ï¿½o ou alteraï¿½ï¿½o
 								String idResponsavel = request
 										.getParameter("idResponsavel");
 								String idEnderecoResidencial = request
@@ -1193,7 +1193,7 @@ public class SecretariaController extends Controller {
 									if (responsavelNegocio.alterar(responsavel)) {
 										// seta os dados para que sejam
 										// carregados na pagina de retorno
-										msgSucesso = "Responsável alterado com sucesso!";
+										msgSucesso = "Responsï¿½vel alterado com sucesso!";
 										Endereco enderecoResidencial = responsavel
 												.getEnderecos().get(0)
 												.getTpEndereco() == TpEndereco.Residencial
@@ -1223,7 +1223,7 @@ public class SecretariaController extends Controller {
 
 								} else {
 									if (responsavelNegocio.inserir(responsavel))
-										msgSucesso = "Responsável salvo com sucesso!";
+										msgSucesso = "Responsï¿½vel salvo com sucesso!";
 									else
 										msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 								}
@@ -1236,7 +1236,7 @@ public class SecretariaController extends Controller {
 					}
 				}
 			} catch (NumberFormatException ex) {
-				msg = "Favor informar corretamente o campo 'Número' dos endereços";
+				msg = "Favor informar corretamente o campo 'Nï¿½mero' dos endereï¿½os";
 			} catch (ParseException ex) {
 				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			}
@@ -1276,7 +1276,7 @@ public class SecretariaController extends Controller {
 
 				// desativa o responsavel
 				if (responsavelNegocio.desativar(idResponsavel)) {
-					msgSucesso = "Responsável excluído com sucesso!";
+					msgSucesso = "Responsï¿½vel excluï¿½do com sucesso!";
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -1423,7 +1423,7 @@ public class SecretariaController extends Controller {
 								documento.setValidade(df.parse(s));
 							// documento.setValidade(new java.util.Date(s));
 						}
-						// se não for um form field Ã© um arquivo
+						// se nï¿½o for um form field Ã© um arquivo
 					} else {
 						String path = getUploadPath(documento);
 						InputStream in = item.getInputStream();
@@ -1431,21 +1431,21 @@ public class SecretariaController extends Controller {
 								documento.getTpDocumento(),
 								documento.getIdPessoa(), item.getName());
 						if (!nmDocumento
-								.equals("Extensão de arquivo inválida!")
+								.equals("Extensï¿½o de arquivo invï¿½lida!")
 								&& !nmDocumento
-										.equals("Tipo de arquivo inválido!")) {
+										.equals("Tipo de arquivo invï¿½lido!")) {
 							path += "\\" + nmDocumento;
 							File arquivo = new File(path);
 
 							FileOutputStream out = new FileOutputStream(arquivo);
-							// lê o input e joga dentro do arquivo atravÃ©s de um
+							// lï¿½ o input e joga dentro do arquivo atravÃ©s de um
 							// OutputStream
 							int c;
 							while ((c = in.read()) != -1)
 								out.write(c);
 							out.close();
-
-							documento.setSrc("..\\saatDocumentacaoAtletas"
+//							EM DESENV: COLOCAR UM "\\" NA FRENTE DO NOME DA PASTA
+							documento.setSrc("saatDocumentacaoAtletas"
 									+ "\\"
 									+ String.valueOf(documento.getIdPessoa()
 											+ "\\" + nmDocumento));
@@ -1528,7 +1528,7 @@ public class SecretariaController extends Controller {
 			try {
 				lista = negocio.buscaTorneiosFinalizados();
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
+					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponï¿½vel!");
 				} else {
 					request.setAttribute("listaTorneios", lista);
 				}
@@ -1561,7 +1561,7 @@ public class SecretariaController extends Controller {
 			try{
 				envio = Integer.parseInt(optEnvio);
 			}catch(Exception ex){
-				msgErro = "Erro ao identificar os destinatários do email!";
+				msgErro = "Erro ao identificar os destinatï¿½rios do email!";
 			}
 			
 			if(msgErro.equals("") && envio != 0){
@@ -1617,43 +1617,43 @@ public class SecretariaController extends Controller {
 			for (Documento documento : listaDocumento) {
 				if (documento.getTpDocumento() == TpDocumento.termoDeCompromisso
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					termoDeCompromisso = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.declaracaoMedica
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					declaracaoMedica = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.autorizacaoDeViagem
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					autorizacaoViagem = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.autorizacaoDeImagem
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					autorizacaoImagem = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.copiaDoRG
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					copiaRG = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.copiaDoCPF
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					copiaCPF = documento;
 				} else if (documento.getTpDocumento() == TpDocumento.fotoDoAtleta
 						.getValor()) {
-					// troca todos os '/' por '//' - importante p/ visualização
+					// troca todos os '/' por '//' - importante p/ visualizaï¿½ï¿½o
 					// no js
 					documento.setSrc(documento.getSrc().replace("\\", "\\\\"));
 					fotoAtleta = documento;
@@ -1661,7 +1661,7 @@ public class SecretariaController extends Controller {
 			}
 
 		} catch (ParseException ex) {
-			msg = "idPessoa Inválido!";
+			msg = "idPessoa Invï¿½lido!";
 		} catch (Exception ex) {
 			msg = ex.getMessage();
 		}
@@ -1696,7 +1696,7 @@ public class SecretariaController extends Controller {
 
 		if (!extensao.equals("") || extensao != null) {
 			if (!extensoesValidas.contains(extensao.toLowerCase()))
-				return "Extensão de arquivo inválida!";
+				return "Extensï¿½o de arquivo invï¿½lida!";
 		}
 
 		// valida qual vai ser o nome do documento
@@ -1715,7 +1715,7 @@ public class SecretariaController extends Controller {
 		else if (tpDocumento == TpDocumento.fotoDoAtleta.getValor())
 			nmDocumento = "foto_atleta";
 		else
-			return "Tipo de arquivo inválido!";
+			return "Tipo de arquivo invï¿½lido!";
 
 		return String.valueOf(idPessoa) + "_" + nmDocumento + "." + extensao;
 	}
@@ -1724,9 +1724,10 @@ public class SecretariaController extends Controller {
 		// String path =
 		// getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\"
 		// + String.valueOf(documento.getIdPessoa()));
-		String path = getServletContext().getRealPath("")
-				+ "\\..\\saatDocumentacaoAtletas" + "\\"
-				+ String.valueOf(documento.getIdPessoa());
+		String path = getServletContext().getRealPath("\\saatDocumentacaoAtletas\\" + String.valueOf(documento.getIdPessoa()));
+//		TRECHO DE CÃ“DIGO UTILIZADO EM DESENV
+//				+ "\\..\\saatDocumentacaoAtletas" + "\\"
+//				+ String.valueOf(documento.getIdPessoa());
 
 		// verifica se a pasta do aluno esta criada
 		if (criaDiretorio(path)) {
@@ -1737,7 +1738,7 @@ public class SecretariaController extends Controller {
 	}
 
 	private boolean criaDiretorio(String path) {
-		// Se a pasta não existir cria, caso não consiga criar retorna falso
+		// Se a pasta nï¿½o existir cria, caso nï¿½o consiga criar retorna falso
 		try {
 			if (!Paths.get(path).toFile().exists()) {
 				File dir = new File(path);
