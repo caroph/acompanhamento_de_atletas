@@ -318,6 +318,7 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaNovoAtleta.jsp",
 					Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspNovoAtleta";
+			
 		} else if ("inserirAtleta".equals(action)) {
 			boolean exception = false;
 			String escolha;

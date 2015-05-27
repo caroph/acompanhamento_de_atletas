@@ -50,7 +50,7 @@ public class NutricionistaController extends Controller {
 		RequestDispatcher rd;
 		String servletRetorno = "/NutricionistaController?action=jspPaginaInicialNutricionista";
 		
-		//Verifica autenticaÃ§Ã£o usuário
+		//Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if(usuarioLogado == null || usuarioLogado.getPerfil() != Perfis.Nutricionista.getValor()){
 			super.doPost(request, response, usuarioLogado, false, false);
@@ -115,9 +115,9 @@ public class NutricionistaController extends Controller {
 				int idAtleta = Integer.parseInt(request.getParameter("idAtleta"));			
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				
-				//Verifica se abre a página jsp em modo de ediÃ§Ã£o ou inserÃ§Ã£o
+				//Verifica se abre a página jsp em modo de edição ou inserção
 				if(request.getParameter("idFichaDeAtendimento").equals("0")){
-					// inserÃ§Ã£o
+					// inserção
 					ficha = fichaNegocio.buscarUltimaFicha(idAtleta);
 					ficha.setIdFichaDeAtendimento(0);
 				}else{
@@ -223,7 +223,7 @@ public class NutricionistaController extends Controller {
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				if(ficha.getIdFichaDeAtendimento() > 0){
 					if(fichaNegocio.alterar(ficha)){
-						msgSucesso = "EdiÃ§Ã£o realizada com sucesso!";
+						msgSucesso = "Edição realizada com sucesso!";
 						ficha = fichaNegocio.buscarUltimaFicha(ficha.getIdAtleta());
 					}
 				}else{
@@ -264,14 +264,18 @@ public class NutricionistaController extends Controller {
 				
 			}	
 			
-			request.setAttribute("msgErro", msg);
-			request.setAttribute("msgSucesso", msgSucesso);
-			request.setAttribute("fichaAtendimento", ficha);
-			request.setAttribute("atleta", atleta);
-			request.setAttribute("strIdade", strIdade);
+			if("".equals(msgSucesso)){
+				request.setAttribute("msgErro", msg);
+				request.setAttribute("fichaAtendimento", ficha);
+				request.setAttribute("atleta", atleta);
+				request.setAttribute("strIdade", strIdade);
+			} else {
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+
 			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);		
 			servletRetorno = "/NutricionistaController?action=jspFichaDeAtendimento&idAtleta=" + 
-				request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
+			request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
 			
 		}else if("jspHistoricoAtendimento".equals(action)){
 			String msg = "";
