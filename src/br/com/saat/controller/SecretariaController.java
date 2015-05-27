@@ -1434,7 +1434,7 @@ public class SecretariaController extends Controller {
 								.equals("Extens�o de arquivo inv�lida!")
 								&& !nmDocumento
 										.equals("Tipo de arquivo inv�lido!")) {
-							path += "\\" + nmDocumento;
+							path += "/" + nmDocumento;
 							File arquivo = new File(path);
 
 							FileOutputStream out = new FileOutputStream(arquivo);
@@ -1446,9 +1446,9 @@ public class SecretariaController extends Controller {
 							out.close();
 //							EM DESENV: COLOCAR UM "\\" NA FRENTE DO NOME DA PASTA
 							documento.setSrc("saatDocumentacaoAtletas"
-									+ "\\"
+									+ "/"
 									+ String.valueOf(documento.getIdPessoa()
-											+ "\\" + nmDocumento));
+											+ "/" + nmDocumento));
 							// documento.setSrc("\\\\..\\\\saatDocumentacaoAtletas"
 							// +"\\\\" + String.valueOf(documento.getIdPessoa()
 							// + "\\\\" + nmDocumento));
@@ -1724,7 +1724,7 @@ public class SecretariaController extends Controller {
 		// String path =
 		// getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\"
 		// + String.valueOf(documento.getIdPessoa()));
-		String path = getServletContext().getRealPath("\\saatDocumentacaoAtletas\\" + String.valueOf(documento.getIdPessoa()));
+		String path = getServletContext().getRealPath("/saatDocumentacaoAtletas/" + String.valueOf(documento.getIdPessoa() + "/"));
 //		TRECHO DE CÓDIGO UTILIZADO EM DESENV
 //				+ "\\..\\saatDocumentacaoAtletas" + "\\"
 //				+ String.valueOf(documento.getIdPessoa());
