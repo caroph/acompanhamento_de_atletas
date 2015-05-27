@@ -7,6 +7,12 @@
     left: -5px;
       padding-right: 5px;
 }
+
+.btn-vazio{
+	background-color: white;
+  	border: 0;
+}
+
 .list-group-item-primary {
     color: #fff;
     background-color: #9BBE94;

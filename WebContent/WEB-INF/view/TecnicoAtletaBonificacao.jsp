@@ -85,17 +85,17 @@
 																	</c:if>
 																</c:if>
 															</td>
-															<td align="center"><a onclick="visualizarBonificacao('${atleta.nome}', '${bonificacao.bonificado}', 
+															<td align="center"><button class="link-blue btn-vazio" onclick="visualizarBonificacao('${atleta.nome}', '${bonificacao.bonificado}', 
 															'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
-															'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="link-blue"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a></td>
+															'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></button></td>
 															<td align="center">
 																<c:if test="${bonificacao.idAvaliacaoDesempenho != 0}">
-																	<a onclick="editarBonificacao('${atleta.idPessoa}', '${bonificacao.idAvaliacaoDesempenho}', '${bonificacao.bonificado}', 
+																	<button onclick="editarBonificacao('${atleta.idPessoa}', '${bonificacao.idAvaliacaoDesempenho}', '${bonificacao.bonificado}', 
 																		'${bonificacao.torneios}', '${bonificacao.treinos}', '${bonificacao.avaliacoes}', '${bonificacao.rankFPT}', 
-																		'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="link-green"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+																		'${bonificacao.rankCBT}', '${bonificacao.rankITF}', '${bonificacao.observacoes}')" class="link-green btn-vazio"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></button>
 																</c:if>
 																<c:if test="${bonificacao.idAvaliacaoDesempenho == 0}">
-																	<a onclick="cadastrarBonificacao('${atleta.idPessoa}')" class="link-green"><abbr title="Cadastrar bonificação"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
+																	<button onclick="cadastrarBonificacao('${atleta.idPessoa}')" class="link-green btn-vazio"><abbr title="Cadastrar bonificação"><i class="fa fa-large fa-plus-circle"></i></abbr></button>
 																</c:if>
 															</td>
 														</tr>

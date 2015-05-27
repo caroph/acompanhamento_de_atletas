@@ -779,11 +779,12 @@ function editarBonificacao(idAtleta, idAvaliacao, bonificado, torneios, treinos,
 }
 
 function desabilitaBotoesTabela(){
-	$(".table").find("a").attr("disabled", "disabled");
+	$(".table").find("button").attr("disabled", "disabled");
+	$(".table").find("i").css("color", "grey");
 }
 
 function habilitaBotoesTabela(){
-	$(".table").find("a").removeAttr("disabled");
+	$(".table").find("button").removeAttr("disabled");
 }
 
 function visualizarBonificacao(atleta, bonificado, torneios, treinos, avaliacoes, fpt, cbt, itf, obs){
