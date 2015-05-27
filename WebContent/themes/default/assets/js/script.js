@@ -96,17 +96,20 @@ function formartarDataInput(){
 
 // Limpar Campos
 function LimparCampos() {
-	$(":time").each(function() {
+	$("time").each(function() {
 		$(this).val("");
 	});
 	$("select").each(function() {
 		$(this).val("Selecione");
 	});
-	$(":textarea").each(function() {
+	$("textarea").each(function() {
 		$(this).val("");
 	});
-	$(":input").each(function() {
+	$("input").each(function() {
 		$(this).val("");
+	});
+	$.each(CKEDITOR.instances, function(index, item) {
+		item.setData("");
 	});
 }
 
