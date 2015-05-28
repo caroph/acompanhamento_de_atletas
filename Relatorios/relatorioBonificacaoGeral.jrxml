@@ -118,7 +118,7 @@ ORDER BY a.nome]]>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="22" width="79" height="20" uuid="2fa5c39e-e89e-4639-a906-ef507c7d8ebf"/>
-				<textFieldExpression><![CDATA[$F{rankCBT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[( $F{rankCBT} != null ?  $F{rankCBT} + "º" : "" )]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="179" y="22" width="80" height="20" uuid="d5789cc6-c39f-406f-8238-59a2accb7e65"/>
@@ -126,7 +126,7 @@ ORDER BY a.nome]]>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="259" y="22" width="100" height="20" uuid="480e7776-3375-40ef-ad80-e86f15ed7159"/>
-				<textFieldExpression><![CDATA[$F{rankFPT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[( $F{rankFPT} != null ?  $F{rankFPT} + "º" : "" )]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="359" y="22" width="68" height="20" uuid="a12ddc79-c30d-4a13-8c47-5810133f0da9"/>
@@ -134,7 +134,7 @@ ORDER BY a.nome]]>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="427" y="22" width="100" height="20" uuid="b9167d91-3b5a-4abf-8ef7-25b10d325f92"/>
-				<textFieldExpression><![CDATA[$F{rankITF}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[( $F{rankITF} != null ?  $F{rankITF} + "º" : "" )]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="23" y="42" width="62" height="20" uuid="e0a8a0d2-e51c-4da4-9016-246a09d92b89"/>

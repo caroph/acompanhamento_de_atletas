@@ -83,7 +83,7 @@
 								</div>
 								<div class="box-content">
 									<div class="row clearfix"> 
-										<form action="#" method="post"
+										<form action="Controller?action=gerarRelatorioBonificacaoIndividual" method="post"
 											target="_blank">
 											<div class="col-md-12 form-group">
 												<div class="col-md-2" style="text-align: right">
@@ -91,7 +91,7 @@
 												</div>
 												<div class="col-md-10">
 													<div class="col-md-9">
-														<select name="mes" class="form-control" id="mes">
+														<select name="atleta" class="form-control" id="atleta">
 															<option value="0" selected>Selecione</option>
 															<c:forEach var="atleta" items="${listaAtleta}">
 																<option value="${atleta.idPessoa}"><c:out value="${atleta.nome}"/></option>

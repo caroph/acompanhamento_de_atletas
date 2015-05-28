@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioBonificacaoIndividual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4610222e-9c5f-4d46-b200-20a91c360db5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAtleta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.nome, ad.avaliacoes, ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes,
+ad.mes, ad.ano
+FROM atleta a
+JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta
+WHERE a.flCadastroAtivo = 1 AND a.idAtleta = $P{idAtleta}
+ORDER BY ad.ano, ad.mes]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="avaliacoes" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="torneios" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="treinos" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankCBT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankFPT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankITF" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bonificado" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ano" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="128" y="29" width="427" height="41" uuid="ad6d96a0-d640-4464-88e8-b3b388c0e25d"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Bonificação Indivídual]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="100" height="101" uuid="232a153b-71c9-4571-b42d-3fa37bbd6d43"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22">
+			<textField>
+				<reportElement x="100" y="0" width="455" height="20" uuid="d4183481-9cb5-46f5-a260-4052c62ab4c4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="dc060b50-c5d7-4231-a97c-ab3716a1f9d2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Atleta:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="152" splitType="Stretch">
+			<textField>
+				<reportElement x="89" y="27" width="100" height="20" uuid="4ae00764-0160-406c-918a-f0e32b3734f1"/>
+				<textFieldExpression><![CDATA[( $F{bonificado} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="27" width="89" height="20" uuid="92e49e3e-8655-49c1-9efd-f5e229f8a02c"/>
+				<text><![CDATA[Atleta bonificado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="48" width="100" height="20" uuid="9145395a-3c37-4d91-8a54-918fe931f401"/>
+				<textFieldExpression><![CDATA[( $F{avaliacoes} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="48" width="64" height="20" uuid="f9e8a611-5800-4305-933e-b39314bac05e"/>
+				<text><![CDATA[Avaliações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="215" y="48" width="89" height="20" uuid="56436829-c63e-4771-b602-ef0d690f3893"/>
+				<textFieldExpression><![CDATA[( $F{torneios} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="164" y="48" width="51" height="20" uuid="4e069f37-7c4a-4a56-a6af-ddec5132f70c"/>
+				<text><![CDATA[Torneios:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="347" y="47" width="100" height="20" uuid="3b420555-2108-4618-918d-89ab95c86ae9"/>
+				<textFieldExpression><![CDATA[( $F{treinos} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="304" y="47" width="43" height="20" uuid="5a799750-09c1-466a-ad7f-5c52f6b81b57"/>
+				<text><![CDATA[Treinos:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="78" y="68" width="100" height="20" uuid="ffedfc4c-b367-48aa-96fe-ee9552848fb6"/>
+				<textFieldExpression><![CDATA[( $F{rankCBT} != null ?  $F{rankCBT} + "º" : "" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="68" width="78" height="20" uuid="2e4b9e81-e948-4de0-bf45-f161174306c0"/>
+				<text><![CDATA[Ranking CBT:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="251" y="68" width="100" height="20" uuid="1d93682a-85f3-4db2-9471-9d10be0a674d"/>
+				<textFieldExpression><![CDATA[( $F{rankFPT} != null ?  $F{rankFPT} + "º" : "" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="68" width="73" height="20" uuid="2a8a263b-98ad-4e7e-95d1-4c2d9b425fac"/>
+				<text><![CDATA[Ranking FPT:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="418" y="68" width="100" height="20" uuid="2626a02c-84f2-4f13-966c-75718384eedf"/>
+				<textFieldExpression><![CDATA[( $F{rankITF} != null ?  $F{rankITF} + "º" : "" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="68" width="71" height="20" uuid="dee51726-d9a3-424b-a0dd-73b98e71629d"/>
+				<text><![CDATA[Ranking ITF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="88" width="491" height="37" uuid="b585c67f-866b-48dc-a084-2a6837aebdb2"/>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="88" width="64" height="20" uuid="38b7e021-d6a7-439c-a6d6-b0fec7e69e6d"/>
+				<text><![CDATA[Observações:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="138" width="555" height="1" uuid="f0bd3a80-7949-47b1-b04c-3e85a90a4fee"/>
+			</line>
+			<staticText>
+				<reportElement x="130" y="0" width="33" height="20" uuid="e8fe3404-53f4-45af-a460-f60e86a9bd67"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Mês:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="0" width="100" height="20" uuid="49142805-31b2-4491-a209-f2ad73d20f00"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="0" width="100" height="20" uuid="cee6f879-c698-4a2d-b34a-60c229ebf751"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="7f059212-38d8-4da4-a946-b2f6ca773fd7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5"/>
+	</columnFooter>
+</jasperReport>
