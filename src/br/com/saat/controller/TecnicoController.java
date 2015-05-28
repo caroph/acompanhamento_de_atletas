@@ -1101,7 +1101,30 @@ public class TecnicoController extends Controller {
 			retorno = String.format("%s/TecnicoAtletaBonificacao.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspAtletaBonificacao";
 			
-		} else{
+		} else if("jspRelatorioBonificacao".equals(action)){
+			
+			Date date = new Date();
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(date);
+		    int ano = cal.get(Calendar.YEAR);
+		    MesNegocio mesNegocio = new MesNegocio();
+			List<Mes> listaMes = mesNegocio.listarMes();
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+											
+			request.setAttribute("listaAtleta", listaAtleta);					
+			request.setAttribute("listaMes", listaMes);
+			request.setAttribute("ano", ano);
+			
+			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspRelatorioBonificacao";
+			
+		}else{
 			//Página Principal
 			AvaliacaoFisicaNegocio negocio = new AvaliacaoFisicaNegocio();
 			

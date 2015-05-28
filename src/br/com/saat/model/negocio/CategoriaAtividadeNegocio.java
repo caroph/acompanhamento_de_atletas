@@ -52,7 +52,7 @@ public class CategoriaAtividadeNegocio {
 			List<CategoriaAtividade> lista = dao.buscaCategoriaAtividade();
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar os dados de referÃªncia.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar os dados de referência.");
 		}
 	}
 
@@ -64,7 +64,7 @@ public class CategoriaAtividadeNegocio {
 				retorno = true;
 			}
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao o dados de referÃªncia.");
+			throw new Exception("Erro! Ocorreu algum erro ao o dados de referência.");
 		}
 		return retorno;
 	}
@@ -75,7 +75,7 @@ public class CategoriaAtividadeNegocio {
 			List<CategoriaAtividade> lista = dao.buscarAtividades(categoria);
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referÃªncia.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referência.");
 		}
 	}
 
@@ -124,7 +124,7 @@ public class CategoriaAtividadeNegocio {
 			List<CategoriaAtividade> lista = dao.buscarAtividadesCat(idCategoria);
 			return lista;
 		} catch (Exception e) {
-			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referÃªncia.");
+			throw new Exception("Erro! Ocorreu algum erro ao buscar as atividades do dado de referência.");
 		}
 	}
 

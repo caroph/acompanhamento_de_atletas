@@ -295,7 +295,7 @@ public class NutricionistaController extends Controller {
 					atleta = atletaNegocio.buscarAtleta(idAtleta);
 					listaAtendimentos = fichaNegocio.buscarHistoricoAtendimento(idAtleta);
 					
-					//OBSERVAÃ‡Ã•ES ATIVAS/HISTORICO TAMBÃ‰M DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!!
+					//OBSERVAÃ‡Ã•ES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!!
 					
 					if(listaAtendimentos == null || listaAtendimentos.isEmpty()){
 						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");

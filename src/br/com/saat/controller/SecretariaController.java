@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,6 +31,7 @@ import br.com.saat.core.JavaMailApp;
 import br.com.saat.enumeradores.DiasSemana;
 import br.com.saat.enumeradores.Equipes;
 import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.Mes;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TpDocumento;
@@ -50,6 +52,7 @@ import br.com.saat.model.negocio.DocumentoNegocio;
 import br.com.saat.model.negocio.EnderecoNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
+import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
@@ -110,7 +113,7 @@ public class SecretariaController extends Controller {
 			}
 			if (listaPendencias == null) {
 				request.setAttribute("msgAlerta",
-						"Nenhum atleta possui pendï¿½ncia!");
+						"Nenhum atleta possui pendência!");
 			}
 
 			request.setAttribute("listaPendencias", listaPendencias);
@@ -184,7 +187,7 @@ public class SecretariaController extends Controller {
 						numero = Integer.parseInt(request
 								.getParameter("numero"));
 					} catch (Exception ex) {
-						msg = "Favor informar corretamente o campo 'Nï¿½mero' do endereï¿½o";
+						msg = "Favor informar corretamente o campo 'Número' do endereço";
 						exception = true;
 					}
 					try {
@@ -357,7 +360,7 @@ public class SecretariaController extends Controller {
 			try {
 				numero = Integer.parseInt(request.getParameter("numero"));
 			} catch (Exception ex) {
-				msg = "Favor informar corretamente o campo 'Nï¿½mero' do endereï¿½o";
+				msg = "Favor informar corretamente o campo 'Número' do endereço";
 				exception = true;
 			}
 			try {
@@ -605,7 +608,7 @@ public class SecretariaController extends Controller {
 				idResponsavel = Integer.parseInt(request
 						.getParameter("responsavel"));
 			} catch (Exception ex) {
-				msg = "Favor selecionar um responsï¿½vel";
+				msg = "Favor selecionar um responsável";
 				exception = true;
 			}
 			try {
@@ -625,7 +628,7 @@ public class SecretariaController extends Controller {
 				if (!exception) {
 					if (negocio.vincularResponsavel(idAtleta, idResponsavel,
 							idGrauParentesco)) {
-						msgSucesso = "Responsï¿½vel vinculado com sucesso!";
+						msgSucesso = "Responsável vinculado com sucesso!";
 					}
 				}
 				atleta = negocio.buscarAtleta(idAtleta);
@@ -811,7 +814,7 @@ public class SecretariaController extends Controller {
 				if (negocio.ativar(atleta)) {
 					msgSucesso = "Atleta ativado com sucesso!";
 					if(negocio.inserirPendenciaAtleta(atleta.getIdPessoa())){
-						msgSucesso = "Atleta ativado e pendï¿½ncias inseridas com sucesso!";
+						msgSucesso = "Atleta ativado e pendências inseridas com sucesso!";
 					}else{
 						msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 					}
@@ -979,7 +982,7 @@ public class SecretariaController extends Controller {
 				String perfil = request.getParameter("perfil");
 				usuario.setPerfil(Integer.parseInt(perfil));
 			} catch (Exception ex) {
-				msg = "Favor selecionar corretamente o Perfil do Usuï¿½rio!";
+				msg = "Favor selecionar corretamente o Perfil do Usuário!";
 				exception = true;
 			}
 			if (!exception) {
@@ -1002,13 +1005,13 @@ public class SecretariaController extends Controller {
 					if (valida) {
 						if (usuario.getIdPessoa() == 0) {
 							if (negocio.inserir(usuario)) {
-								msgSucesso = "Usuï¿½rio cadastrado com sucesso!";
+								msgSucesso = "Usuário cadastrado com sucesso!";
 							} else {
 								msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
 						} else {
 							if (negocio.alterar(usuario)) {
-								msgSucesso = "Usuï¿½rio alterado com sucesso!";
+								msgSucesso = "Usuário alterado com sucesso!";
 							} else {
 								msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 							}
@@ -1083,7 +1086,7 @@ public class SecretariaController extends Controller {
 
 			try {
 				if (negocio.desativar(usuario)) {
-					msgSucesso = "Usuï¿½rio excluido com sucesso!";
+					msgSucesso = "Usuário excluido com sucesso!";
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -1193,7 +1196,7 @@ public class SecretariaController extends Controller {
 									if (responsavelNegocio.alterar(responsavel)) {
 										// seta os dados para que sejam
 										// carregados na pagina de retorno
-										msgSucesso = "Responsï¿½vel alterado com sucesso!";
+										msgSucesso = "Responsável alterado com sucesso!";
 										Endereco enderecoResidencial = responsavel
 												.getEnderecos().get(0)
 												.getTpEndereco() == TpEndereco.Residencial
@@ -1223,7 +1226,7 @@ public class SecretariaController extends Controller {
 
 								} else {
 									if (responsavelNegocio.inserir(responsavel))
-										msgSucesso = "Responsï¿½vel salvo com sucesso!";
+										msgSucesso = "Responsável salvo com sucesso!";
 									else
 										msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 								}
@@ -1236,7 +1239,7 @@ public class SecretariaController extends Controller {
 					}
 				}
 			} catch (NumberFormatException ex) {
-				msg = "Favor informar corretamente o campo 'Nï¿½mero' dos endereï¿½os";
+				msg = "Favor informar corretamente o campo 'Número' dos endereços";
 			} catch (ParseException ex) {
 				msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 			}
@@ -1276,7 +1279,7 @@ public class SecretariaController extends Controller {
 
 				// desativa o responsavel
 				if (responsavelNegocio.desativar(idResponsavel)) {
-					msgSucesso = "Responsï¿½vel excluï¿½do com sucesso!";
+					msgSucesso = "Responsável excluído com sucesso!";
 				} else {
 					msg = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				}
@@ -1431,9 +1434,9 @@ public class SecretariaController extends Controller {
 								documento.getTpDocumento(),
 								documento.getIdPessoa(), item.getName());
 						if (!nmDocumento
-								.equals("Extensï¿½o de arquivo invï¿½lida!")
+								.equals("Extensão de arquivo inválida!")
 								&& !nmDocumento
-										.equals("Tipo de arquivo invï¿½lido!")) {
+										.equals("Tipo de arquivo inválido!")) {
 							path += "/" + nmDocumento;
 							File arquivo = new File(path);
 
@@ -1528,7 +1531,7 @@ public class SecretariaController extends Controller {
 			try {
 				lista = negocio.buscaTorneiosFinalizados();
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponï¿½vel!");
+					request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
 				} else {
 					request.setAttribute("listaTorneios", lista);
 				}
@@ -1561,7 +1564,7 @@ public class SecretariaController extends Controller {
 			try{
 				envio = Integer.parseInt(optEnvio);
 			}catch(Exception ex){
-				msgErro = "Erro ao identificar os destinatï¿½rios do email!";
+				msgErro = "Erro ao identificar os destinatários do email!";
 			}
 			
 			if(msgErro.equals("") && envio != 0){
@@ -1579,6 +1582,25 @@ public class SecretariaController extends Controller {
 			servletRetorno = "/SecretariaController?action=jspEnviarComunicado";
 			
 		} else if("jspRelatorioBonificacao".equals(action)){
+			
+			Date date = new Date();
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(date);
+		    int ano = cal.get(Calendar.YEAR);
+		    MesNegocio mesNegocio = new MesNegocio();
+			List<Mes> listaMes = mesNegocio.listarMes();
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+											
+			request.setAttribute("listaAtleta", listaAtleta);					
+			request.setAttribute("listaMes", listaMes);
+			request.setAttribute("ano", ano);
+			
 			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspRelatorioBonificacao";
 			
@@ -1661,7 +1683,7 @@ public class SecretariaController extends Controller {
 			}
 
 		} catch (ParseException ex) {
-			msg = "idPessoa Invï¿½lido!";
+			msg = "idPessoa Inválido!";
 		} catch (Exception ex) {
 			msg = ex.getMessage();
 		}
@@ -1696,7 +1718,7 @@ public class SecretariaController extends Controller {
 
 		if (!extensao.equals("") || extensao != null) {
 			if (!extensoesValidas.contains(extensao.toLowerCase()))
-				return "Extensï¿½o de arquivo invï¿½lida!";
+				return "Extensão de arquivo inválida!";
 		}
 
 		// valida qual vai ser o nome do documento
@@ -1715,7 +1737,7 @@ public class SecretariaController extends Controller {
 		else if (tpDocumento == TpDocumento.fotoDoAtleta.getValor())
 			nmDocumento = "foto_atleta";
 		else
-			return "Tipo de arquivo invï¿½lido!";
+			return "Tipo de arquivo inválido!";
 
 		return String.valueOf(idPessoa) + "_" + nmDocumento + "." + extensao;
 	}

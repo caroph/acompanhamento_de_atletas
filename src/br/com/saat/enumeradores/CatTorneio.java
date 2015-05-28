@@ -3,7 +3,7 @@ package br.com.saat.enumeradores;
 public enum CatTorneio {
 	Classes (1, "Classes"), 
 	Infanto_Juvenil (2, "Infanto Juvenil"),
-	Intercambio (3, "Intercambio"),
+	Intercambio (3, "Intercâmbio"),
 	Interno (4, "Interno");
 	
 	

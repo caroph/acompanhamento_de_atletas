@@ -1,6 +1,5 @@
 package br.com.saat.model;
 
-import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.UnidadeDeMedida;
 
 public class AtividadeAvaliacao {

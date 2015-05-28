@@ -1,0 +1,6 @@
+SELECT a.nome AS atleta, ad.avaliacoes,
+ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes
+FROM atleta a
+JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta AND ad.mes = $P{mes} AND ad.ano = $P{ano}
+WHERE a.flCadastroAtivo = 1
+ORDER BY a.nome

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioBonificacaoGeral" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a9892d8b-134d-45c3-8165-7232391da543">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.nome AS atleta, ad.avaliacoes,
+ad.torneios, ad.treinos, ad.rankCBT, ad.rankFPT, ad.rankITF, ad.bonificado, ad.observacoes
+FROM atleta a
+JOIN avaliacaodesempenho ad ON a.idAtleta = ad.idAtleta AND ad.mes = $P{mes} AND ad.ano = $P{ano}
+WHERE a.flCadastroAtivo = 1
+ORDER BY a.nome]]>
+	</queryString>
+	<field name="atleta" class="java.lang.String"/>
+	<field name="avaliacoes" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="torneios" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="treinos" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankCBT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankFPT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rankITF" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bonificado" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement x="123" y="31" width="432" height="43" uuid="4ca05562-1070-4f78-80b9-caa24aec7c7b"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Bonificação Geral]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="100" height="103" uuid="6ea07b5c-443c-48fd-9d77-dd0cddff5743"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="51" height="20" uuid="bdce2832-94c7-46cf-8bfb-f0a83320a9a9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mês: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="2" width="40" height="20" uuid="cc3f4d86-9364-40ae-bbb5-dcba22bddcc8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="2" width="88" height="20" uuid="601a90c4-3029-4a7c-b4f4-d82efd004e57"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="2" width="100" height="20" uuid="9ed3e6bc-462b-43db-9323-0c8b23f9435f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="76e5bc75-b93b-4042-a76b-24592fe7dbc7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nome do Atleta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="455" height="20" uuid="02aa087b-847a-4f68-9fc8-badf90d12fe3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atleta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="22" width="77" height="20" uuid="fb42dcf1-e42d-4a60-811a-a092dd4189d5"/>
+				<text><![CDATA[Ranking CBT:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="22" width="79" height="20" uuid="2fa5c39e-e89e-4639-a906-ef507c7d8ebf"/>
+				<textFieldExpression><![CDATA[$F{rankCBT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="179" y="22" width="80" height="20" uuid="d5789cc6-c39f-406f-8238-59a2accb7e65"/>
+				<text><![CDATA[Ranking FPT:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="259" y="22" width="100" height="20" uuid="480e7776-3375-40ef-ad80-e86f15ed7159"/>
+				<textFieldExpression><![CDATA[$F{rankFPT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="359" y="22" width="68" height="20" uuid="a12ddc79-c30d-4a13-8c47-5810133f0da9"/>
+				<text><![CDATA[Ranking ITF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="427" y="22" width="100" height="20" uuid="b9167d91-3b5a-4abf-8ef7-25b10d325f92"/>
+				<textFieldExpression><![CDATA[$F{rankITF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="42" width="62" height="20" uuid="e0a8a0d2-e51c-4da4-9016-246a09d92b89"/>
+				<text><![CDATA[Avaliações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="42" width="79" height="20" uuid="6fcf2734-62bd-4ff7-9358-eaaaac1bd684"/>
+				<textFieldExpression><![CDATA[( $F{avaliacoes} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="164" y="42" width="54" height="20" uuid="bc680fd4-07f9-48f7-af96-906ac249d281"/>
+				<text><![CDATA[Torneios:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="218" y="42" width="100" height="20" uuid="c43b6f00-1288-4625-80d4-79b82fc86cf3"/>
+				<textFieldExpression><![CDATA[( $F{torneios} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="318" y="42" width="54" height="20" uuid="a6e16a14-b2ff-4013-a5af-0f4f18a81c2c"/>
+				<text><![CDATA[Treinos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="42" width="100" height="20" uuid="d9a10401-f412-42da-a584-7056d868cfdb"/>
+				<textFieldExpression><![CDATA[( $F{treinos} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="62" width="77" height="20" uuid="fe4a5f33-81fc-4302-bf23-2e60e9a8d41d"/>
+				<text><![CDATA[Foi bonificado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="62" width="100" height="20" uuid="4b1d1f7c-eec5-4c00-82a7-a7ae8c6fe352"/>
+				<textFieldExpression><![CDATA[( $F{bonificado} ? "Sim" : "Não" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="82" width="77" height="20" uuid="2379efba-17e6-47db-98fd-d8ce552c1076"/>
+				<text><![CDATA[Observações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="82" width="455" height="37" uuid="1fc614cb-c8af-4d29-b4a3-a633a4739ec0"/>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="130" width="555" height="1" uuid="b50a4eeb-5bc3-4c47-bf7f-cd810f611791"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="12" splitType="Stretch"/>
+	</summary>
+</jasperReport>

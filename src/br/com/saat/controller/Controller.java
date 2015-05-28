@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpSession;
 
 import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
+import br.com.saat.enumeradores.Mes;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
 import br.com.saat.enumeradores.Sexo;
@@ -44,6 +46,7 @@ import br.com.saat.model.negocio.DiasSemanaNegocio;
 import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GpTorneioNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
+import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
@@ -294,7 +297,7 @@ public class Controller extends HttpServlet {
 						List<Torneio> lista = new ArrayList<Torneio>();
 						lista = negocio.buscaTorneiosFinalizados();
 						if (lista.isEmpty()) {
-							request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponÃ­vel!");
+							request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
 						} else {
 							request.setAttribute("listaTorneios", lista);
 						}
@@ -622,6 +625,69 @@ public class Controller extends HttpServlet {
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
+		}else if("gerarRelatorioBonificacao".equals(action)){
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 
+					perfil == Perfis.PreparadorFisico.getValor()){
+				String msgErro = "";
+				String mesParametro = request.getParameter("mes");
+				String anoParametro = request.getParameter("ano");
+				int mes = 0;
+				int ano = 0;
+				
+				try{
+					mes = Integer.parseInt(mesParametro);
+				}catch(Exception e){
+					msgErro = "Erro ao identificar o mês!";
+				}			
+				try{
+					ano = Integer.parseInt(anoParametro);
+				}catch(Exception e){
+					msgErro = "Erro ao identificar o ano!";
+				}
+				
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioBonificacaoGeral.jasper");
+					HashMap params = new HashMap();
+					
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+					
+					params.put("mes", mes);				
+					params.put("ano", ano);
+					params.put("caminhoLogo", caminhoImg);
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+				    MesNegocio mesNegocio = new MesNegocio();
+					List<Mes> listaMes = mesNegocio.listarMes();
+					AtletaNegocio negocio = new AtletaNegocio();
+					List<Atleta> listaAtleta = new ArrayList<Atleta>();
+					try{
+						listaAtleta = negocio.buscarAtletas(1);
+					}catch(Exception e){
+						request.setAttribute("msgErro", e.getMessage());
+					}
+													
+					request.setAttribute("listaAtleta", listaAtleta);					
+					request.setAttribute("listaMes", listaMes);
+					request.setAttribute("ano", ano);
+					
+					retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
+				}
+			}else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}			
 		}
 		
 		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){

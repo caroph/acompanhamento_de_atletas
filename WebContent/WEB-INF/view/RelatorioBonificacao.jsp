@@ -35,7 +35,7 @@
 								<div class="box-content">
 									<div class="row clearfix"> 
 										<div class="col-md-12">
-											<form action="#" method="post"
+											<form action="Controller?action=gerarRelatorioBonificacao" method="post"
 												target="_blank">
 												<div class="col-md-6 form-group">
 													<div class="col-md-4" style="text-align: right">
@@ -45,12 +45,7 @@
 														<select name="mes" class="form-control" id="mes">
 															<option value="0" selected>Selecione</option>
 															<c:forEach var="mes" items="${listaMes}">
-																<c:if test="${mesSelecionado == mes.valor}">
-																	<option value="${mes.valor}" selected><c:out value="${mes.nome}"/></option>
-																</c:if>
-																<c:if test="${mesSelecionado != mes.valor}">
-																	<option value="${mes.valor}"><c:out value="${mes.nome}"/></option>
-																</c:if>
+																<option value="${mes.valor}"><c:out value="${mes.nome}"/></option>
 															</c:forEach>
 														</select>
 													</div>
@@ -98,7 +93,7 @@
 													<div class="col-md-9">
 														<select name="mes" class="form-control" id="mes">
 															<option value="0" selected>Selecione</option>
-															<c:forEach var="atleta" items="${listaAtletas}">
+															<c:forEach var="atleta" items="${listaAtleta}">
 																<option value="${atleta.idPessoa}"><c:out value="${atleta.nome}"/></option>
 															</c:forEach>
 														</select>
