@@ -146,7 +146,7 @@ function abrirModalVinculacao(atleta, pagina) {
 			});
 }
 
-function abrirModalUsuario(nome, perfil, email, telefone, celular, cref) {
+function abrirModalUsuario(nome, perfil, email, telefone, celular, cref) { 
 	var html = "<b>Nome:</b> " + nome + "<br/>";
 	html += "<b>Perfil:</b> " + perfil + "<br/>";
 	html += "<b>Email:</b> " + email + "<br/>";
@@ -154,7 +154,7 @@ function abrirModalUsuario(nome, perfil, email, telefone, celular, cref) {
 	html += "<b>Celular:</b> " + celular + "<br/>";
 
 	if (cref != null && cref != "")
-		html += "CREF: " + cref + "<br/>";
+		html += "<b>CREF:</b>: " + cref + "<br/>";
 	$('.body-usuario').html(html);
 }
 

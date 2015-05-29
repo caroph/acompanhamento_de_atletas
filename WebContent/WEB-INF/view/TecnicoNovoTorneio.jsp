@@ -132,7 +132,7 @@
 										<div class="form-group">
 											<div class="form-group col-md-12">
 												 <label for="atletasPart">Atletas participantes: <small>[Disponíveis | Selecionados]</small></label>
-												 <br/><small>(Apenas atletas que possuem cadastro CBT e FBT)</small>
+												 <br/><small>(Apenas atletas que possuem cadastro CBT e FPT)</small>
 												 <div>
 													<select multiple="multiple" id="atletasPart" name="atletasPart">
 														<c:forEach var="atleta" items="${listaAtletasPart}">

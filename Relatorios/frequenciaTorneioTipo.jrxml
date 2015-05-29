@@ -8,11 +8,11 @@
 	<parameter name="caminhoLogo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT a.nome as atleta, t.nome as torneio, colocacao, dtInicial, dtFinal, dscTpTorneio
-FROM atletaTorneio at
+FROM atletatorneio at
 LEFT JOIN atleta a ON at.idAtleta = a.idAtleta
 LEFT JOIN torneio t ON at.idTorneio = t.idTorneio
-LEFT JOIN tpTorneio tt ON t.idTpTorneio = tt.idTpTorneio
-LEFT JOIN atletaResultadoTorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
+LEFT JOIN tptorneio tt ON t.idTpTorneio = tt.idTpTorneio
+LEFT JOIN atletaresultadotorneio art ON a.idAtleta = art.idAtleta AND t.idTorneio = art.idTorneio
 WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}
 ORDER BY dscTpTorneio, a.nome, dtInicial, dtFinal]]>
 	</queryString>

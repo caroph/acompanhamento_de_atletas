@@ -19,9 +19,9 @@ descricao, inscritosGeral, inscritosClube, a.nome as atletaDestaque, motivoDesta
 fotografo, encaminhamentoMkt, u.nome as usuCriacao
 FROM torneio t
 LEFT JOIN naipe n ON t.idNaipe = n.idNaipe
-LEFT JOIN catTorneio c ON t.idCatTorneio = c.idCatTorneio
-LEFT JOIN tpTorneio tp ON t.idTpTorneio = tp.idTpTorneio
-LEFT JOIN gpTorneio g ON t.idGpTorneio = g.idGpTorneio
+LEFT JOIN cattorneio c ON t.idCatTorneio = c.idCatTorneio
+LEFT JOIN tptorneio tp ON t.idTpTorneio = tp.idTpTorneio
+LEFT JOIN gptorneio g ON t.idGpTorneio = g.idGpTorneio
 LEFT JOIN atleta a ON t.idDestaque = a.idAtleta
 LEFT JOIN usuario u ON t.idUsuCriacao = u.idUsuario
 WHERE idTorneio = $P{idTorneio}]]>

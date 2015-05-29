@@ -24,7 +24,7 @@
 							<div class="box">
 								<div class="box-header">
 									<div class="box-name">
-										<i class="fa fa-line-chart"></i><span>Desempenho em avaliações físicas</span>
+										<i class="fa fa-line-chart"></i><span>Resultados de torneios finalizados</span>
 									</div>
 									<div class="box-icons">
 										<a class="expand-link"> <i class="fa fa-expand"></i>

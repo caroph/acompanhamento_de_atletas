@@ -33,7 +33,7 @@ public class JavaMailApp {
                    @Override
                    protected PasswordAuthentication getPasswordAuthentication() 
                    {
-                         return new PasswordAuthentication("naotebukconsertos@gmail.com", "naotebuk2014");
+                         return new PasswordAuthentication("saatnoreply@gmail.com", "s@@t_2o!5");
                    }
               });
 
@@ -42,7 +42,7 @@ public class JavaMailApp {
 
         
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("naotebukconsertos@gmail.com")); //Remetente
+        message.setFrom(new InternetAddress("saatnoreply@gmail.com")); //Remetente
         
         if(tipo == 1){
             
@@ -76,7 +76,7 @@ public class JavaMailApp {
                  @Override
                  protected PasswordAuthentication getPasswordAuthentication() 
                  {
-                       return new PasswordAuthentication("naotebukconsertos@gmail.com", "naotebuk2014");
+                       return new PasswordAuthentication("saatnoreply@gmail.com", "s@@t_2o!5");
                  }
             });
 
@@ -85,7 +85,7 @@ public class JavaMailApp {
 
       
       MimeMessage message = new MimeMessage(session);
-      message.setFrom(new InternetAddress("naotebukconsertos@gmail.com")); //Remetente          
+      message.setFrom(new InternetAddress("saatnoreply@gmail.com")); //Remetente          
       message.setSubject(assunto);//Assunto
       message.setText(mensagem,"utf-8","html");
   
