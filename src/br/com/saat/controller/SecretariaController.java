@@ -1604,6 +1604,14 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspRelatorioBonificacao";
 			
+		}else if("jspGerenciarEmprestimos".equals(action)){
+			String nomeAtleta = request.getParameter("nome");
+			
+			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("nomeAtleta", nomeAtleta);
+			
+			retorno = String.format("%s/SecretariaGerenciarEmprestimos.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspGerenciarEmprestimos";
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
