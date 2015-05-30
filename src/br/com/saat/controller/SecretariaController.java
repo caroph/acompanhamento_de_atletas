@@ -37,6 +37,8 @@ import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.enumeradores.TpEndereco;
 import br.com.saat.enumeradores.TpPessoa;
+import br.com.saat.enumeradores.TpTamanhoUniforme;
+import br.com.saat.enumeradores.TpUniforme;
 import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
@@ -44,6 +46,7 @@ import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.Torneio;
+import br.com.saat.model.Uniforme;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
 import br.com.saat.model.negocio.DiaTreinoNegocio;
@@ -57,7 +60,10 @@ import br.com.saat.model.negocio.PerfisNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
+import br.com.saat.model.negocio.TpTamanhoUniformeNegocio;
+import br.com.saat.model.negocio.TpUniformeNegocio;
 import br.com.saat.model.negocio.TurnoNegocio;
+import br.com.saat.model.negocio.UniformeNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 import com.google.gson.Gson;
@@ -1607,11 +1613,82 @@ public class SecretariaController extends Controller {
 		}else if("jspGerenciarEmprestimos".equals(action)){
 			String nomeAtleta = request.getParameter("nome");
 			
+			TpUniformeNegocio negocio = new TpUniformeNegocio();
+			List<TpUniforme> listaUniformes = negocio.listaTpUniforme();
+			
+			TpTamanhoUniformeNegocio tamanhoNegocio = new TpTamanhoUniformeNegocio();
+			List<TpTamanhoUniforme> listaTamanhos = tamanhoNegocio.listaTpTamanhoUniforme();
+			
+			request.setAttribute("listaUniformes", listaUniformes);
+			request.setAttribute("listaTamanhos", listaTamanhos);
 			request.setAttribute("dataAtual", new Date());
 			request.setAttribute("nomeAtleta", nomeAtleta);
 			
 			retorno = String.format("%s/SecretariaGerenciarEmprestimos.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspGerenciarEmprestimos";
+			
+		}else if("jspGerenciarEstoque".equals(action)){
+			TpUniformeNegocio negocio = new TpUniformeNegocio();
+			List<TpUniforme> listaUniformes = negocio.listaTpUniforme();
+			
+			TpTamanhoUniformeNegocio tamanhoNegocio = new TpTamanhoUniformeNegocio();
+			List<TpTamanhoUniforme> listaTamanhos = tamanhoNegocio.listaTpTamanhoUniforme();
+			
+			request.setAttribute("listaUniformes", listaUniformes);
+			request.setAttribute("listaTamanhos", listaTamanhos);
+			retorno = String.format("%s/SecretariaGerenciarEstoque.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspGerenciarEstoque";
+			
+		}else if("gerenciarEstoque".equals(action)){
+			String msgErro = "";
+			String optEstoque = request.getParameter("optEstoque");
+			List<Uniforme> uniformes = new ArrayList<Uniforme>();
+			
+			if(optEstoque == null || "".equals(optEstoque)){
+				msgErro = "Preencha o tipo de operação!";
+			}else{				
+				for (TpUniforme tipo : new TpUniformeNegocio().listaTpUniforme()) {
+					String tam = request.getParameter("tamanho-" + tipo.getValor());
+					String qtde = request.getParameter("qtd-"+ tipo.getValor());
+					
+					if((tam == null || "0".equals(tam)) && (qtde != null && !"".equals(qtde))){
+						msgErro = "O tamanho da " + tipo.getNome() + " deve ser preenchido";
+						
+					}else if((qtde == null || "".equals(qtde)) && (tam != null && !"0".equals(tam))){
+						msgErro = "A quantidade da " + tipo.getNome() + " deve ser preenchido";
+						
+					}else if((qtde != null && !"".equals(qtde)) && (tam != null && !"0".equals(tam))){
+						int tamanho = Integer.parseInt(tam);
+						int qtd = Integer.parseInt(qtde);
+						Uniforme uniforme = new Uniforme(tipo.getValor(), tamanho, qtd);
+						uniformes.add(uniforme);
+					}
+				}
+				
+				if("".equals(msgErro)){
+					UniformeNegocio negocio = new UniformeNegocio();
+					try {
+						if(negocio.salvarUniformes(uniformes, optEstoque)){
+							request.setAttribute("msgSucesso", "Estoque de Uniformes salvo com sucesso");
+						}
+					} catch (Exception e) {
+						msgErro = e.getMessage();
+					}
+				}
+			}
+			
+			TpUniformeNegocio tpUniformeNegocio = new TpUniformeNegocio();
+			List<TpUniforme> listaUniformes = tpUniformeNegocio.listaTpUniforme();
+			
+			TpTamanhoUniformeNegocio tamanhoNegocio = new TpTamanhoUniformeNegocio();
+			List<TpTamanhoUniforme> listaTamanhos = tamanhoNegocio.listaTpTamanhoUniforme();
+			
+			request.setAttribute("listaUniformes", listaUniformes);
+			request.setAttribute("listaTamanhos", listaTamanhos);			
+			request.setAttribute("msgErro", msgErro);
+			retorno = String.format("%s/SecretariaGerenciarEstoque.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspGerenciarEstoque";
+			
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";

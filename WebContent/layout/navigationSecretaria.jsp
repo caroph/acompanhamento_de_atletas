@@ -47,6 +47,18 @@
 				<span class="hidden-xs">Torneios</span>
 			</a>
 		</li>
+		<li>
+			<a href="SecretariaController?action=jspEnviarComunicado">
+				<i class="fa fa-envelope"></i>
+				<span class="hidden-xs">Enviar Comunicado</span>
+			</a>
+		</li>
+		<li>
+			<a href="SecretariaController?action=jspGerenciarEstoque">
+				<i class="fa fa-envelope"></i>
+				<span class="hidden-xs">Uniformes</span>
+			</a>
+		</li>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-sort-numeric-asc"></i>
@@ -61,12 +73,6 @@
 				<li><a class="" href="SecretariaController?action=jspRelatorioBonificacao">Rendimento/Bonificação</a></li>
 			</ul>
 		</li>	
-		<li>
-			<a href="SecretariaController?action=jspEnviarComunicado">
-				<i class="fa fa-envelope"></i>
-				<span class="hidden-xs">Enviar Comunicado</span>
-			</a>
-		</li>
 	</ul>
 </div>
 		
