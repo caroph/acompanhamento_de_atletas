@@ -111,51 +111,51 @@
 												<div class="form-group">
 													<div class="col-sm-3">
 														<label for="cbd" class="control-label">CBD:</label>
-														<input type="text" class="form-control text-center" id="cbd" name="cbd" value="${fichaAtendimento.avaliacaoAntropometrica.cbd > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbd : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="cbd" name="cbd" value="${fichaAtendimento.avaliacaoAntropometrica.cbd > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbd : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="cbe" class="control-label">CBE:</label>
-														<input type="text" class="form-control text-center" id="cbe"name="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbe : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="cbe"name="cbe" value="${fichaAtendimento.avaliacaoAntropometrica.cbe > 0 ? fichaAtendimento.avaliacaoAntropometrica.cbe : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="ccd" class="control-label">CCD:</label>
-														<input type="text" class="form-control text-center" id="ccd" name="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd > 0 ? fichaAtendimento.avaliacaoAntropometrica.ccd : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="ccd" name="ccd" value="${fichaAtendimento.avaliacaoAntropometrica.ccd > 0 ? fichaAtendimento.avaliacaoAntropometrica.ccd : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="cce" class="control-label">CCE:</label>
-														<input type="text" class="form-control text-center" id="cce" name="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce > 0 ? fichaAtendimento.avaliacaoAntropometrica.cce : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="cce" name="cce" value="${fichaAtendimento.avaliacaoAntropometrica.cce > 0 ? fichaAtendimento.avaliacaoAntropometrica.cce : 0.00}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<div class="col-sm-3">
 														<label for="cintura" class="control-label">Cintura:</label>
-														<input type="text" class="form-control text-center" id="cintura" name="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura > 0 ? fichaAtendimento.avaliacaoAntropometrica.cintura : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="cintura" name="cintura" value="${fichaAtendimento.avaliacaoAntropometrica.cintura > 0 ? fichaAtendimento.avaliacaoAntropometrica.cintura : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="peitoral" class="control-label">Peitoral:</label>
-														<input type="text" class="form-control text-center" id="peitoral" name="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral > 0 ? fichaAtendimento.avaliacaoAntropometrica.peitoral : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="peitoral" name="peitoral" value="${fichaAtendimento.avaliacaoAntropometrica.peitoral > 0 ? fichaAtendimento.avaliacaoAntropometrica.peitoral : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="altura" class="control-label">Altura:</label>
-														<input type="text" class="form-control text-center" id="altura" name="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura > 0 ? fichaAtendimento.avaliacaoAntropometrica.altura : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="altura" name="altura" value="${fichaAtendimento.avaliacaoAntropometrica.altura > 0 ? fichaAtendimento.avaliacaoAntropometrica.altura : 0.00}"/>
 													</div>
 													<div class="col-sm-3" >
 														<label for="pregas" class="control-label">Pregas:</label>
-														<input type="text" class="form-control text-center" id="pregas" name="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas > 0 ? fichaAtendimento.avaliacaoAntropometrica.pregas : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="pregas" name="pregas" value="${fichaAtendimento.avaliacaoAntropometrica.pregas > 0 ? fichaAtendimento.avaliacaoAntropometrica.pregas : 0.00}"/>
 													</div>
 												</div>
 												<div class="form-group">
 													<div class="col-sm-4">
 														<label for="pesoUsual" class="control-label">Peso usual (passado)</label>
-														<input type="text" class="form-control text-center" id="pesoUsual" name="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoUsual : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="pesoUsual" name="pesoUsual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoUsual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoUsual : 0.00}"/>
 													</div>
 													<div class="col-sm-4" >
 														<label for="pesoIdeal" class="control-label">Peso ideal (objetivo):</label>
-														<input type="text" class="form-control text-center" id="pesoIdeal" name="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoIdeal : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="pesoIdeal" name="pesoIdeal" value="${fichaAtendimento.avaliacaoAntropometrica.pesoIdeal > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoIdeal : 0.00}"/>
 													</div>
 													<div class="col-sm-4" >
 														<label for="pesoAtual" class="control-label">Peso atual:</label>
-														<input type="text" class="form-control text-center" id="pesoAtual" name="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoAtual : 0.00}"/>
+														<input type='number' step='any' class="form-control text-center" id="pesoAtual" name="pesoAtual" value="${fichaAtendimento.avaliacaoAntropometrica.pesoAtual > 0 ? fichaAtendimento.avaliacaoAntropometrica.pesoAtual : 0.00}"/>
 													</div>
 												</div>
 												<div class="form-group">

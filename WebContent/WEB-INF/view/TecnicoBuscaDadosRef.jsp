@@ -44,7 +44,7 @@
 										<tbody>
 											<c:forEach var="catAtiv" items="${categoriasAtividades}">
 												<tr>
-													<td><c:out value='${catAtiv.categoriaAvaliacao.nmCategoria}' /></td>
+													<td><c:out value='${catAtiv.categoriaAvaliacao.nmCategoria}'/> (<c:out value='${catAtiv.categoriaAvaliacao.getNomeTipo()}'/>)</td>
 													<td align="center">
 														<a class="link-blue" id="visualizarDadosRef" onClick="abrirModalDadosRef('${catAtiv.categoriaAvaliacao.idCategoriaAvaliacao}')"><abbr title="Visualizar"><i class="fa fa-large fa-eye"></i></abbr></a>
 													</td>

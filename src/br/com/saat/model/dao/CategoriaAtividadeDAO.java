@@ -48,7 +48,7 @@ public class CategoriaAtividadeDAO {
 	public List<CategoriaAtividade> buscaCategoriaAtividade() throws SQLException {
 		List<CategoriaAtividade> lista = new ArrayList<CategoriaAtividade>();
 		
-		stmtScript = con.prepareStatement("SELECT distinct c.idCategoriaAvaliacao, nmCategoria "
+		stmtScript = con.prepareStatement("SELECT distinct c.idCategoriaAvaliacao, nmCategoria, idTipoCat "
 				+ "FROM categoriaatividade ca "
 				+ "INNER JOIN categoriaavaliacao c "
 				+ "ON ca.idCategoriaAvaliacao = c.idCategoriaAvaliacao "
@@ -62,6 +62,7 @@ public class CategoriaAtividadeDAO {
 			
 			categoria.setIdCategoriaAvaliacao(rs.getInt("idCategoriaAvaliacao"));
 			categoria.setNmCategoria(rs.getString("nmCategoria"));
+			categoria.setIdTipoCat(rs.getInt("idTipoCat"));
 			
 			catAtiv.setCategoriaAvaliacao(categoria);
 			

@@ -269,13 +269,27 @@ public class NutricionistaController extends Controller {
 				request.setAttribute("fichaAtendimento", ficha);
 				request.setAttribute("atleta", atleta);
 				request.setAttribute("strIdade", strIdade);
-			} else {
-				request.setAttribute("msgSucesso", msgSucesso);
-			}
 
-			retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);		
-			servletRetorno = "/NutricionistaController?action=jspFichaDeAtendimento&idAtleta=" + 
-			request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
+				retorno = String.format("%s/NutricionistaFichaDeAtendimento.jsp", Constants.VIEW);		
+				servletRetorno = "/NutricionistaController?action=jspFichaDeAtendimento&idAtleta=" + 
+				request.getParameter("idAtleta")+"&idFichaDeAtendimento=" + request.getParameter("idFichaDeAtendimento");
+		
+			} else {
+				
+				AtletaNegocio negocio = new AtletaNegocio();
+				List<Atleta> lista = new ArrayList<Atleta>();
+						
+				try{
+					lista = negocio.buscarAtletas(1);
+				}catch(Exception ex){
+					request.setAttribute("msgErro", ex.getMessage());
+				}
+				
+				request.setAttribute("msgSucesso", msgSucesso);
+				request.setAttribute("listaAtletas", lista);
+				retorno = String.format("%s/NutricionistaBuscaAtleta.jsp", Constants.VIEW);
+				servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
+			}
 			
 		}else if("jspHistoricoAtendimento".equals(action)){
 			String msg = "";

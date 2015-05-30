@@ -54,7 +54,7 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 				<textField>
 					<reportElement x="0" y="0" width="349" height="19" uuid="d7c21e9f-a589-4d5b-9b5f-368ba55d7522"/>
 					<textElement>
-						<font size="14" isBold="true" isItalic="false"/>
+						<font size="13" isBold="true" isItalic="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{atleta}]]></textFieldExpression>
 				</textField>
@@ -137,63 +137,63 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 			<staticText>
 				<reportElement x="52" y="2" width="65" height="20" uuid="7dd3322b-1312-4610-ad08-b2ba1b268cbc"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Torneio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="574" y="2" width="100" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
+				<reportElement x="570" y="2" width="81" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Colocação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="662" y="2" width="84" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
+				<reportElement x="640" y="2" width="96" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data Inicial]]></text>
+				<text><![CDATA[ Data Inicial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="746" y="2" width="74" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
+				<reportElement x="736" y="2" width="85" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Data Final]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="2" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Atleta]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="220" y="2" width="83" height="20" uuid="e3229693-b854-4ea8-ba86-eb4706723331"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cidade/UF]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="387" y="2" width="91" height="20" uuid="8f37886f-3408-45b2-9719-550b217f65c3"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Categoria]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="478" y="2" width="38" height="20" uuid="2edc5f2a-4e85-4207-9f34-082c76fc6df0"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="516" y="2" width="54" height="20" uuid="c9fc8d7e-05c6-4197-ab81-90dce47116c1"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Grupo]]></text>
 			</staticText>
@@ -202,14 +202,14 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="674" y="0" width="62" height="20" uuid="15dd378d-b49b-4408-9b97-976401dc759e"/>
+				<reportElement x="661" y="0" width="75" height="20" uuid="15dd378d-b49b-4408-9b97-976401dc759e"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtInicial})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="746" y="0" width="56" height="20" uuid="e331c914-0c60-44cf-b0aa-d6cbe0f7a37d"/>
+				<reportElement x="736" y="0" width="85" height="20" uuid="e331c914-0c60-44cf-b0aa-d6cbe0f7a37d"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -229,8 +229,8 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="574" y="0" width="100" height="20" uuid="52981b62-2453-4622-84f5-eb9856fd4331"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="574" y="0" width="87" height="20" uuid="52981b62-2453-4622-84f5-eb9856fd4331"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -267,7 +267,7 @@ ORDER BY a.nome, dtInicial, dtFinal]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="23" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement x="783" y="3" width="19" height="20" uuid="0fd78672-629c-4853-b6fe-d1716d25c3e3"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>

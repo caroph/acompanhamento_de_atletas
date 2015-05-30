@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultadoTorneio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d9e8d99-4bec-48a2-9bae-5260e330dba6">
 	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="227"/>
+	<property name="ireport.y" value="378"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Juliane Chaerki\\workspace_jee\\tcc-saat\\Relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -80,15 +80,15 @@ WHERE idTorneio = $P{idTorneio}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="99" splitType="Stretch">
+		<band height="111" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="555" height="99" uuid="9f357d72-c5be-4f57-bddc-9980ebf0b642"/>
 				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="154" y="26" width="343" height="32" uuid="4d505b0e-0d53-4e8a-bb69-852f73b47f0c"/>
-				<textElement>
-					<font size="20" isBold="true"/>
+				<reportElement x="123" y="32" width="398" height="29" uuid="4d505b0e-0d53-4e8a-bb69-852f73b47f0c"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relatório de Resultado de Torneio]]></text>
 			</staticText>
@@ -130,7 +130,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="217" y="45" width="54" height="20" uuid="aa09501f-b076-4746-8a1d-460ae0655c3c"/>
+				<reportElement x="217" y="45" width="58" height="20" uuid="aa09501f-b076-4746-8a1d-460ae0655c3c"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -152,7 +152,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dtInicial})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="217" y="67" width="54" height="20" uuid="b587ff21-99eb-4a20-b90f-2bc1f943ad4c"/>
+				<reportElement x="217" y="67" width="58" height="20" uuid="b587ff21-99eb-4a20-b90f-2bc1f943ad4c"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -174,7 +174,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textFieldExpression><![CDATA[$F{dscNaipe}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="217" y="87" width="54" height="20" uuid="f024cd22-2dee-4d2b-aa61-cc73e5740ce0"/>
+				<reportElement x="217" y="87" width="58" height="20" uuid="f024cd22-2dee-4d2b-aa61-cc73e5740ce0"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -196,7 +196,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textFieldExpression><![CDATA[$F{dscTpTorneio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="217" y="107" width="54" height="20" uuid="4574a82f-dc0e-459b-ab7a-116202d465fa"/>
+				<reportElement x="217" y="107" width="58" height="20" uuid="4574a82f-dc0e-459b-ab7a-116202d465fa"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -218,36 +218,36 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="187" width="117" height="20" uuid="12e6aa90-2208-4a2d-aedb-2b81d6ace1bc"/>
+				<reportElement x="0" y="187" width="133" height="20" uuid="12e6aa90-2208-4a2d-aedb-2b81d6ace1bc"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total de inscritos (geral):]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="117" y="187" width="126" height="20" uuid="7331b6f8-d13e-4010-b03c-15945af72207"/>
+				<reportElement x="123" y="187" width="120" height="20" uuid="7331b6f8-d13e-4010-b03c-15945af72207"/>
 				<textFieldExpression><![CDATA[$F{inscritosGeral}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="297" y="187" width="124" height="20" uuid="7cd0d93a-01b2-4354-8ba3-1bd132eb355d"/>
+				<reportElement x="297" y="187" width="144" height="20" uuid="7cd0d93a-01b2-4354-8ba3-1bd132eb355d"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total de inscritos (Clube)]]></text>
+				<text><![CDATA[Total de inscritos (Clube):]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="421" y="187" width="100" height="20" uuid="2f2d37ee-bdf4-4555-932d-55e6453e36ec"/>
 				<textFieldExpression><![CDATA[$F{inscritosClube}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="207" width="80" height="20" uuid="1b425cd8-02e4-492a-a8dc-cc8fc9efef6d"/>
+				<reportElement x="3" y="207" width="92" height="20" uuid="1b425cd8-02e4-492a-a8dc-cc8fc9efef6d"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Atleta destaque:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="83" y="207" width="438" height="20" uuid="5824a4e8-d5ba-4d4e-b0c4-374539e9b3d0"/>
+				<reportElement x="95" y="207" width="426" height="20" uuid="5824a4e8-d5ba-4d4e-b0c4-374539e9b3d0"/>
 				<textFieldExpression><![CDATA[$F{atletaDestaque}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -258,7 +258,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<text><![CDATA[Motivo:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="83" y="227" width="438" height="20" uuid="994f7994-260e-44c8-8ae1-c2410e2b4e71"/>
+				<reportElement x="95" y="227" width="426" height="20" uuid="994f7994-260e-44c8-8ae1-c2410e2b4e71"/>
 				<textFieldExpression><![CDATA[$F{motivoDestaque}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -269,11 +269,11 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<text><![CDATA[Fotógrafo:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="83" y="247" width="438" height="20" uuid="fd6e0047-f66e-4b21-aa9a-755aad26622b"/>
+				<reportElement x="95" y="247" width="426" height="20" uuid="fd6e0047-f66e-4b21-aa9a-755aad26622b"/>
 				<textFieldExpression><![CDATA[$F{fotografo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="267" width="200" height="20" uuid="f22df25f-7451-42c6-b1fc-9202d9b42995"/>
+				<reportElement x="0" y="267" width="217" height="20" uuid="f22df25f-7451-42c6-b1fc-9202d9b42995"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -299,12 +299,12 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<reportElement x="521" y="0" width="34" height="20" uuid="bcf26ee3-6c22-42f0-a545-71872fe72a0d"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="167" y="1" width="172" height="20" uuid="27372218-9ec1-4aad-81cc-ed53eea9f197"/>
 				<textFieldExpression><![CDATA[$F{usuCriacao}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="1" width="167" height="20" uuid="0949b192-a13d-4ca5-9c5b-5ae4dd98f0cf"/>
+				<reportElement x="0" y="1" width="200" height="20" uuid="0949b192-a13d-4ca5-9c5b-5ae4dd98f0cf"/>
 				<text><![CDATA[Técnico responsável pelo torneio:]]></text>
 			</staticText>
 		</band>

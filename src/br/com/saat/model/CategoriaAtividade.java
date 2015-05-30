@@ -8,6 +8,7 @@ public class CategoriaAtividade {
 	private float media;
 	private float bom;
 	private float excelente;
+	
 	public int getIdCategoriaAtividade() {
 		return idCategoriaAtividade;
 	}

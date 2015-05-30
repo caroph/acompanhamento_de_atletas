@@ -320,7 +320,7 @@ function abrirModalAvaliacaoFis(idAtleta) {
 			var caract = data.tpCaracteristica;
 			
 			var html = "<form class='form-horizontal' role='form' action='AvaliacaoFisController?action=novaAvaliacao&idAtleta=" + idAtleta + "' method='post'>"
-			+ "<input type='hidden' name='idAvaliacaoFisica' value='" + item.idAvaliacaoFisica + "'/>"
+			+ "<input type='hidden' name='idAvaliacaoFisica' value='" + data.idAvaliacaoFisica + "'/>"
 			+ "<div class='form-group'>"
 			+ "<div class='col-sm-4'>"
 			+ "<label for='dtAvaliacao' class='text-left'>Data:</label>"

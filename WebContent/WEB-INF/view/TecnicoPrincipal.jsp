@@ -32,7 +32,7 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th style="text-align: center;">Data Atendimento</th>
+												<th style="text-align: center;">Data avaliação</th>
 												<th></th>
 											</tr>
 										</thead>

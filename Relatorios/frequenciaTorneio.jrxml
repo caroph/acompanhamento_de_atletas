@@ -38,7 +38,7 @@ WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}]]>
 				<textField>
 					<reportElement x="2" y="0" width="424" height="20" uuid="788afc90-a3d6-4a84-a9f1-e843b23b6371"/>
 					<textElement>
-						<font size="14"/>
+						<font size="13"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{torneio}]]></textFieldExpression>
 				</textField>
@@ -48,6 +48,9 @@ WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}]]>
 			<band height="35">
 				<textField>
 					<reportElement x="38" y="0" width="100" height="20" uuid="55872e3e-97f9-4b1d-b836-8f2a87a7fa67"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$V{torneio_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
@@ -118,35 +121,35 @@ WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}]]>
 			<staticText>
 				<reportElement x="2" y="0" width="65" height="20" uuid="7dd3322b-1312-4610-ad08-b2ba1b268cbc"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Torneio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="0" width="100" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
+				<reportElement x="284" y="0" width="89" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Colocação]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="403" y="0" width="83" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
+				<reportElement x="373" y="0" width="102" height="20" uuid="490fb404-f29d-4c4c-8974-148703ada55e"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data Inicial]]></text>
+				<text><![CDATA[  Data Inicial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="475" y="0" width="79" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
-				<textElement textAlignment="Right">
-					<font size="14" isBold="true"/>
+				<reportElement x="475" y="0" width="91" height="20" uuid="936850df-a04d-474f-8887-41deeec00450"/>
+				<textElement>
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data Final]]></text>
+				<text><![CDATA[   Data Final]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="84" y="0" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
 				<textElement>
-					<font size="14" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Atleta]]></text>
 			</staticText>
@@ -161,7 +164,7 @@ WHERE dtInicial >= $P{dtInicial} AND dtFinal <= $P{dtFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{atleta}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="284" y="0" width="119" height="20" uuid="4069cfb3-0694-4deb-8e7f-42bec3d710b6"/>
 				<textElement>
 					<font size="12"/>

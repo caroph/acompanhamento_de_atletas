@@ -91,12 +91,12 @@ public class AvaliacaoFisicaDAO {
 	public List<AvaliacaoFisica> buscaAvaliacoes() throws SQLException {
 		List<AvaliacaoFisica> listaAvaliacaoFis = new ArrayList<AvaliacaoFisica>();
 		
-		stmtScript = con.prepareStatement("SELECT af.idAtleta, a.nome, idAvaliacaoFisica, dtAvaliacao "
+		stmtScript = con.prepareStatement("SELECT af.idAtleta, a.nome, idAvaliacaoFisica, MAX(dtAvaliacao) AS  dtAvaliacao "
 				+ "FROM avaliacaofisica af "
 				+ "INNER JOIN atleta a "
 				+ "ON af.idAtleta = a.idAtleta "
-				+ "WHERE dtAvaliacao = (SELECT MAX(dtAvaliacao) FROM avaliacaofisica WHERE idAtleta = af.idAtleta) "
-				+ "ORDER BY dtAvaliacao, a.nome ");
+				+ "ORDER BY dtAvaliacao, a.nome DESC "
+				+ "LIMIT 25 ");
 
 		ResultSet rs = stmtScript.executeQuery();
 		

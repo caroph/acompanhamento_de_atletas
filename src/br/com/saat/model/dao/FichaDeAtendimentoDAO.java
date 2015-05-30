@@ -434,7 +434,7 @@ public class FichaDeAtendimentoDAO {
 				+ "		f.idAtleta "
 				+ "ORDER BY "
 				+ "		f.dtAtendimento DESC " 
-				+ "LIMIT 10");
+				+ "LIMIT 25");
 		
 		stmtScript.setInt(1, idPessoa);
 		
