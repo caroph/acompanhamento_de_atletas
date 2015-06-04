@@ -39,7 +39,7 @@
 													onchange="BuscarPresenca()" name="diaChamada"
 													value="<c:out value="${dataAtual}"/>" id="dataQuadra" />
 											</div>
-											<table>
+											<table class="table">
 												<thead>
 													<tr>
 														<th width="60%">Tipo</th>
@@ -66,6 +66,9 @@
 												</c:forEach>
 												</tbody>
 											</table>
+										</div>
+										<div align="right">
+											<button type="submit" class="btn btn-primary">Salvar</button>
 										</div>
 									</form>
 								</div>

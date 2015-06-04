@@ -162,11 +162,11 @@
 										<div class="form-group">
 											<div class="col-sm-6">
 												<label class=" control-label">Escola:</label>
-												<input type="text"  value="${atleta.escola}"  class="form-control" id="escola" name="escola" maxlength="150"/>
+												<input type="text" required value="${atleta.escola}"  class="form-control" id="escola" name="escola" maxlength="150"/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Série:</label>
-												<input type="text"  value="${atleta.serie}" class="form-control" id="serie" name="serie" maxlength="5"/>
+												<input type="text" required value="${atleta.serie}" class="form-control" id="serie" name="serie" maxlength="5"/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Turno:</label>
