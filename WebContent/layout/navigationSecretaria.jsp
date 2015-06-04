@@ -55,7 +55,7 @@
 		</li>
 		<li>
 			<a href="SecretariaController?action=jspGerenciarEstoque">
-				<i class="fa fa-envelope"></i>
+				<i class="fa fa-tags"></i>
 				<span class="hidden-xs">Uniformes</span>
 			</a>
 		</li>

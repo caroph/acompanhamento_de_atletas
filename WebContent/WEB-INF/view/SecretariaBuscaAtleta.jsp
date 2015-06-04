@@ -67,7 +67,7 @@
 															<a class="link-green" id="anexos" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Anexar documentos"><i class="fa fa-large fa-upload"></i></abbr></a>
 														</td>
 														<td align="center">
-															<a class="link-green" id="emprestimo" href="SecretariaController?action=jspGerenciarEmprestimos&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Gerenciar empréstimos de uniformesS"><i class="fa fa-large fa-question"></i></abbr></a>
+															<a class="link-green" id="emprestimo" href="SecretariaController?action=jspGerenciarEmprestimos&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}"><abbr title="Retirada de uniformes"><i class="fa fa-large fa-tags"></i></abbr></a>
 														</td>
 														<td align="center">	
 															<a class="link-red" href='SecretariaController?action=desativarAtleta&idAtleta=${atleta.idPessoa}' 

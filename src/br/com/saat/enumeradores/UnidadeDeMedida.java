@@ -4,8 +4,9 @@ public enum UnidadeDeMedida {
 	Minutos (1, "Minutos"), 
 	Segundos (2, "Segundos"),
 	Metros (3, "Metros"),
-	Repeticoes (4, "Repetições");
-	
+	Centimetros (4, "Centímetros"),
+	Nivel (5, "Nível"),
+	Repeticoes (6, "Repetições");
 	
 	private final int valor; 
 	private final String nome;
