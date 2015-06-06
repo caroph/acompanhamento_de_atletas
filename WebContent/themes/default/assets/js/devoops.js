@@ -63,7 +63,7 @@ function abrilModalTorneio(idTorneio, finalizado, perfil) {
 				html += "data-confirm='Deseja realmente editar o torneio selecionado?'>Editar</a>";
 				html +=	"<a class='btn btn-info' href='TecnicoController?action=jspFinalizarTorneio&idTorneio=" + idTorneio + "&nome=" + data.torneio.nome + "' "; 
 				html += "data-confirm='Deseja realmente finalizar o torneio selecionado?'>Finalizar</a>";
-				html +=	"<a class='btn btn-danger' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
+				html +=	"<a class='btn btn-danger' id='btnExcluirTorneio' href='TecnicoController?action=excluirTorneio&idTorneio=" + idTorneio + "' "; 
 				html += "data-confirm='Deseja realmente excluir o torneio selecionado?'>Excluir</a>";
 			} else {
 				html += "<a class='btn btn-info' href='TecnicoController?action=editarResultadoTorneio&idTorneio=" + idTorneio + "' "; 

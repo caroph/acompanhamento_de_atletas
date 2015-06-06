@@ -1,6 +1,7 @@
 package br.com.saat.model;
 
 import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.TpTamanhoUniforme;
 import br.com.saat.enumeradores.TpUniforme;
 
 public class Uniforme {
@@ -71,6 +72,40 @@ public class Uniforme {
 			break;
 		case 6:
 			retorno = TpUniforme.Calca.getNome();
+			break;
+		}
+		return retorno;
+	}
+	
+	public String getNomeTamanhoUniforme(){
+		String retorno = "";
+		switch (this.tamanhoUniforme) {
+		case 1:
+			retorno = TpTamanhoUniforme.N10.getNome();
+			break;
+		case 2:
+			retorno = TpTamanhoUniforme.N12.getNome();
+			break;
+		case 3:
+			retorno = TpTamanhoUniforme.N14.getNome();
+			break;
+		case 4:
+			retorno = TpTamanhoUniforme.N16.getNome();
+			break;
+		case 5:
+			retorno = TpTamanhoUniforme.PP.getNome();
+			break;
+		case 6:
+			retorno = TpTamanhoUniforme.P.getNome();
+			break;
+		case 7:
+			retorno = TpTamanhoUniforme.M.getNome();
+			break;
+		case 8:
+			retorno = TpTamanhoUniforme.G.getNome();
+			break;
+		case 9:
+			retorno = TpTamanhoUniforme.GG.getNome();
 			break;
 		}
 		return retorno;

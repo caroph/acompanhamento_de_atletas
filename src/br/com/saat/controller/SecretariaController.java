@@ -1689,6 +1689,21 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/SecretariaGerenciarEstoque.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspGerenciarEstoque";
 			
+		}else if("jspVisualizarEstoque".equals(action)){
+			String msgErro = "";
+			UniformeNegocio negocio = new UniformeNegocio();
+			List<Uniforme> listaUniformes = new ArrayList<Uniforme>();
+			try{
+				listaUniformes = negocio.buscarEstoque();
+			}catch(Exception e){
+				msgErro = e.getMessage();
+			}
+			
+			request.setAttribute("listaUniformes", listaUniformes);
+			request.setAttribute("msgErro", msgErro);
+			retorno = String.format("%s/SecretariaVisualizarEstoque.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspVisualizarEstoque";
+			
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";

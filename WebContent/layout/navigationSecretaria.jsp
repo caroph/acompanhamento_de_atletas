@@ -54,10 +54,14 @@
 			</a>
 		</li>
 		<li>
-			<a href="SecretariaController?action=jspGerenciarEstoque">
+			<a href="#" class="dropdown-toggle">
 				<i class="fa fa-tags"></i>
 				<span class="hidden-xs">Uniformes</span>
 			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="SecretariaController?action=jspGerenciarEstoque">Alterar Estoque</a></li>
+				<li><a class="" href="SecretariaController?action=jspVisualizarEstoque">Visualizar Estoque</a></li>
+			</ul>
 		</li>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle">

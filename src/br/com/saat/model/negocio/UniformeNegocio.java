@@ -22,6 +22,15 @@ public class UniformeNegocio {
 			throw new Exception(ex.getMessage());
 		}
 	}
+
+	public List<Uniforme> buscarEstoque() throws Exception {
+		try{
+			UniformeDAO dao = new UniformeDAO();
+			return dao.buscarEstoque();
+		}catch(Exception ex){
+			throw new Exception("Ocorreu algum erro ao buscar o estoque!");
+		}
+	}
 	
 	
 }

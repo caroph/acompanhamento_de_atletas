@@ -35,6 +35,7 @@ import br.com.saat.model.Chamada;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Observacao;
+import br.com.saat.model.PresencaChamada;
 import br.com.saat.model.Torneio;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
@@ -180,8 +181,12 @@ public class Controller extends HttpServlet {
 							
 							int idPresencaChamada = pcNegocio.verificarPresenca(chamada.getIdChamada(), idAtleta);
 							if(idPresencaChamada == 0){
-								if(pcNegocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, 
-										presenca, null)){
+								PresencaChamada presencaChamada = new PresencaChamada();
+								presencaChamada.setIdChamada(chamada.getIdChamada());
+								presencaChamada.setIdAtleta(idAtleta);
+								presencaChamada.setEstadoPresencaF(presenca);
+								presencaChamada.setEstadoPresencaT(presenca);
+								if(pcNegocio.salvarPresencaChamada(presencaChamada)){
 									msgSucesso = "Presença registrada com sucesso!";
 								}else{
 									msg = "Ocorreu algum erro ao salvar a presença do atleta!";

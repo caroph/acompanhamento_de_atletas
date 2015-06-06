@@ -24,27 +24,27 @@ public class PresencaChamadaDAO {
         this.con = con;        
     }
 
-	public boolean salvarPresencaChamada(int idChamada, int idAtleta,
-			int estadoPresenca, String justificativa) throws SQLException {
-		int rows = 0;
-		
-		stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaT, "
-				+ "justificativaT, estadoPresencaF, justificativaF) VALUES (?, ?, ?, ?, ?, ?)");
-		
-		stmtScript.setInt(1, idChamada);
-		stmtScript.setInt(2, idAtleta);
-		stmtScript.setInt(3, estadoPresenca);
-		stmtScript.setString(4, justificativa);
-		stmtScript.setInt(5, estadoPresenca);
-		stmtScript.setString(6, justificativa);
-		
-		rows = stmtScript.executeUpdate();
-		
-		if(rows>0){
-			return true;
-		}
-		return false;
-	}
+//	public boolean salvarPresencaChamada(int idChamada, int idAtleta,
+//			int estadoPresenca, String justificativa) throws SQLException {
+//		int rows = 0;
+//		
+//		stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaT, "
+//				+ "justificativaT, estadoPresencaF, justificativaF) VALUES (?, ?, ?, ?, ?, ?)");
+//		
+//		stmtScript.setInt(1, idChamada);
+//		stmtScript.setInt(2, idAtleta);
+//		stmtScript.setInt(3, estadoPresenca);
+//		stmtScript.setString(4, justificativa);
+//		stmtScript.setInt(5, estadoPresenca);
+//		stmtScript.setString(6, justificativa);
+//		
+//		rows = stmtScript.executeUpdate();
+//		
+//		if(rows>0){
+//			return true;
+//		}
+//		return false;
+//	}
 
 	public boolean salvarPresencaChamada(PresencaChamada presenca) throws SQLException {
 		int rows = 0;
@@ -150,20 +150,26 @@ public class PresencaChamadaDAO {
 		return lista;
 	}
 
-	public boolean alterarPresencaChamada(int idPresencaChamada,
-			int estadoPresenca, String justificativa, String tpPresenca, int nrQuadra) throws SQLException {
+	public boolean alterarPresencaChamada(PresencaChamada presenca, String tpPresenca) throws SQLException {
 		int rows = 0;		
+		int estadoPresenca = 0;
+		String justificativa = "";
+		
 		if("T".equals(tpPresenca)){
 			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaT = ?, justificativaT = ?,"
 					+ " nrQuadra = ? WHERE idPresencaChamada = ?");
+			estadoPresenca = presenca.getEstadoPresencaT();
+			justificativa = presenca.getJustificativaT();
 		}else{
 			stmtScript = con.prepareStatement("UPDATE presencachamada SET estadoPresencaF = ?, justificativaF = ?,"
 					+ " nrQuadra = ? WHERE idPresencaChamada = ?");
+			estadoPresenca = presenca.getEstadoPresencaF();
+			justificativa = presenca.getJustificativaF();
 		}	
 		stmtScript.setInt(1, estadoPresenca);
 		stmtScript.setString(2, justificativa);
-		stmtScript.setInt(3, nrQuadra);
-		stmtScript.setInt(4, idPresencaChamada);
+		stmtScript.setInt(3, presenca.getNrQuadra());
+		stmtScript.setInt(4, presenca.getIdPresencaChamada());
 		
 		rows = stmtScript.executeUpdate();
 		
@@ -187,20 +193,25 @@ public class PresencaChamadaDAO {
 		return 0;
 	}
 
-	public boolean salvarPresencaChamada(int idChamada, int idAtleta,
-			int estadoPresenca, String justificativa, String tpPresenca) throws SQLException {
+	public boolean salvarPresencaChamada(PresencaChamada presenca, String tpPresenca) throws SQLException {
 		int rows = 0;
+		int estadoPresenca = 0;
+		String justificativa = "";
 		
 		if("T".equals(tpPresenca)){
 			stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaT, "
 				+ "justificativaT, estadoPresencaF) VALUES (?, ?, ?, ?, 0)");
+			estadoPresenca = presenca.getEstadoPresencaT();
+			justificativa = presenca.getJustificativaT();
 		}else{
 			stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaF, "
 				+ "justificativaF, estadoPresencaT) VALUES (?, ?, ?, ?, 0)");
+			estadoPresenca = presenca.getEstadoPresencaF();
+			justificativa = presenca.getJustificativaF();
 		}
 		
-		stmtScript.setInt(1, idChamada);
-		stmtScript.setInt(2, idAtleta);
+		stmtScript.setInt(1, presenca.getIdChamada());
+		stmtScript.setInt(2, presenca.getIdAtleta());
 		stmtScript.setInt(3, estadoPresenca);
 		stmtScript.setString(4, justificativa);
 		

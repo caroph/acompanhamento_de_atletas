@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Uniforme;
@@ -73,5 +75,24 @@ public class UniformeDAO {
 			return rs.getInt(1);
 		}
 		return null;
+	}
+
+	public List<Uniforme> buscarEstoque() throws SQLException {
+		List<Uniforme> lista = new ArrayList<Uniforme>();
+		
+		stmtScript = con.prepareStatement("SELECT idUniforme, tpUniforme, tamanhoUniforme, quantidadeEstoque "
+				+ "FROM uniforme");
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){
+			Uniforme uniforme = new Uniforme();
+			uniforme.setIdUniforme(rs.getInt(1));
+			uniforme.setTpUniforme(rs.getInt(2));
+			uniforme.setTamanhoUniforme(rs.getInt(3));
+			uniforme.setQuantidadeUniforme(rs.getInt(4));
+			
+			lista.add(uniforme);
+		}
+		return lista;
 	}
 }

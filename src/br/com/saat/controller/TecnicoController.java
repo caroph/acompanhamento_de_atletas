@@ -606,7 +606,9 @@ public class TecnicoController extends Controller {
 				    		if(idPresencaChamada == 0){
 				    			pcNegocio.salvarPresencaChamada(presenca);
 				    		}else{
-				    			pcNegocio.alterarPresencaChamada(idPresencaChamada, presenca.getEstadoPresencaT(), "", "T", presenca.getNrQuadra());
+				    			presenca.setIdPresencaChamada(idPresencaChamada);
+				    			presenca.setJustificativaT("");
+				    			pcNegocio.alterarPresencaChamada(presenca, "T");
 				    		}
 				    	}catch(Exception ex){
 				    		msgErro = ex.getMessage();
@@ -839,25 +841,47 @@ public class TecnicoController extends Controller {
 			if(!exception){
 				PresencaChamadaNegocio negocio = new PresencaChamadaNegocio();
 				ChamadaNegocio chamadaNegocio = new ChamadaNegocio();
+				PresencaChamada presenca = new PresencaChamada();
 				try{
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(diaChamada);
+					
+					int idAtleta = Integer.parseInt(atleta);
 					idDiaTreino = Integer.parseInt(diaTreino);
-					if("".equals(presencaChamada)){
-						Chamada chamada = chamadaNegocio.buscarChamadaPorDia(diaChamada, idDiaTreino);
-						if(chamada.getIdChamada() == 0){
-							
-							chamada = new Chamada(usuarioLogado.getIdPessoa(), idDiaTreino, dt);
-							chamada = chamadaNegocio.salvarChamada(chamada);
-						}
-						int idAtleta = Integer.parseInt(atleta);
-						if(negocio.salvarPresencaChamada(chamada.getIdChamada(), idAtleta, estadoPresenca, justificativa, tpPresenca)){
-							msgSucesso = "Presença salva com sucesso!";
-						}
+					
+					presenca.setIdAtleta(idAtleta);
+					if("T".equals(tpPresenca)){
+						presenca.setEstadoPresencaT(estadoPresenca);
+						presenca.setJustificativaT(justificativa);
 					}else{
-						idPresencaChamada = Integer.parseInt(presencaChamada);
-						if(negocio.alterarPresencaChamada(idPresencaChamada, estadoPresenca, justificativa, tpPresenca, 0))
-							msgSucesso = "Presença salva com sucesso!";
+						presenca.setEstadoPresencaF(estadoPresenca);
+						presenca.setJustificativaF(justificativa);
+					}
+					
+					List<Object> listaValidacao = negocio.validaDados(presenca, tpPresenca);
+					boolean valida = (boolean) listaValidacao.get(0);
+					if (!valida) {
+						msgErro = (String) listaValidacao.get(1);
+					}else{						
+						if("".equals(presencaChamada)){
+							Chamada chamada = chamadaNegocio.buscarChamadaPorDia(diaChamada, idDiaTreino);
+							if(chamada.getIdChamada() == 0){
+								
+								chamada = new Chamada(usuarioLogado.getIdPessoa(), idDiaTreino, dt);
+								chamada = chamadaNegocio.salvarChamada(chamada);
+							}
+							
+							presenca.setIdChamada(chamada.getIdChamada());
+							if(negocio.salvarPresencaChamada(presenca, tpPresenca)){
+								msgSucesso = "Presença salva com sucesso!";
+							}
+						}else{
+							idPresencaChamada = Integer.parseInt(presencaChamada);
+							presenca.setIdPresencaChamada(idPresencaChamada);
+							presenca.setNrQuadra(0);
+							if(negocio.alterarPresencaChamada(presenca, tpPresenca))
+								msgSucesso = "Presença salva com sucesso!";
+						}
 					}
 				}catch(Exception ex){
 					msgErro = ex.getMessage();
