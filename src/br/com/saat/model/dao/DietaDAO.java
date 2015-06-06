@@ -85,6 +85,25 @@ public class DietaDAO {
 		return lista;
 	}
 
+	public Dieta buscaDieta(Dieta dieta) throws SQLException {
+		
+		stmtScript = con.prepareStatement("SELECT idDieta, idRefeicao, flCompeticao, dtValidadeInicio, dtValidadeFim, descricao "
+		+ "FROM dieta d "
+		+ "WHERE d.idDieta = ? ");
+		
+		stmtScript.setInt(1, dieta.getIdDieta());
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			dieta.setRefeicao(rs.getInt("idRefeicao"));
+			dieta.setCompeticao(rs.getBoolean("flCompeticao"));
+			dieta.setDtValidadeInicio(rs.getDate("dtValidadeInicio"));
+			dieta.setDtValidadeFim(rs.getDate("dtValidadeFim"));
+			dieta.setDescricao(rs.getString("descricao"));
+		}
+		return dieta;
+	}
 
 	public boolean excluir(Dieta dieta) throws SQLException {
 		boolean retorno = false;

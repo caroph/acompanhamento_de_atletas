@@ -54,6 +54,16 @@ public class DietaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar a(s) dieta(s) do atleta.");
 		}
 	}
+	
+	public Dieta buscaDieta(Dieta dieta) throws Exception{
+		try {
+			DietaDAO dao = new DietaDAO();
+			dieta = dao.buscaDieta(dieta);
+			return dieta;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar dieta a ser editada.");
+		}
+	}
 
 	public boolean excluir(Dieta dieta) throws Exception{
 		boolean retorno = false;

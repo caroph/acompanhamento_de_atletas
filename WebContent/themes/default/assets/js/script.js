@@ -462,25 +462,25 @@ function editarAvaliacaoFis(idAvaliacaoFis) {
 	});
 }
 
-function editarDieta(idDieta) {
+function editarDieta(idDieta, idAtleta) {
 	$("#editarDieta").modal();	
 	$.ajax({
 		type : "POST",
 		url : "NutricionistaController?action=jspEditarDieta&idDieta="
 				+ idDieta,
 		success : function(data) {
-			var refeicao = data.refeicao;
+			var refeicao = data.listaRefeicao;
 			
-			var html = "<form class='form-horizontal' role='form' action='NutricionistaController?action=novaDieta&idAtleta=0&idDieta=0=" + idDieta + "' method='post'>"
+			var html = "<form class='form-horizontal' role='form' action='NutricionistaController?action=novaDieta&idAtleta=" + idAtleta + "&idDieta=" + idDieta + "' method='post'>"
 			+ "<div class='form-group'>"
 			+ "<div class='col-sm-12'>"
 			+ "<label for='refeicao' class='text-left'>Refei\u00e7\u00e3o:</label>"
 			+ "<select class='form-control' id='refeicao' name='refeicao' required>"
 			+ "<option value=''>Selecione</option>";
 			$.each(
-					caract,
+					refeicao,
 					function(index, item) {
-						if (index + 1 == data.refeicao) {
+						if (index + 1 == data.dieta.refeicao) {
 							html += "<option selected value='" + (index + 1) + "'>" + item + "</option>";
 						} else{
 							html += "<option value='" + (index + 1) + "'>" + item + "</option>";
@@ -488,24 +488,32 @@ function editarDieta(idDieta) {
 					});
             html += "</select>"
 			+ "</div>"
-			+ "<div class='col-sm-12'>"
-				if (data.competicao) {
-					"<label style='padding: 5px 22px 5px 0;'><input type='checkbox' name='competicao' value='true' checked='checked'> Período de competição</label>"
+			+ "</div>"
+			+ "<div class='form-group'>"
+			+ "<div class='col-sm-12'>";
+				if (data.dieta.competicao) {
+					html += "<label style='padding: 5px 22px 5px 0;'><input type='checkbox' name='competicao' value='true' checked='checked'> Período de competição</label>";
 				} else {
-					"<label style='padding: 5px 22px 5px 0;'><input type='checkbox' name='competicao' value='true'> Período de competição</label>"
+					html += "<label style='padding: 5px 22px 5px 0;'><input type='checkbox' name='competicao' value='true'> Período de competição</label>";
 				}
+            html += "</div>"
             + "</div>"
-			+ "<textarea class='form-control' name='descricao' maxlength='3000' value='" + data.descricao + "'/>"
-			+ "</div>"
+            + "<div class='form-group'>"
 			+ "<div class='col-sm-12'>"
-			+ "<label for='dtAvaliacao' class='text-left'>Data de validade:</label>"
+			+ "<label for='dtAvaliacao' class='text-left'>Data de validade: <small>[Início | Fim]</small></label>"
 			+ "<br/><small><b>(Necessário apenas para período de competi\u00e7\u00e3o)</b></small>"
-			+ "<input type='date' class='form-control' id='dtValidadeInicio' name='dtValidadeInicio' value='" + data.dtValidadeInicioDisplay +  "'/> \u00e0 "
-			+ "<input type='date' class='form-control' id='dtValidadeFim' name='dtValidadeFim' value='" + data.dtValidadeFimDisplay +  "'/>"
 			+ "</div>"
+			+ "<div class='col-sm-6'>"
+			+ "<input type='date' class='form-control' id='dtValidadeInicio' name='dtValidadeInicio' value='" + data.dieta.dtValidadeInicioDisplay +  "'/>"
+			+ "</div>"
+			+ "<div class='col-sm-6'>"
+			+ "<input type='date' class='form-control' id='dtValidadeFim' name='dtValidadeFim' value='" + data.dieta.dtValidadeFimDisplay +  "'/>"
+			+ "</div>"
+			+ "</div>"
+			+ "<div class='form-group'>"
 			+ "<div class='col-sm-12'>"
 			+ "<label class='text-left'>Descri\u00e7\u00e3o geral:</label>"
-			+ "<textarea class='form-control' name='descricao' maxlength='3000' value='" + data.descricao + "'/>"
+			+ "<input type='text' class='form-control' name='descricao' id='descricao' maxlength='3000' value='" + data.dieta.descricao + "'/>"
 			+ "</div>"
 			+ "</div>";
 
@@ -513,6 +521,7 @@ function editarDieta(idDieta) {
 				+ "<button type='submit' class='btn btn-primary'>Salvar</button>"
 				+ "<button type='button' class='btn btn-danger' data-dismiss='modal' id='fechar'>Cancelar</button>"
 				+ "</div>" + "</form>";
+			
 
 			$('.body-dieta').html(html);
 		}

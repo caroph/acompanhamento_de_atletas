@@ -43,7 +43,7 @@
 														</h4>
 													</div>
 													<div class="col-md-1 column" style="padding-top: 8px;">
-														<a class="link-green" data-toggle="modal" onclick="editarDieta('${dieta.idDieta}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
+														<a class="link-green" data-toggle="modal" onclick="editarDieta('${dieta.idDieta}', '${atleta.idPessoa}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
 														<a class="link-red" href="NutricionistaController?action=excluirDieta&idDieta=${dieta.idDieta}&idAtleta=${atleta.idPessoa}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir a dieta selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</div>
 												</div>

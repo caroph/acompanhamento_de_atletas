@@ -6,7 +6,7 @@ public enum Refeicao {
 	Pre_Treino_Manha (3, "Pré-treino manhã"), 
 	Pos_Treino_Manha (4, "Pós-treino manhã"), 
 	Pos_Fisico_Manha (5, "Pós-físico manhã"), 
-	Almoco (6, "AlmoÃ§o"), 
+	Almoco (6, "Almoço"), 
 	Lanche_Tarde (7, "Lanche da tarde"), 
 	Pre_Treino_Tarde (8, "Pré-treino tarde"), 
 	Pos_Treino_Tarde (9, "Pós-treino tarde"),

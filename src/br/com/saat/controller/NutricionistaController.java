@@ -9,7 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +39,7 @@ import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.RefeicaoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
+import com.google.gson.Gson;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @WebServlet("/NutricionistaController")
@@ -518,7 +521,36 @@ public class NutricionistaController extends Controller {
 			retorno = String.format("%s/NutricionistaDieta.jsp", Constants.VIEW);
 			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
 			
-		} else if("jspEditarDieta".equals(action)){ 
+		} else if("jspEditarDieta".equals(action)){
+			Dieta dieta = new Dieta();
+			DietaNegocio negocio = new DietaNegocio();
+			
+			try{
+				dieta.setIdDieta(Integer.parseInt(request.getParameter("idDieta")));
+				dieta = negocio.buscaDieta(dieta);		
+				
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				if (dieta.getDtValidadeInicio() != null && dieta.getDtValidadeFim()!= null) {
+					dieta.setDtValidadeInicioDisplay(formatter.format(dieta.getDtValidadeInicio()));
+					dieta.setDtValidadeFimDisplay(formatter.format(dieta.getDtValidadeFim()));
+				}
+				
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+			
+			RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+			List<String> listaRefeicao = refeicaoNegocio.listaRefeicaoString();
+			
+			Map<String, Object> lista = new LinkedHashMap<String, Object>();
+			lista.put("listaRefeicao", listaRefeicao);
+			lista.put("dieta", dieta);
+		
+			String json = new Gson().toJson(lista);
+		
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
 			
 		} else if("excluirDieta".equals(action)){ 
 			Dieta dieta = new Dieta();
