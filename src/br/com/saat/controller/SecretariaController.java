@@ -44,7 +44,9 @@ import br.com.saat.model.Atleta;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
+import br.com.saat.model.ItemRetirada;
 import br.com.saat.model.Responsavel;
+import br.com.saat.model.RetiradaUniforme;
 import br.com.saat.model.Torneio;
 import br.com.saat.model.Uniforme;
 import br.com.saat.model.Usuario;
@@ -1610,8 +1612,9 @@ public class SecretariaController extends Controller {
 			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspRelatorioBonificacao";
 			
-		}else if("jspGerenciarEmprestimos".equals(action)){
+		}else if("jspGerenciarRetirada".equals(action)){
 			String nomeAtleta = request.getParameter("nome");
+			String idPessoa = request.getParameter("idPessoa");
 			
 			TpUniformeNegocio negocio = new TpUniformeNegocio();
 			List<TpUniforme> listaUniformes = negocio.listaTpUniforme();
@@ -1623,9 +1626,104 @@ public class SecretariaController extends Controller {
 			request.setAttribute("listaTamanhos", listaTamanhos);
 			request.setAttribute("dataAtual", new Date());
 			request.setAttribute("nomeAtleta", nomeAtleta);
+			request.setAttribute("idPessoa", idPessoa);
 			
 			retorno = String.format("%s/SecretariaGerenciarEmprestimos.jsp", Constants.VIEW);
-			servletRetorno = "/SecretariaController?action=jspGerenciarEmprestimos";
+			servletRetorno = "/SecretariaController?action=jspGerenciarRetirada&idPessoa=" + idPessoa + "&nome=" + nomeAtleta;
+			
+		}else if("jspRegistrarRetirada".equals(action)){
+			String msgErro = "";
+			List<Uniforme> uniformes = new ArrayList<Uniforme>();
+			String nomeAtleta = request.getParameter("nomeAtleta");
+			String idPessoa = request.getParameter("idAtleta");
+			String dataRetirada = request.getParameter("dataRetirada");
+			Atleta atleta = new Atleta();
+			String msgSucesso = "";
+			Date data = new Date();
+			int idAtleta = 0;
+			
+			if(dataRetirada == null || "".equals(dataRetirada)){
+				msgErro = "Preencha a data de retirada!";
+			}else{				
+				for (TpUniforme tipo : new TpUniformeNegocio().listaTpUniforme()) {
+					String tam = request.getParameter("tamanho-" + tipo.getValor());
+					String qtde = request.getParameter("qtd-"+ tipo.getValor());
+					
+					if((tam == null || "0".equals(tam)) && (qtde != null && !"".equals(qtde))){
+						msgErro = "O tamanho da " + tipo.getNome() + " deve ser preenchido";
+						
+					}else if((qtde == null || "".equals(qtde)) && (tam != null && !"0".equals(tam))){
+						msgErro = "A quantidade da " + tipo.getNome() + " deve ser preenchido";
+						
+					}else if((qtde != null && !"".equals(qtde)) && (tam != null && !"0".equals(tam))){
+						int tamanho = Integer.parseInt(tam);
+						int qtd = Integer.parseInt(qtde);
+						Uniforme uniforme = new Uniforme(tipo.getValor(), tamanho, qtd);
+						uniformes.add(uniforme);
+					}
+				}
+				
+				if("".equals(msgErro)){
+					UniformeNegocio negocio = new UniformeNegocio();
+					
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					try {
+						data = (Date) formatter.parse(dataRetirada);
+					} catch (java.text.ParseException e) {
+						msgErro = "Preencha a data corretamente!";
+					}
+					try {
+						idAtleta = Integer.parseInt(idPessoa);
+						atleta.setIdPessoa(idAtleta);
+					} catch (Exception e) {
+						msgErro = "Ocorreu algum erro ao identificar o atleta!";
+					}
+					try{
+						if(!uniformes.isEmpty() && "".equals(msgErro) && negocio.validaDadosRetirada(uniformes)){
+							RetiradaUniforme retirada = new RetiradaUniforme();
+							retirada.setUsuario(usuarioLogado);
+							retirada.setAtleta(atleta);
+							retirada.setDataRetirada(data);
+							int idRetirada = negocio.salvarRetiradaUniforme(retirada);
+							retirada.setIdRetiradaUniforme(idRetirada);
+							for (Uniforme uniforme : uniformes) {
+								uniforme.setIdUniforme(negocio.buscarIdUniforme(uniforme));
+								ItemRetirada item = new ItemRetirada();
+								item.setQuantidade(uniforme.getQuantidadeUniforme());
+								item.setRetirada(retirada);
+								item.setUniforme(uniforme);
+								
+								if(negocio.salvarItemUniforme(item)){
+									negocio.salvarUniformes(uniforme, "B");
+									if("".equals(msgSucesso))
+										msgSucesso = uniforme.getNomeTpUniforme();
+									else
+										msgSucesso += ", " + uniforme.getNomeTpUniforme();
+								}
+							}
+						}
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}					
+				}			
+				
+				TpUniformeNegocio negocio = new TpUniformeNegocio();
+				List<TpUniforme> listaUniformes = negocio.listaTpUniforme();
+				
+				TpTamanhoUniformeNegocio tamanhoNegocio = new TpTamanhoUniformeNegocio();
+				List<TpTamanhoUniforme> listaTamanhos = tamanhoNegocio.listaTpTamanhoUniforme();
+				
+				request.setAttribute("listaUniformes", listaUniformes);
+				request.setAttribute("listaTamanhos", listaTamanhos);
+				request.setAttribute("msgErro", msgErro);
+				if(!"".equals(msgSucesso))
+					request.setAttribute("msgSucesso", "Os seguintes uniformes foram retirados com sucesso: " + msgSucesso);
+				request.setAttribute("dataAtual", new Date());
+				request.setAttribute("nomeAtleta", nomeAtleta);
+				
+				retorno = String.format("%s/SecretariaGerenciarEmprestimos.jsp", Constants.VIEW);
+				servletRetorno = "/SecretariaController?action=jspGerenciarRetirada&idPessoa=" + idPessoa + "&nome=" + nomeAtleta;
+			}
 			
 		}else if("jspGerenciarEstoque".equals(action)){
 			TpUniformeNegocio negocio = new TpUniformeNegocio();
@@ -1668,9 +1766,16 @@ public class SecretariaController extends Controller {
 				if("".equals(msgErro)){
 					UniformeNegocio negocio = new UniformeNegocio();
 					try {
-						if(negocio.salvarUniformes(uniformes, optEstoque)){
-							request.setAttribute("msgSucesso", "Estoque de Uniformes salvo com sucesso");
-						}
+						boolean validaDados = true;
+						if("B".equals(optEstoque))
+							validaDados = negocio.validaDadosRetirada(uniformes);
+						if(validaDados){
+							for (Uniforme uniforme : uniformes) {
+								if(negocio.salvarUniformes(uniforme, optEstoque)){
+									request.setAttribute("msgSucesso", "Estoque de Uniformes salvo com sucesso");
+								}
+							}							
+						}					
 					} catch (Exception e) {
 						msgErro = e.getMessage();
 					}

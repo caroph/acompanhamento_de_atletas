@@ -1,5 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file='/layout/head.jsp'%>
 
 <body>
@@ -27,17 +28,15 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content clearfix">
-									<form action="#" method="post"
-										target="_blank">
+									<form action="SecretariaController?action=jspRegistrarRetirada" method="post">
 										<div class="col-md-12 form-group">
 											<div class="col-md-3" align="right">
 												<label for="dataQuadra" class="control-label">Data:</label>
 											</div>
 											<div class="col-md-9">
-												<fmt:formatDate value="${dataAtual}" pattern="yyyy-MM-dd" var="dataAtual" />
-												<input type="date" class="form-control" required style="width: 30%"
-													onchange="BuscarPresenca()" name="diaChamada"
-													value="<c:out value="${dataAtual}"/>" id="dataQuadra" />
+												<fmt:formatDate value="${dataAtual}" pattern="yyyy-MM-dd" var="data" />
+												<input type="date" class="form-control" required style="width: 30%" name="dataRetirada"
+													value="<c:out value="${data}"/>" id="dataRetirada" />
 											</div>
 											<table class="table">
 												<thead>
@@ -53,7 +52,7 @@
 														<td><c:out value='${uniforme.getNome()}' /></td>
 														<td>
 															<select name="tamanho-${uniforme.getValor()}" class="form-control">
-																<option value="" selected>Selecione</option>
+																<option value="0" selected>Selecione</option>
 																<c:forEach var="tamanho" items="${listaTamanhos}">
 																	<option value="${tamanho.getValor()}">
 																		<c:out value="${tamanho.getNome()}"></c:out>
@@ -70,6 +69,8 @@
 										<div align="right">
 											<button type="submit" class="btn btn-primary">Salvar</button>
 										</div>
+										<input type="hidden" value="${nomeAtleta}" name="nomeAtleta">
+										<input type="hidden" value="${idPessoa}" name="idAtleta">
 									</form>
 								</div>
 							</div>

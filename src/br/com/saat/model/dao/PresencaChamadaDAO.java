@@ -24,28 +24,6 @@ public class PresencaChamadaDAO {
         this.con = con;        
     }
 
-//	public boolean salvarPresencaChamada(int idChamada, int idAtleta,
-//			int estadoPresenca, String justificativa) throws SQLException {
-//		int rows = 0;
-//		
-//		stmtScript = con.prepareStatement("INSERT INTO presencachamada (idChamada, idAtleta, estadoPresencaT, "
-//				+ "justificativaT, estadoPresencaF, justificativaF) VALUES (?, ?, ?, ?, ?, ?)");
-//		
-//		stmtScript.setInt(1, idChamada);
-//		stmtScript.setInt(2, idAtleta);
-//		stmtScript.setInt(3, estadoPresenca);
-//		stmtScript.setString(4, justificativa);
-//		stmtScript.setInt(5, estadoPresenca);
-//		stmtScript.setString(6, justificativa);
-//		
-//		rows = stmtScript.executeUpdate();
-//		
-//		if(rows>0){
-//			return true;
-//		}
-//		return false;
-//	}
-
 	public boolean salvarPresencaChamada(PresencaChamada presenca) throws SQLException {
 		int rows = 0;
 		

@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.saat.model.ConnectionFactory;
+import br.com.saat.model.ItemRetirada;
+import br.com.saat.model.RetiradaUniforme;
 import br.com.saat.model.Uniforme;
 
 public class UniformeDAO {
@@ -94,5 +98,74 @@ public class UniformeDAO {
 			lista.add(uniforme);
 		}
 		return lista;
+	}
+
+	public void buscarEstoquePorUniforme(Uniforme uniforme) throws Exception {
+		Integer quantidade = BuscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
+		
+		if(quantidade == null || quantidade < uniforme.getQuantidadeUniforme()){
+			throw new Exception("Não existem "+ uniforme.getNomeTpUniforme() +"s " + " com  o tamanho "+ uniforme.getNomeTamanhoUniforme() + " suficientes disponíveis em estoque");
+		}
+	}
+	
+	public int buscarIdUniforme(Uniforme uniforme) throws SQLException{
+		stmtScript = con.prepareStatement("SELECT idUniforme FROM uniforme "
+				+ "WHERE tpuniforme = ? AND tamanhouniforme = ?");
+		stmtScript.setInt(1, uniforme.getTpUniforme());
+		stmtScript.setInt(2, uniforme.getTamanhoUniforme());
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
+	public int buscarRetirada(RetiradaUniforme retirada) throws SQLException {
+		stmtScript = con.prepareStatement("SELECT idRetiradaUniforme FROM retiradauniforme "
+				+ "WHERE idUsuario = ? AND idAtleta = ? AND dtRetirada = ?");
+		stmtScript.setInt(1, retirada.getUsuario().getIdPessoa());
+		stmtScript.setInt(2, retirada.getAtleta().getIdPessoa());
+		stmtScript.setDate(3, new java.sql.Date(retirada.getDataRetirada().getTime()));
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(rs.next()){
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
+	public int salvarRetiradaUniforme(RetiradaUniforme retirada) throws SQLException {
+		stmtScript = con.prepareStatement("INSERT INTO retiradauniforme (idUsuario, idAtleta, dtRetirada) "
+				+ "VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+		stmtScript.setInt(1, retirada.getUsuario().getIdPessoa());
+		stmtScript.setInt(2, retirada.getAtleta().getIdPessoa());
+		stmtScript.setDate(3, new java.sql.Date(retirada.getDataRetirada().getTime()));
+		
+		stmtScript.executeUpdate();
+		ResultSet rs = stmtScript.getGeneratedKeys();
+		
+		if(rs.next()){
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+
+	public boolean salvarItemUniforme(ItemRetirada item) throws SQLException {
+		int rows = 0;
+		stmtScript = con.prepareStatement("INSERT INTO itemretirada (idRetiradaUniforme, idUniforme, quantidade) "
+				+ "VALUES(?,?,?)");
+		stmtScript.setInt(1, item.getRetirada().getIdRetiradaUniforme());
+		stmtScript.setInt(2, item.getUniforme().getIdUniforme());
+		stmtScript.setInt(3, item.getQuantidade());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
 	}
 }
