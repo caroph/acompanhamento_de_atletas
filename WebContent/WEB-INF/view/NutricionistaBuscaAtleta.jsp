@@ -39,8 +39,8 @@
 												<th></th>
 												<th></th>
 												<th></th>
-<!-- 												<th></th> -->
-<!-- 												<th></th> -->
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -60,12 +60,12 @@
 													<td class="text-center">
 														<a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atleta.idPessoa}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>
 													</td>
-<!-- 													<td align="center"> -->
-<!-- 														<a class="btn btn-primary">Observação</a> -->
-<!-- 													</td> -->
-<!-- 													<td align="center"> -->
-<!-- 														<a class="btn btn-primary">Dieta</a>												 -->
-<!-- 													</td> -->
+													<td align="center">
+														<a class="link-green" href="NutricionistaController?action=jspDieta&idAtleta=${atleta.idPessoa}"><abbr title="Dieta"><i class="fa fa-large fa-cutlery"></i></abbr></a>
+													</td>
+													<td align="center">
+														<a class="link-green" onClick="abrirModalObservacao('${atleta.idPessoa}')"><abbr title="Observação"><i class="fa fa-large fa-bell-o"></i></abbr></a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

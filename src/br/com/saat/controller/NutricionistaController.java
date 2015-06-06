@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,15 +22,19 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Gravidade;
 import br.com.saat.enumeradores.Perfis;
+import br.com.saat.enumeradores.Refeicao;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.ConnectionFactory;
+import br.com.saat.model.Dieta;
 import br.com.saat.model.FichaDeAtendimento;
 import br.com.saat.model.Observacao;
 import br.com.saat.model.Usuario;
 import br.com.saat.model.negocio.AtletaNegocio;
+import br.com.saat.model.negocio.DietaNegocio;
 import br.com.saat.model.negocio.FichaDeAtendimentoNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
+import br.com.saat.model.negocio.RefeicaoNegocio;
 import br.com.saat.model.negocio.UsuarioNegocio;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
@@ -309,8 +315,6 @@ public class NutricionistaController extends Controller {
 					atleta = atletaNegocio.buscarAtleta(idAtleta);
 					listaAtendimentos = fichaNegocio.buscarHistoricoAtendimento(idAtleta);
 					
-					//OBSERVAÃ‡Ã•ES ATIVAS/HISTORICO TAMBÉM DEVEM SER PUXADOS POR AQUI FUTURAMENTE(QUANDO FOREM IMPLEMENTADOS)!!!
-					
 					if(listaAtendimentos == null || listaAtendimentos.isEmpty()){
 						request.setAttribute("msgAlerta", "Nenhum histórico disponível para esse atleta.");
 					}
@@ -374,7 +378,190 @@ public class NutricionistaController extends Controller {
 				servletRetorno = "/NutricionistaController?action=jspHistoricoAtendimento";
 			}
 			
-		}else{
+		} else if("jspDieta".equals(action)){ 
+			DietaNegocio negocio = new DietaNegocio();
+			List<Dieta> listaDieta = new ArrayList<Dieta>();
+			Atleta atleta = new Atleta();
+			try{
+				atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+				
+				listaDieta = negocio.buscaDietas(atleta);
+				if (listaDieta.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+			List<Refeicao> listaRefeicao = refeicaoNegocio.listaRefeicao();
+			
+			request.setAttribute("listaRefeicao", listaRefeicao);
+			request.setAttribute("listaDieta", listaDieta);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/NutricionistaDieta.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
+			
+		} else if("novaDieta".equals(action)){ 
+			int idAtleta = 0;
+			int idDieta = 0;
+			int idRefeicao = 0 ;
+			boolean exception = false;
+			String msgErro = "";
+			String msgSucesso = "";
+			String dataInicio = "";
+			String dataFim = "";
+			Date dtInicio = null;
+			Date dtFim = null;
+			
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+			Atleta atleta = new Atleta();
+			Dieta dieta = new Dieta();
+			DietaNegocio negocio = new DietaNegocio();
+			
+			try {
+				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				idDieta = Integer.parseInt(request.getParameter("idDieta"));
+			} catch (Exception ex) {
+				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
+				exception = true;
+			}
+			
+			try {
+				idRefeicao = Integer.parseInt(request.getParameter("refeicao"));
+			} catch (Exception ex) {
+				msgErro = "Favor selecionar corretamente o campo 'Refeição'.";
+				exception = true;
+			}
+			
+			try {
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				dataInicio = request.getParameter("dtValidadeInicio");
+				dataFim = request.getParameter("dtValidadeFim");
+				
+				if (!"".equals(dataInicio)) {
+					dtInicio = (Date) formatter.parse(dataInicio);
+				}
+				
+				if (!"".equals(dataFim)) {
+					dtFim = (Date) formatter.parse(dataFim);
+				}
+				
+			} catch (Exception ex) {
+				msgErro = "Favor verificar se os campos de 'Período de validade' foram corretamente informados.";
+				exception = true;
+			}
+			
+			if (!exception) {
+				atleta.setIdPessoa(idAtleta);
+				
+				dieta.setIdDieta(idDieta);
+				dieta.setAtleta(atleta);
+				dieta.setUsuario(usuario);
+				dieta.setRefeicao(idRefeicao);
+				dieta.setCompeticao(Boolean.parseBoolean(String.valueOf(request.getParameter("competicao"))));
+				dieta.setDtValidadeInicio(dtInicio);
+				dieta.setDtValidadeFim(dtFim);
+				dieta.setDescricao(request.getParameter("descricao"));
+				
+				List<Object> listaValidacao = negocio.validaDados(dieta);
+				boolean valida = (boolean) listaValidacao.get(0);
+				if (!valida) {
+					msgErro = (String) listaValidacao.get(1);
+				} else {
+					
+					try {
+						if (idDieta == 0) {
+							//Inserir
+							if (negocio.inserir(dieta)){
+								msgSucesso = "Dieta inserida com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro ao inserir a dieta! Favor tentar novamente.";
+							}
+						} else {
+							//Editar
+							if (negocio.alterar(dieta)) {
+								msgSucesso = "Dieta editada com sucesso!";
+							} else {
+								msgErro = "Ocorreu algum erro ao editar a dieta! Favor tentar novamente.";
+							}
+						}
+					} catch (Exception e) {
+						msgErro = e.getMessage();
+					}
+				}
+			}
+			
+			if (!msgErro.equals("")) {
+				request.setAttribute("msgErro", msgErro);
+			} else {
+				request.setAttribute("msgSucesso", msgSucesso);
+			}
+			
+			//Carregar página de dietas
+			List<Dieta> listaDieta = new ArrayList<Dieta>();
+			try{
+				listaDieta = negocio.buscaDietas(atleta);
+				if (listaDieta.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgAlerta", ex.getMessage());
+			}
+			
+			RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+			List<Refeicao> listaRefeicao = refeicaoNegocio.listaRefeicao();
+			
+			request.setAttribute("listaRefeicao", listaRefeicao);
+			request.setAttribute("listaDieta", listaDieta);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/NutricionistaDieta.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
+			
+		} else if("jspEditarDieta".equals(action)){ 
+			
+		} else if("excluirDieta".equals(action)){ 
+			Dieta dieta = new Dieta();
+			DietaNegocio negocio = new DietaNegocio();
+			
+			try {
+				dieta.setIdDieta(Integer.parseInt(request.getParameter("idDieta")));
+				if (negocio.excluir(dieta)) {
+					request.setAttribute("msgSucesso", "Dieta excluída com sucesso!");
+				} else {
+					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+				}
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			//Carregar página de dietas
+			List<Dieta> listaDieta = new ArrayList<Dieta>();
+			Atleta atleta = new Atleta();
+			try{
+				atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+				listaDieta = negocio.buscaDietas(atleta);
+				if (listaDieta.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgAlerta", ex.getMessage());
+			}
+			
+			RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+			List<Refeicao> listaRefeicao = refeicaoNegocio.listaRefeicao();
+			
+			request.setAttribute("listaRefeicao", listaRefeicao);
+			request.setAttribute("listaDieta", listaDieta);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/NutricionistaDieta.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
+			
+		} else if("imprimirDieta".equals(action)){ 
+			
+		} else if("enviarDieta".equals(action)){ 
+			
+		} else{
 			retorno = "/NutricionistaController?action=jspPaginaInicialNutricionista";
 			servletRetorno = "/NutricionistaController?action=jspPaginaInicialNutricionista";
 		}

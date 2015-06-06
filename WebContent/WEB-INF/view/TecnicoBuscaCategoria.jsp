@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	
-	<!-- Nova Atividade -->
+	<!-- Nova Categoria -->
 	<div class="modal fade bs-example-modal-sm" id="categoria" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
