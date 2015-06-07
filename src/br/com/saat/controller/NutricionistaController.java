@@ -80,12 +80,15 @@ public class NutricionistaController extends Controller {
 		if("jspPaginaInicialNutricionista".equals(action)){
 			String msg = "";
 			String msgSucesso = "";
-			ArrayList<ArrayList<String>> listaUltimosAtendimentos = null;
+			
+			List<FichaDeAtendimento> listaUltimosAtendimentos = new ArrayList<FichaDeAtendimento>();
 			try{
 				//busca os ultimos atendimentos
 				FichaDeAtendimentoNegocio fichaNegocio = new FichaDeAtendimentoNegocio();
 				listaUltimosAtendimentos = fichaNegocio.buscarUltimosAtendimentos(usuarioLogado.getIdPessoa());
-				if(listaUltimosAtendimentos == null || listaUltimosAtendimentos.isEmpty()){
+				if(!listaUltimosAtendimentos.isEmpty()){
+					request.setAttribute("listaUltimosAtendimentos", listaUltimosAtendimentos);
+				}else{
 					request.setAttribute("msgAlerta", "Nenhum atendimento registrado.");
 				}
 			}catch(Exception ex){
@@ -94,7 +97,6 @@ public class NutricionistaController extends Controller {
 			
 			request.setAttribute("msgErro", msg);
 			request.setAttribute("msgSucesso", msgSucesso);
-			request.setAttribute("listaUltimosAtendimentos", listaUltimosAtendimentos);
 			retorno = String.format("%s/NutricionistaPrincipal.jsp", Constants.VIEW);
 			
 		}else if("jspBuscarAtletas".equals(action)){
@@ -590,8 +592,84 @@ public class NutricionistaController extends Controller {
 			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
 			
 		} else if("imprimirDieta".equals(action)){ 
-			
+			int idAtleta = 0;
+			Connection con = ConnectionFactory.getConnection();
+			try{				
+				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				
+				//URL jasperURL = new URL(host+jasper);
+				URL jasperURL = getServletContext().getResource("/relatorios/dieta.jasper");
+				HashMap parms = new HashMap();
+				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+				
+				parms.put("idAtleta", idAtleta);
+				parms.put("caminhoLogo", caminhoImg);
+				
+				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
+				
+				if(bytes != null){
+					response.setContentType("application/pdf");
+					OutputStream ops = response.getOutputStream();
+					ops.write(bytes);
+				}				
+			}catch(Exception ex){
+				//Carregar página de dietas
+				DietaNegocio negocio = new DietaNegocio();
+				List<Dieta> listaDieta = new ArrayList<Dieta>();
+				Atleta atleta = new Atleta();
+				try{
+					atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+					listaDieta = negocio.buscaDietas(atleta);
+					if (listaDieta.isEmpty()) {
+						request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
+					}
+				}catch(Exception e){
+					request.setAttribute("msgAlerta", e.getMessage());
+				}
+				
+				RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+				List<Refeicao> listaRefeicao = refeicaoNegocio.listaRefeicao();
+				
+				request.setAttribute("listaRefeicao", listaRefeicao);
+				request.setAttribute("listaDieta", listaDieta);
+				
+				request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
+				retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+			}
 		} else if("enviarDieta".equals(action)){ 
+			Atleta atleta = new Atleta();
+			DietaNegocio negocio = new DietaNegocio();
+			
+			try {
+				atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+				if (negocio.enviar(atleta)) {
+					request.setAttribute("msgSucesso", "Dieta encaminhada aos responsáveis com sucesso!");
+				} else {
+					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+				}
+			} catch (Exception ex) {
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			//Carregar página de dietas
+			List<Dieta> listaDieta = new ArrayList<Dieta>();
+			try{
+				listaDieta = negocio.buscaDietas(atleta);
+				if (listaDieta.isEmpty()) {
+					request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
+				}
+			}catch(Exception ex){
+				request.setAttribute("msgAlerta", ex.getMessage());
+			}
+			
+			RefeicaoNegocio refeicaoNegocio = new RefeicaoNegocio();
+			List<Refeicao> listaRefeicao = refeicaoNegocio.listaRefeicao();
+			
+			request.setAttribute("listaRefeicao", listaRefeicao);
+			request.setAttribute("listaDieta", listaDieta);
+			request.setAttribute("atleta", atleta);
+			retorno = String.format("%s/NutricionistaDieta.jsp", Constants.VIEW);
+			servletRetorno = "/NutricionistaController?action=jspBuscarAtletas";
 			
 		} else{
 			retorno = "/NutricionistaController?action=jspPaginaInicialNutricionista";

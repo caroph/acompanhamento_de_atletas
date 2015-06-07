@@ -1,11 +1,14 @@
 package br.com.saat.model.negocio;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import br.com.saat.enumeradores.TpDocumento;
 import br.com.saat.model.Documento;
 import br.com.saat.model.dao.DocumentoDAO;
 
@@ -115,6 +118,66 @@ public class DocumentoNegocio {
 			throw new Exception("Erro ao consultar documentos pendentes!");
 		}		
 		return listaPendencias;
+	}
+	
+	public boolean criaDiretorio(String path) {
+		// Se a pasta ão existir cria, caso não consiga criar retorna falso
+		try {
+			if (!Paths.get(path).toFile().exists()) {
+				File dir = new File(path);
+				if (dir.mkdir())
+					return true;
+				else
+					return false;
+			} else {
+				return true;
+			}
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+	
+	public String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {
+		String nmDocumento = "";
+		String[] explode = nmArquivo.split("\\.");
+		String extensao = explode[(explode.length - 1)];
+		List<String> extensoesValidas = new ArrayList<String>() {
+			{
+				add("jpg");
+				add("jpeg");
+				add("png");
+				add("pdf");
+				add("doc");
+				add("docx");
+				add("xls");
+				add("xlsx");
+			}
+		};
+
+		if (!extensao.equals("") || extensao != null) {
+			if (!extensoesValidas.contains(extensao.toLowerCase()))
+				return "Extensão de arquivo inválida!";
+		}
+
+		// valida qual vai ser o nome do documento
+		if (tpDocumento == TpDocumento.termoDeCompromisso.getValor())
+			nmDocumento = "termo_compromisso_manual";
+		else if (tpDocumento == TpDocumento.declaracaoMedica.getValor())
+			nmDocumento = "declaracao_medica";
+		else if (tpDocumento == TpDocumento.autorizacaoDeViagem.getValor())
+			nmDocumento = "autorizacao_viagem_hospedagem";
+		else if (tpDocumento == TpDocumento.autorizacaoDeImagem.getValor())
+			nmDocumento = "autorizacao_imagem";
+		else if (tpDocumento == TpDocumento.copiaDoRG.getValor())
+			nmDocumento = "copia_rg";
+		else if (tpDocumento == TpDocumento.copiaDoCPF.getValor())
+			nmDocumento = "copia_cpf";
+		else if (tpDocumento == TpDocumento.fotoDoAtleta.getValor())
+			nmDocumento = "foto_atleta";
+		else
+			return "Tipo de arquivo inválido!";
+
+		return String.valueOf(idPessoa) + "_" + nmDocumento + "." + extensao;
 	}
 	
 }

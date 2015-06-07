@@ -90,7 +90,7 @@ public class SecretariaController extends Controller {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd;
 
-		// Verifica autenticaï¿½ï¿½o usuï¿½rio
+		// Verifica autenticação usuário
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		if (usuarioLogado == null
 				|| usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()) {
@@ -1403,6 +1403,7 @@ public class SecretariaController extends Controller {
 			String msgSucesso = "";
 			String msg = "";
 			Documento documento = new Documento();
+			DocumentoNegocio negocio = new DocumentoNegocio();
 
 			try {
 				DocumentoNegocio documentoNegocio = new DocumentoNegocio();
@@ -1438,7 +1439,7 @@ public class SecretariaController extends Controller {
 					} else {
 						String path = getUploadPath(documento);
 						InputStream in = item.getInputStream();
-						String nmDocumento = nomearArquivo(
+						String nmDocumento = negocio.nomearArquivo(
 								documento.getTpDocumento(),
 								documento.getIdPessoa(), item.getName());
 						if (!nmDocumento
@@ -1838,8 +1839,7 @@ public class SecretariaController extends Controller {
 					.toString());
 			DocumentoNegocio documentoNegocio = new DocumentoNegocio();
 
-			ArrayList<Documento> listaDocumento = documentoNegocio
-					.buscarTodosAtleta(idPessoa);
+			ArrayList<Documento> listaDocumento = documentoNegocio.buscarTodosAtleta(idPessoa);
 
 			for (Documento documento : listaDocumento) {
 				if (documento.getTpDocumento() == TpDocumento.termoDeCompromisso
@@ -1904,49 +1904,6 @@ public class SecretariaController extends Controller {
 		return msg;
 	}
 
-	private String nomearArquivo(int tpDocumento, int idPessoa, String nmArquivo) {
-		String nmDocumento = "";
-		String[] explode = nmArquivo.split("\\.");
-		String extensao = explode[(explode.length - 1)];
-		List<String> extensoesValidas = new ArrayList<String>() {
-			{
-				add("jpg");
-				add("jpeg");
-				add("png");
-				add("pdf");
-				add("doc");
-				add("docx");
-				add("xls");
-				add("xlsx");
-			}
-		};
-
-		if (!extensao.equals("") || extensao != null) {
-			if (!extensoesValidas.contains(extensao.toLowerCase()))
-				return "Extensão de arquivo inválida!";
-		}
-
-		// valida qual vai ser o nome do documento
-		if (tpDocumento == TpDocumento.termoDeCompromisso.getValor())
-			nmDocumento = "termo_compromisso_manual";
-		else if (tpDocumento == TpDocumento.declaracaoMedica.getValor())
-			nmDocumento = "declaracao_medica";
-		else if (tpDocumento == TpDocumento.autorizacaoDeViagem.getValor())
-			nmDocumento = "autorizacao_viagem_hospedagem";
-		else if (tpDocumento == TpDocumento.autorizacaoDeImagem.getValor())
-			nmDocumento = "autorizacao_imagem";
-		else if (tpDocumento == TpDocumento.copiaDoRG.getValor())
-			nmDocumento = "copia_rg";
-		else if (tpDocumento == TpDocumento.copiaDoCPF.getValor())
-			nmDocumento = "copia_cpf";
-		else if (tpDocumento == TpDocumento.fotoDoAtleta.getValor())
-			nmDocumento = "foto_atleta";
-		else
-			return "Tipo de arquivo inválido!";
-
-		return String.valueOf(idPessoa) + "_" + nmDocumento + "." + extensao;
-	}
-
 	private String getUploadPath(Documento documento) {
 		// String path =
 		// getServletContext().getRealPath("..\\saatDocumentacaoAtletas" + "\\"
@@ -1956,29 +1913,16 @@ public class SecretariaController extends Controller {
 //				+ "\\..\\saatDocumentacaoAtletas" + "\\"
 //				+ String.valueOf(documento.getIdPessoa());
 
-		// verifica se a pasta do aluno esta criada
-		if (criaDiretorio(path)) {
+		// verifica se a pasta do atleta esta criada		
+		DocumentoNegocio negocio = new DocumentoNegocio();
+		
+		if (negocio.criaDiretorio(path)) {
 			return path;
 		} else {
 			return "";
 		}
 	}
 
-	private boolean criaDiretorio(String path) {
-		// Se a pasta nï¿½o existir cria, caso nï¿½o consiga criar retorna falso
-		try {
-			if (!Paths.get(path).toFile().exists()) {
-				File dir = new File(path);
-				if (dir.mkdir())
-					return true;
-				else
-					return false;
-			} else {
-				return true;
-			}
-		} catch (Exception ex) {
-			return false;
-		}
-	}
+	
 
 }

@@ -3,6 +3,10 @@ package br.com.saat.model.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
+import br.com.saat.core.JavaMailApp;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.Dieta;
 import br.com.saat.model.dao.DietaDAO;
@@ -92,6 +96,26 @@ public class DietaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao editar a dieta.");
 		}
 
+		return retorno;
+	}
+
+	public boolean enviar(Atleta atleta) throws Exception {
+		boolean retorno = false;
+		ResponsavelNegocio negocio = new ResponsavelNegocio();
+		JavaMailApp email = new JavaMailApp();
+		try {
+			List<String> listaDestinatarios = negocio.buscaEmailResp(atleta);
+			
+			for (String destino : listaDestinatarios) {
+				email.enviarDieta(destino);
+			}
+			
+			retorno = true;
+		} catch (AddressException e) {
+			throw new Exception("Erro ao identificar email de responsável!");
+		} catch (MessagingException e) {
+			throw new Exception("Erro ao enviar email ao responsável!");
+		}
 		return retorno;
 	}
 

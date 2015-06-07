@@ -51,7 +51,8 @@ public class FichaDeAtendimento {
 	private String suplementoVitaminicoAlimentarInformacoes;
 	private String recordatorioAlimentar;
 	private String condutaNutricional;
-		
+	private Atleta atleta;
+	
 	public String getFsFritura() {
 		return fsFritura;
 	}
@@ -342,5 +343,11 @@ public class FichaDeAtendimento {
 	}
 	public void setCondutaNutricional(String condutaNutricional) {
 		this.condutaNutricional = condutaNutricional;
+	}
+	public Atleta getAtleta() {
+		return atleta;
+	}
+	public void setAtleta(Atleta atleta) {
+		this.atleta = atleta;
 	}	
 }

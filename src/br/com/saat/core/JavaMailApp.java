@@ -96,4 +96,43 @@ public class JavaMailApp {
       
       Transport.send(message);
     }
+
+	public void enviarDieta(String destino) throws AddressException, MessagingException {
+		// TODO Auto-generated method stub
+		Properties props = new Properties();
+        
+        /** Parametros de conex„o com servidor Gmail */
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+
+        Session session = Session.getDefaultInstance(props,
+            new javax.mail.Authenticator() {
+                 @Override
+                 protected PasswordAuthentication getPasswordAuthentication() 
+                 {
+                       return new PasswordAuthentication("saatnoreply@gmail.com", "s@@t_2o!5");
+                 }
+            });
+
+        /** Ativa Debug para sess„o */
+        session.setDebug(true);
+
+      
+      Message message = new MimeMessage(session);
+      message.setFrom(new InternetAddress("saatnoreply@gmail.com")); //Remetente
+      
+      message.setSubject("SAAT - Senha do Usu·rio");//Assunto
+      message.setText("Ol·!\n\n"
+    		  + "Segue em anexo a dieta. \n\n"
+    		  + "SAAT - Sistema de Acompanhamento de Atleta de TÍnis");
+
+      /**MÈtodo para enviar a mensagem criada*/
+      Address[] toUser = InternetAddress.parse(destino);  //Destinat√°rio(s)                  	
+      message.setRecipients(Message.RecipientType.TO, toUser);
+      
+      Transport.send(message);
+	}
 }

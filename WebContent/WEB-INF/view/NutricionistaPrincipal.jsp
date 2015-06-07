@@ -36,11 +36,10 @@
 										</thead>
 										<tbody>
 											<c:forEach var="atendimento" items="${listaUltimosAtendimentos}">
-												<fmt:parseDate value="${atendimento.get(2)}" var="dtAtendimento" pattern="yyyy-MM-dd HH:mm:ss"/>
 												<tr>
-													<td>${atendimento.get(1)}</td>
-													<td class="text-center"><fmt:formatDate value="${dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
-													<td class="text-center"><a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.get(0)}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>
+													<td>${atendimento.atleta.nome}</td>
+													<td class="text-center"><fmt:formatDate value="${atendimento.dtAtendimento}" pattern="dd/MM/yyyy - HH:mm"/></td>
+													<td class="text-center"><a class="link-green" href="NutricionistaController?action=jspHistoricoAtendimento&idAtleta=${atendimento.atleta.idPessoa}"><abbr title="Histórico"><i class="fa fa-large fa-folder-open"></i></abbr></a>
 													</td>
 												</tr>	
 											</c:forEach>

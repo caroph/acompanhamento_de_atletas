@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Statement;
-
 import br.com.saat.enumeradores.TpPessoa;
+import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.Responsavel;
+
+import com.mysql.jdbc.Statement;
 
 public class ResponsavelDAO {
 
@@ -200,6 +201,28 @@ public class ResponsavelDAO {
 			}
 		} catch (SQLException e) {
 			throw new Exception("Erro ao consultar emails!");
+		}
+		
+		return lista;
+	}
+
+	public List<String> buscaEmailResp(Atleta atleta) throws SQLException {
+		List<String> lista = new ArrayList<String>();
+		
+		stmtScript = con.prepareStatement("SELECT DISTINCT r.email "
+				+ "FROM responsavel r "
+				+ "INNER JOIN atletaresponsavel ar "
+				+ "ON r.idResponsavel = ar.idResponsavel "
+				+ "INNER JOIN atleta a "
+				+ "ON ar.idAtleta = a.idAtleta "
+				+ "AND a.idAtleta = ?");
+		
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		
+		ResultSet rs = stmtScript.executeQuery();
+		
+		while(rs.next()){			
+			lista.add(rs.getString(1));
 		}
 		
 		return lista;

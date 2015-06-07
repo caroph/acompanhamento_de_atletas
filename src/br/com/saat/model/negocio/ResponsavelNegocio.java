@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import br.com.saat.core.JavaMailApp;
+import br.com.saat.model.Atleta;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.dao.ResponsavelDAO;
 
@@ -133,5 +134,18 @@ public class ResponsavelNegocio {
 		} catch (MessagingException e) {
 			throw new Exception("Erro ao enviar email ao responsável!");
 		}
+	}
+
+
+	public List<String> buscaEmailResp(Atleta atleta) throws Exception {
+		List<String> lista = new ArrayList<String>();
+		try{
+			ResponsavelDAO dao = new ResponsavelDAO();
+			lista = dao.buscaEmailResp(atleta);
+		}catch(Exception ex){
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o email dos responsáveis");
+		}
+		
+		return lista;
 	}
 }

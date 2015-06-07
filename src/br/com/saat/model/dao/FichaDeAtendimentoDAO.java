@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoAntropometrica;
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.FichaDeAtendimento;
@@ -420,7 +422,7 @@ public class FichaDeAtendimentoDAO {
 			return false;
 	}
 
-	public ArrayList<ArrayList<String>> buscarUltimosAtendimentos(int idPessoa) throws Exception {
+	public List<FichaDeAtendimento> buscarUltimosAtendimentos(int idPessoa) throws Exception {
 		stmtScript = con.prepareStatement("SELECT "
 				+ "		f.idAtleta AS idAtleta, "
 				+ "		MAX(f.dtAtendimento) AS dtUltimoAtendimento, "
@@ -440,16 +442,18 @@ public class FichaDeAtendimentoDAO {
 		
 		ResultSet rs = stmtScript.executeQuery();
 		
-		ArrayList<ArrayList<String>> listaUltimosAtendimentos = new ArrayList<ArrayList<String>>();
+		List<FichaDeAtendimento> listaUltimosAtendimentos = new ArrayList<FichaDeAtendimento>();
 		while(rs.next()){
-			ArrayList<String> atendimento = new ArrayList<String>();
-			//MANIPULA ATENDIMENTO
-			//atendimento.add(String.valueOf(rs.getInt("idAtleta")));
-			atendimento.add(rs.getString("idAtleta"));
-			atendimento.add(rs.getString("nmAtleta"));
-			atendimento.add(rs.getString("dtUltimoAtendimento"));
+			FichaDeAtendimento ficha = new FichaDeAtendimento();
+			Atleta atleta = new Atleta();
 			
-			listaUltimosAtendimentos.add(atendimento);
+			atleta.setIdPessoa(rs.getInt("idAtleta"));
+			atleta.setNome(rs.getString("nmAtleta"));
+			
+			ficha.setAtleta(atleta);
+			ficha.setDtAtendimento(rs.getTimestamp("dtUltimoAtendimento"));
+			
+			listaUltimosAtendimentos.add(ficha);
 		}
 		
 		return listaUltimosAtendimentos;
