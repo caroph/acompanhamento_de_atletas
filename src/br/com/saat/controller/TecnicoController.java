@@ -160,7 +160,6 @@ public class TecnicoController extends Controller {
 				} else{
 					idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
 				}
-				usuario = (Usuario) session.getAttribute("usuarioLogado");
 			} catch (Exception ex) {
 				msgErro = "Ocorreu algum erro no sistema! Favor tentar novamente.";
 				exception = true;
@@ -339,7 +338,6 @@ public class TecnicoController extends Controller {
 			torneio.setIdTorneio(Integer.parseInt(request.getParameter("idTorneio")));
 			
 			Usuario usuario = new Usuario();
-			usuario = (Usuario) session.getAttribute("usuarioLogado");
 
 			TorneioNegocio negocio = new TorneioNegocio();
 			
@@ -437,7 +435,6 @@ public class TecnicoController extends Controller {
 			
 			if (!exception) {
 				Usuario usuario = new Usuario();
-				usuario = (Usuario) session.getAttribute("usuarioLogado");
 				
 				Atleta atleta = new Atleta();
 				atleta.setIdPessoa(idDestaque);

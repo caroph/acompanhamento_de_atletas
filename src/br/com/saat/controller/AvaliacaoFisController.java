@@ -708,7 +708,6 @@ public class AvaliacaoFisController extends Controller {
 			String dataAva = "";
 			Date dtAvaliacao = null;
 			
-			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 			Atleta atleta = new Atleta();
 			AvaliacaoFisica avalFis = new AvaliacaoFisica();
 			AvaliacaoResultadoNegocio avaResulNegocio = new AvaliacaoResultadoNegocio();
@@ -763,7 +762,7 @@ public class AvaliacaoFisController extends Controller {
 					atleta.setIdPessoa(idAtleta);
 					
 					avalFis.setAtleta(atleta);
-					avalFis.setIdUsuResp(usuario.getIdPessoa());
+					avalFis.setIdUsuResp(usuarioLogado.getIdPessoa());
 					avalFis.setIdTpCaracteristica(idCaracteristica);
 					avalFis.setDtAvaliacao(dtAvaliacao);
 					avalFis.setObservacaoGeral(request.getParameter("observacaoGeral"));

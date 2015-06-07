@@ -419,7 +419,6 @@ public class NutricionistaController extends Controller {
 			Date dtInicio = null;
 			Date dtFim = null;
 			
-			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 			Atleta atleta = new Atleta();
 			Dieta dieta = new Dieta();
 			DietaNegocio negocio = new DietaNegocio();
@@ -462,7 +461,7 @@ public class NutricionistaController extends Controller {
 				
 				dieta.setIdDieta(idDieta);
 				dieta.setAtleta(atleta);
-				dieta.setUsuario(usuario);
+				dieta.setUsuario(usuarioLogado);
 				dieta.setRefeicao(idRefeicao);
 				dieta.setCompeticao(Boolean.parseBoolean(String.valueOf(request.getParameter("competicao"))));
 				dieta.setDtValidadeInicio(dtInicio);

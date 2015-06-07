@@ -223,12 +223,10 @@ public class Controller extends HttpServlet {
 			}else{
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}
-		}else if("voltaPaginaInicial".equals(action)){			
-			Usuario usuario = (Usuario)session.getAttribute("usuarioLogado");
-			
+		}else if("voltaPaginaInicial".equals(action)){						
 			UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 			
-			retorno = usuarioNegocio.retornoLogin(usuario);
+			retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			
 		}else if("gerarRelatorioTreino".equals(action)){
 			int perfil = usuarioLogado.getPerfil();
