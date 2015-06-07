@@ -29,9 +29,9 @@
 								</div>
 								<div class="box-content">
 									<a class="link-green" id="novaDieta" data-toggle="modal" href="#dieta"><abbr title="Nova dieta"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
-									<c:if test="${fn:length(listaDieta) gt 1}">
+									<c:if test="${fn:length(listaDieta) gt 0}">
 										<a class="link-green" id="novaDieta" href="NutricionistaController?action=imprimirDieta&idAtleta=${atleta.idPessoa}"><abbr title="Imprimir"><i class="fa fa-large fa-print"></i></abbr></a>
-										<a class="link-green" id="novaDieta" href="NutricionistaController?action=enviarDieta&idAtleta=${atleta.idPessoa}" data-confirm="Deseja realmente encaminhar a dieta aos responsáveis do atleta?"><abbr title="Encaminhar aos responsáveis"><i class="fa fa-large fa-envelope"></i></abbr></a>
+										<a class="link-green" id="novaDieta" href="NutricionistaController?action=enviarDieta&idAtleta=${atleta.idPessoa}&nome=${atleta.nome}" data-confirm="Deseja realmente encaminhar a dieta aos responsáveis do atleta?"><abbr title="Encaminhar aos responsáveis"><i class="fa fa-large fa-envelope"></i></abbr></a>
 									</c:if>
 									<div id="listaDieta"  style="padding: 10px;">
 										<c:forEach var="dieta" items="${listaDieta}">

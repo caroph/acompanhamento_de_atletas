@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dieta" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37762b1e-9f4b-4885-92ec-3e8cef34b2b2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<parameter name="nomeAtleta" class="java.lang.String"/>
+	<parameter name="idAtleta" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dscRefeicao,
+CASE
+WHEN flCompeticao = 1 THEN 'Sim'
+ELSE 'Não'
+END AS competicao,
+dtValidadeInicio,
+dtValidadeFim,
+descricao
+FROM dieta d,
+refeicao r
+WHERE d.idRefeicao = r.idRefeicao
+AND flCadastroAtivo = 1
+AND idAtleta = $P{idAtleta}
+ORDER BY dscRefeicao, dtGeracao]]>
+	</queryString>
+	<field name="dscRefeicao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="competicao" class="java.lang.String"/>
+	<field name="dtValidadeInicio" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtValidadeFim" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="128" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="116" uuid="54dbbc98-9fae-4164-acd5-cbe29715ee72"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="132" y="33" width="384" height="76" uuid="57239866-99d4-4263-9831-1c0d0fd3c618"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Dieta]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atleta:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="362" height="20" uuid="8462eb86-7660-4ea4-ad95-22ca9c3c47c7"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomeAtleta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="220" y="40" width="69" height="20" uuid="7b7390db-8c3c-4ddd-84ae-92a4fa162652"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtValidadeFim})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="40" width="72" height="20" uuid="84ec7123-18a9-410d-88e9-3d5066a6d5a6"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtValidadeInicio})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="159" height="20" uuid="4a7dac47-2b95-4a82-ad3f-a9e1185bba64"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período de competição:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="73" height="20" uuid="7dd3322b-1312-4610-ad08-b2ba1b268cbc"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Refeição:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="73" y="0" width="182" height="20" uuid="f220282e-e8f5-4cc8-9dba-e90d068113c1"/>
+				<textFieldExpression><![CDATA[$F{dscRefeicao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="20" width="100" height="20" uuid="19d72c1a-8c73-4aea-9222-1a6e3d8a68a4"/>
+				<textFieldExpression><![CDATA[$F{competicao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="132" height="20" uuid="095954b2-e42d-44c8-be48-e817b1cee976"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período de validade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="40" width="16" height="20" uuid="1da03e09-333a-4d62-9a2b-dc70b55438f1"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="73" height="20" uuid="b052f009-efc9-49a8-a7d0-2c518d673f68"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="73" y="60" width="482" height="53" uuid="8884eb6b-705c-464b-9442-8ba8bb0b1e0d"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="124" width="555" height="1" uuid="9902b545-d196-45ce-83ac-328c11d0d735"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

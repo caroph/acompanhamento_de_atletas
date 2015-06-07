@@ -592,9 +592,11 @@ public class NutricionistaController extends Controller {
 			
 		} else if("imprimirDieta".equals(action)){ 
 			int idAtleta = 0;
+			String nome;
 			Connection con = ConnectionFactory.getConnection();
 			try{				
 				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
+				nome = request.getParameter("nome");
 				
 				//URL jasperURL = new URL(host+jasper);
 				URL jasperURL = getServletContext().getResource("/relatorios/dieta.jasper");
@@ -602,6 +604,7 @@ public class NutricionistaController extends Controller {
 				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 				
 				parms.put("idAtleta", idAtleta);
+				parms.put("nomeAtleta", nome);
 				parms.put("caminhoLogo", caminhoImg);
 				
 				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
