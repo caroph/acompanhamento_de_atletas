@@ -51,6 +51,7 @@ import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
+import br.com.saat.model.negocio.ResultadoTorneioNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
@@ -338,6 +339,7 @@ public class Controller extends HttpServlet {
 			List<String> listaCategoria = new CatTorneioNegocio().listaCatTorneioString();
 			List<String> listaTipo = new TpTorneioNegocio().listaTpTorneioString();
 			List<String> listaGrupo = new GpTorneioNegocio().listaGpTorneioString();
+			List<String> listaResultado = new ResultadoTorneioNegocio().listaResultadoTorneioString();
 			
 			Map<String, Object> lista = new LinkedHashMap<String, Object>();
 			lista.put("torneio", torneio);
@@ -346,6 +348,7 @@ public class Controller extends HttpServlet {
 			lista.put("categoria", listaCategoria);
 			lista.put("tipo", listaTipo);
 			lista.put("grupo", listaGrupo);
+			lista.put("resultado", listaResultado);
 			
 			String json = new Gson().toJson(lista);
 

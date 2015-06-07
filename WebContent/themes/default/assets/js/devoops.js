@@ -11,7 +11,7 @@ function abrilModalTorneio(idTorneio, finalizado, perfil) {
 	url : "Controller?action=detalhesTorneio&idTorneio="
 			+ idTorneio,
 	success : function(data) {
-		
+		var resultado = data.resultado;
 		var html = ""
 			html += "<b>Nome:</b> " + data.torneio.nome + "<br/>";
 		html += "<b>Local:</b> " + data.torneio.local + "<br/>";
@@ -51,7 +51,7 @@ function abrilModalTorneio(idTorneio, finalizado, perfil) {
 					data.listaAtleta,
 					function(index, item) {
 						html += item.nome + " - ";
-						html += "Coloca\u00e7\u00e3o: " + item.colocacao + "<br/>";
+						html += "Coloca\u00e7\u00e3o: " + resultado[item.colocacao - 1]  + "<br/>";
 					});
 			}
 		}

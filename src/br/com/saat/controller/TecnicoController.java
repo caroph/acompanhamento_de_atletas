@@ -25,6 +25,7 @@ import br.com.saat.enumeradores.Mes;
 import br.com.saat.enumeradores.Naipe;
 import br.com.saat.enumeradores.Perfis;
 import br.com.saat.enumeradores.Presenca;
+import br.com.saat.enumeradores.ResultadoTorneio;
 import br.com.saat.enumeradores.TpTorneio;
 import br.com.saat.model.Atleta;
 import br.com.saat.model.AvaliacaoDesempenho;
@@ -44,6 +45,7 @@ import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
+import br.com.saat.model.negocio.ResultadoTorneioNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
 import br.com.saat.model.negocio.TpTorneioNegocio;
 
@@ -375,11 +377,15 @@ public class TecnicoController extends Controller {
 				request.setAttribute("msgErro", e.getMessage());
 			}
 			
+			ResultadoTorneioNegocio resultadoTorneio = new ResultadoTorneioNegocio();
+			List<ResultadoTorneio> listaResultado = resultadoTorneio.listaResultadoTorneio();
+			
 			torneio.setIdTorneio(idTorneio);
 			torneio.setNome(nomeTorneio);
 			torneio.setInscritosClube(listaAtletas.size());
 			
 			request.setAttribute("torneio", torneio);
+			request.setAttribute("listaResultado", listaResultado);
 			
 			retorno = String.format("%s/TecnicoFinalizarTorneio.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspFinalizarTorneio&idTorneio=" +
@@ -453,7 +459,11 @@ public class TecnicoController extends Controller {
 						String colocao = "colocacao" + atletaPart.idPessoa;
 						String observacao = "observacao" + atletaPart.idPessoa;
 						
-						atletaPart.setColocacao(request.getParameter(colocao));
+						try {
+							atletaPart.setColocacao(Integer.parseInt(request.getParameter(colocao)));
+						} catch (Exception e) {
+							atletaPart.setColocacao(0);
+						}
 						atletaPart.setObservacao(request.getParameter(observacao));
 					}
 					
@@ -497,6 +507,11 @@ public class TecnicoController extends Controller {
 				
 				List<Atleta> listaAtleta = negocio.buscaAtletasPart(idTorneio);
 				request.setAttribute("listaAtletas", listaAtleta);
+				
+				ResultadoTorneioNegocio resultadoTorneio = new ResultadoTorneioNegocio();
+				List<ResultadoTorneio> listaResultado = resultadoTorneio.listaResultadoTorneio();
+				
+				request.setAttribute("listaResultado", listaResultado);
 			} catch (Exception ex) {
 				request.setAttribute("msgErro", ex.getMessage());
 			}

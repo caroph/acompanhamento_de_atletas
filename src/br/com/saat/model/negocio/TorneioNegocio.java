@@ -185,7 +185,7 @@ public class TorneioNegocio {
 		List<Object> lista = new ArrayList<Object>();
 		
 		for (Atleta atleta : listaAtletasPart) {
-			if (atleta.getColocacao() == null || "".equals(atleta.getColocacao())) {
+			if (atleta.getColocacao() == 0) {
 				lista.add(false);
 				lista.add("Favor informar corretamente a colocação do(a) atleta " + atleta.getNome() + "!");
 				break;

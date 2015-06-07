@@ -69,7 +69,7 @@
 											 </div>
 										 	<div class="form-group col-md-6">
 												<label for="encaminhamentoMkt">Encaminhar ao marketing em:</label>
-												<fmt:formatDate value="${torneio.encaminhamentoMkt}" pattern="dd/MM/yyyy" var="dtEncaminhamento" />
+												<fmt:formatDate value="${torneio.encaminhamentoMkt}" pattern="yyyy-MM-dd" var="dtEncaminhamento" />
 												<input type="date" class="form-control" id="encaminhamentoMkt" name="encaminhamentoMkt" value="${dtEncaminhamento}" required/>
 										 	</div>
 										</div>
@@ -85,7 +85,17 @@
 												</div>
 												<div class="form-group col-md-3">
 													 <label for="colocacao">Colocação:</label>
-													 <input type="text" class="form-control" id="colocacao" name="colocacao<c:out value='${atleta.idPessoa}'/>" value="<c:out value='${atleta.colocacao}'/>" maxlength="50" required/>
+													 <select class="form-control" id="colocacao" name="colocacao<c:out value='${atleta.idPessoa}'/>">
+														<option value="">Selecione</option>
+														<c:forEach var="resultado" items="${listaResultado}">
+								                            <c:if test="${atleta.colocacao == resultado.valor}">
+				                                                <option selected value="<c:out value='${resultado.valor}'/>"><c:out value="${resultado.nome}" /></option>
+				                                            </c:if>
+				                                            <c:if test="${atleta.colocacao != resultado.valor}">
+																<option value="<c:out value='${resultado.valor}'/>"><c:out value="${resultado.nome}" /></option>
+															</c:if>
+							                            </c:forEach>
+													</select>
 												</div>
 											 	<div class="form-group col-md-6">
 													<label>Observação:</label>

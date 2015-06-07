@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.saat.enumeradores.Equipes;
 import br.com.saat.enumeradores.GrauParentesco;
+import br.com.saat.enumeradores.ResultadoTorneio;
 import br.com.saat.enumeradores.Sexo;
 import br.com.saat.enumeradores.Turno;
 
@@ -40,7 +41,7 @@ public class Atleta extends Pessoa {
 	private String dtNascimentoDisplay;
 	private List<Documento> listaDocumentos;
 	private boolean selecionado;
-	private String colocacao;
+	private int colocacao;
 	private String observacao;
 	private PresencaChamada presenca;
 	private List<AvaliacaoDesempenho> avaliacaoDesempenho;
@@ -383,11 +384,11 @@ public class Atleta extends Pessoa {
 		this.selecionado = selecionado;
 	}
 
-	public String getColocacao() {
+	public int getColocacao() {
 		return colocacao;
 	}
 
-	public void setColocacao(String colocacao) {
+	public void setColocacao(int colocacao) {
 		this.colocacao = colocacao;
 	}
 
@@ -415,6 +416,34 @@ public class Atleta extends Pessoa {
 			break;
 		case 2:
 			retorno = Sexo.Masculino.getNome();
+			break;
+		}
+		return retorno;
+	}
+	
+	public String getNomeColocacao(){
+		String retorno = "";
+		switch (this.colocacao) {
+		case 1:
+			retorno = ResultadoTorneio.Primeira_Rodada.getNome();
+			break;
+		case 2:
+			retorno = ResultadoTorneio.Segunda_Rodada.getNome();
+			break;
+		case 3:
+			retorno = ResultadoTorneio.Oitavas.getNome();
+			break;
+		case 4:
+			retorno = ResultadoTorneio.Quartas.getNome();
+			break;
+		case 5:
+			retorno = ResultadoTorneio.Semi.getNome();
+			break;
+		case 6:
+			retorno = ResultadoTorneio.Finalista.getNome();
+			break;
+		case 7:
+			retorno = ResultadoTorneio.Campeao.getNome();
 			break;
 		}
 		return retorno;

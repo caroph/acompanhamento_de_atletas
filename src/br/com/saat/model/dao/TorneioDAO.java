@@ -191,7 +191,7 @@ public class TorneioDAO {
 			Atleta atleta = new Atleta();
 			atleta.setIdPessoa(rs.getInt(1));
 			atleta.setNome(rs.getString(2));
-			atleta.setColocacao(rs.getString(3));
+			atleta.setColocacao(rs.getInt(3));
 			atleta.setObservacao(rs.getString(4));
 			lista.add(atleta);
 		}
@@ -273,7 +273,7 @@ public class TorneioDAO {
 			
 			stmtScript.setInt(1, atleta.getIdPessoa());
 			stmtScript.setInt(2, idTorneio);
-			stmtScript.setString(3, atleta.getColocacao());
+			stmtScript.setInt(3, atleta.getColocacao());
 			stmtScript.setString(4, atleta.getObservacao());
 			
 		} else {
@@ -284,7 +284,7 @@ public class TorneioDAO {
 					+ "SET colocacao = ?, observacao = ? "
 					+ "WHERE idAtletaResTorneio = ? ");
 			
-			stmtScript.setString(1, atleta.getColocacao());
+			stmtScript.setInt(1, atleta.getColocacao());
 			stmtScript.setString(2, atleta.getObservacao());
 			stmtScript.setInt(3, idAtletaResTorneio);
 		}
