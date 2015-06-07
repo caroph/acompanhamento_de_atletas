@@ -29,7 +29,7 @@ public class UniformeDAO {
 	public boolean salvarUniforme(Uniforme uniforme, String optEstoque) throws Exception {
 		int rows = 0;
 		
-		Integer quantidade = BuscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
+		Integer quantidade = buscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
 		if(quantidade == null){	
 			if("I".equals(optEstoque)){
 				stmtScript = con.prepareStatement("INSERT INTO uniforme (tpuniforme, tamanhouniforme, quantidadeestoque) "
@@ -69,7 +69,7 @@ public class UniformeDAO {
 		return false;
 	}
 
-	private Integer BuscarQtdTipoUniforme(int tpUniforme, int tamanho) throws SQLException {
+	private Integer buscarQtdTipoUniforme(int tpUniforme, int tamanho) throws SQLException {
 		stmtScript = con.prepareStatement("SELECT quantidadeestoque FROM uniforme "
 				+ "WHERE tpuniforme = ? AND tamanhouniforme = ?");
 		stmtScript.setInt(1, tpUniforme);
@@ -100,12 +100,13 @@ public class UniformeDAO {
 		return lista;
 	}
 
-	public void buscarEstoquePorUniforme(Uniforme uniforme) throws Exception {
-		Integer quantidade = BuscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
+	public boolean buscarEstoquePorUniforme(Uniforme uniforme) throws Exception {
+		Integer quantidade = buscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
 		
 		if(quantidade == null || quantidade < uniforme.getQuantidadeUniforme()){
 			throw new Exception("Não existem "+ uniforme.getNomeTpUniforme() +"s " + " com  o tamanho "+ uniforme.getNomeTamanhoUniforme() + " suficientes disponíveis em estoque");
 		}
+		return true;
 	}
 	
 	public int buscarIdUniforme(Uniforme uniforme) throws SQLException{
