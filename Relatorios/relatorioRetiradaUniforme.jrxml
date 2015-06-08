@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioRetiradaUniforme" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba9479d2-534a-4716-93af-f29b69c6b7d4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tpUniforme" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT i.quantidade AS QUANTIDADE, tu.dsTpUniforme AS UNIFORME, tt.dsTpTamanhoUniforme AS TAMANHO, r.dtRetirada AS DATA_RETIRADA, a.nome AS ATLETA
+FROM itemretirada i
+JOIN uniforme u on i.idUniforme = u.idUniforme
+JOIN retiradauniforme r on i.idRetiradaUniforme = r.idRetiradaUniforme
+JOIN atleta a on r.idAtleta = a.idAtleta
+JOIN tpuniforme tu on u.tpUniforme = tu.idTpUniforme
+JOIN tptamanhouniforme tt on u.tamanhoUniforme = tt.idTpTamanhoUniforme
+WHERE u.tpUniforme = $P{tpUniforme}
+ORDER BY ATLETA, DATA_RETIRADA]]>
+	</queryString>
+	<field name="QUANTIDADE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UNIFORME" class="java.lang.String"/>
+	<field name="TAMANHO" class="java.lang.String"/>
+	<field name="DATA_RETIRADA" class="java.sql.Timestamp"/>
+	<field name="ATLETA" class="java.lang.String"/>
+	<variable name="TAMANHO_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{TAMANHO}]]></variableExpression>
+	</variable>
+	<variable name="QUANTIDADE_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{QUANTIDADE}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement x="146" y="25" width="361" height="70" uuid="8dccc5e9-f939-432a-a2cc-bebcb4f2160b"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Retirada de Uniforme Por Tipo de Peça]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="108" height="95" uuid="4e576f14-b832-4289-ae07-b36e53c3fe59"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25">
+			<staticText>
+				<reportElement x="0" y="0" width="47" height="20" uuid="c2e2b21b-079e-4f3f-963d-4ad61a728789"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Peça:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="47" y="0" width="323" height="20" uuid="12d5500b-1084-4e51-95f7-e5f6b07826a8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNIFORME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="0" width="117" height="20" uuid="f7a182fe-e250-4f5b-ae69-f37f71bf1f31"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total de Retiradas:]]></text>
+			</staticText>
+			<textField evaluationTime="Page">
+				<reportElement x="487" y="0" width="68" height="20" uuid="d6d66376-922e-4956-ab1b-9ba4a8c1bbc5"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TAMANHO_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38">
+			<staticText>
+				<reportElement x="100" y="11" width="255" height="20" uuid="2bcc5acc-4e96-432b-a649-a62855f1e2df"/>
+				<text><![CDATA[ATLETA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="11" width="100" height="20" uuid="275d1330-d401-4258-8991-50dcdbf29ee9"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TAMANHO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="11" width="100" height="20" uuid="ebc72548-c12f-4391-814c-d407a53da286"/>
+				<text><![CDATA[DATA RETIRADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="11" width="100" height="20" uuid="9a76a75b-6734-4335-8ab7-3e000840884a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="530fe502-1d6a-415f-bafc-278b26f1d93b"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{DATA_RETIRADA})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" uuid="17a5a673-fdbd-4226-80cc-36cd221bc468"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TAMANHO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="0f810e3f-aea6-40ba-ad8c-4d14c33f7492"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{QUANTIDADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="255" height="20" uuid="7e4175dd-3730-44ca-84e3-c7222e161f26"/>
+				<textFieldExpression><![CDATA[$F{ATLETA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27">
+			<staticText>
+				<reportElement x="355" y="7" width="132" height="20" uuid="cd4433d7-456c-4c50-9f71-d0cc2772ecd8"/>
+				<text><![CDATA[Total de Peças Retiradas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="487" y="7" width="68" height="20" uuid="8bd3f9a7-1015-46c2-8c01-dceeec04a5b1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{QUANTIDADE_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

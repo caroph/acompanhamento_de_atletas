@@ -6,6 +6,8 @@ import java.util.List;
 import br.com.saat.enumeradores.TpUniforme;
 
 public class TpUniformeNegocio {
+	public TpUniformeNegocio(){}
+	
 	public List<TpUniforme> listaTpUniforme() {
 		List<TpUniforme> lista = new ArrayList<TpUniforme>();
 		for (TpUniforme e : TpUniforme.values()) {

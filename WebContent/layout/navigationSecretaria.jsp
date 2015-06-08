@@ -75,6 +75,7 @@
 				<li><a class="" href="SecretariaController?action=jspRelatorioConsultaMedica">Presença consultas médicas</a></li>
 <!-- 				<li><a class="" href="SecretariaController?action=jspRelatorioDesempenhoAvalFis">Desempenho em aval. física</a></li> -->
 				<li><a class="" href="SecretariaController?action=jspRelatorioBonificacao">Rendimento/Bonificação</a></li>
+				<li><a class="" href="SecretariaController?action=jspRelatorioRetiradaUniforme">Retirada de Uniformes</a></li>
 			</ul>
 		</li>	
 	</ul>

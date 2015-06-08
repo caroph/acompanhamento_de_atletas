@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import net.sf.jasperreports.engine.JasperRunManager;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
@@ -41,6 +46,7 @@ import br.com.saat.enumeradores.TpTamanhoUniforme;
 import br.com.saat.enumeradores.TpUniforme;
 import br.com.saat.enumeradores.Turno;
 import br.com.saat.model.Atleta;
+import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
@@ -1809,6 +1815,131 @@ public class SecretariaController extends Controller {
 			request.setAttribute("msgErro", msgErro);
 			retorno = String.format("%s/SecretariaVisualizarEstoque.jsp", Constants.VIEW);
 			servletRetorno = "/SecretariaController?action=jspVisualizarEstoque";
+			
+		}else if("jspRelatorioRetiradaUniforme".equals(action)){
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+			
+			TpUniformeNegocio uniformeNegocio = new TpUniformeNegocio();
+											
+			request.setAttribute("listaAtleta", listaAtleta);	
+			request.setAttribute("tipoUniforme", uniformeNegocio.listaTpUniforme());
+			
+			retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
+			servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
+			
+		}else if("gerarRelatorioRetiradaAtleta".equals(action)){
+			String msgErro = "";
+			String atleta = request.getParameter("atleta");
+			int idAtleta = 0;
+			
+			try{
+				idAtleta = Integer.parseInt(atleta);
+			}catch(Exception ex){
+				msgErro = "Ocorreu algum erro ao identificar o atleta";
+			}
+			
+			if(idAtleta == 0)
+				msgErro = "Por favor, selecione um atleta!";
+			
+			if("".equals(msgErro)){
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioRetiradaAtleta.jasper");
+					HashMap params = new HashMap();
+					
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+								
+					params.put("idAtleta", idAtleta);
+					params.put("caminhoLogo", caminhoImg);
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					AtletaNegocio negocio = new AtletaNegocio();
+					List<Atleta> listaAtleta = new ArrayList<Atleta>();
+					try{
+						listaAtleta = negocio.buscarAtletas(1);
+					}catch(Exception e){
+						request.setAttribute("msgErro", e.getMessage());
+					}
+					
+					TpUniformeNegocio uniformeNegocio = new TpUniformeNegocio();
+													
+					request.setAttribute("listaAtleta", listaAtleta);
+					request.setAttribute("msgErro", ex.getMessage());
+					request.setAttribute("tipoUniforme", uniformeNegocio.listaTpUniforme());
+					
+					retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
+					servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
+				}
+			}
+			
+		}else if("gerarRelatorioRetiradaUniforme".equals(action)){
+			String msgErro = "";
+			String uniforme = request.getParameter("uniforme");
+			int idUniforme = 0;
+			
+			try{
+				idUniforme = Integer.parseInt(uniforme);
+			}catch(Exception ex){
+				msgErro = "Ocorreu algum erro ao identificar o atleta";
+			}
+			
+			if(idUniforme == 0)
+				msgErro = "Por favor, selecione um atleta!";
+			
+			if("".equals(msgErro)){
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioRetiradaUniforme.jasper");
+					HashMap params = new HashMap();
+					
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+								
+					params.put("tpUniforme", idUniforme);
+					params.put("caminhoLogo", caminhoImg);
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					AtletaNegocio negocio = new AtletaNegocio();
+					List<Atleta> listaAtleta = new ArrayList<Atleta>();
+					try{
+						listaAtleta = negocio.buscarAtletas(1);
+					}catch(Exception e){
+						request.setAttribute("msgErro", e.getMessage());
+					}
+					
+					TpUniformeNegocio uniformeNegocio = new TpUniformeNegocio();
+													
+					request.setAttribute("listaAtleta", listaAtleta);
+					request.setAttribute("msgErro", ex.getMessage());
+					request.setAttribute("tipoUniforme", uniformeNegocio.listaTpUniforme());
+					
+					retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
+					servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
+				}
+			}
 			
 		}else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";

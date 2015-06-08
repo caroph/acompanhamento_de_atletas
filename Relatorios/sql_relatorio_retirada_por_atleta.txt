@@ -1,0 +1,9 @@
+SELECT i.quantidade AS QUANTIDADE, tu.dsTpUniforme AS UNIFORME, tt.dsTpTamanhoUniforme AS TAMANHO, r.dtRetirada AS DATA_RETIRADA, a.nome AS ATLETA
+FROM itemretirada i 
+JOIN uniforme u on i.idUniforme = u.idUniforme
+JOIN retiradauniforme r on i.idRetiradaUniforme = r.idRetiradaUniforme
+JOIN atleta a on r.idAtleta = a.idAtleta
+JOIN tpuniforme tu on u.tpUniforme = tu.idTpUniforme
+JOIN tptamanhouniforme tt on u.tamanhoUniforme = tt.idTpTamanhoUniforme
+WHERE r.idAtleta = 3
+ORDER BY UNIFORME, TAMANHO, DATA_RETIRADA
