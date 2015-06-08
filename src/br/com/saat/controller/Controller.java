@@ -753,6 +753,18 @@ public class Controller extends HttpServlet {
 				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
 			}		
+		}else if("jspRelatorioObservacoes".equals(action)){
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletas(1);
+			}catch(Exception e){
+				request.setAttribute("msgErro", e.getMessage());
+			}
+											
+			request.setAttribute("listaAtleta", listaAtleta);				
+			retorno = String.format("%s/RelatorioHistoricoObservacoes.jsp", Constants.VIEW);
+			session.setAttribute("pagina", "/Controller?action=jspRelatorioObservacoes");
 		}
 		
 		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){

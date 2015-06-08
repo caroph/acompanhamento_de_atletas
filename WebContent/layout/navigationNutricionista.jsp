@@ -17,6 +17,15 @@
 <!-- 				<li><a class="ajax-link" href="NutricionistaNovoModelo.jsp">Modelos</a></li> -->
 <!-- 			</ul> -->
 <!-- 		</li>				 -->
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle">
+				<i class="fa fa-sort-numeric-asc"></i>
+				<span class="hidden-xs">Relatórios</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a class="" href="Controller?action=jspRelatorioObservacoes">Histórico de Observações</a></li>
+			</ul>
+		</li>	
 	</ul>
 </div>
 		

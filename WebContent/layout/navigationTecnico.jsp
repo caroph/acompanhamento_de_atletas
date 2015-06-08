@@ -59,6 +59,7 @@
 				<li><a class="" href="TecnicoController?action=jspRelatorioConsultaMedica">Presença consultas médicas</a></li>
 <!-- 				<li><a class="" href="TecnicoController?action=">Desempenho em aval. física</a></li> -->
 				<li><a class="" href="TecnicoController?action=jspRelatorioBonificacao">Rendimento/Bonificação</a></li>
+				<li><a class="" href="Controller?action=jspRelatorioObservacoes">Histórico de Observações</a></li>
 			</ul>
 		</li>	
 	</ul>
