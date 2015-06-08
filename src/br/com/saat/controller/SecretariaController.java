@@ -1895,11 +1895,11 @@ public class SecretariaController extends Controller {
 			try{
 				idUniforme = Integer.parseInt(uniforme);
 			}catch(Exception ex){
-				msgErro = "Ocorreu algum erro ao identificar o atleta";
+				msgErro = "Ocorreu algum erro ao identificar o tipo de peça";
 			}
 			
 			if(idUniforme == 0)
-				msgErro = "Por favor, selecione um atleta!";
+				msgErro = "Por favor, selecione um tipo de peça!";
 			
 			if("".equals(msgErro)){
 				try{
