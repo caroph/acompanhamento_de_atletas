@@ -453,7 +453,7 @@ public class AtletaDAO {
 			
 			ResultSet rsNrMatricula = stmtScript.executeQuery();
 			if(rsNrMatricula.next())
-				return "J√° existe um atleta com o mesmo numero de matr√≠cula registrado no sistema!";			
+				return "J· existe um atleta com o mesmo numero de matr√≠cula registrado no sistema!";			
 			
 			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
 					+ "WHERE nrCadCBT = ?");			
@@ -461,7 +461,7 @@ public class AtletaDAO {
 			
 			ResultSet rsCBT = stmtScript.executeQuery();
 			if(rsCBT.next())
-				return "J√° existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
+				return "J· existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
 			
 			stmtScript = con.prepareStatement("SELECT nrCadFPT FROM atleta "
 					+ "WHERE nrCadFPT = ?");
@@ -469,7 +469,7 @@ public class AtletaDAO {
 			
 			ResultSet rsFPT = stmtScript.executeQuery();
 			if(rsFPT.next())
-				return "J√° existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
+				return "J· existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
 		}
 		else{
 			stmtScript = con.prepareStatement("SELECT nrMatricula FROM atleta "
@@ -479,7 +479,7 @@ public class AtletaDAO {
 			
 			ResultSet rsNrMatricula = stmtScript.executeQuery();
 			if(rsNrMatricula.next())
-				return "J√° existe um atleta com o mesmo numero de matr√≠cula registrado no sistema!";			
+				return "J· existe um atleta com o mesmo numero de matr√≠cula registrado no sistema!";			
 			
 			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
 					+ "WHERE nrCadCBT = ? AND idAtleta != ?");			
@@ -488,7 +488,7 @@ public class AtletaDAO {
 			
 			ResultSet rsCBT = stmtScript.executeQuery();
 			if(rsCBT.next())
-				return "J√° existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
+				return "J· existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
 			
 			stmtScript = con.prepareStatement("SELECT nrCadFPT FROM atleta "
 					+ "WHERE nrCadFPT = ? AND idAtleta != ?");
@@ -497,7 +497,7 @@ public class AtletaDAO {
 			
 			ResultSet rsFPT = stmtScript.executeQuery();
 			if(rsFPT.next())
-				return "J√° existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
+				return "J· existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
 		}	
 		return "";
 	}

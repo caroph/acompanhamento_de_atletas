@@ -2,15 +2,22 @@ package br.com.saat.core;
 
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+import br.com.saat.model.Atleta;
 
 public class JavaMailApp {
 	public JavaMailApp(){};
@@ -97,7 +104,7 @@ public class JavaMailApp {
       Transport.send(message);
     }
 
-	public void enviarDieta(String destino) throws AddressException, MessagingException {
+	public void enviarDieta(Atleta atleta, String destino, String path) throws AddressException, MessagingException {
 		// TODO Auto-generated method stub
 		Properties props = new Properties();
         
@@ -124,15 +131,35 @@ public class JavaMailApp {
       Message message = new MimeMessage(session);
       message.setFrom(new InternetAddress("saatnoreply@gmail.com")); //Remetente
       
-      message.setSubject("SAAT - Senha do Usuário");//Assunto
-      message.setText("Olá!\n\n"
-    		  + "Segue em anexo a dieta. \n\n"
-    		  + "SAAT - Sistema de Acompanhamento de Atleta de Tênis");
-
+      message.setSubject("SAAT - Relatório de dieta");//Assunto
       /**Método para enviar a mensagem criada*/
       Address[] toUser = InternetAddress.parse(destino);  //DestinatÃ¡rio(s)                  	
       message.setRecipients(Message.RecipientType.TO, toUser);
+
+      // cria a primeira parte da mensagem
+      MimeBodyPart mbp1 = new MimeBodyPart();
+      mbp1.setText("Olá!\n\n"
+    		  + "Segue em anexo a dieta atual no atleta " + atleta.getNome() + ", realizada pela Nutricionista do Clube Curitibano. \n\n"
+    		  + "SAAT - Sistema de Acompanhamento de Atleta de Tênis");
       
+      // cria a segunda parte da mensage
+      MimeBodyPart mbp2 = new MimeBodyPart();
+
+      // anexa o arquivo na mensagem
+      FileDataSource fds = new FileDataSource(path);
+      mbp2.setDataHandler(new DataHandler(fds));
+      mbp2.setFileName(fds.getName());
+
+      // cria a Multipart
+      Multipart mp = new MimeMultipart();
+      mp.addBodyPart(mbp1);
+      mp.addBodyPart(mbp2);
+
+      // adiciona a Multipart na mensagem
+      message.setContent(mp);
+      
+      // envia a mensagem
       Transport.send(message);
+
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.saat.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperRunManager;
 import br.com.saat.core.Constants;
 import br.com.saat.enumeradores.Gravidade;
@@ -384,11 +388,16 @@ public class NutricionistaController extends Controller {
 			}
 			
 		} else if("jspDieta".equals(action)){ 
+			String nome;
 			DietaNegocio negocio = new DietaNegocio();
 			List<Dieta> listaDieta = new ArrayList<Dieta>();
 			Atleta atleta = new Atleta();
+			AtletaNegocio negocioAtleta = new AtletaNegocio();
+			
 			try{
 				atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+				nome = negocioAtleta.buscarNome(atleta.getIdPessoa());
+				atleta.setNome(nome);
 				
 				listaDieta = negocio.buscaDietas(atleta);
 				if (listaDieta.isEmpty()) {
@@ -594,9 +603,11 @@ public class NutricionistaController extends Controller {
 			int idAtleta = 0;
 			String nome;
 			Connection con = ConnectionFactory.getConnection();
+			AtletaNegocio negocioAtleta = new AtletaNegocio();
+			
 			try{				
 				idAtleta = Integer.parseInt(request.getParameter("idAtleta"));
-				nome = request.getParameter("nome");
+				nome = negocioAtleta.buscarNome(idAtleta);
 				
 				//URL jasperURL = new URL(host+jasper);
 				URL jasperURL = getServletContext().getResource("/relatorios/dieta.jasper");
@@ -619,8 +630,12 @@ public class NutricionistaController extends Controller {
 				DietaNegocio negocio = new DietaNegocio();
 				List<Dieta> listaDieta = new ArrayList<Dieta>();
 				Atleta atleta = new Atleta();
+				
 				try{
 					atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+					nome = negocioAtleta.buscarNome(idAtleta);
+					atleta.setNome(nome);
+					
 					listaDieta = negocio.buscaDietas(atleta);
 					if (listaDieta.isEmpty()) {
 						request.setAttribute("msgAlerta", "Nenhuma dieta cadastrada!");
@@ -639,18 +654,57 @@ public class NutricionistaController extends Controller {
 				retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
 			}
 		} else if("enviarDieta".equals(action)){ 
+			String arquivo;
+			String path;
+			String nome;
 			Atleta atleta = new Atleta();
 			DietaNegocio negocio = new DietaNegocio();
+			Connection con = ConnectionFactory.getConnection();
+			AtletaNegocio negocioAtleta = new AtletaNegocio();
 			
-			try {
+			//Gera e salva relatório
+			try{				
+				//Parametros atletas
 				atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
-				if (negocio.enviar(atleta)) {
-					request.setAttribute("msgSucesso", "Dieta encaminhada aos responsáveis com sucesso!");
-				} else {
-					request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+				nome = negocioAtleta.buscarNome(atleta.getIdPessoa());
+				atleta.setNome(nome);
+				
+				//Nome relatorio
+				arquivo = atleta.getNome() + String.valueOf(atleta.getIdPessoa()) + ".pdf";
+				
+				//Path
+				path = getServletContext().getRealPath("/saatDocumentacaoAtletas//") + arquivo;
+				
+				//URL jasperURL = new URL(host+jasper);
+				URL jasperURL = getServletContext().getResource("/relatorios/dieta.jasper");
+				HashMap parms = new HashMap();
+				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+				
+				parms.put("idAtleta", atleta.getIdPessoa());
+				parms.put("nomeAtleta", atleta.getNome());
+				parms.put("caminhoLogo", caminhoImg);
+				
+				JasperPrint jasperPrint =  JasperFillManager.fillReport(jasperURL.openStream(), parms, con);
+				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+				
+				//Encaminha dieta
+				try {
+					if (negocio.enviar(atleta, path)) {
+						request.setAttribute("msgSucesso", "Dieta encaminhada aos responsáveis com sucesso!");
+					} else {
+						request.setAttribute("msgErro", "Ocorreu algum erro no sistema! Favor tentar novamente.");
+					}
+					
+					//Apagar arquivo
+					File dir = new File(path);
+					dir.delete();
+				} catch (Exception ex) {
+					request.setAttribute("msgErro", ex.getMessage());
 				}
-			} catch (Exception ex) {
-				request.setAttribute("msgErro", ex.getMessage());
+				
+			}catch(Exception ex){
+				request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
+				retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
 			}
 			
 			//Carregar página de dietas

@@ -99,7 +99,7 @@ public class DietaNegocio {
 		return retorno;
 	}
 
-	public boolean enviar(Atleta atleta) throws Exception {
+	public boolean enviar(Atleta atleta, String path) throws Exception {
 		boolean retorno = false;
 		ResponsavelNegocio negocio = new ResponsavelNegocio();
 		JavaMailApp email = new JavaMailApp();
@@ -107,7 +107,7 @@ public class DietaNegocio {
 			List<String> listaDestinatarios = negocio.buscaEmailResp(atleta);
 			
 			for (String destino : listaDestinatarios) {
-				email.enviarDieta(destino);
+				email.enviarDieta(atleta, destino, path);
 			}
 			
 			retorno = true;

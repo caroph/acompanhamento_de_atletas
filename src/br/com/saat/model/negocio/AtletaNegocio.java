@@ -220,6 +220,17 @@ public class AtletaNegocio {
 			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas.");
 		}
 	}
+	
+	public String buscarNome(int idAtleta) throws Exception {
+		try {
+			String nome;
+			AtletaDAO dao = new AtletaDAO();
+			nome = dao.buscarNome(idAtleta);
+			return nome;
+		} catch (Exception e) {
+			throw new Exception("Erro! Ocorreu algum erro ao buscar o nome dos atletas.");
+		}
+	}
 
 	public List<Integer> buscarAtletasSelecionados(int idTorneio) throws Exception {
 		try {
