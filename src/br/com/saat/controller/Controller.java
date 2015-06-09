@@ -765,6 +765,53 @@ public class Controller extends HttpServlet {
 			request.setAttribute("listaAtleta", listaAtleta);				
 			retorno = String.format("%s/RelatorioHistoricoObservacoes.jsp", Constants.VIEW);
 			session.setAttribute("pagina", "/Controller?action=jspRelatorioObservacoes");
+			
+		} else if("gerarRelatorioObservacoes".equals(action)){
+			String msgErro = "";
+			String atleta = request.getParameter("atleta");
+			int idAtleta = 0;
+					
+			try{
+				idAtleta = Integer.parseInt(atleta);
+			}catch(Exception e){
+				msgErro = "Erro ao identificar o atleta!";
+			}
+			
+			try{
+				Connection con = ConnectionFactory.getConnection();
+				
+				URL jasperURL = getServletContext().getResource("/relatorios/relatorioHistoricoObservacoes.jasper");
+				HashMap params = new HashMap();
+				
+				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+				
+				params.put("idAtleta", idAtleta);	
+				params.put("perfil", usuarioLogado.getPerfil() == Perfis.Secretaria.getValor() ? 
+						Perfis.PreparadorFisico.getValor() : usuarioLogado.getPerfil());
+				params.put("caminhoLogo", caminhoImg);
+				
+				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+				
+				if(bytes != null){
+					response.setContentType("application/pdf");
+					OutputStream ops = response.getOutputStream();
+					ops.write(bytes);
+				}		
+			}
+			catch(Exception ex){
+				request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+				AtletaNegocio negocio = new AtletaNegocio();
+				List<Atleta> listaAtleta = new ArrayList<Atleta>();
+				try{
+					listaAtleta = negocio.buscarAtletas(1);
+				}catch(Exception e){
+					request.setAttribute("msgErro", e.getMessage());
+				}
+												
+				request.setAttribute("listaAtleta", listaAtleta);				
+				retorno = String.format("%s/RelatorioHistoricoObservacoes.jsp", Constants.VIEW);
+				session.setAttribute("pagina", "/Controller?action=jspRelatorioObservacoes");
+			}
 		}
 		
 		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){

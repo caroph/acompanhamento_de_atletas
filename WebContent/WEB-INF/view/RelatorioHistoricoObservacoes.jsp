@@ -39,7 +39,7 @@
 								</div>
 								<div class="box-content">
 									<div class="row clearfix"> 
-										<form action="#" method="post" target="_blank">
+										<form action="Controller?action=gerarRelatorioObservacoes" method="post" target="_blank">
 											<div class="col-md-12 form-group">
 												<div class="col-md-2" style="text-align: right">
 													<label for="atleta" class="control-label">Atleta:</label>

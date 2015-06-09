@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioHistoricoObservacoes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1e19cec-c00c-4738-80e4-1944c7a2eb4c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAtleta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[3]]></defaultValueExpression>
+	</parameter>
+	<parameter name="perfil" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[6]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.nome AS ATLETA, o.dtGeracao AS DT_INCLUSAO, o.dtValidade AS DT_VALIDADE, o.dsObservacao AS OBSERVACAO,
+g.dsGravidade AS GRAVIDADE, u.nome AS USUARIO,
+CASE
+WHEN o.compartilhamento = 1 THEN 'Todos'
+WHEN o.compartilhamento = 0 THEN 'Técnico'
+END AS COMPARTILHAMENTO
+FROM observacao o
+JOIN usuario u ON o.idUsuario = u.idUsuario
+JOIN gravidadeobservacao g ON o.gravidade = g.idGravidadeObservacao
+JOIN atleta a ON o.idAtleta = a.idAtleta
+WHERE o.idAtleta = $P{idAtleta}
+ORDER BY DT_INCLUSAO DESC]]>
+	</queryString>
+	<field name="ATLETA" class="java.lang.String"/>
+	<field name="DT_INCLUSAO" class="java.sql.Timestamp"/>
+	<field name="DT_VALIDADE" class="java.sql.Timestamp"/>
+	<field name="OBSERVACAO" class="java.lang.String"/>
+	<field name="GRAVIDADE" class="java.lang.String"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="COMPARTILHAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="ATLETA_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{ATLETA}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="113" height="100" uuid="b4decb29-9631-4378-a981-348fb359ec27"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="148" y="40" width="394" height="44" uuid="95bce24f-0d2c-4603-aee6-25f852183a6b"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Histórico de Observaçoes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="51" y="15" width="504" height="20" uuid="7936ab92-0521-4ac9-acd0-33e00932aaf2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ATLETA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="51" height="20" uuid="886a2285-75d7-473d-95bb-3c7e44b51728"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Atleta:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="6e077848-8f15-4a96-a9be-13617fc6b4d3"/>
+				<text><![CDATA[DATA INCLUSÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="100" height="20" uuid="bba15738-a60e-4189-bb30-eaf19a9ed33f"/>
+				<text><![CDATA[DATA VALIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="2" width="65" height="20" uuid="d67dc2f1-d4ca-47ca-b3dc-0108a43fa366"/>
+				<text><![CDATA[GRAVIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="2" width="164" height="20" uuid="2271d7eb-b5fa-473a-9bab-2f77b225ee66"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[USUÁRIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="2" width="126" height="20" uuid="2bb5f1a7-b8be-4c26-bd28-86a1fde9710e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[COMPARTILHAMENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="7d563490-4454-4e22-9a8b-795b52f8d592"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{DT_INCLUSAO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="7db32a14-9dd8-4c19-9d39-d2390e72b7ec"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{DT_VALIDADE})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="65" height="20" uuid="b585dc08-d4ed-41d7-b879-a0b550fed9bc"/>
+				<textFieldExpression><![CDATA[$F{GRAVIDADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="0" width="164" height="20" uuid="b282d7f6-2022-4fc8-918a-fdb740836d0c"/>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="0" width="126" height="20" uuid="0e079e77-eb84-477f-b5f3-73e61cd1e8df"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COMPARTILHAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="455" height="20" uuid="2b8cc5a9-028b-48de-bf42-a641d271b032"/>
+				<textFieldExpression><![CDATA[$F{OBSERVACAO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="33" y="20" width="67" height="20" uuid="1de611a9-a78d-4915-b60c-09180e535786"/>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="50" width="555" height="1" uuid="99c4e996-8c5e-42d2-a1a1-ba83d1f3ca83"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="29">
+			<staticText>
+				<reportElement x="375" y="9" width="116" height="20" uuid="77dbf48e-6557-4815-a98a-7ff21a781cc8"/>
+				<text><![CDATA[Total de Observações:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="491" y="9" width="64" height="20" uuid="579c87f0-0202-436b-abf2-523bedaeb070"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{ATLETA_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
