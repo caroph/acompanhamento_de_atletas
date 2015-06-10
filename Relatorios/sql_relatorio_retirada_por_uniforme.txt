@@ -6,4 +6,4 @@ JOIN atleta a on r.idAtleta = a.idAtleta
 JOIN tpuniforme tu on u.tpUniforme = tu.idTpUniforme
 JOIN tptamanhouniforme tt on u.tamanhoUniforme = tt.idTpTamanhoUniforme
 WHERE u.tpUniforme = 1
-ORDER BY DATA_RETIRADA
+ORDER BY ATLETA, DATA_RETIRADA

@@ -51,6 +51,7 @@ import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.NaipeNegocio;
 import br.com.saat.model.negocio.ObservacaoNegocio;
 import br.com.saat.model.negocio.PresencaChamadaNegocio;
+import br.com.saat.model.negocio.RelatorioNegocio;
 import br.com.saat.model.negocio.ResultadoTorneioNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
@@ -234,31 +235,45 @@ public class Controller extends HttpServlet {
 					perfil == Perfis.PreparadorFisico.getValor()){
 				String dtInicial = request.getParameter("dataInicio");
 				String dtFinal = request.getParameter("dataFim");
+				String msgErro = "";
 				
 				try{
-					Connection con = ConnectionFactory.getConnection();
-					
-					URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaTreinos.jasper");
-					HashMap params = new HashMap();
-					
 					Date dt = new Date();
 					Date dt2 = new Date();
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(dtInicial);
 					dt2 = formatter.parse(dtFinal);
-					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 					
-					params.put("dtInicio", new java.util.Date(dt.getTime()));				
-					params.put("dtFim", new java.util.Date(dt2.getTime()));
-					params.put("caminhoLogo", caminhoImg);
-					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}		
+					try{
+						RelatorioNegocio negocio = new RelatorioNegocio();
+						negocio.verificarResultadoRelatorioPresencaTreinos(dt, dt2);
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}
+					if("".equals(msgErro)){
+						Connection con = ConnectionFactory.getConnection();
+						
+						URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaTreinos.jasper");
+						HashMap params = new HashMap();
+						
+						String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+						
+						params.put("dtInicio", new java.util.Date(dt.getTime()));				
+						params.put("dtFim", new java.util.Date(dt2.getTime()));
+						params.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}	
+					}else{
+						request.setAttribute("msgErro", msgErro);
+						request.setAttribute("dataAtual", new Date());
+						retorno = String.format("%s/RelatorioTreino.jsp", Constants.VIEW);
+					}
 				}
 				catch(Exception ex){
 					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
@@ -271,30 +286,55 @@ public class Controller extends HttpServlet {
 			}
 		} else if ("relResulTorneio".equals(action)) {
 			int perfil = usuarioLogado.getPerfil();
+			String msgErro = "";
 			if(perfil == Perfis.Secretaria.getValor() || perfil == Perfis.Tecnico.getValor() || 
 					perfil == Perfis.PreparadorFisico.getValor()){
 				int idTorneio = 0;
 				Connection con = ConnectionFactory.getConnection();
+				
 				try{				
 					idTorneio = Integer.parseInt(request.getParameter("idTorneio"));
 					
-					//URL jasperURL = new URL(host+jasper);
-					URL jasperURL = getServletContext().getResource("/relatorios/resultadoTorneio.jasper");
-					HashMap parms = new HashMap();
-					String strSubReport = getServletContext().getRealPath("/relatorios/resultadoAtletaTorneio.jasper").toString();
-					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+					try{
+						RelatorioNegocio negocio = new RelatorioNegocio();
+						negocio.verificarResultadoRelatorioResultadoTorneio(idTorneio);
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}
 					
-					parms.put("idTorneio", idTorneio);
-					parms.put("SUBREPORT_DIR", strSubReport);
-					parms.put("caminhoLogo", caminhoImg);
-					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}				
+					if("".equals(msgErro)){
+						URL jasperURL = getServletContext().getResource("/relatorios/resultadoTorneio.jasper");
+						HashMap parms = new HashMap();
+						String strSubReport = getServletContext().getRealPath("/relatorios/resultadoAtletaTorneio.jasper").toString();
+						String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+						
+						parms.put("idTorneio", idTorneio);
+						parms.put("SUBREPORT_DIR", strSubReport);
+						parms.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), parms, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}		
+					}else{
+						try {
+							TorneioNegocio negocio = new TorneioNegocio();
+							List<Torneio> lista = new ArrayList<Torneio>();
+							lista = negocio.buscaTorneiosFinalizados();
+							if (lista.isEmpty()) {
+								request.setAttribute("msgAlerta", "Nenhum resultado de torneio finalizado disponível!");
+							} else {
+								request.setAttribute("listaTorneios", lista);
+							}
+						} catch (Exception e) {
+							request.setAttribute("msgAlerta", e.getMessage());
+						}
+						request.setAttribute("msgErro", msgErro);
+						retorno = String.format("%s/RelatorioResultTorneio.jsp", Constants.VIEW);
+					}
 				}catch(Exception ex){
 					try {
 						TorneioNegocio negocio = new TorneioNegocio();
@@ -361,31 +401,46 @@ public class Controller extends HttpServlet {
 					perfil == Perfis.PreparadorFisico.getValor()){
 				String dtInicial = request.getParameter("dataInicio");
 				String dtFinal = request.getParameter("dataFim");
+				String msgErro = "";
 				
 				try{
-					Connection con = ConnectionFactory.getConnection();
-					
-					URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaMedica.jasper");
-					HashMap params = new HashMap();
-					
 					Date dt = new Date();
 					Date dt2 = new Date();
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
 					dt = formatter.parse(dtInicial);
 					dt2 = formatter.parse(dtFinal);
-					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 					
-					params.put("dtInicial", new java.util.Date(dt.getTime()));				
-					params.put("dtFinal", new java.util.Date(dt2.getTime()));
-					params.put("caminhoLogo", caminhoImg);
+					try{
+						RelatorioNegocio negocio = new RelatorioNegocio();
+						negocio.verificarResultadoRelatorioPresencaMedica(dt, dt2);
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}
 					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}		
+					if("".equals(msgErro)){
+						Connection con = ConnectionFactory.getConnection();
+						
+						URL jasperURL = getServletContext().getResource("/relatorios/relatorioPresencaMedica.jasper");
+						HashMap params = new HashMap();
+						
+						String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+						
+						params.put("dtInicial", new java.util.Date(dt.getTime()));				
+						params.put("dtFinal", new java.util.Date(dt2.getTime()));
+						params.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}	
+					}else{
+						request.setAttribute("msgErro", msgErro);
+						request.setAttribute("dataAtual", new Date());
+						retorno = String.format("%s/RelatorioConsultaMedica.jsp", Constants.VIEW);
+					}
 				}
 				catch(Exception ex){
 					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
@@ -415,33 +470,48 @@ public class Controller extends HttpServlet {
 					
 					int classificacao = Integer.parseInt(request.getParameter("classificacao"));
 					String relatorio = "";
+					String msgErro = "";
 					
-					switch (classificacao) {
-					case 1:
-						relatorio = "/relatorios/frequenciaTorneioAtleta.jasper";
-						break;
-					case 2:
-						relatorio = "/relatorios/frequenciaTorneioTipo.jasper";
-						break;
-					case 3:
-						relatorio = "/relatorios/frequenciaTorneio.jasper";
-						break;
+					try{
+						RelatorioNegocio negocio = new RelatorioNegocio();
+						switch (classificacao) {
+						case 1:
+							negocio.verificarResultadoRelatorioFrequenciaTorneioAtleta(dtI, dtF);
+							relatorio = "/relatorios/frequenciaTorneioAtleta.jasper";
+							break;
+						case 2:
+							negocio.verificarResultadoRelatorioFrequenciaTorneioTipo(dtI, dtF);
+							relatorio = "/relatorios/frequenciaTorneioTipo.jasper";
+							break;
+						case 3:
+							negocio.verificarResultadoRelatorioFrequenciaTorneio(dtI, dtF);
+							relatorio = "/relatorios/frequenciaTorneio.jasper";
+							break;
+						}
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
 					}
 
-					URL jasperURL = getServletContext().getResource(relatorio);
-					HashMap params = new HashMap();
-					
-					params.put("dtInicial", new java.util.Date(dtI.getTime()));				
-					params.put("dtFinal", new java.util.Date(dtF.getTime()));
-					params.put("caminhoLogo", caminhoImg);
-					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}				
+					if("".equals(msgErro)){
+						URL jasperURL = getServletContext().getResource(relatorio);
+						HashMap params = new HashMap();
+						
+						params.put("dtInicial", new java.util.Date(dtI.getTime()));				
+						params.put("dtFinal", new java.util.Date(dtF.getTime()));
+						params.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}	
+					}else{
+						request.setAttribute("msgErro", msgErro);
+						request.setAttribute("dataAtual", new Date());
+						retorno = String.format("%s/RelatorioFreqTorneio.jsp", Constants.VIEW);
+					}
 				}catch(Exception ex){
 					request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
 					request.setAttribute("dataAtual", new Date());
@@ -653,27 +723,53 @@ public class Controller extends HttpServlet {
 				}
 				
 				try{
-					Connection con = ConnectionFactory.getConnection();
-					
-					URL jasperURL = getServletContext().getResource("/relatorios/relatorioBonificacaoGeral.jasper");
-					HashMap params = new HashMap();
-					
-					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
-					
-					params.put("mes", mes);				
-					params.put("ano", ano);
-					params.put("caminhoLogo", caminhoImg);
-					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}		
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					negocio.verificarResultadoRelatorioBonificacaoGeral(mes, ano);
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
 				}
-				catch(Exception ex){
-					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+				
+				if("".equals(msgErro)){
+					try{
+						Connection con = ConnectionFactory.getConnection();
+						
+						URL jasperURL = getServletContext().getResource("/relatorios/relatorioBonificacaoGeral.jasper");
+						HashMap params = new HashMap();
+						
+						String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+						
+						params.put("mes", mes);				
+						params.put("ano", ano);
+						params.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}		
+					}
+					catch(Exception ex){
+						request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+					    MesNegocio mesNegocio = new MesNegocio();
+						List<Mes> listaMes = mesNegocio.listarMes();
+						AtletaNegocio negocio = new AtletaNegocio();
+						List<Atleta> listaAtleta = new ArrayList<Atleta>();
+						try{
+							listaAtleta = negocio.buscarAtletas(1);
+						}catch(Exception e){
+							request.setAttribute("msgErro", e.getMessage());
+						}
+														
+						request.setAttribute("listaAtleta", listaAtleta);					
+						request.setAttribute("listaMes", listaMes);
+						request.setAttribute("ano", ano);
+						
+						retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
+					}
+				}else{
+					request.setAttribute("msgErro", msgErro);
 				    MesNegocio mesNegocio = new MesNegocio();
 					List<Mes> listaMes = mesNegocio.listarMes();
 					AtletaNegocio negocio = new AtletaNegocio();
@@ -709,26 +805,56 @@ public class Controller extends HttpServlet {
 				}
 				
 				try{
-					Connection con = ConnectionFactory.getConnection();
-					
-					URL jasperURL = getServletContext().getResource("/relatorios/relatorioBonificacaoIndividual.jasper");
-					HashMap params = new HashMap();
-					
-					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
-					
-					params.put("idAtleta", idAtleta);				
-					params.put("caminhoLogo", caminhoImg);
-					
-					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-					
-					if(bytes != null){
-						response.setContentType("application/pdf");
-						OutputStream ops = response.getOutputStream();
-						ops.write(bytes);
-					}		
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					negocio.verificarResultadoRelatorioBonificacaoIndividual(idAtleta);
+				}catch(Exception ex){
+					msgErro = ex.getMessage();
 				}
-				catch(Exception ex){
-					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+				
+				if("".equals(msgErro)){
+					try{
+						Connection con = ConnectionFactory.getConnection();
+						
+						URL jasperURL = getServletContext().getResource("/relatorios/relatorioBonificacaoIndividual.jasper");
+						HashMap params = new HashMap();
+						
+						String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+						
+						params.put("idAtleta", idAtleta);				
+						params.put("caminhoLogo", caminhoImg);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}		
+					}
+					catch(Exception ex){
+						request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+					    MesNegocio mesNegocio = new MesNegocio();
+						List<Mes> listaMes = mesNegocio.listarMes();
+						AtletaNegocio negocio = new AtletaNegocio();
+						List<Atleta> listaAtleta = new ArrayList<Atleta>();
+						Date date = new Date();
+					    Calendar cal = Calendar.getInstance();
+					    cal.setTime(date);
+					    int ano = cal.get(Calendar.YEAR);
+						try{
+							listaAtleta = negocio.buscarAtletas(1);
+						}catch(Exception e){
+							request.setAttribute("msgErro", e.getMessage());
+						}
+														
+						request.setAttribute("listaAtleta", listaAtleta);					
+						request.setAttribute("listaMes", listaMes);
+						request.setAttribute("ano", ano);
+						
+						retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
+					}
+				}else{
+					request.setAttribute("msgErro", msgErro);
 				    MesNegocio mesNegocio = new MesNegocio();
 					List<Mes> listaMes = mesNegocio.listarMes();
 					AtletaNegocio negocio = new AtletaNegocio();
@@ -778,28 +904,50 @@ public class Controller extends HttpServlet {
 			}
 			
 			try{
-				Connection con = ConnectionFactory.getConnection();
-				
-				URL jasperURL = getServletContext().getResource("/relatorios/relatorioHistoricoObservacoes.jasper");
-				HashMap params = new HashMap();
-				
-				String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
-				
-				params.put("idAtleta", idAtleta);	
-				params.put("perfil", usuarioLogado.getPerfil() == Perfis.Secretaria.getValor() ? 
-						Perfis.PreparadorFisico.getValor() : usuarioLogado.getPerfil());
-				params.put("caminhoLogo", caminhoImg);
-				
-				byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
-				
-				if(bytes != null){
-					response.setContentType("application/pdf");
-					OutputStream ops = response.getOutputStream();
-					ops.write(bytes);
-				}		
+				RelatorioNegocio negocio = new RelatorioNegocio();
+				negocio.verificarResultadoHistoricoObservacoes(idAtleta);
+			}catch(Exception ex){
+				msgErro = ex.getMessage();
 			}
-			catch(Exception ex){
-				request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+			
+			if("".equals(msgErro)){
+				try{
+					Connection con = ConnectionFactory.getConnection();
+					
+					URL jasperURL = getServletContext().getResource("/relatorios/relatorioHistoricoObservacoes.jasper");
+					HashMap params = new HashMap();
+					
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
+					
+					params.put("idAtleta", idAtleta);	
+					params.put("perfil", usuarioLogado.getPerfil() == Perfis.Secretaria.getValor() ? 
+							Perfis.PreparadorFisico.getValor() : usuarioLogado.getPerfil());
+					params.put("caminhoLogo", caminhoImg);
+					
+					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+					
+					if(bytes != null){
+						response.setContentType("application/pdf");
+						OutputStream ops = response.getOutputStream();
+						ops.write(bytes);
+					}		
+				}
+				catch(Exception ex){
+					request.setAttribute("msgErro", "Ocorreu algum erro ao gerar o relatório!");
+					AtletaNegocio negocio = new AtletaNegocio();
+					List<Atleta> listaAtleta = new ArrayList<Atleta>();
+					try{
+						listaAtleta = negocio.buscarAtletas(1);
+					}catch(Exception e){
+						request.setAttribute("msgErro", e.getMessage());
+					}
+													
+					request.setAttribute("listaAtleta", listaAtleta);				
+					retorno = String.format("%s/RelatorioHistoricoObservacoes.jsp", Constants.VIEW);
+					session.setAttribute("pagina", "/Controller?action=jspRelatorioObservacoes");
+				}
+			}else{
+				request.setAttribute("msgErro", msgErro);
 				AtletaNegocio negocio = new AtletaNegocio();
 				List<Atleta> listaAtleta = new ArrayList<Atleta>();
 				try{

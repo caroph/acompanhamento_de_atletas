@@ -65,6 +65,7 @@ import br.com.saat.model.negocio.EquipesNegocio;
 import br.com.saat.model.negocio.GrauParentescoNegocio;
 import br.com.saat.model.negocio.MesNegocio;
 import br.com.saat.model.negocio.PerfisNegocio;
+import br.com.saat.model.negocio.RelatorioNegocio;
 import br.com.saat.model.negocio.ResponsavelNegocio;
 import br.com.saat.model.negocio.SexoNegocio;
 import br.com.saat.model.negocio.TorneioNegocio;
@@ -1845,10 +1846,14 @@ public class SecretariaController extends Controller {
 			}
 			
 			if(idAtleta == 0)
-				msgErro = "Por favor, selecione um atleta!";
+				msgErro = "Por favor, selecione um atleta!";	
+			
 			
 			if("".equals(msgErro)){
 				try{
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					negocio.verificarResultadoRelatorioRetiradaAtleta(idAtleta);
+					
 					Connection con = ConnectionFactory.getConnection();
 					
 					URL jasperURL = getServletContext().getResource("/relatorios/relatorioRetiradaAtleta.jasper");
@@ -1885,6 +1890,23 @@ public class SecretariaController extends Controller {
 					retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
 					servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
 				}
+			}else{
+				AtletaNegocio negocio = new AtletaNegocio();
+				List<Atleta> listaAtleta = new ArrayList<Atleta>();
+				try{
+					listaAtleta = negocio.buscarAtletas(1);
+				}catch(Exception e){
+					request.setAttribute("msgErro", e.getMessage());
+				}
+				
+				TpUniformeNegocio uniformeNegocio = new TpUniformeNegocio();
+												
+				request.setAttribute("listaAtleta", listaAtleta);
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("tipoUniforme", uniformeNegocio.listaTpUniforme());
+				
+				retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
+				servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
 			}
 			
 		}else if("gerarRelatorioRetiradaUniforme".equals(action)){
@@ -1903,6 +1925,9 @@ public class SecretariaController extends Controller {
 			
 			if("".equals(msgErro)){
 				try{
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					negocio.verificarResultadoRelatorioRetiradaPeca(idUniforme);
+					
 					Connection con = ConnectionFactory.getConnection();
 					
 					URL jasperURL = getServletContext().getResource("/relatorios/relatorioRetiradaUniforme.jasper");
@@ -1939,6 +1964,23 @@ public class SecretariaController extends Controller {
 					retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
 					servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
 				}
+			}else{
+				AtletaNegocio negocio = new AtletaNegocio();
+				List<Atleta> listaAtleta = new ArrayList<Atleta>();
+				try{
+					listaAtleta = negocio.buscarAtletas(1);
+				}catch(Exception e){
+					request.setAttribute("msgErro", e.getMessage());
+				}
+				
+				TpUniformeNegocio uniformeNegocio = new TpUniformeNegocio();
+												
+				request.setAttribute("listaAtleta", listaAtleta);
+				request.setAttribute("msgErro", msgErro);
+				request.setAttribute("tipoUniforme", uniformeNegocio.listaTpUniforme());
+				
+				retorno = String.format("%s/RelatorioRetiradaUniforme.jsp", Constants.VIEW);
+				servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
 			}
 			
 		}else {
