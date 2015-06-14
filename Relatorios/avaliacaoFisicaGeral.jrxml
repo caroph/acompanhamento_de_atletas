@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="desempenhoAvaliacao" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37762b1e-9f4b-4885-92ec-3e8cef34b2b2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="caminhoLogo" class="java.lang.String"/>
+	<parameter name="melhorar" class="java.lang.String"/>
+	<parameter name="media" class="java.lang.String"/>
+	<parameter name="bom" class="java.lang.String"/>
+	<parameter name="excelente" class="java.lang.String"/>
+	<parameter name="dtInicial" class="java.util.Date"/>
+	<parameter name="dtFinal" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT af.idAvaliacaoFisica, af.idAtleta, a.nome, dtNascimento, TIMESTAMPDIFF(YEAR, dtNascimento, NOW()) as idade, usu.nome as nomeUsu, CREF, nmCategoria, teste, dsUnidadeDeMedida, desempenho,
+CASE
+WHEN desempenho <= melhorar THEN 'Melhorar'
+WHEN desempenho <= media THEN 'Média'
+WHEN desempenho <= bom THEN 'Bom'
+ELSE 'Excelente'
+END as resultado, observacaoGeral, dtAvaliacao
+FROM avaliacaofisicaresultado afr
+INNER JOIN categoriaatividade ca
+ON ca.idCategoriaAtividade = afr.idCategoriaAtividade
+INNER JOIN atividadeavaliacao atAv
+ON ca.idAtividadeAvaliacao = atAv.idAtividadeAvaliacao
+INNER JOIN unidadedemedida um
+ON atAv.idUnidadeDeMedida = um.idUnidadeDeMedida
+INNER JOIN categoriaavaliacao catAva
+ON ca.idCategoriaAvaliacao = catAva.idCategoriaAvaliacao
+INNER JOIN avaliacaofisica af
+ON afr.idAvaliacaoFisica = af.idAvaliacaoFisica
+INNER JOIN atleta a
+ON af.idAtleta = a.idAtleta
+INNER JOIN usuario usu
+ON af.idUsuResp = usu.idUsuario
+WHERE dtAvaliacao BETWEEN $P{dtInicial} AND $P{dtFinal}
+ORDER BY a.nome, dtavaliacao, capacidade, teste]]>
+	</queryString>
+	<field name="idAvaliacaoFisica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idAtleta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtNascimento" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idade" class="java.lang.Long"/>
+	<field name="nomeUsu" class="java.lang.String"/>
+	<field name="CREF" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmCategoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="teste" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dsUnidadeDeMedida" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desempenho" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="resultado" class="java.lang.String"/>
+	<field name="observacaoGeral" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dtAvaliacao" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Atleta" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{idAtleta}]]></groupExpression>
+		<groupHeader>
+			<band height="94">
+				<rectangle>
+					<reportElement x="9" y="12" width="416" height="77" uuid="c6ced3a6-9d96-45fb-b0cc-1e69f8d53f70"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="26" y="22" width="52" height="20" uuid="200487d6-3055-4a65-bab0-7d86a2d2f196"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Atleta:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="42" width="152" height="20" uuid="fa92e749-3ab6-4a26-8c43-607de0ade04b"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data de Nascimento:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="62" width="52" height="20" uuid="e7ebc1fc-1c37-4d16-9fb8-746a292e63d1"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Idade:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="78" y="22" width="341" height="20" uuid="ceaeb849-75e4-47a8-8b18-813038ab3d92"/>
+					<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="178" y="42" width="153" height="20" uuid="32f05f35-7197-4630-9a25-397e3aa09ddc"/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtNascimento})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="78" y="62" width="165" height="20" uuid="09c59959-ed18-4df1-a99f-2028eed44575"/>
+					<textFieldExpression><![CDATA[$F{idade}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="11"/>
+		</groupFooter>
+	</group>
+	<group name="AvaFis" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{idAvaliacaoFisica}]]></groupExpression>
+		<groupHeader>
+			<band height="100">
+				<staticText>
+					<reportElement x="13" y="0" width="65" height="20" uuid="cc9ead35-6dfc-4cf2-a5a6-e85451dee9fc"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="20" width="79" height="20" uuid="0fc23d25-9ccd-4d6f-b52a-c40b862214cc"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Categoria:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="13" y="40" width="96" height="20" uuid="c92d57e5-84de-4eb8-afd7-a897f9af7a46"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Observação:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="109" y="0" width="100" height="20" uuid="bb6c46df-5ca4-4d00-870a-f2f6ecb99c04"/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dtAvaliacao})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="109" y="20" width="394" height="20" uuid="08a2aaa5-75a5-492a-953e-9803172b1b2c"/>
+					<textFieldExpression><![CDATA[$F{nmCategoria}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="109" y="40" width="434" height="20" uuid="ac07cc50-bba1-49f5-8f54-5d3133f1b1af"/>
+					<textFieldExpression><![CDATA[$F{observacaoGeral}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="80" width="65" height="20" uuid="6c1116e0-9594-4bc7-be9a-c1d589003419"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Teste]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="80" width="106" height="20" uuid="23a98121-89ba-4655-be5c-62b0c7e12967"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Desempenho]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="151" y="80" width="156" height="20" uuid="398ade58-553e-4e33-a6c3-ceaae0bf4390"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Unidade de Medida]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="459" y="80" width="89" height="20" uuid="a7d992f2-a5ed-42e5-be6c-11f9f3827c9b"/>
+					<textElement>
+						<font size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Resultado]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="94">
+				<staticText>
+					<reportElement x="308" y="36" width="235" height="13" uuid="8a86c7e8-7db6-4ca4-9866-c809b10be5d9"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Preparador Físico Clube Curitibano
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="13" width="212" height="20" uuid="a487f651-bc9a-476d-8622-8d6d4b02907d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Profissional Responsável]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="354" y="49" width="189" height="20" uuid="10995b80-348b-4c18-843a-6c3a359d858d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{nomeUsu}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="380" y="70" width="121" height="20" uuid="d5d06c3e-814c-455a-8cf6-b7fe7e0f1ef4"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{CREF}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="496" y="69" width="47" height="20" uuid="d5b06033-7d8c-40e1-a3fd-813cd3974101"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[(CREF)]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="12" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="130" splitType="Stretch">
+			<staticText>
+				<reportElement x="132" y="28" width="411" height="76" uuid="57239866-99d4-4263-9831-1c0d0fd3c618"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desempenho Geral em Avaliacões Físicas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="10" width="548" height="116" uuid="54dbbc98-9fae-4164-acd5-cbe29715ee72"/>
+				<imageExpression><![CDATA[$P{caminhoLogo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="0" width="123" height="20" uuid="9f926f35-f34c-4bd0-9c06-57069a903695"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{teste}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="151" y="0" width="100" height="20" uuid="8d8340ce-4443-4cdd-9fd7-6112e3ac5b7a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dsUnidadeDeMedida}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="0" width="88" height="20" uuid="9037fce7-f4a5-4c36-a985-8c416fdc9aff"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{desempenho}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="485" y="3" width="23" height="20" uuid="3fda5e52-6914-4b02-87a7-d5dafab3a96c"/>
+				<imageExpression><![CDATA[( $F{resultado} == "Bom" ? $P{bom} : ( $F{resultado} == "Melhorar" ? $P{melhorar} : ( $F{resultado} == "Media" ? $P{media} : ( $F{resultado} == "Excelente" ? $P{excelente} : "" ) ) ) )]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="107" splitType="Stretch">
+			<rectangle>
+				<reportElement x="9" y="11" width="478" height="91" uuid="b4891958-a44f-4d73-812e-e3e97430f15e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="23" width="467" height="29" uuid="52972dbf-8aae-4e5a-b4f5-7b0e680b0029"/>
+				<text><![CDATA[RESULTADO            Melhorar:           Média: 	Bom:	       Excelente:
+PERCENTIL             (0 A 50%)         (50 a 60%) 	(60 A 80%)   (80 A 100%)
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="201" y="60" width="27" height="29" uuid="298e8828-1e6c-4b7d-808b-b4d68cb677cf"/>
+				<imageExpression><![CDATA[$P{media}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="272" y="60" width="26" height="27" uuid="de582373-3be8-4e75-970b-062540d8239a"/>
+				<imageExpression><![CDATA[$P{bom}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="334" y="58" width="30" height="29" uuid="0d9acfc5-d240-4765-8227-bcdee0d358e5"/>
+				<imageExpression><![CDATA[$P{excelente}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="124" y="60" width="27" height="29" uuid="8fa94858-8693-402f-bbe1-cead307db922"/>
+				<imageExpression><![CDATA[$P{melhorar}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

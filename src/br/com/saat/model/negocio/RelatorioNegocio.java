@@ -2,6 +2,7 @@ package br.com.saat.model.negocio;
 
 import java.util.Date;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.dao.RelatorioDAO;
 
 public class RelatorioNegocio {
@@ -103,6 +104,24 @@ public class RelatorioNegocio {
 			dao.verificarResultadoHistoricoObservacoes(idAtleta);
 		} catch (Exception e) {
 			throw new Exception("Nenhuma observação encontrada para o atleta selecionado!");
+		}
+	}
+
+	public void verificarResultadoRelatorioDesempAvaInd(Atleta atleta) throws Exception {
+		try {
+			RelatorioDAO dao = new RelatorioDAO();
+			dao.verificarResultadoRelatorioDesempAvaInd(atleta);
+		} catch (Exception e) {
+			throw new Exception("Nenhuma avaliaçao física encontrada para o atleta selecionado!");
+		}
+	}
+
+	public void verificarResultadoRelatorioDesempAvaGeral(Date dtI, Date dtF) throws Exception {
+		try {
+			RelatorioDAO dao = new RelatorioDAO();
+			dao.verificarResultadoRelatorioDesempAvaGeral(dtI, dtF);
+		} catch (Exception e) {
+			throw new Exception("Nenhuma avaliaçao física para o período selecionado!");
 		}
 	}
 }

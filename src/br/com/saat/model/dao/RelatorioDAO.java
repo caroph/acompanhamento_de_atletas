@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import br.com.saat.model.Atleta;
 import br.com.saat.model.ConnectionFactory;
 
 public class RelatorioDAO {
@@ -213,6 +214,7 @@ public class RelatorioDAO {
 				+ "WHERE a.flCadastroAtivo = 1 AND a.idAtleta = ? "
 				+ "ORDER BY ad.ano, ad.mes");
 		stmtScript.setInt(1, idAtleta);
+		
 		ResultSet rs = stmtScript.executeQuery();
 		
 		if(!rs.next()){
@@ -235,6 +237,33 @@ public class RelatorioDAO {
 				+ "WHERE o.idAtleta = ? "
 				+ "ORDER BY DT_INCLUSAO DESC");
 		stmtScript.setInt(1, idAtleta);
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(!rs.next()){
+			throw new Exception("A consulta não gerou resultados");
+		}
+	}
+
+	public void verificarResultadoRelatorioDesempAvaInd(Atleta atleta) throws Exception {
+		stmtScript = con.prepareStatement("SELECT af.idAvaliacaoFisica "
+				+ "FROM avaliacaofisica af "
+				+ "WHERE af.idAtleta = ? ");
+		
+		stmtScript.setInt(1, atleta.getIdPessoa());
+		ResultSet rs = stmtScript.executeQuery();
+		
+		if(!rs.next()){
+			throw new Exception("A consulta não gerou resultados");
+		}
+	}
+
+	public void verificarResultadoRelatorioDesempAvaGeral(Date dtI, Date dtF) throws Exception {
+		stmtScript = con.prepareStatement("SELECT af.idAvaliacaoFisica "
+				+ "FROM avaliacaofisica af "
+				+ "WHERE af.dtAvaliacao BETWEEN ? AND ? ");
+		
+		stmtScript.setDate(1, new java.sql.Date(dtI.getTime()));
+		stmtScript.setDate(2, new java.sql.Date(dtF.getTime()));
 		ResultSet rs = stmtScript.executeQuery();
 		
 		if(!rs.next()){

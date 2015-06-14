@@ -960,6 +960,148 @@ public class Controller extends HttpServlet {
 				retorno = String.format("%s/RelatorioHistoricoObservacoes.jsp", Constants.VIEW);
 				session.setAttribute("pagina", "/Controller?action=jspRelatorioObservacoes");
 			}
+		} else if ("gerarRelatorioDesempAvaIndividual".equals(action)) {
+			
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Tecnico.getValor() || perfil == Perfis.PreparadorFisico.getValor()){
+				Connection con = ConnectionFactory.getConnection();
+				AtletaNegocio negocioAtleta = new AtletaNegocio();
+				try{				
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString(); 
+					String melhorar = getServletContext().getResource("/relatorios/melhorar.png").toString(); 
+					String media = getServletContext().getResource("/relatorios/media.png").toString(); 
+					String bom = getServletContext().getResource("/relatorios/bom.png").toString(); 
+					String excelente = getServletContext().getResource("/relatorios/excelente.png").toString(); 
+					
+					Atleta atleta = new Atleta();
+					atleta.setIdPessoa(Integer.parseInt(request.getParameter("idAtleta")));
+					String relatorio = "/relatorios/avaliacaoFisicaIndividual.jasper";
+					String msgErro = "";
+					
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					
+					try {
+						negocio.verificarResultadoRelatorioDesempAvaInd(atleta);
+						atleta = negocioAtleta.buscarAtletaDetalhes(atleta.getIdPessoa());
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}
+
+					if("".equals(msgErro)){
+						URL jasperURL = getServletContext().getResource(relatorio);
+						HashMap params = new HashMap();
+						
+						params.put("caminhoLogo", caminhoImg);
+						params.put("melhorar", melhorar);
+						params.put("media", media);
+						params.put("bom", bom);
+						params.put("excelente", excelente);
+						params.put("idAtleta", atleta.getIdPessoa());
+						params.put("dataNasc", atleta.getDtNascimentoDisplay());
+						params.put("idade", atleta.getStrIdade());
+						params.put("nomeAtleta", atleta.getNome());
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}	
+					}else{
+						request.setAttribute("msgErro", msgErro);
+					}
+				}catch(Exception ex){
+					request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
+				}
+				
+				List<Atleta> listaAtleta = new ArrayList<Atleta>();
+				try{
+					listaAtleta = negocioAtleta.buscarAtletas(1);
+				}catch(Exception ex){
+					request.setAttribute("msgAlerta", ex.getMessage());
+				}
+					
+				request.setAttribute("listaAtleta", listaAtleta);
+				request.setAttribute("dataAtual", new Date());
+				retorno = String.format("%s/RelatorioDesempenhoAvalFis.jsp", Constants.VIEW);
+				
+			} else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
+		} else if ("gerarRelatorioDesempGeral".equals(action)) {
+			int perfil = usuarioLogado.getPerfil();
+			if(perfil == Perfis.Tecnico.getValor() || perfil == Perfis.PreparadorFisico.getValor()){
+				Connection con = ConnectionFactory.getConnection();
+				try{				
+					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString(); 
+					String melhorar = getServletContext().getResource("/relatorios/melhorar.png").toString(); 
+					String media = getServletContext().getResource("/relatorios/media.png").toString(); 
+					String bom = getServletContext().getResource("/relatorios/bom.png").toString(); 
+					String excelente = getServletContext().getResource("/relatorios/excelente.png").toString(); 
+					
+					String dtInicial = request.getParameter("dtInicial");
+					String dtFinal = request.getParameter("dtFinal");
+					Date dtI = new Date();
+					Date dtF = new Date();
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
+					dtI = formatter.parse(dtInicial);
+					dtF = formatter.parse(dtFinal);
+					
+					String relatorio = "/relatorios/avaliacaoFisicaGeral.jasper";
+					String msgErro = "";
+					
+					RelatorioNegocio negocio = new RelatorioNegocio();
+					
+					try {
+						negocio.verificarResultadoRelatorioDesempAvaGeral(dtI, dtF);
+					}catch(Exception ex){
+						msgErro = ex.getMessage();
+					}
+
+					if("".equals(msgErro)){
+						URL jasperURL = getServletContext().getResource(relatorio);
+						HashMap params = new HashMap();
+						
+						params.put("dtInicial", new java.util.Date(dtI.getTime()));				
+						params.put("dtFinal", new java.util.Date(dtF.getTime()));
+						params.put("caminhoLogo", caminhoImg);
+						params.put("melhorar", melhorar);
+						params.put("media", media);
+						params.put("bom", bom);
+						params.put("excelente", excelente);
+						
+						byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
+						
+						if(bytes != null){
+							response.setContentType("application/pdf");
+							OutputStream ops = response.getOutputStream();
+							ops.write(bytes);
+						}	
+					}else{
+						request.setAttribute("msgErro", msgErro);
+					}
+				}catch(Exception ex){
+					request.setAttribute("msgErro", "Erro ao gerar relatório! Favor tente novamente.");
+				}
+				
+				List<Atleta> listaAtleta = new ArrayList<Atleta>();
+				try{
+					AtletaNegocio negocioAtleta = new AtletaNegocio();
+					listaAtleta = negocioAtleta.buscarAtletas(1);
+				}catch(Exception ex){
+					request.setAttribute("msgAlerta", ex.getMessage());
+				}
+					
+				request.setAttribute("listaAtleta", listaAtleta);
+				request.setAttribute("dataAtual", new Date());
+				retorno = String.format("%s/RelatorioDesempenhoAvalFis.jsp", Constants.VIEW);
+				
+			} else{
+				UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+				retorno = usuarioNegocio.retornoLogin(usuarioLogado);
+			}
 		}
 		
 		if(usuarioLogado.getPerfil() != Perfis.Secretaria.getValor()){

@@ -1160,7 +1160,21 @@ public class TecnicoController extends Controller {
 			retorno = String.format("%s/RelatorioBonificacao.jsp", Constants.VIEW);
 			servletRetorno = "/TecnicoController?action=jspRelatorioBonificacao";
 			
-		}else{
+		} else if ("jspRelatorioDesempenhoAva".equals(action)) {
+			AtletaNegocio negocio = new AtletaNegocio();
+			List<Atleta> listaAtleta = new ArrayList<Atleta>();
+			try{
+				listaAtleta = negocio.buscarAtletas(1);
+			}catch(Exception ex){
+				request.setAttribute("msgErro", ex.getMessage());
+			}
+				
+			request.setAttribute("dataAtual", new Date());
+			request.setAttribute("listaAtleta", listaAtleta);					
+			
+			retorno = String.format("%s/RelatorioDesempenhoAvalFis.jsp", Constants.VIEW);
+			servletRetorno = "/TecnicoController?action=jspRelatorioDesempenhoAva";
+		} else{
 			//Página Principal
 			AvaliacaoFisicaNegocio negocio = new AvaliacaoFisicaNegocio();
 			

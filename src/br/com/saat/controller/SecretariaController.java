@@ -1983,7 +1983,7 @@ public class SecretariaController extends Controller {
 				servletRetorno = "/SecretariaController?action=jspRelatorioRetiradaUniforme";
 			}
 			
-		}else {
+		} else {
 			retorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 			servletRetorno = "/SecretariaController?action=jspPaginaInicialSecretaria";
 		}

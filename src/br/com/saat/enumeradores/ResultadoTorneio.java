@@ -7,7 +7,7 @@ public enum ResultadoTorneio {
 	Quartas (4, "Quartas de finais"),
 	Semi (5, "Semi final"),
 	Finalista (6, "Finalista"),
-	Campeao (7, "Campe√£o");
+	Campeao (7, "Campe„o");
 	
 	private final int valor; 
 	private final String nome;
