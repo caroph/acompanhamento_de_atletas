@@ -51,6 +51,7 @@ import br.com.saat.model.DiaTreino;
 import br.com.saat.model.Documento;
 import br.com.saat.model.Endereco;
 import br.com.saat.model.ItemRetirada;
+import br.com.saat.model.OperacaoEstoqueUniforme;
 import br.com.saat.model.Responsavel;
 import br.com.saat.model.RetiradaUniforme;
 import br.com.saat.model.Torneio;
@@ -1779,7 +1780,18 @@ public class SecretariaController extends Controller {
 							validaDados = negocio.validaDadosRetirada(uniformes);
 						if(validaDados){
 							for (Uniforme uniforme : uniformes) {
-								if(negocio.salvarUniformes(uniforme, optEstoque)){
+								int idUniforme = negocio.salvarUniformes(uniforme, optEstoque);
+								if(idUniforme > 0){
+									uniforme.setIdUniforme(idUniforme);
+									OperacaoEstoqueUniforme op = new OperacaoEstoqueUniforme();
+									op.setDtOperacao(new Date());
+									op.setQuantidade(uniforme.getQuantidadeUniforme());
+									op.setTpOperacao(1);
+									if("B".equals(optEstoque))
+										op.setTpOperacao(2);
+									op.setUniforme(uniforme);
+									op.setUsuario(usuarioLogado);
+									negocio.salvarOperacaoEstoque(op);
 									request.setAttribute("msgSucesso", "Estoque de Uniformes salvo com sucesso");
 								}
 							}							

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.saat.model.ItemRetirada;
+import br.com.saat.model.OperacaoEstoqueUniforme;
 import br.com.saat.model.RetiradaUniforme;
 import br.com.saat.model.Uniforme;
 import br.com.saat.model.dao.UniformeDAO;
@@ -11,11 +12,10 @@ import br.com.saat.model.dao.UniformeDAO;
 public class UniformeNegocio {
 	public UniformeNegocio(){}
 
-	public boolean salvarUniformes(Uniforme uniforme, String optEstoque) throws Exception {
+	public int salvarUniformes(Uniforme uniforme, String optEstoque) throws Exception {
 		try{
 			UniformeDAO dao = new UniformeDAO();
-			dao.salvarUniforme(uniforme, optEstoque);
-			return true;
+			return dao.salvarUniforme(uniforme, optEstoque);
 		}catch(SQLException ex){
 			throw new Exception("Erro ao salvar o estoque!");
 		}catch(Exception ex){
@@ -73,6 +73,15 @@ public class UniformeNegocio {
 			return dao.salvarItemUniforme(item);
 		}catch(Exception ex){
 			throw new Exception("Ocorreu algum erro ao salvar a retirada!");
+		}
+	}
+
+	public boolean salvarOperacaoEstoque(OperacaoEstoqueUniforme op) throws Exception{
+		try{
+			UniformeDAO dao = new UniformeDAO();
+			return dao.salvarOperacaoEstoque(op);
+		}catch(Exception ex){
+			throw new Exception("Ocorreu algum erro ao salvar a operação do estoque!");
 		}
 	}
 }

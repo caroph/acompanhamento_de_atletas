@@ -11,6 +11,7 @@ import com.mysql.jdbc.Statement;
 
 import br.com.saat.model.ConnectionFactory;
 import br.com.saat.model.ItemRetirada;
+import br.com.saat.model.OperacaoEstoqueUniforme;
 import br.com.saat.model.RetiradaUniforme;
 import br.com.saat.model.Uniforme;
 
@@ -26,19 +27,25 @@ public class UniformeDAO {
         this.con = con;        
     }
 
-	public boolean salvarUniforme(Uniforme uniforme, String optEstoque) throws Exception {
-		int rows = 0;
+	public int salvarUniforme(Uniforme uniforme, String optEstoque) throws Exception {
+		int idUniforme = 0;
 		
 		Integer quantidade = buscarQtdTipoUniforme(uniforme.getTpUniforme(), uniforme.getTamanhoUniforme());
 		if(quantidade == null){	
 			if("I".equals(optEstoque)){
 				stmtScript = con.prepareStatement("INSERT INTO uniforme (tpuniforme, tamanhouniforme, quantidadeestoque) "
-						+ "VALUES(?,?,?)");
+						+ "VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
 				stmtScript.setInt(1, uniforme.getTpUniforme());
 				stmtScript.setInt(2, uniforme.getTamanhoUniforme());
 				stmtScript.setInt(3, uniforme.getQuantidadeUniforme());
 			} else{
 				throw new Exception("Falha na operação. Não existem "+ uniforme.getNomeTpUniforme() +"s suficientes disponíveis em estoque");
+			}
+			stmtScript.executeUpdate();
+			ResultSet rs = stmtScript.getGeneratedKeys();
+			
+			if(rs.next()){
+				idUniforme = rs.getInt(1);
 			}
 			
 		}else{		
@@ -58,15 +65,14 @@ public class UniformeDAO {
 					stmtScript.setInt(2, uniforme.getTpUniforme());
 					stmtScript.setInt(3, uniforme.getTamanhoUniforme());
 				}
-			}			
-		}
+			}	
+			int row = stmtScript.executeUpdate();
+			if(row > 0){
+				idUniforme = buscarIdUniforme(uniforme);
+			}
+		}		
 		
-		rows = stmtScript.executeUpdate();
-		
-		if(rows>0){
-			return true;		
-		}
-		return false;
+		return idUniforme;
 	}
 
 	private Integer buscarQtdTipoUniforme(int tpUniforme, int tamanho) throws SQLException {
@@ -161,6 +167,25 @@ public class UniformeDAO {
 		stmtScript.setInt(1, item.getRetirada().getIdRetiradaUniforme());
 		stmtScript.setInt(2, item.getUniforme().getIdUniforme());
 		stmtScript.setInt(3, item.getQuantidade());
+		
+		rows = stmtScript.executeUpdate();
+		
+		if(rows > 0){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean salvarOperacaoEstoque(OperacaoEstoqueUniforme op) throws SQLException {
+		int rows = 0;
+		stmtScript = con.prepareStatement("INSERT INTO operacaoestoqueuniforme (idUsuario, tpOperacao, "
+				+ "dtOperacao, idUniforme, quantidade) "
+				+ "VALUES(?,?,?,?,?)");
+		stmtScript.setInt(1, op.getUsuario().getIdPessoa());
+		stmtScript.setInt(2, op.getTpOperacao());
+		stmtScript.setDate(3, new java.sql.Date(op.getDtOperacao().getTime()));
+		stmtScript.setInt(4, op.getUniforme().getIdUniforme());
+		stmtScript.setInt(5, op.getQuantidade());
 		
 		rows = stmtScript.executeUpdate();
 		
