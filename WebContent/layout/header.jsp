@@ -13,18 +13,8 @@
 						</a>
 					</div>
 					<div class="col-xs-4 col-sm-8 top-panel-right">
-						<ul class="nav navbar-nav pull-right panel-menu">
-							<c:if test="${sessionScope.usuarioLogado.perfil != 1}">
-								<li>
-									<a href="Controller?action=jspObservacoes" class="modal-link">
-										<i class="fa fa-large fa-bell"></i>
-										<c:if test="${notificacaoObs > 0}">
-	 										<span class="badge">${notificacaoObs}</span> 
-	 									</c:if> 
-									</a>
-								</li>
-							</c:if>
-							<li class="dropdown">
+						<ul class="nav navbar-nav pull-right panel-menu" style="width: 100%;">
+							<li class="dropdown" style="float: right;">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 									<i class="fa fa-large fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right account">
@@ -47,6 +37,16 @@
 									</li>
 								</ul>
 							</li>
+							<c:if test="${sessionScope.usuarioLogado.perfil != 1}">
+								<li style="float: right;">
+									<a href="Controller?action=jspObservacoes" class="modal-link">
+										<i class="fa fa-large fa-bell"></i>
+										<c:if test="${notificacaoObs > 0}">
+	 										<span class="badge">${notificacaoObs}</span> 
+	 									</c:if> 
+									</a>
+								</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

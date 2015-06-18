@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultadoTorneio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d9e8d99-4bec-48a2-9bae-5260e330dba6">
 	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="378"/>
+	<property name="ireport.y" value="203"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Juliane Chaerki\\workspace_jee\\tcc-saat\\Relatorios\\"]]></defaultValueExpression>
 	</parameter>
@@ -167,7 +167,7 @@ WHERE idTorneio = $P{idTorneio}]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Naipe:]]></text>
+				<text><![CDATA[Sexo:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="63" y="87" width="137" height="20" uuid="6d5c0c86-a798-47fa-95dd-89a6e39b9189"/>

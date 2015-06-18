@@ -18,7 +18,7 @@ function abrilModalTorneio(idTorneio, finalizado, perfil) {
 		html += "<b>Cidade/UF:</b> " + data.torneio.cidade + "/" + data.torneio.estado + "<br/>";
 		html += "<b>Data inicial:</b> " + data.torneio.dtInicialDisplay + "<br/>";
 		html += "<b>Data final:</b> " + data.torneio.dtFinalDisplay + "<br/>";
-		html += "<b>Naipe:</b> " + data.naipe[data.torneio.idNaipe - 1] + "<br/>";
+		html += "<b>Sexo:</b> " + data.naipe[data.torneio.idNaipe - 1] + "<br/>";
 		html += "<b>Categoria:</b> " + data.categoria[data.torneio.idCatTorneio - 1] + "<br/>";
 		html += "<b>Tipo:</b> " + data.tipo[data.torneio.idTpTorneio - 1] + "<br/>";
 		html += "<b>Grupo:</b> " + data.grupo[data.torneio.idGpTorneio - 1] + "<br/>";

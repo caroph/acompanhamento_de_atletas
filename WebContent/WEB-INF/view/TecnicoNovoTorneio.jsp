@@ -65,7 +65,7 @@
 										</div>
 										<div class="form-group">
 											<div class="form-group col-md-6">
-												 <label for="naipe">Naipe:</label>
+												 <label for="naipe">Sexo:</label>
 												 <select class="form-control" id="naipe" name="naipe" required>
 													<option value="">Selecione</option>
 													<c:forEach var="naipe" items="${listaNaipe}">

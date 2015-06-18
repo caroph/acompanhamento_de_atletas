@@ -44,15 +44,15 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="col-sm-2">
+											<div class="col-sm-4">
 												<label for="tel" class="control-label">Telefone Residencial</label>
 												<input type="text" class="form-control phone" id="telefone" name="telefone" value='${enderecoResidencial.telefone}' required/>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-4">
 												<label for="telCom" class="control-label">Telefone Comercial</label>
 												<input type="text" class="form-control phone" id="telefoneCom" name="telefoneCom" value='${enderecoComercial.telefone}' required/>
 											</div>
-											<div class="col-sm-2">
+											<div class="col-sm-4">
 												<label for="celular" class="control-label">Telefone Celular</label>
 												<input type="text" class="form-control phone" id="celular" name="celular" value='${responsavel.celular}' required/>
 											</div>
@@ -62,11 +62,11 @@
 											<h4 class="text-center">Endereço Residencial</h4>
 										</div>			
 										<div class="form-group">
-											<div class="col-sm-8">
+											<div class="col-sm-7">
 												<label for="endereco" class="control-label">Endereço</label>
 												<input type="text" class="form-control" id="endereco" name="endereco" value='${enderecoResidencial.endereco}' required/>
 											</div>
-											<div class="col-sm-1">
+											<div class="col-sm-2">
 												<label for="numero" class="control-label">Número</label>
 												<input type="number" class="form-control" id="numero" name="numero" value='${enderecoResidencial.numero}' required/>
 											</div>
@@ -94,11 +94,11 @@
 											<h4 class="text-center">Endereço Comercial</h4>
 										</div>
 										<div class="form-group">
-											<div class="col-sm-8">
+											<div class="col-sm-7">
 												<label for="endereco" class="control-label">Endereço</label>
 												<input type="text" class="form-control" id="enderecoCom" name="enderecoCom" value='${enderecoComercial.endereco}' required/>
 											</div>
-											<div class="col-sm-1">
+											<div class="col-sm-2">
 												<label for="numero" class="control-label">Número</label>
 												<input type="number" class="form-control" id="numeroCom" name="numeroCom" value='${enderecoComercial.numero}' required/>
 											</div>

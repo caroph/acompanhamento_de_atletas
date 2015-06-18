@@ -132,11 +132,11 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="col-sm-8">
+											<div class="col-sm-7">
 												<label for="endereco" class=" control-label">Endereço Residencial:</label>
 												<input type="text"  value="${atleta.endereco.endereco}" class="form-control" id="endereco" name="endereco" maxlength="255" required />
 											</div>
-											<div class="col-sm-1">
+											<div class="col-sm-2">
 	  											<label for="numero" class=" control-label">Número:</label>
 												<input type="number"  value="${atleta.endereco.numero}"  class="form-control" id="numero" name="numero" maxlength="11" required />
 											</div>
