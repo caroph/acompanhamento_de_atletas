@@ -57,6 +57,16 @@ public class JavaMailApp {
             message.setText("Olá!\n\n"
             		+ "Sua nova senha é: " + novaSenha + "\n\n"
     				+ "Favor alterá-la o mais breve possível!\n\n"
+    				+ "http://191.252.0.97:8080/saat_homolog/ \n\n"
+    				+ "Atenciosamente, \n"
+    				+ "SAAT - Sistema de Acompanhamento de Atleta de Tênis");
+        }else if(tipo == 2){
+        	message.setSubject("SAAT - Usuário criado");//Assunto
+            message.setText("Bem vindo(a) ao SAAT - Sistema de Acompanhamento de Atletas de Tênis!\n\n"
+            		+ "Sua senha de acesso ao sistema é: " + novaSenha + "\n\n"
+    				+ "Favor alterá-la o mais breve possível!\n\n"
+            		+ "http://191.252.0.97:8080/saat_homolog/ \n\n"
+            		+ "Atenciosamente, \n"
     				+ "SAAT - Sistema de Acompanhamento de Atleta de Tênis");
         }
         

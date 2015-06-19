@@ -144,7 +144,7 @@ public class UsuarioNegocio {
 				//Comentado para não ficar enviando email sempre que salvar um usuário.
 				try {
 					JavaMailApp email = new JavaMailApp();
-					email.enviaEmail(usuario.getEmail(), novaSenha, 1);
+					email.enviaEmail(usuario.getEmail(), novaSenha, 2);
 				} catch (Exception e) {
 					throw new Exception("Erro! Ocorreu algum erro ao enviar senha ao usuário");
 				}
