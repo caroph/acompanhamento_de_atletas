@@ -77,8 +77,8 @@
 										</div>										
 										<div class="form-group">
  											<div class="col-sm-3">
-												<label for="bairro" class="control-label">Bairro</label>
-												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}' required/>
+												<label class="control-label">Bairro</label>
+												<input type="text" class="form-control" id="bairro" name="bairro" value='${enderecoResidencial.bairro}' />
 											</div>
 											<div class="col-sm-3">
 												<label for="estadoResp" class="control-label">Estado</label>
@@ -109,8 +109,8 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-3">
-												<label for="bairro" class="control-label">Bairro</label>
-												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}' required/>
+												<label class="control-label">Bairro</label>
+												<input type="text" class="form-control" id="bairroCom" name="bairroCom" value='${enderecoComercial.bairro}' />
 											</div>
 											<div class="col-sm-3">
 												<label for="nr" class="control-label">Estado:</label>

@@ -31,6 +31,7 @@
 										action="SecretariaController?action=enviarComunicado"
 										method="post">
 										<div class="form-group">
+											<label class="col-sm-12" class="control-label">Enviar para</label>
 											<div class="col-sm-12">
 												<label>
 											    	<input type="radio" value="1" name="optradio"><span style="padding: 0 10px 0 5px;">Equipe</span>

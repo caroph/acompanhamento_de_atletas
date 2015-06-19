@@ -147,8 +147,8 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-3">
-												<label for="bairro" class="control-label">Bairro:</label>
-												<input type="text"  value="${atleta.endereco.bairro}"  class="form-control" id="bairro" name="bairro" maxlength="45" required/>
+												<label class="control-label">Bairro:</label>
+												<input type="text"  value="${atleta.endereco.bairro}"  class="form-control" id="bairro" name="bairro" maxlength="45" />
 											</div>
 											<div class="col-sm-3">
 												<label for="estado" class=" control-label">Estado:</label>
@@ -166,7 +166,7 @@
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Série:</label>
-												<input type="text" required value="${atleta.serie}" class="form-control" id="serie" name="serie" maxlength="5"/>
+												<input type="text" required value="${atleta.serie}" class="form-control" id="serie" name="serie" maxlength="150"/>
 											</div>
 											<div class="col-sm-3">
 												<label class=" control-label">Turno:</label>
@@ -218,7 +218,7 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-2">
-												<label for="flAlergias" class=" control-label">Alérgias:</label>
+												<label for="flAlergias" class=" control-label">Alergias:</label>
 												<select class="form-control" id="flAlergias" name="flAlergias" required> 
 													<option value="sim">Sim</option> 
 													<option value="nao" selected>Não</option> 

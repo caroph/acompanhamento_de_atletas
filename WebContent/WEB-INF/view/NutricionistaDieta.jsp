@@ -28,7 +28,7 @@
 									<div class="no-move"></div>
 								</div>
 								<div class="box-content">
-									<a class="link-green" id="novaDieta" data-toggle="modal" href="#dieta"><abbr title="Nova dieta"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
+									<a class="link-green" id="novaDieta" data-toggle="modal" href="#dieta"><abbr title="Novo cardápio"><i class="fa fa-large fa-plus-circle"></i></abbr></a>
 									<c:if test="${fn:length(listaDieta) gt 0}">
 										<a class="link-green" id="novaDieta" href="NutricionistaController?action=imprimirDieta&idAtleta=${atleta.idPessoa}" target="_blank"><abbr title="Imprimir"><i class="fa fa-large fa-print"></i></abbr></a>
 										<a class="link-green" id="novaDieta" href="NutricionistaController?action=enviarDieta&idAtleta=${atleta.idPessoa}" data-confirm="Deseja realmente encaminhar a dieta aos responsáveis do atleta?"><abbr title="Encaminhar aos responsáveis"><i class="fa fa-large fa-envelope"></i></abbr></a>
@@ -44,7 +44,7 @@
 													</div>
 													<div class="col-md-1 column" style="padding-top: 8px;">
 														<a class="link-green" data-toggle="modal" onclick="editarDieta('${dieta.idDieta}', '${atleta.idPessoa}')" style="padding-left: 5px;"><abbr title="Editar"><i class="fa fa-large fa-pencil"></i></abbr></a>
-														<a class="link-red" href="NutricionistaController?action=excluirDieta&idDieta=${dieta.idDieta}&idAtleta=${atleta.idPessoa}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir a dieta selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
+														<a class="link-red" href="NutricionistaController?action=excluirDieta&idDieta=${dieta.idDieta}&idAtleta=${atleta.idPessoa}" style="padding-left: 5px;" data-confirm="Deseja realmente excluir o cardápio selecionada?"><abbr title="Excluir"><i class="fa fa-large fa-trash-o"></i></abbr></a>
 													</div>
 												</div>
 												<div class="row clearfix">
@@ -75,7 +75,7 @@
 	    <div class="modal-content">
 	    	<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Nova dieta</h4>
+				<h4 class="modal-title" id="myModalLabel">Novo cardápio</h4>
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="NutricionistaController?action=novaDieta&idAtleta=${atleta.idPessoa}&idDieta=0">
@@ -129,7 +129,7 @@
 	    <div class="modal-content">
 	    	<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-				<h4 class="modal-title" id="myModalLabel">Editar dieta</h4>
+				<h4 class="modal-title" id="myModalLabel">Editar cardápio</h4>
 			</div>
 			<div class="modal-body body-dieta">
 			</div>

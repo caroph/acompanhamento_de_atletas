@@ -196,7 +196,7 @@ function abrirModalAtleta(idAtleta) {
 			html += "<b>CPF:</b> " + data.atleta.CPF + "<br/>";
 			html += "<b>N&#186; Matr\u00edcula:</b> " + data.atleta.nrMatricula + "<br/>";
 			html += "<b>N&#186; Cadastro CBT:</b> " + data.atleta.nrCadCBT + "<br/>";
-			html += "<b>N&#186; Cadastro FTP:</b> " + data.atleta.nrCadFPT + "<br/>";
+			html += "<b>N&#186; Cadastro FPT:</b> " + data.atleta.nrCadFPT + "<br/>";
 			html += "<br/><b>Respons\u00e1veis:</b> " + "<br/>";
 			var grauParentesco = data.grauParentesco;
 				$.each(

@@ -46,7 +46,7 @@ public class AtletaDAO {
 		stmtScript.setString(4, atleta.getCelular());
 		stmtScript.setString(5, atleta.getNrMatricula());
 		stmtScript.setString(6, atleta.getNrCadFPT());
-		stmtScript.setString(7, atleta.getNrCadFPT());
+		stmtScript.setString(7, atleta.getNrCadCBT());
 		stmtScript.setDate(8, new java.sql.Date(atleta.getDtNascimento().getTime()));
 		stmtScript.setString(9, atleta.getRG());
 		stmtScript.setString(10, atleta.getCPF());
@@ -119,8 +119,8 @@ public class AtletaDAO {
 			atleta.setEmail(rs.getString(4));
 			atleta.setCelular(rs.getString(5));
 			atleta.setNrMatricula(rs.getString(6));
-			atleta.setNrCadCBT(rs.getString(7));
-			atleta.setNrCadFPT(rs.getString(8));
+			atleta.setNrCadFPT(rs.getString(7));
+			atleta.setNrCadCBT(rs.getString(8));
 			atleta.setDtNascimento(rs.getDate(9));
 			atleta.setRG(rs.getString(10));
 			atleta.setCPF(rs.getString(11));
@@ -186,8 +186,8 @@ public class AtletaDAO {
 			atleta.setEmail(rs.getString(4));
 			atleta.setCelular(rs.getString(5));
 			atleta.setNrMatricula(rs.getString(6));
-			atleta.setNrCadCBT(rs.getString(7));
-			atleta.setNrCadFPT(rs.getString(8));
+			atleta.setNrCadFPT(rs.getString(7));
+			atleta.setNrCadCBT(rs.getString(8));
 			atleta.setDtNascimento(rs.getDate(9));
 			atleta.setRG(rs.getString(10));
 			atleta.setCPF(rs.getString(11));
@@ -243,7 +243,7 @@ public class AtletaDAO {
 		stmtScript.setString(4, atleta.getCelular());
 		stmtScript.setString(5, atleta.getNrMatricula());
 		stmtScript.setString(6, atleta.getNrCadFPT());
-		stmtScript.setString(7, atleta.getNrCadFPT());
+		stmtScript.setString(7, atleta.getNrCadCBT());
 		stmtScript.setDate(8, new java.sql.Date(atleta.getDtNascimento().getTime()));
 		stmtScript.setString(9, atleta.getRG());
 		stmtScript.setString(10, atleta.getCPF());
@@ -453,7 +453,7 @@ public class AtletaDAO {
 			
 			ResultSet rsNrMatricula = stmtScript.executeQuery();
 			if(rsNrMatricula.next())
-				return "Já existe um atleta com o mesmo numero de matrÃ­cula registrado no sistema!";			
+				return "Já existe um atleta com o mesmo número de matrícula registrado no sistema!";			
 			
 			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
 					+ "WHERE nrCadCBT = ?");			
@@ -479,7 +479,7 @@ public class AtletaDAO {
 			
 			ResultSet rsNrMatricula = stmtScript.executeQuery();
 			if(rsNrMatricula.next())
-				return "Já existe um atleta com o mesmo numero de matrÃ­cula registrado no sistema!";			
+				return "Já existe um atleta com o mesmo número de matrícula registrado no sistema!";			
 			
 			stmtScript = con.prepareStatement("SELECT nrCadCBT FROM atleta "
 					+ "WHERE nrCadCBT = ? AND idAtleta != ?");			
@@ -488,7 +488,7 @@ public class AtletaDAO {
 			
 			ResultSet rsCBT = stmtScript.executeQuery();
 			if(rsCBT.next())
-				return "Já existe um atleta com o mesmo numero de cadastro CBT registrado no sistema!";
+				return "Já existe um atleta com o mesmo número de cadastro CBT registrado no sistema!";
 			
 			stmtScript = con.prepareStatement("SELECT nrCadFPT FROM atleta "
 					+ "WHERE nrCadFPT = ? AND idAtleta != ?");
@@ -497,7 +497,7 @@ public class AtletaDAO {
 			
 			ResultSet rsFPT = stmtScript.executeQuery();
 			if(rsFPT.next())
-				return "Já existe um atleta com o mesmo numero de cadastro FPT registrado no sistema!";
+				return "Já existe um atleta com o mesmo número de cadastro FPT registrado no sistema!";
 		}	
 		return "";
 	}

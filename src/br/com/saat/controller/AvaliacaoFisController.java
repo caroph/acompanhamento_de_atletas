@@ -205,7 +205,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -292,7 +292,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -327,7 +327,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				lista = negocio.buscarCategorias(0, 0);
 				if (lista.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				}
 			}catch(Exception ex){
 				request.setAttribute("msgErro", ex.getMessage());
@@ -372,7 +372,7 @@ public class AvaliacaoFisController extends Controller {
 			try{
 				listaCategorias = negocioCat.buscarCategorias(1, 0);
 				if (listaCategorias.isEmpty()) {
-					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada ou sem dados de referência!");
+					request.setAttribute("msgAlerta", "Nenhuma categoria de avaliação física cadastrada!");
 				} else {
 					try{
 						listaAtividades = negocioAti.buscarAtividades(0, 0);

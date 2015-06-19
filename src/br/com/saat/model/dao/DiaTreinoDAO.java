@@ -170,7 +170,7 @@ public class DiaTreinoDAO {
 		List<DiaTreino> lista = new ArrayList<DiaTreino>();
 		
 		stmtScript = con.prepareStatement("SELECT idDiaTreino, idTpEquipe, idDiaSemana, hrInicio, hrFim "
-				+ "FROM diaTreino t "
+				+ "FROM diatreino t "
 				+ "WHERE t.flCadastroAtivo = 1 AND idDiaSemana = ? "
 				+ "ORDER BY idDiaSemana, hrInicio, hrFim ");
 		

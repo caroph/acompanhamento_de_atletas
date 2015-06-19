@@ -20,12 +20,6 @@ public class EnderecoNegocio {
 		}else if(endereco.getNumero() == 0){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Numero' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
-//		}else if(endereco.getComplemento() == null || endereco.getComplemento() == ""){
-//			lista.add(false);
-//			lista.add("Informe corretamente o campo 'Complemento' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
-		}else if(endereco.getBairro() == null || endereco.getBairro() == ""){
-			lista.add(false);
-			lista.add("Informe corretamente o campo 'Bairro' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");
 		}else if(endereco.getEstado() == null || endereco.getEstado() == ""){
 			lista.add(false);
 			lista.add("Informe corretamente o campo 'Estado' do endereço " + (endereco.getTpEndereco() == TpEndereco.Comercial.getValor()? "Comercial" : "Residencial")  + "!");

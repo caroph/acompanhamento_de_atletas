@@ -239,8 +239,7 @@ public class SecretariaController extends Controller {
 						atleta.setEmail(request.getParameter("email"));
 						atleta.setSexo(sexo);
 						atleta.setCelular(request.getParameter("celular"));
-						atleta.setNrMatricula(request
-								.getParameter("nrMatricula"));
+						atleta.setNrMatricula(request.getParameter("nrMatricula"));
 						atleta.setNrCadCBT(request.getParameter("nrCadCBT"));
 						atleta.setNrCadFPT(request.getParameter("nrCadFPT"));
 						atleta.setDtNascimento(dtNascimento);
@@ -468,26 +467,21 @@ public class SecretariaController extends Controller {
 					boolean valida = (boolean) listaValidacao.get(0);
 
 					if (valida) {
-						// Valida dados endereï¿½o
+						// Valida dados endereço
 						listaValidacao = endNegocio.validar(endereco);
 						valida = (boolean) listaValidacao.get(0);
 
 						if (valida) {
-							// Valida seleï¿½ï¿½o de dias de treino
+							// Valida seleção de dias de treino
 							if (!"".equals(diasTreino) && diasTreino != null) {
 								if (atleta.getIdPessoa() == 0) {
 									// Inserindo Atleta
 									int idNovoAtleta = negocio.inserir(atleta);
 									if (idNovoAtleta > 0) {
-										// Inserindo endereï¿½o
-										if (endNegocio.inserir(endereco,
-												idNovoAtleta,
-												TpPessoa.Atleta.getValor())) {
+										// Inserindo endereço
+										if (endNegocio.inserir(endereco, idNovoAtleta, TpPessoa.Atleta.getValor())) {
 											// Inserindo dias de treino
-											if (diaNegocio
-													.inserirDiaTreinoAtleta(
-															diasTreino,
-															idNovoAtleta)) {
+											if (diaNegocio.inserirDiaTreinoAtleta(diasTreino, idNovoAtleta)) {
 												msgSucesso = "Atleta cadastrado com sucesso!";
 											}
 										}

@@ -81,51 +81,14 @@
 												<thead>
 													<tr>
 														<th width="60%" class="text-center">Atletas</th>
-														<th width="20%" class="text-center">Treino Físico</th>
 														<th width="20%" class="text-center">Treino Técnico</th>
+														<th width="20%" class="text-center">Treino Físico</th>
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="atleta" items="${listaAtletas}">
 														<tr>
 															<td><c:out value="${atleta.nome}" /></td>
-															<td align="center">
-																<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaF}', 
-																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaF}', 'F', '${atleta.idPessoa}')">
-																	<c:choose> 
-																		<c:when test="${atleta.presenca.estadoPresencaF == 1}">
-																			<i class="fa fa-check" style="color: green;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 2}">
-																			<i class="fa fa-ban" style="color: red;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 3}">
-																			<i class="fa fa-trophy" style="color: rgb(97, 97, 7);"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 4}">																		
-																			<i class="fa fa-ambulance" style="color: red;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 5}">
-																			<i class="fa fa-cutlery" style="color: black;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 6}">
-																			<i class="fa fa-stethoscope" style="color: black;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 7}">
-																			<i class="fa fa-comment" style="color: black;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 8}">
-																			<i class="fa  fa-pencil-square-o" style="color: blue;"></i>
-																		</c:when>
-																		<c:when test="${atleta.presenca.estadoPresencaF == 9}">
-																			<i class="fa fa-exclamation" style="color: black;"></i>
-																		</c:when>
-																		<c:otherwise>
-																			<i class="fa fa-plus" style="color: black;"></i>
-																		</c:otherwise>
-																	</c:choose>
-																</button>
-															</td>
 															<td align="center">
 																<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaT}', 
 																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaT}', 'T', '${atleta.idPessoa}')">
@@ -162,6 +125,43 @@
 																		</c:otherwise>
 																	</c:choose>
 																</button> 
+															</td>
+															<td align="center">
+																<button class="btn btn-default" onclick="abriModalEditarChamada('${atleta.presenca.estadoPresencaF}', 
+																'${atleta.presenca.idPresencaChamada}', '${atleta.presenca.justificativaF}', 'F', '${atleta.idPessoa}')">
+																	<c:choose> 
+																		<c:when test="${atleta.presenca.estadoPresencaF == 1}">
+																			<i class="fa fa-check" style="color: green;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 2}">
+																			<i class="fa fa-ban" style="color: red;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 3}">
+																			<i class="fa fa-trophy" style="color: rgb(97, 97, 7);"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 4}">																		
+																			<i class="fa fa-ambulance" style="color: red;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 5}">
+																			<i class="fa fa-cutlery" style="color: black;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 6}">
+																			<i class="fa fa-stethoscope" style="color: black;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 7}">
+																			<i class="fa fa-comment" style="color: black;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 8}">
+																			<i class="fa  fa-pencil-square-o" style="color: blue;"></i>
+																		</c:when>
+																		<c:when test="${atleta.presenca.estadoPresencaF == 9}">
+																			<i class="fa fa-exclamation" style="color: black;"></i>
+																		</c:when>
+																		<c:otherwise>
+																			<i class="fa fa-plus" style="color: black;"></i>
+																		</c:otherwise>
+																	</c:choose>
+																</button>
 															</td>
 														</tr>
 													</c:forEach>
