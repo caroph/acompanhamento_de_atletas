@@ -274,7 +274,7 @@
 											<div class="col-sm-offset-2 col-sm-10 text-right">
 												<a href="SecretariaController" class="btn btn-danger" data-confirm="Deseja realmente cancelar esse cadastro?">Cancelar</a>
 												<button type="reset" class="btn btn-info" onclick="LimparCampos()">Limpar</button>
-												<c:if test="${atleta.idPessoa != null}">
+												<c:if test="${atleta.idPessoa != null && atleta.idPessoa != 0}">
 													<a class="btn btn-primary" id="vinculaResponsavel" onClick="abrirModalVinculacao('${atleta.idPessoa}', 2)">Vincular Responsável</a>
 													<a class="btn btn-primary" href="SecretariaController?action=jspAnexarDocumentosAtleta&idPessoa=${atleta.idPessoa}&nome=${atleta.nome}" id="anexos">Anexar Documentos</a>
 												</c:if>

@@ -192,7 +192,7 @@ public class SecretariaController extends Controller {
 
 					try {
 						DateFormat formatter = new SimpleDateFormat(
-								"dd/MM/yyyy");
+								"yyyy-MM-dd");
 						dtNascimento = (Date) formatter.parse(nascimento);
 						dtValidade = (Date) formatter.parse(validade);
 					} catch (Exception ex) {
