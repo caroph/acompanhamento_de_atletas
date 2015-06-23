@@ -90,7 +90,7 @@ public class AtletaDAO {
 					+ "bairro, estado, cidade, telefone, flCadastroAtivo, sexo "
 					+ "FROM atleta a "
 					+ "LEFT JOIN endereco e "
-					+ "ON a.idAtleta = e.idEndereco "
+					+ "ON a.idAtleta = e.idAtleta "
 					+ "WHERE flCadastroAtivo = " + String.valueOf(ativo)
 					+ " ORDER BY nome ");
 		}else{
@@ -103,7 +103,7 @@ public class AtletaDAO {
 					+ "bairro, estado, cidade, telefone, flCadastroAtivo, sexo "
 					+ "FROM atleta a "
 					+ "LEFT JOIN endereco e "
-					+ "ON a.idAtleta = e.idEndereco "
+					+ "ON a.idAtleta = e.idAtleta "
 					+ " ORDER BY nome ");
 		}
 		
@@ -169,7 +169,7 @@ public class AtletaDAO {
 				+ "bairro, estado, cidade, telefone, sexo "
 				+ "FROM atleta a "
 				+ "LEFT JOIN endereco e "
-				+ "ON a.idAtleta = e.idEndereco "
+				+ "ON a.idAtleta = e.idAtleta "
 				+ "WHERE a.idAtleta = ?");
 		
 		stmtScript.setInt(1, idAtleta);

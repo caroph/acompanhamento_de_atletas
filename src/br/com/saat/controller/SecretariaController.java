@@ -456,10 +456,10 @@ public class SecretariaController extends Controller {
 				diasTreino = request.getParameterValues("diasTreino");
 
 				try {
-					if (!"".equals(idAtleta) && !"0".equals(idAtleta)
-							&& !"".equals(idEndereco)
-							&& !"0".equals(idEndereco)) {
+					if (!"".equals(idAtleta) && !"0".equals(idAtleta)) {
 						atleta.setIdPessoa(Integer.parseInt(idAtleta));
+					}
+					if (!"".equals(idEndereco) && !"0".equals(idEndereco)) {
 						endereco.setIdEndereco(Integer.parseInt(idEndereco));
 					}
 					// Valida dados atleta

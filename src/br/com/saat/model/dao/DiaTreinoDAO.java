@@ -134,7 +134,7 @@ public class DiaTreinoDAO {
 		
 		rows = stmtScript.executeUpdate();
 		
-		if(rows>0){
+		if(rows >= 0){
 			retorno = true;
 		}	
 		
