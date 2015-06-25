@@ -22,6 +22,10 @@ JOIN usuario u ON o.idUsuario = u.idUsuario
 JOIN gravidadeobservacao g ON o.gravidade = g.idGravidadeObservacao
 JOIN atleta a ON o.idAtleta = a.idAtleta
 WHERE o.idAtleta = $P{idAtleta}
+AND
+CASE WHEN o.compartilhamento =  $P{perfil}
+THEN (o.compartilhamento = 0 || o.compartilhamento = 1)
+ELSE o.compartilhamento = 1 END
 ORDER BY DT_INCLUSAO DESC]]>
 	</queryString>
 	<field name="ATLETA" class="java.lang.String"/>

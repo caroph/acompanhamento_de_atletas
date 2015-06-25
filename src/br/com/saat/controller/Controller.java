@@ -919,9 +919,15 @@ public class Controller extends HttpServlet {
 					
 					String caminhoImg = getServletContext().getResource("/relatorios/brasao_cc.jpg").toString();
 					
+					int compartilhamento = 1;
+					
+					if(usuarioLogado.getPerfil() == Perfis.Secretaria.getValor()
+							|| usuarioLogado.getPerfil() == Perfis.PreparadorFisico.getValor()
+							|| usuarioLogado.getPerfil() == Perfis.Tecnico.getValor())
+						compartilhamento = 0;
+					
 					params.put("idAtleta", idAtleta);	
-					params.put("perfil", usuarioLogado.getPerfil() == Perfis.Secretaria.getValor() ? 
-							Perfis.PreparadorFisico.getValor() : usuarioLogado.getPerfil());
+					params.put("perfil", compartilhamento);
 					params.put("caminhoLogo", caminhoImg);
 					
 					byte[] bytes = JasperRunManager.runReportToPdf(jasperURL.openStream(), params, con);
