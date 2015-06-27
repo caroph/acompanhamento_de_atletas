@@ -7,18 +7,18 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT a.nome, colocacao, observacao
+		<![CDATA[SELECT a.nome, dscResultadoTorneio as colocacao, observacao
 FROM atleta a
-INNER JOIN atletaResultadoTorneio art
+INNER JOIN atletaresultadotorneio art
 ON a.idAtleta = art.idAtleta
+INNER JOIN resultadotorneio rt
+ON colocacao = idResultadoTorneio
 AND idTorneio =  $P{idTorneio}]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="colocacao" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="colocacao" class="java.lang.String"/>
 	<field name="observacao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
